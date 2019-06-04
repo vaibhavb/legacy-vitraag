@@ -1,0 +1,78 @@
+header {
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  background-color: #000;
+  a {
+    text-decoration: none;
+  }
+  a:before{
+    content: "\f015";
+    font-family: FontAwesome;
+    font-size: 40px;
+    padding-left: 5px;
+    padding-top: 0px;
+    margin: 0 0 0 0;
+  }
+}
+
+.poem {
+  margin-top: 15px;
+  margin-bottom: 50px;
+
+  h1 {
+    height: 50px;
+    margin: 0 0 0 0;
+    padding-top: 10px;
+    text-align: center;
+    font-size: 24px;
+    font-family: helvetica;
+    font-weight: 800;
+    color: #fff;
+    background-color: #aaa;
+  }
+
+  .browse {
+    a {
+      color: #fff; 
+      padding-left: 10px;
+    }
+    a.prev, a.next {
+        display: block;
+        font-size: 20px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50px;
+        margin-bottom: 20px;
+        background-color: #000;
+        text-decoration: none;
+    }
+    a.prev:before {
+        content: "\f060";
+        font-family: FontAwesome;
+        font-size: 40px;
+    }
+    a.next:before{
+        content: "\f061";
+        font-family: FontAwesome;
+        font-size: 40px;
+    }
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    margin: 0 0 0 0;
+  }
+
+  section.verse {
+    display: none;
+    visibility: false;
+    padding-top: 500px;
+    float: right;
+  }
+}
+
+footer {
+  text-align: center;
+}

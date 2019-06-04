@@ -1,0 +1,86 @@
+Vaibhav Bhandari
+================
+
+*Contact Details* + 
+ image:images/vaibhavb.jpg[Vaibhav Bhandari] +
+ *Address:* 113A 13th Ave E, Seattle WA 98102 +
+ *Phone:* +12066056326 + 
+ *E-mail:* vaibhavb@vitraag.com +
+ http://github.com/vaibhavb[*Github*],http://healthblog.vitraag.com[*Blog*] +
+
+SUMMARY
+-------
+===========================================================================================
+I'm a seasoned software professional with quirky interests in mixology, mountaineering and 
+bicycle touring. I'm currently Director of Product Management with Optum, a subsidiary of United Health Group, and an author with O'Reilly.
+
+Previously, I led the software development in various businesses at Microsoft. In Microsoft
+Health Solutions group, I was involved in creating and developing an ecosystem around Microsoft HealthVault. I helped grow the Microsoft HealthVault partner ecosystem from 17 to over 300 applications and devices in US and in overseas markets like EMEA and APAC.
+
+I have been invitied to  speak at several prestigious conferences including the Open Source Conference, Health 2.0, Strata Rx, and Singapore Techventures. I'm active in the Healthcare IT community and have contributed to National Internet Standards & initiatives like Direct, Meaningful Use, and Blue Button. I'm  author of an O'Reilly book titled http://www.enablingprogrammableself.com["Enabling Programmable Self with HealthVault"], and currently looking for reviewers for the next edition of the book!
+===========================================================================================
+
+PROFESSIONAL EXPERIENCE
+-----------------------
+Optum                                                                   2011 - Present
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+* Optum Cloud, *Director of Product Management*                           2011 - Present +
+Conceptualized, launched and http://bit.ly/resume-optum-1[marketed] products in record time at a Fortune 500 company. Driving a cross functional team to build and enhance Optum Cloud, associated applications and partnerships. Recognized as a company and industry thought leader in healthcare secure messaging, related standards and cloud enablement.
+
+* Axolotl (OptumInsight), *Principal Product Manager*                     2011 - 2011 +
+Managed Open Access Suite of features for Axolotl HIE solution.
+
+Microsoft Corporation  		    				        2004 - 2011
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+* Microsoft HealthVault, *Program Manager*  			2007 - 2011 + 
+Led program managegement and recogznied for strong development skills especially for the HealthVault mobile (iOS, WP7 & Android) and web SDK; and core server platform. + 
+I  worked closely with business developement and marketing counterparts to define a roadmap for the product and understand our international partners' scenarios  inorder to deliver a scalable and performant enterprise product. + 
+In addition, my role involved working closely with Partners (Medical Companies) and Developers to help them design and implement their Health Solutions on HealthVault. As the owner of Developer Experience, I successfully expanded the platform from 17 to over 300 partners.  
+
+* Windows CE Core OS, *Software Design Engineer* 		2005 - 2007 + 
+As a systems' software developer on Windows CE Core operating system, I owned and *developed a fault tolerant operating environment* to update the main operating system. Additionally I *worked on improving algorithms* core to image management for Windows CE and Windows Mobile OSes. I improved the performance of a diffing algorithm in one OEM case from 30 hours to 5 minutes. In this role I engaged actively with OEMs (LG, HTC, Motorola) & Operators (Vodafone) in performance enhancement and driver troubleshooting. +   
+I was one of the first developers to work on getting Windows Mobile 7 (Windows Phone 7) to work on reference hardware, by porting the relevant core operating system infrastructure.
+
+* Windows Powershell, *Software  Engineer*  		2004 - 2005 + 
+As a software engineer for Windows Powershell I wrote a package manager which allowed users to distribute and install scripts using the internet. I also developed a stress testing framework for this commandline shell. I was part of the version 1.0 of this product, and now its ubiquitous on all versions of the Windows Operating system.
+
+Lib13                                                               2005-Present
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+* Lib13, *Hacker -  Mixologist*                                2005 - Present +
+Lib13 is an ideation incubator though which I have founded and sheparded successful social and startup ventures like  http://apps.healthvault.com/walkme[WalkMe], http://www.wisevoter.org[WiseVoter.org] and http://www.vitraag.com/vmudi[vMudi]. WalkMe is an open source application for Microsoft HealthVault; just months after launching it was one of the top ten most used HealthVault applications. WiseVoter is a website that reports data on Indian politicians that is both highly comprehensive and highly accurate.  During the 2008 general elections it garnered significant enough attention as to be mentioned by prominent popular news media. vMudi is a mood reporting and tracking applications designed to engage users with gamification & interface seamlessly with HealthVault.  It is currently available in a test version for the Windows Phone. Plans for both iPhone and Android versions are underway.
+
+DaimlerChrysler RTNA         					        June 03 - Feb 04
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+* DaimlerChrysler, *Telematics Systems' Developer Intern*, June 2003 - Feb 2004 +
+As a telematics engineer I worked on design, analysis and programming of an embedded module for PT Cruiser models, to enable programmable lock-tones for a car similar to ring-tones.
+
+Awards and Honors
+~~~~~~~~~~~~~~~~~
+* Invited to talk at OpenSource Conference (OSCON 2010, OSCON 2011), Health 2.0 (2011, 2013), O'Reilly Strata (2012) and Singapore Techventures (2013).
+* Microsoft Hero of the Week (twice) & Gold Star for exceptional performance.
+* Awarded 4 US provisional patents.
+
+EDUCATION
+---------
+
+* UC Santa Cruz, CA 							Sep 01 - Dec 03  + 
+*MS in Computer Science*. Awarded UC Regents scholarship.
+
+* University Of Mumbai, India 						1997 - 2001  + 
+*BE in Computer Engineering*. Graduated in top 5% of the class.
+
+* ICFAI, India  2000-2001  + 
+*Diploma in Business Finance*.
+
+Awards and Honors
+~~~~~~~~~~~~~~~~~
+* Received UC Regents Scholarship.
+* Awarded National Talent Search Scholarship by Government of India.
+
+HOBBIES
+-------
+Traditional Rock Climbing, Mountaineering and Road Cycling (United States Cycling Federation,USCF Official).
+
+REFERENCES
+----------
+Available on request. Informal references are on http://www.linkedin.com/in/vaibhavb[LinkedIn].

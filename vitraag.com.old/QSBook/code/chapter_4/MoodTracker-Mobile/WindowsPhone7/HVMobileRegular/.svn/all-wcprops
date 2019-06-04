@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/!svn/ver/431240/internal/books/9781449316563/current/code/chapter_4/MoodTracker-Mobile/WindowsPhone7/HVMobileRegular
+END
+CreateAuthenticatedSessionToken.cs
+K 25
+svn:wc:ra_dav:version-url
+V 152
+/!svn/ver/431240/internal/books/9781449316563/current/code/chapter_4/MoodTracker-Mobile/WindowsPhone7/HVMobileRegular/CreateAuthenticatedSessionToken.cs
+END
+MobilePlatform.cs
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/!svn/ver/431240/internal/books/9781449316563/current/code/chapter_4/MoodTracker-Mobile/WindowsPhone7/HVMobileRegular/MobilePlatform.cs
+END
+HealthVaultResponseEventArgs.cs
+K 25
+svn:wc:ra_dav:version-url
+V 149
+/!svn/ver/431240/internal/books/9781449316563/current/code/chapter_4/MoodTracker-Mobile/WindowsPhone7/HVMobileRegular/HealthVaultResponseEventArgs.cs
+END
+Provisioner.cs
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/!svn/ver/431240/internal/books/9781449316563/current/code/chapter_4/MoodTracker-Mobile/WindowsPhone7/HVMobileRegular/Provisioner.cs
+END
+HealthVaultRecord.cs
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/!svn/ver/431240/internal/books/9781449316563/current/code/chapter_4/MoodTracker-Mobile/WindowsPhone7/HVMobileRegular/HealthVaultRecord.cs
+END
+HealthVaultResponse.cs
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/!svn/ver/431240/internal/books/9781449316563/current/code/chapter_4/MoodTracker-Mobile/WindowsPhone7/HVMobileRegular/HealthVaultResponse.cs
+END
+HealthVaultService.cs
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/!svn/ver/431240/internal/books/9781449316563/current/code/chapter_4/MoodTracker-Mobile/WindowsPhone7/HVMobileRegular/HealthVaultService.cs
+END
+Microsoft.Health.Mobile.csproj.user
+K 25
+svn:wc:ra_dav:version-url
+V 153
+/!svn/ver/431240/internal/books/9781449316563/current/code/chapter_4/MoodTracker-Mobile/WindowsPhone7/HVMobileRegular/Microsoft.Health.Mobile.csproj.user
+END
+HealthVaultRequest.cs
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/!svn/ver/431240/internal/books/9781449316563/current/code/chapter_4/MoodTracker-Mobile/WindowsPhone7/HVMobileRegular/HealthVaultRequest.cs
+END
+Microsoft.Health.Mobile.csproj
+K 25
+svn:wc:ra_dav:version-url
+V 148
+/!svn/ver/431240/internal/books/9781449316563/current/code/chapter_4/MoodTracker-Mobile/WindowsPhone7/HVMobileRegular/Microsoft.Health.Mobile.csproj
+END
+WebTransport.cs
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/!svn/ver/431240/internal/books/9781449316563/current/code/chapter_4/MoodTracker-Mobile/WindowsPhone7/HVMobileRegular/WebTransport.cs
+END

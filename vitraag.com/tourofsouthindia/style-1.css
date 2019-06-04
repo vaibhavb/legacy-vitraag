@@ -1,0 +1,652 @@
+/*---------MAIN STYLES---------*/
+
+* {
+border:0 none;
+margin:0;
+outline-color:-moz-use-text-color;
+outline-style:none;
+outline-width:0;
+padding:0;
+}
+ul, li {
+list-style-image:none;
+list-style-position:outside;
+list-style-type:none;
+}
+body {
+-moz-background-clip:border;
+-moz-background-inline-policy:continuous;
+-moz-background-origin:padding;
+background:#FFFFFF none repeat scroll 0 0;
+color:#C8C8C3;
+font-family:"ff-dagny-web-pro-1","ff-dagny-web-pro-2", "Lucida Grande",Arial, Helvetica, sans-serif;
+font-size:12px;
+width:100%;
+}
+:focus {
+outline-color:-moz-use-text-color;
+outline-style:none;
+outline-width:0;
+}
+.clear:after {
+clear:both;
+content:".";
+display:block;
+height:0;
+visibility:hidden;
+}
+* html .clear {
+height:1%;
+}
+.wrapper {
+margin:0 auto;
+width:850px;
+}
+a, .red {
+color:#4782AC;
+text-decoration:none;
+}
+a:hover {
+border-bottom:1px dotted;
+}
+h2 {
+color:#999999;
+font-family:"ff-tisa-web-pro-1","ff-tisa-web-pro-2", Georgia,Times,serif;
+font-size:18px;
+font-weight:normal;
+letter-spacing:1.7px;
+font-variant: small-caps;
+}
+h3 {
+color:#666666;
+font-family: "ff-dagny-web-pro-1","ff-dagny-web-pro-2",sans-serif;
+font-size:13px;
+font-weight:bold;
+text-transform:uppercase;
+letter-spacing: 1px;
+padding-bottom: 20px;
+width:100%;
+}
+.left {
+display:inline;
+float:left;
+}
+.right {
+display:inline;
+float:right;
+}
+#header {
+-moz-background-clip:border;
+-moz-background-inline-policy:continuous;
+-moz-background-origin:padding;
+background:transparent url(images/top.png) no-repeat scroll center top;
+border-top:8px solid #181818;
+height:225px;
+width:100%;
+}
+#logo {
+-moz-background-clip:border;
+-moz-background-inline-policy:continuous;
+-moz-background-origin:padding;
+background:transparent url(images/TourOfSouthIndia.png) no-repeat scroll 0 0;
+height:75px;
+margin:25px 0 5px;
+text-indent:-9999px;
+width:817px;
+}
+
+#pledge {
+-moz-background-clip:border;
+-moz-background-inline-policy:continuous;
+-moz-background-origin:padding;
+background:transparent url(images/pledge.png) no-repeat scroll 0 0;
+height:75px;
+margin:25px 0 5px;
+text-indent:-9999px;
+width:817px;
+}
+
+#nav {
+-moz-background-clip:border;
+-moz-background-inline-policy:continuous;
+-moz-background-origin:padding;
+background:transparent url(images/top_underline.jpg) no-repeat scroll center bottom;
+margin:0 auto;
+padding:55px 0px 10px 85px;
+width:720px;
+}
+#nav li {
+font-family: "ff-tisa-web-pro-1","ff-tisa-web-pro-2", Georgia, Times, serif;
+color: #999999;
+font-style: italic;
+display:inline;
+float:left;
+font-size: 12px;
+margin:-5px 65px 0 0;
+}
+
+#nav li a {
+color:#333333;
+font-family: "ff-dagny-web-pro-1","ff-dagny-web-pro-2","Lucida Grande",Arial, Helvetica, sans-serif;
+font-style: normal;
+font-weight:bold;
+text-transform: uppercase;
+font-size: 13px;
+letter-spacing: 1px;
+}
+.content {
+padding:40px 0 0;
+}
+.content h3 {
+-moz-background-clip:border;
+-moz-background-inline-policy:continuous;
+-moz-background-origin:padding;
+background:transparent url(images/underline.jpg) repeat-x scroll center bottom;
+font-size: 14px;
+margin:0 0 20px;
+padding:0 0 5px;
+}
+#perspective {
+-moz-background-clip:border;
+-moz-background-inline-policy:continuous;
+-moz-background-origin:padding;
+background:transparent url(images/perspective.png) repeat-x scroll center center;
+color:#333333;
+font-family:"ff-tisa-web-pro-1","ff-tisa-web-pro-2", Georgia,Times,serif;
+font-size:1.8em;
+height:148px;
+padding:48px 0 0;
+width:100%;
+}
+#perspective p {
+-webkit-text-size-adjust: none;
+font-family: "ff-tisa-web-pro-1","ff-tisa-web-pro-2", Georgia,Times,serif;
+line-height:1.5em;
+padding:5px 0 0;
+width:765px;
+}
+#perspective a {
+font-style:italic;
+}
+#main {
+float:left;
+margin:0 0 20px;
+width:550px;
+}
+#main p {
+-webkit-text-size-adjust: none;
+color:#666666;
+font-family:"ff-tisa-web-pro-1","ff-tisa-web-pro-2",Georgia,Times,serif;
+font-size:14.5px;
+line-height:1.5em;
+margin:0 0 30px;
+}
+
+
+/*---------INDEX STYLES---------*/
+
+
+.brian {
+-moz-background-clip:border;
+-moz-background-inline-policy:continuous;
+-moz-background-origin:padding;
+background:transparent url(images/brian.jpg) no-repeat scroll left center;
+padding:0 0 0px 85px;
+}
+#sidebar {
+float:right;
+width:240px;
+}
+#sidebar ul {
+margin:0 0 20px;
+}
+#sidebar li {
+font-family: "ff-tisa-web-pro-1","ff-tisa-web-pro-2", Georgia, Times, serif;
+font-variant: small-caps;
+color: #666666;
+font-size:15.5px;
+font-weight:normal;
+line-height:1.5em;
+letter-spacing: 1px;
+}
+p.email {
+color:#666666;
+font-family:"ff-tisa-web-pro-1","ff-tisa-web-pro-2",Georgia,Times,serif;
+font-variant: normal;
+font-style: italic;
+font-size:14px;
+margin:20px 0;
+}
+span.email { 
+font-family:"ff-tisa-web-pro-1","ff-tisa-web-pro-2",Georgia, Times, serif; 
+font-weight: normal; 
+font-size: 13px; 
+float: left; 
+margin: 5px 0 20px 0; }
+
+span.at { 
+font-style: italic; 
+font-weight: normal; 
+font-size: 13px; 
+color: #999; }
+
+.hire {
+font-family:"ff-dagny-web-pro-1","ff-dagny-web-pro-2",Helvetica,Arial,sans-serif !important;
+font-size:12px !important;
+padding:0 0 0 85px;
+width:335px;
+}
+.hire a {
+font-weight:bold;
+}
+#hire {
+-moz-background-clip:border;
+-moz-background-inline-policy:continuous;
+-moz-background-origin:padding;
+background:transparent url(images/hire2.png) no-repeat scroll 0 0;
+border:medium none;
+display:block;
+float:right;
+height:31px;
+margin:-6px -32px 0;
+text-indent:-9999px;
+width:89px;
+}
+#bottom {
+-moz-background-clip:border;
+-moz-background-inline-policy:continuous;
+-moz-background-origin:padding;
+background:transparent url(images/footer.gif) no-repeat scroll 0 0;
+clear:both;
+height:30px;
+margin:0 auto;
+width:158px;
+}
+#footer {
+-moz-background-clip:border;
+-moz-background-inline-policy:continuous;
+-moz-background-origin:padding;
+background:#111418 none repeat scroll 0 0;
+font-size: 13px;
+font-style: normal;
+clear:both;
+padding:40px 0 0;
+width:100%;
+}
+#footer .col {
+float:left;
+width:290px;
+}
+#footer .last {
+width:250px;
+padding-bottom: 60px;
+}
+#footer .connect a {
+width:250px;
+margin-right: 8px;
+}
+#footer h3 {
+color:#FFFFFF;
+letter-spacing:1.75px;
+margin:0 0 0px;
+text-transform:uppercase;
+font-weight:bold;
+font-size: 15px;
+}
+#footer ul {
+margin:0 0 10px;
+}
+#footer ul li {
+line-height:2em;
+}
+#footer ul li a {
+color:#C8C8C3;
+}
+#footer .copy {
+-webkit-text-size-adjust: none;
+font-family: "ff-dagny-web-pro-1","ff-dagny-web-pro-2","Lucida Grande",Arial, Helvetica, sans-serif;
+border-top:2px solid #2f2f2f;
+clear:both;
+color:#F4F4ED;
+display:block;
+font-size:13px;
+letter-spacing:0px;
+line-height: 1.5em;
+padding:18px 0 55px 0px;
+text-transform:none;
+width:100%;
+}
+#footer .subscribe li a {
+-moz-background-clip:border;
+-moz-background-inline-policy:continuous;
+-moz-background-origin:padding;
+background:transparent url(images/rss.png) no-repeat scroll left center;
+padding:0 0 0 22px;
+line-height: 1.5em;
+color:#4782AC;
+}
+#footer a:hover{
+color: #FFF;
+border-bottom: none;
+}
+#projects {
+width:175px;
+}
+#projects a {
+border:0 none;
+}
+#projects p.more {
+clear:both;
+margin:0px 0 35px;
+}
+#projects p.more a:hover {
+border-bottom:1px dotted;
+}
+.quote {
+margin:0 0 15px;
+line-height: 1.5em;
+width:235px;
+}
+.source {
+font-family:"ff-tisa-web-pro-1","ff-tisa-web-pro-2", Georgia,Times,serif;
+font-style:italic;
+color: #FFFFCC;
+font-size: 11px;
+}
+
+#weekly {
+width:200px;
+}
+
+
+/*------------ABOUT PAGE-------------*/
+
+
+#logotwo {
+-moz-background-clip:border;
+-moz-background-inline-policy:continuous;
+-moz-background-origin:padding;
+background:transparent url(images/subjectofme.png) no-repeat scroll 0 0;
+height:95px;
+margin:25px 0 5px;
+text-indent:-9999px;
+width:817px;
+}
+#perspectivetwo {
+-moz-background-clip:border;
+-moz-background-inline-policy:continuous;
+-moz-background-origin:padding;
+background:transparent url(images/perspective.png) repeat-x scroll center center;
+color:#333333;
+font-family:"ff-tisa-web-pro-1","ff-tisa-web-pro-2",Georgia,Times,serif;
+font-size:1.8em;
+height:148px;
+padding:48px 0 0;
+width:100%;
+}
+#perspectivetwo p {
+-webkit-text-size-adjust: none;
+line-height:1.5em;
+padding:0px 0 0;
+width:765px;
+}
+#perspectivetwo a {
+font-style:italic;
+}
+#maintwo {
+float:left;
+margin:0 0 20px;
+width:450px;
+}
+#maintwo p {
+-webkit-text-size-adjust: none;
+color:#666666;
+font-family:"ff-tisa-web-pro-1","ff-tisa-web-pro-2",Georgia,Times,serif;
+font-size:14.5px;
+line-height:1.6em;
+margin:0 0 30px;
+}
+#sidebartwo {
+float:right;
+width:340px;
+}
+#sidebartwo ul {
+margin:0 0 20px;
+}
+#sidebartwo li {
+font-family: "ff-tisa-web-pro-1","ff-tisa-web-pro-2",Georgia, Times, serif;
+font-variant: small-caps;
+color: #666666;
+font-size:15.5px;
+font-weight:normal;
+line-height:1.7em;
+letter-spacing: 1px;
+}
+span.aboutside { 
+font-family: "ff-tisa-web-pro-1","ff-tisa-web-pro-2",Georgia,Times, serif;
+font-style: italic;
+font-variant: normal;
+font-size: 12px; 
+letter-spacing: 0px;
+color: #666;
+}
+span.aboutsidehire { 
+font-family: "ff-tisa-web-pro-1","ff-tisa-web-pro-2",Georgia,Times, serif;
+font-style: italic;
+font-variant: normal;
+font-size: 12px; 
+letter-spacing: 0px;
+color: #666;
+}
+span.abbrev { 
+font-family: "ff-tisa-web-pro-1","ff-tisa-web-pro-2",Georgia, Times, serif;
+font-variant: small-caps;
+color: #666666;
+font-size:15.5px;
+font-weight:normal;
+line-height:1.7em;
+letter-spacing: 1px;
+}
+span.numbers { 
+font-size: 13px; 
+letter-spacing: 2px;
+color: #666; 
+}
+span.amp {
+	font-family: "goudy-bookletter-1911-1","goudy-bookletter-1911-2", Baskerville, "Goudy Old Style", serif;
+	font-weight: normal;
+	font-style: italic;
+}
+#litter a:hover {
+border-bottom:0px;
+}
+.rightone {
+display:inline;
+padding-bottom: 20px;
+}
+.righttwo {
+display:inline;
+padding-left: 20px;
+padding-bottom: 20px;
+}
+#footer .sep {
+margin-bottom:30px;
+border-bottom: 0px solid #2f2f2f;
+width:250px;
+}
+.contacticons {
+display:inline;
+padding-bottom: 10px;
+}
+.contacticonstwo {
+display:inline;
+padding-bottom: 10px;
+}
+.weeklyone {
+-moz-background-clip:border;
+-moz-background-inline-policy:continuous;
+-moz-background-origin:padding;
+background:transparent url(images/weekly1.png) no-repeat scroll left center;
+padding:12px 0 0px 85px;
+font-family: "ff-tisa-web-pro-1","ff-tisa-web-pro-2",Georgia, Times, serif;
+font-variant: small-caps;
+color: #666666;
+font-size:15.5px;
+font-weight:normal;
+line-height:1em;
+letter-spacing: 1px;
+}
+.weeklytwo {
+-moz-background-clip:border;
+-moz-background-inline-policy:continuous;
+-moz-background-origin:padding;
+background:transparent url(images/weekly2.png) no-repeat scroll left center;
+margin-top: 20px;
+padding:12px 0 0px 85px;
+font-family: "ff-tisa-web-pro-1","ff-tisa-web-pro-2",Georgia, Times, serif;
+font-variant: small-caps;
+color: #666666;
+font-size:15.5px;
+font-weight:normal;
+line-height:1em;
+letter-spacing: 1px;
+}
+.weeklythree {
+-moz-background-clip:border;
+-moz-background-inline-policy:continuous;
+-moz-background-origin:padding;
+background:transparent url(images/weekly3.png) no-repeat scroll left center;
+margin-top: 20px;
+padding:12px 0 0px 85px;
+font-family: "ff-tisa-web-pro-1","ff-tisa-web-pro-2",Georgia, Times, serif;
+font-variant: small-caps;
+color: #666666;
+font-size:15.5px;
+font-weight:normal;
+line-height:1em;
+letter-spacing: 1px;
+}
+.weeklyfour {
+-moz-background-clip:border;
+-moz-background-inline-policy:continuous;
+-moz-background-origin:padding;
+background:transparent url(images/weekly4.png) no-repeat scroll left center;
+margin-top: 20px;
+padding:12px 0 0px 85px;
+font-family: "ff-tisa-web-pro-1","ff-tisa-web-pro-2",Georgia, Times, serif;
+font-variant: small-caps;
+color: #666666;
+font-size:15.5px;
+font-weight:normal;
+line-height:1em;
+letter-spacing: 1px;
+}
+.weeklyfive {
+-moz-background-clip:border;
+-moz-background-inline-policy:continuous;
+-moz-background-origin:padding;
+background:transparent url(images/weekly5.png) no-repeat scroll left center;
+margin-top: 20px;
+padding:12px 0 0px 85px;
+font-family: "ff-tisa-web-pro-1","ff-tisa-web-pro-2",Georgia, Times, serif;
+font-variant: small-caps;
+color: #666666;
+font-size:15.5px;
+font-weight:normal;
+line-height:1em;
+letter-spacing: 1px;
+}
+
+/*------------CONTACT PAGE-------------*/
+
+
+#connectbanner {
+-moz-background-clip:border;
+-moz-background-inline-policy:continuous;
+-moz-background-origin:padding;
+background:transparent url(images/connect-banner.png) no-repeat scroll 0 0;
+height:95px;
+margin:25px 0 5px;
+text-indent:-9999px;
+width:817px;
+}
+.contentcontact {
+padding:10px 0 0;
+}
+.contentcontact h3 {
+-moz-background-clip:border;
+-moz-background-inline-policy:continuous;
+-moz-background-origin:padding;
+background:transparent url(images/underline.jpg) repeat-x scroll center bottom;
+width: 100%;
+margin:0px 0 20px;
+padding:0px 0 5px;
+}
+#perspectivethree {
+-moz-background-clip:border;
+-moz-background-inline-policy:continuous;
+-moz-background-origin:padding;
+color:#333333;
+font-family:"ff-tisa-web-pro-1","ff-tisa-web-pro-2",Georgia,Times,serif;
+font-size:1.75em;
+height:130px;
+padding:0px 0 0px 0;
+width:100%;
+}
+#perspectivethree p {
+-webkit-text-size-adjust: none;
+color: #4782AC;
+line-height:1.5em;
+padding:10px 0 0;
+width:765px;
+}
+#perspectivethree a {
+font-style:italic;
+}
+.sidebarnoline h3{
+-moz-background-clip:border;
+-moz-background-inline-policy:continuous;
+-moz-background-origin:padding;
+background:transparent url(images/underline.jpg) repeat-x scroll center bottom;
+width: 67%;
+margin:0px 0 20px;
+padding:0px 0 5px;
+}
+#mainthree {
+float:left;
+margin:0 0 0px;
+width:350px;
+}
+#mainthree p {
+-webkit-text-size-adjust: none;
+color:#666666;
+font-family:"ff-tisa-web-pro-1","ff-tisa-web-pro-2",Georgia,Times,serif;
+font-size:14.5px;
+line-height:1.6em;
+margin:0 0 30px;
+}
+#sidebarcontact {
+float:right;
+width:440px;
+}
+#sidebarcontact ul {
+margin:0 0 20px;
+}
+#sidebarcontact li {
+font-family: "ff-tisa-web-pro-1","ff-tisa-web-pro-2",Georgia, Times, serif;
+font-variant: small-caps;
+color: #666666;
+font-size:15.5px;
+font-weight:normal;
+line-height:1.7em;
+letter-spacing: 1px;
+}
+.asap {
+font-family: "ff-tisa-web-pro-1","ff-tisa-web-pro-2",Georgia, Times, serif;
+font-variant: small-caps;
+color: #666666;
+font-size:16px;
+font-weight:normal;
+line-height:1.7em;
+letter-spacing: 1px;
+}

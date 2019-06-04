@@ -1,0 +1,141 @@
+<html>
+<head>
+<title> Tour de Dravida </title>
+<link rel="stylesheet" type="text/css" href="style-1.css" />
+
+<script src="js/jquery.js" type="text/javascript"></script> 
+<script src="js/jquery.lightbox-0.5.js" type="text/javascript"></script> 
+<link href="js/jquery.lightbox-0.5.css" rel="stylesheet" type="text/css" media="screen" /> 
+
+<script type="text/javascript"> 
+		$(function() {
+			$('#projects a').lightBox();
+		});
+</script> 
+
+<link rel="alternate" type="application/rss+xml" title="Tour of South India  Resource RSS" href="http://feeds.feedburner.com/tourofsouthindia" /> 
+ 
+<script type="text/javascript" src="http://use.typekit.com/hit8ncp.js"></script> 
+<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+
+</head>
+<body>
+
+<div id="header"> 
+	<div class="wrapper"> 
+ 
+	 	<div id="nav" class="clear"> 
+		<ul> 
+			<li><a href="#">About</a><br /> 
+			<span>what it is?</span></li> 
+
+			<li><a href="http://www.flickr.com/">Pictures</a><br />  
+			<span>pictures of the tour</span></li> 
+
+			<li><a href="http://ramblings.vitraag.com/">Blog</a><br /> 
+			<span>tour blog</span></li>
+ 
+			<li><a href="http://ramblings.vitraag.com/">Pledge</a><br /> 
+			<span>know more about milind and Teach for India</span></li>
+			
+ 
+		</div> 
+		<h1 id="logo">Tour Of South India.</h1> 
+	</div> 
+</div>
+
+<div id="perspective" class="clear"> 
+	<div class="wrapper"> 
+		<h2>a perspective of what we want to do:</h2> 
+		<p> While discovering our home-land we want to journal our experiences and make an attempt to furthur the cause of education!</p> 
+	</div> 
+</div> 
+
+
+
+<div class="wrapper content"> 
+	<div id="main"> 
+		<h3>Support and pledge for the tour!</h3> 
+                <p> Tour de South India is tour from Chennai to Goa. Participants -- Vaibhav, Tullika and Rahul. Cause -- Asha for Education and Teach for India. </p>
+		<p>
+		Links
+		<ul>
+			<li>Donation Page</li>
+			<li>Blog Updates - Vaibhav, Tullika , Rahul </li>
+			<li>Destinations </li>
+		</ul>
+		</p>
+	</div>
+
+	<div id="sidebar"> 
+		<h3>Support our projects</h3> 
+		<ul> 
+		   <li> Teach For India </li>
+		   <li> Asha For Education </li>
+		</ul>
+	</div>
+</div>
+
+
+<div id="bottom"></div> 
+<div id="footer"> 
+	<div class="wrapper"> 
+		<div class="col"> 
+			<h3> Destinations </h3>
+			<ul>
+			  <li> Chennai <li>
+			  <li> Ramnathpuram <li>
+			  <li> Kanyakumari <li>
+			  <li> Mangalore <li>
+			  <li> Goa </li>
+			</ul>
+		</div>
+
+		<div class="col">
+		        <h3> Blog Update </h3>
+			<ul>
+			  <li> Tullika </li>
+			  <li> Rahul </li>
+			  <li> Vaibhav </li>
+			</ul>
+		</div>
+
+		<div class="col last">
+			<h3> Pledge </h3>
+			<ul>
+			  <li> Teach For India <li>
+			</ul>
+		</div>
+
+		<p class="copy">Copyright &copy; 2010 Vaibhav Bhandari | <a href="mailto:vaibhavb@vitraag.com">Contact Me</a> | <a 
+href="mailto:vaibhavb@vitraag.com?subject=In 
+Need Of Your Amazing Design Talent">Hire me</a><span class="right">Designed <span class="amp">&amp;</span> developed using Web Standards: <a href="http://validator.w3.org/">XHTML</a> <span 
+class="amp">&amp;</span> <a href="http://jigsaw.w3.org/css-validator/">CSS</a></span></p> 
+		<p class="copy"> Design Inspired by Brian Hoff </p>
+ 
+	</div> 
+</div> 	
+
+<!--start Google Analytics-->  
+<script type="text/javascript"> 
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script> 
+<script type="text/javascript"> 
+try {
+var pageTracker = _gat._getTracker("");
+pageTracker._trackPageview();
+} catch(err) {}</script> 
+ 
+<!--end Google Analytics--> 
+ 
+<!-- Woopra Code Start --> 
+<script type="text/javascript"> 
+var _wh = ((document.location.protocol=='https:') ? "https://sec1.woopra.com" : "http://static.woopra.com");
+document.write(unescape("%3Cscript src='" + _wh + "/js/woopra.js' type='text/javascript'%3E%3C/script%3E"));
+</script> 
+<!-- Woopra Code End --> 
+
+
+</body>
+</html>

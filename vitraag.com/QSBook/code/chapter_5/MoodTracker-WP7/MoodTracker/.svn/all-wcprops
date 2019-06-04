@@ -1,0 +1,173 @@
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/!svn/ver/437073/internal/books/9781449316563/current/code/chapter_5/MoodTracker-WP7/MoodTracker
+END
+App.xaml
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/!svn/ver/437073/internal/books/9781449316563/current/code/chapter_5/MoodTracker-WP7/MoodTracker/App.xaml
+END
+MainPage.xaml
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/!svn/ver/437073/internal/books/9781449316563/current/code/chapter_5/MoodTracker-WP7/MoodTracker/MainPage.xaml
+END
+FacebookInfoPage.xaml
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/!svn/ver/437073/internal/books/9781449316563/current/code/chapter_5/MoodTracker-WP7/MoodTracker/FacebookInfoPage.xaml
+END
+packages.config
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/!svn/ver/437073/internal/books/9781449316563/current/code/chapter_5/MoodTracker-WP7/MoodTracker/packages.config
+END
+StorageProvider.cs
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/!svn/ver/437073/internal/books/9781449316563/current/code/chapter_5/MoodTracker-WP7/MoodTracker/StorageProvider.cs
+END
+App.xaml.cs
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/!svn/ver/437073/internal/books/9781449316563/current/code/chapter_5/MoodTracker-WP7/MoodTracker/App.xaml.cs
+END
+MainPage.xaml.cs
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/!svn/ver/437073/internal/books/9781449316563/current/code/chapter_5/MoodTracker-WP7/MoodTracker/MainPage.xaml.cs
+END
+FacebookInfoPage.xaml.cs
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/!svn/ver/437073/internal/books/9781449316563/current/code/chapter_5/MoodTracker-WP7/MoodTracker/FacebookInfoPage.xaml.cs
+END
+MoodTracker.csproj.user
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/!svn/ver/437073/internal/books/9781449316563/current/code/chapter_5/MoodTracker-WP7/MoodTracker/MoodTracker.csproj.user
+END
+HostedBrowser.xaml
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/!svn/ver/437073/internal/books/9781449316563/current/code/chapter_5/MoodTracker-WP7/MoodTracker/HostedBrowser.xaml
+END
+HostedBrowser.xaml.cs
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/!svn/ver/437073/internal/books/9781449316563/current/code/chapter_5/MoodTracker-WP7/MoodTracker/HostedBrowser.xaml.cs
+END
+FacebookService.cs
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/!svn/ver/437073/internal/books/9781449316563/current/code/chapter_5/MoodTracker-WP7/MoodTracker/FacebookService.cs
+END
+ApplicationIcon.png
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/!svn/ver/437073/internal/books/9781449316563/current/code/chapter_5/MoodTracker-WP7/MoodTracker/ApplicationIcon.png
+END
+FacebookLoginPage.xaml
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/!svn/ver/437073/internal/books/9781449316563/current/code/chapter_5/MoodTracker-WP7/MoodTracker/FacebookLoginPage.xaml
+END
+Background.png
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/!svn/ver/437073/internal/books/9781449316563/current/code/chapter_5/MoodTracker-WP7/MoodTracker/Background.png
+END
+FacebookLoginPage.xaml.cs
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/!svn/ver/437073/internal/books/9781449316563/current/code/chapter_5/MoodTracker-WP7/MoodTracker/FacebookLoginPage.xaml.cs
+END
+MyMoodPlant.xaml
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/!svn/ver/437073/internal/books/9781449316563/current/code/chapter_5/MoodTracker-WP7/MoodTracker/MyMoodPlant.xaml
+END
+MyMood.xaml
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/!svn/ver/437073/internal/books/9781449316563/current/code/chapter_5/MoodTracker-WP7/MoodTracker/MyMood.xaml
+END
+MyMoodPlant.xaml.cs
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/!svn/ver/437073/internal/books/9781449316563/current/code/chapter_5/MoodTracker-WP7/MoodTracker/MyMoodPlant.xaml.cs
+END
+MyHistory.xaml
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/!svn/ver/437073/internal/books/9781449316563/current/code/chapter_5/MoodTracker-WP7/MoodTracker/MyHistory.xaml
+END
+MyMood.xaml.cs
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/!svn/ver/437073/internal/books/9781449316563/current/code/chapter_5/MoodTracker-WP7/MoodTracker/MyMood.xaml.cs
+END
+HealthRecordItemModel.cs
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/!svn/ver/437073/internal/books/9781449316563/current/code/chapter_5/MoodTracker-WP7/MoodTracker/HealthRecordItemModel.cs
+END
+MoodTracker.csproj
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/!svn/ver/437073/internal/books/9781449316563/current/code/chapter_5/MoodTracker-WP7/MoodTracker/MoodTracker.csproj
+END
+HealthVaultMethods.cs
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/!svn/ver/437073/internal/books/9781449316563/current/code/chapter_5/MoodTracker-WP7/MoodTracker/HealthVaultMethods.cs
+END
+MyHistory.xaml.cs
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/!svn/ver/437073/internal/books/9781449316563/current/code/chapter_5/MoodTracker-WP7/MoodTracker/MyHistory.xaml.cs
+END
+BasePage.cs
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/!svn/ver/437073/internal/books/9781449316563/current/code/chapter_5/MoodTracker-WP7/MoodTracker/BasePage.cs
+END
+SplashScreenImage.jpg
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/!svn/ver/437073/internal/books/9781449316563/current/code/chapter_5/MoodTracker-WP7/MoodTracker/SplashScreenImage.jpg
+END
+EmotionalStateModel.cs
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/!svn/ver/437073/internal/books/9781449316563/current/code/chapter_5/MoodTracker-WP7/MoodTracker/EmotionalStateModel.cs
+END

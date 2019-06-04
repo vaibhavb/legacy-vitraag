@@ -1,0 +1,143 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+	<head>
+		<title></title>
+	</head>
+	<body>
+        <h1>
+            HealthVault Application Manager User Guide</h1>
+        <p>
+            The HealthVault Application Manager will help you create and manage the HealthVault
+            certificates that you have installed on your web server.
+        </p>
+        <h2>
+            Local Certificates</h2>
+        <p>
+            The Local Certificates listview lists the HealthVault certificates (those with a
+            name that starts with "WildcatApp") on the current system. For each certificate,
+            it displays the following data:</p>
+        <p>
+            <table>
+                <tr>
+                    <td style="width: 178px">
+                        Column</td>
+                    <td>
+                        Description</td>
+                </tr>
+                <tr>
+                    <td style="width: 178px">
+                        Certificate Name</td>
+                    <td>
+                        The name of the certificate as stored in the certificate store. When your web application
+                        starts, the base web page looks up the application id in the web.config file, adds
+                        "WildcatApp-" in front of it, and looks for a certificate with that name in the
+                        certificate store.</td>
+                </tr>
+                <tr>
+                    <td style="width: 178px">
+                        Application Name</td>
+                    <td>
+                        An application name you have associated with the certificate. This name is stored
+                        by the Application Manager as a convenience, but is not part of the certificate
+                        itself. Some SDK samples have this predefined in the tool</td>
+                </tr>
+                <tr>
+                    <td style="width: 178px">
+                        Checksum</td>
+                    <td>
+                        A checksum of the public key of the certificate. Not really used for much now, but
+                        will be in the future</td>
+                </tr>
+                <tr>
+                    <td style="width: 178px">
+                        ASP.NET Dev Server</td>
+                    <td>
+                        An "X" here means that the current user can access the certificate, and therefore
+                        that the ASP.NET developer server (the one launched when you hit "F5" in visual
+                        studio) can access the certificate</td>
+                </tr>
+                <tr>
+                    <td style="width: 178px">
+                        ASP.NET under IIS</td>
+                    <td>
+                        An "X" here means that the appropriate IIS worker process/account (which varies
+                        between IIS versions) has sufficient privs to access this certificate. If this column
+                        isn't checked, IIS won't be able to run a HealthVault application with this certificate</td>
+                </tr>
+            </table>
+        </p>
+        <h3>
+            Certificate List Operations</h3>
+        All of these operations are on the right-click context menu:<br />
+        <br />
+        <h4>
+            Name Application</h4>
+        This allows you to associate a name with the certificate<br />
+        <br />
+        <h4>
+            Export public key (.cer)</h4>
+        Exports the public key part of the certificate as a .cer file. When you create a
+        new certificate, this is the file that you send to the HealthVault team
+        <br />
+        <br />
+        <h4>
+            Export public and private key (.pfx)</h4>
+        Export both the public and private keys of the certificate as a .pfx file. This
+        file can be used to install the certificate on another computer. Note that this
+        file contains the private key, and you should not disclose this outside of your
+        organization.<br />
+        <br />
+        <h4>
+            Grant access to IIS process</h4>
+        Grants access to the ASP.NET worker process that runs under IIS so it can access
+        this certificate.
+        <br />
+        <br />
+        <h4>
+            Revoke access from IIS process</h4>
+        Takes away the access. Not terribly useful.<br />
+        <br />
+        <h4>
+            Delete certificate</h4>
+        Deletes the certificate from the store. Unless you have exported the certificate
+        to a .pfx file and still have that file, the certificate is gone.<br />
+        <br />
+        <h4>
+            Copy Certificate name to clipboard</h4>
+        Copies the name of the certificate to the clipboard<br />
+        <br />
+        <h4>
+            Upload Certificate</h4>
+        Uploads the certificate's public key to application configuration center. This action creates a new application in the HealthVault Pre-production environment, and links the HealthVault id you sign-in with to administrate the application in the application configuration center.<br />
+        <br />
+        <h2>
+            Pfx file drag and drop</h2>
+        <p>
+            You can add new certificates to the store by dragging and dropping .pfx files onto
+            the certificate list</p>
+        <h2>
+            Create New Certificate</h2>
+        <p>
+            This operation creates an application id, creates a certificate with the proper
+            name based on that application id, and installs the certificate on the local system.
+            Once you have done that, you can export the .cer file and send it to the HealthVault
+            team along with the other required information.
+        </p>
+        <h4>
+            Implementation notes:</h4>
+        <p>
+            The certificate is created using the "makecert" utility as follows:</p>
+        <p>
+            makecert &lt;certificate filename&gt; -n &lt;certificate name&gt; -sr localmachine
+            -ss My -sky signature -pe -len 2048</p>
+        <p>
+            Certificate access is modified using winhttpcertcfg, as follows:</p>
+        <p>
+            winhttpcertcfg -&lt;operation&gt; -a "&lt;account name&gt;" -c LOCAL_MACHINE\My
+            -s &lt;certificateName&gt;</p>
+        <p>
+            where operation is "g" for grant and "r" for revoke.
+        </p>
+	
+	</body>
+</html>

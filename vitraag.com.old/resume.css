@@ -1,0 +1,60 @@
+body {
+  max-width: 800px;
+  font-family: verdana,arial,sans-serif;
+  text-align: justify;
+}
+img {
+  float:right;
+}
+h1 {
+  text-transform: camelcase;
+  text-align: center;
+  padding-bottom: 10px;
+  letter-spacing: .1em;
+  background: url('images/underline.png') no-repeat bottom center;
+}
+h2 {
+  font-size: 16px;
+}
+h3 {
+  font-size: 14px;
+}
+h1:after {
+  content : "."
+}
+div.sectoin {
+  font: Arial, sans-serif;
+}
+div.book h1 {
+  font-size: 3em;
+}
+div.chapter h1 {
+  font-size: 2em;
+}
+div.book h3.author {
+  font-size: 1.2em;
+  letter-spacing: .1em;
+  text-align: center;
+}
+div.legalnotice pre {
+  color: gray;
+  text-align: center;
+}
+div.book hr {
+  height: 0;
+  margin: 0;
+  visibility: hidden;
+}
+div.chapter > p {
+  line-height: 1.35em;
+  margin-top: .5em;
+  margin-bottom: .5em;
+}
+div.titlepage + p:first-letter {
+  display: block;
+  font-size: 3em;
+  float: left;
+  padding-top: .1em;
+  line-height: .5em;
+  margin: 0 .1em 0 0;
+}

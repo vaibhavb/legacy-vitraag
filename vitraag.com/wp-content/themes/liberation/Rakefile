@@ -1,0 +1,13 @@
+task :default => :update
+
+task :update do 
+	blogs = ["healthblog.vitraag.com", "vitraag.com", "ramblings.vitraag.com", "thekarkhana.vitraag.com"]
+	blogs.each do |dirs|
+		puts "Updating #{dirs} .."
+		FileUtils.cd "/home/vaibhavb/#{dirs}/wp-content/themes/liberation"
+		system "svn update"
+	end
+   end
+
+
+	

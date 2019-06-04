@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/!svn/ver/437078/internal/books/9781449316563/current/code/chapter_3
+END
+put-things-sample.xml
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/!svn/ver/437075/internal/books/9781449316563/current/code/chapter_3/put-things-sample.xml
+END
+get-things-sample.xml
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/!svn/ver/437075/internal/books/9781449316563/current/code/chapter_3/get-things-sample.xml
+END
+weight.rb
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/!svn/ver/437075/internal/books/9781449316563/current/code/chapter_3/weight.rb
+END

@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/!svn/ver/437079/internal/books/9781449316563/current/code/chapter_4
+END
+Weight-Schema.xml
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/!svn/ver/437074/internal/books/9781449316563/current/code/chapter_4/Weight-Schema.xml
+END
+Weight-Sample.xml
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/!svn/ver/437074/internal/books/9781449316563/current/code/chapter_4/Weight-Sample.xml
+END
+Codable-Schema.xml
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/!svn/ver/437074/internal/books/9781449316563/current/code/chapter_4/Codable-Schema.xml
+END
+Weight-Mtt.xml
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/!svn/ver/437074/internal/books/9781449316563/current/code/chapter_4/Weight-Mtt.xml
+END
+ThingSignatureSample.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/!svn/ver/437074/internal/books/9781449316563/current/code/chapter_4/ThingSignatureSample.java
+END
