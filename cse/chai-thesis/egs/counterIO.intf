@@ -1,0 +1,26 @@
+\begin{minipage}[t]{5in} 
+\scriptsize
+\begin{verbatim}
+    interface counterIO
+    input vars: x0:    bool; x1: bool;
+    output vars:  toone: bool;
+    
+    output atom controls x0, x1 reads x0, x1, toone
+    init
+        [] true -> x0' := true; x1' := true;
+    update
+        []  toone             -> x1' := true;  x0' := true
+        [] ~toone &  x1 &  x0 -> x1' := true;  x0' := false
+        [] ~toone &  x1 & ~x0 -> x1' := false; x0' := true
+        [] ~toone & ~x1 &  x0 -> x1' := false; x0' := false
+        [] ~toone & ~x1 & ~x0 -> x1' := true;  x0' := true
+    endatom
+    input atom controls toone 
+    init
+        [] true -> toone' := nondet
+    update
+        [] true -> toone' := nondet
+    endatom
+    endinterface
+\end{verbatim}
+\end{minipage}

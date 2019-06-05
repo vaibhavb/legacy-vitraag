@@ -1,0 +1,141 @@
+<html>
+<head><title>The Ext System</title></head>
+<body bgcolor="#ffffc0">
+
+<center> <img src="title_ext.gif" alt="EXT"> </center>
+
+<hr>
+
+The <tt>ext</tt> system is a set of programs that generate
+documentation for the World-Wide Web from specially-formatted C
+programs and automatically place function prototypes in header files.
+These are being used in a variety of large software projects and have
+been shown to simplify the programmer's task.
+
+<hr>
+
+Download <A HREF="ftp://ic.eecs.berkeley.edu/pub/Ext/ext-1.3.tar.gz">
+<CODE>ext-1.3.tar.gz</CODE></A>, the latest released version of the Ext
+system.
+
+<hr>
+
+<ul>
+<li> Documentation on <a href="packages.html">packages and file
+     structure</a> <p>
+
+<li> Documentation on <a href="naming.html">naming conventions</a> <p>
+
+<li> <a href="extdoc.html">Manual page for <tt>extdoc</tt></a>,
+     the documentation extractor. <p>
+
+<li> <a href="extindex.html">Manual page for <tt>extindex</tt></a>,
+     the documentation indexer. <p>
+
+<li> <a href="extproto.html">Manual page for <tt>extproto</tt></a>,
+     the function prototype extractor. <p>
+
+<li> <a href="related.html">Acknowledgements and Related Work</a> <p>
+
+</ul>
+
+<hr>
+
+<ul>
+
+<li> Systems that use <tt>ext</tt>:
+     <ul>
+     <li> <a href="http://www-cad.eecs.berkeley.edu/Respep/Research/vis/index.html">
+	  The VIS System </a> (formal hardware verification)
+     <li> <a href="http://www-cad.eecs.berkeley.edu/Respep/Research/hsc/abstract.html">
+	  The Polis System</a> (hardware/software codesign)
+     </ul>
+
+</ul>
+
+<hr>
+
+<h2>Quick Reference</h2>
+
+<TABLE BORDER=2>
+<TR>
+  <TH COLSPAN=2> <a href="packages.html#packages">
+  Package Filename Conventions</a> </TH>
+</TR>
+<TR>
+  <TH> Name </TH>  <TH> Contains </TH>
+</TR>
+<TR>
+  <TD> <tt>pkg.h</tt> </TD>
+  <TD> Externally-visible functions, etc. <b>Required</b> </TD>
+</TR>
+<TR>
+    <TD> <tt>pkgInt.h</tt> </TD>
+    <TD> Functions, etc., internal to the package.
+	 <tt>#include pkg.h</tt>, <tt>#include pkgPort.h</tt>, if present.
+	 <b>Required</b> </TD>
+</TR>
+<TR>
+    <TD> <tt>pkgPort.h</tt> </TD>
+    <TD> <tt>#define</tt>s, etc., that hide system differences.  Optional.</TD>
+</TR>
+<TR>
+    <TD> <tt>pkgUtil.c</tt> </TD>
+    <TD> Utility functions. Optional. </TD>
+</TR>
+<TR>
+    <TD> <tt>pkgIntUtil.c</tt> </TD>
+    <TD> Internal utility functions. Optional. </TD>
+</TR>
+</TABLE><P>
+
+<TABLE BORDER>
+<TR>
+   <TH COLSPAN=4> <a href="naming.html"> Identifier Naming Conventions </a> </TH>
+</TR>
+<TR>
+   <TH></TH>
+   <TH> External </TH>
+   <TH> Internal </TH>
+   <TH> Local </TH> 
+</TR>
+<TR>
+  <TD> Functions, Macros </TD>
+  <TD> <TT> Pkg_SubjectVerbObject</TT> </TD>
+  <TD> <TT> PkgSubjectVerbObject</TT> </TD>
+  <TD> <TT> SubjectVerbObject</TT> </TD>
+</TR>
+<TR>
+  <TD> Variables </TD>
+  <TD> <TT> pkg_numThings</TT> </TD>
+  <TD> <TT> pkgNumThings</TT> </TD>
+  <TD> <TT> numThings</TT> </TD>
+</TR>
+<TR>
+  <TD> Structures </TD>
+  <TD> <TT> Pkg_SomeThing_t</TT> </TD>
+  <TD> <TT> PkgSomeThing_t</TT> </TD>
+  <TD> <TT> SomeThing_t</TT> </TD>
+</TR>
+<TR>
+  <TD> Enumerated types </TD>
+  <TD> <TT> Pkg_ThingList_c</TT> </TD>
+  <TD> <TT> PkgThingList_c</TT> </TD>
+  <TD> <TT> ThingList_c</TT> </TD>
+</TR>
+<TR>
+  <TD> Constants </TD>
+  <TD> <TT> PKG_SOME_THING</TT> </TD>
+  <TD> <TT> PKGSOME_THING</TT> </TD>
+  <TD> <TT> SOME_THING</TT> </TD>
+</TR>
+</TABLE> <P>
+
+<hr>
+
+Written by <a href="http://www.eecs.berkeley.edu/~sedwards">
+Stephen Edwards</a>, <a href="mailto:sedwards@eecs.berkeley.edu">
+<tt>sedwards@eecs.berkekey.edu</tt></a>
+
+</body>
+</html>

@@ -1,0 +1,4412 @@
+<html>
+<head><title>The sl package: all functions </title></head>
+<body>
+
+optional
+<HR>
+<DL>
+<dt><pre>
+<A NAME="BuildInvMdd"></A>
+static mdd_t * <I></I>
+<B>BuildInvMdd</B>(
+  Sym_Info_t * <b>symInfo</b>, <i></i>
+  Atm_Expr_t* <b>expr</b> <i></i>
+)
+</pre>
+<dd> Builds an MDD for a given atomic expression.
+  		       (This is essentially the Sym_ExprBuildMdd() function
+		       taken from the sym/symExprMdd.c file. Modifications will
+		       be done to this function if the MddId's are not assigned
+		       correctly. -Ashwini)
+<p>
+
+<dd> <b>Side Effects</b> none.
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slSim.c"TARGET="ABSTRACT"><CODE>slSim.c</CODE></A>
+
+<dt><pre>
+<A NAME="DFS_dependency"></A>
+static int <I></I>
+<B>DFS_dependency</B>(
+  st_table * <b>idToPairTable</b>, <i></i>
+  Pair_t * <b>pair</b>, <i></i>
+  int  <b>level</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slUtil.c"TARGET="ABSTRACT"><CODE>slUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="DetermineControlledIdToRemove"></A>
+static Pair_t * <I></I>
+<B>DetermineControlledIdToRemove</B>(
+  Pair_t * <b>hd</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slBase.c"TARGET="ABSTRACT"><CODE>slBase.c</CODE></A>
+
+<dt><pre>
+<A NAME="IdIsExternal"></A>
+static boolean <I></I>
+<B>IdIsExternal</B>(
+  Sl_FSM_t  <b>fsm</b>, <i></i>
+  int  <b>id</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slBase.c"TARGET="ABSTRACT"><CODE>slBase.c</CODE></A>
+
+<dt><pre>
+<A NAME="IntegersCompare"></A>
+static int <I></I>
+<B>IntegersCompare</B>(
+  char ** <b>obj1</b>, <i></i>
+  char ** <b>obj2</b> <i></i>
+)
+</pre>
+<dd> Used to sort an array of integers in ascending order.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slBase.c"TARGET="ABSTRACT"><CODE>slBase.c</CODE></A>
+
+<dt><pre>
+<A NAME="MddGroupVariables"></A>
+static void <I></I>
+<B>MddGroupVariables</B>(
+  mdd_manager * <b>mddMgr</b>, <i></i>
+  int  <b>initMddId</b>, <i></i>
+  int  <b>blockSize</b> <i></i>
+)
+</pre>
+<dd> Group all bdd vars corresponding to mdd vars initMddId to
+  initMddId + (blockSize-1) in a block which will not be reordered internally.
+  Ths bdd's corresponding to these mdd's should be contiguous; if not the
+  function will fail.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slBase.c"TARGET="ABSTRACT"><CODE>slBase.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mocha_SlGetBDDArray"></A>
+array_t * <I></I>
+<B>Mocha_SlGetBDDArray</B>(
+  Mocha_SlObject_t * <b>slObj</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slMocha.c"TARGET="ABSTRACT"><CODE>slMocha.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mocha_SlGetIdArray"></A>
+array_t * <I></I>
+<B>Mocha_SlGetIdArray</B>(
+  Mocha_SlObject_t * <b>slObj</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slMocha.c"TARGET="ABSTRACT"><CODE>slMocha.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mocha_SlGetIntArray"></A>
+array_t* <I></I>
+<B>Mocha_SlGetIntArray</B>(
+  Mocha_SlObject_t * <b>slObj</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slMocha.c"TARGET="ABSTRACT"><CODE>slMocha.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mocha_SlGetObjectByName"></A>
+Mocha_SlObject_t * <I></I>
+<B>Mocha_SlGetObjectByName</B>(
+  char * <b>objName</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slMocha.c"TARGET="ABSTRACT"><CODE>slMocha.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mocha_SlGetStringArray"></A>
+array_t * <I></I>
+<B>Mocha_SlGetStringArray</B>(
+  Mocha_SlObject_t * <b>slObj</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slMocha.c"TARGET="ABSTRACT"><CODE>slMocha.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mocha_StateInMdd"></A>
+int <I></I>
+<B>Mocha_StateInMdd</B>(
+  mdd_t * <b>mdd</b>, <i></i>
+  array_t * <b>idArray</b>, <i></i>
+  array_t * <b>valueArray</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slMocha.c"TARGET="ABSTRACT"><CODE>slMocha.c</CODE></A>
+
+<dt><pre>
+<A NAME="ObtainListOfSuccessors"></A>
+static Pair_t * <I></I>
+<B>ObtainListOfSuccessors</B>(
+  array_t * <b>dep</b>, <i></i>
+  int  <b>x</b>, <i></i>
+  Pair_t ** <b>lastpair</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slBase.c"TARGET="ABSTRACT"><CODE>slBase.c</CODE></A>
+
+<dt><pre>
+<A NAME="ObtainNonAwaitingElementsList"></A>
+static Pair_t * <I></I>
+<B>ObtainNonAwaitingElementsList</B>(
+  array_t * <b>dep</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slBase.c"TARGET="ABSTRACT"><CODE>slBase.c</CODE></A>
+
+<dt><pre>
+<A NAME="ObtainUnPrimedVarName"></A>
+static int <I></I>
+<B>ObtainUnPrimedVarName</B>(
+  char * <b>varName</b>, <i></i>
+  char ** <b>unPrimedVarName</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slBase.c"TARGET="ABSTRACT"><CODE>slBase.c</CODE></A>
+
+<dt><pre>
+<A NAME="PairIsInArray"></A>
+static int <I></I>
+<B>PairIsInArray</B>(
+  array_t * <b>pairArray</b>, <i></i>
+  Pair_t * <b>pair</b> <i></i>
+)
+</pre>
+<dd> check if a variable is in a varOrderArray
+<p>
+
+<dd> <b>Side Effects</b> none
+<p>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slBase.c"TARGET="ABSTRACT"><CODE>slBase.c</CODE></A>
+
+<dt><pre>
+<A NAME="PrintTransitiveAwaitVarsRecursively"></A>
+static void <I></I>
+<B>PrintTransitiveAwaitVarsRecursively</B>(
+  char * <b>varName</b>, <i></i>
+  Pair_t * <b>pair</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slBase.c"TARGET="ABSTRACT"><CODE>slBase.c</CODE></A>
+
+<dt><pre>
+<A NAME="PrintsBddIds"></A>
+static void <I></I>
+<B>PrintsBddIds</B>(
+  array_t * <b>moduleArray</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slBase.c"TARGET="ABSTRACT"><CODE>slBase.c</CODE></A>
+
+<dt><pre>
+<A NAME="ReadDomainSize"></A>
+int <I></I>
+<B>ReadDomainSize</B>(
+  Var_Variable_t * <b>var</b> <i></i>
+)
+</pre>
+<dd> Optional
+<p>
+
+<dd> <b>Side Effects</b> none
+<p>
+
+<dd> <b>See Also</b> <code>Optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slSim.c"TARGET="ABSTRACT"><CODE>slSim.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlAddAwaitDependencyToFSM"></A>
+void <I></I>
+<B>SlAddAwaitDependencyToFSM</B>(
+  Mdl_Module_t * <b>module</b>, <i></i>
+  Sl_GSTEntry_t * <b>gstEntry</b> <i></i>
+)
+</pre>
+<dd> Add await dependency info
+<p>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slBase.c"TARGET="ABSTRACT"><CODE>slBase.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlAddIdPair"></A>
+void <I></I>
+<B>SlAddIdPair</B>(
+  Pair_t * <b>pair</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slMain.c"TARGET="ABSTRACT"><CODE>slMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlAddToArrayCmd"></A>
+int <I></I>
+<B>SlAddToArrayCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slBase.c"TARGET="ABSTRACT"><CODE>slBase.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlAndCmd"></A>
+int <I></I>
+<B>SlAndCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slRm.c"TARGET="ABSTRACT"><CODE>slRm.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlAreArrayEqual"></A>
+int <I></I>
+<B>SlAreArrayEqual</B>(
+  array_t * <b>lhs</b>, <i></i>
+  array_t * <b>rhs</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> none.
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slUtil.c"TARGET="ABSTRACT"><CODE>slUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlArrayDifference"></A>
+array_t * <I></I>
+<B>SlArrayDifference</B>(
+  array_t * <b>lhs</b>, <i></i>
+  array_t * <b>rhs</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> none.
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slUtil.c"TARGET="ABSTRACT"><CODE>slUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlArrayIntersection"></A>
+array_t * <I></I>
+<B>SlArrayIntersection</B>(
+  array_t * <b>lhs</b>, <i></i>
+  array_t * <b>rhs</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> none.
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slUtil.c"TARGET="ABSTRACT"><CODE>slUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlArrayUnion"></A>
+array_t* <I></I>
+<B>SlArrayUnion</B>(
+  array_t * <b>inArray1</b>, <i></i>
+  array_t * <b>inArray2</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> leaves the result in the first argument, 
+                      second argument is unchanged.
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slUtil.c"TARGET="ABSTRACT"><CODE>slUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlAssignMddIdsForEachModule"></A>
+void <I></I>
+<B>SlAssignMddIdsForEachModule</B>(
+  array_t * <b>moduleArray</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slBase.c"TARGET="ABSTRACT"><CODE>slBase.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlAssignMddIdsForVariable"></A>
+void <I></I>
+<B>SlAssignMddIdsForVariable</B>(
+  Sym_Info_t * <b>symInfo</b>, <i></i>
+  Var_Variable_t * <b>var</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slBase.c"TARGET="ABSTRACT"><CODE>slBase.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlAssignMddIds"></A>
+void <I></I>
+<B>SlAssignMddIds</B>(
+  array_t * <b>moduleArray</b>, <i></i>
+  array_t * <b>varArray</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slBase.c"TARGET="ABSTRACT"><CODE>slBase.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlAtomSimulateCmd"></A>
+int <I></I>
+<B>SlAtomSimulateCmd</B>(
+  ClientData  <b>clientdata</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char ** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> none.
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slSim.c"TARGET="ABSTRACT"><CODE>slSim.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlBDDCmd"></A>
+int <I></I>
+<B>SlBDDCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slBase.c"TARGET="ABSTRACT"><CODE>slBase.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlBddArrayDupe"></A>
+array_t* <I></I>
+<B>SlBddArrayDupe</B>(
+  array_t * <b>dupeme</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slUtil.c"TARGET="ABSTRACT"><CODE>slUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlBddSizeCmd"></A>
+int <I></I>
+<B>SlBddSizeCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slRm.c"TARGET="ABSTRACT"><CODE>slRm.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlBetterUPreComb"></A>
+int <I></I>
+<B>SlBetterUPreComb</B>(
+  ClientData  <b>clientdata</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char ** <b>argv</b> <i></i>
+)
+</pre>
+<dd> This function implements the uncontrollable
+  		      predecessor operator and computes the uncontrollable
+		      predecessor states of FSM1 with respect to the specBdd.
+		      It makes use of the tau_plus and tau_minus
+		      mdd's of FSM2 to get a bigger target enlargement.
+		      The input maxTauSize gives the max. size to which the
+		      bdds in the conjuncts of the FSM1 and FSM2 are to be
+		      conjoined to make the computation more efficient. Lager
+		      maxTauSize gives bigger bdds increasing the memory usage
+		     and reducing the time taken by the computations. If maxTauSize
+		     = -1, the conjunction is not performed.
+<p>
+
+<dd> <b>Side Effects</b> none
+<p>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slSim.c"TARGET="ABSTRACT"><CODE>slSim.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlBetterUPre"></A>
+int <I></I>
+<B>SlBetterUPre</B>(
+  ClientData  <b>clientdata</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char ** <b>argv</b> <i></i>
+)
+</pre>
+<dd> This function implements the uncontrollable
+  		      predecessor operator and computes the uncontrollable
+		      predecessor states of FSM1 with respect to the specBdd.
+		      It makes use of the tau_plus and tau_minus
+		      mdd's of FSM2 to get a bigger target enlargement.
+<p>
+
+<dd> <b>Side Effects</b> none
+<p>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slSim.c"TARGET="ABSTRACT"><CODE>slSim.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlCheckImplCmd"></A>
+int <I></I>
+<B>SlCheckImplCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slRm.c"TARGET="ABSTRACT"><CODE>slRm.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlCheckIntfRefCmd"></A>
+int <I></I>
+<B>SlCheckIntfRefCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slIntf.c"TARGET="ABSTRACT"><CODE>slIntf.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlCheckInvAbsCmd"></A>
+int <I></I>
+<B>SlCheckInvAbsCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slSim.c"TARGET="ABSTRACT"><CODE>slSim.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlCheckInvCmd"></A>
+int <I></I>
+<B>SlCheckInvCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slRm.c"TARGET="ABSTRACT"><CODE>slRm.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlCheckRandInvCmd"></A>
+int <I></I>
+<B>SlCheckRandInvCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slRm.c"TARGET="ABSTRACT"><CODE>slRm.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlCheckSimCmd"></A>
+int <I></I>
+<B>SlCheckSimCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slRm.c"TARGET="ABSTRACT"><CODE>slRm.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlCheckSupportSubset"></A>
+int <I></I>
+<B>SlCheckSupportSubset</B>(
+  mdd_t * <b>formula</b>, <i></i>
+  array_t * <b>allowedVars</b>, <i></i>
+  char * <b>errorMsg</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> none.
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slUtil.c"TARGET="ABSTRACT"><CODE>slUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlCheckTrInvCmd"></A>
+int <I></I>
+<B>SlCheckTrInvCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slRm.c"TARGET="ABSTRACT"><CODE>slRm.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlCompareInt"></A>
+int <I></I>
+<B>SlCompareInt</B>(
+  char * <b>obj1</b>, <i></i>
+  char * <b>obj2</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slUtil.c"TARGET="ABSTRACT"><CODE>slUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlComposeCmd"></A>
+int <I></I>
+<B>SlComposeCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slRm.c"TARGET="ABSTRACT"><CODE>slRm.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlComposeIntfCmd"></A>
+int <I></I>
+<B>SlComposeIntfCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slIntf.c"TARGET="ABSTRACT"><CODE>slIntf.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlComputeReach"></A>
+mdd_t* <I></I>
+<B>SlComputeReach</B>(
+  Sl_GSTEntry_t * <b>inFsm</b>, <i></i>
+  int  <b>task</b>, <i></i>
+  array_t * <b>invariant</b>, <i></i>
+  int  <b>mode</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> none.
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slRm.c"TARGET="ABSTRACT"><CODE>slRm.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlConjoinAndCopyCmd"></A>
+int <I></I>
+<B>SlConjoinAndCopyCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slRm.c"TARGET="ABSTRACT"><CODE>slRm.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlConjoin"></A>
+mdd_t * <I></I>
+<B>SlConjoin</B>(
+  array_t * <b>bddArray</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> none.
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slUtil.c"TARGET="ABSTRACT"><CODE>slUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlContrReachFsmCmd"></A>
+int <I></I>
+<B>SlContrReachFsmCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slRm.c"TARGET="ABSTRACT"><CODE>slRm.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlContrReachSpecCmd"></A>
+int <I></I>
+<B>SlContrReachSpecCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slRm.c"TARGET="ABSTRACT"><CODE>slRm.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlControlCmd"></A>
+int <I></I>
+<B>SlControlCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slRm.c"TARGET="ABSTRACT"><CODE>slRm.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlCopyCmd"></A>
+int <I></I>
+<B>SlCopyCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slRm.c"TARGET="ABSTRACT"><CODE>slRm.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlCounterEgRefineCmd"></A>
+int <I></I>
+<B>SlCounterEgRefineCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> implements the sl_counter_eg_refine command.
+<p>
+
+<dd> <b>Side Effects</b> none
+<p>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slSim.c"TARGET="ABSTRACT"><CODE>slSim.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlCreateCommandFreddy"></A>
+int <I></I>
+<B>SlCreateCommandFreddy</B>(
+  Tcl_Interp * <b>interp</b>, <i></i>
+  Main_Manager_t * <b>manager</b> <i></i>
+)
+</pre>
+<dd> Register Commands defined in this file.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slBase.c"TARGET="ABSTRACT"><CODE>slBase.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlCreateIntArrayCmd"></A>
+int <I></I>
+<B>SlCreateIntArrayCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slBase.c"TARGET="ABSTRACT"><CODE>slBase.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlDeleteGstEntry"></A>
+void <I></I>
+<B>SlDeleteGstEntry</B>(
+  char * <b>name</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slUtil.c"TARGET="ABSTRACT"><CODE>slUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlDependencyMerge"></A>
+array_t * <I></I>
+<B>SlDependencyMerge</B>(
+  array_t * <b>dep1</b>, <i></i>
+  array_t * <b>dep2</b> <i></i>
+)
+</pre>
+<dd> returns a new await dependency table. It is the
+  users' responsibility to free it after use.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slBase.c"TARGET="ABSTRACT"><CODE>slBase.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlDetectCycles"></A>
+int <I></I>
+<B>SlDetectCycles</B>(
+  array_t * <b>dependency</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slUtil.c"TARGET="ABSTRACT"><CODE>slUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlDetermineControllabilityOfVariables"></A>
+void <I></I>
+<B>SlDetermineControllabilityOfVariables</B>(
+  Mdl_Module_t * <b>module</b>, <i></i>
+  Sl_GSTEntry_t * <b>gstEntry</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slBase.c"TARGET="ABSTRACT"><CODE>slBase.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlDumpBddCmd"></A>
+int <I></I>
+<B>SlDumpBddCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> Dumping a BDD into a file.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slBddDump.c"TARGET="ABSTRACT"><CODE>slBddDump.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlEArrayQuantify"></A>
+array_t * <I></I>
+<B>SlEArrayQuantify</B>(
+  array_t * <b>conjuncts</b>, <i></i>
+  array_t * <b>variables</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slUtil.c"TARGET="ABSTRACT"><CODE>slUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlEMddQuantify"></A>
+mdd_t * <I></I>
+<B>SlEMddQuantify</B>(
+  array_t * <b>conjuncts</b>, <i></i>
+  array_t * <b>variables</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slUtil.c"TARGET="ABSTRACT"><CODE>slUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlEQuantifyIdsCmd"></A>
+int <I></I>
+<B>SlEQuantifyIdsCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slBase.c"TARGET="ABSTRACT"><CODE>slBase.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlEraseCmd"></A>
+int <I></I>
+<B>SlEraseCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slRm.c"TARGET="ABSTRACT"><CODE>slRm.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlFSMCmd"></A>
+int <I></I>
+<B>SlFSMCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> This command generates fsm's for the modules. These
+  fsm's will have the same set of mdd ids. It is assumed that the variables
+  which have the same name will have the same mdd id. For now, there is no
+  check that variables having the same names have the same type. Hence, it is
+  the user's responsibility to make sure that the variables are consistent.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slBase.c"TARGET="ABSTRACT"><CODE>slBase.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlFreeArrayOfBdd"></A>
+void <I></I>
+<B>SlFreeArrayOfBdd</B>(
+  array_t * <b>bddArray</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slUtil.c"TARGET="ABSTRACT"><CODE>slUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlFreeBddCmd"></A>
+int <I></I>
+<B>SlFreeBddCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slBase.c"TARGET="ABSTRACT"><CODE>slBase.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlFreeDependency"></A>
+void <I></I>
+<B>SlFreeDependency</B>(
+  array_t * <b>dependency</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slUtil.c"TARGET="ABSTRACT"><CODE>slUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlFreeLevels"></A>
+void <I></I>
+<B>SlFreeLevels</B>(
+  array_t * <b>levels</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slUtil.c"TARGET="ABSTRACT"><CODE>slUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlFreeMddList"></A>
+void <I></I>
+<B>SlFreeMddList</B>(
+  array_t * <b>list</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slUtil.c"TARGET="ABSTRACT"><CODE>slUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlFreeObjCmd"></A>
+int <I></I>
+<B>SlFreeObjCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slBase.c"TARGET="ABSTRACT"><CODE>slBase.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlGSTInit"></A>
+void <I></I>
+<B>SlGSTInit</B>(
+  Tcl_Interp * <b>interp</b>, <i></i>
+  Main_Manager_t * <b>manager</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slMain.c"TARGET="ABSTRACT"><CODE>slMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlGetArrayOfCubes"></A>
+array_t * <I></I>
+<B>SlGetArrayOfCubes</B>(
+  int  <b>id</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slBase.c"TARGET="ABSTRACT"><CODE>slBase.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlGetCtrlVarIdsCmd"></A>
+int <I></I>
+<B>SlGetCtrlVarIdsCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slBase.c"TARGET="ABSTRACT"><CODE>slBase.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlGetFsmVarsCmd"></A>
+int <I></I>
+<B>SlGetFsmVarsCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slRm.c"TARGET="ABSTRACT"><CODE>slRm.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlGetIdFromVarNameCmd"></A>
+int <I></I>
+<B>SlGetIdFromVarNameCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slBase.c"TARGET="ABSTRACT"><CODE>slBase.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlGetIdPairArray"></A>
+array_t* <I></I>
+<B>SlGetIdPairArray</B>(
+   <b></b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slMain.c"TARGET="ABSTRACT"><CODE>slMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlGetInitCmd"></A>
+int <I></I>
+<B>SlGetInitCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slRm.c"TARGET="ABSTRACT"><CODE>slRm.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlGetInit"></A>
+mdd_t * <I></I>
+<B>SlGetInit</B>(
+  Sl_GSTEntry_t * <b>fsmEntry</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> none.
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slUtil.c"TARGET="ABSTRACT"><CODE>slUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlGetLiteral"></A>
+mdd_t * <I></I>
+<B>SlGetLiteral</B>(
+  int  <b>id</b>, <i></i>
+  int  <b>pos</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slBase.c"TARGET="ABSTRACT"><CODE>slBase.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlGetMddManager"></A>
+mdd_manager * <I></I>
+<B>SlGetMddManager</B>(
+   <b></b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slMain.c"TARGET="ABSTRACT"><CODE>slMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlGetMddSupportCmd"></A>
+int <I></I>
+<B>SlGetMddSupportCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slBase.c"TARGET="ABSTRACT"><CODE>slBase.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlGetModuleManager"></A>
+Mdl_Manager_t * <I></I>
+<B>SlGetModuleManager</B>(
+   <b></b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slMain.c"TARGET="ABSTRACT"><CODE>slMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlGetNameToIdTable"></A>
+st_table * <I></I>
+<B>SlGetNameToIdTable</B>(
+   <b></b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slMain.c"TARGET="ABSTRACT"><CODE>slMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlGetPartitionedTRCmd"></A>
+int <I></I>
+<B>SlGetPartitionedTRCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slBase.c"TARGET="ABSTRACT"><CODE>slBase.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlGetPrimedIdFromIdCmd"></A>
+int <I></I>
+<B>SlGetPrimedIdFromIdCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slBase.c"TARGET="ABSTRACT"><CODE>slBase.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlGetPrimedIdFromVarNameCmd"></A>
+int <I></I>
+<B>SlGetPrimedIdFromVarNameCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slBase.c"TARGET="ABSTRACT"><CODE>slBase.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlGetRandomCubeInMdd"></A>
+mdd_t * <I></I>
+<B>SlGetRandomCubeInMdd</B>(
+  mdd_t * <b>mdd</b>, <i></i>
+  unsigned int  <b>seed</b> <i></i>
+)
+</pre>
+<dd> Wrapper function for getRandomCubeInMdd
+<p>
+
+<dd> <b>Side Effects</b> none
+<p>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slSim.c"TARGET="ABSTRACT"><CODE>slSim.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlGetRegionManager"></A>
+Sym_RegionManager_t * <I></I>
+<B>SlGetRegionManager</B>(
+   <b></b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slMain.c"TARGET="ABSTRACT"><CODE>slMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlGetTRCmd"></A>
+int <I></I>
+<B>SlGetTRCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slRm.c"TARGET="ABSTRACT"><CODE>slRm.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlGetTclInterp"></A>
+Tcl_Interp * <I></I>
+<B>SlGetTclInterp</B>(
+   <b></b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slMain.c"TARGET="ABSTRACT"><CODE>slMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlGetTopMddId"></A>
+int <I></I>
+<B>SlGetTopMddId</B>(
+  mdd_t * <b>mdd</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slBase.c"TARGET="ABSTRACT"><CODE>slBase.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlGetUnprimedIdFromIdCmd"></A>
+int <I></I>
+<B>SlGetUnprimedIdFromIdCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slBase.c"TARGET="ABSTRACT"><CODE>slBase.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlGetVarNameFromIdCmd"></A>
+int <I></I>
+<B>SlGetVarNameFromIdCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slBase.c"TARGET="ABSTRACT"><CODE>slBase.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlGetVarNamesFromIdsCmd"></A>
+int <I></I>
+<B>SlGetVarNamesFromIdsCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slBase.c"TARGET="ABSTRACT"><CODE>slBase.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlGstEntryFree"></A>
+void <I></I>
+<B>SlGstEntryFree</B>(
+  Sl_GSTEntry_t * <b>gstEntry</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slUtil.c"TARGET="ABSTRACT"><CODE>slUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlGstGetEntry"></A>
+Sl_GSTEntry_t * <I></I>
+<B>SlGstGetEntry</B>(
+  char * <b>name</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slUtil.c"TARGET="ABSTRACT"><CODE>slUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlIVarsOfAllLevels"></A>
+array_t * <I></I>
+<B>SlIVarsOfAllLevels</B>(
+  array_t * <b>levels</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slUtil.c"TARGET="ABSTRACT"><CODE>slUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlImplicationCheck"></A>
+int <I></I>
+<B>SlImplicationCheck</B>(
+  array_t * <b>bddArray1</b>, <i></i>
+  array_t * <b>bddArray2</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slUtil.c"TARGET="ABSTRACT"><CODE>slUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlInitRandCmd"></A>
+int <I></I>
+<B>SlInitRandCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slRm.c"TARGET="ABSTRACT"><CODE>slRm.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlInsertGstEntry"></A>
+void <I></I>
+<B>SlInsertGstEntry</B>(
+  Sl_GSTEntry_t * <b>gstEntry</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slUtil.c"TARGET="ABSTRACT"><CODE>slUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlIntArrayDupe"></A>
+array_t * <I></I>
+<B>SlIntArrayDupe</B>(
+  array_t * <b>dupeme</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slUtil.c"TARGET="ABSTRACT"><CODE>slUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlInvBuildMdd"></A>
+int <I></I>
+<B>SlInvBuildMdd</B>(
+  ClientData  <b>clientdata</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char ** <b>argv</b> <i></i>
+)
+</pre>
+<dd> Builds an MDD for a given invariance.
+  		      The invariant(s) first have to read using the
+		      inv_read command.
+<p>
+
+<dd> <b>Side Effects</b> none.
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slSim.c"TARGET="ABSTRACT"><CODE>slSim.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlIsArraySubset"></A>
+int <I></I>
+<B>SlIsArraySubset</B>(
+  array_t * <b>lhs</b>, <i></i>
+  array_t * <b>rhs</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> none.
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slUtil.c"TARGET="ABSTRACT"><CODE>slUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlIsStateInMddCmd"></A>
+int <I></I>
+<B>SlIsStateInMddCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slBase.c"TARGET="ABSTRACT"><CODE>slBase.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlIsVVStateInMddCmd"></A>
+int <I></I>
+<B>SlIsVVStateInMddCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slBase.c"TARGET="ABSTRACT"><CODE>slBase.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlLcontrCmd"></A>
+int <I></I>
+<B>SlLcontrCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> This function computes the lazily controllable states, 
+                      taking into account the array of erased variables. 
+
+		      25 Feb 2003: Ashwini
+		      changed the subtitution of primed vars to include the
+		      transition relation of the FSM too, which may contain
+		      primed external vars if there is an await relationship
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slRm.c"TARGET="ABSTRACT"><CODE>slRm.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlLcontrNCmd"></A>
+int <I></I>
+<B>SlLcontrNCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> This function computes the lazily controllable states, 
+                      for at most a specified number of iterations, 
+                      taking into account the array of erased variables.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slRm.c"TARGET="ABSTRACT"><CODE>slRm.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlLevelAlloc"></A>
+Level_t * <I></I>
+<B>SlLevelAlloc</B>(
+   <b></b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slUtil.c"TARGET="ABSTRACT"><CODE>slUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlMakeIdArrayCmd"></A>
+int <I></I>
+<B>SlMakeIdArrayCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slBase.c"TARGET="ABSTRACT"><CODE>slBase.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlMakeIntArrayCmd"></A>
+int <I></I>
+<B>SlMakeIntArrayCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slBase.c"TARGET="ABSTRACT"><CODE>slBase.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlMakeIntfCmd"></A>
+int <I></I>
+<B>SlMakeIntfCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slIntf.c"TARGET="ABSTRACT"><CODE>slIntf.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlMakeIntfOutCmd"></A>
+int <I></I>
+<B>SlMakeIntfOutCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> Function implementing command sl_make_intf_out.
+                      This function creates an interface having only an output 
+		      portion (with no input assumptions). 
+
+  Description        [optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slIntf.c"TARGET="ABSTRACT"><CODE>slIntf.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlMakeStringArrayCmd"></A>
+int <I></I>
+<B>SlMakeStringArrayCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slBase.c"TARGET="ABSTRACT"><CODE>slBase.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlMakeTrInvCmd"></A>
+int <I></I>
+<B>SlMakeTrInvCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slRm.c"TARGET="ABSTRACT"><CODE>slRm.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlMakeVarListCmd"></A>
+int <I></I>
+<B>SlMakeVarListCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slRm.c"TARGET="ABSTRACT"><CODE>slRm.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlMddArrayAppend"></A>
+void <I></I>
+<B>SlMddArrayAppend</B>(
+  array_t * <b>a</b>, <i></i>
+  array_t * <b>b</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slUtil.c"TARGET="ABSTRACT"><CODE>slUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlMddEqual"></A>
+int <I></I>
+<B>SlMddEqual</B>(
+  ClientData  <b>clientdata</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char ** <b>argv</b> <i></i>
+)
+</pre>
+<dd> wrapper for the mdd_equal function
+<p>
+
+<dd> <b>Side Effects</b> none.
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slSim.c"TARGET="ABSTRACT"><CODE>slSim.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlMddPrintCubes"></A>
+void <I></I>
+<B>SlMddPrintCubes</B>(
+  mdd_t * <b>mdd</b>, <i></i>
+  int  <b>level</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slBase.c"TARGET="ABSTRACT"><CODE>slBase.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlMddSubstitute"></A>
+int <I></I>
+<B>SlMddSubstitute</B>(
+  ClientData  <b>clientdata</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char ** <b>argv</b> <i></i>
+)
+</pre>
+<dd> wrapper for the mdd_substitute function
+<p>
+
+<dd> <b>Side Effects</b> none.
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slSim.c"TARGET="ABSTRACT"><CODE>slSim.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlModWcontrCmd"></A>
+int <I></I>
+<B>SlModWcontrCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> This function computes the modularly weakly controllable 
+                      states, taking into account the array of erased variables and 
+		      an additional module as a controller.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slRm.c"TARGET="ABSTRACT"><CODE>slRm.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlNotCmd"></A>
+int <I></I>
+<B>SlNotCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slRm.c"TARGET="ABSTRACT"><CODE>slRm.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlOVarsOfAllLevels"></A>
+array_t * <I></I>
+<B>SlOVarsOfAllLevels</B>(
+  array_t * <b>levels</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slUtil.c"TARGET="ABSTRACT"><CODE>slUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlObtainBddId"></A>
+int <I></I>
+<B>SlObtainBddId</B>(
+  char * <b>name</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slBase.c"TARGET="ABSTRACT"><CODE>slBase.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlObtainPrimedBddId"></A>
+int <I></I>
+<B>SlObtainPrimedBddId</B>(
+  char * <b>name</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slBase.c"TARGET="ABSTRACT"><CODE>slBase.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlObtainUnprimedBddId"></A>
+int <I></I>
+<B>SlObtainUnprimedBddId</B>(
+  char * <b>name</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slBase.c"TARGET="ABSTRACT"><CODE>slBase.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlOrCmd"></A>
+int <I></I>
+<B>SlOrCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slRm.c"TARGET="ABSTRACT"><CODE>slRm.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlPairAlloc"></A>
+Pair_t * <I></I>
+<B>SlPairAlloc</B>(
+   <b></b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slUtil.c"TARGET="ABSTRACT"><CODE>slUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlPickMddMinterm"></A>
+mdd_t  * <I></I>
+<B>SlPickMddMinterm</B>(
+  mdd_t * <b>mdd</b> <i></i>
+)
+</pre>
+<dd> utility to pick a minterm form a MDD
+<p>
+
+<dd> <b>Side Effects</b> none
+<p>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slBase.c"TARGET="ABSTRACT"><CODE>slBase.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlPickMintermCmd"></A>
+int <I></I>
+<B>SlPickMintermCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slBase.c"TARGET="ABSTRACT"><CODE>slBase.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlPreNCmd"></A>
+int <I></I>
+<B>SlPreNCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slBase.c"TARGET="ABSTRACT"><CODE>slBase.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlPredSizeCmd"></A>
+int <I></I>
+<B>SlPredSizeCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slRm.c"TARGET="ABSTRACT"><CODE>slRm.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlPrimeCmd"></A>
+int <I></I>
+<B>SlPrimeCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slBase.c"TARGET="ABSTRACT"><CODE>slBase.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlPrimeIdArrayCmd"></A>
+int <I></I>
+<B>SlPrimeIdArrayCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slBase.c"TARGET="ABSTRACT"><CODE>slBase.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlPrimeMdd"></A>
+mdd_t* <I></I>
+<B>SlPrimeMdd</B>(
+  mdd_t* <b>m</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> none.
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slBase.c"TARGET="ABSTRACT"><CODE>slBase.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlPrimeVars"></A>
+array_t* <I></I>
+<B>SlPrimeVars</B>(
+  array_t * <b>unprimedIdArray</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> none.
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slBase.c"TARGET="ABSTRACT"><CODE>slBase.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlPrintAwaitDepCmd"></A>
+int <I></I>
+<B>SlPrintAwaitDepCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> if a < b, a < c, b < d, then the output would be
+                       {a, b}, {a, c}, {b, c}.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slBase.c"TARGET="ABSTRACT"><CODE>slBase.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlPrintAwaitVarCmd"></A>
+int <I></I>
+<B>SlPrintAwaitVarCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slBase.c"TARGET="ABSTRACT"><CODE>slBase.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlPrintBddCmd"></A>
+int <I></I>
+<B>SlPrintBddCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slBase.c"TARGET="ABSTRACT"><CODE>slBase.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlPrintBddStats"></A>
+int <I></I>
+<B>SlPrintBddStats</B>(
+  mdd_t * <b>inBdd</b>, <i></i>
+  array_t* <b>support</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> none.
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slUtil.c"TARGET="ABSTRACT"><CODE>slUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlPrintIntfCmd"></A>
+int <I></I>
+<B>SlPrintIntfCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slIntf.c"TARGET="ABSTRACT"><CODE>slIntf.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlPrintIntfSupportCmd"></A>
+int <I></I>
+<B>SlPrintIntfSupportCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slIntf.c"TARGET="ABSTRACT"><CODE>slIntf.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlPrintLevelsCmd"></A>
+int <I></I>
+<B>SlPrintLevelsCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slIntf.c"TARGET="ABSTRACT"><CODE>slIntf.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlPrintMddArray"></A>
+void <I></I>
+<B>SlPrintMddArray</B>(
+  array_t * <b>a</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slUtil.c"TARGET="ABSTRACT"><CODE>slUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlPrintObjCmd"></A>
+int <I></I>
+<B>SlPrintObjCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slBase.c"TARGET="ABSTRACT"><CODE>slBase.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlPrintSupportCmd"></A>
+int <I></I>
+<B>SlPrintSupportCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slBase.c"TARGET="ABSTRACT"><CODE>slBase.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlPrintTCAwaitDepCmd"></A>
+int <I></I>
+<B>SlPrintTCAwaitDepCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> if a < b, a < c, b < d, then the output would be
+                       {a, b}, {a, c}, {b, d}, {a, d}
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slBase.c"TARGET="ABSTRACT"><CODE>slBase.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlPrintVarArray"></A>
+void <I></I>
+<B>SlPrintVarArray</B>(
+  array_t * <b>a</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> none.
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slUtil.c"TARGET="ABSTRACT"><CODE>slUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlPrintVarCmd"></A>
+int <I></I>
+<B>SlPrintVarCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slBase.c"TARGET="ABSTRACT"><CODE>slBase.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlPrintVarNames"></A>
+int <I></I>
+<B>SlPrintVarNames</B>(
+  array_t * <b>idArray</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slUtil.c"TARGET="ABSTRACT"><CODE>slUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlRandomSliceBdd"></A>
+mdd_t * <I></I>
+<B>SlRandomSliceBdd</B>(
+  int  <b>id</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slBase.c"TARGET="ABSTRACT"><CODE>slBase.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlRandomcubeInvChkCmd"></A>
+int <I></I>
+<B>SlRandomcubeInvChkCmd</B>(
+  ClientData  <b>clientdata</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char ** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> none.
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slSim.c"TARGET="ABSTRACT"><CODE>slSim.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlRandomcubeInvChk"></A>
+void <I></I>
+<B>SlRandomcubeInvChk</B>(
+  Sl_GSTEntry_t * <b>inFsm</b>, <i></i>
+  int  <b>task</b>, <i></i>
+  array_t * <b>invariantArray</b>, <i></i>
+  int  <b>n_steps</b>, <i></i>
+  int  <b>mode</b>, <i></i>
+  long  <b>seed</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> none.
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slSim.c"TARGET="ABSTRACT"><CODE>slSim.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlReachCmd"></A>
+int <I></I>
+<B>SlReachCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slRm.c"TARGET="ABSTRACT"><CODE>slRm.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlReachHistoryCmd"></A>
+int <I></I>
+<B>SlReachHistoryCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slRm.c"TARGET="ABSTRACT"><CODE>slRm.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlReadOrder"></A>
+static array_t * <I></I>
+<B>SlReadOrder</B>(
+  FILE * <b>fp</b>, <i></i>
+  array_t * <b>moduleArray</b> <i></i>
+)
+</pre>
+<dd> Read variable order from a file, adapted from reactive
+  symIntf.c
+<p>
+
+<dd> <b>Side Effects</b> For the moment, primed and unprimed vars have to be
+  adjacent.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#SymWriteOrder">SymWriteOrder</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slBase.c"TARGET="ABSTRACT"><CODE>slBase.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlRestrictCmd"></A>
+int <I></I>
+<B>SlRestrictCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slRm.c"TARGET="ABSTRACT"><CODE>slRm.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlReturnPrimedId"></A>
+int <I></I>
+<B>SlReturnPrimedId</B>(
+  int  <b>id</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slMain.c"TARGET="ABSTRACT"><CODE>slMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlReturnRandomValue"></A>
+int <I></I>
+<B>SlReturnRandomValue</B>(
+  int  <b>range</b> <i></i>
+)
+</pre>
+<dd> 
+<p>
+
+<dd> <b>Side Effects</b> none
+<p>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slBase.c"TARGET="ABSTRACT"><CODE>slBase.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlReturnSortedIds"></A>
+array_t * <I></I>
+<B>SlReturnSortedIds</B>(
+  Sl_FSM_t  <b>fsm</b> <i></i>
+)
+</pre>
+<dd> returns a null array if there is cycle in the
+  await dependency.
+<p>
+
+<dd> <b>Side Effects</b> user should free the array after use.
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slBase.c"TARGET="ABSTRACT"><CODE>slBase.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlReturnUnprimedId"></A>
+int <I></I>
+<B>SlReturnUnprimedId</B>(
+  int  <b>id</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slMain.c"TARGET="ABSTRACT"><CODE>slMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlReturnVariableFromId"></A>
+Var_Variable_t * <I></I>
+<B>SlReturnVariableFromId</B>(
+  int  <b>id</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slMain.c"TARGET="ABSTRACT"><CODE>slMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlSingleMddArray"></A>
+array_t * <I></I>
+<B>SlSingleMddArray</B>(
+  mdd_t * <b>inputMdd</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> none.
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slUtil.c"TARGET="ABSTRACT"><CODE>slUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlSmoothConjoin"></A>
+mdd_t * <I></I>
+<B>SlSmoothConjoin</B>(
+  array_t * <b>bddArray</b>, <i></i>
+  array_t * <b>variables</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> none.
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slUtil.c"TARGET="ABSTRACT"><CODE>slUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlStackAlloc"></A>
+Int_Stack_t * <I></I>
+<B>SlStackAlloc</B>(
+   <b></b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slUtil.c"TARGET="ABSTRACT"><CODE>slUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlStrengthenIntfCmd"></A>
+int <I></I>
+<B>SlStrengthenIntfCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slIntf.c"TARGET="ABSTRACT"><CODE>slIntf.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlTauPlusMinus"></A>
+int <I></I>
+<B>SlTauPlusMinus</B>(
+  ClientData  <b>clientdata</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char ** <b>argv</b> <i></i>
+)
+</pre>
+<dd> The set of variables, absvars are abstracted  from the
+  			transition relation of the inFsm, to get the transition
+			relations tauplus and tauminus , which only considers 
+			allvarsabsvars.
+<p>
+
+<dd> <b>Side Effects</b> none
+<p>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slSim.c"TARGET="ABSTRACT"><CODE>slSim.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlTblLookupSimCmd"></A>
+int <I></I>
+<B>SlTblLookupSimCmd</B>(
+  ClientData  <b>clientdata</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char ** <b>argv</b> <i></i>
+)
+</pre>
+<dd> Simulates the i/p FSM checking for the invariances,
+                       BDD1, BDD2... For each output variable of a conjunct 
+		       of the FSM the possible values are put in an array.
+		       So for each iteration of the simulation this array is
+		       looked up and one value is chosen at random.
+<p>
+
+<dd> <b>Side Effects</b> none.
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slSim.c"TARGET="ABSTRACT"><CODE>slSim.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlTclPrintVarNames"></A>
+int <I></I>
+<B>SlTclPrintVarNames</B>(
+  array_t * <b>idArray</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slUtil.c"TARGET="ABSTRACT"><CODE>slUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlToTclCmd"></A>
+int <I></I>
+<B>SlToTclCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slBase.c"TARGET="ABSTRACT"><CODE>slBase.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlTrInvCmd"></A>
+int <I></I>
+<B>SlTrInvCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slRm.c"TARGET="ABSTRACT"><CODE>slRm.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlTrueCmd"></A>
+int <I></I>
+<B>SlTrueCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slRm.c"TARGET="ABSTRACT"><CODE>slRm.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlUnprimeIdArrayCmd"></A>
+int <I></I>
+<B>SlUnprimeIdArrayCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slBase.c"TARGET="ABSTRACT"><CODE>slBase.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlUnprimeMdd"></A>
+mdd_t* <I></I>
+<B>SlUnprimeMdd</B>(
+  mdd_t* <b>m</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> none.
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slBase.c"TARGET="ABSTRACT"><CODE>slBase.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlUnprimeVars"></A>
+array_t* <I></I>
+<B>SlUnprimeVars</B>(
+  array_t * <b>primedIdArray</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> none.
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slBase.c"TARGET="ABSTRACT"><CODE>slBase.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlVarsOfAllLevels"></A>
+array_t * <I></I>
+<B>SlVarsOfAllLevels</B>(
+  array_t * <b>levels</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slUtil.c"TARGET="ABSTRACT"><CODE>slUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlWcontrCmd"></A>
+int <I></I>
+<B>SlWcontrCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> This function computes the weakly controllable states, 
+                      taking into account the array of erased variables. 
+		      phi' / phi bug fixed -lda
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slRm.c"TARGET="ABSTRACT"><CODE>slRm.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlWriteOrderCmd"></A>
+int <I></I>
+<B>SlWriteOrderCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slBase.c"TARGET="ABSTRACT"><CODE>slBase.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlWriteOrder"></A>
+static void <I></I>
+<B>SlWriteOrder</B>(
+  FILE * <b>fp</b> <i></i>
+)
+</pre>
+<dd> Write variable order for slMddManager into a file
+<p>
+
+<dd> <b>Side Effects</b> none
+<p>
+
+<dd> <b>See Also</b> <code><a href="#SlReadOrder">SlReadOrder</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slBase.c"TARGET="ABSTRACT"><CODE>slBase.c</CODE></A>
+
+<dt><pre>
+<A NAME="Sl_Init"></A>
+int <I></I>
+<B>Sl_Init</B>(
+  Tcl_Interp * <b>interp</b>, <i></i>
+  Main_Manager_t * <b>manager</b> <i></i>
+)
+</pre>
+<dd> Initializes the var package.
+<p>
+
+<dd> <b>Side Effects</b> The command, show_types is registered.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Var_Reinit">Var_Reinit</a>
+<a href="#Var_End">Var_End</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slMain.c"TARGET="ABSTRACT"><CODE>slMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="SlfindPair"></A>
+Pair_t * <I></I>
+<B>SlfindPair</B>(
+  array_t * <b>dep</b>, <i></i>
+  int  <b>id</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slBase.c"TARGET="ABSTRACT"><CODE>slBase.c</CODE></A>
+
+<dt><pre>
+<A NAME="SortAndConjoinTau"></A>
+static array_t* <I></I>
+<B>SortAndConjoinTau</B>(
+  Sl_GSTEntry_t * <b>inFsm</b>, <i></i>
+  int  <b>maxTauSize</b>, <i></i>
+  int  <b>mode</b> <i></i>
+)
+</pre>
+<dd> Givben an FSM, sorts the transition relation array (tau 
+                      array) of the FSM according to the await-dependency 
+		      relation and conjoins the taus till the <maxMddSize> as
+		      input is reached. It then returns array with the conjoined
+		      taus. The original updateBdd is not modified.
+		      (So for FSMs with many small taus, we get fewer larger 
+		      taus making the computation on them more efficient.
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slSim.c"TARGET="ABSTRACT"><CODE>slSim.c</CODE></A>
+
+<dt><pre>
+<A NAME="VarBuildBddIdArray"></A>
+static array_t * <I></I>
+<B>VarBuildBddIdArray</B>(
+  Pair_t * <b>pair</b>, <i></i>
+  boolean  <b>primed</b> <i></i>
+)
+</pre>
+<dd> Returns an array (of int's) of the levels of the BDD variables
+  corresponding to the MDD variable of a node.  The level of a BDD variable is
+  it place in the current variable ordering of the BDD manager.  The returned
+  array is sorted in ascending order.  It is the responsibility of the caller
+  to free this array.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slBase.c"TARGET="ABSTRACT"><CODE>slBase.c</CODE></A>
+
+<dt><pre>
+<A NAME="VarOrdersCompareBddIdArray"></A>
+static int <I></I>
+<B>VarOrdersCompareBddIdArray</B>(
+  lsGeneric  <b>node1</b>, <i></i>
+  lsGeneric  <b>node2</b> <i></i>
+)
+</pre>
+<dd> Used to sort an array of nodes in ascending order of lowest BDD
+  level.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slBase.c"TARGET="ABSTRACT"><CODE>slBase.c</CODE></A>
+
+<dt><pre>
+<A NAME="VarOrdersCompareVariable"></A>
+static int <I></I>
+<B>VarOrdersCompareVariable</B>(
+  lsGeneric  <b>node1</b>, <i></i>
+  lsGeneric  <b>node2</b> <i></i>
+)
+</pre>
+<dd> Used to sort an array of nodes in ascending order of lowest BDD
+  level.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slBase.c"TARGET="ABSTRACT"><CODE>slBase.c</CODE></A>
+
+<dt><pre>
+<A NAME="assign_levels"></A>
+static void <I></I>
+<B>assign_levels</B>(
+  array_t * <b>levels</b>, <i></i>
+  array_t * <b>Iinit</b>, <i></i>
+  array_t * <b>Oinit</b>, <i></i>
+  array_t * <b>Itrans</b>, <i></i>
+  array_t * <b>Otrans</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Should">Should</a>
+I
+<a href="#put">put</a>
+a
+<a href="#mdd_one">mdd_one</a>
+<a href="#in">in</a>
+<a href="#the">the</a>
+<a href="#levels">levels</a>
+<a href="#that">that</a>
+otherwise
+<a href="#have">have</a>
+<a href="#no">no</a>
+MDDs?
+<a href="#In">In</a>
+<a href="#order">order</a>
+<a href="#for">for</a>
+<a href="#the">the</a>
+algorithms
+<a href="#to">to</a>
+<a href="#be">be</a>
+<a href="#more">more</a>
+homogeneous...
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slIntf.c"TARGET="ABSTRACT"><CODE>slIntf.c</CODE></A>
+
+<dt><pre>
+<A NAME="check_interface_refinement"></A>
+static int <I></I>
+<B>check_interface_refinement</B>(
+  array_t * <b>levels1</b>, <i></i>
+  array_t * <b>levels2</b>, <i></i>
+  int  <b>verbose</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slIntf.c"TARGET="ABSTRACT"><CODE>slIntf.c</CODE></A>
+
+<dt><pre>
+<A NAME="compareInt"></A>
+static int <I></I>
+<B>compareInt</B>(
+  char * <b>obj1</b>, <i></i>
+  char * <b>obj2</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slBase.c"TARGET="ABSTRACT"><CODE>slBase.c</CODE></A>
+
+<dt><pre>
+<A NAME="comparePair"></A>
+static int <I></I>
+<B>comparePair</B>(
+  char ** <b>obj1</b>, <i></i>
+  char ** <b>obj2</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slBase.c"TARGET="ABSTRACT"><CODE>slBase.c</CODE></A>
+
+<dt><pre>
+<A NAME="compose_interfaces"></A>
+static int <I></I>
+<B>compose_interfaces</B>(
+  array_t * <b>level1</b>, <i></i>
+  array_t * <b>level2</b>, <i></i>
+  array_t ** <b>out_levels</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slIntf.c"TARGET="ABSTRACT"><CODE>slIntf.c</CODE></A>
+
+<dt><pre>
+<A NAME="computeControlReach"></A>
+static mdd_t * <I></I>
+<B>computeControlReach</B>(
+  Sl_GSTEntry_t * <b>fsmEntry</b>, <i></i>
+  array_t * <b>ctrlArray</b>, <i></i>
+  array_t * <b>specArray</b>, <i></i>
+  array_t * <b>initArray</b>, <i></i>
+  int  <b>mode</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> none.
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slRm.c"TARGET="ABSTRACT"><CODE>slRm.c</CODE></A>
+
+<dt><pre>
+<A NAME="computeMaxInvariantSize"></A>
+static int <I></I>
+<B>computeMaxInvariantSize</B>(
+  int  <b>maxInvariantSize</b>, <i></i>
+  array_t * <b>invariant</b>, <i></i>
+  int  <b>task</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slRm.c"TARGET="ABSTRACT"><CODE>slRm.c</CODE></A>
+
+<dt><pre>
+<A NAME="computeMaxTotalSize"></A>
+static int <I></I>
+<B>computeMaxTotalSize</B>(
+  int  <b>maxAllSize</b>, <i></i>
+  int  <b>sizeR</b>, <i></i>
+  array_t * <b>invariant</b>, <i></i>
+  int  <b>task</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slRm.c"TARGET="ABSTRACT"><CODE>slRm.c</CODE></A>
+
+<dt><pre>
+<A NAME="computeRandReach"></A>
+static void <I></I>
+<B>computeRandReach</B>(
+  Sl_GSTEntry_t * <b>inFsm</b>, <i></i>
+  int  <b>task</b>, <i></i>
+  array_t * <b>invariant</b>, <i></i>
+  int  <b>sizeLimit</b>, <i></i>
+  int  <b>iterLimit</b>, <i></i>
+  int  <b>shrinkAlgo</b>, <i></i>
+  int  <b>mode</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> none.
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slRm.c"TARGET="ABSTRACT"><CODE>slRm.c</CODE></A>
+
+<dt><pre>
+<A NAME="computeRandSim"></A>
+static void <I></I>
+<B>computeRandSim</B>(
+  Sl_GSTEntry_t * <b>inFsm</b>, <i></i>
+  int  <b>task</b>, <i></i>
+  array_t * <b>invariant</b>, <i></i>
+  int  <b>sizeLimit</b>, <i></i>
+  int  <b>iterLimit</b>, <i></i>
+  int  <b>shrinkAlgo</b>, <i></i>
+  int  <b>mode</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> none.
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slRm.c"TARGET="ABSTRACT"><CODE>slRm.c</CODE></A>
+
+<dt><pre>
+<A NAME="conjoin"></A>
+static mdd_t * <I></I>
+<B>conjoin</B>(
+  array_t * <b>bddArray</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> none.
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slBase.c"TARGET="ABSTRACT"><CODE>slBase.c</CODE></A>
+
+<dt><pre>
+<A NAME="copy_single_level_composition"></A>
+static void <I></I>
+<B>copy_single_level_composition</B>(
+  int  <b>intf_n</b>, <i></i>
+  array_t * <b>out_levels</b>, <i></i>
+  array_t * <b>out_pseudo_levels</b>, <i></i>
+  Level_t * <b>lev</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slIntf.c"TARGET="ABSTRACT"><CODE>slIntf.c</CODE></A>
+
+<dt><pre>
+<A NAME="copy_single_level_refinement"></A>
+static void <I></I>
+<B>copy_single_level_refinement</B>(
+  int  <b>intf_n</b>, <i></i>
+  array_t * <b>out_levels</b>, <i></i>
+  array_t * <b>out_pseudo_levels</b>, <i></i>
+  Level_t * <b>lev</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slIntf.c"TARGET="ABSTRACT"><CODE>slIntf.c</CODE></A>
+
+<dt><pre>
+<A NAME="filter_primed_and_unprime"></A>
+static array_t * <I></I>
+<B>filter_primed_and_unprime</B>(
+  array_t * <b>vars</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slIntf.c"TARGET="ABSTRACT"><CODE>slIntf.c</CODE></A>
+
+<dt><pre>
+<A NAME="game_compose_interfaces"></A>
+static int <I></I>
+<B>game_compose_interfaces</B>(
+  array_t * <b>levels</b>, <i></i>
+  array_t * <b>pseudo_levels</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slIntf.c"TARGET="ABSTRACT"><CODE>slIntf.c</CODE></A>
+
+<dt><pre>
+<A NAME="getMddFromLeftAndRightAtmExpr"></A>
+static mdd_t * <I></I>
+<B>getMddFromLeftAndRightAtmExpr</B>(
+  Var_Variable_t * <b>var</b>, <i></i>
+  Atm_Expr_t * <b>leftExpr</b>, <i></i>
+  Atm_Expr_t * <b>rightExpr</b> <i></i>
+)
+</pre>
+<dd> 
+<p>
+
+<dd> <b>Side Effects</b> none
+<p>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slBase.c"TARGET="ABSTRACT"><CODE>slBase.c</CODE></A>
+
+<dt><pre>
+<A NAME="getNVals"></A>
+static int <I></I>
+<B>getNVals</B>(
+  int  <b>id</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slBase.c"TARGET="ABSTRACT"><CODE>slBase.c</CODE></A>
+
+<dt><pre>
+<A NAME="getRandomCubeInMdd"></A>
+static void <I></I>
+<B>getRandomCubeInMdd</B>(
+  mdd_t * <b>mdd</b>, <i></i>
+  * the mdd that is passed  <b>recursively</b>, <i></i>
+  mdd_t ** <b>resultCube</b>, <i></i>
+  unsigned int  <b>seed</b> <i></i>
+)
+</pre>
+<dd> Optional
+<p>
+
+<dd> <b>Side Effects</b> none
+<p>
+
+<dd> <b>See Also</b> <code>Optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slSim.c"TARGET="ABSTRACT"><CODE>slSim.c</CODE></A>
+
+<dt><pre>
+<A NAME="get_polarity"></A>
+static int <I></I>
+<B>get_polarity</B>(
+  int  <b>var</b>, <i></i>
+  array_t * <b>universal_vars</b>, <i></i>
+  array_t * <b>existential_vars</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slRm.c"TARGET="ABSTRACT"><CODE>slRm.c</CODE></A>
+
+<dt><pre>
+<A NAME="make_levels"></A>
+static array_t * <I></I>
+<B>make_levels</B>(
+  array_t * <b>merged_dependency</b>, <i></i>
+  array_t * <b>Ivars</b>, <i></i>
+  array_t * <b>Ovars</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slIntf.c"TARGET="ABSTRACT"><CODE>slIntf.c</CODE></A>
+
+<dt><pre>
+<A NAME="mddShrink"></A>
+static void <I></I>
+<B>mddShrink</B>(
+  int  <b>algo</b>, <i></i>
+  mdd_t ** <b>R</b>, <i></i>
+  int  <b>sizeR</b>, <i></i>
+  array_t * <b>supportVars</b>, <i></i>
+  int  <b>sizeLimit</b>, <i></i>
+  int  <b>mode</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> none.
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slRm.c"TARGET="ABSTRACT"><CODE>slRm.c</CODE></A>
+
+<dt><pre>
+<A NAME="mergeAwaitList"></A>
+static void <I></I>
+<B>mergeAwaitList</B>(
+  st_table * <b>idToPairTable</b>, <i></i>
+  array_t * <b>list1</b>, <i></i>
+  array_t * <b>list2</b>, <i></i>
+  Pair_t * <b>pair</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slBase.c"TARGET="ABSTRACT"><CODE>slBase.c</CODE></A>
+
+<dt><pre>
+<A NAME="merge_single_levels_composition"></A>
+static void <I></I>
+<B>merge_single_levels_composition</B>(
+  array_t * <b>out_levels</b>, <i></i>
+  array_t * <b>out_pseudo_levels</b>, <i></i>
+  Level_t * <b>lev1</b>, <i></i>
+  Level_t * <b>lev2</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slIntf.c"TARGET="ABSTRACT"><CODE>slIntf.c</CODE></A>
+
+<dt><pre>
+<A NAME="merge_single_levels_refinement"></A>
+static void <I></I>
+<B>merge_single_levels_refinement</B>(
+  array_t * <b>out_levels</b>, <i></i>
+  array_t * <b>out_pseudo_levels</b>, <i></i>
+  Level_t * <b>lev1</b>, <i></i>
+  Level_t * <b>lev2</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slIntf.c"TARGET="ABSTRACT"><CODE>slIntf.c</CODE></A>
+
+<dt><pre>
+<A NAME="parseNameEqValue"></A>
+static int <I></I>
+<B>parseNameEqValue</B>(
+  char * <b>vv</b>, <i></i>
+  char ** <b>name</b>, <i></i>
+  int * <b>value</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slBase.c"TARGET="ABSTRACT"><CODE>slBase.c</CODE></A>
+
+<dt><pre>
+<A NAME="print_levels_array"></A>
+static void <I></I>
+<B>print_levels_array</B>(
+  array_t * <b>levels</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slIntf.c"TARGET="ABSTRACT"><CODE>slIntf.c</CODE></A>
+
+<dt><pre>
+<A NAME="randomMddCubeShrink"></A>
+static void <I></I>
+<B>randomMddCubeShrink</B>(
+  mdd_t ** <b>R</b>, <i></i>
+  int  <b>sizeR</b>, <i></i>
+  array_t * <b>supportVars</b>, <i></i>
+  int  <b>sizeLimit</b>, <i></i>
+  int  <b>mode</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> none.
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slRm.c"TARGET="ABSTRACT"><CODE>slRm.c</CODE></A>
+
+<dt><pre>
+<A NAME="randomMddStateShrink"></A>
+static void <I></I>
+<B>randomMddStateShrink</B>(
+  mdd_t ** <b>R</b>, <i></i>
+  int  <b>sizeR</b>, <i></i>
+  array_t * <b>supportVars</b>, <i></i>
+  int  <b>sizeLimit</b>, <i></i>
+  int  <b>mode</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> none.
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slRm.c"TARGET="ABSTRACT"><CODE>slRm.c</CODE></A>
+
+<dt><pre>
+<A NAME="refinement_check"></A>
+static int <I></I>
+<B>refinement_check</B>(
+  array_t * <b>spec_levels</b>, <i></i>
+  array_t * <b>impl_levels</b>, <i></i>
+  int  <b>verbose</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slIntf.c"TARGET="ABSTRACT"><CODE>slIntf.c</CODE></A>
+
+<dt><pre>
+<A NAME="strengthen_interface"></A>
+static int <I></I>
+<B>strengthen_interface</B>(
+  array_t ** <b>output_levels</b>, <i></i>
+  array_t * <b>levels</b>, <i></i>
+  array_t * <b>spec</b>, <i></i>
+  int  <b>verbose</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slIntf.c"TARGET="ABSTRACT"><CODE>slIntf.c</CODE></A>
+
+<dt><pre>
+<A NAME="traverse1"></A>
+static int <I></I>
+<B>traverse1</B>(
+  array_t * <b>dep</b>, <i></i>
+  Pair_t * <b>pair</b>, <i></i>
+  int * <b>count</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slBase.c"TARGET="ABSTRACT"><CODE>slBase.c</CODE></A>
+
+<dt><pre>
+<A NAME="traverse"></A>
+static boolean <I></I>
+<B>traverse</B>(
+  array_t * <b>dep</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slBase.c"TARGET="ABSTRACT"><CODE>slBase.c</CODE></A>
+
+<dt><pre>
+<A NAME="zip_variable_levels"></A>
+static int <I></I>
+<B>zip_variable_levels</B>(
+  int  <b>mode</b>, <i></i>
+  array_t ** <b>levels_p</b>, <i></i>
+  array_t ** <b>pseudo_levels_p</b>, <i></i>
+  array_t * <b>levels1</b>, <i></i>
+  array_t * <b>levels2</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slIntf.c"TARGET="ABSTRACT"><CODE>slIntf.c</CODE></A>
+
+<dt><pre>
+<A NAME=""></A>
+ <I></I>
+<B></B>(
+   <b></b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="slAllFile.html#slUtil.c"TARGET="ABSTRACT"><CODE>slUtil.c</CODE></A>
+
+
+</DL>
+<HR>
+Last updated on 1031104 18h39
+</BODY></HTML>

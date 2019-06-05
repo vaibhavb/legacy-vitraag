@@ -1,0 +1,204 @@
+\documentclass{slides}
+\usepackage[dvips]{color}
+\usepackage{epsfig}
+
+\newcommand{\spacer}{\rule[-3mm]{0mm}{8mm}}
+
+\title{Security Analysis Of Handhelds}
+\author{Vaibhav Bhandari\\
+Department of Computer Science, UCSC\\
+vaibhav@soe.ucsc.edu
+}
+
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%===Slide 0
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%===Slide 1
+\begin{slide}
+\begin{center}
+\underline{Embeded Devices are everywhere}
+\end{center}
+
+We can't built secure applications on these insecure devices.
+
+\end{slide}
+
+%%%%%%%%%%%%%%%%%%%%%%%%===Slide 2
+\begin{slide}
+\begin{center}
+\underline{Introduction}
+\end{center}
+\begin{itemize}
+\item Threat : Causual / Determined
+\item Security : Restricted / Confidential
+\end{itemize}
+\end{slide}
+
+%%%%%%%%%%%%%%%%%%%%%%%%===Slide 3
+\begin{slide}
+\begin{center}
+\underline{Exemplary Handhelds}
+\end{center}
+\begin{itemize}
+\item Palm OS device: Monolithic OS
+\item Simputer: Mass market PC with full-fledged OS support 
+\end{itemize}
+\end{slide}
+
+%%%%%%%%%%%%%%%%%%%%%%%%===Slide 4
+\begin{slide}
+\begin{center}
+\underline{Security Analysis}
+\end{center}
+
+Evaluating the robustness of security policy to handle the
+various threats.\\
+
+Making certain the robustness of various security mechanisms
+and understanding there limitations.
+\end{slide}
+
+%%%%%%%%%%%%%%%%%%%%%%%%===Slide 5
+\begin{slide}
+\begin{center}
+\underline{Questions to answer}
+\end{center}
+\small
+\begin{itemize}
+\item Does it have a power-on password and is the password verification robust?
+\item Is there access control for local/ remote operation?
+\item Is there a way to check Malignant programs?
+\item Is Strong Encryption available for both wired and wireless links?
+\item Is Memory properly secured?
+\item Is there a cyrpto-processor and how vulnerable is it?
+\item Are the device protocols time/tool tested?
+\item Is there any audit mechanism available?
+\item Does the device have access to updated information?
+\item Finally, how robust are the business process?
+\end{itemize}
+\end{slide}
+
+%%%%%%%%%%%%%%%%%%%%%%%%===Slide 6
+\begin{slide}
+\begin{center}
+\underline{Secure Password Retrieval}
+\end{center}
+\small
+\begin{itemize}\addtolength{\itemsep}{-0.5\baselineskip}
+\item Challenge/ Response mechanism on the network.
+\item Encrypt and Salt Credentials stored on the system.
+\item Implementation of {\bf power-on} passsword.
+\item Alternative passwords like signatures, graphical passowords.
+\end {itemize}
+\end{slide}
+
+%%%%%%%%%%%%%%%%%%%%%%%%===Slide 7
+\begin{slide}
+\begin{center}
+\underline{Access Control}
+\end{center}
+\small
+\begin{itemize}
+\item Palm: password protected data -records and beam bit.
+\item Simputer: Session database.
+\begin {itemize}
+\item Name
+\item Magic: read(r), exclusive(e), secure(s), transient(t)
+\item Value
+\item An example of a table is given below:
+\begin{center}
+\begin{tabular}[!h]{|lll|}
+     \hline
+      Name  &   Magic   &     Value \\
+     \hline
+     name   &   s       & Manohar \\
+     address &  s       & CSA Department\\
+     DOB     &  s       & June 21 1960 \\
+     Status  &  e567rty & Married \\
+     phone   & ru87iii89 & 3092368 \\
+     choice  & t345tyu  &  pizza \\
+     \hline
+\end{tabular}
+\end{center}
+\end{itemize}
+\pagebreak
+\item IML code segment using it:
+\begin{center}
+\begin{tabular}{|l|}
+\hline
+    \verb+<page>+\\
+    \verb+ <tr><td> Name: </td><td><input type="text" width="15"+\\
+    \verb+		height="1"+\\
+    \verb+var="var0" value="_name" magic="s"/></td></tr>+\\
+    \verb+ <tr><td> Occupation: </td><td><input type="text" +\\
+    \verb+		width="15" height= 1"+\\
+    \verb+var="var0" value="_occupation" magic="s"/></td></tr>+\\
+    \verb+</page>+\\
+\hline
+\end{tabular}
+\end{center}
+\item  Transfer of data to an application (especially remote) is through express approval of user.
+\end{itemize}
+\end{slide}
+
+%%%%%%%%%%%%%%%%%%%%%%%%===Slide 8
+\begin{slide}
+\begin{center}
+\underline{Smart Card Attacks}
+\end{center}
+\small
+\begin{itemize}
+\item Invasive attack on Hardware:Using devices like scanning capacitance microscope can fuel low-cost attacks.
+\item Non-invasive hardware attack: like analysis of power consumption will fade due to counter attacks like randomised clocking.
+\item API-level attacks: Chained processing commands in unusual way based on:
+\begin{itemize}
+\item Data Repeats: exploiting X-OR vulnerability
+\item Timing
+\item Man in middle
+\end{itemize}
+\end{itemize}
+\end{slide}
+
+%%%%%%%%%%%%%%%%%%%%%%%%===Slide 9
+\begin{slide}
+\begin{center}
+\underline{An Authentication Protocol}
+\end{center}
+
+\begin{center}
+\begin{tabular}{|lll|}
+\hline
+ & & \\
+U & $\Rightarrow $ & $ SC: PIN $ \\
+SC & $\Rightarrow $ & $ D: User Valid $\\
+D & $\Rightarrow $ & $ SC: K_{PD}, D_{SN}$ \\
+SC & $\Rightarrow $ &  $ D: \{N, SC, K_{PD}, D_{SN}\}_{K_{SU}}, K_{PU}$ \\
+D & $\Rightarrow $ & $ CA: \{N, SC, K_{PD}, D_{SN}\}_{K_{SU}}, K_{PU}$ \\
+CA & $\Rightarrow $ & $ D: \{Good D\}_{K_{PU}}$ \\
+D & $\Rightarrow $ & $ SC: \{Good D\}_{K_{PU}}$ \\
+ & & \\
+\hline
+\end{tabular}
+\end{center}
+
+In {\bf BAN} Logic:
+\begin{center}
+\small
+\begin{tabular}{c}
+(SC believes good User) (SC believes CA said good Device)\\
+\hline
+SC believes good Device \\
+\end{tabular}
+\end{center}
+\end{slide}
+
+%%%%%%%%%%%%%%%%%%%%%%%%===Slide 10
+\begin{slide}
+\begin{center}
+\underline{Acknowledgements}
+\end{center}
+Thanks every one, especially Prof. Martin Abadi and KS Vivek of PicoPeta Simputers for support and ideas.
+\end{slide}
+
+\end{document}

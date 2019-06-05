@@ -1,0 +1,95 @@
+\newcommand{\etalchar}[1]{$^{#1}$}
+\begin{thebibliography}{CdAHM02}
+
+\bibitem[AdAH{\etalchar{+}}00]{mochaman}
+R.~Alur, L.~de~Alfaro, T.A. Henzinger, S.C. Krishnan, F.Y.C. Mang, S.~Qadeer,
+  S.K. Rajamani, and S.~Tasiran.
+\newblock {\em {{MOCHA} user manual}}.
+\newblock University of California, Berkeley, 2000.
+
+\bibitem[AH99]{RM96journal}
+R.~Alur and T.A. Henzinger.
+\newblock Reactive modules.
+\newblock {\em Formal Methods in System Design: An International Journal},
+  15(1):7--48, July 1999.
+
+\bibitem[AHK97]{ATL}
+R.~Alur, T.A. Henzinger, and O.~Kupferman.
+\newblock Alternating-time temporal logic.
+\newblock In {\em Proceedings of the 38th Annual Symposium on Foundations of
+  Computer Science}, pages 100--109. IEEE Computer Society Press, 1997.
+
+\bibitem[AHM{\etalchar{+}}98]{Mo98}
+R.~Alur, T.A. Henzinger, F.Y.C. Mang, S.~Qadeer, S.K. Rajamani, and S.~Tasiran.
+\newblock {\sc Mocha} : {M}odularity in model checking.
+\newblock In A.~Hu and M.~Vardi, editors, {\em CAV 98: Computer Aided
+  Verification}, pages 521--525. Springer-Verlag, 1998.
+
+\bibitem[BBD{\etalchar{+}}96]{PREVAIL}
+D.~Borrione, H.~Bouamama, D.~Deharbe, C.~Le Faou, and A.~Wahba.
+\newblock {HDL}-based integration of formal methods and {CAD} tools in the
+  {PREVAIL} environment.
+\newblock In {\em Formal Methods in Computer-Aided Design}, pages 450--467.
+  Springer-Verlag, 1996.
+
+\bibitem[BFM00]{b2m}
+D.~Basin, S.~Friedrich, and S.~M{\"o}dersheim.
+\newblock {B2M}: {A} {S}emantic {B}ased {T}ool for {BLIF} {H}ardware
+  {D}escriptions.
+\newblock In Warren~A. Hunt and Steven~D. Johnson, editors, {\em Formal Methods
+  in Computer-Aided Design, Third International Conference, {FMCAD} 2000},
+  volume 1954 of {\em LNCS}, pages 91--107, Austin, Tx, USA, 2000.
+  Springer-Verlag.
+
+\bibitem[Bha03]{mv2rmdoc}
+V.~Bhandari.
+\newblock {MV2RM- BlifMV to Reactive Modules, Documentation}.
+\newblock {http://www.cse.ucsc.edu/dvlab/mv2rm/}, June 2003.
+
+\bibitem[BHSV{\etalchar{+}}96]{VIS96}
+R.~K. Brayton, G.~D. Hachtel, A.~Sangiovanni-Vincentelli, F.~Somenzi, A.~Aziz,
+  S.-T. Cheng, S.~Edwards, S.~Khatri, Y.~Kukimoto, A.~Pardo, S.~Qadeer, R.~K.
+  Ranjan, S.~Sarwary, T.~R. Shiple, G.~Swamy, and T.~Villa.
+\newblock {VIS}: a system for verification and synthesis.
+\newblock In {Rajeev Alur} and {Thomas A. Henzinger}, editors, {\em Proceedings
+  of the Eighth International Conference on Computer Aided Verification {CAV}},
+  volume 1102, pages 428--432, New Brunswick, NJ, USA, 1996. Springer Verlag.
+
+\bibitem[CdAHM02]{cav-paper}
+A.~Chakrabarti, L.~de~Alfaro, T.A. Henzinger, and F.Y.C. Mang.
+\newblock Synchronous and bidirectional component interfaces.
+\newblock In {\em Proceedings of CAV 2002}, volume 2404 of {\em LNCS}, pages
+  414--427. Springer-Verlag, 2002.
+
+\bibitem[Che94]{vl2mv}
+S.T. Cheng.
+\newblock Compiling verilog into automata.
+\newblock Technical Report UCB/ERL M94/37, Electronics Research Lab, Univ. of
+  California, Berkeley, CA 94720, 1994.
+
+\bibitem[dA01]{daLect}
+L.~de~Alfaro.
+\newblock Introduction to the theory of discrete systems.
+\newblock Unpublished Class Lecture Notes, 2001.
+
+\bibitem[dA03]{dvlab}
+L.~de~Alfaro.
+\newblock {UC Santa Cruz Design and Verification Lab}.
+\newblock http://www.cse.ucsc.edu/dvlab/, 2003.
+
+\bibitem[{Des}03]{getchai}
+{Design and Verification Lab}.
+\newblock {CHAI-A Tool For Synchronous Interfaces}.
+\newblock {http://www.cse.ucsc.edu/dvlab/chai/}, 2003.
+
+\bibitem[For]{sscblif}
+F.~X. Fornari.
+\newblock {SSCBLIF-Esterel BLIF code producer}.
+\newblock http://www.infeig.unige.ch/lab/doc/html/esterel/sscblif1.html.
+
+\bibitem[Inr]{ocaml}
+Inria.
+\newblock Ocaml.
+\newblock http://caml.inria.fr/.
+
+\end{thebibliography}

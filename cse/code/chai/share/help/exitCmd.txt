@@ -1,0 +1,10 @@
+
+  exit - Ends the current MOCHA session
+     _________________________________________________________________
+   
+   exit
+   
+   This command ends the current mocha session and kills all windows.
+     _________________________________________________________________
+   
+   Last updated on 980624 22h10

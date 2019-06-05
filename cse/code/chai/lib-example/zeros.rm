@@ -1,0 +1,9 @@
+module Zeros
+interface x:bool
+
+atom controls x
+update
+[] true -> x' := 1 & 0
+
+endatom
+endmodule

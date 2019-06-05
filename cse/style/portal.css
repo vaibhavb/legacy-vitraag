@@ -1,0 +1,28 @@
+/**
+ *Author:Vaibhav<vaibhav@cse.ucsc.edu>
+ *Portal wide style
+ *$Id: portal.css,v 1.1 2003/07/04 13:42:02 vaibhav Exp $
+ */
+ 	
+/**The Heading Style*/
+h1 {color: red;}
+h1.center {text-align: center; font-weight: bold; color: red;}
+ul.checks li{list-style-imabe: url("../../images/checkmark.gif") ;}
+
+/**Background Style*/
+body {background: gray;}
+
+/**The Shadow Division Style*/ 
+div.back {background: #ffc}
+div.section {background: white}
+div.back {padding: 1.5em}
+div.section {margin: -3em 0 0 -3em}
+div.back {margin: 3em 0 3em 5em}
+div.section {border: thin solid #999; padding: 1.5em}
+
+/**Image*/
+/*img {border: thin silver solid; float:center;} //border*/
+
+/**Paragraph*/
+p + p { text-indent: 1.5em; margin-top : 0 }
+

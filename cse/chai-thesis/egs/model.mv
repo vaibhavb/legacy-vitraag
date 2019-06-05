@@ -1,0 +1,13 @@
+\begin{minipage}[t]{2in} 
+\scriptsize
+\begin{verbatim}
+.model ControlLogic
+.inputs PresentSignal Button
+.outputs NextSignal
+.names PresentSignal \
+    Button -> NextSignal
+.def 1
+1 1 0
+.end
+\end{verbatim}
+\end{minipage}

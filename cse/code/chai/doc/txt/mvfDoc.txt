@@ -1,0 +1,485 @@
+The mvf package
+
+Creation and manipulation of MDD-based multi-valued functions.
+
+Tom Shiple
+
+**********************************************************************
+
+Mvf_End()                      Ends the mvf package.
+
+Mvf_FunctionAddMintermsToComponent()
+                               Adds a set of minterms to the ith component of
+                               a function.
+
+Mvf_FunctionAlloc()            Allocates a multi-valued function of n
+                               components.
+
+Mvf_FunctionArrayComputeNumBddNodes()
+                               Returns the number of BDD nodes of an array of
+                               multi-valued   functions.
+
+Mvf_FunctionArrayFree()        Frees an array of multi-valued output
+                               functions.
+
+Mvf_FunctionBuildRelationWithVariable()
+                               Returns the MDD representation of the relation
+                               (var == function).
+
+Mvf_FunctionCofactor()         Calls bdd_cofactor on each component of a
+                               multi-valued function.
+
+Mvf_FunctionComposeWithFunctionArray()
+                               Substitutes a set of variables by a set of
+                               functions in a function.
+
+Mvf_FunctionComposeWithFunction()
+                               Substitutes a variable by a function in a
+                               function.
+
+Mvf_FunctionComputeAddition()  Returns the mvf for the modulo addition of the
+                               two   multi-valued functions.
+
+Mvf_FunctionComputeDomain()    Computes the domain of a multi-valued function.
+
+Mvf_FunctionComputeHashValue() Hashes A multi-valued function.
+
+Mvf_FunctionComputeITE()       Returns the if then else of two mvfs.
+
+Mvf_FunctionComputeNumBddNodes()
+                               Returns the number of BDD nodes of a multi-
+                               valued function.
+
+Mvf_FunctionComputeSubtraction()
+                               Returns the mvf for the modulo subtraction of
+                               the two   multi-valued functions.
+
+Mvf_FunctionComputeSupport()   Computes the variables in the true support of a
+                               function.
+
+Mvf_FunctionCreateFromVariable()
+                               Creates the multi-output function for a
+                               variable.
+
+Mvf_FunctionDuplicate()        Duplicates a multi-valued output function.
+
+Mvf_FunctionFindFirstTrueComponent()
+                               Returns the index of the first component of a
+                               multi-valued   function that is equal to the
+                               tautology.
+
+Mvf_FunctionFree()             Frees a multi-valued output function.
+
+Mvf_FunctionMinimize()         Calls bdd_minimize on each component of a
+                               multi-valued function.
+
+Mvf_FunctionObtainComponent()  Returns a copy of the MDD giving the minterms
+                               for which a   multi-valued function evaluates
+                               to its ith value.
+
+Mvf_FunctionReadComponent()    Returns the MDD giving the minterms for which a
+                               multi-valued function evaluates to its ith
+                               value. The user should not free   this MDD.
+
+Mvf_FunctionReadMddManager()   Returns the MDD manager of a multi-valued
+                               function.
+
+Mvf_FunctionReadNumComponents()
+                               Returns the number of components of a multi-
+                               valued function.
+
+Mvf_FunctionTestIsCompletelySpecified()
+                               Returns true if a multi-valued function is
+                               completely specified, else   false.
+
+Mvf_FunctionTestIsConstant()   Returns true if a multi-valued function is
+                               constant, else   false.
+
+Mvf_FunctionTestIsDeterministic()
+                               Returns true if a multi-valued function is
+                               deterministic, else   false.
+
+Mvf_FunctionTestIsEqualToFunction()
+                               Returns true if two multi-valued functions are
+                               equal, else false.
+
+Mvf_FunctionTestIsNonDeterministicConstant()
+                               Returns true if a multi-valued function is a
+                               non-deterministic   constant, else false.
+
+Mvf_FunctionTestIsWellFormed() Returns true if a function is deterministic and
+                               completely   specified, else false.
+
+Mvf_FunctionsComputeEquivalentSet()
+                               Returns the set of minterms on which two
+                               functions agree.
+
+Mvf_Init()                     Initializes the mvf package.
+
+Mvf_MddComposeWithFunction()   Substitutes a variable by a function in an
+                               mdd_t *.
+
+**********************************************************************
+
+This package is used to create and manipulate single output   functions that
+take multiple values, and are defined over multi-valued   variables.
+Mathematically, such a function is described as, f: Y1 x Y2 x   ... x Yn -->
+Yn+1.  Each Yi is a finite, ordered set; if Yi is of   cardinality k, then
+the elements of Yi are {0, 1, ..., k-1}. We use yi do   denote a variable
+over Yi. If<p>    A single MDD over variables y1,...,yn cannot be used to
+represent f, because   an MDD can only represent binary-valued functions, not
+multi-valued   functions.  Instead, to represent f, we use an array of MDDs,
+of length   equal to the cardinality of Yn+1.  Each MDD of this array is
+defined over   y1,...,yn.  Furthermore, the minterms for which the ith MDD,
+fi, evaluates   to one, are exactly those minterms for which f evaluates to
+the ith member   of Yn+1.  If f is deterministic, then the intersection of fi
+and fj, for i   not equal to j, is empty.  If f is completely specified, then
+the union of   the fi's is the tautology.  The union of the fi's is referred
+to as the   "domain" of the function.
+
+void
+Mvf_End(
+
+)
+  Ends the mvf package.
+
+
+void
+Mvf_FunctionAddMintermsToComponent(
+  Mvf_Function_t *  function,
+  int               i,
+  mdd_t *           g
+)
+  Adds a set of minterms, represented by the onset of an MDD g, to the onset
+  of the ith component of a function. The MDD g is not freed.
+
+
+Mvf_Function_t *
+Mvf_FunctionAlloc(
+  mdd_manager *     mddManager,
+  int               n
+)
+  Allocates a multi-valued function of n components. Each component is
+  initialized to the zero MDD.
+
+
+long
+Mvf_FunctionArrayComputeNumBddNodes(
+  array_t *         functionArray
+)
+  Returns the number of BDD nodes of an array of multi-valued functions. A
+  node shared by several functions is counted only once.
+
+
+void
+Mvf_FunctionArrayFree(
+  array_t *         functionArray
+)
+  Frees an array of multi-valued output functions. Does nothing if
+  functionArray is NULL.
+
+
+mdd_t *
+Mvf_FunctionBuildRelationWithVariable(
+  Mvf_Function_t *  function,
+  int               mddId
+)
+  Given a variable x, represented by MDD var "mddId", and a function f:y->z,
+  represented by "function", where x and z take the same number of values,
+  returns the MDD for a (binary) function F(x,y) such that F(x,y) = 1 iff x =
+  f(y). In the binary case it reduces to F(x,y) = x XNOR f(y). Intuitively it
+  describes a function of multi-valued variables by the characteristic
+  function of its input-output relation.
+
+
+Mvf_Function_t *
+Mvf_FunctionCofactor(
+  Mvf_Function_t *  function,
+  mdd_t *           wrtMdd
+)
+  Calls bdd_cofactor on each component of a multi-valued function, cofactoring
+  with respect to wrtMDD. Returns the cofactored function. It is an error to
+  call this function with a multi-valued function that contains null MDDs or
+  with a null wrtMdd.
+
+
+Mvf_Function_t *
+Mvf_FunctionComposeWithFunctionArray(
+  Mvf_Function_t *  f,
+  array_t *         mddIdArray,      of int
+  array_t *         functionArray    of Mvf_Function_t*
+)
+  Given a multi-valued function f, an array of variables x1,...,xk, and an
+  array of multi-valued functions g1,...,gk, iteratively calls
+  Mvf_MddComposeWithFunction to substitute each xi by gi. The parameters of
+  the ith call to Mvf_MddComposeWithFunction are the result of composing the
+  first i-1 variables, xi, and gi. The multi-valued function gi must not
+  depend on xi.
+
+
+Mvf_Function_t *
+Mvf_FunctionComposeWithFunction(
+  Mvf_Function_t *  f,
+  int               mddId,
+  Mvf_Function_t *  g
+)
+  Given a multi-valued function f, a variable x (mddId), and a multi-valued
+  function g, the procedure replaces every appearance of x in f by function g.
+  That is, if the function f is f(..., x, ...), then the result is f(..., g(),
+  ...). The number of values that x can take and the number of components of g
+  must be equal. The algorithm first computes the sum of factors (x==i)*gi for
+  every value i in the domain of x, where gi is the ith component of g. Then,
+  for each component fi of f, the sum of factors is conjuncted with fi, and x
+  is existentially quantified. The function g must not depend on x. The result
+  depends on all the variables of g and all the variables of f, except for x.
+
+
+Mvf_Function_t *
+Mvf_FunctionComputeAddition(
+  Mvf_Function_t *  mvf1,
+  Mvf_Function_t *  mvf2
+)
+  optional
+
+  Side Effects: required
+
+mdd_t *
+Mvf_FunctionComputeDomain(
+  Mvf_Function_t *  function
+)
+  Returns an MDD representing the set of minterms which turn on some component
+  of a function. In other words, returns the union of the onsets of the
+  components. The domain is the tautology if and only if the function is
+  completely specified.
+
+
+int
+Mvf_FunctionComputeHashValue(
+  Mvf_Function_t *  function
+)
+  Hashes A multi-valued function. Each component's top variable id is
+  multiplied by the index of component (+ 1). Returns the sum of this
+  computation on every component. It is an error to call this function with a
+  null multi-valued function.
+
+
+Mvf_Function_t *
+Mvf_FunctionComputeITE(
+  mdd_t *           ifMdd,
+  Mvf_Function_t *  thenMvf,
+  Mvf_Function_t *  elseMvf
+)
+  optional
+
+  Side Effects: required
+
+long
+Mvf_FunctionComputeNumBddNodes(
+  Mvf_Function_t *  function
+)
+  Returns the number of BDD nodes of a multi-valued function.
+
+
+Mvf_Function_t *
+Mvf_FunctionComputeSubtraction(
+  Mvf_Function_t *  mvf1,
+  Mvf_Function_t *  mvf2
+)
+  optional
+
+  Side Effects: required
+
+array_t *
+Mvf_FunctionComputeSupport(
+  Mvf_Function_t *  function,
+  mdd_manager *     mddMgr,
+  int *             value
+)
+  Computes the variables in the true support of a function. Does this by
+  taking the union of the result of mdd_get_support on each component of the
+  function. Returns the support as an (ascending) ordered array of MDD ids. If
+  the function is a constant, then a NULL array is returned, and the constant
+  value of the function is written in the "value" variable.
+
+
+Mvf_Function_t *
+Mvf_FunctionCreateFromVariable(
+  mdd_manager *     mddManager,
+  int               mddId
+)
+  Given a variable, creates a function with as many components as values of
+  the variable. The ith component of the function is true exactly when the
+  variable is equal to the ith value (i.e. fi(x) = (x==i), where x is the
+  variable specified by mddId). For the case where x is binary valued, the
+  result is [!x, x]. Assumes that mddId is non-negative.
+
+
+Mvf_Function_t *
+Mvf_FunctionDuplicate(
+  Mvf_Function_t *  function
+)
+  Returns a new multi-valued output function, whose constituent MDDs have been
+  duplicated. Assumes that function is not NULL.
+
+
+int
+Mvf_FunctionFindFirstTrueComponent(
+  Mvf_Function_t *  function
+)
+  Returns the index of the first component of a multi-valued function that is
+  equal to the tautology. If the multi-valued function is deterministic, this
+  component is unique. Returns -1 if such a component is not found. It is an
+  error to call this function with a multi-valued function that contains null
+  MDDs.
+
+
+void
+Mvf_FunctionFree(
+  Mvf_Function_t *  function
+)
+  Frees a multi-valued output function. Does nothing if function is NULL.
+
+
+Mvf_Function_t *
+Mvf_FunctionMinimize(
+  Mvf_Function_t *  f,
+  mdd_t *           c
+)
+  Calls bdd_minimize on each component of a multi-valued function f,
+  minimizing with respect to the care function c. The returned function agrees
+  with f wherever c is true, and may or may not agree with f wherever c is
+  false. It is an error to call this function with a multi-valued function
+  that contains null MDDs or with a null care.
+
+
+mdd_t *
+Mvf_FunctionObtainComponent(
+  Mvf_Function_t *  function,
+  int               i
+)
+  Returns a copy of the MDD giving the minterms for which a multi-valued
+  function evaluates to its ith value.
+
+
+mdd_t *
+Mvf_FunctionReadComponent(
+  Mvf_Function_t *  function,
+  int               i
+)
+  Returns the MDD giving the minterms for which a multi-valued function
+  evaluates to its ith value. The user should not free this MDD.
+
+
+mdd_manager *
+Mvf_FunctionReadMddManager(
+  Mvf_Function_t *  function
+)
+  Returns the MDD manager of a multi-valued function. This procedure assumes
+  that the function has at least one component.
+
+
+int
+Mvf_FunctionReadNumComponents(
+  Mvf_Function_t *  function
+)
+  Returns the number of components of a multi-valued function. This is the
+  same number as the value of the parameter passed to Mvf_FunctionAlloc.
+
+
+boolean
+Mvf_FunctionTestIsCompletelySpecified(
+  Mvf_Function_t *  function
+)
+  Returns true if a multi-valued function is completely specified, else false.
+  A function is completely specified if, for every minterm over the input
+  space of the function, the function takes at least one value. The complexity
+  of this procedure is linear in the number of values the function can take.
+
+
+boolean
+Mvf_FunctionTestIsConstant(
+  Mvf_Function_t *  function,
+  int *             constantValue    return value
+)
+  Returns true if a multi-valued function is constant, else false. A function
+  is constant if exactly one component is the tautology, and the remaining
+  components are zero. If the function is a constant, then "value" is set to
+  the constant value of the function. The complexity of this procedure is
+  linear in the number of values the function can take.
+
+
+boolean
+Mvf_FunctionTestIsDeterministic(
+  Mvf_Function_t *  function
+)
+  Returns true if a multi-valued function is deterministic, else false. A
+  function is deterministic if, for every minterm over the input space of the
+  function, the function takes at most one value. The complexity of this
+  procedure is linear in the number of values the function can take.
+
+
+boolean
+Mvf_FunctionTestIsEqualToFunction(
+  Mvf_Function_t *  function1,
+  Mvf_Function_t *  function2
+)
+  Returns true if two multi-valued functions are equal, else false. Two
+  functions are equal if they have the same number of components, and the ith
+  component of one is equal to the ith component of the other.
+
+
+boolean
+Mvf_FunctionTestIsNonDeterministicConstant(
+  Mvf_Function_t *  function
+)
+  Returns true if a multi-valued function is a non-deterministic constant,
+  else false. A function is a non-deterministic constant if more than one
+  component is the tautology, and the remaining components are zero. The
+  complexity of this procedure is linear in the number of values the function
+  can take.
+
+
+boolean
+Mvf_FunctionTestIsWellFormed(
+  Mvf_Function_t *  function
+)
+  Returns true if a function is deterministic and completely specified, else
+  false.
+
+
+mdd_t *
+Mvf_FunctionsComputeEquivalentSet(
+  Mvf_Function_t *  function1,
+  Mvf_Function_t *  function2
+)
+  Returns the set of minterms on which two functions agree. For f = [f1, f2,
+  ..., fn] and g = [g1, g2, ..., gn], the returned set is: AND(i = 1, ..., n)
+  (fi XNOR gi). For the special case where f and g are binary valued, this
+  function computes (f XNOR g). It is an error if the two functions have a
+  different number of components.
+
+
+void
+Mvf_Init(
+
+)
+  Initializes the mvf package.
+
+
+mdd_t *
+Mvf_MddComposeWithFunction(
+  mdd_t *           f,
+  int               mddId,
+  Mvf_Function_t *  g
+)
+  Given a binary-valued function f, a variable x, and a multi-valued function
+  g, the procedure replaces every appearance of x in f by function g. That is,
+  if the function f is f(..., x, ...), then the result is f(..., g(), ...).
+  The number of values that x can take and the number of components of g must
+  be equal. The algorithm first computes the sum of factors (x==i)*gi for
+  every value i in the domain of x, where gi is the ith component of g, then
+  conjuncts this with f, and finally existentially quantifies x. The function
+  g must not depend on x. The result depends on all the variables of g and all
+  the variables of f, except for x.
+
+

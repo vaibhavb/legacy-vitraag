@@ -1,0 +1,2 @@
+read_module pipeline.rm
+check_refine pipeline ISA

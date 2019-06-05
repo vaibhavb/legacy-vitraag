@@ -1,0 +1,26 @@
+
+  sim_select - Select the choice for the current simulation.
+     _________________________________________________________________
+   
+   sim_select [-h] <module> <selection>
+   
+   This command selects the choice for the simulation of the specified
+   module. Typically, if the execution is the user's turn, the user uses
+   the command "sim_choice <module>" to examine the available choices.
+   Then the user selects one of the choices by providing a number
+   corresponding to the desired choice.
+   
+   Command options:
+   
+   -h
+          Prints usage.
+          
+   <module>
+          Specifies the module.
+          
+   <selection>
+          A number that specifies the desired selection. The choices are
+          shown using the command "sim_choice".
+     _________________________________________________________________
+   
+   Last updated on 980624 22h11

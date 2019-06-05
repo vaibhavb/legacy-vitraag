@@ -1,0 +1,138 @@
+RESUME
+
+NAME:
+VAIBHAV BHANDARI.
+
+DATE OF BIRTH
+12TH OCTOBER 1979
+
+ADDRESS:
+[POSTAL]:
+UJSH.
+C.U.SHAH BHAVAN,
+64, SION ROAD SION [W]
+MUMBAI - 22
+INDIA
+TEL: 91-22-4017835
+
+[PERMANENT]
+180, SIMPI LANE
+LASALGAON,
+DIST. NASIK ,
+MAHARATRA, INDIA
+TEL: 91-02550-66203
+
+EMAIL : vibs ieee.org
+
+WEBSITE: www.bvaibhav.com
+
+ACADEMICS:
+
+YEAR 
+COURSE
+INSTITUTION
+SCORE
+REMARKS
+2000
+Third year *
+B.E.Comps
+
+VES institute Of Technology, Chembur, Mumbai.
+
+First Class
+1999
+Diploma in Business Finance, alpha
+Institute Of Chartered Financial Analysts Of India. ICFAI.
+
+First Attempt
+1999
+Second year *
+B.E.Comps
+VES institute Of Technology, Chembur, Mumbai.
+
+First Class
+1998
+First  year *
+B.E.Comps
+VES institute Of Technology, Chembur, Mumbai.
+
+First Class
+1998
+Diploma in Business Finance, alpha
+Institute Of Chartered Financial Analysts Of India,  ICFAI.
+
+First Attempt
+1997
+Higher Secondary Certificate, HSC
+R. Ruia College, Matunga, Mumbai.
+
+
+1995
+Indian Certificate Exam, ICSE
+S.D.A Mission's High School, Lasalgaon.
+
+
+
+*: The annexure-I attached with the resume gives details of the subjects studied.
+
+SCHOLARSHIPS:
+
+* Won the coveted National Talent Search Examination, NTSE, Scholarship........Fill 
+* Kaprekar maths sholarship.
+* IIT JEE rank 4605 in over 1,00,000 students.
+
+MEMBERSHIP OF SOCIETIES:
+ Active member of:
+* IEEE
+* Computer Society of India, CSI
+* Debating Society, DEBSOC
+* International Youth Hostels, IYH
+
+SKILL SET:
+This section describes some of my achievements which distinctly portray my skill set.
+
+* RESEARCH SKILLS
+* Worked in CS department of Tata Institute Of Fundamental Research, TIFR, one of premier research organizations in India, under Prof. Leena Chandran - Wadia, on design of micro payment protocol and various security issues related to it. 
+* Some of the technical papers I have written are:
+o "Optimization Techniques": This senior level  paper focuses on various optimization techniques which are seem promising in optimizing the java byte code. 
+o "A survey of Virtual Machines": This senior level paper does a survey of the VM technologies available since 1970's. It particularly landmarks the significance of java virtual machine and its peculiarities.
+o "Design of Online Stock Exchanges": This junior level paper deals with the issues related to design of online stock exchange. As a application of the research analyses the Bombay Stock Exchange, BSE and recommends some up gradations.
+o "Internet Protocol Security": This junior level paper describes the IPSEC in detail. It was selected as one of the 10 papers among some 120 papers for presentation in the WRITECH'99, which is the inter-collegiate paper contest organized by Computer Society of India.
+o "Hashing revisited": This sophomore level paper deal with advanced Hashing methods. It objectively compares a few of them and annotates the results. This paper was presented to the VESIT branch of IEEE.   
+
+
+* SOFTWARE SKILLS
+* Working as a part time software consultant at ISC BPL. I aim at XML enabling of the company and simplification of existing processes.
+* An amateur XML developer with experience of 6 months. My website www.bvaibhav.com is made in XML with styling done in XSL and CSS and the schema using DTDs.
+* Certified C Programmer by leading certification company brainbench.com
+* Won second prize in IEEE-VESIT programming contest.
+*  Some of the softwares/tools I developed are:
+o Zee Interpreter: It is an interpreter for a hypothetical language Zee. It was developed using the Lex and Yacc tools in the linux environment. 
+o Library Management System: This is a small library handling system developed in C++ using advanced features like standard template library. Silicon graphics STL under GCC environment was used.
+o Inventory Control System:  Along with a colleague I developed this software in the first year of engineering in Pascal.
+* Computer language known and experience:
+Pascal  (3 years(, C (2.5 years(, C++ (1.5 years(, Java (1 year (, SQL ( 9 months (, XML (6 months(
+* Packages known:
+Editors: Emacs, MS-Word, MS- Publisher, Mcedit, ilex.
+Compilers and debuggers: GCC, GDB, Turbo C++, JDK 1.2.
+Other: Lex and Yacc, XML spy
+* Platforms: Linux, Windows(95 / 98 /NT(, DOS
+
+* HARDWARE SKILLS
+* Part of Hardware Designing & System Integration Cell in the IEEE-VESIT Branch Project:'COLLISION AVOIDANCE SYSTEM'. In which a full-scale working model using MC6811 microcontroller and remote interface with a computer was implemented. It was presented at the 'All India Exhibition, ELECRAMA 99'.
+* Won first prize in seniors category of Students Forum For Electronics hardware contest for "Clap controlled regulator for fans"
+* Won first prize in juniors category of Students Forum For Electronics hardware contest for "Multipurpose alarm circuit"
+* Designed a CMOS timer circuit for atomizing the control of water heater timings in my hostel.  
+
+
+* TEACHING SKILLS
+* WRITING AND EDITORIAL SKILLS
+* Chief  
+* MATHEMATICAL SKILLS
+* DEBATING /ORATORIAL SKILLS
+* ORGANIZATIONAL SKILLS
+* CREATIVITY 
+* LEADERSHIP
+
+MOTTO:
+Mode happiness, method practicality and goal dreams............

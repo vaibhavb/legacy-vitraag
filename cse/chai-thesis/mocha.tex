@@ -1,0 +1,173 @@
+\chapter{The Starting Point- \mocha}
+\chai \ is based on \mocha \, it extends the functionality of
+\mocha \ and adds an input language to suit interfaces.
+
+\mocha \ is an interactive environment for modular verification of
+heterogeneous systems. \mocha \ relies on the modelling framework
+of reactive modules unlike traditional use of state transition
+graphs. Its input language is machine readable variant of reactive
+modules. In \chai \ we extend \rm \ to interface modules as
+explained in next chapter.
+
+\section{Mocha}
+%Some lines on mocha implementation
+
+%This section describes Mocha in summary detail.
+\mocha \ supports the following functionalities:
+\begin{itemize}
+\item Simulation, including games between the user and the
+simulator \item Enumerative and symbolic invariant checking and
+error-trace generation \item Compositional refinement checking
+\item ATL model checking \item reachability analysis of real-time
+systems
+\end{itemize}
+
+The basic structuring units, or the molecules of a system, are
+{\em reactive modules}. The modules have a well-defined interface
+given by a set of \emph{external (or input)} variables and a set
+of {\em interface (or output)} variables. A module may also have a
+set of {\em private} variables. All variables are typed, and
+\mocha supports a standard set of finite and infinite types, such
+as booleans and integers. A module is built from \emph{atoms},
+each grouping together a set of \emph{controlled} (interface or
+private) variables with exclusive updating rights. \emph{Updating}
+is defined by two nondeterministic guarded commands: an
+\emph{initialization} command and an \emph{update} command.  In
+these commands unprimed variables, such as $x$, refer to the old
+value of the corresponding variable, and primed variables, such as
+$x'$, refer to the new value of the corresponding variable.  An
+atom is said to \emph{await} another atom if its initialization or
+update commands refer to primed variables that are controlled by
+the other atom. The variables change their values over time in a
+sequence of \emph{rounds}. The first round consists of the
+execution of the initialization command of each atom, and the
+subsequent rounds consist of the execution of the update command
+of each atom,  in an order consistent with the await dependencies.
+A round of an atom is therefore a \emph{subround} of the module.
+If no guard of the update command is enabled, then the atom idles,
+i.e., the values of the variables do not change.  %If the update
+%command of an atom has a branch with a true guard and no updating
+%action, then it may at any time either take a transition or idle.
+%Such an atom is called \emph{lazy}, and is useful for modelling
+%asynchronous interaction.
+%
+%%%Use a better example ?
+%For example, consider the specification of a village telephone
+%system that contains four telephones. The specification consists
+%of two modules: the first one models the environment, i.e., the
+%users, and the second one models the system. A phone is either
+%on-hook or off-hook, and the module {\tt UserSpec}
+%nondeterministically toggles at most one telephone between on-hook
+%and off-hook.
+%\begin{example}{}
+%\begin{verbatim}
+%type hookType is {on, off} module UserSpec is
+%  interface h1,h2,h3,h4: hookType;
+%lazy atom ToggleHook
+%  controls h1,h2,h3,h4
+%  reads h1,h2,h3,h4
+%  init
+%    [] true -> h1' := on; h2' := on; ...
+%  update
+%    [] h1 = on -> h1' := off;
+%    [] h1 = off -> h1' := on;
+%    ...
+%  endatom
+%endmodule
+%\end{verbatim}
+%\end{example}
+
+Modules can be \emph{composed} if they have disjoint sets of
+interface variables, and their union of atom sets does not contain
+a circular await dependency. Given a specification {\tt
+SystemSpec} of a system and model of user behavior as {\tt
+UserSpec}, specification module {\tt Spec} is defined as:
+\vspace*{-2ex}
+\begin{footnotesize}
+\begin{verbatim}
+module Spec is UserSpec || SystemSpec
+\end{verbatim}
+\end{footnotesize}
+\vspace*{-2ex} For encapsulation \rem{} allows the {\em hiding} of
+interface variables, and for instantiation it allows the {\em
+renaming} of interface and external variables. Hiding and parallel
+composition permit hierarchical descriptions of complex systems.
+
+\section{Atoms and Reactive Modules, Formally}
+%Define guarded commands
+%Modules collect variables
+This section describes the syntax and semantics of Reactive
+Modules.
+
+%Atom definition
+\begin{defi}{atom}\it
+  {\em [{\bf Atom}]}
+  Let $\vars$ be a finite set of typed variables.
+  An {\em $\vars$-atom\/} $\atom$ consists of a declaration and a body.
+  The atom declaration consists of a set $\cvars{\atom}\subseteq\vars$ of
+  {\em controlled variables}, a set $\mrvars{\atom}\subseteq\vars$ of
+  {\em read variables}, and a set
+  $\wvars{\atom}\subseteq\vars\bs\cvars{\atom}$ of {\em awaited variables}.
+  The atom body consists of an executable {\em initial action\/}
+  $\init{\atom}$ from $\wvars{\atom}'$ to $\cvars{\atom}'$ and an executable
+  {\em update action\/} $\update{\atom}$ from
+  $\mrvars{\atom}\cup\wvars{\atom}'$ to~$\cvars{\atom}'$.
+\end{defi}
+
+\mypar In the initialization round, the initial action of the atom
+$\atom$ assigns initial values to the controlled variables as a
+nondeterministic function of the initial values of the awaited
+variables. In each update round, the update action of $\atom$
+assigns updated values to the controlled variables as a
+nondeterministic function of the latched values of the read
+variables and the updated values of the awaited variables. Hence,
+in each round, the $\atom$-subround can take place only after all
+awaited variables have already been updated. The variable $\var$
+{\em awaits\/} the variable~$\avar$, written
+$\var\awaits_\atom\avar$, if $\var\in\cvars{\atom}$ and
+$\avar\in\wvars{\atom}$.
+
+\begin{table}
+\begin{center}
+\begin{tabular}{|c|c|c|}
+  \hline
+  $\priv{\ro}$ &$\intf{\ro}$&$\extl{\ro}$\\
+  \hline
+  \multicolumn{2}{|c|}{$\cvars{\ro}$} & \\
+  \hline
+  &\multicolumn{2}{c|}{$\ovars{\ro}$}\\
+  \hline
+  \multicolumn{3}{|c|}{$\rovars{\ro}$}\\
+  \hline
+\end{tabular}
+\end{center}
+\caption{Reactive Module variables}
+\end{table}
+
+\begin{defi}{module}\it
+  {\em [{\bf Module}]}
+  A {\em (reactive) module\/} $\ro$ consists of a declaration and a body.
+  The module declaration is a finite set $\rovars{\ro}$ of typed variables
+  that is partitioned as shown in Table~3.1.
+  The module body is a set $\roatoms{\ro}$ of $\rovars{\ro}$-atoms such that
+  (1)~$(\cup_{\atom\in\roatoms{\ro}}\,\cvars{\atom})=\cvars{\ro}$;
+  (2)~for all atoms $\atom$ and $\aatom$ in~$\roatoms{\ro}$,
+    $\cvars{\atom}\cap\cvars{\aatom}=\emptyset$;
+    and
+  (3)~the transitive closure
+    $\awaits_\ro\,=(\cup_{\atom\in\roatoms{\ro}}\awaits_\atom)^+$ is
+    asymmetric.
+\end{defi}
+
+\mypar The first two conditions ensure that the atoms of $\ro$
+control precisely the variables in $\cvars{\ro}$, and that each
+variable in $\cvars{\ro}$ is controlled by precisely one atom. The
+third condition ensures that the await dependencies among the
+variables in $\rovars{\ro}$ are acyclic. A linear order
+$\atom_0,\ldots,\atom_{k-1}$ of the atoms in $\roatoms{\ro}$ is
+{\em consistent\/} if for all $0\le i<j<k$, the awaited variables
+of $\atom_i$ are disjoint from the controlled variables
+of~$\atom_j$. The asymmetry of $\awaits_\ro$ ensures that there
+exists a consistent order of the atoms in~$\roatoms{\ro}$.
+
+%Partial ordering in atoms

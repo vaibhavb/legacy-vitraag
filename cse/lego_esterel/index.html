@@ -1,0 +1,355 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns:st1="urn:schemas-microsoft-com:office:smarttags"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 10">
+<meta name=Originator content="Microsoft Word 10">
+<link rel=File-List href="index_files/filelist.xml">
+<title>Reserving Lego Mindstorm motors in Esterel</title>
+<o:SmartTagType namespaceuri="urn:schemas-microsoft-com:office:smarttags"
+ name="PersonName"/>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>Jeremy Stolarz</o:Author>
+  <o:LastAuthor>Jeremy Stolarz</o:LastAuthor>
+  <o:Revision>33</o:Revision>
+  <o:TotalTime>228</o:TotalTime>
+  <o:Created>2003-06-14T01:06:00Z</o:Created>
+  <o:LastSaved>2003-06-21T03:46:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>878</o:Words>
+  <o:Characters>5010</o:Characters>
+  <o:Lines>41</o:Lines>
+  <o:Paragraphs>11</o:Paragraphs>
+  <o:CharactersWithSpaces>5877</o:CharactersWithSpaces>
+  <o:Version>10.4219</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:SpellingState>Clean</w:SpellingState>
+  <w:Compatibility>
+   <w:BreakWrappedTables/>
+   <w:SnapToGridInCell/>
+   <w:WrapTextWithPunct/>
+   <w:UseAsianBreakRules/>
+  </w:Compatibility>
+  <w:BrowserLevel>MicrosoftInternetExplorer4</w:BrowserLevel>
+ </w:WordDocument>
+</xml><![endif]--><!--[if !mso]><object
+ classid="clsid:38481807-CA0E-42D2-BF39-B33AF135CC4D" id=ieooui></object>
+<style>
+st1\:*{behavior:url(#ieooui) }
+</style>
+<![endif]-->
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Lucida Console";
+	panose-1:2 11 6 9 4 5 4 2 2 4;
+	mso-font-charset:0;
+	mso-generic-font-family:modern;
+	mso-font-pitch:fixed;
+	mso-font-signature:-2147482993 6144 0 0 31 0;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+h1
+	{mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:1;
+	font-size:16.0pt;
+	font-family:Arial;
+	mso-font-kerning:16.0pt;}
+h3
+	{mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:3;
+	font-size:13.0pt;
+	font-family:Arial;}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;
+	text-underline:single;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:purple;
+	text-decoration:underline;
+	text-underline:single;}
+span.SpellE
+	{mso-style-name:"";
+	mso-spl-e:yes;}
+@page Section1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.25in 1.0in 1.25in;
+	mso-header-margin:.5in;
+	mso-footer-margin:.5in;
+	mso-paper-source:0;}
+div.Section1
+	{page:Section1;}
+-->
+</style>
+<!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+ table.MsoNormalTable
+	{mso-style-name:"Table Normal";
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-noshow:yes;
+	mso-style-parent:"";
+	mso-padding-alt:0in 5.4pt 0in 5.4pt;
+	mso-para-margin:0in;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";}
+</style>
+<![endif]-->
+</head>
+
+<body lang=EN-US link=blue vlink=purple style='tab-interval:.5in'>
+
+<div class=Section1>
+
+<h1 align=center style='text-align:center'>Reserving Lego <span class=SpellE>Mindstorm</span>
+motors in <span class=SpellE>Esterel</span></h1>
+
+<h3 align=center style='text-align:center'>Jeremy <span class=SpellE>Stolarz</span></h3>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'>Purpose:</b></p>
+
+<p class=MsoNormal>The <a
+href="http://www-sop.inria.fr/meije/esterel/esterel-eng.html"><span
+class=SpellE>Esterel</span></a> programming language inherently prevents
+multiple methods from trying to write to shared variable at the same time.<span
+style='mso-spacerun:yes'>  </span>Thus <span class=SpellE>Esterel</span>
+disallows race conditions from occurring on variables.<span
+style='mso-spacerun:yes'>  </span>However, it does not have any ability to
+prevent race conditions or reserve other resources, such as motors or
+sensors.<span style='mso-spacerun:yes'>  </span>The point of this project is to
+create a module that allows the reservation of <span class=SpellE>lego</span>
+motors in <span class=SpellE>Esterel</span>, preventing another module from
+controlling the motor if there is already a module controlling it.<span
+style='mso-spacerun:yes'>  </span>Eventually, this would be expanded to be more
+universal, reserving any <span class=SpellE>lego</span> resource, and beyond
+that to any resource type at all.</p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>The rest of this page is dedicated to showing the process
+that has been followed thus far.</p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'>History:</b></p>
+
+<p class=MsoNormal>The original program I wrote was <a href="lightseek2.strl">lightseek2.strl</a>,
+which did not have a reservation module, but had an observer module that would
+emit a signal (MOTOR_CONFLICT) when a motor was being accessed by more than one
+module at a time.<span style='mso-spacerun:yes'>  </span>Although this seemed
+to be a fine solution for the light-seeking program, it was not very
+portable.<span style='mso-spacerun:yes'>  </span>The observer was built into
+the program and ported to another program without quite a bit of editing.</p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>This led to the creation of <a href="reserve.strl"><span
+class=SpellE>reserve.strl</span></a>, which is a module for reserving motors
+that can be used by any program.<span style='mso-spacerun:yes'>  </span>An
+example of how to use it is shown in the EXAMPLE module.<span
+style='mso-spacerun:yes'>  </span>The way it is currently written, it is a
+little hard to decide what signal to watch for with <span class=SpellE>Chai</span>
+(see below).<span style='mso-spacerun:yes'>  </span>Also, I believe that it is
+possible to have a conflict if two modules start the reservation process at the
+same instant.<span style='mso-spacerun:yes'>  </span>This is what I hope to
+solve in the next reservation module.</p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'>Mocha/<span
+class=SpellE>Chai</span>:</b></p>
+
+<p class=MsoNormal>An additional goal for this project was to test <a
+href="http://www.soe.ucsc.edu/dvlab/p/chai/"><span class=SpellE>Chai</span></a>
+(the reactive module software verification tool written by Prof. <st1:PersonName>Luca
+ de Alfaro</st1:PersonName> and his research group).<span
+style='mso-spacerun:yes'>  </span>It would make a very useful tool to see that
+the reservation modules indeed did prevent motor/resource conflicts in all
+cases (which is what <a href="http://www.soe.ucsc.edu/dvlab/p/chai/"><span
+class=SpellE>Chai</span></a> can prove).<span style='mso-spacerun:yes'> 
+</span>However, it is not a straight shot from <span class=SpellE>esterel</span>
+to <span class=SpellE>Chai</span>.<span style='mso-spacerun:yes'>  </span><span
+class=SpellE>Chai</span> only can read in the reactive module language,
+therefore a series of steps must be followed to convert <span class=SpellE>esterel</span>
+into reactive modules, each of which present their own problems. <span
+style='mso-spacerun:yes'> </span>The succession is as follows:</p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><span class=SpellE>Esterel</span> -&gt; shift -&gt; <span
+class=SpellE>blif_mv</span> -&gt; reactive modules.</p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'>Details</b></p>
+
+<p class=MsoNormal><span class=SpellE>Esterel</span> can be converted to <a
+href="http://www.path.berkeley.edu/shift/">shift</a> using strl2shift.<span
+style='mso-spacerun:yes'>  </span>The syntax is as follows: </p>
+
+<p class=MsoNormal><i style='mso-bidi-font-style:normal'><o:p>&nbsp;</o:p></i></p>
+
+<p class=MsoNormal><span style='font-family:"Lucida Console"'>&gt; strl2shift <span
+class=SpellE>filename.strl</span> <span class=SpellE>filename.aux</span> <o:p></o:p></span></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>where the .aux file contains constant declarations.<span
+style='mso-spacerun:yes'>  </span>Even if there aren’t any this file must be
+present.<span style='mso-spacerun:yes'>  </span>Just make it an empty
+file.<span style='mso-spacerun:yes'>  </span>Although this is a seemingly easy
+step, it is what causes the most difficulty when it comes to converting <span
+class=SpellE>esterel</span> code written using the <a
+href="http://www.emn.fr/x-info/lego/scLego.html">Lego API</a>.<span
+style='mso-spacerun:yes'>  </span>Almost all of the programs get rejected, even
+if they compile fine in <span class=SpellE>esterel</span>.<span
+style='mso-spacerun:yes'>  </span>After some testing we have found that shift
+does not deal well with strings.<span style='mso-spacerun:yes'>  </span>Other
+than that, we are not quite sure why much <span class=SpellE>lego</span> code
+gets rejected.<span style='mso-spacerun:yes'>  </span>It could be related to
+the .aux file (we have been trying empty ones).<span style='mso-spacerun:yes'> 
+</span>This is something that should be looked at further.<span
+style='mso-spacerun:yes'>  </span>Happily, <span class=SpellE>reserve.strl</span>
+was not rejected by this program (though lightseek2.strl was).</p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>The next step is to use a program called <a
+href="http://www-cad.eecs.berkeley.edu/~polis/">POLIS</a>, which can convert
+shift into <a
+href="http://www-cad.eecs.berkeley.edu/Respep/Research/vis/doc/blifmv/blifmv/blifmv.html">BLIF_MV</a>.<span
+style='mso-spacerun:yes'>  </span></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><span style='font-family:"Lucida Console"'>&gt; polis<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Lucida Console"'>polis&gt; <span
+class=SpellE>read_shift</span> <span class=SpellE>filename.shift</span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Lucida Console"'>polis&gt; <span
+class=SpellE>write_blif_mv</span> <span class=SpellE>filename.mv</span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Lucida Console"'>polis&gt; quit<o:p></o:p></span></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Now we use <a
+href="http://www.soe.ucsc.edu/dvlab/p/chai/mv2rm_doc/">mv2rm</a> to change the
+BLIF_MV code into reactive modules. <span style='mso-spacerun:yes'> </span>However,
+POLIS does not produce perfect BLIF_MV code.<span style='mso-spacerun:yes'> 
+</span>When it creates a line over 80 characters long it inserts a ‘\’ and a <span
+class=SpellE>newline</span>, which must be removed before being parsed by mv2rm.<span
+style='mso-spacerun:yes'>  </span>To do this run the following python program: <a
+href="conc.py"><span class=SpellE>conc.py</span></a>.<span
+style='mso-spacerun:yes'>  </span></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><span style='font-family:"Lucida Console"'>&gt; python <span
+class=SpellE>conc.py</span> &lt; <span class=SpellE>filename.mv</span> &gt; <span
+class=SpellE>filename.mv</span></span></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>The generated shift file is now ready to be parsed by mv2rm:</p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><span style='font-family:"Lucida Console"'>&gt; mv2rm <span
+class=SpellE>filename.mv</span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal>Finally, there is reactive module code for <span
+class=SpellE>Chai</span> to read and verify.<span style='mso-spacerun:yes'> 
+</span>However, the code emitted by mv2rm is not perfect.<span
+style='mso-spacerun:yes'>  </span>You must first fix a few more things before <span
+class=SpellE>Chai</span> can read it.<span style='mso-spacerun:yes'> 
+</span>First, you must check that there are no variables being named <span
+style='font-family:"Lucida Console"'>false</span> or <span style='font-family:
+"Lucida Console"'>true</span>.<span style='mso-spacerun:yes'>  </span>These are
+reserved words in reactive modules.<span style='mso-spacerun:yes'>  </span>If
+there are any such variables rename them to <span style='font-family:"Lucida Console"'>false1</span>
+and <span style='font-family:"Lucida Console"'>true1</span>.<span
+style='mso-spacerun:yes'>  </span>The easiest way to see if this is true is to
+try reading in the file with <span class=SpellE>Chai</span> as described below
+and seeing what errors pop up.<span style='mso-spacerun:yes'>  </span>The next
+thing to change is enumerations with curly braces—<span style='font-family:
+"Lucida Console"'>{}</span>—that look like this (they can count to or from any
+number):<span style='mso-spacerun:yes'>  </span><span style='font-family:"Lucida Console"'>{0,
+1, 2, 3, 4}</span>.<span style='mso-spacerun:yes'>  </span>You should change
+them so that they are as follows: <span style='font-family:"Lucida Console"'>(0..4)</span>.<span
+style='mso-spacerun:yes'>  </span>Now the file is ready to be read by <span
+class=SpellE>Chai</span>:</p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><span style='font-family:"Lucida Console"'>&gt; mocha<o:p></o:p></span></p>
+
+<p class=MsoNormal><span class=SpellE><span style='font-family:"Lucida Console"'>chai</span></span><span
+style='font-family:"Lucida Console"'> &gt; <span class=SpellE>read_module</span>
+<span class=SpellE>filename.rm</span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal>It should check in every module and then prompt again for
+the next command.<span style='mso-spacerun:yes'>  </span><b style='mso-bidi-font-weight:
+normal'>Note:<span style='mso-spacerun:yes'>  </span>There are currently other
+issues with Chai/mv2rm that are still being worked out.<span
+style='mso-spacerun:yes'>  </span>Talk to <span class=SpellE>Vaibhav</span> if
+you encounter any errors.</b><span style='mso-spacerun:yes'>  </span></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>As things stand right now, I am currently still trying to
+get <span class=SpellE>Chai</span> to fully accept the code that was generated
+by mv2rm.<span style='mso-spacerun:yes'>  </span><span class=SpellE>Vaibhav</span>
+has been working on the errors I’ve been finding.<span
+style='mso-spacerun:yes'>  </span>The latest one has to do with <span
+style='mso-spacerun:yes'> </span>set equality.<span style='mso-spacerun:yes'> 
+</span>Thus I have yet to verify that <span class=SpellE>reserve.strl</span> works,
+let alone lightseek2.strl, which never got past strl2shift.</p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Any questions can be sent to <a
+href="mailto:brzlnut@cats.ucsc.edu">brzlnut@cats.ucsc.edu</a>.<o:p></o:p></p>
+
+</div>
+
+</body>
+
+</html>

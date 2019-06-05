@@ -1,0 +1,1234 @@
+<html>
+<head><title>The atlp package: all functions </title></head>
+<body>
+
+
+<HR>
+<DL>
+<dt><pre>
+<A NAME="AtlpConvertToDagCmd"></A>
+static int <I></I>
+<B>AtlpConvertToDagCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> Convert an array of formula to a DAG.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="atlpAllFile.html#atlpMain.c"TARGET="ABSTRACT"><CODE>atlpMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="AtlpFormulaAddToManager"></A>
+void <I></I>
+<B>AtlpFormulaAddToManager</B>(
+  Atlp_Manager_t * <b>manager</b>, <i></i>
+  char * <b>name</b>, <i></i>
+  Atlp_Formula_t * <b>formula</b> <i></i>
+)
+</pre>
+<dd> Adds formula to the atlp manager
+<p>
+
+<dd> <b>Side Effects</b> Manipulates the global variable globalFormulaManager.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#AtlpYyparse">AtlpYyparse</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="atlpAllFile.html#atlpUtil.c"TARGET="ABSTRACT"><CODE>atlpUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="AtlpFormulaAgentsConvertToString"></A>
+char * <I></I>
+<B>AtlpFormulaAgentsConvertToString</B>(
+  lsList  <b>agentList</b> <i></i>
+)
+</pre>
+<dd> This function converts a list of agents to string,
+  each agent being seperated by a comma.
+<p>
+
+<dd> <b>Side Effects</b> The user should free the string after use.
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="atlpAllFile.html#atlpUtil.c"TARGET="ABSTRACT"><CODE>atlpUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="AtlpFormulaDecrementRefCount"></A>
+void <I></I>
+<B>AtlpFormulaDecrementRefCount</B>(
+  Atlp_Formula_t * <b>formula</b> <i></i>
+)
+</pre>
+<dd> The function decrements the reference count of formula and if
+  the reference count reaches 0, the formula is freed. If the formula is NULL,
+  the function does nothing. It is an error to decrement the reference count
+  below 0.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="atlpAllFile.html#atlpUtil.c"TARGET="ABSTRACT"><CODE>atlpUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="AtlpFormulaFree"></A>
+void <I></I>
+<B>AtlpFormulaFree</B>(
+  Atlp_Formula_t * <b>formula</b> <i></i>
+)
+</pre>
+<dd> The function frees all memory associated with the formula,
+  including all MDDs, all character strings (however, does not free
+  dbgInfo.originalFormula) and the agentList. It also decrements the reference
+  counts of its two chidren. The function does nothing if formula is NULL.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Atlp_FormulaArrayFree">Atlp_FormulaArrayFree</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="atlpAllFile.html#atlpUtil.c"TARGET="ABSTRACT"><CODE>atlpUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="AtlpFormulaIncrementRefCount"></A>
+void <I></I>
+<B>AtlpFormulaIncrementRefCount</B>(
+  Atlp_Formula_t * <b>formula</b> <i></i>
+)
+</pre>
+<dd> The function increments the reference count of a formula. If
+  the formula is NULL, the function does nothing.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="atlpAllFile.html#atlpUtil.c"TARGET="ABSTRACT"><CODE>atlpUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="AtlpFormulaIsWellFormed"></A>
+boolean <I></I>
+<B>AtlpFormulaIsWellFormed</B>(
+  Atlp_Formula_t * <b>formula</b> <i></i>
+)
+</pre>
+<dd> This is a preliminary checking of well-formedness of the
+  formula. This is different from full type checking in that variables are
+  considered to have "universal" type.  The full type checking cannot be done
+  until the formula is associated with the module.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="atlpAllFile.html#atlpUtil.c"TARGET="ABSTRACT"><CODE>atlpUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="AtlpFormulaReturnSimpleType"></A>
+static AtlpSimpleDataType <I></I>
+<B>AtlpFormulaReturnSimpleType</B>(
+  Atlp_Formula_t * <b>formula</b> <i></i>
+)
+</pre>
+<dd> It returns the simple type of the given formula.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="atlpAllFile.html#atlpUtil.c"TARGET="ABSTRACT"><CODE>atlpUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="AtlpFormulaSetStatesToNULL"></A>
+void <I></I>
+<B>AtlpFormulaSetStatesToNULL</B>(
+  Atlp_Formula_t * <b>formula</b> <i></i>
+)
+</pre>
+<dd> The function sets the field states in every subformula
+  of formula to NULL.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="atlpAllFile.html#atlpUtil.c"TARGET="ABSTRACT"><CODE>atlpUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="AtlpInitialize"></A>
+static void <I></I>
+<B>AtlpInitialize</B>(
+   <b></b> <i></i>
+)
+</pre>
+<dd> This function allocates the globla atlp manager. The
+  manager is used to manage the formula.
+<p>
+
+<dd> <b>Side Effects</b> The manager is global, and there should only be one such
+  manager in one mocha session.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Atlp_ManagerAlloc">Atlp_ManagerAlloc</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="atlpAllFile.html#atlpMain.c"TARGET="ABSTRACT"><CODE>atlpMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="AtlpObtainNewFormulaName"></A>
+char * <I></I>
+<B>AtlpObtainNewFormulaName</B>(
+   <b></b> <i></i>
+)
+</pre>
+<dd> This routine returns an internally generated new name
+  which serves as an ID to the unnamed ATL formula.
+<p>
+
+<dd> <b>Side Effects</b> Should free the name after use.
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="atlpAllFile.html#atlpMain.c"TARGET="ABSTRACT"><CODE>atlpMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="AtlpPrintCmd"></A>
+static int <I></I>
+<B>AtlpPrintCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> Executes the command atl_print
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<DD> <B>Defined in </B> <A HREF="atlpAllFile.html#atlpMain.c"TARGET="ABSTRACT"><CODE>atlpMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="AtlpReadCmd"></A>
+static int <I></I>
+<B>AtlpReadCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> Executes the command atlp_read
+<p>
+
+<DD> <B>Defined in </B> <A HREF="atlpAllFile.html#atlpMain.c"TARGET="ABSTRACT"><CODE>atlpMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="AtlpSimpleDataTypeCompatible"></A>
+static AtlpSimpleDataType <I></I>
+<B>AtlpSimpleDataTypeCompatible</B>(
+  AtlpSimpleDataType  <b>type1</b>, <i></i>
+  AtlpSimpleDataType  <b>type2</b> <i></i>
+)
+</pre>
+<dd> Check if the simple types are compatible.
+<p>
+
+<dd> <b>Side Effects</b> The infered type is returned.
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="atlpAllFile.html#atlpUtil.c"TARGET="ABSTRACT"><CODE>atlpUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="Atlp_AgentAllocWithName"></A>
+Atlp_Agent_t * <I></I>
+<B>Atlp_AgentAllocWithName</B>(
+  char * <b>name</b> <i></i>
+)
+</pre>
+<dd> This function allocates a new Atlp_Agent_t. Only the
+  name is set, while all the other members are set to NIL.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Atlp_AgentAlloc">Atlp_AgentAlloc</a>
+<a href="#Atlp_AgentFree">Atlp_AgentFree</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="atlpAllFile.html#atlpUtil.c"TARGET="ABSTRACT"><CODE>atlpUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="Atlp_AgentAlloc"></A>
+Atlp_Agent_t * <I></I>
+<B>Atlp_AgentAlloc</B>(
+  char * <b>name</b>, <i></i>
+  boolean  <b>isAgent</b>, <i></i>
+  Atm_Atom_t * <b>atom</b> <i></i>
+)
+</pre>
+<dd> Allocates an agent structure, and initialize all its
+  members.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Atlp_AgentAllocWithType">Atlp_AgentAllocWithType</a>
+<a href="#Atlp_AgentFree">Atlp_AgentFree</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="atlpAllFile.html#atlpUtil.c"TARGET="ABSTRACT"><CODE>atlpUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="Atlp_AgentFree"></A>
+void <I></I>
+<B>Atlp_AgentFree</B>(
+  Atlp_Agent_t * <b>agent</b> <i></i>
+)
+</pre>
+<dd> It frees an agent structure.
+<p>
+
+<dd> <b>Side Effects</b> none
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="atlpAllFile.html#atlpUtil.c"TARGET="ABSTRACT"><CODE>atlpUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="Atlp_AgentIsAgentSet"></A>
+void <I></I>
+<B>Atlp_AgentIsAgentSet</B>(
+  Atlp_Agent_t * <b>agent</b>, <i></i>
+  boolean  <b>value</b> <i></i>
+)
+</pre>
+<dd> Sets the isAgent flag.
+<p>
+
+<dd> <b>Side Effects</b> none
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="atlpAllFile.html#atlpUtil.c"TARGET="ABSTRACT"><CODE>atlpUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="Atlp_AgentIsAgent"></A>
+boolean <I></I>
+<B>Atlp_AgentIsAgent</B>(
+  Atlp_Agent_t * <b>agent</b> <i></i>
+)
+</pre>
+<dd> This function returns TRUE if the agent specified is
+  an agent, FALSE otherwise.
+<p>
+
+<dd> <b>Side Effects</b> none
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="atlpAllFile.html#atlpUtil.c"TARGET="ABSTRACT"><CODE>atlpUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="Atlp_AgentReadAtom"></A>
+Atm_Atom_t * <I></I>
+<B>Atlp_AgentReadAtom</B>(
+  Atlp_Agent_t * <b>agent</b> <i></i>
+)
+</pre>
+<dd> This function returns the atom of the agent.
+<p>
+
+<dd> <b>Side Effects</b> Do not free the atom.
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="atlpAllFile.html#atlpUtil.c"TARGET="ABSTRACT"><CODE>atlpUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="Atlp_AgentReadName"></A>
+char * <I></I>
+<B>Atlp_AgentReadName</B>(
+  Atlp_Agent_t * <b>agent</b> <i></i>
+)
+</pre>
+<dd> This function returns the name of the agent.
+<p>
+
+<dd> <b>Side Effects</b> Do not free the name.
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="atlpAllFile.html#atlpUtil.c"TARGET="ABSTRACT"><CODE>atlpUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="Atlp_FileParseFormula"></A>
+lsList <I></I>
+<B>Atlp_FileParseFormula</B>(
+  Atlp_Manager_t * <b>manager</b>, <i></i>
+  FILE * <b>fp</b> <i></i>
+)
+</pre>
+<dd> Parses a file containing a set of semicolon-ending ATL
+  formulas, and returns an array of Atlp_Formula_t representing those
+  formulas.  If an error is detected while parsing the file, the routine frees
+  any allocated memory and returns NULL.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="atlpAllFile.html#atlpUtil.c"TARGET="ABSTRACT"><CODE>atlpUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="Atlp_FlushStates"></A>
+void <I></I>
+<B>Atlp_FlushStates</B>(
+  Atlp_Formula_t * <b>formula</b> <i></i>
+)
+</pre>
+<dd> Frees States field of Atlp_Formula_t recursively
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Atlp_FormulaFree">Atlp_FormulaFree</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="atlpAllFile.html#atlpUtil.c"TARGET="ABSTRACT"><CODE>atlpUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="Atlp_FormulaArrayConvertToDAG"></A>
+array_t * <I></I>
+<B>Atlp_FormulaArrayConvertToDAG</B>(
+  array_t * <b>formulaArray</b> <i></i>
+)
+</pre>
+<dd> The function hashes each subformula of a formula (including the
+  formula itself) into a uniqueTable. It returns an array containing the roots
+  of the multi-rooted DAG thus created by the sharing of the subformulae. It
+  is okay to call this function with an empty array (in which case an empty
+  array is returned), but it is an error to call it with a NULL array.
+<p>
+
+<dd> <b>Side Effects</b> A formula in formulaArray might be freed if it had been
+  encountered as a subformula of some other formula. Other formulae in
+  formulaArray might be present in the returned array. Therefore, the formulae
+  in formulaArray should not be freed. Only formulaArray itself should be
+  freed.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="atlpAllFile.html#atlpUtil.c"TARGET="ABSTRACT"><CODE>atlpUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="Atlp_FormulaArrayConvertToExistentialFormTree"></A>
+array_t * <I></I>
+<B>Atlp_FormulaArrayConvertToExistentialFormTree</B>(
+  array_t * <b>formulaArray</b> <i>of Atlp_Formula_t</i>
+)
+</pre>
+<dd> Calls Atlp_FormulaConvertToExistentialForm on each formula. It
+  is okay to call this function with an empty array (in which case an empty
+  array is returned), but it is an error to call it with a NULL array.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Atlp_FormulaConvertToExistentialForm">Atlp_FormulaConvertToExistentialForm</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="atlpAllFile.html#atlpUtil.c"TARGET="ABSTRACT"><CODE>atlpUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="Atlp_FormulaArrayFree"></A>
+void <I></I>
+<B>Atlp_FormulaArrayFree</B>(
+  array_t * <b>formulaArray</b> <i>of Atlp_Formula_t</i>
+)
+</pre>
+<dd> Calls AtlpFormulaDecrementRefCount on each formula in
+  formulaArray, and then frees the array itself.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Atlp_FormulaFree">Atlp_FormulaFree</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="atlpAllFile.html#atlpUtil.c"TARGET="ABSTRACT"><CODE>atlpUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="Atlp_FormulaConvertToExistentialForm"></A>
+Atlp_Formula_t * <I></I>
+<B>Atlp_FormulaConvertToExistentialForm</B>(
+  Atlp_Formula_t * <b>formula</b> <i></i>
+)
+</pre>
+<dd> Converts a ATL formula to existential form.  That is, all
+  universal path quantifiers are replaced with the appropriate combination of
+  existential quantifiers and Boolean negation.  Also converts "finally"
+  operators to "until" operators.<p>
+
+  Returns a new formula that shares absolutely nothing with the original
+  formula (not even the strings). Also, the new formula does not have any MDDs
+  associated with it.  The "originalFormula" field of the returned formula is
+  set to point to the formula passed as an argument.  In addition, if the
+  original formula is of type AG, AX, AU, AF, or EF, the "converted flag" is
+  set. Returns NULL if called with a NULL formula.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Atlp_FormulaArrayConvertToExistentialForm">Atlp_FormulaArrayConvertToExistentialForm</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="atlpAllFile.html#atlpUtil.c"TARGET="ABSTRACT"><CODE>atlpUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="Atlp_FormulaConvertToString"></A>
+char * <I></I>
+<B>Atlp_FormulaConvertToString</B>(
+  Atlp_Formula_t * <b>formula</b> <i></i>
+)
+</pre>
+<dd> Returns formula as a character string. All subformulas are
+  delimited by parenthesis. The syntax used is the same as used by the ATL
+  parser.  Does nothing if passed a NULL formula.
+<p>
+
+<dd> <b>Side Effects</b> Atlp_ExprConvertToString
+<p>
+
+<DD> <B>Defined in </B> <A HREF="atlpAllFile.html#atlpUtil.c"TARGET="ABSTRACT"><CODE>atlpUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="Atlp_FormulaCreateWithAgents"></A>
+Atlp_Formula_t * <I></I>
+<B>Atlp_FormulaCreateWithAgents</B>(
+  Atlp_FormulaType  <b>type</b>, <i></i>
+  void * <b>left</b>, <i></i>
+  void * <b>right</b>, <i></i>
+  lsList  <b>agentList</b> <i></i>
+)
+</pre>
+<dd> Allocates a Atlp_Formula_t, and sets the 2 fields given as
+  arguments.  If the type is Atlp_ID_c, then the left and right fields 
+  should contain a pointer to a variable name and a pointer to a value 
+  respectively. Otherwise, the two fields point to subformulas. refCount is
+  set to 1. The states field is set to NULL, the converted flag is set to
+  FALSE, and the originalFormula field is set to NULL.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#AtlpFormulaDecrementRefCount">AtlpFormulaDecrementRefCount</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="atlpAllFile.html#atlpUtil.c"TARGET="ABSTRACT"><CODE>atlpUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="Atlp_FormulaCreate"></A>
+Atlp_Formula_t * <I></I>
+<B>Atlp_FormulaCreate</B>(
+  Atlp_FormulaType  <b>type</b>, <i></i>
+  void * <b>left</b>, <i></i>
+  void * <b>right</b> <i></i>
+)
+</pre>
+<dd> Equivalent to Atlp_FormulaCreateWithAgents(type, left, right,
+  NIL(lsList)).
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Atlp_FormulaCreateWithAgents">Atlp_FormulaCreateWithAgents</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="atlpAllFile.html#atlpUtil.c"TARGET="ABSTRACT"><CODE>atlpUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="Atlp_FormulaDAGConvertToExistentialFormDAG"></A>
+array_t * <I></I>
+<B>Atlp_FormulaDAGConvertToExistentialFormDAG</B>(
+  array_t * <b>formulaDAG</b> <i></i>
+)
+</pre>
+<dd> The function converts a DAG of ATL formulae to a DAG of
+  existential ATL formulae. The function recursively converts each subformula
+  of each of the formulae in the DAG and remembers the converted formula in
+  the field states. It
+  is okay to call this function with an empty array (in which case an empty
+  array is returned), but it is an error to call it with a NULL array.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#FormulaConvertToExistentialDAG">FormulaConvertToExistentialDAG</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="atlpAllFile.html#atlpUtil.c"TARGET="ABSTRACT"><CODE>atlpUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="Atlp_FormulaDup"></A>
+Atlp_Formula_t * <I></I>
+<B>Atlp_FormulaDup</B>(
+  Atlp_Formula_t * <b>formula</b> <i></i>
+)
+</pre>
+<dd> Recursively duplicate a formula. Does nothing if the formula
+  is NIL. Does not copy mdd for states, dbgInfo.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="atlpAllFile.html#atlpUtil.c"TARGET="ABSTRACT"><CODE>atlpUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="Atlp_FormulaFree"></A>
+void <I></I>
+<B>Atlp_FormulaFree</B>(
+  Atlp_Formula_t * <b>formula</b> <i></i>
+)
+</pre>
+<dd> The function decrements the refCount of the formula. As a
+  consequence, if the refCount becomes 0, the formula is freed.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#AtlpFormulaFree">AtlpFormulaFree</a>
+<a href="#AtlpDecrementRefCount">AtlpDecrementRefCount</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="atlpAllFile.html#atlpUtil.c"TARGET="ABSTRACT"><CODE>atlpUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="Atlp_FormulaObtainStates"></A>
+mdd_t * <I></I>
+<B>Atlp_FormulaObtainStates</B>(
+  Atlp_Formula_t * <b>formula</b> <i></i>
+)
+</pre>
+<dd> Gets a copy of the MDD representing the set of states for which
+  this formula is true.  It is the user's responsibility to free this MDD. If
+  the set of states has not yet been computed, then a NULL mdd_t is
+  returned. It is an error to call this function on a NULL formula.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Atlp_FormulaSetStates">Atlp_FormulaSetStates</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="atlpAllFile.html#atlpUtil.c"TARGET="ABSTRACT"><CODE>atlpUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="Atlp_FormulaPrint"></A>
+void <I></I>
+<B>Atlp_FormulaPrint</B>(
+  FILE * <b>fp</b>, <i></i>
+  Atlp_Formula_t * <b>formula</b> <i></i>
+)
+</pre>
+<dd> Prints a formula to a file. All subformulas are delimited by
+  parenthesis. The syntax used is the same as used by the ATL parser.  Does
+  nothing if passed a NULL formula.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="atlpAllFile.html#atlpUtil.c"TARGET="ABSTRACT"><CODE>atlpUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="Atlp_FormulaReadAgentList"></A>
+lsList <I></I>
+<B>Atlp_FormulaReadAgentList</B>(
+  Atlp_Formula_t * <b>formula</b> <i></i>
+)
+</pre>
+<dd> It returns the agent list specified in the formula.
+<p>
+
+<dd> <b>Side Effects</b> Should not free the list
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="atlpAllFile.html#atlpUtil.c"TARGET="ABSTRACT"><CODE>atlpUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="Atlp_FormulaReadAtmExpr"></A>
+Atm_Expr_t * <I></I>
+<B>Atlp_FormulaReadAtmExpr</B>(
+  Atlp_Formula_t * <b>formula</b> <i></i>
+)
+</pre>
+<dd> It returns the atmExpr in the formula.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="atlpAllFile.html#atlpUtil.c"TARGET="ABSTRACT"><CODE>atlpUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="Atlp_FormulaReadByName"></A>
+Atlp_Formula_t * <I></I>
+<B>Atlp_FormulaReadByName</B>(
+  char * <b>name</b>, <i></i>
+  Atlp_Manager_t * <b>manager</b> <i></i>
+)
+</pre>
+<dd> This function returns a pointer to the formula
+  with the given name.  If the formula is not found, a NIL pointer
+  is returned.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="atlpAllFile.html#atlpUtil.c"TARGET="ABSTRACT"><CODE>atlpUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="Atlp_FormulaReadDebugData"></A>
+void * <I></I>
+<B>Atlp_FormulaReadDebugData</B>(
+  Atlp_Formula_t * <b>formula</b> <i></i>
+)
+</pre>
+<dd> Returns the debug data associated with a formula.  This data is
+  uninterpreted by the atlp package.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Atlp_FormulaSetDbgInfo">Atlp_FormulaSetDbgInfo</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="atlpAllFile.html#atlpUtil.c"TARGET="ABSTRACT"><CODE>atlpUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="Atlp_FormulaReadLeftChild"></A>
+Atlp_Formula_t * <I></I>
+<B>Atlp_FormulaReadLeftChild</B>(
+  Atlp_Formula_t * <b>formula</b> <i></i>
+)
+</pre>
+<dd> Gets the left child of a formula.  User must not free this
+  formula. If a formula is a leaf formula, NIL(Atlp_Formula_t) is returned.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Atlp_FormulaReadRightChild">Atlp_FormulaReadRightChild</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="atlpAllFile.html#atlpUtil.c"TARGET="ABSTRACT"><CODE>atlpUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="Atlp_FormulaReadLeft"></A>
+Atlp_Formula_t * <I></I>
+<B>Atlp_FormulaReadLeft</B>(
+  Atlp_Formula_t * <b>formula</b> <i></i>
+)
+</pre>
+<dd> This function returns the left pointer of the formula.
+  Should not free the pointer.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Atlp_FormulaReadRight">Atlp_FormulaReadRight</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="atlpAllFile.html#atlpUtil.c"TARGET="ABSTRACT"><CODE>atlpUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="Atlp_FormulaReadOriginalFormula"></A>
+Atlp_Formula_t * <I></I>
+<B>Atlp_FormulaReadOriginalFormula</B>(
+  Atlp_Formula_t * <b>formula</b> <i></i>
+)
+</pre>
+<dd> Returns original formula corresponding to converted formula.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="atlpAllFile.html#atlpUtil.c"TARGET="ABSTRACT"><CODE>atlpUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="Atlp_FormulaReadRightChild"></A>
+Atlp_Formula_t * <I></I>
+<B>Atlp_FormulaReadRightChild</B>(
+  Atlp_Formula_t * <b>formula</b> <i></i>
+)
+</pre>
+<dd> Gets the right child of a formula.  User must not free this
+  formula. If a formula is a leaf formula, NIL(Atlp_Formula_t) is returned.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Atlp_FormulaReadLeftChild">Atlp_FormulaReadLeftChild</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="atlpAllFile.html#atlpUtil.c"TARGET="ABSTRACT"><CODE>atlpUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="Atlp_FormulaReadRight"></A>
+Atlp_Formula_t * <I></I>
+<B>Atlp_FormulaReadRight</B>(
+  Atlp_Formula_t * <b>formula</b> <i></i>
+)
+</pre>
+<dd> This function returns the left pointer of the formula.
+  Should not free the pointer.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Atlp_FormulaReadLeft">Atlp_FormulaReadLeft</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="atlpAllFile.html#atlpUtil.c"TARGET="ABSTRACT"><CODE>atlpUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="Atlp_FormulaReadType"></A>
+Atlp_FormulaType <I></I>
+<B>Atlp_FormulaReadType</B>(
+  Atlp_Formula_t * <b>formula</b> <i></i>
+)
+</pre>
+<dd> Gets the type of a formula. See atlp.h for all the types. It is
+  an error to call this function on a NULL formula.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#atlp.h">atlp.h</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="atlpAllFile.html#atlpUtil.c"TARGET="ABSTRACT"><CODE>atlpUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="Atlp_FormulaReadVariableName"></A>
+char * <I></I>
+<B>Atlp_FormulaReadVariableName</B>(
+  Atlp_Formula_t * <b>formula</b> <i></i>
+)
+</pre>
+<dd> Reads the variable name of a leaf formula. 
+  It is an error to call this function on a non-leaf formula.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="atlpAllFile.html#atlpUtil.c"TARGET="ABSTRACT"><CODE>atlpUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="Atlp_FormulaSetAgentList"></A>
+void <I></I>
+<B>Atlp_FormulaSetAgentList</B>(
+  Atlp_Formula_t * <b>formula</b>, <i></i>
+  lsList  <b>agentList</b> <i></i>
+)
+</pre>
+<dd> Sets the agentList field of the formula.
+<p>
+
+<dd> <b>Side Effects</b> It is an error to call this function with an NULL
+  formula.
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="atlpAllFile.html#atlpUtil.c"TARGET="ABSTRACT"><CODE>atlpUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="Atlp_FormulaSetAtmExpr"></A>
+void <I></I>
+<B>Atlp_FormulaSetAtmExpr</B>(
+  Atlp_Formula_t * <b>formula</b>, <i></i>
+  Atm_Expr_t * <b>atmExpr</b> <i></i>
+)
+</pre>
+<dd> Stores the atm_expr_t with the formula.  This expression
+  only occurs with atomic formulas. It is usually built during the
+  semantic check of the formula, and it should freed (by calling
+  Atm_ExprFreeExpression) once the states for this formula is built. It is an
+  error to call this function with a NULL formula.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code><a href="#McFormulaSemanticCheck">McFormulaSemanticCheck</a>
+<a href="#Atlp_FormulaSetStates">Atlp_FormulaSetStates</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="atlpAllFile.html#atlpUtil.c"TARGET="ABSTRACT"><CODE>atlpUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="Atlp_FormulaSetDbgInfo"></A>
+void <I></I>
+<B>Atlp_FormulaSetDbgInfo</B>(
+  Atlp_Formula_t * <b>formula</b>, <i></i>
+  void * <b>data</b>, <i></i>
+  Atlp_DbgInfoFreeFn  <b>freeFn</b> <i></i>
+)
+</pre>
+<dd> Sets the debug information of a ATL formula.  The data is
+  uninterpreted.  FreeFn is a pointer to a function that takes a formula as
+  input and returns void.  FreeFn should free all the memory associated with
+  the debug data; it is called when this formula is freed.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Atlp_FormulaReadDebugData">Atlp_FormulaReadDebugData</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="atlpAllFile.html#atlpUtil.c"TARGET="ABSTRACT"><CODE>atlpUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="Atlp_FormulaSetStates"></A>
+void <I></I>
+<B>Atlp_FormulaSetStates</B>(
+  Atlp_Formula_t * <b>formula</b>, <i></i>
+  mdd_t * <b>states</b> <i></i>
+)
+</pre>
+<dd> Stores the MDD with the formula (a copy is not made, and hence,
+  the caller should not later free this MDD). This MDD is intended to
+  represent the set of states for which the formula is true. It is an error to
+  call this function on a NULL formula.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Atlp_FormulaObtainStates">Atlp_FormulaObtainStates</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="atlpAllFile.html#atlpUtil.c"TARGET="ABSTRACT"><CODE>atlpUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="Atlp_FormulaTestIsConverted"></A>
+boolean <I></I>
+<B>Atlp_FormulaTestIsConverted</B>(
+  Atlp_Formula_t * <b>formula</b> <i></i>
+)
+</pre>
+<dd> Returns TRUE if formula was converted from a formula of type
+  AG, AX, AU, AF, or EF via a call to
+  Atlp_FormulaConvertToExistentialFormTree or
+  Atlp_FormulaConvertToExistentialFormDAG. Otherwise, returns FALSE.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="atlpAllFile.html#atlpUtil.c"TARGET="ABSTRACT"><CODE>atlpUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="Atlp_FormulaTestIsQuantifierFree"></A>
+boolean <I></I>
+<B>Atlp_FormulaTestIsQuantifierFree</B>(
+  Atlp_Formula_t * <b>formula</b> <i></i>
+)
+</pre>
+<dd> Test if a atl formula has any path quantifiers in it;
+  if so return false, else true.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="atlpAllFile.html#atlpUtil.c"TARGET="ABSTRACT"><CODE>atlpUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="Atlp_Init"></A>
+int <I></I>
+<B>Atlp_Init</B>(
+  Tcl_Interp * <b>interp</b>, <i></i>
+  Main_Manager_t * <b>manager</b> <i></i>
+)
+</pre>
+<dd> It creates all the new tcl commands defined in this
+  package. Also, it initialize the data structures used in this package.
+<p>
+
+<dd> <b>Side Effects</b> AtlpInitialize is called, and some global structures are
+  allocated.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#AtlpInitialize">AtlpInitialize</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="atlpAllFile.html#atlpMain.c"TARGET="ABSTRACT"><CODE>atlpMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="Atlp_ManagerAlloc"></A>
+Atlp_Manager_t * <I></I>
+<B>Atlp_ManagerAlloc</B>(
+   <b></b> <i></i>
+)
+</pre>
+<dd> This function allocates the a new Atlp_Manager_t, and
+  initialize the hash table in the manager.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="atlpAllFile.html#atlpUtil.c"TARGET="ABSTRACT"><CODE>atlpUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="Atlp_ManagerFree"></A>
+void <I></I>
+<B>Atlp_ManagerFree</B>(
+  Atlp_Manager_t * <b>manager</b> <i></i>
+)
+</pre>
+<dd> This function frees a Atlp_Manager_t, frees the names of the
+  atl formula, and decrements the ref count of the formula. If the reference
+  count of the formula comes to zero, the formula is freed.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="atlpAllFile.html#atlpUtil.c"TARGET="ABSTRACT"><CODE>atlpUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="Atlp_ManagerReadFormulaNames"></A>
+array_t * <I></I>
+<B>Atlp_ManagerReadFormulaNames</B>(
+  Atlp_Manager_t * <b>manager</b> <i></i>
+)
+</pre>
+<dd> Given an ATL Manager, this function returns an array
+  of all the formula names.
+<p>
+
+<dd> <b>Side Effects</b> User should free the array after use.  Note the
+  content should not be freed.
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="atlpAllFile.html#atlpUtil.c"TARGET="ABSTRACT"><CODE>atlpUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="Atlp_ManagerReadFormulas"></A>
+array_t * <I></I>
+<B>Atlp_ManagerReadFormulas</B>(
+  Atlp_Manager_t * <b>manager</b> <i></i>
+)
+</pre>
+<dd> Given an ATL Manager this function returns a list of
+  all the ATL formula from the manager.
+<p>
+
+<dd> <b>Side Effects</b> This creates an array, which should be freed after use.
+  Beware that the formula should not be freed.
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="atlpAllFile.html#atlpUtil.c"TARGET="ABSTRACT"><CODE>atlpUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="Atlp_ReadAtlpManager"></A>
+Atlp_Manager_t * <I></I>
+<B>Atlp_ReadAtlpManager</B>(
+   <b></b> <i></i>
+)
+</pre>
+<dd> This function exports the Atlp Global Manager to the
+  calling function. Casual user should not free the manager.
+<p>
+
+<dd> <b>Side Effects</b> none
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="atlpAllFile.html#atlpMain.c"TARGET="ABSTRACT"><CODE>atlpMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="CheckFormulaContainQuantifiers"></A>
+static boolean <I></I>
+<B>CheckFormulaContainQuantifiers</B>(
+  Atlp_Formula_t* <b>formula</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="atlpAllFile.html#atlpUtil.c"TARGET="ABSTRACT"><CODE>atlpUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="FormulaAgentListDup"></A>
+static lsList <I></I>
+<B>FormulaAgentListDup</B>(
+  lsList  <b>agentList</b> <i></i>
+)
+</pre>
+<dd> This functions takes in a list of agents, and
+  make an exact duplicate of it. The duplicated list is then returned.
+  If the given list is NULL, a NULL pointer is returned.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="atlpAllFile.html#atlpUtil.c"TARGET="ABSTRACT"><CODE>atlpUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="FormulaCompare"></A>
+static int <I></I>
+<B>FormulaCompare</B>(
+  char * <b>key1</b>, <i></i>
+  char * <b>key2</b> <i></i>
+)
+</pre>
+<dd> The function takes as parameters two ATL formulae. It compares
+  the formula type, the left child and the right child, and returns 0 if they
+  match. Otherwise, it returns -1.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#FormulaHash">FormulaHash</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="atlpAllFile.html#atlpUtil.c"TARGET="ABSTRACT"><CODE>atlpUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="FormulaConvertToExistentialDAG"></A>
+static Atlp_Formula_t * <I></I>
+<B>FormulaConvertToExistentialDAG</B>(
+  Atlp_Formula_t * <b>formula</b> <i></i>
+)
+</pre>
+<dd> The function recursively builds an existential DAG for the
+  formula. If a particular sub-formula has been encountered before, the
+  converted existential sub-formula is pointed to by the field states and it
+  is returned without creating a new formula.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="atlpAllFile.html#atlpUtil.c"TARGET="ABSTRACT"><CODE>atlpUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="FormulaCreateWithType"></A>
+static Atlp_Formula_t * <I></I>
+<B>FormulaCreateWithType</B>(
+  Atlp_FormulaType  <b>type</b> <i></i>
+)
+</pre>
+<dd> Calls Atlp_FormulaCreate with type, and all other fields NULL.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Atlp_FormulaCreate">Atlp_FormulaCreate</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="atlpAllFile.html#atlpUtil.c"TARGET="ABSTRACT"><CODE>atlpUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="FormulaHashIntoUniqueTable"></A>
+static Atlp_Formula_t * <I></I>
+<B>FormulaHashIntoUniqueTable</B>(
+  Atlp_Formula_t * <b>formula</b>, <i></i>
+  st_table * <b>uniqueTable</b> <i></i>
+)
+</pre>
+<dd> The function takes a formula and hashes it and all its
+  subformulae into a unique table. It returns the unique formula identical to
+  the formula being hashed. The formula returned will have maximum sharing
+  with the formulae that are already present in uniqueTable. It returns
+  NIL(Atlp_Formula_t) if the formula is NIL(Atlp_Formula_t).
+<p>
+
+<dd> <b>Side Effects</b> If a copy of some subformula of formula is present in
+  uniqueTable then the copy is substituted for it and the reference count of
+  the subformula is decremented.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#FormulaCompare">FormulaCompare</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="atlpAllFile.html#atlpUtil.c"TARGET="ABSTRACT"><CODE>atlpUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="FormulaHash"></A>
+static int <I></I>
+<B>FormulaHash</B>(
+  char * <b>key</b>, <i></i>
+  int  <b>modulus</b> <i></i>
+)
+</pre>
+<dd> The function takes as parameter a ATL formula. If the formula
+  type is Atlp_ID_c, st_strhash is used with the left child as the key string.
+  If type is GT, LT, EQ, GE, LE, then the formula is flattened (by calling
+  Atlp_FormulaConvertToSting) and the flattened string is the key string.
+  Otherwise, something very similar to st_ptrhash is done.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#FormulaCompare">FormulaCompare</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="atlpAllFile.html#atlpUtil.c"TARGET="ABSTRACT"><CODE>atlpUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="FormulaHaveSameAgents"></A>
+static boolean <I></I>
+<B>FormulaHaveSameAgents</B>(
+  lsList  <b>list1</b>, <i></i>
+  lsList  <b>list2</b> <i></i>
+)
+</pre>
+<dd> Compares two sorted lists of agents and test if
+  they are the same. It returns TRUE if they are same, FALSE otherwise.
+  Note, there should not be any duplication in the list.  Also, the
+  two lists can be empty, but not NULL.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="atlpAllFile.html#atlpUtil.c"TARGET="ABSTRACT"><CODE>atlpUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="FormulaPrintFromArray"></A>
+static void <I></I>
+<B>FormulaPrintFromArray</B>(
+  array_t * <b>formulaArray</b> <i></i>
+)
+</pre>
+<dd> This routine prints the formulas in the given
+  formulaArray. This function is called by AtlpPrintCmd.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code><a href="#AtlpPrintCmd">AtlpPrintCmd</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="atlpAllFile.html#atlpMain.c"TARGET="ABSTRACT"><CODE>atlpMain.c</CODE></A>
+
+
+</DL>
+<HR>
+Last updated on 1031104 18h39
+</BODY></HTML>

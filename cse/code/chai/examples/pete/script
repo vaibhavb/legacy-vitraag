@@ -1,0 +1,11 @@
+read_module pete.rm
+read_spec pete.spec
+inv_check Pete mutex
+reinit
+read_module petebug.rm
+read_spec pete.spec
+inv_check Pete mutex
+exit
+
+
+

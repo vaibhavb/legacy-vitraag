@@ -1,0 +1,104 @@
+<html>
+<head><title>rtm package abstract</title></head>
+<body>
+
+
+<!-- Function Abstracts -->
+
+<dl>
+<dt> <a href="rtmAllDet.html#Rtm_AllocateRegionStruct" TARGET="MAIN"><code>Rtm_AllocateRegionStruct()</code></a>
+<dd> required
+
+<dt> <a href="rtmAllDet.html#Rtm_AssignmentsBuildMdd" TARGET="MAIN"><code>Rtm_AssignmentsBuildMdd()</code></a>
+<dd> builds the mdd for the assignments of a command
+
+<dt> <a href="rtmAllDet.html#Rtm_AtomBuildInitCmdListMdds" TARGET="MAIN"><code>Rtm_AtomBuildInitCmdListMdds()</code></a>
+<dd> updates mdds by processing the init commands of the atom
+
+<dt> <a href="rtmAllDet.html#Rtm_AtomBuildInitialRegion" TARGET="MAIN"><code>Rtm_AtomBuildInitialRegion()</code></a>
+<dd> build initial region for an atom in a timed module
+
+<dt> <a href="rtmAllDet.html#Rtm_AtomBuildTransitionRelation" TARGET="MAIN"><code>Rtm_AtomBuildTransitionRelation()</code></a>
+<dd> build transition relation for an atom
+
+<dt> <a href="rtmAllDet.html#Rtm_AtomBuildUpdateCmdListMdds" TARGET="MAIN"><code>Rtm_AtomBuildUpdateCmdListMdds()</code></a>
+<dd> updates mdds by processing the update commands of the atom
+
+<dt> <a href="rtmAllDet.html#Rtm_AtomBuildWaitCmdListMdds" TARGET="MAIN"><code>Rtm_AtomBuildWaitCmdListMdds()</code></a>
+<dd> updates mdds by processing the wait(delay) commands of the atom
+
+<dt> <a href="rtmAllDet.html#Rtm_AtomProcessDefaultInitCommand" TARGET="MAIN"><code>Rtm_AtomProcessDefaultInitCommand()</code></a>
+<dd> updates mdds by processing the default init command of the atom
+
+<dt> <a href="rtmAllDet.html#Rtm_AtomProcessDefaultUpdateCommand" TARGET="MAIN"><code>Rtm_AtomProcessDefaultUpdateCommand()</code></a>
+<dd> updates mdds by processing the default update command of the atom
+
+<dt> <a href="rtmAllDet.html#Rtm_AtomProcessImplicitUpdateCommand" TARGET="MAIN"><code>Rtm_AtomProcessImplicitUpdateCommand()</code></a>
+<dd> Process the implicit command for the update command list of an atom
+
+<dt> <a href="rtmAllDet.html#Rtm_BuildOneWaitAssignmentMdd" TARGET="MAIN"><code>Rtm_BuildOneWaitAssignmentMdd()</code></a>
+<dd> builds the mdd for a single assignment of a wait command
+
+<dt> <a href="rtmAllDet.html#Rtm_BuildUnconstrainedTimerIncMdd" TARGET="MAIN"><code>Rtm_BuildUnconstrainedTimerIncMdd()</code></a>
+<dd> Builds the mdd for timers not constrained by a wait command
+
+<dt> <a href="rtmAllDet.html#Rtm_DebugTracePrint" TARGET="MAIN"><code>Rtm_DebugTracePrint()</code></a>
+<dd> print debug trace for an invariant for timed modules
+
+<dt> <a href="rtmAllDet.html#Rtm_End" TARGET="MAIN"><code>Rtm_End()</code></a>
+<dd> Closes the rtm package
+
+<dt> <a href="rtmAllDet.html#Rtm_GuardBuildMdd" TARGET="MAIN"><code>Rtm_GuardBuildMdd()</code></a>
+<dd> builds the mdd for the guard of a command
+
+<dt> <a href="rtmAllDet.html#Rtm_InitAssignmentsBuildMdd" TARGET="MAIN"><code>Rtm_InitAssignmentsBuildMdd()</code></a>
+<dd> builds the mdd for the assignments of an init command
+
+<dt> <a href="rtmAllDet.html#Rtm_Init" TARGET="MAIN"><code>Rtm_Init()</code></a>
+<dd> Initializes the rtm package
+
+<dt> <a href="rtmAllDet.html#Rtm_MddPickMinterm" TARGET="MAIN"><code>Rtm_MddPickMinterm()</code></a>
+<dd> required
+
+<dt> <a href="rtmAllDet.html#Rtm_MddPrintCubes" TARGET="MAIN"><code>Rtm_MddPrintCubes()</code></a>
+<dd> required
+
+<dt> <a href="rtmAllDet.html#Rtm_ModuleBuildInitialRegion" TARGET="MAIN"><code>Rtm_ModuleBuildInitialRegion()</code></a>
+<dd> build mdd for initial region of module
+
+<dt> <a href="rtmAllDet.html#Rtm_ModuleBuildTransitionRelation" TARGET="MAIN"><code>Rtm_ModuleBuildTransitionRelation()</code></a>
+<dd> build transition relation (as an MDD) for a timed module
+
+<dt> <a href="rtmAllDet.html#Rtm_ModulePerformBFS" TARGET="MAIN"><code>Rtm_ModulePerformBFS()</code></a>
+<dd> do invariant checking on a timed module
+
+<dt> <a href="rtmAllDet.html#Rtm_RegionManagerAddModuleToRtmInfo" TARGET="MAIN"><code>Rtm_RegionManagerAddModuleToRtmInfo()</code></a>
+<dd> required
+
+<dt> <a href="rtmAllDet.html#Rtm_RegionManagerAlloc" TARGET="MAIN"><code>Rtm_RegionManagerAlloc()</code></a>
+<dd> required
+
+<dt> <a href="rtmAllDet.html#Rtm_RegionManagerObtainRtmInfoFromModule" TARGET="MAIN"><code>Rtm_RegionManagerObtainRtmInfoFromModule()</code></a>
+<dd> required
+
+<dt> <a href="rtmAllDet.html#Rtm_RegionManagerReadRegionTable" TARGET="MAIN"><code>Rtm_RegionManagerReadRegionTable()</code></a>
+<dd> required
+
+<dt> <a href="rtmAllDet.html#Rtm_Reinit" TARGET="MAIN"><code>Rtm_Reinit()</code></a>
+<dd> Re-initializes the rtm package
+
+<dt> <a href="rtmAllDet.html#Rtm_RtmRegionManagerIncrementCounter" TARGET="MAIN"><code>Rtm_RtmRegionManagerIncrementCounter()</code></a>
+<dd> required
+
+<dt> <a href="rtmAllDet.html#Rtm_RtmRegionManagerReadCounter" TARGET="MAIN"><code>Rtm_RtmRegionManagerReadCounter()</code></a>
+<dd> required
+
+<dt> <a href="rtmAllDet.html#Rtm_WaitAssignmentsBuildMdd" TARGET="MAIN"><code>Rtm_WaitAssignmentsBuildMdd()</code></a>
+<dd> builds the mdd for all of the assignments of a wait command
+
+</dl>
+
+<hr>
+
+Last updated on 1031104 18h39
+</body></html>

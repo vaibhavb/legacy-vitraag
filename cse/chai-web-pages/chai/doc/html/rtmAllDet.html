@@ -1,0 +1,974 @@
+<html>
+<head><title>The rtm package: all functions </title></head>
+<body>
+
+
+<HR>
+<DL>
+<dt><pre>
+<A NAME="CommandBuildTrans"></A>
+static int <I></I>
+<B>CommandBuildTrans</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char ** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="rtmAllFile.html#rtm.c"TARGET="ABSTRACT"><CODE>rtm.c</CODE></A>
+
+<dt><pre>
+<A NAME="CommandComputeInitSet"></A>
+static int <I></I>
+<B>CommandComputeInitSet</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char ** <b>argv</b> <i></i>
+)
+</pre>
+<dd> Compute the mdd representing initial states of a module
+<p>
+
+<dd> <b>Side Effects</b> The initial region computed is added to the rtm region
+                      manager's region table
+<p>
+
+<dd> <b>See Also</b> <code><a href="#CommandComputeReachedSet">CommandComputeReachedSet</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="rtmAllFile.html#rtm.c"TARGET="ABSTRACT"><CODE>rtm.c</CODE></A>
+
+<dt><pre>
+<A NAME="CommandComputeReachSet"></A>
+static int <I></I>
+<B>CommandComputeReachSet</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char ** <b>argv</b> <i></i>
+)
+</pre>
+<dd> Compute reached set for a timed module using MDDs as
+                      the representation. The transition relation must be built
+                      using the command "rtm_trans" before this function is
+                      called
+<p>
+
+<dd> <b>Side Effects</b> The MDD representing the set of reached states is added
+                      to the rtmRegionTable associated with the module
+<p>
+
+<DD> <B>Defined in </B> <A HREF="rtmAllFile.html#rtm.c"TARGET="ABSTRACT"><CODE>rtm.c</CODE></A>
+
+<dt><pre>
+<A NAME="CommandReadOrder"></A>
+static int <I></I>
+<B>CommandReadOrder</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char ** <b>argv</b> <i></i>
+)
+</pre>
+<dd> Read an ordering of MDD variables from a file, and order
+                      the MDD variables of a module accordingly
+<p>
+
+<dd> <b>Side Effects</b> none
+<p>
+
+<dd> <b>See Also</b> <code><a href="#CommandWriteOrder">CommandWriteOrder</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="rtmAllFile.html#rtm.c"TARGET="ABSTRACT"><CODE>rtm.c</CODE></A>
+
+<dt><pre>
+<A NAME="CommandRtmDynamicVarOrdering"></A>
+static int <I></I>
+<B>CommandRtmDynamicVarOrdering</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char ** <b>argv</b> <i></i>
+)
+</pre>
+<dd> Implements the rtm_dynamic_var_ordering command for the rtm
+               package .
+<p>
+
+<DD> <B>Defined in </B> <A HREF="rtmAllFile.html#rtm.c"TARGET="ABSTRACT"><CODE>rtm.c</CODE></A>
+
+<dt><pre>
+<A NAME="ModuleAssignMddIdsToVariables"></A>
+static void <I></I>
+<B>ModuleAssignMddIdsToVariables</B>(
+  Mdl_Module_t * <b>module</b>, <i></i>
+  Sym_Info_t * <b>symInfo</b>, <i></i>
+  array_t * <b>totalVarArray</b> <i></i>
+)
+</pre>
+<dd> Create MDD variables according to the specified total ordering
+<p>
+
+<dd> <b>Side Effects</b> MDD variables are created for each of the module variables,
+                      as specified by the total ordering
+
+  SeeAlso            [
+<p>
+
+<DD> <B>Defined in </B> <A HREF="rtmAllFile.html#rtm.c"TARGET="ABSTRACT"><CODE>rtm.c</CODE></A>
+
+<dt><pre>
+<A NAME="ModuleTotalOrderVariables"></A>
+static array_t * <I></I>
+<B>ModuleTotalOrderVariables</B>(
+  Mdl_Module_t * <b>module</b>, <i></i>
+  array_t * <b>varOrderArray</b> <i></i>
+)
+</pre>
+<dd> Given a module and an array of variables (the order in which the 
+                      variables are present in the array), pad remaining variables to the
+		              end of the array
+<p>
+
+<dd> <b>Side Effects</b> Remaining variables are added to the end of the array
+<p>
+
+<dd> <b>See Also</b> <code><a href="#RtmReadOrder">RtmReadOrder</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="rtmAllFile.html#rtm.c"TARGET="ABSTRACT"><CODE>rtm.c</CODE></A>
+
+<dt><pre>
+<A NAME="RtmCreateTimeIncVar"></A>
+void <I></I>
+<B>RtmCreateTimeIncVar</B>(
+  Rtm_Info_t * <b>rtmInfo</b>, <i></i>
+  Mdl_Module_t * <b>module</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="rtmAllFile.html#rtm.c"TARGET="ABSTRACT"><CODE>rtm.c</CODE></A>
+
+<dt><pre>
+<A NAME="RtmDynOrderTypeConvertToString"></A>
+static char * <I></I>
+<B>RtmDynOrderTypeConvertToString</B>(
+  bdd_reorder_type_t  <b>method</b> <i></i>
+)
+</pre>
+<dd> Converts a dynamic ordering method type to a string.  This
+  string must NOT be freed by the caller.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="rtmAllFile.html#rtm.c"TARGET="ABSTRACT"><CODE>rtm.c</CODE></A>
+
+<dt><pre>
+<A NAME="RtmGetMddLiteral"></A>
+mdd_t * <I></I>
+<B>RtmGetMddLiteral</B>(
+  mdd_manager * <b>manager</b>, <i></i>
+  int  <b>id</b>, <i></i>
+  int  <b>value</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="rtmAllFile.html#rtmUtil.c"TARGET="ABSTRACT"><CODE>rtmUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="RtmGetNvals"></A>
+int <I></I>
+<B>RtmGetNvals</B>(
+  Rtm_Info_t * <b>rtmInfo</b>, <i></i>
+  int  <b>id</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="rtmAllFile.html#rtm.c"TARGET="ABSTRACT"><CODE>rtm.c</CODE></A>
+
+<dt><pre>
+<A NAME="RtmGetTopMddId"></A>
+int <I></I>
+<B>RtmGetTopMddId</B>(
+  mdd_t * <b>m</b>, <i></i>
+  Rtm_Info_t * <b>rtmInfo</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="rtmAllFile.html#rtm.c"TARGET="ABSTRACT"><CODE>rtm.c</CODE></A>
+
+<dt><pre>
+<A NAME="RtmMddInTrueSupport"></A>
+boolean <I></I>
+<B>RtmMddInTrueSupport</B>(
+  mdd_t * <b>m</b>, <i></i>
+  int  <b>id</b>, <i></i>
+  Rtm_Info_t * <b>rtmInfo</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="rtmAllFile.html#rtmUtil.c"TARGET="ABSTRACT"><CODE>rtmUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="RtmModuleSearch"></A>
+mdd_t * <I></I>
+<B>RtmModuleSearch</B>(
+  Mdl_Module_t * <b>module</b>, <i></i>
+  Rtm_Info_t * <b>rtmInfo</b>, <i></i>
+  boolean  <b>verbose</b>, <i></i>
+  boolean  <b>checkInvariants</b>, <i></i>
+  array_t * <b>invNameArray</b>, <i></i>
+  array_t * <b>typedExprArray</b>, <i></i>
+  Tcl_Interp * <b>interp</b> <i></i>
+)
+</pre>
+<dd> reachability + optionally invariant checking on timed modules
+<p>
+
+<dd> <b>Side Effects</b> state of invariants may be changed
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Rtm_ModuleBuildTransitionRelation">Rtm_ModuleBuildTransitionRelation</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="rtmAllFile.html#rtm.c"TARGET="ABSTRACT"><CODE>rtm.c</CODE></A>
+
+<dt><pre>
+<A NAME="RtmReadOrder"></A>
+array_t * <I></I>
+<B>RtmReadOrder</B>(
+  FILE * <b>fp</b>, <i></i>
+  Mdl_Module_t * <b>module</b> <i></i>
+)
+</pre>
+<dd> Write variable order for module from a file
+<p>
+
+<dd> <b>Side Effects</b> none
+<p>
+
+<dd> <b>See Also</b> <code><a href="#SymWriteOrder">SymWriteOrder</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="rtmAllFile.html#rtm.c"TARGET="ABSTRACT"><CODE>rtm.c</CODE></A>
+
+<dt><pre>
+<A NAME="RtmStringConvertToDynOrderType"></A>
+static bdd_reorder_type_t <I></I>
+<B>RtmStringConvertToDynOrderType</B>(
+  char * <b>string</b> <i></i>
+)
+</pre>
+<dd> Converts a string to a dynamic ordering method type. If string
+  is not "sift" or "window", then returns BDD_REORDER_NONE.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="rtmAllFile.html#rtm.c"TARGET="ABSTRACT"><CODE>rtm.c</CODE></A>
+
+<dt><pre>
+<A NAME="Rtm_AllocateRegionStruct"></A>
+Rtm_Region_t * <I></I>
+<B>Rtm_AllocateRegionStruct</B>(
+  Mdl_Module_t * <b>module</b>, <i></i>
+  mdd_t * <b>regionSet</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="rtmAllFile.html#rtm.c"TARGET="ABSTRACT"><CODE>rtm.c</CODE></A>
+
+<dt><pre>
+<A NAME="Rtm_AssignmentsBuildMdd"></A>
+mdd_t * <I></I>
+<B>Rtm_AssignmentsBuildMdd</B>(
+  Atm_Atom_t * <b>atom</b>, <i></i>
+  Rtm_Info_t * <b>rtmInfo</b>, <i></i>
+  Atm_Cmd_t * <b>cmd</b> <i></i>
+)
+</pre>
+<dd> builds the mdd for the assignments of a command
+<p>
+
+<dd> <b>Side Effects</b> none
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Rtm_AtomBuildTransitionRelation">Rtm_AtomBuildTransitionRelation</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="rtmAllFile.html#rtm.c"TARGET="ABSTRACT"><CODE>rtm.c</CODE></A>
+
+<dt><pre>
+<A NAME="Rtm_AtomBuildInitCmdListMdds"></A>
+void <I></I>
+<B>Rtm_AtomBuildInitCmdListMdds</B>(
+  Atm_Atom_t * <b>atom</b>, <i></i>
+  Rtm_Info_t * <b>rtmInfo</b>, <i></i>
+  mdd_t ** <b>atomMddPtr</b>, <i></i>
+  mdd_t ** <b>guardOrMddPtr</b> <i></i>
+)
+</pre>
+<dd> updates mdds by processing the init commands of the atom
+                      guardOrMdd and atomMdd are affected.
+<p>
+
+<dd> <b>Side Effects</b> guardOrMdd and atomMdd are changed
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Rtm_AtomBuildInitialRegion">Rtm_AtomBuildInitialRegion</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="rtmAllFile.html#rtm.c"TARGET="ABSTRACT"><CODE>rtm.c</CODE></A>
+
+<dt><pre>
+<A NAME="Rtm_AtomBuildInitialRegion"></A>
+mdd_t * <I></I>
+<B>Rtm_AtomBuildInitialRegion</B>(
+  Atm_Atom_t * <b>atom</b>, <i></i>
+  Rtm_Info_t * <b>rtmInfo</b> <i></i>
+)
+</pre>
+<dd> build initial region for an atom in a timed module
+<p>
+
+<dd> <b>Side Effects</b> none
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Rtm_AtomBuildTransitionRelation">Rtm_AtomBuildTransitionRelation</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="rtmAllFile.html#rtm.c"TARGET="ABSTRACT"><CODE>rtm.c</CODE></A>
+
+<dt><pre>
+<A NAME="Rtm_AtomBuildTransitionRelation"></A>
+mdd_t * <I></I>
+<B>Rtm_AtomBuildTransitionRelation</B>(
+  Atm_Atom_t * <b>atom</b>, <i></i>
+  Rtm_Info_t * <b>rtmInfo</b> <i></i>
+)
+</pre>
+<dd> build transition relation for an atom
+                      One timed and one untimed conjunct is created for each atom
+                      The timed conjunct for the atom represents the transitions
+                      where one time unit elapses (all timers incremented by 1)
+                      The untimed conjunct for the atom represents control transitions
+                      where no time elapses.
+                      The first entry in the array returned is the timed conjunct,
+                      the second one is the untimed one.
+<p>
+
+<dd> <b>Side Effects</b> none
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Rtm_ModuleBuildTransitionRelation">Rtm_ModuleBuildTransitionRelation</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="rtmAllFile.html#rtm.c"TARGET="ABSTRACT"><CODE>rtm.c</CODE></A>
+
+<dt><pre>
+<A NAME="Rtm_AtomBuildUpdateCmdListMdds"></A>
+void <I></I>
+<B>Rtm_AtomBuildUpdateCmdListMdds</B>(
+  Atm_Atom_t * <b>atom</b>, <i></i>
+  Rtm_Info_t * <b>rtmInfo</b>, <i></i>
+  mdd_t ** <b>atomMddPtr</b>, <i></i>
+  mdd_t ** <b>guardOrMddPtr</b> <i></i>
+)
+</pre>
+<dd> updates mdds by processing the update commands of the atom
+                      guardOrMdd and atomMdd are affected.
+<p>
+
+<dd> <b>Side Effects</b> guardOrMdd and atomMdd are changed
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Rtm_AtomBuildTransitionRelation">Rtm_AtomBuildTransitionRelation</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="rtmAllFile.html#rtm.c"TARGET="ABSTRACT"><CODE>rtm.c</CODE></A>
+
+<dt><pre>
+<A NAME="Rtm_AtomBuildWaitCmdListMdds"></A>
+void <I></I>
+<B>Rtm_AtomBuildWaitCmdListMdds</B>(
+  Atm_Atom_t * <b>atom</b>, <i></i>
+  Rtm_Info_t * <b>rtmInfo</b>, <i></i>
+  mdd_t ** <b>atomMddPtr</b>, <i></i>
+  mdd_t ** <b>timedGuardOrMddPtr</b> <i></i>
+)
+</pre>
+<dd> updates mdds by processing the wait(delay) commands of the atom
+                      guardOrMdd and atomMdd are affected.
+<p>
+
+<dd> <b>Side Effects</b> guardOrMdd and atomMdd are changed
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Rtm_AtomBuildTransitionRelation">Rtm_AtomBuildTransitionRelation</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="rtmAllFile.html#rtm.c"TARGET="ABSTRACT"><CODE>rtm.c</CODE></A>
+
+<dt><pre>
+<A NAME="Rtm_AtomProcessDefaultInitCommand"></A>
+void <I></I>
+<B>Rtm_AtomProcessDefaultInitCommand</B>(
+  Atm_Atom_t * <b>atom</b>, <i></i>
+  Rtm_Info_t * <b>rtmInfo</b>, <i></i>
+  mdd_t ** <b>atomMddPtr</b>, <i></i>
+  mdd_t ** <b>guardOrMddPtr</b> <i></i>
+)
+</pre>
+<dd> updates mdds by processing the default init command of the atom
+                      guardOrMdd and atomMdd are affected.
+<p>
+
+<dd> <b>Side Effects</b> guardOrMdd and atomMdd are changed
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Rtm_AtomBuildUpdateCmdListMdds">Rtm_AtomBuildUpdateCmdListMdds</a>
+<a href="#Rtm_AtomBuildTransitionRelation">Rtm_AtomBuildTransitionRelation</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="rtmAllFile.html#rtm.c"TARGET="ABSTRACT"><CODE>rtm.c</CODE></A>
+
+<dt><pre>
+<A NAME="Rtm_AtomProcessDefaultUpdateCommand"></A>
+void <I></I>
+<B>Rtm_AtomProcessDefaultUpdateCommand</B>(
+  Atm_Atom_t * <b>atom</b>, <i></i>
+  Rtm_Info_t * <b>rtmInfo</b>, <i></i>
+  mdd_t ** <b>atomMddPtr</b>, <i></i>
+  mdd_t ** <b>guardOrMddPtr</b> <i></i>
+)
+</pre>
+<dd> updates mdds by processing the default update command of the atom
+                      guardOrMdd and atomMdd are affected.
+<p>
+
+<dd> <b>Side Effects</b> guardOrMdd and atomMdd are changed
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Rtm_AtomBuildUpdateCmdListMdds">Rtm_AtomBuildUpdateCmdListMdds</a>
+<a href="#Rtm_AtomBuildTransitionRelation">Rtm_AtomBuildTransitionRelation</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="rtmAllFile.html#rtm.c"TARGET="ABSTRACT"><CODE>rtm.c</CODE></A>
+
+<dt><pre>
+<A NAME="Rtm_AtomProcessImplicitUpdateCommand"></A>
+void <I></I>
+<B>Rtm_AtomProcessImplicitUpdateCommand</B>(
+  Atm_Atom_t * <b>atom</b>, <i></i>
+  Rtm_Info_t * <b>rtmInfo</b>, <i></i>
+  mdd_t ** <b>atomMddPtr</b>, <i></i>
+  mdd_t ** <b>guardOrMddPtr</b> <i></i>
+)
+</pre>
+<dd> Process the implicit command for the update command list of an atom
+<p>
+
+<dd> <b>Side Effects</b> none
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Sym_AtomBuildTransitionRelation">Sym_AtomBuildTransitionRelation</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="rtmAllFile.html#rtm.c"TARGET="ABSTRACT"><CODE>rtm.c</CODE></A>
+
+<dt><pre>
+<A NAME="Rtm_BuildOneWaitAssignmentMdd"></A>
+mdd_t * <I></I>
+<B>Rtm_BuildOneWaitAssignmentMdd</B>(
+  Atm_Expr_t * <b>expr</b>, <i></i>
+  Rtm_Info_t * <b>rtmInfo</b>, <i></i>
+  int  <b>pid</b>, <i></i>
+  int  <b>uid</b> <i></i>
+)
+</pre>
+<dd> builds the mdd for a single assignment of a wait command
+<p>
+
+<dd> <b>Side Effects</b> none
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Rtm_AtomBuildTransitionRelation">Rtm_AtomBuildTransitionRelation</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="rtmAllFile.html#rtm.c"TARGET="ABSTRACT"><CODE>rtm.c</CODE></A>
+
+<dt><pre>
+<A NAME="Rtm_BuildUnconstrainedTimerIncMdd"></A>
+mdd_t * <I></I>
+<B>Rtm_BuildUnconstrainedTimerIncMdd</B>(
+  int  <b>pid</b>, <i></i>
+  int  <b>uid</b>, <i></i>
+  Var_Variable_t * <b>var</b>, <i></i>
+  Rtm_Info_t * <b>rtmInfo</b> <i></i>
+)
+</pre>
+<dd> Timers not constrained by a wait command all increase by
+                      the amount "inc" as represented by the rtmInfo->timeIncId
+                      variable
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="rtmAllFile.html#rtm.c"TARGET="ABSTRACT"><CODE>rtm.c</CODE></A>
+
+<dt><pre>
+<A NAME="Rtm_DebugTracePrint"></A>
+void <I></I>
+<B>Rtm_DebugTracePrint</B>(
+  Rtm_Info_t * <b>rtmInfo</b>, <i></i>
+  array_t * <b>savedOnions</b>, <i></i>
+  int  <b>step</b>, <i></i>
+  mdd_t * <b>notInv</b>, <i></i>
+  array_t * <b>eventIdArray</b>, <i></i>
+  array_t * <b>histDependIdArray</b>, <i></i>
+  char * <b>invName</b>, <i></i>
+  char * <b>moduleName</b>, <i></i>
+  Tcl_Interp * <b>interp</b> <i></i>
+)
+</pre>
+<dd> Given an array of MDDs (representing the onion ring),
+                      the step at which the error occured,
+		      the negation of the invariant that got violated,
+		      arrays of event and history free ids of the module,
+		      name of the invariant and module, this function
+		      prints the debug trace.
+		      It starts with the onion ring at the specified step and 
+		      intersects it with the negation of the invariant. Then
+		      it successivey does pre-image computations and finds 
+		      a path to an initial state. Then it reverses the path and
+		      and prints an error trace.
+<p>
+
+<dd> <b>Side Effects</b> none
+<p>
+
+<dd> <b>See Also</b> <code><a href="#RtmModuleSearch">RtmModuleSearch</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="rtmAllFile.html#rtm.c"TARGET="ABSTRACT"><CODE>rtm.c</CODE></A>
+
+<dt><pre>
+<A NAME="Rtm_End"></A>
+int <I></I>
+<B>Rtm_End</B>(
+  Tcl_Interp * <b>interp</b>, <i></i>
+  Main_Manager_t * <b>manager</b> <i></i>
+)
+</pre>
+<dd> Currently this function does nothing. During a subsequent
+                      cleanup this should be made to free all memory allocated
+                      by the Rtm package.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<DD> <B>Defined in </B> <A HREF="rtmAllFile.html#rtm.c"TARGET="ABSTRACT"><CODE>rtm.c</CODE></A>
+
+<dt><pre>
+<A NAME="Rtm_GuardBuildMdd"></A>
+mdd_t * <I></I>
+<B>Rtm_GuardBuildMdd</B>(
+  Rtm_Info_t * <b>rtmInfo</b>, <i></i>
+  Atm_Expr_t * <b>guard</b> <i></i>
+)
+</pre>
+<dd> builds the mdd for the guard of a command
+<p>
+
+<dd> <b>Side Effects</b> none
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Rtm_AtomBuildTransitionRelation">Rtm_AtomBuildTransitionRelation</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="rtmAllFile.html#rtm.c"TARGET="ABSTRACT"><CODE>rtm.c</CODE></A>
+
+<dt><pre>
+<A NAME="Rtm_InitAssignmentsBuildMdd"></A>
+mdd_t * <I></I>
+<B>Rtm_InitAssignmentsBuildMdd</B>(
+  Atm_Atom_t * <b>atom</b>, <i></i>
+  Rtm_Info_t * <b>rtmInfo</b>, <i></i>
+  Atm_Cmd_t * <b>cmd</b> <i></i>
+)
+</pre>
+<dd> builds the mdd for the assignments of an init command
+<p>
+
+<dd> <b>Side Effects</b> none
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Rtm_AtomBuildTransitionRelation">Rtm_AtomBuildTransitionRelation</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="rtmAllFile.html#rtm.c"TARGET="ABSTRACT"><CODE>rtm.c</CODE></A>
+
+<dt><pre>
+<A NAME="Rtm_Init"></A>
+int <I></I>
+<B>Rtm_Init</B>(
+  Tcl_Interp * <b>interp</b>, <i></i>
+  Main_Manager_t * <b>manager</b> <i></i>
+)
+</pre>
+<dd> Registers the rtm package commands with tcl
+                      Allocates memory for RtmRegionManager and deposit it in
+                      the main manager.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Rtm_End">Rtm_End</a>
+<a href="#Rtm_Reinit">Rtm_Reinit</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="rtmAllFile.html#rtm.c"TARGET="ABSTRACT"><CODE>rtm.c</CODE></A>
+
+<dt><pre>
+<A NAME="Rtm_MddPickMinterm"></A>
+mdd_t  * <I></I>
+<B>Rtm_MddPickMinterm</B>(
+  mdd_t * <b>mdd</b>, <i></i>
+  Rtm_Info_t * <b>rtmInfo</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="rtmAllFile.html#rtm.c"TARGET="ABSTRACT"><CODE>rtm.c</CODE></A>
+
+<dt><pre>
+<A NAME="Rtm_MddPrintCubes"></A>
+void <I></I>
+<B>Rtm_MddPrintCubes</B>(
+  mdd_t * <b>mdd</b>, <i></i>
+  Rtm_Info_t * <b>rtmInfo</b>, <i></i>
+  int  <b>level</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="rtmAllFile.html#rtm.c"TARGET="ABSTRACT"><CODE>rtm.c</CODE></A>
+
+<dt><pre>
+<A NAME="Rtm_ModuleBuildInitialRegion"></A>
+mdd_t * <I></I>
+<B>Rtm_ModuleBuildInitialRegion</B>(
+  Rtm_Info_t * <b>rtmInfo</b>, <i></i>
+  Mdl_Module_t * <b>module</b> <i></i>
+)
+</pre>
+<dd> build mdd for initial region of module
+<p>
+
+<dd> <b>Side Effects</b> none
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Rtm_ModuleBuildTransitionRelation">Rtm_ModuleBuildTransitionRelation</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="rtmAllFile.html#rtm.c"TARGET="ABSTRACT"><CODE>rtm.c</CODE></A>
+
+<dt><pre>
+<A NAME="Rtm_ModuleBuildTransitionRelation"></A>
+void <I></I>
+<B>Rtm_ModuleBuildTransitionRelation</B>(
+  Rtm_Info_t * <b>rtmInfo</b>, <i></i>
+  Mdl_Module_t * <b>module</b> <i></i>
+)
+</pre>
+<dd> build symbolic transition relation for a module.
+                      One timed and one untimed conjunct is created for each atom
+                      and timed and untimed conjuncts are stored in separate arrays
+                      The timed conjunct for the atom represents the transitions
+                      where one time unit elapses (all timers incremented by 1)
+                      The untimed conjunct for the atom represents control transitions
+                      where no time elapses.
+<p>
+
+<dd> <b>Side Effects</b> transition relation is built and stored in rtmInfo
+<p>
+
+<dd> <b>See Also</b> <code><a href="#RtmModuleSearch">RtmModuleSearch</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="rtmAllFile.html#rtm.c"TARGET="ABSTRACT"><CODE>rtm.c</CODE></A>
+
+<dt><pre>
+<A NAME="Rtm_ModulePerformBFS"></A>
+void <I></I>
+<B>Rtm_ModulePerformBFS</B>(
+  Tcl_Interp * <b>interp</b>, <i></i>
+  Main_Manager_t * <b>mainManager</b>, <i></i>
+  Mdl_Module_t * <b>module</b>, <i></i>
+  array_t * <b>invNameArray</b>, <i></i>
+  array_t * <b>typedExprArray</b> <i></i>
+)
+</pre>
+<dd> Do invariant checking. This is the entry point
+                      for the rtm invariant engine to be called from
+                      the inv package
+<p>
+
+<dd> <b>Side Effects</b> none
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Rtm_ModuleBuildTransitionRelation">Rtm_ModuleBuildTransitionRelation</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="rtmAllFile.html#rtm.c"TARGET="ABSTRACT"><CODE>rtm.c</CODE></A>
+
+<dt><pre>
+<A NAME="Rtm_RegionManagerAddModuleToRtmInfo"></A>
+void <I></I>
+<B>Rtm_RegionManagerAddModuleToRtmInfo</B>(
+  Rtm_RegionManager_t * <b>rtmRegionManager</b>, <i></i>
+  Mdl_Module_t * <b>module</b>, <i></i>
+  Rtm_Info_t * <b>rtmInfo</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="rtmAllFile.html#rtm.c"TARGET="ABSTRACT"><CODE>rtm.c</CODE></A>
+
+<dt><pre>
+<A NAME="Rtm_RegionManagerAlloc"></A>
+Rtm_RegionManager_t * <I></I>
+<B>Rtm_RegionManagerAlloc</B>(
+   <b></b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="rtmAllFile.html#rtm.c"TARGET="ABSTRACT"><CODE>rtm.c</CODE></A>
+
+<dt><pre>
+<A NAME="Rtm_RegionManagerObtainRtmInfoFromModule"></A>
+Rtm_Info_t * <I></I>
+<B>Rtm_RegionManagerObtainRtmInfoFromModule</B>(
+  Rtm_RegionManager_t * <b>rtmRegionManager</b>, <i></i>
+  Mdl_Module_t * <b>module</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="rtmAllFile.html#rtm.c"TARGET="ABSTRACT"><CODE>rtm.c</CODE></A>
+
+<dt><pre>
+<A NAME="Rtm_RegionManagerReadRegionTable"></A>
+Tcl_HashTable * <I></I>
+<B>Rtm_RegionManagerReadRegionTable</B>(
+  Rtm_RegionManager_t * <b>rtmRegionManager</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="rtmAllFile.html#rtm.c"TARGET="ABSTRACT"><CODE>rtm.c</CODE></A>
+
+<dt><pre>
+<A NAME="Rtm_Reinit"></A>
+int <I></I>
+<B>Rtm_Reinit</B>(
+  Tcl_Interp * <b>interp</b>, <i></i>
+  Main_Manager_t * <b>manager</b> <i></i>
+)
+</pre>
+<dd> This function is called when the user types a re-init command. 
+                      Re-initialization is not yet supported by Rtm.
+		              Currently, this function does nothing
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Rtm_Init">Rtm_Init</a>
+<a href="#Rtm_End">Rtm_End</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="rtmAllFile.html#rtm.c"TARGET="ABSTRACT"><CODE>rtm.c</CODE></A>
+
+<dt><pre>
+<A NAME="Rtm_RtmRegionManagerIncrementCounter"></A>
+unsigned long <I></I>
+<B>Rtm_RtmRegionManagerIncrementCounter</B>(
+  Rtm_RegionManager_t * <b>rtmRegionManager</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="rtmAllFile.html#rtm.c"TARGET="ABSTRACT"><CODE>rtm.c</CODE></A>
+
+<dt><pre>
+<A NAME="Rtm_RtmRegionManagerReadCounter"></A>
+unsigned long <I></I>
+<B>Rtm_RtmRegionManagerReadCounter</B>(
+  Rtm_RegionManager_t * <b>rtmRegionManager</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="rtmAllFile.html#rtm.c"TARGET="ABSTRACT"><CODE>rtm.c</CODE></A>
+
+<dt><pre>
+<A NAME="Rtm_WaitAssignmentsBuildMdd"></A>
+mdd_t * <I></I>
+<B>Rtm_WaitAssignmentsBuildMdd</B>(
+  Atm_Atom_t * <b>atom</b>, <i></i>
+  Rtm_Info_t * <b>rtmInfo</b>, <i></i>
+  Atm_Cmd_t * <b>cmd</b> <i></i>
+)
+</pre>
+<dd> builds the mdd for all of the assignments of a wait command
+<p>
+
+<dd> <b>Side Effects</b> none
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Rtm_AtomBuildTransitionRelation">Rtm_AtomBuildTransitionRelation</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="rtmAllFile.html#rtm.c"TARGET="ABSTRACT"><CODE>rtm.c</CODE></A>
+
+<dt><pre>
+<A NAME="VarOrderIsInArray"></A>
+static int <I></I>
+<B>VarOrderIsInArray</B>(
+  array_t * <b>varOrderArray</b>, <i></i>
+  VarOrder_t * <b>varOrder</b> <i></i>
+)
+</pre>
+<dd> check if a variable is in a varOrderArray
+<p>
+
+<dd> <b>Side Effects</b> none
+<p>
+
+<DD> <B>Defined in </B> <A HREF="rtmAllFile.html#rtm.c"TARGET="ABSTRACT"><CODE>rtm.c</CODE></A>
+
+
+</DL>
+<HR>
+Last updated on 1031103 12h03
+</BODY></HTML>

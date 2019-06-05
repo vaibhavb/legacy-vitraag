@@ -1,0 +1,76 @@
+Welcome to MOCHA 1.0
+Please report any problems to mocha@eecs.berkeley.edu
+Module SyncSender is composed and checked in.
+Module Receiver is composed and checked in.
+Module SendRecImpl is composed and checked in.
+Module SendRecSpec is composed and checked in.
+parse successful.
+Building transition relation for module SendRecImpl
+Ordering variables using sym_static_order
+Transition relation computed : 5 conjuncts
+Dynamic variable ordering is disabled.
+Done initializing image info...
+Writing order into imporder.dat
+Building transition relation for module SendRecSpec
+Ordering variables using sym_static_order
+Transition relation computed : 1 conjuncts
+Dynamic variable ordering is disabled.
+Done initializing image info...
+Dynamic variable ordering is enabled with method sift.
+ 
+ ****************************************************************** 
+ Reached fixpoint after  5 steps
+Yes: There is a simulation from SendRecImpl to SendRecSpec
+SendRecImpl is simulated by SendRecSpec
+Freeing syminfo for both specification and implementation
+Module UnhideSyncSender is composed and checked in.
+Module UnhideReceiver is composed and checked in.
+Module WitnessMsgO is composed and checked in.
+Module WitnessSpecCtrl is composed and checked in.
+Module UnhideSendRecImpl is composed and checked in.
+Module UnhideSendRecSpec is composed and checked in.
+parse successful.
+Building transition relation for module UnhideSendRecImpl
+Ordering variables using sym_static_order
+Transition relation computed : 7 conjuncts
+Dynamic variable ordering is enabled with method sift.
+Done initializing image info...
+Writing order into imporder.dat
+Building transition relation for module UnhideSendRecSpec
+Ordering variables using sym_static_order
+Transition relation computed : 1 conjuncts
+Dynamic variable ordering is enabled with method sift.
+Done initializing image info...
+Dynamic variable ordering is enabled with method sift.
+Implementation latch : 1 : msgC
+Implementation latch : 2 : msgP
+Implementation latch : 3 : msgS
+Implementation latch : 4 : pcS
+Implementation latch : 5 : msgR
+Implementation latch : 6 : pcR
+Implementation latch : 7 : msgO
+Number of implementation latches = 7
+Initial Region Computed For UnhideSendRecImpl
+Initial Region Computed For UnhideSendRecSpec
+Doing transition invariant check..
+Done..
+Step 1: image mdd size =         16	 |states| =      216	reached set mdd size =          7	 |states| =      108
+Doing transition invariant check..
+Done..
+Step 2: image mdd size =         37	 |states| =      306	reached set mdd size =         19	 |states| =      117
+Doing transition invariant check..
+Done..
+Step 3: image mdd size =        126	 |states| =      360	reached set mdd size =         50	 |states| =      150
+Doing transition invariant check..
+Done..
+Step 4: image mdd size =        180	 |states| =      462	reached set mdd size =         66	 |states| =      168
+Doing transition invariant check..
+Done..
+Step 5: image mdd size =        107	 |states| =       72	reached set mdd size =         78	 |states| =      186
+Doing transition invariant check..
+Done..
+Step 6: image mdd size =         62	 |states| =       27	
+Done reached set computation...
+reached set mdd size =         78	 number of states =      186
+UnhideSendRecImpl refines UnhideSendRecSpec
+Freeing syminfo for both specification and implementation

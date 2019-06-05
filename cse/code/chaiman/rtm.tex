@@ -1,0 +1,292 @@
+\chapter{Real-Time Modules}
+\label{sec:real_time}
+\label{chap:real_time}
+\label{sec:rtm}
+
+\section{Describing Systems with Real-Time Modules}
+{\sc Mocha} supports reachability analysis and invariant checking of
+real-time systems that are described in the form of {\em timed
+reactive modules}\index{timed reactive modules} as defined in  \cite{AlurHenzinger97}. In addition to
+the discrete-valued variables of 
+reactive modules, a timed module makes use real-valued ($\reals$) {\em clock
+variables}\index{clock variables}. The purpose of clock variables is to keep track of
+elapsed time. Guarded commands can assign integer values to clock
+variables, and guards can depend on values of clock variables. 
+
+The keyword $\CLOCK$ denotes the clock variable type. Clock variables 
+are initialized to $0$ by default\footnote{
+An error is signaled if there is a non-zero initial assignment to a
+clock variable.}. For each clock $x$, guards can include positive
+Boolean combinations of inequalities of the form $x \leq C$, $x \geq C$
+and $x=C$, where $C \in \nats$. Assignments can assign integer values
+to clocks in the usual fashion: $x := C$, where $C \in \nats$.
+
+In addition to $\INIT$ and $\UPDATE$ commands, a timed module has a
+set of $\WAIT$ commands\index{wait command} which describe the passage of time. When a
+$\WAIT$ command is executed, all non-clock variables remain the same,
+and all clock variables are incremented by the same amount. A typical
+$\WAIT$ command has the following form
+
+\begin{center}
+\tt a=b \AND\ x1 <= 3 \AND\ x2 <= 5 -> x1':<= 3; x2' :<= 5;
+\end{center}
+
+\mypar
+$a$ and $b$ are non-clock variables and $x1$ and $x2$ are clocks.
+Instead of {\tt a=b}, an arbitrary predicate on non-clock variables
+could be used. 
+The interpretation of this \WAIT\ statement is as
+follows: If {\tt a=b} evaluates to \TRUE\ and the
+values of the clocks satisfy the inequalities $x1 \leq 3$ and $x2
+\leq 5$, then a time period of $\delta$ can elapse while the values of
+all non-clock variables remain constant. $\delta$ must satisfy the
+conditions $x1 + \delta = x1' \leq 3$ and $x2 + \delta = x2' \leq 5$.
+In this way, \WAIT\
+statements are used to specify upper bounds on the time elapsed in a
+given state. The guards of $\WAIT$ commands are sometimes referred to
+as ``clock invariants'' because the invariants on the clocks specified
+by the guard must hold for the module to remain in that state.
+
+A timed module makes progress by executing either an $\UPDATE$ command
+or a $\WAIT$ command. If no $\WAIT$ command can be executed, then this
+forces an $\UPDATE$ command to be executed\footnote{For a precise
+treatment of the semantics of timed modules, refer to
+\cite{AlurHenzinger97}}. 
+
+\begin{figure}[h]
+{\tt
+  \MODULE\ \RTTrain\\
+  \qu \INTERFACE\ \pc\ : \set{\far,\near,\gate}; \arrive\ : \bool\\
+  \qu \PRIVATE\ x\ : \CLOCK\\
+  \qu \ATOM\ \CONTROLS\ \pc, x, \arrive\ \READS\ \pc, x, \arrive\\
+  \qu \INIT\\
+  \qu \begin{chtab}
+      \TRUE & \pc' := \far; \arrive' := \FALSE
+  \end{chtab}\\
+  \qu \UPDATE\\
+  \qu \begin{chtab}
+      \pc=\far & \pc' := \near; \arrive' := \TRUE; x' := 0\\
+      \pc=\near\ \AND\ x>=3 & \pc' := \gate; x' := 0\\
+      \pc=\gate\ \AND\ x>=1 & \pc' := \far; \arrive' := \FALSE\\
+  \end{chtab}\\
+  \qu \WAIT\\
+  \qu \begin{chtab}
+      \pc=\far & \\
+      \pc=\near\ \AND\ x<=5 & x' :<= 5 \\
+      \pc=\gate\ \AND\ x<=2 & x' :<= 2 \\
+  \end{chtab}\\
+  \qu \ENDATOM\\
+  \ENDMODULE
+}
+\caption{Real-time module for the train }
+\label{fig:rttrain}
+\end{figure}
+
+A simple example of a real-time module is presented in
+Figure~\ref{fig:rttrain}. This module describes the behavior of a
+train approaching a gate. The interface variable $\pc$ initially has
+the value $\far$, indicating that the train is far from the gate, and
+the variable $\arrive$ is set to $\FALSE$. $\pc$ can have the value
+$\far$ indefinitely, as indicated by the first $\WAIT$ command,
+or can take on the value $\near$. When the train moves
+to $\near$, the timer $x$ is reset to $0$ and the interface variable 
+$\arrive$ is set to $\TRUE$. The second $\WAIT$ command puts an
+upper bound of 5 on $x$ while $\pc = \near$. While $\pc = \near$,
+if $x \geq 3$, then the guard of the second $\UPDATE$ command is satisfied, which means
+that after spending 3 time units at $\pc = \near$, $\pc$ can move to $\far$.
+After 5 time units at $\pc = \near$, the guard of the second $\WAIT$ statement 
+is no longer satisfied, which forces the second update command to be executed.
+After 5 time units, $\pc$ {\em must} move to $\far$. 
+
+\mypar
+
+\begin{figure}
+{\tt
+  \MODULE\ \RTGate\\
+  \qu \EXTERNAL\ \arrive\ : \bool\\
+  \qu \INTERFACE\ \pc\ : \set{\open,\toclose,\closed}\\
+  \qu \PRIVATE\ y\ : \CLOCK\\
+  \qu \ATOM\ \CONTROLS\ \pc, y\ \READS\ \pc, y, \arrive\ \AWAITS\ \arrive \\
+  \qu \INIT\\
+  \qu \begin{chtab}
+    \TRUE & \pc' := \open
+  \end{chtab}\\
+  \qu \UPDATE\\
+  \qu \begin{chtab}
+      \pc=\open\ \AND\ \arrive' & \pc' := \toclose; y' := 0\\
+      \pc=\toclose\ \AND\ y>=1 & \pc' := \closed; y' := 0\\
+      \pc=\closed\ \AND\ y>=7 & \pc' := \open\\
+  \end{chtab}\\
+  \qu \WAIT\\
+  \qu \begin{chtab}
+      \pc=\open\ \AND\ \NOT\arrive' & \\
+      \pc=\toclose\ \AND\ y<=2 & y' :<= 2\\
+      \pc=\closed\ \AND\ y<=7 & y' :<= 7
+  \end{chtab}\\
+  \qu \ENDATOM\\
+  \ENDMODULE
+}
+\caption{Real-time railroad gate controller}
+\label{fig:rtctrl}
+\end{figure}
+
+The timed reactive module description for a gate controller given in 
+Figure~\ref{fig:rtctrl} operates in a similar fashion. The system
+consisting of the train and the controller is then given by
+
+\mypar
+{\tt
+RealTimeTrainSystem :=\ \\
+\qu \HIDE\ \arrive\ \IN\ \RTTrain\ \pppar\ \RTGate\ \ENDHIDE
+}
+
+\subsubsection{Transition Relations of Real-Time Modules}
+
+Currently, {\sc Mocha} restricts guards on clocks and clock invariants
+to be positive Boolean combinations of inequalities of the form $x \leq c$
+and $x \geq c$, where $c \in \nats$. This is adequate for modeling the
+behavior of physical systems. In
+\cite{HMP92}, it is proven that, with this restriction, for
+each trace $\trace$ of a timed module, there exists a trace
+$\inttrace$ such that (i) the sequence values that discrete variables
+take on is the same for $\trace$ and $\inttrace$ and (ii) all updates
+of discrete variables take place at integer-valued points in
+time. This enables clocks to be modeled as integer-valued variables
+that increase at the same rate. Timed modules are converted by {\sc
+Mocha} into (untimed) modules, equivalent to the original ones in the
+sense described above.
+
+\section{Verification with Real-Time Modules}
+
+The examples used in this section are located in the {\tt examples/} directory of the \mocha\ distribution.
+
+\subsection{Parsing Real-Time Modules}
+
+As is the case with untimed modules, real-time modules are read in
+using the {\tt read\_module} command. In the rest of this section, we
+use the real-time train example, which can be found in {\tt examples/rt\_train\_control}.
+On a {\tt read\_module}\index{mocha-commands!real\_module} command,
+\mocha\ displays the names of the modules that were successfully parsed. In
+the case of a parse error, an appropriate message is displayed.
+
+\mypar
+{\tt
+mocha: read\_module rt\_train\_control.rm \\
+Module RealTimeGate is composed and checked in. \\
+Module RealTimeTrain is composed and checked in. \\
+Module System is composed and checked in.\\
+parse successful.\\
+}
+
+All the commands described in Section~\ref{sec:parsing-modules}
+can be used with real-time modules in an identical manner.
+
+
+\subsection{Invariant Checking}
+
+The simplest form of invariant checking is computing the set of
+reached states of a real-time module. This set can be computed and
+stored in a region using the {\tt rtm\_search}\index{mocha-commands!rtm\_search} command. First, the
+transition relation of the module needs to be computed using {\tt
+rtm\_trans}\index{mocha-commands!rtm\_trans}. 
+
+\mypar
+{\tt
+mocha: rtm\_trans System \\
+Ordering variables using rtm\_static\_order \\
+Transition relation computed : 2 conjuncts \\
+Done initializing image info... \\
+mocha: rtm\_search System \\
+Initial Region Computed... \\
+Step 1: image mdd size =         20      |states| =        6    \\
+reached set mdd size =         20        |states| =        3    \\
+Step 2: image mdd size =         25      |states| =        8    \\
+reached set mdd size =         26        |states| =        5    \\
+Step 3: image mdd size =         29      |states| =       12    \\      
+\\
+\ldots\\
+\\
+Step 24: image mdd size =         16     |states| =       28    \\
+reached set mdd size =         40        |states| =      168    \\
+Step 25: image mdd size =         14     |states| =       36    \\      
+Done reached set computation...                                 \\
+reached set mdd size =         40        number of states =      168    \\
+System.r0    \\
+}
+
+\noindent
+{\tt System.r0} is the name of the region containing the set
+of reached states for the module {\tt System}. The region
+corresponding to the set of initial states can be obtained using the
+{\tt rtm\_init}\index{mocha-commands!rtm\_init} command.
+
+Invariants need to be specified in a {\tt .spec} file, as is the case
+with untimed modules. The file {\tt examples/rt\_train\_control/rt\_train\_control.spec}
+contains the following specification:
+
+\begin{center}
+\tt inv "safe" \NOT((pcTrain = gate) \& \NOT(pcGate = closed));
+\end{center}
+
+\mypar
+The invariant {\tt safe} is read in and checked as follows:
+
+\mypar
+{\tt
+mocha: read\_spec rt\_train\_control.spec \\
+safe \\
+mocha: inv\_check -r System safe \\
+Typechecking invariant safe... \\
+Typechecking successful \\
+Initial Region Computed... \\
+Step 1: image mdd size =         20      |states| =        6    \\
+reached set mdd size =         20        |states| =        3    \\
+Step 2: image mdd size =         25      |states| =        8    \\
+reached set mdd size =         26        |states| =        5    \\
+\\
+\ldots\\
+\\
+Step 25: image mdd size =         14     |states| =       36    \\
+Done reached set computation... \\
+reached set mdd size =         40        number of states =      168   \\
+\\
+Invariant safe failed in step 14  \\
+\\
+Counterexample for invariant safe \\
+arrive=0 pcTrain=far  \$x\_0=0 pcGate=open    \$y\_0=0 timeIncrement=0  \\
+arrive=1 pcTrain=near \$x\_0=0 pcGate=closing \$y\_0=0 timeIncrement=1  \\
+arrive=1 pcTrain=near \$x\_0=1 pcGate=closing \$y\_0=1 timeIncrement=0  \\ 
+arrive=1 pcTrain=near \$x\_0=1 pcGate=closed  \$y\_0=0 timeIncrement=1  \\ 
+arrive=1 pcTrain=near \$x\_0=2 pcGate=closed  \$y\_0=1 timeIncrement=1  \\ 
+arrive=1 pcTrain=near \$x\_0=3 pcGate=closed  \$y\_0=2 timeIncrement=1  \\ 
+arrive=1 pcTrain=near \$x\_0=4 pcGate=closed  \$y\_0=3 timeIncrement=0  \\ 
+arrive=1 pcTrain=gate \$x\_0=0 pcGate=closed  \$y\_0=3 timeIncrement=1  \\ 
+arrive=1 pcTrain=gate \$x\_0=1 pcGate=closed  \$y\_0=4 timeIncrement=0  \\ 
+arrive=0 pcTrain=far  \$x\_0=1 pcGate=closed  \$y\_0=4 timeIncrement=0  \\
+arrive=1 pcTrain=near \$x\_0=0 pcGate=closed  \$y\_0=4 timeIncrement=1  \\
+arrive=1 pcTrain=near \$x\_0=1 pcGate=closed  \$y\_0=5 timeIncrement=1  \\
+arrive=1 pcTrain=near \$x\_0=2 pcGate=closed  \$y\_0=6 timeIncrement=1  \\
+arrive=1 pcTrain=near \$x\_0=3 pcGate=closed  \$y\_0=7 timeIncrement=0  \\
+arrive=1 pcTrain=gate \$x\_0=0 pcGate=open    \$y\_0=7                  \\
+}
+
+Note that the command {\tt inv\_check} needs to be used with the {\tt
+-r} option for {\sc Mocha} to use the real-time interpretation on a
+given module. Otherwise the {\tt inv\_check} command functionality
+remains the same. The variable {\tt timeIncrement} is a variable
+internal to {\sc Mocha} and indicates how much time elapses while the
+discrete-valued variables keep their current values. 
+
+The invariant {\tt safe} in the example above would have passed if the
+train were allowed to approach the gate only once, because the gate
+closes in at most $2$ time units after detecting the $arrive$ signal,
+whereas the train takes at least $3$ time units to reach the gate
+after $arrive$ becomes true. However, the invariant {\tt safe} has
+failed because the train is allowed to enter the gate a second time
+before the gate has had the time to close. 
+
+% LocalWords:  mdd pcTrain timeIncrement inv untimed
+
+
+
+

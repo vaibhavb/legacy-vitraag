@@ -1,0 +1,112 @@
+<html>
+<head><title>sym_dynamic_var_ordering</title></head>
+<body>
+
+<h3>sym_dynamic_var_ordering - control the application of dynamic variable ordering</h3>
+<hr>
+<code>sym_dynamic_var_ordering [-d] [-e &lt;method&gt;] [-f &lt;method&gt;] [-h]</code><p>
+Control the application of dynamic variable ordering to the
+  flattened network. Dynamic ordering is a technique to reorder the MDD
+  variables to reduce the size of the existing MDDs.  When no options are
+  specified, the current status of dynamic ordering is displayed.  At most one
+  of the options -e, -f, and -d should be specified.  The commands
+  <tt>flatten_hierarchy</tt> and <tt>static_order</tt> must be invoked before
+  this command.<p>
+
+  Dynamic ordering may be time consuming, but can often reduce the size of the
+  MDDs dramatically.  The good points to invoke dynamic ordering explicitly
+  (using the -f option) are after the commands <tt>build_partition_mdds</tt>
+  and <tt>print_img_info</tt>.  If dynamic ordering finds a good ordering,
+  then you may wish to save this ordering (using <tt>write_order</tt>) and
+  reuse it (using <tt>static_order -s</tt>) in the future. A common sequence
+  used to get a good ordering is the following:<p>
+
+  <pre>
+  init_verify
+  print_img_info
+  dynamic_var_ordering -f sift
+  write_order <file>
+  flatten_hierarchy
+  static_order -s input_and_latch -f <file>
+  build_partition_mdds
+  print_img_info
+  dynamic_var_ordering -f sift
+  </pre>  
+  
+  Command options:<p>  
+
+  <dl>
+
+  <dt> -d
+  <dd> Disable dynamic ordering from triggering automatically.<p>
+  
+  <dt> -e &lt;method&gt;
+  <dd> Enable dynamic ordering to trigger automatically whenever a certain
+  threshold on the overall MDD size is reached. "Method" must be one of the following:<p>
+
+  <b>window:</b> Permutes the variables within windows of three adjacent
+  variables so as to minimize the overall MDD size.  This process is repeated
+  until no more reduction in size occurs.<p>
+
+  <b>sift:</b> Moves each variable throughout the order to find an optimal
+  position for that variable (assuming all other variables are fixed).  This
+  generally achieves greater size reductions than the window method, but is
+  slower.<p>
+  
+  <b>The following methods are only available if VIS has been linked with the
+  Bdd package from the University of Colorado (cuBdd).</b><p>
+
+  <b>random:</b> Pairs of variables are randomly chosen, and swapped in the
+  order. The swap is performed by a series of swaps of adjacent variables. The
+  best order among those obtained by the series of swaps is retained. The
+  number of pairs chosen for swapping equals the number of variables in the
+  diagram.<p>
+
+  <b>random_pivot:</b> Same as <b>random<b>, but the two variables are chosen
+  so that the first is above the variable with the largest number of nodes, and
+  the second is below that variable.  In case there are several variables tied
+  for the maximum number of nodes, the one closest to the root is used.<p>
+
+  <b>sift_converge:</b> The <b>sift<b> method is iterated until no further
+  improvement is obtained.<p>
+
+  <b>symmetry_sift:</b> This method is an implementation of symmetric
+  sifting. It is similar to sifting, with one addition: Variables that become
+  adjacent during sifting are tested for symmetry. If they are symmetric, they
+  are linked in a group. Sifting then continues with a group being moved,
+  instead of a single variable.<p>
+
+  <b>symmetry_sift_converge:</b> The <b>symmetry_sift<b> method is iterated
+  until no further improvement is obtained.<p>
+
+  <b>window{2,3,4}:</b> Permutes the variables within windows of n adjacent
+  variables, where "n" can be either 2, 3 or 4, so as to minimize the overall
+  MDD size.<p>
+
+  <b>window{2,3,4}_converge:</b> The <b>window{2,3,4}<b> method is iterated
+  until no further improvement is obtained.<p>
+
+  <b>group_sift:</b> This method is similar to <b>symmetry_sift</b>,
+  but uses more general criteria to create groups.
+
+  <b>group_sift_converge:</b> The <b>group_sift<b> method is iterated until no
+  further improvement is obtained.<p>
+
+  <b>annealing:</b> This method is an implementation of simulated annealing for
+  variable ordering. This method is potentially very slow.<p>
+
+  <b>genetic:</b> This method is an implementation of a genetic algorithm for
+  variable ordering. This method is potentially very slow.<p>
+
+  <dt> -f &lt;method&gt;
+  <dd> Force dynamic ordering to be invoked immediately.  The values for
+  method are the same as in option -e.<p>
+
+  <dt> -h
+  <dd> Print the command usage.
+
+  </dl>
+
+<HR>
+Last updated on 1031103 12h03
+</body></html>

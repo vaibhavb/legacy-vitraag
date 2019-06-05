@@ -1,0 +1,122 @@
+<html>
+<head><title> extproto </title></head>
+
+<body>
+
+<h2>NAME</h2>
+extproto - Extract documentation from specially-commented C files
+
+<h2>SYNOPSIS</h2>
+
+<tt>extproto</tt> [ <tt> -v </tt> ] [ <tt> --version </tt> ] [ <tt> -d </tt> ] [ <tt> --debug </tt> ] [ <tt> -a </tt> ]	[ <tt> --ANSI </tt> ] [ <tt> -k </tt> ] [ <tt> --KR </tt> ] [ <tt> --toANSI </tt> ] [ <tt> --polis </tt> ] [ <i>package</i><tt>.h</tt> ] [ <i>package</i><tt>Int.h</tt> ] [ <i>packageFile</i><tt>.c</tt> ]
+
+<h2>DESCRIPTION</h2>
+
+<i>Extproto</i> extracts function prototypes from C source files and
+places them in in either the C file itself (for static functions), an
+internal header file (<i>package</i><tt>Int.h</tt>), or an external
+header file (<i>package</i><tt>.h</tt> ).  Additionally, it can
+convert K&R-style function declarations into ANSI-style declarations
+using the <tt>--toANSI</tt> switch. <p>
+
+A backup of each modified file is made by placing a tilde (~) at the
+end of its name. <p>
+
+<h2>OPTIONS</h2>
+
+<dl>
+<dt> <tt>-v</tt>
+<dt> <tt>--version</tt>
+<dd> Print version information and exit. <p>
+
+<dt> <tt>-d</tt>
+<dt> <tt>--debug</tt>
+<dd> Enable debugging mode.  This prints an enormous amount of cryptic
+     information about what <i>extproto</i> is doing. <p>
+
+<dt> <tt>-a</tt>
+<dt> <tt>--ANSI</tt>
+<dd> Look for ANSI-style function declarations.  This is the default.
+     This should not be used with the <tt>--KR</tt> or
+     <tt>--toANSI</tt> options. <p>
+
+<dt> <tt>-k</tt>
+<dt> <tt>--KR</tt>
+<dd> Look for K&R-style function declarations.  This should not be
+     used with the <tt>--ANSI</tt> or <tt>--toANSI</tt> options. <p>
+
+<dt> <tt>--toANSI</tt>
+<dd> Look for K&R-style function declarations and write ANSI-style
+     function declarations.  <b> For this option to work correctly, all declarations must be in K&R form.</b> In particular, using the
+     <tt>--toANSI</tt> option on a C source file partially or totally in
+     ANSI form will damage it.  This should not be used with the
+     <tt>--ANSI</tt> or <tt>--KR</tt> options. <p>
+
+<dt> <tt>--polis</tt>
+<dd> Use the polis file/function naming rules. <p>
+
+</dl>
+
+<h2>EXAMPLES</h2>
+
+Add static function prototypes to the C source file <tt>example.c</tt>:
+
+<blockquote>
+<tt> example% extproto example.c </tt>
+</blockquote>
+
+Place internal function prototypes from all C files named <tt>tbl*.c</tt> and
+place them in the internal header file <tt>tblInt.h</tt>:
+
+<blockquote>
+<tt> example% extproto tblInt.h </tt>
+</blockquote>
+
+Extract externally-visible functions declared in K&R-style from all C
+files named <tt>tbl*.c</tt> and place them in the C header file
+<tt>tbl.h</tt>:
+
+<blockquote>
+<tt> example% extproto --KR tbl.h </tt>
+</blockquote>
+
+Convert all the C files in the directory, whose declarations are all in
+K&R-style to ANSI:
+
+<blockquote>
+<tt> example% extproto --toANSI *.c </tt>
+</blockquote>
+
+<h2>FILES</h2>
+
+<table>
+<tr>
+  <td> <i>packageFile</i><tt>.c</tt> </td>
+  <td> C source file </td>
+</tr>
+<tr>
+  <td> <i>package</i><tt>.h</tt> </td>
+  <td> Externally-visible header file </td>
+</tr>
+<tr>
+  <td> <i>package</i><tt>Int.h</tt> </td>
+  <td> Internal header file </td>
+</tr>
+</table>
+
+<h2>SEE ALSO</h2>
+
+<a href="extdoc.html">extdoc</a>,
+<a href="extindex.html">extindex</a>,
+<a href="packages.html">Documentation on Packages and File Structure</a>,
+<a href="naming.html">Documentation on Naming Conventions</a>,
+<a href="index.html">The Ext System</a>
+
+<h2>AUTHOR</h2>
+
+<a href="http://www.eecs.berkeley.edu/~sedwards/">Stephen Edwards</a> <br>
+<a href="http://www.berkeley.edu/">University of California, Berkeley</a> <br>
+<a href="mailto:sedwards@eecs.berkeley.edu"><tt>sedwards@eecs.berkeley.edu</tt></a>
+
+</body>
+</html>

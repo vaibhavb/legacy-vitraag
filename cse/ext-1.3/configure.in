@@ -1,0 +1,28 @@
+dnl autoconf source for ext -- the documentation extraction facility
+dnl
+dnl Stephen Edwards <sedwards@eecs.berkeley.edu>
+dnl
+dnl Process this file with autoconf to produce a configure script
+
+AC_INIT( extdoc.pl )
+
+AC_ARG_PROGRAM
+
+dnl perl is the one program we really need
+
+AC_PATH_PROGS(PERL, perl5 perl, no)
+AC_SUBST(PERL)dnl
+
+if test "$PERL" = no; then
+  PERL=/bin/perl
+  AC_MSG_WARN(No perl found -- assuming /bin/perl)
+fi
+
+dnl m4 is necessary for generating the .el file
+
+AC_PATH_PROG(M4, m4, no)
+AC_SUBST(M4)dnl
+
+AC_PROG_INSTALL
+
+AC_OUTPUT(Makefile)

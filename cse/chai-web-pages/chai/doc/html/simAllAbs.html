@@ -1,0 +1,176 @@
+<HTML>
+<HEAD><TITLE>sim package abstract</TITLE></HEAD>
+<BODY>
+
+
+<!-- Function Abstracts -->
+
+<dl>
+<DT> <A HREF="simAllDet.html#FreeStringArray" TARGET="MAIN"><CODE>FreeStringArray()</CODE></A>
+<DD> Frees an array of strings.
+
+<DT> <A HREF="simAllDet.html#SimAtomAlloc" TARGET="MAIN"><CODE>SimAtomAlloc()</CODE></A>
+<DD> Allocates a SimAtom.
+
+<DT> <A HREF="simAllDet.html#SimAtomControlVariablesConvertToString" TARGET="MAIN"><CODE>SimAtomControlVariablesConvertToString()</CODE></A>
+<DD> Returns a string of control variables.
+
+<DT> <A HREF="simAllDet.html#SimAtomDecrementNumAwaitingAtoms" TARGET="MAIN"><CODE>SimAtomDecrementNumAwaitingAtoms()</CODE></A>
+<DD> Decrements the numAwaitingAtom field.
+
+<DT> <A HREF="simAllDet.html#SimAtomDependencyInfoReadName" TARGET="MAIN"><CODE>SimAtomDependencyInfoReadName()</CODE></A>
+<DD> returns the name of module in the atom dependency info.
+
+<DT> <A HREF="simAllDet.html#SimAtomDependencyInfoUpdate" TARGET="MAIN"><CODE>SimAtomDependencyInfoUpdate()</CODE></A>
+<DD> Updates the AtomDependencyInfo to the current module.
+
+<DT> <A HREF="simAllDet.html#SimAtomDup" TARGET="MAIN"><CODE>SimAtomDup()</CODE></A>
+<DD> Partially duplicates a SimAtom.
+
+<DT> <A HREF="simAllDet.html#SimAtomFree" TARGET="MAIN"><CODE>SimAtomFree()</CODE></A>
+<DD> Frees an SimAtom.
+
+<DT> <A HREF="simAllDet.html#SimChoiceCmd" TARGET="MAIN"><CODE>SimChoiceCmd()</CODE></A>
+<DD> Command for sim_choice
+
+<DT> <A HREF="simAllDet.html#SimComputeChoice" TARGET="MAIN"><CODE>SimComputeChoice()</CODE></A>
+<DD> Compute the choice, from the partialState and prevState.
+
+<DT> <A HREF="simAllDet.html#SimDependencyInfoSetIsUserAtom" TARGET="MAIN"><CODE>SimDependencyInfoSetIsUserAtom()</CODE></A>
+<DD> Clears all the isUserAtom flag in the dependencyInfo
+
+<DT> <A HREF="simAllDet.html#SimEndCmd" TARGET="MAIN"><CODE>SimEndCmd()</CODE></A>
+<DD> Command for sim_end
+
+<DT> <A HREF="simAllDet.html#SimInfoCmd" TARGET="MAIN"><CODE>SimInfoCmd()</CODE></A>
+<DD> Implements the sim_info command
+
+<DT> <A HREF="simAllDet.html#SimIsInitialRound" TARGET="MAIN"><CODE>SimIsInitialRound()</CODE></A>
+<DD> required
+
+<DT> <A HREF="simAllDet.html#SimIsStartOfRound" TARGET="MAIN"><CODE>SimIsStartOfRound()</CODE></A>
+<DD> Determines if the simulation is at the start of a round.
+
+<DT> <A HREF="simAllDet.html#SimIsUserTurn" TARGET="MAIN"><CODE>SimIsUserTurn()</CODE></A>
+<DD> required
+
+<DT> <A HREF="simAllDet.html#SimListConcatenate" TARGET="MAIN"><CODE>SimListConcatenate()</CODE></A>
+<DD> Appends list2 to list1.
+
+<DT> <A HREF="simAllDet.html#SimManagerDeleteSimInfo" TARGET="MAIN"><CODE>SimManagerDeleteSimInfo()</CODE></A>
+<DD> Delete the simInfo of the module.
+
+<DT> <A HREF="simAllDet.html#SimManagerInit" TARGET="MAIN"><CODE>SimManagerInit()</CODE></A>
+<DD> Initialize the global sim_manager
+
+<DT> <A HREF="simAllDet.html#SimManagerReadSimInfo" TARGET="MAIN"><CODE>SimManagerReadSimInfo()</CODE></A>
+<DD> Returns the simInfo of the module.
+
+<DT> <A HREF="simAllDet.html#SimModeCmd" TARGET="MAIN"><CODE>SimModeCmd()</CODE></A>
+<DD> required
+
+<DT> <A HREF="simAllDet.html#SimModeOfSimulation" TARGET="MAIN"><CODE>SimModeOfSimulation()</CODE></A>
+<DD> required
+
+<DT> <A HREF="simAllDet.html#SimModuleIsInfinite" TARGET="MAIN"><CODE>SimModuleIsInfinite()</CODE></A>
+<DD> Check if the module is infinite.
+
+<DT> <A HREF="simAllDet.html#SimObtainAtomArrayFromAtomNames" TARGET="MAIN"><CODE>SimObtainAtomArrayFromAtomNames()</CODE></A>
+<DD> required
+
+<DT> <A HREF="simAllDet.html#SimPrevStatePrintCmd" TARGET="MAIN"><CODE>SimPrevStatePrintCmd()</CODE></A>
+<DD> sim_prev_state_print
+
+<DT> <A HREF="simAllDet.html#SimReadAtomDependencyInfo" TARGET="MAIN"><CODE>SimReadAtomDependencyInfo()</CODE></A>
+<DD> required
+
+<DT> <A HREF="simAllDet.html#SimSelectCmd" TARGET="MAIN"><CODE>SimSelectCmd()</CODE></A>
+<DD> Picks the choice during simulation.
+
+<DT> <A HREF="simAllDet.html#SimSimAtomIsExternalVariable" TARGET="MAIN"><CODE>SimSimAtomIsExternalVariable()</CODE></A>
+<DD> Checks if the simAtom represents an external variable.
+
+<DT> <A HREF="simAllDet.html#SimSimInfoAddToManager" TARGET="MAIN"><CODE>SimSimInfoAddToManager()</CODE></A>
+<DD> Add the simInfo to the Manager
+
+<DT> <A HREF="simAllDet.html#SimSimInfoAlloc" TARGET="MAIN"><CODE>SimSimInfoAlloc()</CODE></A>
+<DD> Allocate a simInfo for a module
+
+<DT> <A HREF="simAllDet.html#SimSimInfoFree" TARGET="MAIN"><CODE>SimSimInfoFree()</CODE></A>
+<DD> Frees a simInfo
+
+<DT> <A HREF="simAllDet.html#SimSimInfoReadChoice" TARGET="MAIN"><CODE>SimSimInfoReadChoice()</CODE></A>
+<DD> retuns the list of choices.
+
+<DT> <A HREF="simAllDet.html#SimSimInfoReadIndex" TARGET="MAIN"><CODE>SimSimInfoReadIndex()</CODE></A>
+<DD> Returns the index in the simInfo.
+
+<DT> <A HREF="simAllDet.html#SimSimInfoReadName" TARGET="MAIN"><CODE>SimSimInfoReadName()</CODE></A>
+<DD> Returns the module name represented by the simInfo.
+
+<DT> <A HREF="simAllDet.html#SimSimInfoReadPartialState" TARGET="MAIN"><CODE>SimSimInfoReadPartialState()</CODE></A>
+<DD> Returns the partialState.
+
+<DT> <A HREF="simAllDet.html#SimSimInfoReadPrevState" TARGET="MAIN"><CODE>SimSimInfoReadPrevState()</CODE></A>
+<DD> Returns the prevState.
+
+<DT> <A HREF="simAllDet.html#SimSimInfoReadSimAtomOrder" TARGET="MAIN"><CODE>SimSimInfoReadSimAtomOrder()</CODE></A>
+<DD> Returns the array of simAtomOrder.
+
+<DT> <A HREF="simAllDet.html#SimSimInfoReadVarInfo" TARGET="MAIN"><CODE>SimSimInfoReadVarInfo()</CODE></A>
+<DD> retuns the varInfo.
+
+<DT> <A HREF="simAllDet.html#SimSimInfoSetChoice" TARGET="MAIN"><CODE>SimSimInfoSetChoice()</CODE></A>
+<DD> Sets the Choice field in the simInfo
+
+<DT> <A HREF="simAllDet.html#SimSimInfoSetIndex" TARGET="MAIN"><CODE>SimSimInfoSetIndex()</CODE></A>
+<DD> Sets the Index field in the simInfo
+
+<DT> <A HREF="simAllDet.html#SimSimInfoSetPartialState" TARGET="MAIN"><CODE>SimSimInfoSetPartialState()</CODE></A>
+<DD> Sets the PartialState field.
+
+<DT> <A HREF="simAllDet.html#SimSimInfoSetPrevState" TARGET="MAIN"><CODE>SimSimInfoSetPrevState()</CODE></A>
+<DD> Sets the PrevState field.
+
+<DT> <A HREF="simAllDet.html#SimSimInfoSetSimAtomOrder" TARGET="MAIN"><CODE>SimSimInfoSetSimAtomOrder()</CODE></A>
+<DD> Sets the SimAtomOrder field in the simInfo.
+
+<DT> <A HREF="simAllDet.html#SimSimInfoSetVarInfo" TARGET="MAIN"><CODE>SimSimInfoSetVarInfo()</CODE></A>
+<DD> Sets the varInfo field.
+
+<DT> <A HREF="simAllDet.html#SimSimulationStart" TARGET="MAIN"><CODE>SimSimulationStart()</CODE></A>
+<DD> Start Simulation for a module
+
+<DT> <A HREF="simAllDet.html#SimStartCmd" TARGET="MAIN"><CODE>SimStartCmd()</CODE></A>
+<DD> Command for sim_start
+
+<DT> <A HREF="simAllDet.html#SimStateUpdateWithChoice" TARGET="MAIN"><CODE>SimStateUpdateWithChoice()</CODE></A>
+<DD> Update the simInfo when a choice is made.
+
+<DT> <A HREF="simAllDet.html#SimTopologicalSort" TARGET="MAIN"><CODE>SimTopologicalSort()</CODE></A>
+<DD> Topological sort of the simAtoms.
+
+<DT> <A HREF="simAllDet.html#Sim_Init" TARGET="MAIN"><CODE>Sim_Init()</CODE></A>
+<DD> Initialization of the sim package.
+
+<DT> <A HREF="simAllDet.html#Sim_SimAtomArrayFree" TARGET="MAIN"><CODE>Sim_SimAtomArrayFree()</CODE></A>
+<DD> Frees an array of simAtoms.
+
+<DT> <A HREF="simAllDet.html#Sim_SimAtomReadAtom" TARGET="MAIN"><CODE>Sim_SimAtomReadAtom()</CODE></A>
+<DD> Returns the atom that is represented by this simAtom.
+
+<DT> <A HREF="simAllDet.html#Sim_SimAtomReadIsUserAtom" TARGET="MAIN"><CODE>Sim_SimAtomReadIsUserAtom()</CODE></A>
+<DD> Returns true if the simAtom is an user atom.
+
+<DT> <A HREF="simAllDet.html#Sim_SimAtomReadName" TARGET="MAIN"><CODE>Sim_SimAtomReadName()</CODE></A>
+<DD> Read the name of the simAtom
+
+<DT> <A HREF="simAllDet.html#Sim_SimAtomReturnSortedArray" TARGET="MAIN"><CODE>Sim_SimAtomReturnSortedArray()</CODE></A>
+<DD> Returns a sorted array of the simAtoms.
+
+</DL>
+
+<HR>
+
+Last updated on 1031103 12h03
+</BODY></HTML>

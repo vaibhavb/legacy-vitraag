@@ -1,0 +1,47 @@
+module RealTimeGate
+external arrive:bool
+interface pcGate: {open,closing,closed}
+private y: clock
+	atom
+	controls pcGate, y
+	reads    pcGate, y, arrive
+	awaits   arrive
+
+	init
+	[] true -> pcGate' := open
+
+	update
+	[] pcGate = open    & arrive'   -> pcGate' := closing; y' := 0
+	[] pcGate = closing & y >= 1    -> pcGate' := closed;  y':= 0
+	[] pcGate = closed  & y >= 7    -> pcGate' := open
+
+	wait
+	[] pcGate = open    & ~arrive'     ->
+	[] pcGate = closing & y <= 2       -> y' :<= 2
+	[] pcGate = closed  & y <= 7       -> y' :<= 7
+	endatom
+endmodule
+
+module RealTimeTrain
+interface pcTrain: {far,near,gate}; arrive: bool
+private x: clock
+	atom
+	controls pcTrain, x, arrive
+	reads    pcTrain, x, arrive
+
+	init
+	[] true -> pcTrain' := far; arrive':= false
+
+	update
+	[] pcTrain = far                 -> pcTrain' := near;  arrive' := true; x' := 0
+	[] pcTrain = near    & x >= 3    -> pcTrain' := gate;  x':= 0
+	[] pcTrain = gate    & x >= 1    -> pcTrain' := far;   arrive' := false
+
+	wait
+	[] pcTrain = far                    ->
+	[] pcTrain = near    & x <= 5       -> x' :<= 5
+	[] pcTrain = gate    & x <= 2       -> x' :<= 2
+	endatom
+endmodule
+
+System := hide arrive in (RealTimeGate || RealTimeTrain) endhide

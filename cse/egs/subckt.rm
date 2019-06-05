@@ -1,0 +1,11 @@
+\begin{minipage}[t]{2in} 
+\scriptsize
+\begin{verbatim}
+ControlLogic:= a_ControlLogic
+b_Lights:= a_Lights  
+ ||  ControlLogic \
+    [ PresentSignal , Button , NextSignal \
+    := CarSignal , Button , Tmp  ]
+Lights := hide  Tmp  in b_Lights endhide
+\end{verbatim}
+\end{minipage}

@@ -1,0 +1,25 @@
+\begin{minipage}[t]{2in} 
+\scriptsize
+\begin{verbatim}
+module counterO
+  interface x0: bool; x1: bool;
+  external  toone: bool;
+
+atom controls x0, x1 reads x0, x1, toone
+  init
+       [] true -> x0' := true; x1' := true;
+  update
+       []  toone             -> \
+                 x1' := true;  x0' := true
+       [] ~toone &  x1 &  x0 -> \
+                x1' := true;  x0' := false
+       [] ~toone &  x1 & ~x0 -> \
+                x1' := false; x0' := true
+       [] ~toone & ~x1 &  x0 -> \
+                x1' := false; x0' := false
+       [] ~toone & ~x1 & ~x0 -> \
+                x1' := true;  x0' := true
+  endatom
+endmodule
+\end{verbatim}
+\end{minipage}

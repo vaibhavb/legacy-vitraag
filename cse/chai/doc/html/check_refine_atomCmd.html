@@ -1,0 +1,103 @@
+<html>
+<head><title>check_refine_atom</title></head>
+<body>
+
+<h3>check_refine_atom - Do one step in the compositional refinement proof of "implementation refines specification"</h3>
+<hr>
+<code>check_refine_atom [-e] [-f &lt;size or varlist&gt; ] [-h] [-i &lt;varlist&gt; ] [-k] [-o &lt;fname&gt;] [-r] [-v] &lt;impl&gt; &lt;spec&gt; &lt;spec_interface_varname&gt;</code><p>
+Do one step in the compositional refinement proof of "implementation refines
+  specification". The step done corresponds to the atom that controls variable named spec_interface_varname
+  in the specification (let us call this atom atom1). The command does the following: <p>
+
+  Given an implementation, specification modules and and an interface variable in 
+  the specification that controls and atom (say atom1),
+  construct new modules "new specification" and "new implementation"
+  such that
+  1. new specification contains atom1 only.
+  2. new implementation contains heuristically chosen atoms
+  from specification and implementation that control variables
+  controlled by atom1, but do not include atom1 itself <p>
+			     
+  A refinement check between the new specification and the new implementation is performed 
+  First, new specification and implementation modules are created. The new 
+  specification contains just  atom1. The new implementation contains chosen atoms
+  from specification and implementation that control variables
+  controlled by atom1, but do not include atom1 itself. At this point the 
+  new implementation contains only "essential atoms" to do a refinement check. <p>
+
+  Further atoms may need to be added to the new implementaion to
+  constrain its environment.  There are two ways to do this:<p>
+
+     1. AUTOMATIC:  If the "-f 0" (size) option is chosen, then the
+     implementation module is not grown any further. For the "-f 1" and
+     "-f 2" options, progressively larger "constraining" environments are
+     chosen for the new implementation module. (The default if no explicit
+     "-f" option is used is "-f 2") <p>
+
+     2. MANUAL: The user can also FORCE specific variables to be controlled in the
+     new implementation by using simply supplying a list of variables
+     in the -f option (example -f {var1 var2}). <p>
+
+  Preference is always given to choose atoms from the specification for the 
+  new implementation whenever possible. However, the "-i" option can be 
+  used to choose specific atoms from the implelementation. <p>
+
+  NOTE 1 : Since atom names are mangled by MOCHA (to uniquify atom names during
+  parallel composition), we identify an atom by any variable that is controlled
+  by the atom.<p>
+
+  NOTE  2 : List of variables are specified by enclosing them in curly braces
+  Example {var1 var2}<p>
+
+  NOTE 3: You also have to use curly braces if your variable name has array indices
+  Example {foo2[0][1]}<p>
+
+  EXAMPLES:<p>
+  
+  Suppose the specification module is "Spec" and implementation module is "Impl".
+  To do the sub-proof corresponding to a specific atom in the Spec that controls
+  variable "myVar":
+     check_refine_atom Impl Spec myVar<p>
+     
+  To force variables foo1 and foo2[0] to be controlled use:
+     check_refine_atom -f {foo1 foo2[0]} Impl Spec myVar<p>
+
+  In addition, to force foo2[0] to be constrained by an atom from Impl, use:
+     check_refine_atom -f {foo1 foo2[0]} -i {foo2[0]} Impl Spec myVar <p>
+
+
+  Command Options:<p>
+
+  <dl>
+  <dt> -e
+  <dd> do transition invariant check only at the end (after completing reachability)   <p>
+
+  <dt> -f 0|1|2|var_name_list
+  <dd> 0 --> only the "essential atoms" are chosen
+  <dd> 1 --> chooses a bigger set of atoms than size=0. Guaranteed to be comparable
+  <dd>            with the new specification 
+  <dd> 2 --> heuristically chooses a bigger set of atoms than size=1 <p>
+  <dd> var_name_list -> forces atoms controlling variables in  var_name_list to be chosen in the new implementation <p>
+
+  <dt> -h
+  <dd> print usage <p>
+
+  <dt> -i var_name_list
+  <dd> if the atom controlling variable in var_name_list is chosen, choose it  from the implementation <p>
+
+  <dt> -k
+  <dd> keep the new modules (for debugging purposes: default behavior if you do not use this option is to delete them) <p>
+
+  <dt> -o fname
+  <dd> write out the mdd variable ordering in file specified by <fname> <p>
+  
+  <dt> -r
+  <dd> Do not do refinement check on the new modules (for debugging purposes) <p>
+
+  <dd> verbose mode <p>
+
+  </dl>
+
+<HR>
+Last updated on 1031104 18h39
+</body></html>

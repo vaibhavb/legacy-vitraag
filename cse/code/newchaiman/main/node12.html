@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with jLaTeX2HTML 2002 (1.62) JA patch-1.4
+patched version by:  Kenshi Muto, Debian Project.
+LaTeX2HTML 2002 (1.62),
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Executing modules</TITLE>
+<META NAME="description" CONTENT="Executing modules">
+<META NAME="keywords" CONTENT="main">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<META NAME="Generator" CONTENT="jLaTeX2HTML v2002 JA patch-1.4">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="main.css">
+
+<LINK REL="previous" HREF="node11.html">
+<LINK REL="up" HREF="node11.html">
+<LINK REL="next" HREF="node13.html">
+</HEAD>
+
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html182"
+  HREF="node13.html">[Next]</A> 
+<A NAME="tex2html178"
+  HREF="node11.html">[Up]</A> 
+<A NAME="tex2html174"
+  HREF="node11.html">[Previous]</A>  
+<A NAME="tex2html180"
+  HREF="node17.html">[Index]</A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html183"
+  HREF="node13.html">ATL model checking</A>
+<B> Up:</B> <A NAME="tex2html179"
+  HREF="node11.html">Running CHAI</A>
+<B> Previous:</B> <A NAME="tex2html175"
+  HREF="node11.html">Running CHAI</A>
+ &nbsp <B>  <A NAME="tex2html181"
+  HREF="node17.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00251000000000000000">
+Executing modules</A>
+</H2>
+C<SMALL>HAI</SMALL> allows the user to execute any module in three modes: manual,
+random, and game, via a Tk-based GUI for interacting with the tool and
+viewing the execution trace. To execute a module, first read it in
+using the <TT>read_module</TT> command. Then choose it by selecting it in the
+browser, that is in turn brought up by choosing under the browse
+option under the ``File'' pull down menu. 
+
+<P>
+After selecting the module, press the open button. For instance,
+choose the module <TT>closedthreebitcounter</TT>. A new window will pop
+up containing the
+<BR>
+R<SMALL>EACTIVE</SMALL>M<SMALL>ODULES</SMALL> definition of the module selected. Now click
+the ``Execute'' button. A new window pops up giving the three options
+for execution as radio buttons. For the Game execution option, the
+user gets to choose the atoms for which he can specify the next state
+(i.e., resolve the non-determinism); the other atoms' next states will
+be chosen by C<SMALL>HAI</SMALL>; use the browse button to choose the atoms the
+user wants to control. 
+
+<P>
+The upper window presents (by default) a table of the external and interface
+variables for the chosen module and possible values at the current
+state. The user gets to choose the particular tuple he wants to
+proceed with in the case of manual or game execution.  Additional
+variables to view can be selected by choosing the ``Select Variables''
+option under the options pull down menu. For instance, if you chose to
+execute <TT>closedthreebitcounter</TT> under the game mode, and chose to
+play the module <TT>InputModule</TT>, you will have to choose the
+input variable to be made visible. When the user's button is lit, the
+user should make a choice from the upper window and then press the
+``Go!'' button. When it's the system's turn pressing the ``Go!''
+button, executes the system's move. Try it!
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html182"
+  HREF="node13.html">[Next]</A> 
+<A NAME="tex2html178"
+  HREF="node11.html">[Up]</A> 
+<A NAME="tex2html174"
+  HREF="node11.html">[Previous]</A>  
+<A NAME="tex2html180"
+  HREF="node17.html">[Index]</A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html183"
+  HREF="node13.html">ATL model checking</A>
+<B> Up:</B> <A NAME="tex2html179"
+  HREF="node11.html">Running CHAI</A>
+<B> Previous:</B> <A NAME="tex2html175"
+  HREF="node11.html">Running CHAI</A>
+ &nbsp <B>  <A NAME="tex2html181"
+  HREF="node17.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+Vaibhav Bhandari
+2003-06-17
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,266 @@
+
+\section{Introduction}
+
+One of the main applications of modeling formalisms is to capture 
+designs.
+%tah In the field of hardware design, modeling languages (called design
+%languages) provide the basis for design, validation, and
+%synthesis of hardware components and architectures. 
+%tah In this paper we present {\em synchronous interface models\/} that are
+We present {\em interface models\/} that are
+specifically geared to support the component-based approach to
+design. 
+Interface models describe both the inputs that can be accepted by a
+component, and the outputs it can generate. 
+%tah Synchronous interface models provide a means for answering three basic
+%questions in component-based design: 
+As an interface constrains the acceptable inputs, the underlying component 
+fits into some design contexts (which meet the constraints), but not into
+others.  
+Interface models provide a means for answering four 
+questions that arise in component-based design: 
+the {\em well-formedness question\/} 
+(can a component be used in some design, i.e., are the input constraints 
+satisfiable?),
+the {\em verification question\/}
+(does a component satisfy a given property in all designs?),
+the {\em compatibility question\/} 
+(do two components interact in compatible ways in a design?), 
+and the {\em refinement question\/}
+(can a component be substituted for another one in every design context 
+without violating compatibility?). 
+
+For each of the questions of well-formedness, verification, compatibility, 
+and refinement, there are two basic choices for treating inputs and outputs.
+The {\em graph\/} view quantifies inputs and outputs with the same polarity;
+the {\em game\/} view quantifies inputs and outputs with opposite polarities.
+In the graph view, both inputs and outputs can be seen as labels in a 
+nondeterministic state transition graph;
+in the game view, inputs and outputs are chosen by different players and 
+the result of each combination of choices determines the state transition.
+For example, the graph view is appropriate for the verification question:
+does a component satisfy a given property for all acceptable inputs and all 
+possible outputs?
+On the other hand, the game view is necessary for the well-formedness
+question \cite{ALW,DillThesis}:
+are there acceptable inputs for all possible choices of outputs?
+We argue that also for compatibility and refinement, the game view is the 
+appropriate one.
+
+
+\subsection{The graph view}
+
+The graph view is taken by many process algebras 
+(e.g., \cite{Hoare85,Milner89}) and state-based models 
+(e.g., \cite{MPvol1,Lynch96,SMV96,RM96journal}).
+These frameworks are aimed at verification.
+Indeed, also refinement is typically viewed as a verification question:
+does a more detailed description of a component generate only behaviors that 
+are permitted by a more abstract description?
+%the question 
+%{\em ``does a system $\mp$ satisfy a property $\phi$?''} is
+%interpreted as: {\em ``does $\mp$ satisfy $\phi$, for all inputs and
+%outputs?''}. 
+Refinement is usually defined as a form of trace containment or simulation: 
+when quantifying universally over both inputs and outputs, we say that
+a component $\mq$ refines a component $\mp$ (written $\mq \refi \mp$)
+if, for all input and output choices, the behaviors of $\mq$ are a
+subset of those of~$\mp$.  
+In particular, $\mq$ can only produce outputs that are also produced
+by~$\mp$, and $\mq$ can only accept inputs that are also accepted 
+by~$\mp$. 
+This ensures that every
+language-theoretic property (such as safety) that holds for $\mp$ also
+holds for~$\mq$. %\cite{??}. 
+%
+The graph view of refinement, however, becomes problematic when we 
+interpret refinement as substitutivity.
+The output clause is still appropriate: by requiring that the output
+behavior of $\mq$ is a subset of that of $\mp$, it ensures that if the 
+outputs of $\mp$ can be accepted by the other components of the design, 
+so can those of~$\mq$. 
+The input clause instead is questionable: it states that the implementation
+$\mq$ should be able to accept a {\em subset\/} of the inputs accepted
+by the specification~$\mp$.
+% This does not correspond to the notion of subtyping in programming
+% languages \cite{?} \mynote{suggestions?}, where a subtype of a
+% functional type is required to accept more inputs, and produce fewer
+% outputs. 
+This raises the possibility that, when $\mq$ is substituted for $\mp$
+in a design, $\mq$ cannot accept some inputs from other components
+that could be accepted by~$\mp$. 
+Hence, {\em substitutivity of refinement\/} does not hold in the
+graph view.
+Indeed, in process algebras and the modeling language SMV
+\cite{SMV96}, if $\mq \refi \mp$ and $\mp \| \mr$ is 
+deadlock-free, it is possible that $\mq \| \mr$ deadlocks
+\cite{AbramskyTACAS97}. 
+To remedy this situation, some models, such as {\em I/O automata\/}
+\cite{LT87} and {\em reactive modules\/} \cite{RM96journal},
+%tah and {\em timed modules\/} \mynote{check name} \cite{GSSL94,CONCUR97AH}
+require that components be able to accept {\em all\/} possible
+inputs; this condition is known as {\em input-enabledness\/} or {\em
+receptivity}.
+This requirement 
+%has two consequences. 
+%First, it prevents models from specifying the inputs they can
+% accept. 
+% Second, it 
+forces models to specify the outputs generated in response
+to {\em all\/} possible inputs, including inputs that the designers
+know cannot occur in the actual design. 
+%
+% put this back in in the journal version 
+\begin{comment}
+In turn, this creates further complications in the study of refinement. 
+It is natural to require that the output behavior of $\mq$ is a subset
+of that of $\mp$, when these output behaviors occur in response to
+inputs that are possible in the design.
+Extending the requirement also to inputs that are known not to occur
+is instead problematic: such outputs are often chosen arbitrarily,
+with the goal of simplifying the models or their
+implementations (as in the case of hardware optimizations that
+exploit ``don't care'' information about inputs). 
+Thus, in input-enabled or receptive approaches, refinement is
+generally checked only between {\em closed\/} systems, that have no
+input from the environment; open systems are first closed by composing
+them with specifically-designed components that represent the
+environment. 
+\end{comment}
+
+The graph view is also limited in its capability to analyze
+component compatibility.  
+If models specify explicitly which inputs can be accepted, and which ones
+are {\em illegal}, then it is possible to ask the compatibility
+question generically: do illegal inputs occur? 
+If we quantify universally over both inputs and outputs, we obtain 
+a verification question: two components $\mp$ and $\mq$ are
+compatible if, once composed, they accept all inputs.
+This is not a natural phrasing of the compatibility question: it
+requires $\mp \| \mq$ to accept all inputs, even though 
+$\mp$ and $\mq$ could have illegal inputs. 
+% This is an overly limiting view of the compatibility question: 
+% it treats the composition $\mp\|\mq$, which cannot constrain 
+% inputs, different from the components $\mp$ and~$\mq$,
+% which do constrain inputs.
+%Just as each of $\mp$ and $\mq$ can have illegal inputs, so can their
+%composition $\mp \| \mq$: 
+A more compositional definition is to call $\mp$
+and $\mq$ compatible if there are {\em some\/} input sequences that
+ensure that all illegal inputs of $\mp$ and $\mq$ are avoided, and to
+label all other sequences as illegal for $\mp \| \mq$. 
+This definition of compatibility leads to a dual treatment of inputs
+(quantified existentially) and outputs (quantified universally), and
+to the game view. 
+
+
+\subsection{The game view} 
+
+According to the game view, inputs and outputs play dual roles.
+%component models describe both the inputs that can be 
+%accepted from the environment, and the outputs that can be generated.
+In trace theory \cite{DillThesis}, a trace model consists in two sets,
+of accepted and rejected traces, and games are used to solve the 
+realizability and compatibility questions.
+In the game semantics of
+\cite{Abramsky97,AbramskyTACAS97} and the interface models of 
+\cite{luca-ia-01,luca-it-01}, components are explicitly 
+modeled as games between two players, Input and Output. 
+The moves of Input represent the inputs that can be accepted, and the
+moves of Output the outputs that can be generated. 
+To model the fact that these sets can change in time, after the input
+and output moves are chosen, the game moves to a new state, with
+possibly different sets of accepted inputs and possible outputs. 
+
+In the study of compatibility, game-based approaches quantify inputs
+existentially, and outputs universally. 
+When two components $\mp$ and $\mq$ are composed, their composition
+may have illegal states, where one component emits outputs that are
+illegal inputs for the other one.
+%\mynote{define illegal states in the previous subsection?} 
+Yet, $\mp$ and $\mq$ are considered {\em compatible\/} as long as
+there is {\em some\/} input behavior that ensures that, for all output
+behaviors, the illegal states are avoided: 
+% compatibility becomes a game-theoretic, rather than verification,
+% question.
+in other words, $\mp$ and $\mq$ are compatible if there is some
+environment in which they can be used correctly together.
+In turn, the input behaviors that ensure compatibility constitute the
+legal behaviors for the composition $\mp \| \mq$: when composing
+component models, both the possible output behaviors, and the legal
+input behaviors, are composed. 
+
+The game view leads to an {\em alternating\/} view of refinement
+\cite{CONCUR98AHKV}: a more detailed component $\mq$ refines an
+abstract component $\mp$ if all legal inputs of $\mp$
+are also legal for $\mq$ and if, when $\mp$ and $\mq$ are subject to
+the same (legal) inputs, $\mq$ generates output behaviors that are a
+subset of those of $\mp$. 
+% if all legal inputs of $\mp$ are also legal for $\mq$, and if all the
+% outputs of $\mq$ can be produced also by $\mp$.
+% \mynote{cut?}
+% Technically, if the underlying notion is simulation, this requires that
+% at all related states, the input moves of $\mp$ can be simulated by
+% $\mq$, and the output moves of $\mq$ can be simulated by $\mp$, with
+% the moves leading then to related states. 
+This definition ensures that, whenever $\mq \refi \mp$, we can
+substitute $\mq$ for $\mp$ in every design without creating any
+incompatibility: in the game view, substitutivity of refinement
+holds. 
+The alternating definition of refinement also mirrors the contravariant 
+definition of subtyping in programming languages, which also supports 
+substitutivity \cite{Mitchell96}.
+Indeed, the game framework can be viewed as a generalization of type theory to
+behaviors. 
+
+
+\subsection{Synchronous interface models} 
+
+In this paper, we adopt the game view to modeling, and we
+introduce two interface models for {\em synchronous} components.
+We begin with the simple model of {\em Moore interfaces\/}:
+in addition to the usual transition relation of a
+synchronous system, which describes the update rules for the outputs, a
+Moore interface has a symmetrically-defined transition relation for the
+inputs, which specifies which input transitions are acceptable.
+% Moore interfaces are well-suited to a symbolic implementation, and we
+% discuss in detail the algorithms for compatibility and
+% refinement checking, showing that their game-theoretic nature does not
+% result in a performance penalty compared to the transition-system
+% view. 
+Our second model, {\em bidirectional interfaces},
+illustrate how game-based models can
+be richer than their graph-based counterparts.
+Bidirectional connections cannot be modeled in the input-enabled
+setting: there are always environments that use such connections as
+input, and environments that use them as output, so that no component
+can work in all environments.  
+Bidirectional connections, however, can be naturally modeled as a game
+between Input and Output players.
+As an example, we encode the access protocol to the PCI bus, in
+which several components share access to a multi-directional bus. 
+By checking the compatibility of the component models, we can ensure
+that no conflicts for bus access arise. 
+We have implemented tools for symbolic compatibility and
+refinement checking for both Moore and bidirectional interfaces, and we 
+discuss how the game-based algorithms can be implemented with minor
+modifications to the usual symbolic machinery for graph-based algorithms, 
+and yield a similar efficiency. 
+
+\begin{comment}
+Finally, interfaces enable us to encode the environment assumptions
+that are used in assume-guarantee reasoning directly as input
+assumptions of the interface, rather than as separate ``environment'' 
+components. 
+This leads to a verification rule for compositional refinement that
+combines, and generalizes, rules proposed in
+\cite{RM96journal,concur99freddy}. 
+The rule illustrates how the essence of compositional verification
+consists in studying {\em both\/} the implementation and the
+specification as constrained by their actual environments. 
+\end{comment}
+
+
+
+
+

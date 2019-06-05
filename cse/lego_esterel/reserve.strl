@@ -1,0 +1,43 @@
+%This module is the initial version of a sort of reservation module for
+%reserving resources for Lego.  It focus mainly on motor control.
+%
+%Jeremy Stolarz, brzlnut@cats.ucsc.edu
+
+module RESERVE_MOT:
+output Motor_Dir : integer, Motor_Speed : integer, Error;
+inputoutput Motor;
+constant Time : integer, Dir : integer, Speed : integer;
+
+present Motor then
+   emit Error;
+else
+   emit Motor_Dir(Dir);
+   emit Motor_Speed(Speed);
+   pause;
+   repeat Time-1 times
+      emit Motor;
+      pause;
+   end repeat
+end present
+end module
+
+
+%The following module is an example on how to use RESERVE_MOT
+%Essentially, you have to pass RESERVE_MOT the signals it needs to emit 
+%direction and speed, the direction and speed of the motor, the length of time
+%(instants) you wish to control the motor, and the "motor signal" (name of the
+%motor, used to check that no one else is using it)
+ 
+module EXAMPLE:
+output MOTOR_A_DIR : integer, MOTOR_A_SPEED : integer;
+inputoutput A;
+
+constant MOTOR_FWD, MAX_SPEED : integer;
+
+signal Error in
+   run RESERVE_MOT [signal MOTOR_A_DIR / Motor_Dir, 
+                    MOTOR_A_SPEED / Motor_Speed;
+                    signal A / Motor;
+                    constant 100 / Time, MOTOR_FWD / Dir, MAX_SPEED / Speed]
+end signal
+end module

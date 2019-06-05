@@ -1,0 +1,558 @@
+<html>
+<head><title>The inv package: all functions </title></head>
+<body>
+
+
+<HR>
+<DL>
+<dt><pre>
+<A NAME="ExprReturnSimpleType"></A>
+static InvSimpleDataType <I></I>
+<B>ExprReturnSimpleType</B>(
+  InvExpr_t * <b>expr</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="invAllFile.html#invUtil.c"TARGET="ABSTRACT"><CODE>invUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="InvExprAlloc"></A>
+InvExpr_t * <I></I>
+<B>InvExprAlloc</B>(
+  InvExprType  <b>exprType</b>, <i></i>
+  InvExpr_t * <b>left</b>, <i></i>
+  InvExpr_t * <b>right</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="invAllFile.html#invUtil.c"TARGET="ABSTRACT"><CODE>invUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="InvExprConvertToAtmExpr"></A>
+static Atm_Expr_t * <I></I>
+<B>InvExprConvertToAtmExpr</B>(
+  Mdl_Module_t * <b>module</b>, <i></i>
+  Var_TypeManager_t * <b>typeManager</b>, <i></i>
+  InvExpr_t * <b>invExpr</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="invAllFile.html#invUtil.c"TARGET="ABSTRACT"><CODE>invUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="InvExprConvertToString"></A>
+char * <I></I>
+<B>InvExprConvertToString</B>(
+  InvExpr_t * <b>expr</b> <i></i>
+)
+</pre>
+<dd> Returns formula as a character string. All subformulas are
+  delimited by parenthesis. The syntax used is the same as used by the ATL
+  parser.  Does nothing if passed a NULL formula.
+<p>
+
+<dd> <b>Side Effects</b> InvExprConvertToString
+<p>
+
+<DD> <B>Defined in </B> <A HREF="invAllFile.html#invUtil.c"TARGET="ABSTRACT"><CODE>invUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="InvExprFree"></A>
+void <I></I>
+<B>InvExprFree</B>(
+  InvExpr_t * <b>invExpr</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="invAllFile.html#invUtil.c"TARGET="ABSTRACT"><CODE>invUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="InvExprIsWellFormed"></A>
+boolean <I></I>
+<B>InvExprIsWellFormed</B>(
+  InvExpr_t * <b>expr</b> <i></i>
+)
+</pre>
+<dd> This is a preliminary checking of well-formedness of the
+  formula. This is different from full type checking in that variables are
+  considered to have "universal" type.  The full type checking cannot be done
+  until the formula is associated with the type module.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="invAllFile.html#invUtil.c"TARGET="ABSTRACT"><CODE>invUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="InvFormulaAddToManager"></A>
+void <I></I>
+<B>InvFormulaAddToManager</B>(
+  Inv_Manager_t * <b>manager</b>, <i></i>
+  char * <b>name</b>, <i></i>
+  Inv_Invariant_t * <b>formula</b> <i></i>
+)
+</pre>
+<dd> Adds formula to the Inv manager
+<p>
+
+<dd> <b>Side Effects</b> Manipulates the global variable globalFormulaManager.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#InvYyparse">InvYyparse</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="invAllFile.html#invUtil.c"TARGET="ABSTRACT"><CODE>invUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="InvInitialize"></A>
+void <I></I>
+<B>InvInitialize</B>(
+   <b></b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="invAllFile.html#invMain.c"TARGET="ABSTRACT"><CODE>invMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="InvInvariantAlloc"></A>
+Inv_Invariant_t * <I></I>
+<B>InvInvariantAlloc</B>(
+  char * <b>name</b>, <i></i>
+  InvExpr_t * <b>expr</b> <i></i>
+)
+</pre>
+<dd> Allocate an invariant structure and return a pointer to
+                      it.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#InvInvariantFree">InvInvariantFree</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="invAllFile.html#invUtil.c"TARGET="ABSTRACT"><CODE>invUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="InvInvariantCreateTypedExpr"></A>
+Atm_Expr_t * <I></I>
+<B>InvInvariantCreateTypedExpr</B>(
+  Mdl_Module_t * <b>module</b>, <i></i>
+  Var_TypeManager_t * <b>typeManager</b>, <i></i>
+  Inv_Invariant_t * <b>invariant</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="invAllFile.html#invUtil.c"TARGET="ABSTRACT"><CODE>invUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="InvInvariantFree"></A>
+void <I></I>
+<B>InvInvariantFree</B>(
+  Inv_Invariant_t * <b>invariant</b> <i></i>
+)
+</pre>
+<dd> Free an invariant structure.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#InvInvariantAlloc">InvInvariantAlloc</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="invAllFile.html#invUtil.c"TARGET="ABSTRACT"><CODE>invUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="InvObtainNewFormulaName"></A>
+char * <I></I>
+<B>InvObtainNewFormulaName</B>(
+   <b></b> <i></i>
+)
+</pre>
+<dd> This routine returns an internally generated new
+  invariant name which serves as an ID to the unnamed invariant.
+<p>
+
+<dd> <b>Side Effects</b> Should free the string after use.
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="invAllFile.html#invMain.c"TARGET="ABSTRACT"><CODE>invMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="Inv_End"></A>
+int <I></I>
+<B>Inv_End</B>(
+  Tcl_Interp * <b>interp</b>, <i></i>
+  Main_Manager_t * <b>manager</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="invAllFile.html#invMain.c"TARGET="ABSTRACT"><CODE>invMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="Inv_FileParseFormula"></A>
+lsList <I></I>
+<B>Inv_FileParseFormula</B>(
+  Inv_Manager_t * <b>manager</b>, <i></i>
+  FILE * <b>fp</b> <i></i>
+)
+</pre>
+<dd> Parses a file containing a set of semicolon-ending ATL
+  formulas, and returns an array of Inv_Invariant_t representing those
+  formulas.  If an error is detected while parsing the file, the routine frees
+  any allocated memory and returns NULL.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="invAllFile.html#invUtil.c"TARGET="ABSTRACT"><CODE>invUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="Inv_Init"></A>
+int <I></I>
+<B>Inv_Init</B>(
+  Tcl_Interp * <b>interp</b>, <i></i>
+  Main_Manager_t * <b>manager</b> <i></i>
+)
+</pre>
+<dd> It creates all the new tcl commands defined in this
+  package.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<DD> <B>Defined in </B> <A HREF="invAllFile.html#invMain.c"TARGET="ABSTRACT"><CODE>invMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="Inv_InvariantArrayFree"></A>
+void <I></I>
+<B>Inv_InvariantArrayFree</B>(
+  array_t * <b>formulaArray</b> <i></i>
+)
+</pre>
+<dd> Calls InvInvariantFree on each formula in
+  formulaArray, and then frees the array itself.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#InvInvariantFree">InvInvariantFree</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="invAllFile.html#invUtil.c"TARGET="ABSTRACT"><CODE>invUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="Inv_InvariantReadName"></A>
+char * <I></I>
+<B>Inv_InvariantReadName</B>(
+  Inv_Invariant_t * <b>invariant</b> <i></i>
+)
+</pre>
+<dd> This function returns a string containing the name of the
+  invariant. The caller is not supposed to free the string.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Inv_InvariantReadTypedExpr">Inv_InvariantReadTypedExpr</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="invAllFile.html#invUtil.c"TARGET="ABSTRACT"><CODE>invUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="Inv_InvariantReadTypedExpr"></A>
+Atm_Expr_t * <I></I>
+<B>Inv_InvariantReadTypedExpr</B>(
+  Inv_Invariant_t * <b>invariant</b> <i></i>
+)
+</pre>
+<dd> This function returns the typed Atm_Expr_t of an
+  invariant.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Inv_InvariantReadName">Inv_InvariantReadName</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="invAllFile.html#invUtil.c"TARGET="ABSTRACT"><CODE>invUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="Inv_ManagerAlloc"></A>
+Inv_Manager_t * <I></I>
+<B>Inv_ManagerAlloc</B>(
+   <b></b> <i></i>
+)
+</pre>
+<dd> This function allocates the a new Inv_Manager_t, and
+  initialize the hash table in the manager.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="invAllFile.html#invUtil.c"TARGET="ABSTRACT"><CODE>invUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="Inv_ManagerFree"></A>
+void <I></I>
+<B>Inv_ManagerFree</B>(
+  Inv_Manager_t * <b>manager</b> <i></i>
+)
+</pre>
+<dd> This function frees a Inv_Manager_t, frees the names of the
+  atl formula, and decrements the ref count of the formula. If the reference
+  count of the formula comes to zero, the formula is freed.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="invAllFile.html#invUtil.c"TARGET="ABSTRACT"><CODE>invUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="Inv_ManagerReadInvariantFromName"></A>
+Inv_Invariant_t * <I></I>
+<B>Inv_ManagerReadInvariantFromName</B>(
+  Inv_Manager_t * <b>manager</b>, <i></i>
+  char * <b>name</b> <i></i>
+)
+</pre>
+<dd> This function returns a pointer to the formula
+  with the given name.  If the formula is not found, a NIL pointer
+  is returned.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="invAllFile.html#invUtil.c"TARGET="ABSTRACT"><CODE>invUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="Inv_ManagerReadInvariantNames"></A>
+array_t * <I></I>
+<B>Inv_ManagerReadInvariantNames</B>(
+  Inv_Manager_t * <b>manager</b> <i></i>
+)
+</pre>
+<dd> Given an ATL Manager, this function returns an array
+  of all the formula names.
+<p>
+
+<dd> <b>Side Effects</b> User should free the array after use.  Note the
+  content should not be freed.
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="invAllFile.html#invUtil.c"TARGET="ABSTRACT"><CODE>invUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="Inv_ManagerReadInvariants"></A>
+array_t * <I></I>
+<B>Inv_ManagerReadInvariants</B>(
+  Inv_Manager_t * <b>manager</b> <i></i>
+)
+</pre>
+<dd> Given an ATL Manager this function returns a list of
+  all the ATL formula from the manager.
+<p>
+
+<dd> <b>Side Effects</b> This creates an array, which should be freed after use.
+  Beware that the formula should not be freed.
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="invAllFile.html#invUtil.c"TARGET="ABSTRACT"><CODE>invUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="Inv_ReadInvManager"></A>
+Inv_Manager_t * <I></I>
+<B>Inv_ReadInvManager</B>(
+   <b></b> <i></i>
+)
+</pre>
+<dd> This function exports the Inv Global Manager to the
+  calling function.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="invAllFile.html#invMain.c"TARGET="ABSTRACT"><CODE>invMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="Inv_Reinit"></A>
+int <I></I>
+<B>Inv_Reinit</B>(
+  Tcl_Interp * <b>interp</b>, <i></i>
+  Main_Manager_t * <b>manager</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="invAllFile.html#invMain.c"TARGET="ABSTRACT"><CODE>invMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="InvariantCheck"></A>
+static int <I></I>
+<B>InvariantCheck</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> Implements the command inv_check.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<DD> <B>Defined in </B> <A HREF="invAllFile.html#invMain.c"TARGET="ABSTRACT"><CODE>invMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="InvariantFileRead"></A>
+static int <I></I>
+<B>InvariantFileRead</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> Implements the command inv_read.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<DD> <B>Defined in </B> <A HREF="invAllFile.html#invMain.c"TARGET="ABSTRACT"><CODE>invMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="InvariantPrint"></A>
+static int <I></I>
+<B>InvariantPrint</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> Implements the command inv_print.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<DD> <B>Defined in </B> <A HREF="invAllFile.html#invMain.c"TARGET="ABSTRACT"><CODE>invMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="SimpleDataTypeCompatible"></A>
+static InvSimpleDataType <I></I>
+<B>SimpleDataTypeCompatible</B>(
+  InvSimpleDataType  <b>type1</b>, <i></i>
+  InvSimpleDataType  <b>type2</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> The infered type is returned.
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="invAllFile.html#invUtil.c"TARGET="ABSTRACT"><CODE>invUtil.c</CODE></A>
+
+
+</DL>
+<HR>
+Last updated on 1031103 12h03
+</BODY></HTML>

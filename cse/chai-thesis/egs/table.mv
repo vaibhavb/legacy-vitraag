@@ -1,0 +1,10 @@
+\begin{minipage}[t]{2in} 
+\scriptsize
+\begin{verbatim}
+.table PresentSignal \
+        Button -> NextSignal
+.default 1
+1 1 0
+.end
+\end{verbatim}
+\end{minipage}

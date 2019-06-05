@@ -1,0 +1,1040 @@
+#!/usr/bin/perl 
+
+# spkg for the PicoPeta Simputer
+# License : Closed
+# Copyright 2002, PicoPeta Simputer Pvt Ltd - All Rights Reserved
+
+### Include your variables and functions here
+
+my ($option, $packagename) = @ARGV;
+my $inf_files_direc = "/usr/local/store/spkg";    ## for simp
+    
+if (!$packagename || !$option) {
+    
+	print << "display_usage";
+	
+spkg
+Version : 1.1_2
+PicoPeta Simputers Pvt Ltd
+web:www.picopeta.com
+contact:info\@picopeta.com
+
+Usage :: spkg <option> <package_name>/<path_to_package> 
+
+<option>:
+         : -i  - Install Package
+         : -if - Install Forcefully  
+         : -u  - Upgrade Existing Package
+         : -r  - Remove Existing Package
+         : -rf - Remove Package Forcefully 
+         : -q  - Query Info About The Package
+         : -l  - List files of the package
+
+Examples: spkg -i tapatap-2.0_1.ppp [to install tapatap]
+          spkg -if tapatap-1.9_1.ppp [ to install tapatap forcefully ..
+                                       use at your own risk : removes
+                                       dependent information ]
+          spkg -r sedit [remove sedit]
+          spkg -rf tapatap [remove tapatap forcefully ! 
+                            use at your own risk !!]
+          spkg -q tapatap [query about tapatap]
+          spkg -l tapatap [list files of the package]
+          spkg -u tapatap-2.0_4.ppp [upgrade tapatap if 
+                                         its current is lower ]
+          spkg -q all [query all packages]
+          
+
+display_usage
+exit(0);
+    }
+read_option();
+    
+
+# sub reads options 
+sub read_option {
+   if ($option eq "-i") {
+      # run pre-install script here
+      process_info_files();
+   }
+   elsif ($option eq "-if") {
+      process_info_files();
+   }
+   elsif ($option eq "-r") {
+      cleanup();
+      print "\nRemoved the package\n";
+   }
+   elsif ($option eq "-rf") {
+      cleanup();
+      print "\n Removed the package\n";
+   }
+   elsif ($option eq "-u") {
+      print "\nUpgrading the current package....\n";
+      process_info_files();
+      my %local_version = perform_version_check();
+      print
+"\nThe package to be installed is $data{Name}, version $data{Version} $data{Release}";
+      print
+"\nYou currently have ... $local_version{Name}, version $local_version{Version} $local_version{Release}\n";
+      upgrade_package(
+         $data{Version},$data{Release},
+         $local_version{Version}, $local_version{Release}
+      );
+      exit(0);
+   }
+   elsif (($option eq "-q") && ($packagename eq "all")) {
+
+      # check for info files - display them !
+      opendir(DIR, $inf_files_direc)
+        or die "Cannot Open directory $dirname: $!";
+      @files = grep { /\.info$/ } readdir(DIR);
+      display_packages_info(@files);
+      closedir DIR;
+      exit(0);
+   }
+   elsif ($option eq "-q") {
+      $actual_package_name = $packagename;
+      my %local_version = perform_version_check();
+      while (($key, $value) = each(%local_version)) {
+         print "\n$key : $value";
+      }
+      print "\n";
+   }
+   elsif ($option eq "-l") {
+      my $actual_package_name = $packagename;
+      display_package_list($actual_package_name);
+   }
+   else {
+      print "\nOption Wrong - Specify correct option\n";
+      exit(1);
+   }
+}
+
+sub process_info_files {
+
+   # check if the package exists
+   if (!-f "$packagename") {
+      print "\nPackage does not exist in your source directory\n";
+      exit(1);
+   }
+   file_parser();
+   chdir("/tmp");
+   if ($modified_package_directory) {
+      system(
+"zcat $modified_package_directory/$packagename | tar -x $actual_package_name.info"
+      );
+   }
+   else {
+      system("zcat $packagename | tar -x $actual_package_name.info");
+   }
+   convert_to_hash("$actual_package_name.info");
+   unlink("$actual_package_name.info");
+
+}
+
+sub convert_to_hash {
+
+   # function used to get information about the package to be installed
+   # %data is available globally 
+   open(INFOFILE, "<$actual_package_name.info");
+   while (<INFOFILE>) {
+      chomp;
+      s/^\s+//;
+      s/\s+$//;
+      next unless length;
+      my ($key, $value) = split (/:/, $_, 2);
+      $key =~ /^\s*(.*[^\s])\s*$/;
+      $key = $1;
+      $value =~ /^\s*(.*[^\s])\s*$/;
+      $value = $1;
+
+      if (!($key eq $value)) {
+         $data{$key} = $value;
+      }
+   }
+   close(INFOFILE);
+
+   # performs install if not upgrade
+   if ($option ne "-u") {
+      check_files($data{Name}, $data{Dependencies}, $data{Version});
+   }
+}
+
+sub check_files {
+
+   # as read from the info file..
+   my $fail;
+   my ($pkgname, $dependency, $version) = @_;
+
+   if ($option ne "-if") {
+      if (-f "$inf_files_direc/$pkgname.info") {
+         print "$pkgname $version is already installed !!\n";
+         unlink("/tmp/$pkgname.info");
+         exit(1);
+      }
+
+      # package is not installed.. prepare for the installation of the files 
+      elsif ($dependency) {
+         my @dep_list       = split (/,/, $dependency);
+         my $split_dep_list = split (/,/, $dependency);
+
+         if ($split_dep_list >= 1) {
+            foreach (@dep_list) {
+               $_ =~ /^\s*(.*[^\s])\s*$/;
+               $_ = $1;
+               $_ =~ /(\w*).*(<=|>=|<|==|>)(.*)/;
+
+               if (-f "$inf_files_direc/$1.info") {
+
+                  # check if version numbers match
+                  # if match
+                  # $1 contains packagename
+                  # $2 contains operator
+                  # $3 contains version number
+                  my ($ver, $rel) = split (/_/, $3);
+
+                  # do some dep checking 
+                  %disp_local = get_local_version_info($1);
+                  satisfy_dependency($ver, $rel, $2);
+               }
+               else {
+                  print "Dependencies Failed $1\n";
+                  $fail = 1;
+               }
+            }
+         }
+      }
+   }
+   else {
+      $fail = 0;
+   }
+
+   # No deps ? or Deps satisfied - INSTALL !
+   if (!$fail) {
+
+      # update dependent files
+      if($option ne "-if"){
+          check_conflicts($pkgname, $dependency, $version);
+          perform_dependent_actions();
+      }
+      else{
+          cleanup($pkgname);
+      }
+     
+      # change the directory to / on the Simputer
+      # for the simputer
+
+      #  Do NOT modify this code #
+
+      $data{Type} =~ /^(Flash)/i;
+      if ($1 eq "Flash") {
+         my ($ptype, $dev, $seek) = split (/#/, $data{Type});
+         system("mkdir /usr/local/tmp");
+         system("mount -t tmpfs tmpfs /usr/local/tmp -o size=3m") == 0
+           or die ("Mount failed ! Cannot install the package. Free up space
+         and try again"
+         );
+         chdir("/usr/local/tmp");
+         if ($modified_package_directory) {
+            system("zcat $modified_package_directory/$packagename | tar xf -");
+         }
+         else {
+            system("zcat $packagename | tar xf -");
+         }
+         if ($seek) {
+            system(
+               "dd if=$pkgname of=/dev/$dev bs=1024 seek=$seek 1>/dev/null");
+            print "\n$pkgname was installed\n";
+         }
+         else {
+            system("dd if=$pkgname of=/dev/$dev 1>/dev/null");
+            print "\n$pkgname was installed\n";
+         }
+         system("cp /usr/local/tmp/$pkgname.info $inf_files_direc/$pkgname.info")==0
+           or die ("Cannot copy information files - Package Not Installed !! ");
+         chdir("/tmp");
+         system("rm /usr/local/tmp/* 2>/dev/null");
+         sleep(1);
+         system("umount /usr/local/tmp");
+         rmdir("/usr/local/tmp");
+         exit(0);
+      }
+
+      # Do NOT modify this code # 
+
+      my $size = `df /dev/mtd3 | grep /dev/mtd3`;
+      my @splitdata = split (/\s+/, $size);
+      $splitdata[3] = $splitdata[3] * 1024;
+      if ($data{Size} >= $splitdata[3]) {
+         print "\nYou don't have enough space to install the package !\n";
+         print "Please free up space by removing some packages\n";
+         exit(1);
+      }
+
+      chdir("/");
+
+      if ($modified_package_directory) {
+         system(
+"zcat $modified_package_directory/$packagename | tar xf - 2>/dev/null"
+         );
+      }
+      else {
+         system("zcat $packagename | tar xf - 2>/dev/null");
+      }
+      chdir("/tmp");
+
+      # extract the information files 
+      if ($modified_package_directory) {
+         system(
+"zcat $modified_package_directory/$packagename | tar x $pkgname.info"
+         );
+         system(
+"zcat $modified_package_directory/$packagename | tar x $pkgname.list"
+         );
+         system(
+"zcat $modified_package_directory/$packagename | tar x $pkgname.preinstall"
+         );
+         system(
+"zcat $modified_package_directory/$packagename | tar x $pkgname.postinstall"
+         );
+         system(
+"zcat $modified_package_directory/$packagename | tar x $pkgname.postremove"
+         );
+         system(
+"zcat $modified_package_directory/$packagename | tar x $pkgname.preremove"
+         );
+      }
+      else {
+         system("zcat $packagename | tar x $pkgname.info");
+         system("zcat $packagename | tar x $pkgname.list");
+         system("zcat $packagename | tar x $pkgname.preinstall");
+         system("zcat $packagename | tar x $pkgname.postinstall");
+         system("zcat $packagename | tar x $pkgname.postremove");
+         system("zcat $packagename | tar x $pkgname.preremove");
+      }
+
+      system("/bin/sh /tmp/$actual_package_name.preinstall 2>/dev/null");
+      system("cp $pkgname.* $inf_files_direc 2>/dev/null");
+      print "\nPackage $data{Name} Installed\n";
+
+      # Handle IML Packages 
+      my $old_dir = `pwd`;
+      chomp $old_dir;
+      $data{Type} =~ /^(IML|Application)(.*)/i;
+
+      if ($1 eq "IML") {
+         if (!-d "/usr/local/store/packages") {
+            system("mkdir -p /usr/local/store/packages");
+         }
+         if ($2) {
+            my $dir = substr($2, 1);
+            if (!-d "/usr/local/store/packages/$dir") {
+               system("mkdir -p /usr/local/store/packages/$dir");
+            }
+            chdir("/usr/local/store/packages/$dir");
+         }
+         else {
+            chdir("/usr/local/store/packages");
+         }
+         system("touch package.db") == 0
+           or die ("Creation of package.db failed");
+         open(IMLDB, ">>package.db");
+         print IMLDB "$pkgname\n";
+         close IMLDB;
+      }
+
+      elsif ($1 eq "Application") {
+         if (!-d "/usr/local/store/packages") {
+            system("mkdir -p /usr/local/store/packages");
+         }
+         if ($2) {
+            my $dir = substr($2, 1);
+            if (!-d "/usr/local/store/packages/$dir") {
+               system("mkdir -p /usr/local/store/packages/$dir");
+            }
+            chdir("/usr/local/store/packages/$dir");
+         }
+         else {
+            chdir("/usr/local/store/packages");
+         }
+         system("touch application.db") == 0
+           or die ("Creation of application.db failed");
+         open(APPDB, ">>application.db");
+         print APPDB "$pkgname\n";
+         close APPDB;
+      }
+
+      #  post install script
+      system(
+         "/bin/sh $inf_files_direc/$actual_package_name.postinstall 2>/dev/null"
+      );
+      system("rm $old_dir/$pkgname.* 2>/dev/null");
+   }
+
+}
+
+sub cleanup {
+   # clean up routine - reads list file, removes all
+   # files and info and list files
+   my $orig_opt,$delete_package;
+
+   if ($option eq "-r") {
+      $delete_package= $packagename;
+   }
+   elsif ($option eq "-rf") {
+      $delete_package = $packagename;
+   }
+   else {
+      $delete_package = shift;
+      if($option eq "-if"){
+            $option="-rf";
+            $orig_opt="-if";
+      }
+   }
+
+   ## for simputer
+   my %disp_local = get_local_version_info("$delete_package");
+
+   ## Handle Required/Dependent and IML Packages
+   if (($option ne "-u") && ($option ne "-rf")) {
+      if (($disp_local{Priority} eq "Required")
+         || ($disp_local{Priority} eq "required"))
+      {
+         print "\nPackage name is $disp_local{Name}\n";
+         print "\nCannot remove a Required package !!\n";
+         exit(1);
+      }
+      if (exists $disp_local{Dependents}) {
+         print "
+                \nPackage $disp_local{Name} has $disp_local{Dependents} as its Dependents and cannot be removed !Remove its Dependents first to uninstall this package\n";
+         exit(1);
+      }
+   }
+   $disp_local{Type} =~ /^(IML|Application)(.*)/i;
+   my $type = $1;
+   if ($type eq "IML") {
+      if ($2) {
+         $dir = substr($2, 1);
+         sub packagedb_error { print "Unable to open package.db !"; exit(1); }
+         open(PACKAGEDB, "</usr/local/store/packages/$dir/package.db")
+           or packagedb_error();
+         @package_db = <PACKAGEDB>;
+         close PACKAGEDB;
+
+         open(PACKAGEDB, "+>/usr/local/store/packages/$dir/package.db")
+           or packagedb_error();
+         foreach (@package_db) {
+            if (/^$delete_package$/) { next; }
+            print PACKAGEDB $_;
+         }
+         close PACKAGEDB;
+      }
+      else {
+         open(PACKAGEDB, "</usr/local/store/packages/package.db")
+           or packagedb_error();
+         @package_db = <PACKAGEDB>;
+         close PACKAGEDB;
+
+         open(PACKAGEDB, "+>/usr/local/store/packages/package.db")
+           or packagedb_error();
+         foreach (@package_db) {
+            if (/^$delete_package$/) { next; }
+            print PACKAGEDB $_;
+         }
+         close PACKAGEDB;
+      }
+   }
+   elsif ($type eq "Application") {
+      if ($2) {
+         my $dir = substr($2, 1);
+
+         sub applicationdb_error {
+            print "Unable to open package.db !";
+            exit(1);
+         }
+         open(APPDB, "</usr/local/store/packages/$dir/application.db")
+           or applicationdb_error();
+         my @app_db = <APPDB>;
+         close APPDB;
+
+         open(APPDB, "+>/usr/local/store/packages/$dir/application.db")
+           or applicationdb_error();
+         foreach (@app_db) {
+            if (/^$delete_package$/) { next; }
+            print APPDB $_;
+         }
+         close APPDB;
+      }
+      else {
+         open(APPDB, "</usr/local/store/packages/application.db")
+           or applicationdb_error();
+         my @app_db = <APPDB>;
+         close APPDB;
+
+         open(APPDB, "+>/usr/local/store/packages/application.db")
+           or applicationdb_error();
+         foreach (@app_db) {
+            if (/^$delete_package$/) { next; }
+            print APPDB $_;
+         }
+         close APPDB;
+      }
+   }
+
+   # pre remove script
+   system(
+      "/bin/sh $inf_files_direc/$delete_package.preremove 2>/dev/null");
+   chdir("/");
+
+   # remove/uninstall the files ... 
+   
+   $disp_local{Type} =~ /^(Flash)/i;
+
+   if (!$1){
+      open(LIST, "<$inf_files_direc/$delete_package.list") or list_error();
+      sub list_error {
+        if($orig_opt eq "-if"){
+            return;
+        }
+        print("Package $delete_package is not installed properly !
+        Could not remove all files \n");
+         exit(1);
+      }
+      while (<LIST>) {
+         chomp;
+         unlink;
+      }
+      close LIST;
+   }
+
+   # post remove script 
+   system(
+      "/bin/sh $inf_files_direc/$delete_package.postremove 2>/dev/null");
+
+   # check for dependents and update 
+   update_dependency_files($disp_local{Name}, $disp_local{Dependencies});
+
+   # remove post operation scripts
+   system("rm $inf_files_direc/$delete_package.* 2>/dev/null");
+}
+
+sub perform_version_check() {
+
+   # no separation needed for querying
+   if (-f "$inf_files_direc/$actual_package_name.info") {
+      open(LOCALVER, "<$inf_files_direc/$actual_package_name.info");
+      while (<LOCALVER>) {
+         chomp;
+         s/^\s+//;
+         s/\s+$//;
+         next unless length;
+         my ($key, $value) = split (/:/, $_, 2);
+         $key =~ /^\s*(.*[^\s])\s*$/;
+         $key = $1;
+         $value =~ /^\s*(.*[^\s])\s*$/;
+         $value = $1;
+
+         if (!($key eq $value)) {
+            $local_version{$key} = $value;
+         }
+      }
+      close LOCALVER;
+      return %local_version;
+   }
+   else {
+      print "\nInstall the Package first..\n";
+      exit(1);
+   }
+}
+
+sub display_packages_info {
+   my %all_information;
+   chdir($inf_files_direc);
+   foreach (@files) {
+      open(INFORMATION, "<$_");
+      while (<INFORMATION>) {
+         chomp;
+         s/^\s+//;
+         s/\s+$//;
+         next unless length;
+         my ($key, $value) = split (/:/, $_, 2);
+         $key =~ /^\s*(.*[^\s])\s*$/;
+         $key = $1;
+         $value =~ /^\s*(.*[^\s])\s*$/;
+         $value = $1;
+         $all_information{$key} = $value;
+      }
+      close INFORMATION;
+      print
+"$all_information{Name}, $all_information{Version}, $all_information{Release}, $all_information{Description}\n";
+   }
+}
+
+sub get_local_version_info {
+   my $local_filename = shift;
+   my %disp_local;
+   open(LOCVER, "<$inf_files_direc/$local_filename.info");
+   while (<LOCVER>) {
+      chomp;
+      s/^\s+//;
+      s/\s+$//;
+      next unless length;
+      my ($key, $value) = split (/:/, $_, 2);
+      $key =~ /^\s*(.*[^\s])\s*$/;
+      $key = $1;
+      $value =~ /^\s*(.*[^\s])\s*$/;
+      $value = $1;
+
+      if (!($key eq $value)) {
+         $disp_local{$key} = $value;
+      }
+   }
+   close LOCVER;
+   return %disp_local;
+}
+
+sub upgrade_package {
+   my ($toinst_ver, $toinst_rel, $curr_ver, $curr_rel) = @_;
+   my $upgrade;
+   @curr_ver_subver = split (/\./, $curr_ver);
+   @inst_ver_subver = split (/\./, $toinst_ver);
+   my $i = 0;
+   foreach (@inst_ver_subver) {
+      if ($_ > $curr_ver_subver[$i]) {
+         print "Upgrade Possible\n";
+         $upgrade = 1;
+         last;
+      }
+      elsif ($_ == $curr_ver_subver[$i]) {
+         $i++;
+         next;
+      }
+      else {
+         print
+"Upgrade not possible because you are trying to install a lower version\n";
+         print "Remove the existing package and then install the new package\n";
+         exit(1);
+      }
+   }
+   if (!$upgrade) {
+      if ($toinst_rel > $curr_rel) {
+
+         # upgrade possible;
+         print "Upgrade Possible\n";
+         cleanup($data{Name});    # remove existing files
+         check_files($data{Name}, $data{Dependencies}, $data{Version});
+      }
+      elsif ($toinst_rel == $curr_rel) {
+         print "You already have this version installed\n";
+         exit(1);
+      }
+      else {
+         print
+"Upgrade not possible ! You already have a higher version installed\n";
+         exit(1);
+      }
+   }
+
+   # upgrade is 1 
+   else {
+      cleanup($data{Name});    # do cleanup
+      check_files($data{Name}, $data{Dependencies}, $data{Version});
+   }
+}
+
+sub satisfy_dependency {
+
+   # get the dependencies
+   my ($ver, $rel, $op) = @_;
+   my $i = 0;
+
+   # for version
+   @ver_split       = split (/\./, $ver);
+   @local_ver_split = split (/\./, $disp_local{Version});
+
+   if ($op eq ">=") {
+      foreach (@ver_split) {
+         if ($_ < $local_ver_split[$i]) {
+            $satisfy = 1;
+            last;
+         }
+         elsif ($_ == $local_ver_split[$i]) {
+            $i++;
+            next;
+         }
+         else {
+            print
+"You have $disp_local{Name} Version : $disp_local{Version} Release : $disp_local{Release} \n";
+            print "Required version is $disp_local{Name} $op $_ $rel \n";
+            print "Dep >=  Failed\n";
+            exit(1);
+         }
+         $i++;
+      }
+      if (!$satisfy) {
+         unless ($rel <= $disp_local{Release}) {
+            print
+"You have $disp_local{Name} Version : $disp_local{Version} Release : $disp_local{Release} \n";
+            print "Required version is $disp_local{Name} $op $_ $rel \n";
+            print "Dep >= Failed \n";
+            exit(1);
+         }
+      }
+   }
+   elsif ($op eq "<=") {
+      foreach (@ver_split) {
+         if ($_ > $local_ver_split[$i]) {
+            $satisfy = 1;
+            last;
+         }
+         elsif ($_ == $local_ver_split[$i]) {
+            $i++;
+            next;
+         }
+         else {
+            print
+"You have $disp_local{Name} Version : $disp_local{Version} Release : $disp_local{Release} \n";
+            print "Required version is $disp_local{Name} $op $_ $rel \n";
+            print "Dep <= Failed\n";
+            exit(1);
+         }
+         $i++;
+      }
+      if (!$satisfy) {
+         unless ($rel <= $disp_local{Release}) {
+            print
+"You have $disp_local{Name} Version : $disp_local{Version} Release : $disp_local{Release} \n";
+            print "Required version is $disp_local{Name} $op $_ $rel \n";
+            print "Dep <= Failed \n";
+            exit(1);
+         }
+      }
+   }
+   elsif ($op eq "=") {
+      foreach (@ver_split) {
+         if ($_ == $local_ver_split[$i]) {
+            next;
+         }
+         else {
+            print
+"You have $disp_local{Name} Version : $disp_local{Version} Release : $disp_local{Release} \n";
+            print "Required version is $disp_local{Name} $op $_ $rel \n";
+            print "Dep = Failed\n";
+            exit(1);
+         }
+         $i++;
+      }
+      unless ($rel == $disp_local{Release}) {
+         print
+"You have $disp_local{Name} Version : $disp_local{Version} Release : $disp_local{Release} \n";
+         print "Required version is $disp_local{Name} $op $_ $rel \n";
+         print "Dep == Failed \n";
+         exit(1);
+      }
+   }
+   elsif ($op eq ">") {
+      foreach (@ver_split) {
+         if ($_ == $local_ver_split[$i]) {
+            $i++;
+            next;
+         }
+         elsif ($_ < $local_ver_split[$i]) {
+            $satisfy = 1;
+            last;
+         }
+         else {
+            print
+"You have $disp_local{Name} Version : $disp_local{Version} Release : $disp_local{Release} \n";
+            print "Required version is $disp_local{Name} $op $_ $rel \n";
+            print "Dep > Failed\n";
+            exit(1);
+         }
+         $i++;
+      }
+      if (!$satisfy) {
+         unless ($rel < $disp_local{Release}) { print "Dep Failed \n"; exit(1); }
+      }
+   }
+   elsif ($op eq "<") {
+      foreach (@ver_split) {
+         if ($_ == $local_ver_split[$i]) {
+            $i++;
+            next;
+         }
+         elsif ($_ > $local_ver_split[$i]) {
+            $satisfy = 1;
+            last;
+         }
+         else {
+            print
+"You have $disp_local{Name} Version : $disp_local{Version} Release : $disp_local{Release} \n";
+            print "Required version is $disp_local{Name} $op $_ $rel \n";
+            print "Dep < Failed\n";
+            exit(1);
+         }
+         $i++;
+      }
+      if (!$satisfy) {
+         unless ($rel < $disp_local{Release}) {
+            print
+"You have $disp_local{Name} Version : $disp_local{Version} Release : $disp_local{Release} \n";
+            print "Required version is $disp_local{Name} $op $_ $rel \n";
+            print "Dep < Failed \n";
+            exit(1);
+         }
+      }
+   }
+}
+
+sub file_parser {
+
+   # $actual_package_directory = directory name where package is resident
+   # $actual_package_name = package name 
+   # $actual_package_version = package version
+   # $act_rel = package release 
+   # $modified_package_directory = package is present in the current directory
+
+   $packagename =~ /^(.*\/)*([^-]+)-([^_]+)_(.*)\.ppp$/;
+   $actual_package_directory = $1;
+   $actual_package_name      = $2;
+   $actual_package_version   = $3;
+   $act_rel                  = $4;
+   if ((!$actual_package_name) || (!$actual_package_version) || (!$act_rel)) {
+      print "Package Name Invalid \n";
+      exit(1);
+   }
+   if (!$actual_package_directory) {
+      $modified_package_directory = `pwd`;
+      chomp $modified_package_directory;
+   }
+}
+
+sub perform_dependent_actions() {
+   my $depname;
+   my @dependency_list = split (/,/, $data{Dependencies});
+   foreach (@dependency_list) {
+      $_ =~ /^\s*(.*[^\s])\s*$/;
+      $_ = $1;
+      $_ =~ /(\w*).*(<=|>=|<|=|>)(.*)/;
+      $depname = $1;
+      open(DEPINFO, "<$inf_files_direc/$depname.info") or dep_open_error();
+
+      sub dep_open_error() {
+         print "One of the dependency information files :
+            $depname.info was not found
+            !, Could not write dependent information\n";
+         exit(1);
+      }
+
+      while (<DEPINFO>) {
+         chomp;
+         s/^\s+//;
+         s/\s+$//;
+         next unless length;
+         my ($key, $value) = split (/:/, $_, 2);
+         $key =~ /^\s*(.*[^\s])\s*$/;
+         $key = $1;
+         $value =~ /^\s*(.*[^\s])\s*$/;
+         $value = $1;
+
+         if (!($key eq $value)) {
+            $dep_val{$key} = $value;
+         }
+      }
+      close DEPINFO;
+      update_dependent_files();
+   }
+}
+
+sub update_dependent_files() {
+   my @dependent_values;
+   if (exists $dep_val{Dependents}) {
+      @dependent_values = ();
+      @dependent_values = split (/,/, $dep_val{Dependents});
+      foreach (@dependent_values) {
+         if ($_ !~ /$data{Name}/) {
+            push (@dependent_values, $data{Name});
+            $dep_val{Dependents} = join (',', @dependent_values);
+         }
+      }
+   }
+   else {
+      $dep_val{Dependents} = $data{Name};
+   }
+
+   my @dup_vals = split (/,/, $dep_val{Dependents});
+   my %seen = ();
+   my @unique_vals = grep { !$seen{$_}++ } @dup_vals;
+   $dep_val{Dependents} = join (',', @unique_vals);
+   open(TEST, ">$inf_files_direc/$dep_val{Name}.info");
+   while (($type, $value) = each %dep_val) {
+      print TEST "$type : $value\n";
+   }
+   close TEST;
+   undef %dep_val;
+}
+
+sub update_dependency_files {
+   my ($package_name, $dependencies) = @_;
+   my @dependency_list = split (/,/, $dependencies);
+   foreach (@dependency_list) {
+      $_ =~ /^\s*(.*[^\s])\s*$/;
+      $_ = $1;
+      $_ =~ /(\w*).*(<=|>=|<|==|>)(.*)/;
+      $depname = $1;
+      open(DEPINFO, "<$inf_files_direc/$depname.info") or die ("Open Failed");
+      while (<DEPINFO>) {
+         chomp;
+         s/^\s+//;
+         s/\s+$//;
+         next unless length;
+         my ($key, $value) = split (/:/, $_, 2);
+         $key =~ /^\s*(.*[^\s])\s*$/;
+         $key = $1;
+         $value =~ /^\s*(.*[^\s])\s*$/;
+         $value = $1;
+
+         if (!($key eq $value)) {
+            $dep_val{$key} = $value;
+         }
+      }
+      close DEPINFO;
+   }
+}
+
+sub update_dependency_files {
+   my $depname;
+   my ($package_name, $dependencies) = @_;
+   my @dependency_list = split (/,/, $dependencies);
+   foreach (@dependency_list) {
+      $_ =~ /^\s*(.*[^\s])\s*$/;
+      $_ = $1;
+      $_ =~ /(\w*).*(<=|>=|<|==|>)(.*)/;
+      $depname = $1;
+      open(DEPINFO, "<$inf_files_direc/$depname.info") or die (
+         "Unable
+       to write dependent information"
+      );
+      while (<DEPINFO>) {
+         chomp;
+         s/^\s+//;
+         s/\s+$//;
+         next unless length;
+         my ($key, $value) = split (/:/, $_, 2);
+         $key =~ /^\s*(.*[^\s])\s*$/;
+         $key = $1;
+         $value =~ /^\s*(.*[^\s])\s*$/;
+         $value = $1;
+
+         if (!($key eq $value)) {
+            $dep_val{$key} = $value;
+         }
+         if ($key eq "Dependents") {
+            @value = do_update_dep_files($package_name, $value);
+            $value = join (',', @value);
+            if (!($key eq $value)) {
+               $dep_val{$key} = $value;
+            }
+            $dep_val{$key} = $value;
+         }
+      }
+      close DEPINFO;
+      open(DEPFILE, ">$inf_files_direc/$depname.info") or die (
+         "Unable to
+      write dependent information "
+      );
+      while (($type, $value) = each %dep_val) {
+         print DEPFILE "$type : $value\n";
+      }
+      close DEPFILE;
+      undef %dep_val;
+   }
+}
+
+sub do_update_dep_files {
+   my ($package_name, $value) = @_;
+   my @mynewvalues = ();
+   @value_list = split (/,/, $value);
+   foreach (@value_list) {
+      if (/^$package_name/) {
+         next;
+      }
+      push (@mynewvalues, $_);
+   }
+   return @mynewvalues;
+}
+
+sub check_conflicts {
+   my ($pkgname, $dependency, $version) = @_;
+   if (($data{Conflicts}) && ($data{Conflicts} ne "None")) {
+      my @conflict_list       = split (/,/, $data{Conflicts});
+      my $split_conflict_list = split (/,/, $data{Conflicts});
+      if ($split_conflict_list >= 1) {
+         foreach (@conflict_list) {
+            $_ =~ /^\s*(.*[^\s])\s*$/;
+            $_ = $1;
+            $_ =~ /(\w*).*(<=|>=|<|==|>)(.*)/;
+            my $name_of_pkg = $1;
+            my $operator    = $2;
+            my $version     = $3;
+            if (-f "$inf_files_direc/$name_of_pkg.info") {
+               $conflict =
+                 process_conflicting_files($name_of_pkg, $operator, $version);
+               if ($conflict) { $flagged = 1; }
+            }
+         }
+         if ($flagged) {
+            unlink("$pkgname.info");
+            exit(1);
+         }
+      }
+   }
+}
+
+sub process_conflicting_files {
+   my ($name_of_pkg, $operator, $version) = @_;
+   my $conflict;
+   if (!($operator && $version)) {
+      print "$name_of_pkg conflicts\n";
+      $conflict = 1;
+   }
+   else {
+      my %local_version = get_local_version_info($name_of_pkg);
+      if (($operator eq ">=") || ($operator eq ">")) {
+         if ($local_version{Version} >= $version) {
+            print
+"$local_version{Name}, Version: $local_version{Version} conflicts \n";
+            $conflict = 1;
+         }
+      }
+      elsif (($operator eq "<=") || ($operator eq "<")) {
+         if ($local_version{Version} <= $version) {
+            print
+"$local_version{Name} , Version $local_version{Version} Conflicts\n";
+            $conflict = 1;
+         }
+      }
+      else {
+         print
+"$local_version{Name} , Version $local_version{Version} conflicts\n ";
+         $conflict = 1;
+      }
+   }
+   return $conflict;
+}
+
+sub display_package_list {
+   my $package_name = shift;
+   open(PACKAGELIST, "<$inf_files_direc/$package_name.list")
+     or display_list_error();
+
+   sub display_list_error {
+      print
+"Open of $package_name failed ! \nEither your package does not have a list file or is not installed !\n ";
+      exit(1);
+   }
+   my @listfiles = <PACKAGELIST>;
+   foreach (@listfiles) {
+      chomp;
+      print "$_ \n";
+   }
+}

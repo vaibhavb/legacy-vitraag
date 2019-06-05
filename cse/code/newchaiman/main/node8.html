@@ -1,0 +1,130 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with jLaTeX2HTML 2002 (1.62) JA patch-1.4
+patched version by:  Kenshi Muto, Debian Project.
+LaTeX2HTML 2002 (1.62),
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Connecting a latch output to a primary input</TITLE>
+<META NAME="description" CONTENT="Connecting a latch output to a primary input">
+<META NAME="keywords" CONTENT="main">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<META NAME="Generator" CONTENT="jLaTeX2HTML v2002 JA patch-1.4">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="main.css">
+
+<LINK REL="next" HREF="node9.html">
+<LINK REL="previous" HREF="node7.html">
+<LINK REL="up" HREF="node7.html">
+<LINK REL="next" HREF="node9.html">
+</HEAD>
+
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html137"
+  HREF="node9.html">[Next]</A> 
+<A NAME="tex2html133"
+  HREF="node7.html">[Up]</A> 
+<A NAME="tex2html127"
+  HREF="node7.html">[Previous]</A>  
+<A NAME="tex2html135"
+  HREF="node17.html">[Index]</A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html138"
+  HREF="node9.html">Non-determinism</A>
+<B> Up:</B> <A NAME="tex2html134"
+  HREF="node7.html">Other issues in modeling</A>
+<B> Previous:</B> <A NAME="tex2html128"
+  HREF="node7.html">Other issues in modeling</A>
+ &nbsp <B>  <A NAME="tex2html136"
+  HREF="node17.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00241000000000000000">
+Connecting a latch output to a primary input</A>
+</H2>
+
+<P>
+At times we might need to compose modules and connect a latch from one
+module to the input of another module. This would lead to a violation
+of item&nbsp;<A HREF="node5.html#item:latch">1</A> of Table&nbsp;<A HREF="node5.html#tab:recipe_mealy_fsm_rm">2.1</A> since
+we decreed that an input variable is to be awaited
+(by item&nbsp;<A HREF="node5.html#item:pi">3</A> of Table&nbsp;<A HREF="node5.html#tab:recipe_mealy_fsm_rm">2.1</A>). 
+
+<P>
+To work around this we have to insert a unit-delay non-inverting
+buffer with the appropriate initial value between the latch-output and
+the input of the module it connects to. A unit-delay non-inverting
+buffer with initial value&nbsp;<A NAME="tex2html_wrap_inline2111"
+ HREF="img2.png">[IMAGE png]</A> is modeled in R<SMALL>EACTIVE</SMALL>M<SMALL>ODULES</SMALL> as follows:
+
+<P>
+<PRE>
+module noninvertingbuffer0
+  external latchoutput
+  interface onedelayed
+
+--unit delay non inverting buffer with initial value 0 
+atom controls onedelayed reads latchoutput
+init 
+  [] true -&gt; onedelayed' := false
+update
+  [] true -&gt; onedelayed' := latchoutput
+endatom 
+endmodule
+</PRE>
+
+<P>
+We have one additional rule to invoke in translating a network of
+Mealy FSMs to R<SMALL>EACTIVE</SMALL>M<SMALL>ODULES</SMALL>, and it is stated in Table&nbsp;<A HREF="node8.html#tab:addtl_rule">2.2</A>. 
+
+<P>
+<BR><P></P>
+<DIV ALIGN="CENTER"><A NAME="tab:addtl_rule">&#160;</A><A NAME="1798">&#160;</A>
+<TABLE>
+<CAPTION><STRONG>Table 2.2:</STRONG>
+Rule for connecting the latch-output of one module to the
+input of another module</CAPTION>
+<TR><TD><A NAME="table1796"
+ HREF="img9.png">[IMAGE png]</A></TD></TR>
+</TABLE>
+</DIV><P></P>
+<BR>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html137"
+  HREF="node9.html">[Next]</A> 
+<A NAME="tex2html133"
+  HREF="node7.html">[Up]</A> 
+<A NAME="tex2html127"
+  HREF="node7.html">[Previous]</A>  
+<A NAME="tex2html135"
+  HREF="node17.html">[Index]</A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html138"
+  HREF="node9.html">Non-determinism</A>
+<B> Up:</B> <A NAME="tex2html134"
+  HREF="node7.html">Other issues in modeling</A>
+<B> Previous:</B> <A NAME="tex2html128"
+  HREF="node7.html">Other issues in modeling</A>
+ &nbsp <B>  <A NAME="tex2html136"
+  HREF="node17.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+Vaibhav Bhandari
+2003-06-17
+</ADDRESS>
+</BODY>
+</HTML>

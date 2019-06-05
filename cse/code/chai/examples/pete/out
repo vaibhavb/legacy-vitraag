@@ -1,0 +1,68 @@
+Welcome to MOCHA 1.0
+Please report any problems to mocha@eecs.berkeley.edu
+Module P1 is composed and checked in.
+Module P2 is composed and checked in.
+Module Pete is composed and checked in.
+parse successful.
+mutex
+Typechecking invariant mutex...
+Typechecking successful
+No sym_info.. building it(using sym_trans)
+Ordering variables using sym_static_order
+Transition relation computed : 2 conjuncts
+Dynamic variable ordering is disabled.
+Done initializing image info...
+
+WARNING: Empty Array of Smoothing Variables
+
+WARNING: Empty Array of Smoothing Variables
+Initial Region Computed...
+Step 1: image mdd size =         13	 |states| =       12	
+WARNING: Empty Array of Smoothing Variables
+
+WARNING: Empty Array of Smoothing Variables
+reached set mdd size =         13	 |states| =       12
+Step 2: image mdd size =         17	 |states| =       16	
+WARNING: Empty Array of Smoothing Variables
+
+WARNING: Empty Array of Smoothing Variables
+reached set mdd size =         17	 |states| =       20
+Step 3: image mdd size =         17	 |states| =       16	
+Done reached set computation...
+reached set mdd size =         17	 number of states =       20
+Invariant mutex passed
+Module P1 is composed and checked in.
+Module P2 is composed and checked in.
+Module Pete is composed and checked in.
+parse successful.
+mutex
+Typechecking invariant mutex...
+Typechecking successful
+No sym_info.. building it(using sym_trans)
+Ordering variables using sym_static_order
+Transition relation computed : 2 conjuncts
+Dynamic variable ordering is disabled.
+Done initializing image info...
+
+WARNING: Empty Array of Smoothing Variables
+
+WARNING: Empty Array of Smoothing Variables
+Initial Region Computed...
+Step 1: image mdd size =          3	 |states| =        4	
+WARNING: Empty Array of Smoothing Variables
+
+WARNING: Empty Array of Smoothing Variables
+reached set mdd size =          6	 |states| =        8
+Step 2: image mdd size =         12	 |states| =        4	
+WARNING: Empty Array of Smoothing Variables
+
+WARNING: Empty Array of Smoothing Variables
+reached set mdd size =         12	 |states| =       10
+Invariant mutex has been violated
+Invariant mutex failed in step 2
+Counterexample for invariant mutex
+pc1=outCS Pete/x1=1 pc2=outCS Pete/x2=0 
+pc1=reqCS Pete/x1=0 pc2=reqCS Pete/x2=0 
+pc1=inCS Pete/x1=0 pc2=inCS Pete/x2=0 
+Thank you for using MOCHA 1.0
+

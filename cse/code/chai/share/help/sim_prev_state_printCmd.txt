@@ -1,0 +1,19 @@
+
+  sim_prev_state_print - Prints the previous state.
+     _________________________________________________________________
+   
+   sim_prev_state_print [-h] <module>
+   
+   This command prints the previous state of the module in the current
+   simulation.
+   
+   Command Options:
+   
+   -h
+          Prints usage.
+          
+   <module>
+          Specifies the module.
+     _________________________________________________________________
+   
+   Last updated on 980624 22h11

@@ -1,0 +1,274 @@
+\relax 
+\newlabel{page:tables}{{}{4}}
+\citation{AlurHenzinger96}
+\citation{ChandyMisra88}
+\citation{Lynch96}
+\citation{BerryGonthier88}
+\citation{Pnueli77}
+\citation{ClarkeEmerson81}
+\citation{AHK97}
+\citation{HQR98}
+\citation{AHR98}
+\@writefile{toc}{\contentsline {chapter}{\numberline {1}Introduction}{5}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\citation{BHS96}
+\citation{tix-http}
+\@writefile{toc}{\contentsline {section}{\numberline {1.1}Organization of this manual}{6}}
+\@writefile{toc}{\contentsline {section}{\numberline {1.2}How to read this manual}{6}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {2}Tutorial introduction to \unhbox \voidb@x \hbox {\sc  Mocha}}{7}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{chap:tut}{{2}{7}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.1}Introduction}{7}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.2}$3$-bit counter}{7}}
+\newlabel{eqn:countercell}{{2.1}{7}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.1}{\ignorespaces {\tt  counterCell}: Mealy FSM}}{8}}
+\newlabel{fig:countercell_ckt}{{2.1}{8}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.2}{\ignorespaces $3$-bit counter}}{8}}
+\newlabel{fig:3bit_ckt}{{2.2}{8}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.3}Modeling the $3$-bit counter in \unhbox \voidb@x \hbox {\sc  ReactiveModules}}{8}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3.1}Module instantiation and composition}{9}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.3}{\ignorespaces 1-bit counter-cell}}{10}}
+\newlabel{fig:counter_cell_rm}{{2.3}{10}}
+\newlabel{item:latch}{{1}{10}}
+\newlabel{item:pi}{{3}{10}}
+\@writefile{lot}{\contentsline {table}{\numberline {2.1}{\ignorespaces Recipe for variable assignment in translating a Mealy FSM module to \unhbox \voidb@x \hbox {\sc  ReactiveModules}}}{10}}
+\newlabel{tab:recipe_mealy_fsm_rm}{{2.1}{10}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.4}Other issues in modeling hardware}{11}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.1}Connecting a latch output to a primary input}{11}}
+\@writefile{lot}{\contentsline {table}{\numberline {2.2}{\ignorespaces Rule for connecting the latch-output of one module to the input of another module}}{12}}
+\newlabel{tab:addtl_rule}{{2.2}{12}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.2}Non-determinism}{12}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.3}Simple exercises}{13}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.5}Running \unhbox \voidb@x \hbox {\sc  Mocha}}{13}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.4}{\ignorespaces Input file: counter.rm}}{14}}
+\newlabel{fig:finalfile}{{2.4}{14}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.5.1}Executing modules}{15}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.6}ATL model checking}{15}}
+\newlabel{eqn:atl_formula}{{2.2}{16}}
+\citation{ChandyMisra88}
+\citation{Dill96}
+\@writefile{toc}{\contentsline {section}{\numberline {2.7}Peterson's mutual exclusion protocol}{17}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.8}Verification}{17}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.9}Where to find the files for the examples in this chapter}{18}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.5}{\ignorespaces Asynchronous mutual-exclusion protocol}}{19}}
+\newlabel{fig:pete}{{2.5}{19}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {3}Reactive Modules}{20}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{chap:rem}{{3}{20}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.1}The input file}{20}}
+\@writefile{toc}{\contentsline {paragraph}{Structure of the file.}{20}}
+\@writefile{toc}{\contentsline {paragraph}{Splitting a description in multiple files.}{20}}
+\@writefile{toc}{\contentsline {paragraph}{Typographical conventions.}{21}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.2}Atoms}{21}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.1}Atoms}{21}}
+\@writefile{toc}{\contentsline {paragraph}{Controlled variables.}{21}}
+\@writefile{lot}{\contentsline {table}{\numberline {3.1}{\ignorespaces Atom syntax}}{22}}
+\newlabel{table-atom-syntax}{{3.1}{22}}
+\@writefile{toc}{\contentsline {paragraph}{Read variables.}{22}}
+\@writefile{toc}{\contentsline {paragraph}{Awaited variables.}{22}}
+\@writefile{toc}{\contentsline {paragraph}{Guarded commands.}{22}}
+\@writefile{lot}{\contentsline {table}{\numberline {3.2}{\ignorespaces Guarded command syntax}}{23}}
+\newlabel{table-gcommand-syntax}{{3.2}{23}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces Atom {\tt  incrdecr}}}{23}}
+\newlabel{fig-atomsimple}{{3.1}{23}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.2}Simple examples of atoms}{23}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.2}{\ignorespaces Module {\tt  randomwalk}}}{24}}
+\newlabel{fig-randomwalk}{{3.2}{24}}
+\@writefile{toc}{\contentsline {subsubsection}{Unit-delay vs.\ zero-delay}{24}}
+\newlabel{sec-unitdelay}{{3.2.2}{24}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.3}{\ignorespaces Module {\tt  DelayedAnd}}}{25}}
+\newlabel{fig-delayedand}{{3.3}{25}}
+\@writefile{lot}{\contentsline {table}{\numberline {3.3}{\ignorespaces Boolean expression syntax}}{26}}
+\newlabel{table-booleanexpr-syntax}{{3.3}{26}}
+\@writefile{lot}{\contentsline {table}{\numberline {3.4}{\ignorespaces Meaning and precedence of boolean operators}}{26}}
+\newlabel{table-boolop-precedence}{{3.4}{26}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.4}{\ignorespaces Module {\tt  SynchAnd}}}{27}}
+\newlabel{fig-synchand}{{3.4}{27}}
+\@writefile{lot}{\contentsline {table}{\numberline {3.5}{\ignorespaces Command syntax}}{27}}
+\newlabel{table-command-syntax}{{3.5}{27}}
+\@writefile{lot}{\contentsline {table}{\numberline {3.6}{\ignorespaces Rules for omitting the \unhbox \voidb@x \hbox {\tt  init}\ keyword, or the initial guarded commands}}{28}}
+\newlabel{table-initialconv}{{3.6}{28}}
+\@writefile{toc}{\contentsline {subsubsection}{Rounds and sub-rounds}{28}}
+\@writefile{toc}{\contentsline {subsubsection}{Omitting the \unhbox \voidb@x \hbox {\tt  init}\ keyword}{28}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.3}Guards}{28}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.5}{\ignorespaces Module {\tt  randomwalk010}}}{29}}
+\newlabel{fig-randomwalk010}{{3.5}{29}}
+\@writefile{toc}{\contentsline {subsubsection}{Omitting guards}{29}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.6}{\ignorespaces Module {\tt  CountUp}}}{30}}
+\newlabel{fig-countup}{{3.6}{30}}
+\newlabel{enum-sleep2}{{2}{30}}
+\@writefile{lot}{\contentsline {table}{\numberline {3.7}{\ignorespaces Updating idle variables}}{30}}
+\newlabel{table-sleeprules}{{3.7}{30}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.7}{\ignorespaces Module {\tt  CountUpPrime}}}{31}}
+\newlabel{fig-countupprime}{{3.7}{31}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.8}{\ignorespaces Module {\tt  randomwalkabove}}}{32}}
+\newlabel{fig-randomwalkabove}{{3.8}{32}}
+\@writefile{toc}{\contentsline {subsubsection}{The \unhbox \voidb@x \hbox {\tt  default}\ guard}{32}}
+\newlabel{sec-default}{{3.2.3}{32}}
+\@writefile{toc}{\contentsline {subsubsection}{Omitting variable updates}{32}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.9}{\ignorespaces Module {\tt  GrayCode}}}{33}}
+\newlabel{fig-modulepc}{{3.9}{33}}
+\@writefile{toc}{\contentsline {subsubsection}{Lazy atoms}{33}}
+\newlabel{sec-lazyatoms}{{3.2.3}{33}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.3}Modules}{33}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.1}Simple Modules}{33}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.10}{\ignorespaces Module {\tt  CountUpSecond}}}{34}}
+\newlabel{fig-countupsecond}{{3.10}{34}}
+\@writefile{lot}{\contentsline {table}{\numberline {3.8}{\ignorespaces Simple module syntax}}{34}}
+\newlabel{table-simple-module-syntax}{{3.8}{34}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.2}Composite Modules}{35}}
+\@writefile{toc}{\contentsline {subsubsection}{Hiding Variables}{35}}
+\@writefile{toc}{\contentsline {subsubsection}{Variable Renaming}{36}}
+\@writefile{toc}{\contentsline {subsubsection}{Parallel composition}{36}}
+\@writefile{lot}{\contentsline {table}{\numberline {3.9}{\ignorespaces Syntax of module declarations}}{37}}
+\newlabel{table-composite-module-syntax}{{3.9}{37}}
+\@writefile{toc}{\contentsline {subsubsection}{Summary of module declarations}{37}}
+\@writefile{lot}{\contentsline {table}{\numberline {3.10}{\ignorespaces Syntax of integer and range expressions}}{38}}
+\newlabel{table-intrange-expressions}{{3.10}{38}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.4}Types and Expressions}{38}}
+\newlabel{sec-types}{{3.4}{38}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.11}{\ignorespaces Modules for structural {\sc  or}}}{39}}
+\newlabel{fig-structuralor}{{3.11}{39}}
+\@writefile{lot}{\contentsline {table}{\numberline {3.11}{\ignorespaces Syntax of natural expressions}}{39}}
+\newlabel{table-nat-expressions}{{3.11}{39}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.1}Naturals and integers}{40}}
+\newlabel{sec-nat-int}{{3.4.1}{40}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.2}Events}{40}}
+\newlabel{sec-eventvars}{{3.4.2}{40}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.3}Range types}{40}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.12}{\ignorespaces Module {\tt  EventCount}}}{41}}
+\newlabel{fig-eventcount}{{3.12}{41}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.13}{\ignorespaces Module {\tt  RangeTranslation}}}{41}}
+\newlabel{fig-rangetranslation}{{3.13}{41}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.14}{\ignorespaces Module {\tt  UpDownWalk}}}{42}}
+\newlabel{fig-updownwalk}{{3.14}{42}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.4}Enumeration type}{42}}
+\newlabel{sec-enum}{{3.4.4}{42}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.5}Naming types}{42}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.15}{\ignorespaces Module {\tt  RecycleNames}}}{43}}
+\newlabel{fig-recyclenames}{{3.15}{43}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.16}{\ignorespaces Module {\tt  EnumAssign}}}{43}}
+\newlabel{fig-enumassign}{{3.16}{43}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.17}{\ignorespaces Module {\tt  EnumAssignBis}}}{44}}
+\newlabel{fig-enumassignbis}{{3.17}{44}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.6}Arrays}{44}}
+\newlabel{sec-arrays}{{3.4.6}{44}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.7}Bitvectors}{45}}
+\newlabel{sec-bitvector}{{3.4.7}{45}}
+\@writefile{lot}{\contentsline {table}{\numberline {3.12}{\ignorespaces Array access syntax}}{46}}
+\newlabel{table-array-access-syntax}{{3.12}{46}}
+\@writefile{lot}{\contentsline {table}{\numberline {3.13}{\ignorespaces Bitvector expression syntax}}{46}}
+\newlabel{table-bitexpr-syntax}{{3.13}{46}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.8}Summary of type declarations}{47}}
+\newlabel{sec-summary-type}{{3.4.8}{47}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.9}Finite and infinite types in verification}{47}}
+\@writefile{lot}{\contentsline {table}{\numberline {3.14}{\ignorespaces Syntax of types and type definitions}}{48}}
+\newlabel{table-type-defs}{{3.14}{48}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.5}Macro expansion}{49}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.6}Efficiency Considerations}{49}}
+\newlabel{sec-efficiency}{{3.6}{49}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6.1}Awaited, but not read, variables}{50}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6.2}Event variables}{50}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.7}More examples}{50}}
+\newlabel{sec:more_examples}{{3.7}{50}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.7.1}Synchronous message-passing protocols}{50}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.18}{\ignorespaces Synchronous message-passing protocol}}{51}}
+\newlabel{fig:syncmsg}{{3.18}{51}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.7.2}A train controller}{52}}
+\newlabel{subsec:train}{{3.7.2}{52}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.19}{\ignorespaces Railroad controller}}{53}}
+\newlabel{fig:rail}{{3.19}{53}}
+\newlabel{fig:rmanager}{{3.7.3}{54}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.20}{\ignorespaces Resource Manager}}{54}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.7.3}A resource manager}{54}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.21}{\ignorespaces Resource Manager (Specification)}}{55}}
+\newlabel{fig:rmanagerspec}{{3.21}{55}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.22}{\ignorespaces Resource Manager (Implementation)}}{56}}
+\newlabel{fig:rmanagerimpl}{{3.22}{56}}
+\citation{AHK97}
+\citation{ClarkeEmerson81}
+\citation{AHK97}
+\@writefile{toc}{\contentsline {chapter}{\numberline {4}Specifications}{58}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{chap:specs}{{4}{58}}
+\newlabel{sec:specs}{{4}{58}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.1}Invariants}{58}}
+\newlabel{subsec:invariant}{{4.1}{58}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.2}Alternating-time temporal logic}{58}}
+\@writefile{lot}{\contentsline {table}{\numberline {4.1}{\ignorespaces Invariant formula syntax}}{59}}
+\newlabel{table-inv-syntax}{{4.1}{59}}
+\@writefile{lot}{\contentsline {table}{\numberline {4.2}{\ignorespaces ATL formula syntax}}{59}}
+\newlabel{table-atl-syntax}{{4.2}{59}}
+\@writefile{lot}{\contentsline {table}{\numberline {4.3}{\ignorespaces Specification syntax}}{62}}
+\newlabel{table-spec-syntax}{{4.3}{62}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.3}Refinement}{62}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.4}The trace language of a module}{63}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.5}The implementation preorder between modules}{63}}
+\newlabel{def:refinability}{{4.1}{63}}
+\newlabel{def:implement}{{4.2}{64}}
+\newlabel{def:simulation-relation}{{4.3}{64}}
+\newlabel{def:simulation}{{4.4}{64}}
+\newlabel{prop:sufficiency}{{4.1}{64}}
+\@writefile{lot}{\contentsline {table}{\numberline {4.4}{\ignorespaces Syntax of identifiers for variables (atoms) in invariant and ATL formulae}}{65}}
+\newlabel{table-full-ident-syntax}{{4.4}{65}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.6}Referencing variables and atoms: the naming convention}{65}}
+\newlabel{sec-naming}{{4.6}{65}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {5}User Commands}{67}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{sec:commands}{{5}{67}}
+\newlabel{chap:commands}{{5}{67}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.1}Parsing modules}{67}}
+\newlabel{sec:parsing-modules}{{5.1}{67}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.2}Executing modules}{68}}
+\newlabel{subsec:execution}{{5.2}{68}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.3}Invariant Checking}{69}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.4}ATL model checking}{71}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.5}Refinement checking}{73}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {6}Verification Methodology}{75}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{sec:methodology}{{6}{75}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.1}Monitors}{75}}
+\newlabel{sec:monitors}{{6.1}{75}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.1}{\ignorespaces Monitoring equal opportunity}}{76}}
+\newlabel{fig:monitor3}{{6.1}{76}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.2}{\ignorespaces Error trajectory that violates equal opportunity}}{76}}
+\newlabel{fig:error2}{{6.2}{76}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.2}Witness modules for refinement checking}{77}}
+\newlabel{sec:witness_modules}{{6.2}{77}}
+\newlabel{prop:projection}{{6.1}{77}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.3}{\ignorespaces Witness modules for $\unhbox \voidb@x \hbox {\tt  msgO}$ and $\unhbox \voidb@x \hbox {\tt  pc}$ }}{78}}
+\newlabel{fig:syncmsgWitness}{{6.3}{78}}
+\newlabel{prop:witness}{{6.2}{78}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.3}Abstraction modules}{80}}
+\newlabel{sec:abstraction_modules}{{6.3}{80}}
+\citation{AlurHenzinger96}
+\@writefile{toc}{\contentsline {section}{\numberline {6.4}Assume-guarantee reasoning}{81}}
+\newlabel{sec:assume_guarantee}{{6.4}{81}}
+\newlabel{prop:ag2}{{6.3}{81}}
+\newlabel{prop:abs}{{6.4}{82}}
+\citation{AlurHenzinger97}
+\citation{AlurHenzinger97}
+\@writefile{toc}{\contentsline {chapter}{\numberline {7}Real-Time Modules}{88}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{sec:real_time}{{7}{88}}
+\newlabel{chap:real_time}{{7}{88}}
+\newlabel{sec:rtm}{{7}{88}}
+\@writefile{toc}{\contentsline {section}{\numberline {7.1}Describing Systems with Real-Time Modules}{88}}
+\citation{HMP92}
+\@writefile{lof}{\contentsline {figure}{\numberline {7.1}{\ignorespaces Real-time module for the train }}{89}}
+\newlabel{fig:rttrain}{{7.1}{89}}
+\@writefile{toc}{\contentsline {subsubsection}{Transition Relations of Real-Time Modules}{89}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7.2}{\ignorespaces Real-time railroad gate controller}}{90}}
+\newlabel{fig:rtctrl}{{7.2}{90}}
+\@writefile{toc}{\contentsline {section}{\numberline {7.2}Verification with Real-Time Modules}{90}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.2.1}Parsing Real-Time Modules}{90}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.2.2}Invariant Checking}{91}}
+\bibstyle{alpha}
+\bibdata{./diss}

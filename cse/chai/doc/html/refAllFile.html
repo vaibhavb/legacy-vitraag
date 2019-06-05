@@ -1,0 +1,142 @@
+<HTML>
+<HEAD><TITLE>The ref package: files</TITLE></HEAD>
+<BODY>
+
+<DL>
+ <DT> <A HREF="#ref.h"><CODE>ref.h</CODE></A>
+ <DD> External header file
+ <DT> <A HREF="#refInt.h"><CODE>refInt.h</CODE></A>
+ <DD> Internal header file
+ <DT> <A HREF="#ref.c"><CODE>ref.c</CODE></A>
+ <DD> Routines to check if one module is a refinement of another
+ <DT> <A HREF="#refSym1.c"><CODE>refSym1.c</CODE></A>
+ <DD> Routines to check if one module simulates another using naive approach
+ <DT> <A HREF="#refUtil.c"><CODE>refUtil.c</CODE></A>
+ <DD> Routines to check if one module is a refinement of another
+</DL><HR>
+<A NAME="ref.h"><H1>ref.h</H1></A>
+External header file <P>
+<B>By: Sriram Rajamani</B><P>
+<P><B>See Also</B><A HREF="#optional"><CODE>optional</CODE></A>
+<DL>
+</DL>
+<HR>
+<A NAME="refInt.h"><H1>refInt.h</H1></A>
+Internal header file <P>
+<B>By: Sriram Rajamani</B><P>
+<P><B>See Also</B><A HREF="#optional"><CODE>optional</CODE></A>
+<DL>
+</DL>
+<HR>
+<A NAME="ref.c"><H1>ref.c</H1></A>
+Routines to check if one module is a refinement of another <P>
+<B>By: Sriram K. Rajamani</B><P>
+This package has routines that check if one module refines
+                another.
+		1. refinement check is provided via the check_refine
+		   command. It requires that all history dependent 
+		   variables of the specification be witnessed in the 
+		   implementation
+		2. simulation check is provided via the check_simulate
+		   command.
+		3. compositonal refinement facility is provided by the
+		   check_refine_atom command. This command helps the 
+		   user carry out one proof oligation in a compositional 
+		   proof. <P>
+<P><B>See Also</B><A HREF="#sym"><CODE>sym</CODE></A>
+<DL>
+ <DT> <A HREF="refAllDet.html#Ref_Init" TARGET="MAIN"><CODE>Ref_Init()</CODE></A>
+ <DD> Init function for tcl.
+
+ <DT> <A HREF="refAllDet.html#Ref_Reinit" TARGET="MAIN"><CODE>Ref_Reinit()</CODE></A>
+ <DD> Reinit function
+
+ <DT> <A HREF="refAllDet.html#Ref_End" TARGET="MAIN"><CODE>Ref_End()</CODE></A>
+ <DD> End function
+
+ <DT> <A HREF="refAllDet.html#Ref_CheckAtomRefinement" TARGET="MAIN"><CODE>Ref_CheckAtomRefinement()</CODE></A>
+ <DD> do one step of the compositional refinement proof
+
+ <DT> <A HREF="refAllDet.html#Ref_CheckNohiddenRefinement" TARGET="MAIN"><CODE>Ref_CheckNohiddenRefinement()</CODE></A>
+ <DD> Check if implModule is a refinement of specModule
+                      with the assumption that all history dependent
+                      variables of specModule are also present in implModule
+
+ <DT> <A HREF="refAllDet.html#RefCheckTransitionInvariant" TARGET="MAIN"><CODE>RefCheckTransitionInvariant()</CODE></A>
+ <DD> Check refinement using transition invariant check on the
+  implementation
+
+ <DT> <A HREF="refAllDet.html#RefCheckNohiddenRefinement" TARGET="MAIN"><CODE>RefCheckNohiddenRefinement()</CODE></A>
+ <DD> driver for checking refinement with no hidden variables
+  in the specification
+
+ <DT> <A HREF="refAllDet.html#RefCheckCompositionalRefinementOneAtom" TARGET="MAIN"><CODE>RefCheckCompositionalRefinementOneAtom()</CODE></A>
+ <DD> driver for checking one step in the compositional refinement proof
+
+ <DT> <A HREF="refAllDet.html#RefDumpIds" TARGET="MAIN"><CODE>RefDumpIds()</CODE></A>
+ <DD> dump and array of mdd Ids for debugging
+
+ <DT> <A HREF="refAllDet.html#RefGetFlatSpecTransRelation" TARGET="MAIN"><CODE>RefGetFlatSpecTransRelation()</CODE></A>
+ <DD> get flattened transition relation for specification in terms
+                      of variables of implementation
+
+ <DT> <A HREF="refAllDet.html#Ref_VariableReadControlAtom" TARGET="MAIN"><CODE>Ref_VariableReadControlAtom()</CODE></A>
+ <DD> Ref_VariableReadControlAtom
+
+</DL>
+<HR>
+<A NAME="refSym1.c"><H1>refSym1.c</H1></A>
+Routines to check if one module simulates another using naive approach <P>
+<B>By: Sriram K. Rajamani</B><P>
+optional <P>
+<P><B>See Also</B><A HREF="#optional"><CODE>optional</CODE></A>
+<DL>
+ <DT> <A HREF="refAllDet.html#Ref_CheckSimulationUsingPre" TARGET="MAIN"><CODE>Ref_CheckSimulationUsingPre()</CODE></A>
+ <DD> Check if specModule is a simulates of implModule
+
+ <DT> <A HREF="refAllDet.html#RefUnprimedIdsMerge" TARGET="MAIN"><CODE>RefUnprimedIdsMerge()</CODE></A>
+ <DD> merge unprimed ids of two modules
+
+ <DT> <A HREF="refAllDet.html#RefPrimedIdsMerge" TARGET="MAIN"><CODE>RefPrimedIdsMerge()</CODE></A>
+ <DD> merge primed ids of two modules
+
+ <DT> <A HREF="refAllDet.html#RefMddBuildNoChange" TARGET="MAIN"><CODE>RefMddBuildNoChange()</CODE></A>
+ <DD> Build MDD for no variables changing
+
+ <DT> <A HREF="refAllDet.html#RefMddBuildObseq" TARGET="MAIN"><CODE>RefMddBuildObseq()</CODE></A>
+ <DD> Build MDD for observational equivalence between two modules
+
+ <DT> <A HREF="refAllDet.html#RefConjunctsAddExtra" TARGET="MAIN"><CODE>RefConjunctsAddExtra()</CODE></A>
+ <DD> Add one mdd to the conjuncts array and return a new
+                      conjuncts array
+
+ <DT> <A HREF="refAllDet.html#RefCheckSimulation" TARGET="MAIN"><CODE>RefCheckSimulation()</CODE></A>
+ <DD> driver for checking simulation
+
+</DL>
+<HR>
+<A NAME="refUtil.c"><H1>refUtil.c</H1></A>
+Routines to check if one module is a refinement of another <P>
+<B>By: Sriram K. Rajamani</B><P>
+optional <P>
+<P><B>See Also</B><A HREF="#optional"><CODE>optional</CODE></A>
+<DL>
+ <DT> <A HREF="refAllDet.html#Ref_CheckImplCompatibility" TARGET="MAIN"><CODE>Ref_CheckImplCompatibility()</CODE></A>
+ <DD> check implementation compatibility between spec and impl
+
+ <DT> <A HREF="refAllDet.html#Ref_LookupVarList" TARGET="MAIN"><CODE>Ref_LookupVarList()</CODE></A>
+ <DD> Lookup variable by name from a list of variables
+
+ <DT> <A HREF="refAllDet.html#Ref_IsMemberOfAtomList" TARGET="MAIN"><CODE>Ref_IsMemberOfAtomList()</CODE></A>
+ <DD> test for membership in list of atoms
+
+ <DT> <A HREF="refAllDet.html#Ref_IsMemberOfNameList" TARGET="MAIN"><CODE>Ref_IsMemberOfNameList()</CODE></A>
+ <DD> test for membership in list of names
+
+ <DT> <A HREF="refAllDet.html#RefMddArrayFree" TARGET="MAIN"><CODE>RefMddArrayFree()</CODE></A>
+ <DD> free MDD array
+
+</DL>
+<HR>
+Last updated on 1031104 18h39
+</BODY></HTML>

@@ -1,0 +1,90 @@
+parse successful.
+No. of explored states = 223
+Step 1: image mdd size =         21	 |states| =       32	
+reached set mdd size =         16	 |states| =       24
+Step 2: image mdd size =         45	 |states| =       60	
+reached set mdd size =         29	 |states| =       34
+Step 3: image mdd size =         90	 |states| =      116	
+reached set mdd size =         30	 |states| =       64
+Step 4: image mdd size =        172	 |states| =      202	
+reached set mdd size =         58	 |states| =       87
+Step 5: image mdd size =        216	 |states| =      292	
+reached set mdd size =         67	 |states| =      126
+Step 6: image mdd size =        248	 |states| =      400	
+reached set mdd size =         78	 |states| =      156
+Step 7: image mdd size =        264	 |states| =      512	
+reached set mdd size =         71	 |states| =      186
+Step 8: image mdd size =        276	 |states| =      604	
+reached set mdd size =         68	 |states| =      205
+Step 9: image mdd size =        138	 |states| =      198	
+reached set mdd size =         62	 |states| =      222
+Step 10: image mdd size =         85	 |states| =      182	
+reached set mdd size =         61	 |states| =      223
+Step 11: image mdd size =         21	 |states| =        4	
+reached set mdd size =         61	 number of states =      223
+Step 1: image mdd size =         46	 |states| =     2048	
+reached set mdd size =         30	 |states| =     2560
+Step 2: image mdd size =        123	 |states| =     3616	
+reached set mdd size =         70	 |states| =     3360
+Step 3: image mdd size =        238	 |states| =     8320	
+reached set mdd size =        133	 |states| =     5760
+Step 4: image mdd size =        385	 |states| =    15628	
+reached set mdd size =        215	 |states| =     8640
+Step 5: image mdd size =        674	 |states| =    27220	
+reached set mdd size =        374	 |states| =    12580
+Step 6: image mdd size =       1170	 |states| =    38118	
+reached set mdd size =        652	 |states| =    17379
+Step 7: image mdd size =       1746	 |states| =    60260	
+reached set mdd size =       1001	 |states| =    24573
+Step 8: image mdd size =       1158	 |states| =    19931	
+reached set mdd size =       1400	 |states| =    32776
+Step 9: image mdd size =       1432	 |states| =    31436	
+reached set mdd size =       1878	 |states| =    42345
+Step 10: image mdd size =       2173	 |states| =    24910	
+reached set mdd size =       1770	 |states| =    52684
+Step 11: image mdd size =       4766	 |states| =   170955	
+reached set mdd size =       2068	 |states| =    62562
+Step 12: image mdd size =       4867	 |states| =   197747	
+reached set mdd size =       2244	 |states| =    73010
+Step 13: image mdd size =       2252	 |states| =    43782	
+reached set mdd size =       2401	 |states| =    84195
+Step 14: image mdd size =       2661	 |states| =    32073	
+reached set mdd size =       2546	 |states| =    95078
+Step 15: image mdd size =       2809	 |states| =    45310	
+reached set mdd size =       2689	 |states| =   105460
+Step 16: image mdd size =       2670	 |states| =    31851	
+reached set mdd size =       2723	 |states| =   115413
+Step 17: image mdd size =       2633	 |states| =    41312	
+reached set mdd size =       2754	 |states| =   123296
+Step 18: image mdd size =       2507	 |states| =    23254	
+reached set mdd size =       2738	 |states| =   130033
+Step 19: image mdd size =       2268	 |states| =    27552	
+reached set mdd size =       2744	 |states| =   134309
+Step 20: image mdd size =       1951	 |states| =    14705	
+reached set mdd size =       2698	 |states| =   137555
+Step 21: image mdd size =       1617	 |states| =    16596	
+reached set mdd size =       2666	 |states| =   139953
+Step 22: image mdd size =       1515	 |states| =     8405	
+reached set mdd size =       2565	 |states| =   141594
+Step 23: image mdd size =       1356	 |states| =     6662	
+reached set mdd size =       2453	 |states| =   142467
+Step 24: image mdd size =       1175	 |states| =     2936	
+reached set mdd size =       2368	 |states| =   143023
+Step 25: image mdd size =        856	 |states| =     2715	
+reached set mdd size =       2313	 |states| =   143300
+Step 26: image mdd size =        524	 |states| =      938	
+reached set mdd size =       2266	 |states| =   143436
+Step 27: image mdd size =        379	 |states| =      612	
+reached set mdd size =       2239	 |states| =   143520
+Step 28: image mdd size =        340	 |states| =      343	
+reached set mdd size =       2199	 |states| =   143569
+Step 29: image mdd size =        249	 |states| =      175	
+reached set mdd size =       2176	 |states| =   143592
+Step 30: image mdd size =        179	 |states| =       77	
+reached set mdd size =       2168	 |states| =   143608
+Step 31: image mdd size =        141	 |states| =      176	
+reached set mdd size =       2138	 |states| =   143635
+Step 32: image mdd size =        195	 |states| =      134	
+reached set mdd size =       2113	 |states| =   143655
+Step 33: image mdd size =        190	 |states| =       78	
+reached set mdd size =       2113	 number of states =   143655

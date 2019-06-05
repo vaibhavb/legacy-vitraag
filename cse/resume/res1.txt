@@ -1,0 +1,84 @@
+Vaibhav Bhandari 
+PRESENT ADDRESS 
+401 Spring Street 
+Santa Cruz, CA 95060 
+Tel: 1-831-423-7381 
+Email:vaibhav@cse.ucsc.edu 
+http://www.cse.ucsc.edu/vaibhav 
+ 
+OBJECTIVE 
+To seek a challenging position in field of Computer Science and IT Management related to Systems Programming, Systems Design or Algorithms in an organization with strong growth and learning- oriented social culture. 
+
+INTEREST 
+Systems' programming, Embedded and Real-time Systems, Verification, Software Components, Code Optimization and Compilers. 
+
+EDUCATION 
+ MS Computer Science, UC Santa Cruz, Santa Cruz, CA 95060. Sep 2001 - Present. 
+ BE Computer Engineering, VES Institute of Technology, Mumbai, India. Aug 1997 - Aug 
+2001. (Top 5%) 
+ DBF (alpha, beta)-Diploma in Business Finance-part Time, ICFAI, Hyderabad, India. June 
+2000 -Aug 2002. (Top 10%) 
+
+EXPERIENCE 
+Research Assistant Embedded Systems Design Fall 2002 - Present 
+and Verification Lab, UC Santa Cruz 
+Wrote a Blif-MV to Reactive Modules translator in Ocaml to use the MOCHA environment for utilizing verilog verification work. Currently working on a formalization and tool for resource interfaces. 
+Systems Research Programmer Distributed Sensor Networks. Summer 2002 
+USC-ISI East, Virginia. 
+Worked on Tiny Mica sensor nodes running Tiny-OS. Coded a repeater component on top of the RFM stack and set-up a Mote Sensor Network with suitable data-logging for futhur research. 
+Teaching Assistant UC Santa Cruz, CA Fall 2001-Spring 2002 Teaching Assistant, at UC Santa Cruz for Introductory Java(CMPS12A), Advanced Java (CMPS109) 
+and Data Structures (CMPS101) courses. 
+Consultant and Developer Handhelds.org and Freelance Opensource Picopeta Simputers, Bangalore, India. 
+Volunteer for hacking a bootloader for XScale based IPAQs. Writing a device driver for DS1307 (I2C based) RTC chip intergrated on the strong-arm based SimputerV3 board running linux. 
+System Developer USGS Santa Cruz, CA Summer 2002 Extension and porting of ZTool (Real-time bathymetry in Java and Fortran-77) from Irix to Linux 
+(x86). Initial research and Systems' development for Campbell-Scientic data-logger accessibility via Cell-phone/ PSTN. 
+Research Assistant Tata Institute Of Fundamental Research Summer 2001 
+Mumbai, India Worked on MicroPayment protocol design for kiosk based consumer points and related security 
+issues. 
+
+PROJECTS 
+ Working on Flexi - a research tool for interface automata. 
+ Working on making Debian apt-get like utility for Simputer- handheld. 
+ RTC-DS1307 (I2C based) device driver for SimputerV3 board running linux for strong-arm boards. 
+ Implementation of MAC layer for the Leg-OS (now BrickOS) kernel. 
+ Code generation phase of annotated parallel C (K1) for a SIMD parallel processor (Kestrel). 
+ Implementation of various EDF Schedulers in Linux kernel with exciting real-time related results. 
+ Vega-Rekha a tool for java bytecode optimization written in java supporting GUI, CommandLine and import executions. 
+ Yaadein a website for collaborative authoring of my graduate class yearbook. Done using PHP/MySql combo. 
+ MA Awards online voting system forbidding double voting based on PhP/MySql session handling. 
+ Library Management System a compact implementation of library system using C++ and STL library under GCC environment. 
+ Collision Avoidance System, system integration cell as a part of IEEE branch project. Based on MC6811 microcontroller. 
+ Pure Maths Research Workshop, Bhaskaracharya Prathisthan, Pune, India Summer 1995. 
+
+SOFTWARE SKILLS 
+ Programming Languages:Pascal, C(4 years) , C++(2 years), Java(3 years), OCaml(6 Months). 
+ Scripting Languages: Perl, Shell script, PHP, SQL. 
+ Mark Ups: HTML, XML(1.5 year), L A T E X. 
+ Editors: Emacs, MS-Word, MS-Publisher, MCedit, ilyx. 
+ Compliers and debuggers: GCC, GDB, Turbo C++, JDK 1.2, Forte 
+ Platforms: x86 Linux, x86 Win, Solaris. 
+
+EXTRACURRICULAR 
+Editorial and Musical 
+ Chief Editor of *.*, the annual inter-collegiate student magazine of Computer Society Of India's Mumbai chapter. 
+ Editor and Conceptualizer of e-Sense, CSI-VESIT's newsletter. 
+ Editor and Conceptualizer of Saransh - brochure of United Jain Students' Home, Mumbai. 
+ Student of Bamboo Flute in-perspective of fusion and indian classical music. 
+Leadership 
+ Founder, Vitraag Inc (www.vitraag.com) a consultancy and software development company. 
+ Evangelist, Pragat Bharat - an initiative to see India as a developed country. 
+ Member of Core committee of Emerge2000 - technical symposium organized by CSI India. 
+ Conceptualizer of In a CSI technical event. 
+ Chief Organizer of a cultural festival Mirage2000. 
+
+ACADEMIC AWARDS AND HONORS 
+ Won the coveted National Talent Search Examination (NTSE) Scholarship awarded by National Council of Education Research and Training, India. 
+ UC Santa Cruz tution fellowship and UC Regents Grant. 
+ Kaprepar Mathematics Scholarship. 
+
+MISSION STATEMENT 
+Mode: Happiness Method: Practicality and Goal: Dreams. 
+
+REFERENCES 
+Available upon request. 
+

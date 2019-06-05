@@ -1,0 +1,390 @@
+<HTML>
+<HEAD><TITLE>The main package</TITLE></HEAD>
+<BODY>
+
+<DL>
+<dt><pre>
+<A NAME="Main_AppendElement"></A>
+void <I></I>
+<B>Main_AppendElement</B>(
+  char * <b>format</b>, <i></i>
+   <b></b> <i></i>
+)
+</pre>
+<dd> This function appends result to the Tcl Interpreter.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<dt><pre>
+<A NAME="Main_AppendResult"></A>
+void <I></I>
+<B>Main_AppendResult</B>(
+  char * <b>format</b>, <i></i>
+   <b></b> <i></i>
+)
+</pre>
+<dd> This function appends result to the Tcl Interpreter.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<dt><pre>
+<A NAME="Main_ClearResult"></A>
+void <I></I>
+<B>Main_ClearResult</B>(
+   <b></b> <i></i>
+)
+</pre>
+<dd> It clears the result field in the Tcl interpreter.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Tcl_ResetResult">Tcl_ResetResult</a>
+<a href="#in">in</a>
+<a href="#the">the</a>
+<a href="#Tcl">Tcl</a>
+Reference
+<a href="#Menu">Menu</a>
+</code>
+
+<dt><pre>
+<A NAME="Main_ConvertIntToString"></A>
+char * <I></I>
+<B>Main_ConvertIntToString</B>(
+  int  <b>i</b> <i></i>
+)
+</pre>
+<dd> This function converts an integer (both positive and
+  negative) into a string. It is the inverse of the library function atoi.
+<p>
+
+<dd> <b>Side Effects</b> User should free the string after use.
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<dt><pre>
+<A NAME="Main_End"></A>
+int <I></I>
+<B>Main_End</B>(
+  Tcl_Interp * <b>interp</b>, <i></i>
+  Main_Manager_t * <b>manager</b> <i></i>
+)
+</pre>
+<dd> Ends the main package.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dt><pre>
+<A NAME="Main_Init"></A>
+int <I></I>
+<B>Main_Init</B>(
+  Tcl_Interp * <b>interp</b>, <i></i>
+  Main_Manager_t * <b>manager</b> <i></i>
+)
+</pre>
+<dd> Initializes the main package.
+<p>
+
+<dd> <b>Side Effects</b> Registers commands by modifying the TCL variable
+                      mocha_commands.
+<p>
+
+<dt><pre>
+<A NAME="Main_ManagerReadMddManager"></A>
+Main_MddManagerGeneric <I></I>
+<B>Main_ManagerReadMddManager</B>(
+  Main_Manager_t * <b>manager</b> <i></i>
+)
+</pre>
+<dd> This function returns the mdd manager.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dt><pre>
+<A NAME="Main_ManagerReadModuleManager"></A>
+Main_MdlManagerGeneric <I></I>
+<B>Main_ManagerReadModuleManager</B>(
+  Main_Manager_t * <b>manager</b> <i></i>
+)
+</pre>
+<dd> This function returns a pointer to the current module
+                      manager. The pointer should be cast to Mdl_Manager_t *
+                      before use.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dt><pre>
+<A NAME="Main_ManagerReadRegionManager"></A>
+Main_RegionManagerGeneric <I></I>
+<B>Main_ManagerReadRegionManager</B>(
+  Main_Manager_t * <b>manager</b> <i></i>
+)
+</pre>
+<dd> This function returns the region manager.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dt><pre>
+<A NAME="Main_ManagerReadRtmRegionManager"></A>
+Main_RtmRegionManagerGeneric <I></I>
+<B>Main_ManagerReadRtmRegionManager</B>(
+  Main_Manager_t * <b>manager</b> <i></i>
+)
+</pre>
+<dd> This function returns manager containing the info that
+                      the rtm package uses.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dt><pre>
+<A NAME="Main_ManagerReadStateManager"></A>
+Main_StateManagerGeneric <I></I>
+<B>Main_ManagerReadStateManager</B>(
+  Main_Manager_t * <b>manager</b> <i></i>
+)
+</pre>
+<dd> This function returns the state manager.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dt><pre>
+<A NAME="Main_ManagerReadTypeManager"></A>
+Main_TypeManagerGeneric <I></I>
+<B>Main_ManagerReadTypeManager</B>(
+  Main_Manager_t * <b>manager</b> <i></i>
+)
+</pre>
+<dd> This function returns a pointer to the current type
+                      manager. The pointer should be cast to Var_TypeManager_t
+                      * before use.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dt><pre>
+<A NAME="Main_ManagerSetMddManager"></A>
+void <I></I>
+<B>Main_ManagerSetMddManager</B>(
+  Main_Manager_t * <b>manager</b>, <i></i>
+  Main_MddManagerGeneric  <b>mddManager</b> <i></i>
+)
+</pre>
+<dd> This function sets the value of the mdd  manager in
+                      the main manager.
+<p>
+
+<dd> <b>Side Effects</b> The value of the mdd manager is changed.
+<p>
+
+<dt><pre>
+<A NAME="Main_ManagerSetModuleManager"></A>
+void <I></I>
+<B>Main_ManagerSetModuleManager</B>(
+  Main_Manager_t * <b>manager</b>, <i></i>
+  Main_MdlManagerGeneric  <b>mdlManager</b> <i></i>
+)
+</pre>
+<dd> This function sets the value of the module manager in
+                      the main manager.
+<p>
+
+<dd> <b>Side Effects</b> The value of the module manager is changed.
+<p>
+
+<dt><pre>
+<A NAME="Main_ManagerSetRegionManager"></A>
+void <I></I>
+<B>Main_ManagerSetRegionManager</B>(
+  Main_Manager_t * <b>manager</b>, <i></i>
+  Main_RegionManagerGeneric  <b>rgnManager</b> <i></i>
+)
+</pre>
+<dd> This function sets the value of the region manager in
+                      the main manager.
+<p>
+
+<dd> <b>Side Effects</b> The value of the region manager is changed.
+<p>
+
+<dt><pre>
+<A NAME="Main_ManagerSetRtmRegionManager"></A>
+void <I></I>
+<B>Main_ManagerSetRtmRegionManager</B>(
+  Main_Manager_t * <b>manager</b>, <i></i>
+  Main_RtmRegionManagerGeneric  <b>rtmRegionManager</b> <i></i>
+)
+</pre>
+<dd> This function sets the value of the rtm region manager in
+                      the main manager.
+<p>
+
+<dd> <b>Side Effects</b> The value of the rtm region manager is changed.
+<p>
+
+<dt><pre>
+<A NAME="Main_ManagerSetStateManager"></A>
+void <I></I>
+<B>Main_ManagerSetStateManager</B>(
+  Main_Manager_t * <b>manager</b>, <i></i>
+  Main_StateManagerGeneric  <b>stateManager</b> <i></i>
+)
+</pre>
+<dd> This function sets the value of the state manager in
+                      the main manager.
+<p>
+
+<dd> <b>Side Effects</b> The value of the state manager is changed.
+<p>
+
+<dt><pre>
+<A NAME="Main_ManagerSetTypeManager"></A>
+void <I></I>
+<B>Main_ManagerSetTypeManager</B>(
+  Main_Manager_t * <b>manager</b>, <i></i>
+  Main_TypeManagerGeneric  <b>typeManager</b> <i></i>
+)
+</pre>
+<dd> This function sets the value of the variable type
+                      manager in the main manager.
+<p>
+
+<dd> <b>Side Effects</b> The value of the variable type manager is changed.
+<p>
+
+<dt><pre>
+<A NAME="Main_MochaErrorPrint"></A>
+void <I></I>
+<B>Main_MochaErrorPrint</B>(
+  char* <b>format</b>, <i></i>
+   <b></b> <i></i>
+)
+</pre>
+<dd> This function simulates the fprintf(stderr, ...)
+  command. Users should use this command instead of fprintf(stderr,
+  ...)
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Main_MochaPrint">Main_MochaPrint</a>
+</code>
+
+<dt><pre>
+<A NAME="Main_MochaFilePrint"></A>
+void <I></I>
+<B>Main_MochaFilePrint</B>(
+  FILE * <b>fp</b>, <i></i>
+  char* <b>format</b>, <i></i>
+   <b></b> <i></i>
+)
+</pre>
+<dd> This function simulates the fprintf(fp, ...)
+  command. Users should use this command instead of fprintf(stderr,
+  ...)
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Main_MochaPrint">Main_MochaPrint</a>
+</code>
+
+<dt><pre>
+<A NAME="Main_MochaPrint"></A>
+void <I></I>
+<B>Main_MochaPrint</B>(
+  char* <b>format</b>, <i></i>
+   <b></b> <i></i>
+)
+</pre>
+<dd> This function simulates the printf() command. Users should use this command instead of printf().
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Main_MochaErrorPrint">Main_MochaErrorPrint</a>
+</code>
+
+<dt><pre>
+<A NAME="Main_Reinit"></A>
+int <I></I>
+<B>Main_Reinit</B>(
+  Tcl_Interp * <b>interp</b>, <i></i>
+  Main_Manager_t * <b>manager</b> <i></i>
+)
+</pre>
+<dd> Reinitializes the main package.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dt><pre>
+<A NAME="Main_ReturnCreationTime"></A>
+int <I></I>
+<B>Main_ReturnCreationTime</B>(
+   <b></b> <i></i>
+)
+</pre>
+<dd> It returns the system-generated creation time. The
+  system keeps an internal counter which increment once each time when this
+  function is called. The creation time can be used to keep track of when the
+  modules/atoms etc. are generated and it can be used for comparison.
+<p>
+
+<dd> <b>Side Effects</b> MainCreationTime is incremented.
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<dt><pre>
+<A NAME="Main_strConcat"></A>
+char * <I></I>
+<B>Main_strConcat</B>(
+  int  <b>numArgs</b>, <i></i>
+   <b></b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+
+</DL>
+<HR>
+Last updated on 1031104 18h39
+</BODY></HTML>

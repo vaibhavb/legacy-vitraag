@@ -1,0 +1,105 @@
+<HTML>
+<HEAD><TITLE>The prs package: files</TITLE></HEAD>
+<BODY>
+
+<DL>
+ <DT> <A HREF="#prs.h"><CODE>prs.h</CODE></A>
+ <DD> External header file
+ <DT> <A HREF="#prsInt.h"><CODE>prsInt.h</CODE></A>
+ <DD> Internal header file
+ <DT> <A HREF="#prsMain.c"><CODE>prsMain.c</CODE></A>
+ <DD> the main file for this package.  The tcl init command is
+               defined here.
+ <DT> <A HREF="#prsTree.c"><CODE>prsTree.c</CODE></A>
+ <DD> Routines for building parse tree.
+</DL><HR>
+<A NAME="prs.h"><H1>prs.h</H1></A>
+External header file <P>
+<B>By: Freddy Mang</B><P>
+<P><B>See Also</B><A HREF="#optional"><CODE>optional</CODE></A>
+<DL>
+</DL>
+<HR>
+<A NAME="prsInt.h"><H1>prsInt.h</H1></A>
+Internal header file <P>
+<B>By: Freddy Mang</B><P>
+<P><B>See Also</B><A HREF="#optional"><CODE>optional</CODE></A>
+<DL>
+</DL>
+<HR>
+<A NAME="prsMain.c"><H1>prsMain.c</H1></A>
+the main file for this package.  The tcl init command is
+               defined here. <P>
+<B>By: Freddy Mang</B><P>
+optional <P>
+<P><B>See Also</B><A HREF="#prs.y"><CODE>prs.y</CODE></A>
+<DL>
+ <DT> <A HREF="prsAllDet.html#Prs_Init" TARGET="MAIN"><CODE>Prs_Init()</CODE></A>
+ <DD> Initializes the prs package.
+
+ <DT> <A HREF="prsAllDet.html#Prs_Reinit" TARGET="MAIN"><CODE>Prs_Reinit()</CODE></A>
+ <DD> Reinitializes the prs package.
+
+ <DT> <A HREF="prsAllDet.html#Prs_End" TARGET="MAIN"><CODE>Prs_End()</CODE></A>
+ <DD> Ends the prs package.
+
+ <DT> <A HREF="prsAllDet.html#PrsReadModuleCmd" TARGET="MAIN"><CODE>PrsReadModuleCmd()</CODE></A>
+ <DD> Definition of read_module
+
+ <DT> <A HREF="prsAllDet.html#FileTail" TARGET="MAIN"><CODE>FileTail()</CODE></A>
+ <DD> Returns the string after the last /
+
+ <DT> <A HREF="prsAllDet.html#PrsReadIntfCmd" TARGET="MAIN"><CODE>PrsReadIntfCmd()</CODE></A>
+ <DD> Definition of read_intf
+
+</DL>
+<HR>
+<A NAME="prsTree.c"><H1>prsTree.c</H1></A>
+Routines for building parse tree. <P>
+<B>By: Freddy Mang</B><P>
+optional <P>
+<P><B>See Also</B><A HREF="#optional"><CODE>optional</CODE></A>
+<DL>
+ <DT> <A HREF="prsAllDet.html#PrsNodeAlloc" TARGET="MAIN"><CODE>PrsNodeAlloc()</CODE></A>
+ <DD> Allocates a new PrsNode_t
+
+ <DT> <A HREF="prsAllDet.html#PrsNodeFree" TARGET="MAIN"><CODE>PrsNodeFree()</CODE></A>
+ <DD> Frees a PrsNode_t
+
+ <DT> <A HREF="prsAllDet.html#PrsNodeReadId" TARGET="MAIN"><CODE>PrsNodeReadId()</CODE></A>
+ <DD> Returns the id of the PrsNode_t
+
+ <DT> <A HREF="prsAllDet.html#PrsNodeReadField1" TARGET="MAIN"><CODE>PrsNodeReadField1()</CODE></A>
+ <DD> Returns the field1 of the PrsNode_t
+
+ <DT> <A HREF="prsAllDet.html#PrsNodeReadField2" TARGET="MAIN"><CODE>PrsNodeReadField2()</CODE></A>
+ <DD> Returns the field2 of the PrsNode_t
+
+ <DT> <A HREF="prsAllDet.html#PrsVariableCheckPrimed" TARGET="MAIN"><CODE>PrsVariableCheckPrimed()</CODE></A>
+ <DD> Check whether the variable is primed, and strip the prime if so.
+
+ <DT> <A HREF="prsAllDet.html#PrsIsInList" TARGET="MAIN"><CODE>PrsIsInList()</CODE></A>
+ <DD> Check if a item is in a list.
+
+ <DT> <A HREF="prsAllDet.html#PrsTypeEnumAlloc" TARGET="MAIN"><CODE>PrsTypeEnumAlloc()</CODE></A>
+ <DD> Define new enumerative data types
+
+ <DT> <A HREF="prsAllDet.html#PrsTypeRangeAlloc" TARGET="MAIN"><CODE>PrsTypeRangeAlloc()</CODE></A>
+ <DD> Define new range data types
+
+ <DT> <A HREF="prsAllDet.html#PrsTypeArrayAlloc" TARGET="MAIN"><CODE>PrsTypeArrayAlloc()</CODE></A>
+ <DD> Define new array data types
+
+ <DT> <A HREF="prsAllDet.html#PrsTypeBitvectorAlloc" TARGET="MAIN"><CODE>PrsTypeBitvectorAlloc()</CODE></A>
+ <DD> Define new bitvector data types
+
+ <DT> <A HREF="prsAllDet.html#PrsTypeBitvectorNAlloc" TARGET="MAIN"><CODE>PrsTypeBitvectorNAlloc()</CODE></A>
+ <DD> Define new bitvector data types
+
+ <DT> <A HREF="prsAllDet.html#PrsTypeCheckName" TARGET="MAIN"><CODE>PrsTypeCheckName()</CODE></A>
+ <DD> Check the typename when defining a new data type
+
+</DL>
+<HR>
+Last updated on 1031104 18h39
+</BODY></HTML>

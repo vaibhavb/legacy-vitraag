@@ -1,0 +1,358 @@
+\section{Grammar for Reactive Modules}
+The following is the grammar for Reactive Modules in BNF. Keywords are 
+boldfaced. Symbols including {\it 
+integer-constant, 
+event-identifier,
+enum-type-identifier, 
+range-type-identifier,
+array-type-identifier,
+bitvector-type-identifier,
+module-identifier,
+atom-identifier,
+dummy-var-identifier,
+array-or-bitvector-identifier
+} are undefined terminal symbols.
+
+\begin{tab}
+\begin{tabbing}
+
+%setting the tab position
+==== \= ==== \= \kill
+
+program : definitions \\
+
+definitions  \\
+\>: definition \\
+\>$|$ definitions definition \\
+\>; \\
+
+/* A definition is either a type definition or a module definition */ \\
+
+definition  \\
+\> : type-definition \\
+\> $|$ module-definition \\
+\> ; \\
+
+/* definition of type starts here */ \\
+type-definition  \\
+\>: \TYPEDEF \ENUMID \COLON enum-const-list \\
+\>$|$ \TYPEDEF \RANGEID \COLON range-declarator \\
+\>$|$ \TYPEDEF \ARRAYID \COLON \ARRAY array-index-type \OF array-entry-type \\
+\>$|$ \TYPEDEF \BITVECID \COLON \BITVECTOR int-const \\
+\>; \\
+
+enum-const-list  \\
+\>: {\bf \{} identifier-list {\bf \}} \\
+\>; \\
+
+range-declarator : {\bf (0 ..}  int-const{\bf )}; \\
+
+array-entry-type \\
+\>:   finite-type \\
+\>$|$ infinite-type \\
+\>$|$ \ENUMID \\
+\>$|$ \RANGEID \\
+\>$|$ \BITVECID \\
+\>;\\
+
+array-index-type \\
+\>:   finite-type \\
+\>$|$ \ENUMID \\
+\>$|$ \RANGEID \\
+\>$|$ \BITVECID \\
+\>;\\
+
+finite-type \\
+\>: \BOOL \\
+\>$|$ enum-const-list \\
+\>$|$ range-declaraton \\
+\>;\\
+
+infinite-type \\
+\>: \INT \\
+\>$|$ \NAT \\
+\>;\\
+
+all-type \\
+\>$|$ \EVENT \\
+\>$|$ finite-type \\
+\>$|$ infinite-type \\
+\>$|$ \ENUMID \\
+\>$|$ \BITVECID \\
+\>$|$ \ARRAYID \\
+\>$|$ \RANGEID \\
+\>;\\
+
+
+
+/* Module definition starts here */ \\
+
+module-definition \\
+\>: \MODULE \MODULEID ctlvars-definition atoms-def \ENDMODULE \\
+\>$|$ \MODULEID \ASSIGN module-expression \\
+\>; \\
+
+ctlvars-definition \\
+\>: ctlvar-def \\
+\>$|$ ctlvars-definition ctlvar-def \\
+\>; \\
+
+ctlvar-def \\
+\>: ctlvar-keyword  declarations \\
+
+ctlvar-keyword \\
+\>: \PRIVATE \\
+\>$|$ \INTERFACE \\
+\>$|$ \EXTERNAL \\
+\>; \\
+
+atoms-def \\
+\>: atom-def \\
+\>$|$ atoms-def atom-def \\
+
+declarations \\
+\>: declaration \\
+\>$|$ declarations {\bf ;} declaration \\
+\>; \\
+
+declaration \\
+\>: identifier-list \COLON all-type \\
+\>; \\
+
+/* definition of Atom starts here */ \\
+
+atom-def \\
+\>: atom-keyword \ATOM atom-header actions-definition \ENDATOM \\
+\>$|$ atom-keyword \ATOM \ATOMID atom-header actions-definition
+\ENDATOM \\
+\>; \\
+
+atom-header \\
+\>: \CONTROLS var-identifier-list optional-reads optional-awaits \\
+\>; \\
+
+atom-keyword \\
+\>: /* no keyword */  \\
+\>$|$ \LAZY \\
+\>$|$ \EVENT \\
+\>; \\
+
+optional-reads \\
+\>: /* no read variables */ \\
+\>$|$ \READS var-identifier-list \\
+\>; \\
+
+optional-awaits \\
+\>: /* no await variablbes */ \\
+\>$|$ \AWAITS var-identifier-list \\
+\>; \\
+
+actions-definition \\
+\>: \INIT guarded-commands \UPDATE guarded-commands \\
+\>$|$ \INIT \UPDATE guarded-commands \\
+\>$|$ \UPDATE guarded-commands \\
+\>; \\
+
+/* module expressions */ \\
+
+module-expression \\
+\>: \MODULEID \\
+\>$|$ {\bf (} module-expression {\bf )} \\
+\>$|$ \HIDE identifier-list \IN module-expression \ENDHIDE \\
+\>$|$ module-expression variable-rename \\
+\>$|$ module-expression \PAR module-expression  \\
+\>; \\
+
+variable-rename  \\
+\>: {\bf [} renames {\bf ]} \\
+\>; \\
+
+renames \\
+\>: var-identifier \ASSIGN var-identifier \\
+\>$|$ var-identifier \COMA renames \COMA var-identifier \\
+\>; \\
+
+identifier-list \\
+\>: \IDENTIFIER \\
+\>$|$ identifier-list \COMA \IDENTIFIER \\
+\>; \\
+
+var-identifier-list \\
+\>: var-identifier  \\
+\>$|$ var-identifier-list \COMA var-identifier \\
+\>; \\
+  
+/* The following are the definitions the guarded commands */ \\
+
+guarded-commands \\
+\>: guarded-command \\
+\>$|$ guarded-commands guarded-command \\
+\>;  \\
+
+guarded-command \\
+\>: \CHOICE bool-exp \ARROW commands \\
+\>$|$ \CHOICE \DEFAULT \ARROW commands \\
+\>; \\
+
+
+commands \\
+\>: /* no command */ \\
+\>$|$ command \\
+\>$|$ commands \SEMICOLON command \\
+\>; \\
+\> \\
+
+command \\
+\>: \FORALL \DUMMYID \ARRAYORBITVECID {\bf [} \DUMMYID {\bf ]} \\
+\>\> \ASSIGN exp-or-nondet  \\
+\>$|$ var-identifier \ASSIGN exp-or-nondet \\
+\>$|$ \EVENTSEND \\
+\>; \\
+
+exp-or-nondet \\
+\>: \NONDET  \\
+\>$|$ exp \\
+\>; \\
+
+
+exp
+\>: bool-or-enum-or-range-exp  \\
+\>$|$ int-exp \\
+\>$|$ nat-exp  \\
+\>$|$ bitvector-exp  \\
+\>; \\
+
+
+bool-or-enum-or-range-exp \\
+\>: bool-exp  \\
+\>$|$ enum-exp \\
+\>$|$ range-exp  \\
+\>; \\
+
+int-exp \\
+\>$:$ \NATNUM  \\
+\>$|$ var-identifier \\
+\>$|$ \ARRAYORBITVECID {\bf [} bool-or-enum-or-range-exp {\bf ]}  \\
+\>$|$ ( int-exp ) \\
+\>$|$ int-exp + int-exp \\
+\>$|$ int-exp -- int-exp \\
+\>$|$ -- int-exp \\
+\>$|$ \IF bool-exp \THEN int-exp \ELSE int-exp \FI \\
+\>; \\
+
+
+nat-exp \\
+\>: \NATNUM  \\
+\>$|$ var-identifier \\
+\>$|$ \ARRAYORBITVECID {\bf [} bool-or-enum-or-range-exp {\bf ]} \\
+\>$|$ ( nat-exp ) \\
+\>$|$ nat-exp + nat-exp \\
+\>$|$ \IF bool-exp \THEN nat-exp \ELSE nat-exp \FI \\
+\>; \\
+
+range-exp \\
+\>: \NATNUM  \\
+\>$|$ var-identifier \\
+\>$|$ \ARRAYORBITVECID {\bf [} bool-or-enum-or-range-exp {\bf ]} \\
+\>$|$ ( range-exp ) \\
+\>$|$ range-exp + range-exp \\
+\>$|$ range-exp -- range-exp \\
+\>$|$ -- range-exp \\
+\>$|$ \IF bool-exp \THEN range-exp \ELSE range-exp \FI \\
+\>; \\
+
+
+bool-exp \\
+\>: {\bf true} \\
+\>$|$ {\bf false} \\
+\>$|$ var-identifier \\
+\>$|$ \ARRAYORBITVECID {\bf [} bool-or-enum-or-range-exp {\bf ]} \\
+\>$|$ \EVENTQUERY  \\
+\>$|$ ( bool-exp ) \\
+\>$|$ bool-exp $\&$ bool-exp \\
+\>$|$ bool-exp $|$ bool-exp \\
+\>$|$ bool-exp \EQUIV bool-exp \\
+\>$|$ bool-exp $=$ bool-exp \\
+\>$|$ $\sim$ bool-exp \\
+\>$|$ int-comparision \\
+\>$|$ nat-comparision \\
+\>$|$ enum-comparision \\
+\>$|$ range-comparision \\
+\>; \\
+
+bitvector-exp \\
+\>: var-identifier \\
+\>$|$ \ARRAYORBITVECID {\bf [} bool-or-enum-or-range-exp {\bf ]} \\
+\>$|$ ( bitvector-exp ) \\
+\>$|$ bitvector-exp $\&$ bitvector-exp \\
+\>$|$ bitvector-exp $|$ bitvector-exp \\
+\>$|$ bitvector-exp \EQUIV bitvector-exp \\
+\>$|$ bitvector-exp $=$ bitvector-exp \\
+\>$|$ $\sim$ bitvector-exp \\
+\>; \\
+
+
+int-comparison \\
+\>: int-exp $>$ int-exp \\
+\>$|$ int-exp $<$ int-exp \\
+\>$|$ int-exp $>=$ int-exp \\
+\>$|$ int-exp $<=$ int-exp \\
+\>$|$ int-exp = int-exp \\
+\>; \\
+
+
+nat-comparison \\
+\>: nat-exp $>$ nat-exp \\
+\>$|$ nat-exp $<$ nat-exp \\
+\>$|$ nat-exp $>=$ nat-exp \\
+\>$|$ nat-exp $<=$ nat-exp \\
+\>$|$ nat-exp = nat-exp \\
+\>; \\
+
+enum-comparions\\
+\>: enum-exp = enum-exp \\
+\>; \\
+
+
+range-comparison\\
+\>: range-exp $>$ range-exp \\
+\>$|$ range-exp $<$ range-exp \\
+\>$|$ range-exp $>=$ range-exp \\
+\>$|$ range-exp $<=$ range-exp \\
+\>$|$ range-exp = range-exp \\
+\>; \\
+
+int-const \\
+\>: \NATNUM \\
+\>$|$ int-const -- int-const \\
+\>$|$ int-const + int-const \\
+\>$|$ int-const * int-const \\
+\>$|$ int-const / int-const \\
+\>$|$ int-const \% int-const \\
+\>$|$ {\bf (} int-const {\bf )} \\
+\>;\\
+
+
+var-identifier \\
+\>: index-identifier \\
+\>$|$ \IDENTIFIER  \\
+\>; \\
+
+index-identifier \\
+\>: \ARRAYORBITVECID[ \IDENTIFIER ] \\
+\>$|$ \ARRAYORBITVECID[ \NATNUM ] \\
+\>;  \\
+
+\end{tabbing}
+\end{tab}
+
+
+
+
+
+
+
+
+
+
+

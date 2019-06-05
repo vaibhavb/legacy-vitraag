@@ -1,0 +1,58 @@
+\begin{thebibliography}{And01b}
+
+\bibitem[And01a]{bond01}
+Mike Bond;~Ross Anderson.
+\newblock {API-Level} attacks on embedded systems.
+\newblock 2001.
+
+\bibitem[And01b]{rosstalk}
+Ross Anderson.
+\newblock Protecting embedded systems- the next ten years.
+\newblock In {\em CHES 2001, LNCS 2162}, 2001.
+
+\bibitem[And01c]{ross01}
+Ross Anderson.
+\newblock {\em Security Engineering}.
+\newblock Wiley Computer Publishing, 2001.
+
+\bibitem[AW01]{elliptic}
+Sheueling Chang~Shantz Andre~Weimerskirch, Christ~Paar.
+\newblock Elliptic curve cryptography on a palm os device.
+\newblock In {\em ACISP 2001, LNCS 2119}, 2001.
+
+\bibitem[Bur92]{abadi}
+Butler Lampson; Martin~Abadi;Michael Burrows.
+\newblock Authentication in distributed systems: Theory and pratice.
+\newblock {\em ACM Trans. Computer Systems}, 1992.
+
+\bibitem[Lam71]{lamp71}
+Butler Lampson.
+\newblock Protection.
+\newblock In {\em Proc. 5th Princeton Conf. On Information Sciences and
+  Systems}, 1971.
+
+\bibitem[Lam00]{lamp}
+Butler Lampson.
+\newblock Computer security in real world.
+\newblock 2000.
+
+\bibitem[Mud01]{mudge01}
+Kingpin; Mudge.
+\newblock Security analysis of the palm os and its weaknesses against malicious
+  code threats.
+\newblock In {\em Proceedings of the 10th USENIX Security Symposium}, 2001.
+
+\bibitem[Res01]{pocketpc}
+Microsoft Research.
+\newblock Pocket pc security.
+\newblock {\em Microsoft White Papers}, 2001.
+
+\bibitem[sima]{simpIML}
+Information markup language 0.01 specification.
+\newblock www.simputer.org.
+
+\bibitem[simb]{simpSC}
+Simputer, {IML} and smartcard.
+\newblock www.simputer.org.
+
+\end{thebibliography}

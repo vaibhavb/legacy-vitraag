@@ -1,0 +1,81 @@
+sget 0.0_1 for ya ;)
+
+I'm attaching a skeleton sget (around 100 perl lines). It banks on:
+* sources.list : similar to apt-get source.list. 
+
+palani 187> more dummy-sget/sources.list
+# type method://location repository
+simp file://. rigveda
+
+* repository : lets say "rigveda". At toplevel it consists of rep.list (tuples of package names and their actual names) and ppp format packages. So we have:
+
+palani 185> ls rigveda/
+iml_examples-2.1_4.ppp  repo.list
+
+palani 33> more dummy-sget/repo.list
+vaibhav: vaibhav.ppp
+iml_examples: iml_examples-2.1_4.ppp
+
+A sample sget run is:
+palani 195> sget
+
+    Usage :: spkg <option> <package_name>
+
+<option>:
+         : -i  - Install Package
+         : -update - Update Current Distribution Info 
+         : -dist-upgrade -Upgrade the current distribution TODO
+
+Examples: sget -i iml_examples [to install iml_examples-2.1_4.ppp]
+
+-------------------------
+
+HOW TO SETUP SGET IN SIMPUTER CONTEXT.
+1. Lets assume "rigveda" is the simputer distro residing on a PC (say test-bed) running httpd. Format of rigveda is discussed above (repo.list + *.ppp). It should be accessible as http://TESTBED_IP/rigveda. 
+
+2. Make sure you have wget on simputer in /bin. Uncommment it while installing busybox. 
+
+3. Connect Simputer to serial port of the machine (test-bed) and make a ppp connection as follows.
+On test-bed:
+shell > echo 1 > /proc/sys/net/ipv4/ip_forward
+shell > pppd /dev/ttyS0 115200 noauth lock proxyarp TESTBED_IP:SIMPUTER_I
+P nocrtscts local bsdcomp 15,15
+
+On simputer:
+shell > pppd /dev/ttyS1 115200 noauth lock SIMPUTER_IP:TESTBED_IP nocrtsc
+ts local bsdcomp 15,15 defaultroute
+
+You are all set to talk http/ftp with the test-bed webserver now!!
+
+4. On simputer write the sources.list file in /usr/local/store/sget as
+shell > more /usr/local/store/sget/source.list
+# type method://location repository
+simp http://TESTBED_IP/ rigveda
+
+CAUTION:::Sget supports only one repository as of now. (cheesy;)
+
+5. shell > sget update
+This will fetch all the packages available from rigveda in to simputer.
+
+6. shell > sget -i package_name
+This will install the required package. By copying it thru http to /tmp and then using spkg to do the required!!
+
+-------------------------
+
+Once this works its a cake to implement dist-upgrade. A step furthur i also have some skeleton of the entire thing in C (using hash-tables and getting rid of spkg too). It will be great to have a packaging system very early in system installation this will make a lot of things simpler and more manageable.
+
+Let me know how this one goes. Flash back with bugs and feature requests.
+
+Enjoy!
+
+cheers,
+vaibhav
+
+PS: So briefly what all did sugata had to do to make the rtc-driver work?
+
+WISH LIST:
+--make debian compatible
+        we get to use dh-make like goodies
+--Rewrite in C
+        dependency on perl packages can be ridden
+        some-time imagine of bootloader based package mgmt!

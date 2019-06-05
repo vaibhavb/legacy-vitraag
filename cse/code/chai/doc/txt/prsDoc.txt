@@ -1,0 +1,45 @@
+The prs package
+
+External header files from parser.
+
+Freddy Mang
+
+**********************************************************************
+
+Prs_End()                      Ends the prs package.
+
+Prs_Init()                     Initializes the prs package.
+
+Prs_Reinit()                   Reinitializes the prs package.
+
+**********************************************************************
+
+optional
+
+int
+Prs_End(
+  Tcl_Interp *      interp,
+  Main_Manager_t *  manager
+)
+  Ends the prs package.
+
+  Side Effects: None
+
+int
+Prs_Init(
+  Tcl_Interp *      interp,
+  Main_Manager_t *  manager
+)
+  Initializes the prs package.
+
+  Side Effects: None
+
+int
+Prs_Reinit(
+  Tcl_Interp *      interp,
+  Main_Manager_t *  manager
+)
+  Reinitializes the prs package.
+
+  Side Effects: None
+

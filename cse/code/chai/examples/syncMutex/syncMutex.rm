@@ -1,0 +1,34 @@
+type cstype : {outCS, reqCS, inCS}
+
+module Q1
+interface pc1: cstype
+external  pc2: cstype
+atom controls pc1 reads pc1, pc2
+  init
+	[] true -> pc1':=outCS
+  update
+	[] pc1 = outCS ->
+	[] pc1 = outCS -> pc1' := reqCS
+	[] pc1 = reqCS & ~(pc2 = inCS) -> pc1' := inCS
+	[] pc1 = inCS ->
+	[] pc1 = inCS -> pc1' := outCS
+endatom
+endmodule
+
+module Q2
+interface pc2: cstype
+external  pc1: cstype
+atom controls pc2 reads pc1, pc2
+  init
+	[] true -> pc2':=outCS
+  update
+	[] pc2 = outCS ->
+	[] pc2 = outCS -> pc2' := reqCS
+	[] pc2 = reqCS & pc1 = outCS -> pc2' := inCS
+	[] pc2 = inCS ->
+	[] pc2 = inCS -> pc2' := outCS
+endatom
+endmodule
+
+syncMutex := Q1 || Q2
+

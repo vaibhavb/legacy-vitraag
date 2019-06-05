@@ -1,0 +1,49 @@
+\begin{comment} 
+\begin{defi}{(Composition of bidirectional A/G interfaces)}
+\label{def-ag-comp} 
+\newline
+Given two bidirectional A/G interfaces 
+$\mp = \tuple{\vars_\mp,Q_\mp,\hat{q}_\mp,\ovars_\mp,\phi_\mp,\psi_\mp,\trel_\mp}$ and 
+$\mq = \tuple{\vars_\mq,Q_\mq,\hat{q}_\mq,\ovars_\mq,\phi_\mq,\psi_\mq,\trel_\mq}$, 
+let 
+$\vars_\oprod = \vars_\mp \union \vars_\mq$, 
+$Q_\oprod = Q_\mp \times Q_\mq$, 
+and $\hat{q}_\oprod = (\hat{q}_\mp,\hat{q}_\mq)$. 
+For all $(p,q) \in Q_\mp \times Q_\mq$, 
+let $\phi_\oprod(p,q) = \phi_\mp(p) \und \phi_\mp(q)$,  
+and for all $(p',q') \in Q_\mp \times Q_\mq$, let 
+$\trel_\oprod ((p,q), (p',q')) = \trel_\mp (p,p') \und \trel_\mq(p,p')$. 
+\mynote{display?} 
+
+The interfaces $\mp$ and $\mq$ are {\em compatible\/} if there is a
+labeling $\psi$ associating with all $(p,q) \in Q_\oprod$ 
+a predicate $\psi(p,q)$ on 
+$\vars_\oprod \setm (\ovars_\mp(p) \union \ovars_\mq(q))$ such that all traces 
+$(p_0,q_0), s_0, (p_1,q_1), s_1, (p_2,q_2), s_2, \ldots \in 
+\traces(\vars_\oprod, Q_\oprod, \hat{q}_\oprod, \phi_\oprod, \psi,\trel_\oprod)$ 
+satisfy, for all $k \geq 0$, the conditions 
+(i)~$\ovars_\mp(p_k) \inters \ovars_\mq(q_k) = \emptyset$ and 
+(ii)~$s_k \sat \psi_\mp(p_k) \und \psi_\mq(q_k)$. 
+\mynote{cut?}
+Condition~(i) asserts that no variable is used as output by both
+interfaces, and condition~(ii) asserts that no state violates an input
+assumption. 
+The composition $\mr = \mp \| \mq$  is defined if and only if 
+$\mp$ and $\mq$ are compatible. 
+If they are, then $\mr = \mp \| \mq$ is obtained by taking for
+$\phi_\mr$ the weakest predicate such that the above conditions (i)
+and (ii) on traces hold, \mynote{clear?}
+by taking for $Q_\mr$ the subset of locations of $Q_\oprod$ 
+that are reachable in 
+$\tuple{\vars_\oprod,Q_\oprod,\hat{q}_\oprod,\ovars_\oprod,
+\phi_\mr,\psi_\oprod,\trel_\oprod}$, 
+by taking $\vars_\mr = \vars_\oprod$ 
+and $\hat{q}_\mr = \hat{q}_\oprod$, 
+and by taking for $\ovars_\mr,\phi_\mr,\psi_\mr$, and $\trel_\mr$ 
+the restrictions of 
+$\ovars_\oprod,\phi_\oprod,\psi_\oprod$, and $\trel_\oprod$ 
+to $Q_\mr$. 
+\mynote{rearrange/display??}
+\qed
+\end{defi}
+\end{comment}

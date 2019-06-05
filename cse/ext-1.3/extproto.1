@@ -1,0 +1,196 @@
+.\"
+.\" Generated automatically by htmltoman.pl
+.\"
+.TH  extproto  1
+.SH NAME
+extproto \- Extract documentation from specially\-commented C files
+.SH SYNOPSIS
+.B extproto
+[ 
+.B  \-v 
+] [ 
+.B  \-\-version 
+] [ 
+.B  \-d 
+] [ 
+.B  \-\-debug 
+] [ 
+.B  \-a 
+]	[ 
+.B  \-\-ANSI 
+] [ 
+.B  \-k 
+] [ 
+.B  \-\-KR 
+] [ 
+.B  \-\-toANSI 
+] [ 
+.B  \-\-polis 
+] [ 
+.I package
+.B .h
+] [ 
+.I package
+.B Int.h
+] [ 
+.I packageFile
+.B .c
+]
+.SH DESCRIPTION
+.I Extproto
+extracts function prototypes from C source files and
+places them in in either the C file itself (for static functions), an
+internal header file (
+.I package
+.B Int.h
+), or an external
+header file (
+.I package
+.B .h
+).  Additionally, it can
+convert K&R\-style function declarations into ANSI\-style declarations
+using the 
+.B \-\-toANSI
+switch. 
+A backup of each modified file is made by placing a tilde (~) at the
+end of its name. 
+.SH OPTIONS
+.TP  
+.B \-v
+.br
+.ns
+.TP  
+.B \-\-version
+.br
+.ns
+Print version information and exit. 
+.TP  
+.B \-d
+.br
+.ns
+.TP  
+.B \-\-debug
+.br
+.ns
+Enable debugging mode.  This prints an enormous amount of cryptic
+information about what 
+.I extproto
+is doing. 
+.TP  
+.B \-a
+.br
+.ns
+.TP  
+.B \-\-ANSI
+.br
+.ns
+Look for ANSI\-style function declarations.  This is the default.
+This should not be used with the 
+.B \-\-KR
+or
+.B \-\-toANSI
+options. 
+.TP  
+.B \-k
+.br
+.ns
+.TP  
+.B \-\-KR
+.br
+.ns
+Look for K&R\-style function declarations.  This should not be
+used with the 
+.B \-\-ANSI
+or 
+.B \-\-toANSI
+options. 
+.TP  
+.B \-\-toANSI
+.br
+.ns
+Look for K&R\-style function declarations and write ANSI\-style
+function declarations.  
+.B  For this option to work correctly, all declarations must be in K&R form.
+In particular, using the
+.B \-\-toANSI
+option on a C source file partially or totally in
+ANSI form will damage it.  This should not be used with the
+.B \-\-ANSI
+or 
+.B \-\-KR
+options. 
+.TP  
+.B \-\-polis
+.br
+.ns
+Use the polis file/function naming rules. 
+.SH EXAMPLES
+Add static function prototypes to the C source file 
+.B example.c
+:
+.RS
+.sp .5
+.nf
+.B  example% extproto example.c 
+.fi
+.RE
+Place internal function prototypes from all C files named 
+.B tbl*.c
+and
+place them in the internal header file 
+.B tblInt.h
+:
+.RS
+.sp .5
+.nf
+.B  example% extproto tblInt.h 
+.fi
+.RE
+Extract externally\-visible functions declared in K&R\-style from all C
+files named 
+.B tbl*.c
+and place them in the C header file
+.B tbl.h
+:
+.RS
+.sp .5
+.nf
+.B  example% extproto \-\-KR tbl.h 
+.fi
+.RE
+Convert all the C files in the directory, whose declarations are all in
+K&R\-style to ANSI:
+.RS
+.sp .5
+.nf
+.B  example% extproto \-\-toANSI *.c 
+.fi
+.RE
+.SH FILES
+ 
+.I packageFile
+.B .c
+ C source file 
+.br
+ 
+.I package
+.B .h
+ Externally\-visible header file 
+.br
+ 
+.I package
+.B Int.h
+ Internal header file 
+.br
+.SH SEE ALSO
+extdoc,
+extindex,
+Documentation on Packages and File Structure,
+Documentation on Naming Conventions,
+The Ext System
+.SH AUTHOR
+Stephen Edwards 
+.br
+University of California, Berkeley 
+.br
+.B sedwards@eecs.berkeley.edu

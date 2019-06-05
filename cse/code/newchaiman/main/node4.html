@@ -1,0 +1,128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with jLaTeX2HTML 2002 (1.62) JA patch-1.4
+patched version by:  Kenshi Muto, Debian Project.
+LaTeX2HTML 2002 (1.62),
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>-bit counter</TITLE>
+<META NAME="description" CONTENT="-bit counter">
+<META NAME="keywords" CONTENT="main">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<META NAME="Generator" CONTENT="jLaTeX2HTML v2002 JA patch-1.4">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="main.css">
+
+<LINK REL="next" HREF="node5.html">
+<LINK REL="previous" HREF="node3.html">
+<LINK REL="up" HREF="node2.html">
+<LINK REL="next" HREF="node5.html">
+</HEAD>
+
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html87"
+  HREF="node5.html">[Next]</A> 
+<A NAME="tex2html83"
+  HREF="node2.html">[Up]</A> 
+<A NAME="tex2html77"
+  HREF="node3.html">[Previous]</A>  
+<A NAME="tex2html85"
+  HREF="node17.html">[Index]</A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html88"
+  HREF="node5.html">Modeling the -bit counter</A>
+<B> Up:</B> <A NAME="tex2html84"
+  HREF="node2.html">Tutorial introduction to CHAI</A>
+<B> Previous:</B> <A NAME="tex2html78"
+  HREF="node3.html">Introduction</A>
+ &nbsp <B>  <A NAME="tex2html86"
+  HREF="node17.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00220000000000000000">
+<A NAME="tex2html_wrap_inline3006"
+ HREF="img1.png">[IMAGE png]</A>-bit counter</A>
+</H1>
+Consider a counter that counts the number of 1's in a binary
+input stream, modulo&nbsp;8. We construct this out of three 1-bit
+counter cells. 
+
+<P>
+The Mealy Finite State Machine (FSM)
+shown in Figure&nbsp;<A HREF="#fig:countercell_ckt">[*]</A>, <TT>counterCell</TT> implements the
+1-bit counter-cell.  <TT>counterCell</TT> receives a <TT>carryIn</TT> bit as
+input, maintains a <TT>sumBit</TT>, and outputs a <TT>carryOut</TT>
+bit. <TT>sumBit</TT> is
+stored in a register. The register assumes an initial value&nbsp;<A NAME="tex2html_wrap_inline2111"
+ HREF="img2.png">[IMAGE png]</A> (the
+initialization circuitry is not shown in Figure&nbsp;<A HREF="#fig:countercell_ckt">[*]</A>).
+During each clock cycle, the combinational
+logic computes the values of the next-state of the register and the
+carry-out bit as 
+<BR>
+<DIV ALIGN="RIGHT">
+
+<!-- MATH
+ \begin{equation}
+{\tt (carryOut, sumBit') = (sumBit + carryIn) }
+\end{equation}
+ -->
+<TABLE WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER" NOWRAP><A NAME="eqn:countercell">&#160;</A><A NAME="displaymath1688"
+ HREF="img3.png">[IMAGE png]</A></TD>
+<TD WIDTH=10 ALIGN="RIGHT">
+(2.1)</TD></TR>
+</TABLE>
+<BR CLEAR="ALL"></DIV><P></P>
+where <TT>carryOut</TT> is the high order bit of the sum and <TT>sumBit</TT> is the low order
+bit of the sum. Notice, the next-state of <TT>sumBit</TT>, being a latch, is
+denoted by <TT>sumBit'</TT>, whereas the other signals are outputs of
+combinational gates. It is easy to see that the FSM of Figure&nbsp;<A HREF="#fig:countercell_ckt">[*]</A>
+implements&nbsp;(<A HREF="node4.html#eqn:countercell">2.1</A>). 
+
+<P>
+The 3-bit counter is produced by connecting up three of the
+counter-cells as shown in Figure&nbsp;<A HREF="#fig:3bit_ckt">[*]</A>. 
+The <TT>carryOut</TT> bit of the first (second) cell is the <TT>carryIn</TT> bit of the second
+cell (third). This is achieved by physically connecting a wire between the
+appropriate terminals.  The <TT>sumBit</TT>'s of the three counter-cells
+store the three bit sum of the input stream. 
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html87"
+  HREF="node5.html">[Next]</A> 
+<A NAME="tex2html83"
+  HREF="node2.html">[Up]</A> 
+<A NAME="tex2html77"
+  HREF="node3.html">[Previous]</A>  
+<A NAME="tex2html85"
+  HREF="node17.html">[Index]</A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html88"
+  HREF="node5.html">Modeling the -bit counter</A>
+<B> Up:</B> <A NAME="tex2html84"
+  HREF="node2.html">Tutorial introduction to CHAI</A>
+<B> Previous:</B> <A NAME="tex2html78"
+  HREF="node3.html">Introduction</A>
+ &nbsp <B>  <A NAME="tex2html86"
+  HREF="node17.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+Vaibhav Bhandari
+2003-06-17
+</ADDRESS>
+</BODY>
+</HTML>

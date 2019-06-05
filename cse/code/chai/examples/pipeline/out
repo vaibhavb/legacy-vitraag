@@ -1,0 +1,36 @@
+Welcome to MOCHA 1.0
+Please report any problems to mocha@eecs.berkeley.edu
+Module pipeline is composed and checked in.
+Module ISA is composed and checked in.
+parse successful.
+Building transition relation for module pipeline
+Ordering variables using sym_static_order
+Transition relation computed : 11 conjuncts
+Dynamic variable ordering is disabled.
+Done initializing image info...
+Writing order into imporder.dat
+Building transition relation for module ISA
+Ordering variables using sym_static_order
+Transition relation computed : 7 conjuncts
+Dynamic variable ordering is disabled.
+Done initializing image info...
+Dynamic variable ordering is enabled with method sift.
+Implementation latch : 1 : pipe1_dest
+Implementation latch : 2 : pipe1_inp[0]
+Implementation latch : 3 : pipe1_op
+Implementation latch : 4 : opr2[0]
+Implementation latch : 5 : pipe2_dest
+Implementation latch : 6 : pipe2_inp[0]
+Implementation latch : 7 : pipe2_op
+Implementation latch : 8 : opr1[0]
+Implementation latch : 9 : iregFile[0][0]
+Implementation latch : 10 : iregFile[1][0]
+Implementation latch : 11 : iregFile[2][0]
+Implementation latch : 12 : iregFile[3][0]
+Implementation latch : 13 : wbReg[0]
+Implementation latch : 14 : regFile[0][0]
+Implementation latch : 15 : regFile[1][0]
+Implementation latch : 16 : regFile[2][0]
+Implementation latch : 17 : regFile[3][0]
+Number of implementation latches = 17
+default encountered in Atm_NumConstExprConvertToBitvectorConstExpr

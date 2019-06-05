@@ -1,0 +1,24 @@
+From - Fri Aug  9 15:16:35 2002
+Subject: RE: Here is it!
+Date: Fri, 9 Aug 2002 09:11:42 -0400
+From: "Hicks, Jamey" <Jamey.Hicks@hp.com>
+To: "vaibhav" <vaibhav@cse.ucsc.edu>
+
+
+I applied this patch and tested it on my ipaq.  Good work.
+
+> -----Original Message-----
+> From: vaibhav [mailto:vaibhav@cse.ucsc.edu]
+> Sent: Tuesday, August 06, 2002 2:27 PM
+> To: Hicks, Jamey
+> Subject: Here is it!
+> 
+> 
+> Here is it,
+> 
+> Missed the MSC*->ABS_MSC* for jornada.
+> 
+> cheers,
+> vaibhav
+> 
+> 

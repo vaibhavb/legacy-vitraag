@@ -1,0 +1,254 @@
+<HTML>
+<HEAD><TITLE>The atlp package: files</TITLE></HEAD>
+<BODY>
+
+<DL>
+ <DT> <A HREF="#atlp.h"><CODE>atlp.h</CODE></A>
+ <DD> External header file
+ <DT> <A HREF="#atlpInt.h"><CODE>atlpInt.h</CODE></A>
+ <DD> Internal header file
+ <DT> <A HREF="#atlpMain.c"><CODE>atlpMain.c</CODE></A>
+ <DD> Contains routines to interface with cmd.
+ <DT> <A HREF="#atlpUtil.c"><CODE>atlpUtil.c</CODE></A>
+ <DD> Routines for manipulating ATL formulas.
+</DL><HR>
+<A NAME="atlp.h"><H1>atlp.h</H1></A>
+External header file <P>
+<B>By: Freddy Mang</B><P>
+<P><B>See Also</B><A HREF="#mc"><CODE>mc</CODE></A>
+<DL>
+</DL>
+<HR>
+<A NAME="atlpInt.h"><H1>atlpInt.h</H1></A>
+Internal header file <P>
+<B>By: Freddy Mang</B><P>
+<DL>
+</DL>
+<HR>
+<A NAME="atlpMain.c"><H1>atlpMain.c</H1></A>
+Contains routines to interface with cmd. <P>
+<B>By: Freddy Mang</B><P>
+optional <P>
+<P><B>See Also</B><A HREF="#atlp.y"><CODE>atlp.y</CODE></A>
+<A HREF="#atlp.l"><CODE>atlp.l</CODE></A>
+<A HREF="#atlpUtil.c"><CODE>atlpUtil.c</CODE></A>
+<A HREF="#atlp.h"><CODE>atlp.h</CODE></A>
+<A HREF="#atlpInt.h"><CODE>atlpInt.h</CODE></A>
+<DL>
+ <DT> <A HREF="atlpAllDet.html#Atlp_Init" TARGET="MAIN"><CODE>Atlp_Init()</CODE></A>
+ <DD> Init function for tcl.
+
+ <DT> <A HREF="atlpAllDet.html#Atlp_ReadAtlpManager" TARGET="MAIN"><CODE>Atlp_ReadAtlpManager()</CODE></A>
+ <DD> Export the Atlp Global Manager
+
+ <DT> <A HREF="atlpAllDet.html#AtlpObtainNewFormulaName" TARGET="MAIN"><CODE>AtlpObtainNewFormulaName()</CODE></A>
+ <DD> Returns an internally generated new name.
+
+ <DT> <A HREF="atlpAllDet.html#AtlpReadCmd" TARGET="MAIN"><CODE>AtlpReadCmd()</CODE></A>
+ <DD> Executes the command atlp_read
+
+ <DT> <A HREF="atlpAllDet.html#AtlpPrintCmd" TARGET="MAIN"><CODE>AtlpPrintCmd()</CODE></A>
+ <DD> Executes the command atl_print
+
+ <DT> <A HREF="atlpAllDet.html#AtlpConvertToDagCmd" TARGET="MAIN"><CODE>AtlpConvertToDagCmd()</CODE></A>
+ <DD> Convert an array of formula to a DAG.
+
+ <DT> <A HREF="atlpAllDet.html#AtlpInitialize" TARGET="MAIN"><CODE>AtlpInitialize()</CODE></A>
+ <DD> Initialize the global atlp manager.
+
+ <DT> <A HREF="atlpAllDet.html#FormulaPrintFromArray" TARGET="MAIN"><CODE>FormulaPrintFromArray()</CODE></A>
+ <DD> Prints each of the formula in an array.
+
+</DL>
+<HR>
+<A NAME="atlpUtil.c"><H1>atlpUtil.c</H1></A>
+Routines for manipulating ATL formulas. <P>
+<B>By: Freddy Mang</B><P>
+This file contains routines for accessing the fields of the ATL
+  formula data structure, for printing ATL formulas, for reading ATL formulas
+  from a file, and for converting formulas to the existential form. <P>
+<DL>
+ <DT> <A HREF="atlpAllDet.html#Atlp_AgentAllocWithName" TARGET="MAIN"><CODE>Atlp_AgentAllocWithName()</CODE></A>
+ <DD> Allocate an agent with its name only.
+
+ <DT> <A HREF="atlpAllDet.html#Atlp_AgentAlloc" TARGET="MAIN"><CODE>Atlp_AgentAlloc()</CODE></A>
+ <DD> Allocates an agent.
+
+ <DT> <A HREF="atlpAllDet.html#Atlp_AgentFree" TARGET="MAIN"><CODE>Atlp_AgentFree()</CODE></A>
+ <DD> Free an Agent structure.
+
+ <DT> <A HREF="atlpAllDet.html#Atlp_AgentReadName" TARGET="MAIN"><CODE>Atlp_AgentReadName()</CODE></A>
+ <DD> Reads the name of an agent.
+
+ <DT> <A HREF="atlpAllDet.html#Atlp_AgentIsAgent" TARGET="MAIN"><CODE>Atlp_AgentIsAgent()</CODE></A>
+ <DD> Is this agent specified in the formula?
+
+ <DT> <A HREF="atlpAllDet.html#Atlp_AgentReadAtom" TARGET="MAIN"><CODE>Atlp_AgentReadAtom()</CODE></A>
+ <DD> Reads the atom of an agent.
+
+ <DT> <A HREF="atlpAllDet.html#Atlp_FormulaReadLeft" TARGET="MAIN"><CODE>Atlp_FormulaReadLeft()</CODE></A>
+ <DD> Read the left pointer of the formula
+
+ <DT> <A HREF="atlpAllDet.html#Atlp_FormulaReadRight" TARGET="MAIN"><CODE>Atlp_FormulaReadRight()</CODE></A>
+ <DD> Read the right pointer of the formula
+
+ <DT> <A HREF="atlpAllDet.html#Atlp_ManagerAlloc" TARGET="MAIN"><CODE>Atlp_ManagerAlloc()</CODE></A>
+ <DD> Allocate a atlp manager.
+
+ <DT> <A HREF="atlpAllDet.html#Atlp_ManagerFree" TARGET="MAIN"><CODE>Atlp_ManagerFree()</CODE></A>
+ <DD> Frees a atlp manager
+
+ <DT> <A HREF="atlpAllDet.html#Atlp_FileParseFormula" TARGET="MAIN"><CODE>Atlp_FileParseFormula()</CODE></A>
+ <DD> Parses a file containing a set of ATL formulas.
+
+ <DT> <A HREF="atlpAllDet.html#Atlp_ManagerReadFormulas" TARGET="MAIN"><CODE>Atlp_ManagerReadFormulas()</CODE></A>
+ <DD> Returns an array of Atl Formula from the ATL Manager
+
+ <DT> <A HREF="atlpAllDet.html#Atlp_ManagerReadFormulaNames" TARGET="MAIN"><CODE>Atlp_ManagerReadFormulaNames()</CODE></A>
+ <DD> Returns a list of Atl formula Names
+
+ <DT> <A HREF="atlpAllDet.html#Atlp_FormulaReadByName" TARGET="MAIN"><CODE>Atlp_FormulaReadByName()</CODE></A>
+ <DD> Returns a pointer to the formula, given name.
+
+ <DT> <A HREF="atlpAllDet.html#Atlp_FormulaConvertToString" TARGET="MAIN"><CODE>Atlp_FormulaConvertToString()</CODE></A>
+ <DD> Returns formula as a character string.
+
+ <DT> <A HREF="atlpAllDet.html#AtlpFormulaAgentsConvertToString" TARGET="MAIN"><CODE>AtlpFormulaAgentsConvertToString()</CODE></A>
+ <DD> Converts a list of agents to string.
+
+ <DT> <A HREF="atlpAllDet.html#Atlp_FormulaPrint" TARGET="MAIN"><CODE>Atlp_FormulaPrint()</CODE></A>
+ <DD> Prints a formula to a file.
+
+ <DT> <A HREF="atlpAllDet.html#Atlp_FormulaReadType" TARGET="MAIN"><CODE>Atlp_FormulaReadType()</CODE></A>
+ <DD> Gets the type of a formula.
+
+ <DT> <A HREF="atlpAllDet.html#Atlp_FormulaReadVariableName" TARGET="MAIN"><CODE>Atlp_FormulaReadVariableName()</CODE></A>
+ <DD> Reads the variable name of a leaf formula.
+
+ <DT> <A HREF="atlpAllDet.html#Atlp_FormulaReadLeftChild" TARGET="MAIN"><CODE>Atlp_FormulaReadLeftChild()</CODE></A>
+ <DD> Gets the left child of a formula.
+
+ <DT> <A HREF="atlpAllDet.html#Atlp_FormulaReadRightChild" TARGET="MAIN"><CODE>Atlp_FormulaReadRightChild()</CODE></A>
+ <DD> Gets the right child of a formula.
+
+ <DT> <A HREF="atlpAllDet.html#Atlp_FormulaReadAtmExpr" TARGET="MAIN"><CODE>Atlp_FormulaReadAtmExpr()</CODE></A>
+ <DD> Reads the atmexpr in the formula
+
+ <DT> <A HREF="atlpAllDet.html#Atlp_FormulaObtainStates" TARGET="MAIN"><CODE>Atlp_FormulaObtainStates()</CODE></A>
+ <DD> Gets a copy of the set of states for which this formula is true.
+
+ <DT> <A HREF="atlpAllDet.html#Atlp_FormulaReadAgentList" TARGET="MAIN"><CODE>Atlp_FormulaReadAgentList()</CODE></A>
+ <DD> Reads the agent list of a formula
+
+ <DT> <A HREF="atlpAllDet.html#Atlp_FormulaSetStates" TARGET="MAIN"><CODE>Atlp_FormulaSetStates()</CODE></A>
+ <DD> Stores the set of states with the formula.
+
+ <DT> <A HREF="atlpAllDet.html#Atlp_FormulaSetAtmExpr" TARGET="MAIN"><CODE>Atlp_FormulaSetAtmExpr()</CODE></A>
+ <DD> Stores the atmExpr with the formula.
+
+ <DT> <A HREF="atlpAllDet.html#Atlp_FormulaSetAgentList" TARGET="MAIN"><CODE>Atlp_FormulaSetAgentList()</CODE></A>
+ <DD> Stores the agentList with the formula
+
+ <DT> <A HREF="atlpAllDet.html#Atlp_FormulaSetDbgInfo" TARGET="MAIN"><CODE>Atlp_FormulaSetDbgInfo()</CODE></A>
+ <DD> Sets the debug information of a formula.
+
+ <DT> <A HREF="atlpAllDet.html#Atlp_FormulaReadDebugData" TARGET="MAIN"><CODE>Atlp_FormulaReadDebugData()</CODE></A>
+ <DD> Returns the debug data associated with a formula.
+
+ <DT> <A HREF="atlpAllDet.html#Atlp_FormulaTestIsConverted" TARGET="MAIN"><CODE>Atlp_FormulaTestIsConverted()</CODE></A>
+ <DD> Returns TRUE if formula was converted, else FALSE.
+
+ <DT> <A HREF="atlpAllDet.html#Atlp_FormulaTestIsQuantifierFree" TARGET="MAIN"><CODE>Atlp_FormulaTestIsQuantifierFree()</CODE></A>
+ <DD> Returns TRUE if formula contains no path quantifiers.
+
+ <DT> <A HREF="atlpAllDet.html#Atlp_FormulaReadOriginalFormula" TARGET="MAIN"><CODE>Atlp_FormulaReadOriginalFormula()</CODE></A>
+ <DD> Returns original formula corresponding to converted formula.
+
+ <DT> <A HREF="atlpAllDet.html#Atlp_FormulaFree" TARGET="MAIN"><CODE>Atlp_FormulaFree()</CODE></A>
+ <DD> Frees a formula if no other formula refers to it as a
+  sub-formula.
+
+ <DT> <A HREF="atlpAllDet.html#Atlp_FlushStates" TARGET="MAIN"><CODE>Atlp_FlushStates()</CODE></A>
+ <DD> Frees States field of Atlp_Formula_t recursively
+
+ <DT> <A HREF="atlpAllDet.html#Atlp_FormulaDup" TARGET="MAIN"><CODE>Atlp_FormulaDup()</CODE></A>
+ <DD> Duplicates a ATL formula.
+
+ <DT> <A HREF="atlpAllDet.html#Atlp_FormulaArrayFree" TARGET="MAIN"><CODE>Atlp_FormulaArrayFree()</CODE></A>
+ <DD> Frees an array of ATL formulas.
+
+ <DT> <A HREF="atlpAllDet.html#Atlp_FormulaConvertToExistentialForm" TARGET="MAIN"><CODE>Atlp_FormulaConvertToExistentialForm()</CODE></A>
+ <DD> Converts a ATL formula to existential form.
+
+ <DT> <A HREF="atlpAllDet.html#Atlp_FormulaArrayConvertToExistentialFormTree" TARGET="MAIN"><CODE>Atlp_FormulaArrayConvertToExistentialFormTree()</CODE></A>
+ <DD> Converts an array of ATL formulas to existential form.
+
+ <DT> <A HREF="atlpAllDet.html#Atlp_FormulaArrayConvertToDAG" TARGET="MAIN"><CODE>Atlp_FormulaArrayConvertToDAG()</CODE></A>
+ <DD> Converts an array of ATL formulae to a multi-rooted DAG.
+
+ <DT> <A HREF="atlpAllDet.html#Atlp_FormulaDAGConvertToExistentialFormDAG" TARGET="MAIN"><CODE>Atlp_FormulaDAGConvertToExistentialFormDAG()</CODE></A>
+ <DD> Converts a DAG of ATL formulae to a DAG of existential ATL
+  formulae.
+
+ <DT> <A HREF="atlpAllDet.html#AtlpFormulaSetStatesToNULL" TARGET="MAIN"><CODE>AtlpFormulaSetStatesToNULL()</CODE></A>
+ <DD> Sets the field states in every subformula of formula to
+  NULL.
+
+ <DT> <A HREF="atlpAllDet.html#Atlp_FormulaCreateWithAgents" TARGET="MAIN"><CODE>Atlp_FormulaCreateWithAgents()</CODE></A>
+ <DD> Creates a ATL formula with the specified fields.
+
+ <DT> <A HREF="atlpAllDet.html#Atlp_FormulaCreate" TARGET="MAIN"><CODE>Atlp_FormulaCreate()</CODE></A>
+ <DD> Creates a ATL formula, without the list of agents.
+
+ <DT> <A HREF="atlpAllDet.html#Atlp_AgentIsAgentSet" TARGET="MAIN"><CODE>Atlp_AgentIsAgentSet()</CODE></A>
+ <DD> Set the isAgent flag of the agent
+
+ <DT> <A HREF="atlpAllDet.html#AtlpFormulaIncrementRefCount" TARGET="MAIN"><CODE>AtlpFormulaIncrementRefCount()</CODE></A>
+ <DD> Increments the reference count of a formula.
+
+ <DT> <A HREF="atlpAllDet.html#AtlpFormulaDecrementRefCount" TARGET="MAIN"><CODE>AtlpFormulaDecrementRefCount()</CODE></A>
+ <DD> Decrements the reference count of a formula.
+
+ <DT> <A HREF="atlpAllDet.html#AtlpFormulaAddToManager" TARGET="MAIN"><CODE>AtlpFormulaAddToManager()</CODE></A>
+ <DD> Adds formula to the atlp manager
+
+ <DT> <A HREF="atlpAllDet.html#AtlpFormulaFree" TARGET="MAIN"><CODE>AtlpFormulaFree()</CODE></A>
+ <DD> Frees a ATL formula.
+
+ <DT> <A HREF="atlpAllDet.html#AtlpFormulaIsWellFormed" TARGET="MAIN"><CODE>AtlpFormulaIsWellFormed()</CODE></A>
+ <DD> Check if the atl formula is well formed
+
+ <DT> <A HREF="atlpAllDet.html#FormulaCreateWithType" TARGET="MAIN"><CODE>FormulaCreateWithType()</CODE></A>
+ <DD> Creates a ATL formula with just the type set.
+
+ <DT> <A HREF="atlpAllDet.html#FormulaCompare" TARGET="MAIN"><CODE>FormulaCompare()</CODE></A>
+ <DD> The comparison function for the formula unique table.
+
+ <DT> <A HREF="atlpAllDet.html#FormulaHash" TARGET="MAIN"><CODE>FormulaHash()</CODE></A>
+ <DD> The hash function for the formula unique table.
+
+ <DT> <A HREF="atlpAllDet.html#FormulaHashIntoUniqueTable" TARGET="MAIN"><CODE>FormulaHashIntoUniqueTable()</CODE></A>
+ <DD> Hashes the formula into the unique table.
+
+ <DT> <A HREF="atlpAllDet.html#FormulaConvertToExistentialDAG" TARGET="MAIN"><CODE>FormulaConvertToExistentialDAG()</CODE></A>
+ <DD> Converts the formula tree to a DAG.
+
+ <DT> <A HREF="atlpAllDet.html#FormulaAgentListDup" TARGET="MAIN"><CODE>FormulaAgentListDup()</CODE></A>
+ <DD> Duplicate a list of agents
+
+ <DT> <A HREF="atlpAllDet.html#FormulaHaveSameAgents" TARGET="MAIN"><CODE>FormulaHaveSameAgents()</CODE></A>
+ <DD> Check if two agent lists are the same.
+
+ <DT> <A HREF="atlpAllDet.html#AtlpSimpleDataTypeCompatible" TARGET="MAIN"><CODE>AtlpSimpleDataTypeCompatible()</CODE></A>
+ <DD> See if the simple type are compatible.
+
+ <DT> <A HREF="atlpAllDet.html#AtlpFormulaReturnSimpleType" TARGET="MAIN"><CODE>AtlpFormulaReturnSimpleType()</CODE></A>
+ <DD> Return the simple type of the formula
+
+ <DT> <A HREF="atlpAllDet.html#CheckFormulaContainQuantifiers" TARGET="MAIN"><CODE>CheckFormulaContainQuantifiers()</CODE></A>
+ <DD> required
+
+</DL>
+<HR>
+Last updated on 1031103 12h03
+</BODY></HTML>

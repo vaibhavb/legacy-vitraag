@@ -1,0 +1,347 @@
+<HTML>
+<HEAD><TITLE>The atm package: files</TITLE></HEAD>
+<BODY>
+
+<DL>
+ <DT> <A HREF="#atm.h"><CODE>atm.h</CODE></A>
+ <DD> External header file
+ <DT> <A HREF="#atmInt.h"><CODE>atmInt.h</CODE></A>
+ <DD> Internal header file
+ <DT> <A HREF="#atmMain.c"><CODE>atmMain.c</CODE></A>
+ <DD> The main file of the Atm package.
+ <DT> <A HREF="#atmParse.c"><CODE>atmParse.c</CODE></A>
+ <DD> The file provides typechecking functions for expressions.
+ <DT> <A HREF="#atmTypeCheck.c"><CODE>atmTypeCheck.c</CODE></A>
+ <DD> Contains routine for type checking.
+ <DT> <A HREF="#atmUtil.c"><CODE>atmUtil.c</CODE></A>
+ <DD> Provides utility functions for manipulating the data structures 
+  in the atm package.
+</DL><HR>
+<A NAME="atm.h"><H1>atm.h</H1></A>
+External header file <P>
+<B>By: Shaz Qadeer, Sriram Rajamani</B><P>
+<P><B>See Also</B><A HREF="#atmInt.h"><CODE>atmInt.h</CODE></A>
+<DL>
+</DL>
+<HR>
+<A NAME="atmInt.h"><H1>atmInt.h</H1></A>
+Internal header file <P>
+<B>By: Shaz Qadeer, Sriram Rajamani</B><P>
+<P><B>See Also</B><A HREF="#atm.h"><CODE>atm.h</CODE></A>
+<DL>
+</DL>
+<HR>
+<A NAME="atmMain.c"><H1>atmMain.c</H1></A>
+The main file of the Atm package. <P>
+<B>By: Sriram Rajamani, Shaz Qadeer, Freddy Mang</B><P>
+This file provides functions for initializing and ending the Atm
+  package, and for printing expressions. <P>
+<P><B>See Also</B><A HREF="#atmInt.h,"><CODE>atmInt.h,</CODE></A>
+<A HREF="#atm.h"><CODE>atm.h</CODE></A>
+<DL>
+ <DT> <A HREF="atmAllDet.html#Atm_Init" TARGET="MAIN"><CODE>Atm_Init()</CODE></A>
+ <DD> Initializes the atm package.
+
+ <DT> <A HREF="atmAllDet.html#Atm_Reinit" TARGET="MAIN"><CODE>Atm_Reinit()</CODE></A>
+ <DD> Reinitializes the atm package.
+
+ <DT> <A HREF="atmAllDet.html#Atm_End" TARGET="MAIN"><CODE>Atm_End()</CODE></A>
+ <DD> Ends the atm package.
+
+ <DT> <A HREF="atmAllDet.html#Atm_ExprPrintExpression" TARGET="MAIN"><CODE>Atm_ExprPrintExpression()</CODE></A>
+ <DD> Prints the expression.
+
+ <DT> <A HREF="atmAllDet.html#Atm_ExprTypeConvertToString" TARGET="MAIN"><CODE>Atm_ExprTypeConvertToString()</CODE></A>
+ <DD> Returns the symbolic character for an expression type.
+
+</DL>
+<HR>
+<A NAME="atmParse.c"><H1>atmParse.c</H1></A>
+The file provides typechecking functions for expressions. <P>
+<B>By: Shaz Qadeer, Freddy Mang</B><P>
+Provides functions required in typechecking and for modifying 
+  expressions so that the MDDs can be recursively built. <P>
+<P><B>See Also</B><A HREF="#Atm.h,"><CODE>Atm.h,</CODE></A>
+<A HREF="#AtmInt.h"><CODE>AtmInt.h</CODE></A>
+<DL>
+ <DT> <A HREF="atmAllDet.html#Atm_NumConstExprConvertToBitvectorConstExpr" TARGET="MAIN"><CODE>Atm_NumConstExprConvertToBitvectorConstExpr()</CODE></A>
+ <DD> Converts leaves of type Atm_NumConst_c of the expr to
+                      Atm_BitwiseNumConst_c.
+
+ <DT> <A HREF="atmAllDet.html#AtmExprReadLeftChildAddress" TARGET="MAIN"><CODE>AtmExprReadLeftChildAddress()</CODE></A>
+ <DD> 
+
+ <DT> <A HREF="atmAllDet.html#AtmExprReadRightChildAddress" TARGET="MAIN"><CODE>AtmExprReadRightChildAddress()</CODE></A>
+ <DD> 
+
+</DL>
+<HR>
+<A NAME="atmTypeCheck.c"><H1>atmTypeCheck.c</H1></A>
+Contains routine for type checking. <P>
+<B>By: Freddy Mang</B><P>
+optional <P>
+<P><B>See Also</B><A HREF="#optional"><CODE>optional</CODE></A>
+<DL>
+ <DT> <A HREF="atmAllDet.html#Atm_TypeCheckNew" TARGET="MAIN"><CODE>Atm_TypeCheckNew()</CODE></A>
+ <DD> Typecheck an expression.
+
+ <DT> <A HREF="atmAllDet.html#Atm_ReinitTypeCheck" TARGET="MAIN"><CODE>Atm_ReinitTypeCheck()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="atmAllDet.html#SOTGet" TARGET="MAIN"><CODE>SOTGet()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="atmAllDet.html#SOTCreate" TARGET="MAIN"><CODE>SOTCreate()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="atmAllDet.html#SOTIsEmpty" TARGET="MAIN"><CODE>SOTIsEmpty()</CODE></A>
+ <DD> Check if the given SOT is empty.
+
+ <DT> <A HREF="atmAllDet.html#SOTUnion" TARGET="MAIN"><CODE>SOTUnion()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="atmAllDet.html#SOTIntersect" TARGET="MAIN"><CODE>SOTIntersect()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="atmAllDet.html#SOTSubset" TARGET="MAIN"><CODE>SOTSubset()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="atmAllDet.html#SOTEqual" TARGET="MAIN"><CODE>SOTEqual()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="atmAllDet.html#SOTMinus" TARGET="MAIN"><CODE>SOTMinus()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="atmAllDet.html#SOTDup" TARGET="MAIN"><CODE>SOTDup()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="atmAllDet.html#SOTAlloc" TARGET="MAIN"><CODE>SOTAlloc()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="atmAllDet.html#SOTFree" TARGET="MAIN"><CODE>SOTFree()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="atmAllDet.html#SOTObtainFromVar" TARGET="MAIN"><CODE>SOTObtainFromVar()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="atmAllDet.html#SOTObtainFromExpr" TARGET="MAIN"><CODE>SOTObtainFromExpr()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="atmAllDet.html#TypeArrayObtainFromSOT" TARGET="MAIN"><CODE>TypeArrayObtainFromSOT()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="atmAllDet.html#PrintSOT" TARGET="MAIN"><CODE>PrintSOT()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="atmAllDet.html#TCManagerFree" TARGET="MAIN"><CODE>TCManagerFree()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="atmAllDet.html#ExprResolveTypes" TARGET="MAIN"><CODE>ExprResolveTypes()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="atmAllDet.html#ScalarDataTypeConvertToBitvectorDataType" TARGET="MAIN"><CODE>ScalarDataTypeConvertToBitvectorDataType()</CODE></A>
+ <DD> converts an Atm datatype into its bitwise counterpart.
+
+ <DT> <A HREF="atmAllDet.html#PickAType" TARGET="MAIN"><CODE>PickAType()</CODE></A>
+ <DD> Just pick a type.
+
+ <DT> <A HREF="atmAllDet.html#ExprSimplify2" TARGET="MAIN"><CODE>ExprSimplify2()</CODE></A>
+ <DD> Returns a simplified expression.
+
+ <DT> <A HREF="atmAllDet.html#BitArrayToNum" TARGET="MAIN"><CODE>BitArrayToNum()</CODE></A>
+ <DD> required
+
+</DL>
+<HR>
+<A NAME="atmUtil.c"><H1>atmUtil.c</H1></A>
+Provides utility functions for manipulating the data structures 
+  in the atm package. <P>
+<B>By: Freddy Mang, Shaz Qadeer</B><P>
+<P><B>See Also</B><A HREF="#atmInt.h,"><CODE>atmInt.h,</CODE></A>
+<A HREF="#atm.h"><CODE>atm.h</CODE></A>
+<DL>
+ <DT> <A HREF="atmAllDet.html#Atm_AtomAlloc" TARGET="MAIN"><CODE>Atm_AtomAlloc()</CODE></A>
+ <DD> Allocates an atom.
+
+ <DT> <A HREF="atmAllDet.html#Atm_AtomFree" TARGET="MAIN"><CODE>Atm_AtomFree()</CODE></A>
+ <DD> Frees an atom.
+
+ <DT> <A HREF="atmAllDet.html#Atm_CmdAlloc" TARGET="MAIN"><CODE>Atm_CmdAlloc()</CODE></A>
+ <DD> Allocates a guarded command.
+
+ <DT> <A HREF="atmAllDet.html#Atm_CmdFree" TARGET="MAIN"><CODE>Atm_CmdFree()</CODE></A>
+ <DD> Frees a guarded command.
+
+ <DT> <A HREF="atmAllDet.html#Atm_AssignStdAlloc" TARGET="MAIN"><CODE>Atm_AssignStdAlloc()</CODE></A>
+ <DD> Allocates a standard assignment.
+
+ <DT> <A HREF="atmAllDet.html#Atm_AssignEventAlloc" TARGET="MAIN"><CODE>Atm_AssignEventAlloc()</CODE></A>
+ <DD> Allocates an event assignment.
+
+ <DT> <A HREF="atmAllDet.html#Atm_AssignIndexAlloc" TARGET="MAIN"><CODE>Atm_AssignIndexAlloc()</CODE></A>
+ <DD> Allocates an index assignment.
+
+ <DT> <A HREF="atmAllDet.html#Atm_AssignForallAlloc" TARGET="MAIN"><CODE>Atm_AssignForallAlloc()</CODE></A>
+ <DD> Allocates a forall assignment.
+
+ <DT> <A HREF="atmAllDet.html#Atm_AssignFree" TARGET="MAIN"><CODE>Atm_AssignFree()</CODE></A>
+ <DD> Frees an assignment.
+
+ <DT> <A HREF="atmAllDet.html#Atm_AtomAddInitCommandList" TARGET="MAIN"><CODE>Atm_AtomAddInitCommandList()</CODE></A>
+ <DD> Add the given init command to the atom
+
+ <DT> <A HREF="atmAllDet.html#Atm_AtomReadInitCommandList" TARGET="MAIN"><CODE>Atm_AtomReadInitCommandList()</CODE></A>
+ <DD> Returns the list of init commands for the atom
+
+ <DT> <A HREF="atmAllDet.html#Atm_AtomReadDefaultInitCommand" TARGET="MAIN"><CODE>Atm_AtomReadDefaultInitCommand()</CODE></A>
+ <DD> Returns the default init guarded command of the atom.
+
+ <DT> <A HREF="atmAllDet.html#Atm_AtomAddUpdateCommandList" TARGET="MAIN"><CODE>Atm_AtomAddUpdateCommandList()</CODE></A>
+ <DD> Add the given update command list to the atom
+
+ <DT> <A HREF="atmAllDet.html#Atm_AtomReadUpdateCommandList" TARGET="MAIN"><CODE>Atm_AtomReadUpdateCommandList()</CODE></A>
+ <DD> Returns the list of update commands for the atom
+
+ <DT> <A HREF="atmAllDet.html#Atm_AtomReadDefaultUpdateCommand" TARGET="MAIN"><CODE>Atm_AtomReadDefaultUpdateCommand()</CODE></A>
+ <DD> Returns the default update guarded command of the atom.
+
+ <DT> <A HREF="atmAllDet.html#Atm_AtomAddWaitCommandList" TARGET="MAIN"><CODE>Atm_AtomAddWaitCommandList()</CODE></A>
+ <DD> Add the given wait command list to the atom
+
+ <DT> <A HREF="atmAllDet.html#Atm_AtomReadWaitCommandList" TARGET="MAIN"><CODE>Atm_AtomReadWaitCommandList()</CODE></A>
+ <DD> Returns the list of wait commands for the atom
+
+ <DT> <A HREF="atmAllDet.html#Atm_AtomAddControlVar" TARGET="MAIN"><CODE>Atm_AtomAddControlVar()</CODE></A>
+ <DD> Add the given variable to the controlled variable list
+
+ <DT> <A HREF="atmAllDet.html#Atm_AtomReadControlVarList" TARGET="MAIN"><CODE>Atm_AtomReadControlVarList()</CODE></A>
+ <DD> Returns the list of control variables for the atom
+
+ <DT> <A HREF="atmAllDet.html#Atm_AtomAddReadVar" TARGET="MAIN"><CODE>Atm_AtomAddReadVar()</CODE></A>
+ <DD> Add the given variable to the read variable list
+
+ <DT> <A HREF="atmAllDet.html#Atm_AtomReadReadVarList" TARGET="MAIN"><CODE>Atm_AtomReadReadVarList()</CODE></A>
+ <DD> Returns the list of read variables for the atom
+
+ <DT> <A HREF="atmAllDet.html#Atm_AtomAddAwaitVar" TARGET="MAIN"><CODE>Atm_AtomAddAwaitVar()</CODE></A>
+ <DD> Add the given variable to the await variable list
+
+ <DT> <A HREF="atmAllDet.html#Atm_AtomReadAwaitVarList" TARGET="MAIN"><CODE>Atm_AtomReadAwaitVarList()</CODE></A>
+ <DD> Returns the list of await variables for the atom
+
+ <DT> <A HREF="atmAllDet.html#Atm_AtomObtainReadAwaitVarList" TARGET="MAIN"><CODE>Atm_AtomObtainReadAwaitVarList()</CODE></A>
+ <DD> Computes the set of variables that are both read and
+                      awaited by an atom.
+
+ <DT> <A HREF="atmAllDet.html#Atm_AtomObtainReadOrAwaitVarList" TARGET="MAIN"><CODE>Atm_AtomObtainReadOrAwaitVarList()</CODE></A>
+ <DD> Computes the set of variables that are either read or
+                      awaited by an atom.
+
+ <DT> <A HREF="atmAllDet.html#Atm_AtomReadAtomType" TARGET="MAIN"><CODE>Atm_AtomReadAtomType()</CODE></A>
+ <DD> Returns the atom type.
+
+ <DT> <A HREF="atmAllDet.html#Atm_AtomSetAtomType" TARGET="MAIN"><CODE>Atm_AtomSetAtomType()</CODE></A>
+ <DD> Set the atom type.
+
+ <DT> <A HREF="atmAllDet.html#Atm_AtomSetDefaultInitCommand" TARGET="MAIN"><CODE>Atm_AtomSetDefaultInitCommand()</CODE></A>
+ <DD> Sets the default init command of atom.
+
+ <DT> <A HREF="atmAllDet.html#Atm_AtomSetDefaultUpdateCommand" TARGET="MAIN"><CODE>Atm_AtomSetDefaultUpdateCommand()</CODE></A>
+ <DD> Sets the default update command of atom.
+
+ <DT> <A HREF="atmAllDet.html#Atm_AtomReadName" TARGET="MAIN"><CODE>Atm_AtomReadName()</CODE></A>
+ <DD> Returns the name of the atom.
+
+ <DT> <A HREF="atmAllDet.html#Atm_AtomNewName" TARGET="MAIN"><CODE>Atm_AtomNewName()</CODE></A>
+ <DD> Generates a new atom name.
+
+ <DT> <A HREF="atmAllDet.html#Atm_AtomCounterReset" TARGET="MAIN"><CODE>Atm_AtomCounterReset()</CODE></A>
+ <DD> Reset the global atom counter.
+
+ <DT> <A HREF="atmAllDet.html#Atm_CmdReadGuard" TARGET="MAIN"><CODE>Atm_CmdReadGuard()</CODE></A>
+ <DD> Returns the guard expression of a guarded command.
+
+ <DT> <A HREF="atmAllDet.html#Atm_CmdReadAssignList" TARGET="MAIN"><CODE>Atm_CmdReadAssignList()</CODE></A>
+ <DD> Returns the list of assignments of a guarded command.
+
+ <DT> <A HREF="atmAllDet.html#Atm_ExprReadType" TARGET="MAIN"><CODE>Atm_ExprReadType()</CODE></A>
+ <DD> Returns the type of an expression.
+
+ <DT> <A HREF="atmAllDet.html#Atm_ExprReadLeftChild" TARGET="MAIN"><CODE>Atm_ExprReadLeftChild()</CODE></A>
+ <DD> Reads the left child of an expression.
+
+ <DT> <A HREF="atmAllDet.html#Atm_ExprReadRightChild" TARGET="MAIN"><CODE>Atm_ExprReadRightChild()</CODE></A>
+ <DD> Reads the right child of an expression.
+
+ <DT> <A HREF="atmAllDet.html#Atm_AssignReadType" TARGET="MAIN"><CODE>Atm_AssignReadType()</CODE></A>
+ <DD> Returns the type of an assignment.
+
+ <DT> <A HREF="atmAllDet.html#Atm_AssignReadVariable" TARGET="MAIN"><CODE>Atm_AssignReadVariable()</CODE></A>
+ <DD> Returns the variable on the left hand side of the
+                      assignment.
+
+ <DT> <A HREF="atmAllDet.html#Atm_AssignReadExpr" TARGET="MAIN"><CODE>Atm_AssignReadExpr()</CODE></A>
+ <DD> Returns the expr on the right hand side of assignment.
+
+ <DT> <A HREF="atmAllDet.html#Atm_AssignReadExprAddress" TARGET="MAIN"><CODE>Atm_AssignReadExprAddress()</CODE></A>
+ <DD> Returns the address of expr on the right hand side of assignment.
+
+ <DT> <A HREF="atmAllDet.html#Atm_AssignReadIndexVar" TARGET="MAIN"><CODE>Atm_AssignReadIndexVar()</CODE></A>
+ <DD> Returns the index variable of a forall assignment.
+
+ <DT> <A HREF="atmAllDet.html#Atm_AssignReadIndexExpr" TARGET="MAIN"><CODE>Atm_AssignReadIndexExpr()</CODE></A>
+ <DD> Returns the index expr of an index assignment.
+
+ <DT> <A HREF="atmAllDet.html#Atm_ExprAlloc" TARGET="MAIN"><CODE>Atm_ExprAlloc()</CODE></A>
+ <DD> Build an expression from two expression and an operator.
+
+ <DT> <A HREF="atmAllDet.html#Atm_ExprFreeExpression" TARGET="MAIN"><CODE>Atm_ExprFreeExpression()</CODE></A>
+ <DD> Frees an expression recursively.
+
+ <DT> <A HREF="atmAllDet.html#Atm_AtomReadPreorder" TARGET="MAIN"><CODE>Atm_AtomReadPreorder()</CODE></A>
+ <DD> Read the preorder of the given atom.
+
+ <DT> <A HREF="atmAllDet.html#Atm_AtomReadPostorder" TARGET="MAIN"><CODE>Atm_AtomReadPostorder()</CODE></A>
+ <DD> Read the postorder of the given atom.
+
+ <DT> <A HREF="atmAllDet.html#Atm_AtomSetPreorder" TARGET="MAIN"><CODE>Atm_AtomSetPreorder()</CODE></A>
+ <DD> Set the preorder of the given atom.
+
+ <DT> <A HREF="atmAllDet.html#Atm_AtomSetPostorder" TARGET="MAIN"><CODE>Atm_AtomSetPostorder()</CODE></A>
+ <DD> Set the postorder of the given atom.
+
+ <DT> <A HREF="atmAllDet.html#Atm_AtomChangeName" TARGET="MAIN"><CODE>Atm_AtomChangeName()</CODE></A>
+ <DD> Changes the name of an atom.
+
+ <DT> <A HREF="atmAllDet.html#Atm_AtomDup" TARGET="MAIN"><CODE>Atm_AtomDup()</CODE></A>
+ <DD> Duplicate an atom.
+
+ <DT> <A HREF="atmAllDet.html#Atm_ExprSubstituteConstantForDummyVar" TARGET="MAIN"><CODE>Atm_ExprSubstituteConstantForDummyVar()</CODE></A>
+ <DD> Substitute a constant for the dummy variable everywhere
+  in an expression.
+
+ <DT> <A HREF="atmAllDet.html#AtmControlVarsDup" TARGET="MAIN"><CODE>AtmControlVarsDup()</CODE></A>
+ <DD> Copies the ctl variables
+
+ <DT> <A HREF="atmAllDet.html#AtmReadVarsDup" TARGET="MAIN"><CODE>AtmReadVarsDup()</CODE></A>
+ <DD> Copy the variables read by a given atom to the new atom.
+
+ <DT> <A HREF="atmAllDet.html#AtmAwaitVarsDup" TARGET="MAIN"><CODE>AtmAwaitVarsDup()</CODE></A>
+ <DD> Copy the variables awaited by a given atom to the new atom.
+
+ <DT> <A HREF="atmAllDet.html#AtmGuardedCommandsDup" TARGET="MAIN"><CODE>AtmGuardedCommandsDup()</CODE></A>
+ <DD> Copy the guarded commands from one atom to another.
+
+ <DT> <A HREF="atmAllDet.html#AtmSelectedCommandsDup" TARGET="MAIN"><CODE>AtmSelectedCommandsDup()</CODE></A>
+ <DD> Copy the guarded command to the new atom.
+
+ <DT> <A HREF="atmAllDet.html#AtmAssignListDup" TARGET="MAIN"><CODE>AtmAssignListDup()</CODE></A>
+ <DD> Returns a copy of the assignment list.
+
+ <DT> <A HREF="atmAllDet.html#AtmExprDup" TARGET="MAIN"><CODE>AtmExprDup()</CODE></A>
+ <DD> Returns an exact duplicate of the expression tree.
+
+</DL>
+<HR>
+Last updated on 1031104 18h39
+</BODY></HTML>

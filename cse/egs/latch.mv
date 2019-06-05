@@ -1,0 +1,9 @@
+\begin{minipage}[h]{2in} 
+\scriptsize
+\begin{verbatim}
+.latch Tmp CarSignal
+.reset CarSignal
+0
+1
+\end{verbatim}
+\end{minipage}

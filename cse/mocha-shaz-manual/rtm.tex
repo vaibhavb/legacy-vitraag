@@ -1,0 +1,159 @@
+\section{Real-Time Modules}
+\label{sec:rtm}
+
+\subsection{Describing Systems with Real-Time Modules}
+{\sc Mocha} supports real-time systems that are
+described in the form of {\em timed reactive modules} as defined in
+\cite{timed-modules}. In addition to the discrete-valued variables of
+reactive modules, a timed module makes use real-valued ($\reals$) {\em clock
+variables}. The purpose of clock variables is to keep track of
+elapsed time. Guarded commands can assign integer values to clock
+variables, and guards can depend on values of clock variables. 
+
+$\clock$ denotes the clock variable type. Clock variables
+are initialized to $0$ by default\footnote{
+An error is signal-led if there is a non-zero initial assignment to a
+clock variable.}. For each clock $x$, guards can include positive
+Boolean combinations of inequalities of the form $x \le C$, $x \ge C$
+and $x=C$, where $C \in \nats$. Assignments can assign integer values
+to clocks in the usual fashion: $x := C$, where $C \in \nats$.
+
+In addition to $\INIT$ and $\UPDATE$ commands, a timed module has a
+set of $\WAIT$ commands which describe the passage of time. When a
+$\WAIT$ command is executed, all non-clock variables remain the same,
+and all clock variables are incremented by the same amount. A typical
+$\WAIT$ command has the following form
+
+$$ \mbox{{\tt Untimed\_Guard}} \;\land\; x_1 \le C_1 \;\land\; x_2 \le C_2 \;\land\;
+... \;\land\; x_n \le C_n \;\;\rightarrow\;\; x_1':\le C_1 ;\;\; x_2' :\le C_2 ;\;\;
+... ;\;\; x_n :\le C_n $$
+
+\noindent where $x_1,...,x_n$ are clocks, $C_1,...,C_n$ are positive
+integers, and ``{\tt Untimed\_Guard}'' is a guard on non-clock
+variables. The interpretation of such a $\WAIT$ statement is as
+follows: If {\tt Untimed\_Guard} holds and the values of the clocks
+satisfy the inequalities $x_i \le C_i$ for all $i \le n$, then a time
+period of $\delta$ can elapse while the values of all non-clock
+variables remain constant. $\delta$ must satisfy the following condition:
+$x_i + \delta = x_i' \le C_i$ for all $i$. In this way, $\WAIT$
+statements are used to specify upper bounds on the time elapsed in a
+given state. The guards of $\WAIT$ commands are sometimes referred to
+as ``clock invariants'' because the invariants on the clocks specified
+by the guard must hold for the module to remain in that state.
+
+A timed module makes progress by executing either an $\UPDATE$ command
+or a $\WAIT$ command. If no $\WAIT$ command can be executed, then this
+forces an $\UPDATE$ command to be executed\footnote{For a precise
+treatment of the semantics of timed modules, refer to
+\cite{AlurHenzinger97}}. 
+
+\begin{figure}[h]
+\begin{mtab}{l}
+  \MODULE\ \RTTrain\\
+  \qu \INTF\ \pc:\set{\far,\near,\gate};\; \arrive:\bool\\
+  \qu \PRIV\ x:\clock\\
+  \qu \ATOM\ \CONTROLS \pc,x,\arrive\ \READS\ \pc,x,\arrive\\
+  \qqu \INIT\\
+  \qqu \begin{chtab}
+    \true &\pc':=\far;\; \arrive':=\false
+  \end{chtab}\\
+  \qqu \UPDATE\\
+  \qqu \begin{chtab}
+    \pc=\far &\pc':=\near;\; \arrive':=\true;\; x':=0\\
+    \pc=\near\land x\ge 3 &\pc':=\gate;\; x':=0\\
+    \pc=\gate\land x\ge 1 &\pc':=\far;\; \arrive':=\false\\
+  \end{chtab}\\
+  \qqu \WAIT\\
+  \qqu \begin{chtab}
+    \pc=\far & \\
+    \pc=\near\land x\le 5 & x :\le 5 \\
+    \pc=\gate\land x\le 2 & x :\le 2 \\
+  \end{chtab}\\\\
+\end{mtab}
+\caption{Real-time module for the train }
+\label{fig:rttrain}
+\end{figure}
+
+A simple example of a real-time module is presented in
+Figure~\ref{fig:rttrain}. This module describes the behavior of a
+train approaching a gate. The interface variable $\pc$ initially has
+the value $\far$, indicating that the train is far from the gate, and
+the variable $\arrive$ is set to $\false$. $\pc$ can have the value
+$\far$ indefinitely, as indicated by the first $\WAIT$ command,
+or can take on the value $\near$. When the train moves
+to $\near$, the timer $x$ is reset to $0$ and the interface variable 
+$\arrive$ is set to $\true$. The second $\WAIT$ command puts an
+upper bound of 5 on $x$ while $\pc = \near$. While $\pc = \near$, if $x \ge 3$, then the guard of the second $\UPDATE$ command is satisfied, which means
+that after spending 3 time units at $\pc = \near$, $\pc$ can move to $\far$.
+After 5 time units at $\pc = \near$, the guard of the second $\WAIT$ statement 
+is no longer satisfied, which forces the second update command to be executed.
+After 5 time units, $\pc$ {\em must} move to $\far$. 
+
+\mypar
+
+\begin{figure}
+\begin{mtab}{l}
+  \MODULE\ \RTGate\\
+  \qu \EXTL\ \arrive:\bool\\
+  \qu \INTF\ \pc:\set{\open,\toclose,\closed}\\
+  \qu \PRIV\ y:\clock\\
+  \qu \ATOM\ \CONTROLS \pc,y\ \READS\ \pc,y,\arrive \AWAITS\ \arrive' \\
+  \qqu \INIT\\
+  \qqu \begin{chtab}
+    \true &\pc':=\open
+  \end{chtab}\\
+  \qqu \UPDATE\\
+  \qqu \begin{chtab}
+    \pc=\open\land\arrive' &\pc':=\toclose\; y':=0\\
+    \pc=\toclose\land y\ge 1 &\pc':=\closed\; y':=0\\
+    \pc=\closed\land y\ge 7 &\pc':=\open\\
+ \end{chtab}\\
+  \qqu \WAIT\\
+  \qqu \begin{chtab}
+    \pc=\open\land\neg\arrive' & \\
+    \pc=\toclose\land y\le 2 & y:\le 2\\
+    \pc=\closed\land y\le 7 & y :\le 7
+  \end{chtab}\\\\
+\end{mtab}
+\caption{Real-time railroad gate controller}
+\label{fig:rtctrl}
+\end{figure}
+
+The timed reactive module description for a gate controller given in 
+Figure~\ref{fig:ctrl} operates in a similar fashion. The system
+consisting of the train and the controller is then given by
+$$RealTimeTrainSystem = \HIDE\ \;\arrive\; \IN \;\RTTrain \;\pppar\; \RTGate$$
+
+\subsection{Verification with Real-Time Modules}
+
+{\sc Mocha} supports the following commands that operate on real-time
+modules 
+	\begin{itemize}
+	\item {rtm\_trans} [-v] [-h] $\langle$module\_name$\rangle$:
+	\item {rtm\_init} [-v] [-h] $\langle$module\_name$\rangle$:
+	\item {rtm\_search} [-v] [-i] [-h] $\langle$module\_name$\rangle$:
+	\item {rtm\_static\_order} [[-h] -f $\langle$file\_name$\rangle$ $\langle$module\_name$\rangle$:
+	\item {rtm\_dynamic\_var\_ordering} [-d] [-e
+$\langle$method$\rangle$ ] [ -f $\langle$method$\rangle$ ]  [-h]:
+	\end{itemize}
+
+
+\subsection{Transition Relations of Real-Time Modules}
+
+{\sc Mocha} restricts guards on clocks and clock invariants to be
+positive Boolean combinations of inequalities of the form $x \le c$
+and $x \ge c$, where $c \in \nats$. This is adequate for modeling the
+behavior of any physical system, as argued in \cite{serdar-cav-submit}. In
+\cite{digital-clocks}, it is proven that, with this restriction, for
+each trace $\trace$ of a timed module, there exists a trace
+$\inttrace$ such that (i) the sequence values that discrete variables
+take on is the same for $\trace$ and $\inttrace$ and (ii) all updates
+of discrete variables take place at integer-valued points in
+time. This enables clocks to be modeled as integer-valued variables
+that increase at the same rate. Timed modules are converted by {\sc
+Mocha} into (untimed) modules, equivalent to the original ones in the
+sense described above.
+
+
+
+

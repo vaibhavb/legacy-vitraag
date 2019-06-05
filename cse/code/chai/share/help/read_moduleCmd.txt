@@ -1,0 +1,21 @@
+
+  read_module - Reads a file containing Reactive Module descriptions.
+     _________________________________________________________________
+   
+   read_module [-hp] lt;filenamegt;
+   
+   This commands reads in a file containing Reactive Module descriptions,
+   as well as global type definitions.
+   
+   Command Options:
+   
+   -h
+          Prints usage.
+          
+   -p
+          Invoke the pure parser. By default, the input file is
+          preprocessed to handle #define and #foreach...#endforeach
+          constructs. If -p is specified, these will not be handled.
+     _________________________________________________________________
+   
+   Last updated on 980624 22h11

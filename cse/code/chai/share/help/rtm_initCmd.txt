@@ -1,0 +1,17 @@
+
+  rtm_init - compute initial set of states of a module (represented as MDD).
+  The build_trans command must be executed prior to executing this command
+     _________________________________________________________________
+   
+   rtm_init [-v] [-h] <module_name>
+   
+   The command computes the initial region of a module. Command Options:
+   
+   -v
+          verbose mode
+          
+   -h
+          print usage
+     _________________________________________________________________
+   
+   Last updated on 980624 22h11

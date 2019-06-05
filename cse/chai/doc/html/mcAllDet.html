@@ -1,0 +1,403 @@
+<html>
+<head><title>The mc package: all functions </title></head>
+<body>
+
+
+<HR>
+<DL>
+<dt><pre>
+<A NAME="McAgentReverseAgents"></A>
+static void <I></I>
+<B>McAgentReverseAgents</B>(
+  lsList  <b>agentList</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mcAllFile.html#mcMc.c"TARGET="ABSTRACT"><CODE>mcMc.c</CODE></A>
+
+<dt><pre>
+<A NAME="McAgentsCheckValid"></A>
+array_t * <I></I>
+<B>McAgentsCheckValid</B>(
+  lsList  <b>agentList</b>, <i></i>
+  Mdl_Module_t* <b>module</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mcAllFile.html#mcDependency.c"TARGET="ABSTRACT"><CODE>mcDependency.c</CODE></A>
+
+<dt><pre>
+<A NAME="McAtmExprBuiltFromAtomicFormula"></A>
+static Atm_Expr_t * <I></I>
+<B>McAtmExprBuiltFromAtomicFormula</B>(
+  Atlp_Formula_t * <b>formula</b>, <i></i>
+  Mdl_Module_t * <b>module</b>, <i></i>
+  Var_TypeManager_t * <b>typeManager</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mcAllFile.html#mcMc.c"TARGET="ABSTRACT"><CODE>mcMc.c</CODE></A>
+
+<dt><pre>
+<A NAME="McAtomicFormulaComputeStates"></A>
+static mdd_t * <I></I>
+<B>McAtomicFormulaComputeStates</B>(
+  Sym_Info_t * <b>symInfo</b>, <i></i>
+  Atlp_Formula_t * <b>formula</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mcAllFile.html#mcMc.c"TARGET="ABSTRACT"><CODE>mcMc.c</CODE></A>
+
+<dt><pre>
+<A NAME="McEvaluateEGFormula"></A>
+mdd_t * <I></I>
+<B>McEvaluateEGFormula</B>(
+  Sym_Info_t * <b>symInfo</b>, <i></i>
+  lsList  <b>agentList</b>, <i></i>
+  mdd_t * <b>invariantMdd</b>, <i></i>
+  array_t * <b>onionRingsArrayForDbg</b>, <i></i>
+  Mc_VerbosityLevel  <b>verbosity</b> <i></i>
+)
+</pre>
+<dd> Evaluate states satisfying <<A>>G invariant. Conceptually,
+  this is done by starting with all states marked with the invariant.
+  From this initial set, recursively remove states which can not reach
+  these invariant states.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="mcAllFile.html#mcMc.c"TARGET="ABSTRACT"><CODE>mcMc.c</CODE></A>
+
+<dt><pre>
+<A NAME="McEvaluateEUFormula"></A>
+mdd_t * <I></I>
+<B>McEvaluateEUFormula</B>(
+  Sym_Info_t * <b>symInfo</b>, <i></i>
+  lsList  <b>agentList</b>, <i></i>
+  mdd_t * <b>invariantMdd</b>, <i></i>
+  mdd_t * <b>targetMdd</b>, <i></i>
+  array_t * <b>onionRings</b>, <i></i>
+  Mc_VerbosityLevel  <b>verbosity</b> <i></i>
+)
+</pre>
+<dd> Evaluate states satisfying <<A>>U(invariant U target).
+  Performed by a ``least fixed point computation'' -- start with target AND
+  fair, see what can get to this set by a path solely in invariant. If the
+  onionRings array is not NIL(array_t *), the ``onion rings'' arising in the
+  greatest fixed point computation are stored in the array, starting from the
+  target.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="mcAllFile.html#mcMc.c"TARGET="ABSTRACT"><CODE>mcMc.c</CODE></A>
+
+<dt><pre>
+<A NAME="McEvaluateEWFormula"></A>
+mdd_t * <I></I>
+<B>McEvaluateEWFormula</B>(
+  Sym_Info_t * <b>symInfo</b>, <i></i>
+  lsList  <b>agentList</b>, <i></i>
+  mdd_t * <b>invariantMdd</b>, <i></i>
+  mdd_t * <b>targetMdd</b>, <i></i>
+  array_t * <b>onionRings</b>, <i></i>
+  Mc_VerbosityLevel  <b>verbosity</b> <i></i>
+)
+</pre>
+<dd> Evaluate states satisfying <<A>>(invariant W target).
+  Performed by a ``greatest fixed point computation'' -- start with target AND
+  fair, see what can get to this set by a path solely in invariant. If the
+  onionRings array is not NIL(array_t *), the ``onion rings'' arising in the
+  greatest fixed point computation are stored in the array, starting from the
+  target.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="mcAllFile.html#mcMc.c"TARGET="ABSTRACT"><CODE>mcMc.c</CODE></A>
+
+<dt><pre>
+<A NAME="McEvaluateEXFormula"></A>
+mdd_t * <I></I>
+<B>McEvaluateEXFormula</B>(
+  Sym_Info_t * <b>symInfo</b>, <i></i>
+  lsList  <b>agentList</b>, <i></i>
+  mdd_t * <b>target</b>, <i></i>
+  Mc_VerbosityLevel  <b>verbosity</b> <i></i>
+)
+</pre>
+<dd> Evaluate states satisfying <<A>>X target. Since variables that
+  are controlled by the agents in the set A will be existentially quantified
+  out, while the remaining will be universally quantified out, this function
+  iterates through each atom and calls the functions in the mdd_package
+  directly, to avoid any overhead during optimizations such as those in the
+  img package. Clearly, a better optimization strategy should be explored.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="mcAllFile.html#mcMc.c"TARGET="ABSTRACT"><CODE>mcMc.c</CODE></A>
+
+<dt><pre>
+<A NAME="McFormulaSemanticCheckAgents"></A>
+static boolean <I></I>
+<B>McFormulaSemanticCheckAgents</B>(
+  Atlp_Formula_t* <b>formula</b>, <i></i>
+  Mdl_Module_t * <b>module</b> <i></i>
+)
+</pre>
+<dd> Check the agents of a formula against a module
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mcAllFile.html#mcMc.c"TARGET="ABSTRACT"><CODE>mcMc.c</CODE></A>
+
+<dt><pre>
+<A NAME="McFormulaSemanticCheckAtomicFormula"></A>
+static boolean <I></I>
+<B>McFormulaSemanticCheckAtomicFormula</B>(
+  Atlp_Formula_t * <b>formula</b>, <i></i>
+  Mdl_Module_t * <b>module</b>, <i></i>
+  Var_TypeManager_t * <b>typeManager</b> <i></i>
+)
+</pre>
+<dd> This routines checks the semantics of the atomic
+  formula. This routine is called by Mc_FormulaSemanticCheck.
+<p>
+
+<dd> <b>Side Effects</b> A typed atm expression is built and stored in the
+  formula.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Mc_FormulaSemanticCheck.">Mc_FormulaSemanticCheck.</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mcAllFile.html#mcMc.c"TARGET="ABSTRACT"><CODE>mcMc.c</CODE></A>
+
+<dt><pre>
+<A NAME="McModelCheck"></A>
+static  <I></I>
+<B>McModelCheck</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code><a href="#McOptionsParse">McOptionsParse</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mcAllFile.html#mcMain.c"TARGET="ABSTRACT"><CODE>mcMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="McNameArrayFree"></A>
+static void <I></I>
+<B>McNameArrayFree</B>(
+  array_t * <b>nameArray</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mcAllFile.html#mcMain.c"TARGET="ABSTRACT"><CODE>mcMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="McOptionsAlloc"></A>
+static McOptions_t * <I></I>
+<B>McOptionsAlloc</B>(
+   <b></b> <i></i>
+)
+</pre>
+<dd> It allocates an McOptions_t for parsing.
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mcAllFile.html#mcMain.c"TARGET="ABSTRACT"><CODE>mcMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="McOptionsFree"></A>
+static void <I></I>
+<B>McOptionsFree</B>(
+  McOptions_t * <b>options</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>See Also</b> <code><a href="#the">the</a>
+<a href="#options">options</a>
+<a href="#is">is</a>
+<a href="#freed.">freed.</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mcAllFile.html#mcMain.c"TARGET="ABSTRACT"><CODE>mcMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="McOptionsParse"></A>
+static McOptions_t * <I></I>
+<B>McOptionsParse</B>(
+  int  <b>argc</b>, <i></i>
+  char ** <b>argv</b>, <i></i>
+  Mdl_Manager_t * <b>mdlManager</b> <i></i>
+)
+</pre>
+<dd> This function concerns parsing of the options for mc.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#McModelCheck">McModelCheck</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mcAllFile.html#mcMain.c"TARGET="ABSTRACT"><CODE>mcMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="McSimAtomArrayConvertToAgentList"></A>
+static lsList <I></I>
+<B>McSimAtomArrayConvertToAgentList</B>(
+  array_t * <b>atomArray</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mcAllFile.html#mcMc.c"TARGET="ABSTRACT"><CODE>mcMc.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mc_FormulaEvaluate"></A>
+mdd_t * <I></I>
+<B>Mc_FormulaEvaluate</B>(
+  Sym_Info_t * <b>symInfo</b>, <i></i>
+  Atlp_Formula_t * <b>formula</b>, <i></i>
+  Mc_VerbosityLevel  <b>verbosity</b> <i></i>
+)
+</pre>
+<dd> This function is called by McModelCheck to evaluate the
+  ATL formula.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mcAllFile.html#mcMc.c"TARGET="ABSTRACT"><CODE>mcMc.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mc_FormulaSemanticCheck"></A>
+boolean <I></I>
+<B>Mc_FormulaSemanticCheck</B>(
+  Atlp_Formula_t * <b>formula</b>, <i></i>
+  Mdl_Module_t * <b>module</b>, <i></i>
+  Var_TypeManager_t * <b>typeManager</b> <i></i>
+)
+</pre>
+<dd> Given a formula, this function will check its semantic
+  against the specified module.  The following will be checked: 1. whether
+  the variables appear in the formula also appears in the module; 2. type of
+  the formula (a type checking routine similar to the typechecking in atm
+  package is used); 3. for formula with path quantifer, check if the
+  formula's agents are refering to the correct ATOMS. For the atomic formulas
+  (formulas with type Atlp_LT_c, Atlp_LE_c, Atlp_GE_c, Atlp_GT_c, Atlp_EQ_c),
+  an Atm_Expr_t is built and stored in the atmExpr field of the formula. This
+  will later be used to compute the set of states in Mc_FormulaEvaluate.
+<p>
+
+<dd> <b>Side Effects</b> It is an error to call this function, if the formula
+  has type Atlp_PLUS_c, Atlp_MINUS_c, Atlp_UMINUS or Atlp_NATNUM_c, since
+  these formula do not evaluate to boolean type.
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mcAllFile.html#mcMc.c"TARGET="ABSTRACT"><CODE>mcMc.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mc_Init"></A>
+int <I></I>
+<B>Mc_Init</B>(
+  Tcl_Interp * <b>interp</b>, <i></i>
+  Main_Manager_t * <b>manager</b> <i></i>
+)
+</pre>
+<dd> Called by TclAppInit for initialization of
+  package. It also calls Atlp_Init to initialize the formula parsing
+  package. Moreover, it creates the command mc for model-checking.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mcAllFile.html#mcMain.c"TARGET="ABSTRACT"><CODE>mcMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="TimeOutHandle"></A>
+static void <I></I>
+<B>TimeOutHandle</B>(
+   <b></b> <i></i>
+)
+</pre>
+<dd> This function is called when the time out occurs.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="mcAllFile.html#mcMain.c"TARGET="ABSTRACT"><CODE>mcMain.c</CODE></A>
+
+
+</DL>
+<HR>
+Last updated on 1031104 18h39
+</BODY></HTML>

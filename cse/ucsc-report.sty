@@ -1,0 +1,1178 @@
+% UCSC REPORT DOCUMENT STYLE
+% modified by Marc Mosko 30 May 2001, changed page numbers
+%				to print at bottom of page
+% modified by Kevin Karplus 28 July 1987--17 Oct 1996
+% modified from
+% REPORT DOCUMENT STYLE -- Released 17 December 1985
+% for LaTeX version 2.09
+% Copyright (C) 1985 by Leslie Lamport
+
+% Changes from Lamport's report format to ucsc-report format
+% No separate substyle files.
+%
+% margins narrowed to 1.5inch gutter, and 1in outer
+% (makes \marginpar rather useless)
+% top and bottom margins reduced
+% inter-paragraph glue made stretchier
+% item separation decreased
+% penalties increased for club, widow, and breaks after hyphens
+% part heading from \huge to \LARGE
+% chapter heading from \huge to \Large
+% section heading from \Large to \large
+% 1st paragraph after section heading is indented normally
+\typeout{Document Style `ucsc-report'. Modified 3 Aug 1998.}
+\def\@ptsize{11} 
+\@namedef{ds@9pt}{\def\@ptsize{9}} 
+\@namedef{ds@10pt}{\def\@ptsize{10}} 
+\@namedef{ds@11pt}{\def\@ptsize{11}} 
+\@namedef{ds@12pt}{\def\@ptsize{12}} 
+\@twosidetrue\@mparswitchtrue 
+\def\ds@oneside{\@twosidefalse 
+ \@mparswitchfalse} 
+\def\ds@twoside{\@twosidetrue 
+ \@mparswitchtrue} 
+\newif\ifdr@ft
+\dr@ftfalse
+\def\ds@draft{\dr@fttrue} 
+ 
+\newif\if@nochapter
+\@nochapterfalse
+\def\ds@nochapter{\@nochaptertrue}
+\def\ds@chapter{\@nochapterfalse}
+\newif\if@twocolumn
+\@twocolumnfalse
+\def\ds@twocolumn{\@twocolumntrue}
+\def\ds@onecolumn{\@twocolumnfalse}
+\newif\if@index
+\newif\if@showindex
+\@indexfalse\@showindexfalse 
+\def\ds@index{\@indextrue}
+\def\ds@noindex{\@indexfalse}
+\def\ds@showindex{\@indexfalse\@showindextrue}
+\newif\if@seqcaption
+\@seqcaptionfalse
+\def\ds@seqcaption{\@seqcaptiontrue}
+\def\ds@noseqcaption{\@seqcaptionfalse}
+\newif\if@article
+\@articlefalse
+\def\ds@article{\@articletrue\@nochaptertrue}
+\newif\if@ieee
+\@ieeefalse
+\def\ds@ieee{\@ieeetrue
+ \@articletrue\@twocolumntrue\@nochaptertrue\@twosidefalse
+ \@seqcaptiontrue
+ \def\@ptsize{10}
+ }
+\newif\if@thesis
+\@thesisfalse
+\def\ds@thesis{\@thesistrue\ds@oneside\@nochapterfalse}
+\@options
+\newbox\voidb@x 
+
+\lineskip 1pt 
+\normallineskip 1pt
+\if@thesis
+\def\baselinestretch{1.6}
+\else\def\baselinestretch{1}
+\fi
+\def\nostretch{\def\baselinestretch{1}
+\ifx\@currsize\normalsize\@normalsize\else\@currsize\fi}
+\newdimen\oldbaselinedimen
+\newdimen\newbaselinedimen
+\def\@setsize#1#2#3#4{\@nomath#1\let\@currsize#1\baselineskip
+ #2\setbox\strutbox\hbox{\vrule height.7\baselineskip
+ depth.3\baselineskip width\z@}\oldbaselinedimen=\baselineskip
+ \newbaselinedimen=\baselinestretch\baselineskip
+ \advance\baselineskip by-\oldbaselinedimen
+ \advance\baselineskip by\newbaselinedimen
+ \normalbaselineskip\baselineskip#3}
+\ifnum\@ptsize=9
+ \def\@normalsize{\@setsize\normalsize{10.2pt plus .1pt minus .1pt}\ixpt\@ixpt
+ \abovedisplayskip 8pt plus2pt minus5pt
+ \belowdisplayskip \abovedisplayskip
+ \abovedisplayshortskip \z@ plus3pt
+ \belowdisplayshortskip 4pt plus3pt minus2pt}
+ \def\small{\@setsize\small{9.1pt plus .1pt minus .1pt}\viiipt\@viiipt
+ \abovedisplayskip 7.5pt plus 3pt minus 4pt
+ \belowdisplayskip \abovedisplayskip
+ \abovedisplayshortskip \z@ plus2pt
+ \belowdisplayshortskip 3.5pt plus2pt minus 2pt
+ }
+ \def\footnotesize{\@setsize\footnotesize{8pt plus .1pt minus .1pt}\viipt\@viipt
+ \abovedisplayskip 5pt plus 2pt minus 4pt
+ \belowdisplayskip \abovedisplayskip
+ \abovedisplayshortskip \z@ plus 1pt
+ \belowdisplayshortskip 2.5pt plus 1pt minus 2pt
+ }
+ \def\scriptsize{\@setsize\scriptsize{7pt plus .1pt minus .1pt}\vipt\@vipt}
+ \def\tiny{\@setsize\tiny{6pt plus .1pt minus .1pt}\vpt\@vpt}
+ \def\large{\@setsize\large{11.5pt plus .1pt minus .1pt}\xpt\@xpt}
+ \def\Large{\@setsize\Large{14pt plus .1pt minus .1pt}\xiipt\@xiipt}
+ \def\LARGE{\@setsize\LARGE{17pt plus .1pt minus .1pt}\xivpt\@xivpt}
+ \def\LARGE{\@setsize\huge{22pt plus .1pt minus .1pt}\xviipt\@xviipt}
+ \def\huge{\@setsize\HUGE{25pt plus .1pt minus .1pt}\xxpt\@xxpt}
+\else\ifnum\@ptsize=10
+ \def\@normalsize{\@setsize\normalsize{12pt plus .1pt minus .1pt}\xpt\@xpt
+ \abovedisplayskip 10pt plus2pt minus5pt
+ \belowdisplayskip \abovedisplayskip
+ \abovedisplayshortskip \z@ plus3pt
+ \belowdisplayshortskip 6pt plus3pt minus3pt}
+ \def\small{\@setsize\small{11pt plus .1pt minus .1pt}\ixpt\@ixpt
+ \abovedisplayskip 8.5pt plus 3pt minus 4pt
+ \belowdisplayskip \abovedisplayskip
+ \abovedisplayshortskip \z@ plus2pt
+ \belowdisplayshortskip 4pt plus2pt minus 2pt
+ }
+ \def\footnotesize{\@setsize\footnotesize{9.5pt plus .1pt minus .1pt}\viiipt\@viiipt
+ \abovedisplayskip 6pt plus 2pt minus 4pt
+ \belowdisplayskip \abovedisplayskip
+ \abovedisplayshortskip \z@ plus 1pt
+ \belowdisplayshortskip 3pt plus 1pt minus 2pt
+ }
+ \def\scriptsize{\@setsize\scriptsize{8pt plus .1pt minus .1pt}\viipt\@viipt}
+ \def\tiny{\@setsize\tiny{6pt plus .1pt minus .1pt}\vpt\@vpt}
+ \def\medlarge{\@setsize\medlarge{12pt plus .1pt minus .1pt}\xipt\@xipt}
+ \def\large{\@setsize\large{14pt plus .1pt minus .1pt}\xiipt\@xiipt}
+ \def\Large{\@setsize\Large{18pt plus .1pt minus .1pt}\xivpt\@xivpt}
+ \def\LARGE{\@setsize\LARGE{22pt plus .1pt minus .1pt}\xviipt\@xviipt}
+ \def\huge{\@setsize\huge{25pt plus .1pt minus .1pt}\xxpt\@xxpt}
+ \def\Huge{\@setsize\Huge{30pt plus .1pt minus .1pt}\xxvpt\@xxvpt}
+\else\ifnum\@ptsize=11
+ \def\@normalsize{\@setsize\normalsize{13.6pt plus .1pt minus .1pt}\xipt\@xipt
+ \abovedisplayskip 11pt plus3pt minus6pt
+ \belowdisplayskip \abovedisplayskip
+ \abovedisplayshortskip \z@ plus3pt
+ \belowdisplayshortskip 6.5pt plus3.5pt minus3pt}
+ \def\small{\@setsize\small{12pt plus .1pt minus .1pt}\xpt\@xpt
+ \abovedisplayskip 10pt plus2pt minus5pt
+ \belowdisplayskip \abovedisplayskip
+ \abovedisplayshortskip \z@ plus3pt
+ \belowdisplayshortskip 6pt plus3pt minus3pt
+ }
+ \def\footnotesize{\@setsize\footnotesize{11pt plus .1pt minus .1pt}\ixpt\@ixpt
+ \abovedisplayskip 8pt plus 2pt minus 4pt
+ \belowdisplayskip \abovedisplayskip
+ \abovedisplayshortskip \z@ plus 1pt
+ \belowdisplayshortskip 4pt plus 2pt minus 2pt
+ }
+ \def\scriptsize{\@setsize\scriptsize{9.5pt plus .1pt minus .1pt}\viiipt\@viiipt}
+ \def\tiny{\@setsize\tiny{7pt plus .1pt minus .1pt}\vipt\@vipt}
+ \def\large{\@setsize\large{14pt plus .1pt minus .1pt}\xiipt\@xiipt}
+ \def\Large{\@setsize\Large{18pt plus .1pt minus .1pt}\xivpt\@xivpt}
+ \def\LARGE{\@setsize\LARGE{22pt plus .1pt minus .1pt}\xviipt\@xviipt}
+ \def\huge{\@setsize\huge{25pt plus .1pt minus .1pt}\xxpt\@xxpt}
+ \def\Huge{\@setsize\Huge{30pt plus .1pt minus .1pt}\xxvpt\@xxvpt}
+ \else
+ \def\@normalsize{\@setsize\normalsize{14.5pt plus .1pt minus .1pt}\xiipt\@xiipt
+ \abovedisplayskip 12pt plus3pt minus7pt
+ \belowdisplayskip \abovedisplayskip
+ \abovedisplayshortskip \z@ plus3pt
+ \belowdisplayshortskip 6.5pt plus3.5pt minus3pt}
+ \def\small{\@setsize\small{13.6pt plus .1pt minus .1pt}\xipt\@xipt
+ \abovedisplayskip 11pt plus3pt minus6pt
+ \belowdisplayskip \abovedisplayskip
+ \abovedisplayshortskip \z@ plus3pt
+ \belowdisplayshortskip 6.5pt plus3.5pt minus3pt
+ }
+ \def\footnotesize{\@setsize\footnotesize{12pt plus .1pt minus .1pt}\xpt\@xpt
+ \abovedisplayskip 10pt plus2pt minus5pt
+ \belowdisplayskip \abovedisplayskip
+ \abovedisplayshortskip \z@ plus3pt
+ \belowdisplayshortskip 6pt plus3pt minus3pt
+ }
+ \def\scriptsize{\@setsize\scriptsize{9pt plus .1pt minus .1pt}\viiipt\@viiipt}
+ \def\tiny{\@setsize\tiny{7pt plus .1pt minus .1pt}\vipt\@vipt}
+ \def\large{\@setsize\large{18pt plus .1pt minus .1pt}\xivpt\@xivpt}
+ \def\Large{\@setsize\Large{22pt plus .1pt minus .1pt}\xviipt\@xviipt}
+ \def\LARGE{\@setsize\LARGE{25pt plus .1pt minus .1pt}\xxpt\@xxpt}
+ \def\huge{\@setsize\huge{30pt plus .1pt minus .1pt}\xxvpt\@xxvpt}
+ \let\Huge=\huge
+\fi\fi\fi
+\normalsize 
+\ifdr@ft \overfullrule=5pt 
+\else \overfullrule = 0pt 
+\fi
+\gdef\type#1{{\tt #1}}
+\gdef\caps#1{{\sc #1}}
+\def\mathbackslash{\delimiter"26E30F } 
+\chardef\charbackslash="5C
+\def\backslash{\ifmmode\mathbackslash\else\charbackslash\fi}
+\def\BibTeX{{\sc Bib}\TeX}
+
+\if@ieee
+ \oddsidemargin=-.24in
+ \evensidemargin=\oddsidemargin
+ \marginparwidth 30pt
+\else\if@twoside 
+ \oddsidemargin 36pt 
+ \evensidemargin 0pt 
+ \marginparwidth 55pt 
+\else 
+ %\oddsidemargin 36pt 
+ \oddsidemargin  .5in	
+ %\evensidemargin 36pt
+ \evensidemargin .5in
+ \textwidth 5.75in
+ \marginparwidth 55pt 
+\fi\fi
+\marginparsep 8pt 
+ 
+ 
+\headheight 2.8ex 
+\headsep 4ex 
+\if@ieee\ifdr@ft\else 
+ \headheight=0.0in
+ \headsep=0.0in
+\fi\fi
+\if@thesis 
+ \topmargin .25in 
+ 
+ \advance\topmargin by -\headheight
+ \advance\topmargin by -\headsep
+\else\if@ieee\topmargin=0in
+\else
+\topmargin -.25in 
+ 
+\fi\fi
+\if@ieee\ifdr@ft
+ \footheight 2.8ex \footskip 4.65ex
+ \else
+ \footheight=0in \footskip=0pt
+ \fi
+\else
+\footheight 2.8ex 
+\footskip 4.65ex 
+ 
+\fi
+\if@ieee\textwidth=6.875in
+\else\textwidth 6in 
+\fi
+\if@thesis\textheight=8.5in
+\else\if@ieee\textheight=8.84in
+\else\textheight 8.95in 
+\fi\fi 
+ 
+\if@twocolumn
+ \pretolerance=400 
+ \tolerance=2500
+ \hbadness=2000 
+\else
+ \pretolerance=200 
+ \tolerance=600 
+ \hbadness=500 
+\fi
+\uchyph=1 
+
+\footnotesep 2.6ex 
+ 
+ 
+\skip\footins 2ex plus 1ex minus .5ex 
+ 
+\floatsep 1.5ex plus 2ex minus .5ex 
+ 
+\textfloatsep 1.5ex plus 2ex minus .5ex 
+ 
+\intextsep 1.5ex plus 2ex minus.5ex 
+ 
+\@maxsep 1.5ex 
+ 
+ 
+\dblfloatsep=\floatsep 
+ 
+\dbltextfloatsep=\textfloatsep 
+ 
+\@dblmaxsep=\@maxsep 
+ 
+\@fptop 0pt plus 1fil 
+ 
+\@fpsep 1.8ex plus 2fil 
+\@fpbot 0pt plus 1fil 
+ 
+\@dblfptop 0pt plus 1fil 
+\@dblfpsep 1.8ex plus 2fil 
+\@dblfpbot 0pt plus 1fil 
+ 
+\marginparpush 6pt 
+ 
+
+\if@ieee
+ \parskip=0ex plus 0.1ex 
+ \parindent=1pc
+ \topsep=0.1ex plus 0.1ex minus 0.1ex
+ \partopsep=0.05ex plus 0.05ex
+ \itemsep=\parskip
+\else
+ \parskip 0.2ex plus .7ex minus .1ex
+ \parindent 1.5em 
+ \topsep 0.2ex plus .5ex 
+ 
+ 
+ \partopsep 0.25ex plus .25ex minus .25ex 
+ 
+ 
+ \itemsep 0ex plus .5ex 
+ 
+\fi
+\@lowpenalty 51 
+\@medpenalty 151 
+\@highpenalty 301 
+\@beginparpenalty -\@lowpenalty 
+\@endparpenalty -\@lowpenalty 
+\@itempenalty -\@lowpenalty 
+\clubpenalty \@highpenalty 
+\widowpenalty \@highpenalty 
+\displaywidowpenalty\@lowpenalty 
+\predisplaypenalty\@lowpenalty 
+\interlinepenalty \@lowpenalty 
+\brokenpenalty \@highpenalty 
+
+\def\part{\cleardoublepage 
+ \if@twocolumn 
+ \onecolumn 
+ \@tempswatrue 
+ \else \@tempswafalse 
+ \fi 
+ \hbox{}\vfil 
+ \bgroup \centering 
+ \secdef\@part\@spart} 
+\def\@part[#1]#2{\ifnum \c@secnumdepth >-2\relax 
+ \refstepcounter{part} 
+ \addcontentsline{toc}{part}{\thepart 
+ \hspace{1em}#1}\else 
+ \addcontentsline{toc}{part}{#1}\fi 
+ \markboth{}{}
+ \ifnum \c@secnumdepth >-2\relax 
+ \LARGE\bf Part \thepart 
+ \par 
+ \vskip 2ex \fi 
+ \LARGE \bf 
+ #1\@endpart} 
+ 
+ 
+\def\@endpart{\par\egroup 
+ \vfil\newpage 
+ \if@twoside 
+ \hbox{} 
+ \thispagestyle{empty} 
+ \newpage 
+ \fi 
+ \if@tempswa 
+ \twocolumn 
+ \fi} 
+\def\@spart#1{\LARGE \bf 
+ #1\@endpart}
+\def\@makechapterhead#1{ 
+ {\normalsize\hangindent=1.8em\raggedright
+ \ifnum \c@secnumdepth >\m@ne 
+ \Large\bf \@chapapp{} \thechapter. 
+ \fi
+ \Large \bf #1 
+ \par
+ \nobreak 
+ \vskip 3.4ex 
+ } }
+\def\@makeschapterhead#1{ 
+ {\normalsize\hangindent=1.8em\raggedright
+ \Large \bf #1 
+ \par
+ \nobreak 
+ \vskip 3.4ex 
+ } }
+\def\@chapter[#1]#2{\ifnum \c@secnumdepth >\m@ne
+ \refstepcounter{chapter}
+ \typeout{\@chapapp\space\thechapter.}
+ \addcontentsline{toc}{chapter}{\protect
+ \numberline{\thechapter.}#1}\else
+ \addcontentsline{toc}{chapter}{#1}\fi
+ \chaptermark{#1}
+ \addtocontents{lof}{\protect\addvspace{2.3ex}} 
+ \addtocontents{lot}{\protect\addvspace{2.3ex}} 
+ \if@twocolumn 
+ \@topnewpage[\@makechapterhead{#2}] 
+ \else \@makechapterhead{#2}
+ \@afterheading 
+ \fi} 
+\def\@schapter#1{\if@twocolumn \@topnewpage[\@makeschapterhead{#1}]
+ \else \@makeschapterhead{#1} 
+ \@afterheading\fi}
+\def\chapter{\clearpage 
+ \global\@topnum\z@ 
+ \@afterindenttrue 
+ \secdef\@chapter\@schapter} 
+\if@ieee
+ \def\section{\@startsection{section}{1}{\z@}{2.5ex plus 1ex minus 
+ .2ex}{2.3ex plus .2ex}{\large\bf\raggedright}}
+ \def\subsection{\@startsection{subsection}{2}{\z@}{2.25ex plus 1ex minus 
+ .2ex}{1.5ex plus .2ex}{\medlarge\bf\raggedright}}
+\else
+ \def\section{\@startsection {section}{1}{\z@}{3.5ex plus 1ex minus 
+ .2ex}{2.3ex plus .2ex}{\large\bf\raggedright}}
+ \def\subsection{\@startsection{subsection}{2}{\z@}{3.25ex plus 1ex minus 
+ .2ex}{1.5ex plus .2ex}{\large\bf\raggedright}}
+\fi
+\def\subsubsection{\@startsection{subsubsection}{3}{\z@}{3.25ex plus
+1ex minus .2ex}{1.5ex plus .2ex}{\normalsize\bf\raggedright}}
+\def\paragraph{\@startsection
+ {paragraph}{4}{\z@}{3.25ex plus 1ex minus .2ex}{-1em}{\normalsize\bf}}
+\def\subparagraph{\@startsection
+ {subparagraph}{4}{\parindent}{3.25ex plus 1ex minus 
+ .2ex}{-1em}{\normalsize\bf}}
+\def\chaptermark#1{}
+\setcounter{secnumdepth}{2}
+\def\appendix{\par
+ \setcounter{chapter}{0}
+ \setcounter{section}{0}
+ \def\@chapapp{Appendix}
+ \def\thechapter{\Alph{chapter}}}
+
+\newcounter{part}
+\newcounter {chapter}
+\newcounter {section}[chapter]
+\newcounter {subsection}[section]
+\newcounter {subsubsection}[subsection]
+\newcounter {paragraph}[subsubsection]
+\newcounter {subparagraph}[paragraph]
+\def\thepart {\Roman{part}}
+\def\thechapter {\arabic{chapter}}
+\def\thesection {\thechapter.\arabic{section}}
+\def\thesubsection {\thesection.\arabic{subsection}}
+\def\thesubsubsection {\thesubsection .\arabic{subsubsection}}
+\def\theparagraph {\thesubsubsection.\arabic{paragraph}}
+\def\thesubparagraph {\theparagraph.\arabic{subparagraph}}
+ 
+\def\@chapapp{}
+
+\if@thesis
+\newbox\@advisorbox
+\gdef\add@advisor#1{\setbox\@advisorbox\vbox{\hsize=3in\nostretch\raggedright
+ \unvbox\@advisorbox
+ \vskip 30pt
+ \hbox to 3in{\hrulefill}
+ \vskip -2pt
+ \vbox{\small#1}
+ }\advisors}
+\gdef\@advi{\if\@nextch\bgroup
+ \let\do@adv=\add@advisor
+ \else\let\do@adv=\relax
+ \fi\do@adv}
+\gdef\advisors{\futurelet\@nextch\@advi}
+\gdef\maketitle{\pagenumbering{roman}\thispagestyle{empty}
+ \global\@topnum\z@ 
+ \ifx\@abstract\relax\@latexerr{Abstract required for theses.}{Use
+\string\abstract\string{abstract text\string} before calling \string\maketitle.
+\@eha}
+\fi
+\leavevmode
+\vskip .4in plus .01fil minus .2in
+\begin{center}
+{\nostretch\caps{University of California\\Santa Cruz}\\}
+\vskip .3in minus .1in
+{\nostretch\large\bf\@title\\}
+\vskip .6in minus .2in
+{\nostretch A {\@thesistype} submitted in partial satisfaction\\%
+of the requirements for the degree of\\}
+\caps{\@degree}\\%
+in\\%
+\caps{\@field}\\%
+by\\%
+{\large\@author}\\%
+\@month{} \@year
+\end{center}
+\nopagebreak
+\vskip .6in plus .01 fil minus .2in
+\leavevmode\hfill
+\vbox{\hsize=3in\nostretch\raggedright
+ \noindent The {\@thesistype} of {\@author} is approved:
+ \unvbox\@advisorbox
+}
+\nopagebreak
+\vskip .6in plus .01fil minus .2in
+\vbox{\nostretch\hbox to 3.5in{\hrulefill}
+ \vskip -2pt
+ \vbox{\small\noindent Dean of Graduate Studies and Research}
+ }
+\clearpage
+\setcounter{page}{3}
+\ps@thesis
+}
+\gdef\copyrightpage{\setcounter{page}{2}\ps@empty
+\leavevmode\vskip 4in plus .02 fil minus 4in
+\begin{center}
+Copyright \copyright{} by\\%
+\@author\\%
+\@year
+\end{center}
+\vskip 3.5in plus .01 fil minus 2in
+\clearpage\ps@thesis
+}
+\gdef\printabstract{
+\clearpage\ps@empty
+\addcontentsline{toc}{chapter}{Abstract}
+\begin{center}
+\large\bf\@title\\%
+\large\it\@author
+\end{center}
+\vskip .5in plus .3in minus .2in
+\@abstract
+ \ifx\@keywords\relax\else
+ \vskip .5in plus 10in minus .4in
+ \noindent{\bf Keywords: }\@keywords
+ \vskip 0in plus 5in
+ \fi
+\clearpage
+\ps@thesis
+\let\@abstract=\relax
+}
+\else 
+\if@article 
+\gdef\maketitle{
+ \begingroup
+ \def\thefootnote{\fnsymbol{footnote}}
+ \def\@makefnmark{\hbox to 0pt{$^{\@thefnmark}$\hss}}
+ \if@twocolumn\twocolumn[\@maketitle]\else\newpage\@maketitle\fi
+ \@thanks
+ \@abstract
+ \global\@topnum\z@ 
+ 
+ \ifx\@keywords\relax\else
+ \smallskip\noindent{\bf Keywords: }\@keywords
+ \fi
+ 
+ \thispagestyle{empty}
+ \endgroup
+ \normalsize
+ \setcounter{footnote}{0}
+ 
+ 
+ \let\thanks=\relax
+ \let\@thanks=\relax
+ \let\@reportnumber=\relax
+ \let\@jobtitle=\relax
+ \let\@address=\relax
+ \let\@abstract=\relax
+ \let\@keywords=\relax
+ \let\maketitle=\relax
+}
+\if@ieee
+ \def\@maketitle{
+ \vbox to 1.8in{\hsize=\textwidth\vskip 0.4in plus 0pt minus .4in
+ \begin{center}
+ \Large\bf \@title\par
+ \large\vskip 3ex plus 2fill minus 3ex\@author\par
+ \vskip 1ex plus 1fill minus 1ex\@address\par
+ \vskip 3ex plus 4fill minus 3ex
+ \end{center}}
+ }
+\else\def\@maketitle{\begin{center}
+ \Large\bf \@title\par
+ \smallskip\Large\@author\par
+ \ifx\@date\relax\else\smallskip\normalsize\@date\par\fi
+ \smallskip\normalsize
+ \ifx\@jobtitle\relax\else{\@jobtitle\par}\fi
+ \@address\par
+ \smallskip
+ \end{center}
+ }
+\fi
+\else 
+\gdef\maketitle{\begin{titlepage}
+ \global\@topnum\z@ 
+ \def\thefootnote{\fnsymbol{footnote}}
+ \def\@makefnmark{\hbox to 0pt{$^{\@thefnmark}$\hss}} 
+ \setcounter{page}{-1} 
+ 
+ \newdimen\@titlepagewidth
+ \@titlepagewidth=\hsize
+ \advance\@titlepagewidth -.5in 
+ 
+ \begingroup\hsize=\@titlepagewidth
+ \linewidth=\hsize
+ \null\vskip .78in 
+ \def\baselinestretch{1}
+ \begin{center}
+ 
+ 
+ 
+ \leavevmode\vbox to 2.5in{\vskip .2in plus 1fill minus .15in
+ \hsize=4.25in 
+ 
+ \begin{center}
+ \LARGE\bf \@title
+ \vskip .25in plus 1fill minus .2in
+ \Large\@author
+ \vskip .2in plus 1fill minus .15in
+ \ifx\@reportnumber\relax\else{\large\@reportnumber\\}\fi
+ \large\@date
+ \vskip .2in plus 1fill minus .15in
+ \end{center}
+ }
+ \normalsize
+ \vskip .5in plus .1fill minus .4in
+ 
+ \ifx\@jobtitle\relax\else{\@jobtitle\\}\fi
+ \@address
+ \end{center}
+ \@thanks
+ 
+ \vskip .5in plus .1fill minus .4in
+ \@abstract
+ \ifx\@keywords\relax\else
+ \vskip .5in plus .1fill minus .4in
+ \noindent{\bf Keywords: }\@keywords
+ \fi
+ \vskip 0pt plus 1fill 
+ \null
+ \endgroup
+ \end{titlepage}
+ \normalsize
+ \setcounter{page}{1}
+ \setcounter{footnote}{0}
+ 
+ 
+ \let\thanks=\relax
+ \let\@thanks=\relax
+ \let\@reportnumber=\relax
+ \let\@jobtitle=\relax
+ \let\@address=\relax
+ \let\@abstract=\relax
+ \let\@keywords=\relax
+ \let\maketitle=\relax
+}
+\fi\fi
+\gdef\author#1{\gdef\@author{{\def\and{\\ }#1}}}
+\gdef\reportnumber#1{\gdef\@reportnumber{#1}}
+\gdef\noreportnumber{\let\@reportnumber\relax}
+\gdef\jobtitle#1{\gdef\@jobtitle{#1 }}
+\gdef\address#1{\gdef\@address{#1}}
+\gdef\keywords#1{\gdef\@keywords{#1}}
+\if@article\noreportnumber
+\else\gdef\@reportnumber{UCSC-CRL-??-??}
+\fi
+\let\@jobtitle\relax
+\let\@abstract\relax
+\let\@keywords=\relax
+\def\baskin{Jack Baskin School of Engineering\\%
+University of California, Santa Cruz\\%
+Santa Cruz, CA{\hskip 0.6em}95064{\hskip 0.6em}USA}
+\gdef\cis{Board of Studies in Computer and Information Sciences\\%
+University of California, Santa Cruz\\%
+Santa Cruz, CA{\hskip 0.6em}95064}
+\gdef\cs{Computer Science Department\\%
+University of California, Santa Cruz\\%
+Santa Cruz, CA{\hskip 0.6em}95064}
+\gdef\ce{Computer Engineering Department\\%
+University of California, Santa Cruz\\%
+Santa Cruz, CA{\hskip 0.6em}95064}
+\gdef\@address{\baskin}
+\if@ieee
+ \gdef\abstract{\@ifnextchar[{\@@abstract}{\@@abstract[Abstract]}}
+ \long\gdef\@@abstract[#1]#2{\long\gdef\@abstract{
+ {\centering\medlarge\bf #1\par}
+ \nopagebreak
+ \vskip\smallskipamount
+ \nopagebreak
+ {\it\par #2}}}
+\else
+ \gdef\abstract{\@ifnextchar[{\@@abstract}{\@@abstract[abstract]}}
+ \long\gdef\@@abstract[#1]#2{\long\gdef\@abstract{
+ {\centering\Large\sc #1\par}
+ \nopagebreak
+ \vskip\smallskipamount
+ \parindent=1.5em
+ \nopagebreak
+ \par #2}}
+\fi
+\gdef\endabstract{\@latexerr{Wrong abstract format 
+for ucsc-report}{Use \string\abstract\string{abstract text\string}.
+\@eha}
+}
+\gdef\PhD#1{\gdef\@degree{Doctor of Philosophy}\gdef\@field{#1}
+\gdef\@thesistype{dissertation}}
+\gdef\MS#1{\gdef\@degree{Master of Science}\gdef\@field{#1}
+\gdef\@thesistype{thesis}}
+\gdef\MA#1{\gdef\@degree{Master of Arts}\gdef\@field{#1}
+\gdef\@thesistype{thesis}}
+\def\@@year[#1]{\gdef\@year{#1}}
+\gdef\@year{\year}
+\gdef\@month{\month}
+\gdef\fallquarter{\gdef\@month{December}\@ifnextchar[{\@@year}{\@@year[\year]}}
+\gdef\winterquarter{\gdef\@month{March}\@ifnextchar[{\@@year}{\@@year[\year]}}
+\gdef\springquarter{\gdef\@month{June}\@ifnextchar[{\@@year}{\@@year[\year]}}
+\gdef\summerquarter{\gdef\@month{September}\@ifnextchar[{\@@year}{\@@year[\year]}}
+ 
+
+\def\labelenumi{\arabic{enumi}.} 
+\def\theenumi{\arabic{enumi}} 
+ 
+\def\labelenumii{(\alph{enumii})}
+\def\theenumii{\alph{enumii}}
+\def\p@enumii{\theenumi}
+\def\labelenumiii{\roman{enumiii}.}
+\def\theenumiii{\roman{enumiii}}
+\def\p@enumiii{\theenumi(\theenumii)}
+\def\labelenumiv{\Alph{enumiv}.}
+\def\theenumiv{\Alph{enumiv}} 
+\def\p@enumiv{\p@enumiii\theenumiii}
+\def\labelitemi{$\bullet$}
+\def\labelitemii{\bf --}
+\def\labelitemiii{$\ast$}
+\def\labelitemiv{$\cdot$}
+\def\verse{\let\\=\@centercr 
+ \list{}{\itemsep\z@ \itemindent -1.5em\listparindent \itemindent 
+ \rightmargin\leftmargin\advance\leftmargin 1.5em}\item[]}
+\let\endverse\endlist
+\def\quotation{\list{}{\listparindent 1.5em
+ \itemindent\listparindent
+ \rightmargin\leftmargin\parsep 0pt plus .25ex}\item[]}
+\let\endquotation=\endlist
+\def\quote{\list{}{\rightmargin\leftmargin}\item[]}
+\let\endquote=\endlist
+\def\descriptionlabel#1{\hspace\labelsep \bf #1}
+\def\description{\list{}{\labelwidth\z@ \itemindent-\leftmargin
+ \let\makelabel\descriptionlabel}}
+\let\enddescription\endlist
+\newdimen\descriptionmargin
+\descriptionmargin=3em
+
+\def\@begintheorem#1#2{\it \trivlist \item[\hskip \labelsep{\bf #1\ #2:}]}
+\def\@opargbegintheorem#1#2#3{\it \trivlist
+ \item[\hskip \labelsep{\bf #1\ #2\ (#3):}]}
+\def\@endtheorem{\endtrivlist}
+\def\titlepage{\@restonecolfalse\if@twocolumn\@restonecoltrue\onecolumn
+ \else \newpage \fi \thispagestyle{empty}\c@page\z@}
+\def\endtitlepage{\if@restonecol\twocolumn \else \newpage \fi}
+\arraycolsep .5em 
+\tabcolsep .6em 
+\arrayrulewidth .04em 
+\doublerulesep .5ex 
+\tabbingsep \labelsep 
+\skip\@mpfootins = \skip\footins
+\fboxsep = .3em 
+\fboxrule = .04em 
+
+\def\@pnumwidth{1.55em}
+\def\@tocrmarg {2.55em}
+\def\@dotsep{4.5}
+\setcounter{tocdepth}{2}
+\def\tableofcontents{\@restonecolfalse\if@twocolumn\@restonecoltrue\onecolumn
+ \fi\chapter*{Contents\@mkboth{CONTENTS}{CONTENTS}}
+ \@starttoc{toc}\if@restonecol\twocolumn\fi}
+\def\l@part#1#2{\addpenalty{-\@highpenalty}
+ \addvspace{5.25ex plus .25ex} 
+ \begingroup
+ \@tempdima 3em 
+ \parindent \z@ \rightskip \@pnumwidth 
+ \parfillskip -\@pnumwidth 
+ {\large \bf 
+ \leavevmode 
+ #1\hfil \hbox to\@pnumwidth{\hss #2}}\par
+ \nobreak 
+ \endgroup}
+\def\l@chapter#1#2{\pagebreak[3] 
+ \vskip 2.3ex plus .25ex 
+ \@tempdima 1.5em 
+ \begingroup
+ \parindent \z@ \rightskip \@pnumwidth 
+ \parfillskip -\@pnumwidth 
+ \bf 
+ \leavevmode 
+ #1\hfil \hbox to\@pnumwidth{\hss #2}\par
+ \endgroup}
+ 
+\def\l@section{\@dottedtocline{1}{1.5em}{2.3em}}
+\def\l@subsection{\@dottedtocline{2}{3.8em}{3.2em}}
+\def\l@subsubsection{\@dottedtocline{3}{7.0em}{4.1em}}
+\def\l@paragraph{\@dottedtocline{4}{10em}{5em}}
+\def\l@subparagraph{\@dottedtocline{5}{12em}{6em}}
+\def\listoffigures{\@restonecolfalse\if@twocolumn\@restonecoltrue\onecolumn
+ \fi\chapter*{List of Figures\@mkboth
+ {LIST OF FIGURES}{LIST OF FIGURES}}\@starttoc{lof}\if@restonecol\twocolumn
+ \fi}
+\def\l@figure{\@dottedtocline{1}{1.5em}{2.3em}}
+\def\listoftables{\@restonecolfalse\if@twocolumn\@restonecoltrue\onecolumn
+ \fi\chapter*{List of Tables\@mkboth
+ {LIST OF TABLES}{LIST OF TABLES}}\@starttoc{lot}\if@restonecol\twocolumn
+ \fi}
+\let\l@table\l@figure
+
+\def\thebibliography#1{\chapter*{References\@mkboth
+ {References}{References}}
+ \label{references}
+ \addcontentsline{toc}{chapter}{References}
+ \list{[\arabic{enumi}]}{\settowidth\labelwidth{[#1]}\leftmargin\labelwidth
+ \advance\leftmargin\labelsep
+ \usecounter{enumi}}
+ \def\newblock{\hskip .3ex plus .7ex minus .1ex}
+ \sloppy \if@thesis\nostretch\fi
+ \spaceskip=.3em plus .17em minus .15em 
+ 
+ \sfcode`\.=1000\relax}
+\let\endthebibliography=\endlist
+\@ifundefined{@internalcite}{
+\def\@citex[#1]#2{\if@filesw\immediate\write\@auxout{\string\citation{#2}}\fi
+ \def\@citea{}\@cite{\@for\@citeb:=#2\do
+ {\@citea\def\@citea{,\penalty10\@citespace}\@ifundefined
+ {b@\@citeb}{{\bf ?}\@warning
+ {Citation `\@citeb' on page \thepage \space undefined}}
+{\csname b@\@citeb\endcsname}}}
+{#1}}
+}{}
+\let\@citespace=\ 
+\def\citename#1{#1}
+
+\if@index
+ \makeindex
+\else
+ 
+ \gdef\index#1{\relax} 
+\fi
+\gdef\@indextt#1{\index{#1!\string\type{#1}}\endgroup\@esphack}
+\gdef\@indexone#1{\index{#1!#1}\relax\endgroup\@esphack}
+\gdef\@indextwo#1#2{\index{#1!{#2}}\relax\endgroup\@esphack}
+\gdef\@indexsub#1#2{\index{#1*#2!#2}\endgroup\@esphack}
+\gdef\@indexonenopage#1{\index{#1!#1!}\relax\endgroup\@esphack}
+\gdef\@indextwonopage#1#2{\index{#1!{#2}!}\relax\endgroup\@esphack}
+\gdef\indextt{\@bsphack\begingroup\@sanitize\@indextt}
+\gdef\indexone{\@bsphack\begingroup\@sanitize\@indexone}
+\gdef\indextwo{\@bsphack\begingroup\@sanitize\@indextwo}
+\gdef\indexsub{\@bsphack\begingroup\@sanitize\@indexsub}
+\gdef\indexonenopage{\@bsphack\begingroup\@sanitize\@indexonenopage}
+\gdef\indextwonopage{\@bsphack\begingroup\@sanitize\@indextwonopage}
+\def\@wrindex#1{\let\thepage\relax
+ \xdef\@gtempa{\write\@indexfile{#1!\thepage}}\endgroup\@gtempa
+ \if@nobreak \ifvmode\nobreak\fi\fi\@esphack}
+
+\if@showindex
+ \gdef\@indexmarginpar#1{\ifinner\@parmoderr\else
+ {\reversemarginpar
+ \marginparwidth=90pt\marginpar{\raggedright#1}}\fi}
+ \gdef\indexone#1{\@bsphack\@indexmarginpar{#1}\@esphack}
+ \gdef\indextt#1{\@bsphack\@indexmarginpar{{\tt #1}}\@esphack}
+ \gdef\indexsub#1#2{\@bsphack\@indexmarginpar{#1, #2}\@esphack}
+ 
+ 
+ 
+ 
+ \gdef\indextwo#1#2{\@bsphack\@indexmarginpar{#1}\@esphack}
+\fi
+
+\newif\if@restonecol
+\def\theindex{\@restonecoltrue\if@twocolumn\@restonecolfalse\fi
+\columnseprule \z@
+\columnsep 3.5em\twocolumn[\@makeschapterhead{Index}]
+ \@mkboth{Index}{Index}\parindent\z@
+ \addcontentsline{toc}{chapter}{Index}
+ \parskip\z@ plus .07ex\relax\let\item\@idxitem}
+\def\@idxitem{\par\hangindent 4em}
+\def\subitem{\par\hangindent 4em \hspace*{2em}}
+\def\subsubitem{\par\hangindent 4em \hspace*{3em}}
+\def\endtheindex{\if@restonecol\onecolumn\else\clearpage\fi}
+\def\indexspace{\par \vskip 1em plus .5em minus .3em\relax}
+
+\def\footnoterule{\kern-3\p@ 
+ \hrule width .4\columnwidth 
+ \kern 2.6\p@} 
+\@addtoreset{footnote}{chapter} 
+\long\def\@makefntext#1{\parindent 1em\noindent 
+ \hbox to 1.8em{\hss$^{\@thefnmark}$}#1}
+
+\def\topfraction{0.9999}
+\def\dbltopfraction{.9999}
+\def\dblfloatpagefraction{.85}
+\def\floatpagefraction{.85} 
+ 
+\def\textfraction{0.1} 
+ 
+ 
+ 
+ 
+\setcounter{topnumber}{3} 
+\setcounter{dbltopnumber}{3}
+\setcounter{bottomnumber}{1}
+\def\bottomfraction{.9999}
+\setcounter{totalnumber}{4}
+
+\long\def\@caption#1[#2]#3{\addcontentsline{\csname
+ ext@#1\endcsname}{#1}{\protect\numberline{\csname 
+ the#1\endcsname}\ignorespaces #2}\par
+ \begingroup
+ \@parboxrestore
+ \normalsize
+ \@makecaption{\csname fnum@#1\endcsname}{\ignorespaces #3}\par
+ \endgroup}
+\if@ieee
+\font\tensfi = cmssi10
+\font\tensfb = cmssbx10
+\long\def\@makecaption#1#2{
+ \list{}{\leftmargin=2em\rightmargin=\leftmargin\topsep=2ex\labelwidth=0pt\labelsep=0pt}\item[]
+ \setbox\@tempboxa\hbox{\sf #1: #2}
+ \ifdim \wd\@tempboxa >\linewidth 
+ \setbox\@tempboxa\box\voidb@x 
+ {\sf #1: #2\par}
+ \else 
+ \leavevmode\hbox to\linewidth{\hfil\box\@tempboxa\hfil}\par
+ 
+ 
+ \fi
+ \endlist
+ }
+\else
+\long\def\@makecaption#1#2{
+ \list{}{\leftmargin=2em\rightmargin=\leftmargin\topsep=2ex\labelwidth=0pt\labelsep=0pt}\item[]
+ \setbox\@tempboxa\hbox{#1: #2}
+ \ifdim \wd\@tempboxa >\linewidth 
+ \setbox\@tempboxa\box\voidb@x 
+ {#1: #2\par}
+ \else 
+ \leavevmode\hbox to\linewidth{\hfil\box\@tempboxa\hfil}\par
+ 
+ 
+ \fi
+ \endlist
+ }
+\fi
+
+\if@seqcaption
+ \newcounter{figure}
+ \def\thefigure{\@arabic\c@figure}
+\else\if@nochapter
+ \newcounter{figure}[section]
+ \def\thefigure{\thesection.\@arabic\c@figure}
+\else
+ \newcounter{figure}[chapter]
+ \def\thefigure{\thechapter.\@arabic\c@figure}
+\fi\fi
+\def\fps@figure{tbp}
+\def\ftype@figure{1}
+\def\ext@figure{lof}
+\def\fnum@figure{Figure \thefigure}
+\def\figure{\@float{figure}}
+\let\endfigure\end@float
+\@namedef{figure*}{\@dblfloat{figure}}
+\@namedef{endfigure*}{\end@dblfloat}
+\if@seqcaption
+ \newcounter{table}
+ \def\thetable{\@arabic\c@table}
+\else\if@nochapter
+ \newcounter{table}[section]
+ \def\thetable{\thesection.\@arabic\c@table}
+\else
+ \newcounter{table}[chapter]
+ \def\thetable{\thechapter.\@arabic\c@table}
+\fi\fi
+\def\fps@table{tbp}
+\def\ftype@table{2}
+\def\ext@table{lot}
+\def\fnum@table{Table \thetable}
+\def\table{\@float{table}}
+\let\endtable\end@float
+\@namedef{table*}{\@dblfloat{table}}
+\@namedef{endtable*}{\end@dblfloat}
+
+\mark{{}{}} 
+\def\ps@empty{\let\@mkboth\@gobbletwo
+ \def\@oddhead{}
+ \ifdr@ft 
+ \def\@oddfoot{\hfil\sc Draft Copy---\today---Do not circulate.\hfil}
+ \else \def\@oddfoot{}
+ \fi 
+ \let\@evenhead=\@oddhead\let\@evenfoot\@oddfoot}
+\def\ps@plain{\let\@mkboth\@gobbletwo
+ \def\@oddhead{}
+ \ifdr@ft 
+ \def\@oddfoot{\hbox to 0pt{\sc Draft Copy \today \rm\hss}\hfil
+ \rm\thepage\hfil \hbox to 0pt{\hss\sc Do not circulate.}}
+ \else \def\@oddfoot{\rm\hfil\thepage\hfil}
+ \fi 
+ \let\@evenhead=\@oddhead\let\@evenfoot\@oddfoot}
+\if@twoside 
+\def\ps@headings{\let\@mkboth\markboth
+ \ifdr@ft 
+ \def\@oddfoot{\hfil\sc Draft Copy---\today---Do not circulate.\hfil}
+ \else \def\@oddfoot{}
+ \fi 
+ \let\@evenfoot=\@oddfoot
+\def\@evenhead{\rm \thepage\hfil \sl \leftmark}
+\def\@oddhead{\hbox{}\sl \rightmark \hfil \rm\thepage}
+\def\chaptermark##1{\markboth {{\ifnum \c@secnumdepth >\m@ne
+ \@chapapp\ \thechapter. \ \fi ##1}}{}}
+\def\sectionmark##1{\markright {{\ifnum \c@secnumdepth >\z@
+ \thesection. \ \fi ##1}}}}
+\else 
+\def\ps@headings{\let\@mkboth\markboth
+ \ifdr@ft 
+ \def\@oddfoot{\hfil\sc Draft Copy---\today---Do not circulate.\hfil}
+ \else \def\@oddfoot{}
+ \fi 
+ \let\@evenfoot=\@oddfoot
+\def\@oddhead{\hbox {}\sl \rightmark \hfil \rm\thepage}
+\def\chaptermark##1{\markright {{\ifnum \c@secnumdepth >\m@ne
+ \@chapapp\ \thechapter. \ \fi ##1}}}}
+\fi
+\def\ps@myheadings{\let\@mkboth\@gobbletwo
+\def\@oddhead{\hbox{}\sl\rightmark \hfil \rm\thepage}
+\def\@evenhead{\rm \thepage\hfil\sl\leftmark\hbox {}}
+ \ifdr@ft 
+ \def\@oddfoot{\hfil\sc Draft Copy---\today---Do not circulate.\hfil}
+ \else \def\@oddfoot{}
+ \fi 
+ \let\@evenfoot=\@oddfoot
+\def\@evenfoot{}\def\sectionmark##1{}\def\subsectionmark##1{}}
+\def\ps@thesis{\let\@mkboth\@gobbletwo
+\def\@oddfoot{\hbox{}\hfil\rm\thepage\hfil}
+\ifdr@ft 
+ \def\@oddhead{\hfil\sc Draft Copy---\today---Do not circulate.\hfil}
+\else \def\@oddhead{}
+\fi
+\let\@evenhead=\@oddhead
+\let\@evenfoot=\@oddfoot{}
+\def\sectionmark##1{}\def\subsectionmark##1{}}
+
+\def\today{\ifcase\month\or
+ January\or February\or March\or April\or May\or June\or
+ July\or August\or September\or October\or November\or December\fi
+ \space\number\day, \number\year}
+\if@seqcaption
+ \if@nochapter
+ \def\theequation{\arabic{equation}}
+ \else
+ \def\theequation{\thechapter.\arabic{equation}}
+ \fi
+\else\if@nochapter
+ \@addtoreset{equation}{section}
+ \def\theequation{\thesection.\arabic{equation}}
+\else
+ \@addtoreset{equation}{chapter} 
+ \def\theequation{\thechapter.\arabic{equation}}
+\fi\fi
+\jot = .5ex 
+\def\{{\relax\ifmmode\lbrace\else
+ \if\the\fam\the\ttfam\char"7B\else$\lbrace$\fi\fi}
+\def\}{\relax\ifmmode\rbrace\else
+ \if\the\fam\the\ttfam\char"7D\else$\rbrace$\fi\fi}
+\long\def\TODO#1{\par\begingroup\it #1\marginpar{***}\endgroup\par}
+
+\if@nochapter
+ \gdef\chapter{\section}
+ \def\thepart {\Roman{part}}
+ \def\thechapter {\thesection}
+ \def\thesection {\arabic{section}}
+ \def\thesubsection {\thesection.\arabic{subsection}}
+ \def\thesubsubsection {\thesubsection .\arabic{subsubsection}}
+ \def\theparagraph {\thesubsubsection.\arabic{paragraph}}
+ \def\thesubparagraph {\theparagraph.\arabic{subparagraph}}
+ \def\l@chapter{\l@section}
+ 
+ 
+ 
+ 
+ 
+ \if@twoside 
+ \def\ps@headings{\let\@mkboth\markboth
+ \ifdr@ft 
+ \def\@oddfoot{\hfil\sc Draft Copy---\today---Do not circulate.\hfil}
+ \else \def\@oddfoot{}
+ \fi 
+ \let\@evenfoot=\@oddfoot
+ \def\@evenhead{\rm \thepage\hfil \sl \rightmark}
+ \def\@oddhead{\hbox{}\sl \rightmark \hfil \rm\thepage}
+ \def\chaptermark{\sectionmark}
+ \def\sectionmark##1{\markright {{\ifnum \c@secnumdepth >\z@
+ \thesection. \ \fi ##1}}}}
+ \else 
+ \def\ps@headings{\let\@mkboth\markboth
+ \ifdr@ft 
+ \def\@oddfoot{\hfil\sc Draft Copy---\today---Do not circulate.\hfil}
+ \else \def\@oddfoot{}
+ \fi 
+ \let\@evenfoot=\@oddfoot
+ \def\@oddhead{\hbox {}\sl \rightmark \hfil \rm\thepage}
+ \def\chaptermark{\sectionmark}
+ \def\sectionmark##1{\markright {{\ifnum \c@secnumdepth >\m@ne
+ \@chapapp\ \thechapter. \ \fi ##1}}}}
+ \fi
+ \def\tableofcontents{
+ 
+ \section*{Contents\@mkboth{CONTENTS}{CONTENTS}}
+ \@starttoc{toc}\if@restonecol\twocolumn\fi}
+ \def\thebibliography#1{\section*{References\@mkboth
+ {References}{References}}
+ \label{references}
+ \addcontentsline{toc}{section}{References}
+ \if@ieee\small\fi
+ \list{[\arabic{enumi}]}{\settowidth\labelwidth{[#1]}
+ \leftmargin\labelwidth
+ \advance\leftmargin\labelsep
+ \usecounter{enumi}}
+ \def\newblock{\hskip .11em plus .33em minus -.07em}
+ \spaceskip=.3em plus .17em minus .15em 
+ 
+ \sloppy
+ \sfcode`\.=1000\relax}
+ \def\appendix{\par
+ \setcounter{chapter}{0}
+ \setcounter{section}{0}
+ \def\@chapapp{Appendix}
+ \def\thesection{\Alph{section}}}
+\fi
+
+\leftmargini 2.5em
+\leftmarginii 2.2em 
+\leftmarginiii 1.87em 
+\leftmarginiv 1.7em 
+\leftmarginv 1em
+\leftmarginvi 1em
+\leftmargin\leftmargini
+\labelwidth\leftmargini\advance\labelwidth-\labelsep
+\labelsep .5em
+\parsep 1ex plus .5ex minus .25ex
+\def\@listi{\leftmargin\leftmargini
+ \parsep .5ex plus .25ex minus .25ex \itemsep= 0ex plus .5ex
+ \topsep=-\parsep }
+\def\@listii{\leftmargin\leftmarginii
+ \labelwidth\leftmarginii\advance\labelwidth-\labelsep
+ \parsep .5ex plus .25ex minus .25ex 
+ \itemsep= 0ex plus .5ex
+ \topsep=-\parsep
+ }
+\def\@listiii{\leftmargin\leftmarginiii
+ \labelwidth\leftmarginiii\advance\labelwidth-\labelsep
+ \parsep .5ex plus .25ex minus .25ex 
+ \itemsep= 0ex plus .5ex
+ \topsep=-\parsep
+ }
+\def\@listiv{\leftmargin\leftmarginiv
+ \labelwidth\leftmarginiv\advance\labelwidth-\labelsep}
+\def\@listv{\leftmargin\leftmarginv
+ \labelwidth\leftmarginv\advance\labelwidth-\labelsep}
+\def\@listvi{\leftmargin\leftmarginvi
+ \labelwidth\leftmarginvi\advance\labelwidth-\labelsep}
+
+\if@ieee\columnsep=2pc
+\else\columnsep 10pt 
+\fi
+\columnseprule 0pt 
+\if@twocolumn
+ 
+ \parindent 1em 
+ \leftmargini 2em 
+ \leftmarginv .5em 
+ \leftmarginvi .5em
+ \twocolumn
+\else\onecolumn 
+\fi
+
+\if@thesis
+\ps@thesis\pagenumbering{roman}
+\else
+ \if@ieee
+ \ifdr@ft
+ \ps@headings 
+ \else\ps@empty\fi
+ \else \ps@headings
+ \fi
+\pagenumbering{arabic} 
+\fi
+\if@twoside\flushbottom
+\else\if@twocolumn\flushbottom
+\else\raggedbottom\fi\fi 

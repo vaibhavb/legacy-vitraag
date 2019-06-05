@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+<head>
+  <title>Bayesian Statistics</title>
+                              
+  <link rel="stylesheet" href="style/style.css">
+</head>
+   <body>
+          
+<h1> Python Bits </h1>
+         
+<hr>   
+<h2>Why Python?</h2>
+   
+<hr>    
+<h2>Practice</h2>
+ 
+<ul>
+     <li><br>
+    </li>
+    <li>June 30th</li>
+               
+  <ul>
+        <li><b>Handling URLs in python</b></li>
+                               
+    <table cellpadding="2" cellspacing="2" border="1" width="100%">
+              <tbody>
+                <tr>
+                  <td valign="top"><font
+ face="Courier New, Courier, monospace">&gt;&gt;&gt; import urllib<br>
+    &gt;&gt;&gt; f = urllib.urlopen("http://www.google.org")<br>
+    &gt;&gt;&gt; s = f.read()<br>
+    &gt;&gt;&gt; f.close()<br>
+    &gt;&gt;&gt; print s</font><br>
+                  </td>
+                </tr>
+                                       
+      </tbody>                            
+    </table>
+                               
+  </ul>
+               
+  <ul>
+        <li><b>Parsing HTML pages in python<font color="#3366ff"> 2.0 </font>above</b></li>
+                           
+    <table cellpadding="2" cellspacing="2" border="1" width="100%">
+              <tbody>
+                <tr>
+                  <td valign="top">                                      
+         
+          <div class="verbatim">                          <font
+ face="Courier New, Courier, monospace">&gt;&gt;&gt;from HTMLParser import
+ HTMLParser<br>
+  &gt;&gt;&gt;class MyHTMLParser(HTMLParser):<br>
+  ...&nbsp;&nbsp;&nbsp; def handle_starttag(self, tag, attrs):<br>
+          ...&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; print "Encountered the 
+beginning of a %s tag" % tag<br>
+  ...&nbsp;&nbsp;&nbsp; def handle_endtag(self, tag):<br>
+  ...&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; print "Encountered the end of
+a  %s tag" % tag<br>
+  &gt;&gt;&gt;t = MyHTMLParser()<br>
+  &gt;&gt;&gt;t.feed("index.html")<br>
+  &gt;&gt;&gt;t.close()<br>
+  &gt;&gt;&gt;t.handle_starttag("&lt;html&gt;", "")</font><br>
+                  </div>
+                  </td>
+                </tr>
+                                   
+      </tbody>                        
+    </table>
+                 
+  </ul>
+         
+</ul>
+           
+<hr>     
+<address>Vaibhav</address>
+     <br>
+       
+</body>
+</html>

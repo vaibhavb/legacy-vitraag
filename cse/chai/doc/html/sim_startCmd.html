@@ -1,0 +1,47 @@
+<html>
+<head><title>sim_start</title></head>
+<body>
+
+<h3>sim_start - start simulation for module</h3>
+<hr>
+<code>sim_start [-hsun] &lt;module&gt; [&lt;component&gt; ...]</code><p>
+This command starts and initialize simulation of the
+  specified module.  There are three modes of simulations: random, manual and
+  game simulation.  In general, user also specify the components that are
+  controlled by the user to start a game simulation. For random and manual
+  simulations which are two extreme cases of game simulation, there is no need
+  to specify the components: for random simulation, all components are
+  controlled by the system, while in manual simulation, all are controlled by
+  the user. <p>
+
+  Command options: <p>
+
+  <dl>
+  <dt> -h
+  <dd> Prints usage.
+
+  <dt> -s
+  <dd> Specify that the specified components are controlled by the system.
+  If no component is specified, the simulation is the same as manual
+  simulation (no component is controlled by the system).
+
+  <dt> -u
+  <dd> Specify that the specified components are controlled by the user.
+  If no component is specified, the simulation is the same as random
+  simulation (no component is controlled by the user).  This is the default
+  option. 
+
+  <dt> -n
+  <dd> Specify that the component names given are actually atom names. It is
+  illegal to mix both sub-module names and atom names. Without this option,
+  the component names are assumed to be sub-module names.
+  
+  <dt> &lt;component&gt ... ;
+  <dd> Names of the sub-modules that are controlled by the user (system in the
+  case of -s is specified). If -n is used, the names are atom names.
+
+  </dl>
+
+<HR>
+Last updated on 1031104 18h39
+</body></html>

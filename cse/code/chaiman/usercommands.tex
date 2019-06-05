@@ -1,0 +1,501 @@
+\chapter {User Commands}
+\label{sec:commands}
+\label{chap:commands}
+
+In this section we illustrate the user level commands of \mocha.
+We use the modules described in earlier sections as examples. 
+These examples can be found in {\tt examples/} directory of the \mocha\ distribution.
+
+\section{Parsing modules}
+\label{sec:parsing-modules}
+
+The {\tt read\_module}\index{mocha-commands!read\_module} command is used to read in a module description.
+We use Peterson's mutual exclusion protocol from Figure{~\ref{fig:pete}},
+which can be found in the \mocha\ distribution at {\tt examples/pete}.
+On a {\tt read\_module} command, \mocha\ displays the names of the modules
+that were successfully parsed. In the case of a parse error, an appropriate
+message is displayed.
+
+\mypar
+{\tt 
+mocha: read\_module pete.rm \\
+Module P1 is composed and checked in. \\
+Module P2 is composed and checked in. \\
+Module Pete is composed and checked in. \\
+parse successful. \\
+}
+
+
+\mypar
+The command {\tt reinit}\index{mocha-commands!reinit} is used to reinitialize \mocha\ if there is a
+parse error. It clears all the type and module definitions. In case of
+a parse error, fix the error, execute {\tt reinit} and parse the
+module file again. 
+Once a module file has been read in, a number of commands can be
+executed to get information about the modules in memory. 
+The command {\tt show\_mdls}\index{mocha-commands!show\_mdls} lists the modules that have been read in.
+
+\mypar
+{\tt
+mocha: show\_mdls \\
+P1 \\                 
+P2 \\                 
+Pete \\               
+}
+
+\mypar
+The command {\tt show\_atoms}\index{mocha-commands!show\_atoms} lists the atoms of a module.
+
+\mypar
+{\tt
+mocha: show\_atoms Pete \\
+Pete/P1/ATM0 Pete/P2/ATM0 \\
+}
+
+\mypar
+The command {\tt show\_types}\index{mocha-commands!show\_types} lists the various types.
+
+\mypar
+{\tt
+mocha: show\_types \\
+Built-in    : bool, int, nat, event \\
+Enumerative : ctype \\
+Range       : no range type defined. \\
+Bitvector   : no bitvector type defined. \\
+Array       : no array type defined. \\
+}
+
+\mypar
+The command {\tt show\_vars}\index{mocha-commands!show\_vars} lists the different types of variables for
+a module---history free, history dependent, event or all the variables.
+
+\mypar
+{\tt
+mocha: show\_vars -vALL Pete \\
+pc1 \\
+Pete/x1 \\
+pc2 \\
+Pete/x2 \\
+}
+
+\mypar
+{\tt 
+mocha: show\_vars -vHD Pete \\
+pc1 \\
+Pete/x1 \\
+pc2 \\ 
+Pete/x2 \\
+}
+
+\mypar
+Commands such as {\tt isPrivateVariable}\index{mocha-commands!isPrivateVariable}, {\tt isHistoryFree}\index{mocha-commands!isHistoryFree}, {\tt
+isInterfaceVariable}\index{mocha-commands!isInterfaceVariable} return 1 or 0. 
+
+\mypar
+{\tt
+mocha: isPrivateVariable Pete Pete/x1 \\
+1
+}
+
+\mypar
+{\tt
+mocha: isHistoryFree Pete pc1 \\
+0 \\
+}
+
+\section{Executing modules}
+\label{subsec:execution}
+
+In \mocha, the user can perform three kinds of execution---manual,
+random, and game, on any module\index{module execution}. \mocha\ provides a TK-based graphical
+user interface for interacting with the tool and viewing the
+execution trace. To execute a module, first read in the
+file containing the textual description of the module. Then, using
+the module browser\index{module browser} that's obtained from the ``File'' pull-down menu,
+select a module for execution by selecting it and pressing the open
+button. The \rem\ code for the module is then displayed on a new
+window. Press the ``Execute'' button. 
+A new window will then pop up offering three types of
+execution. Choose one. 
+
+\begin{itemize}
+\item Manual execution\index{module execution!manual}. Initially, the GUI displays all possible
+initial states of the module in the upper section of the window. The
+user can select any one of them, and press the ``Go!'' button, 
+whereupon the tool generates all possible next states. The user can
+again select any next state to continue the execution.
+
+\item Random execution\index{module execution!random}. User can specify the number of rounds that it
+wants to execute the module for. The choices for the initial and
+successor states at each step are made randomly.
+
+\item Game execution\index{module execution!game}. The user plays a game against the computer. The
+user controls the update of a subset of the set of atoms of the module
+being simulated. In every round, the user chooses to update the
+variables of the atoms he controls and the system updates the rest of
+the atoms randomly. This is a much better way of performing guided
+execution. In each case, the user has to press the ``Go!'' button to
+advance the execution, no matter who's turn it is. 
+\end{itemize}
+
+
+\mypar
+By default, the interface displays the value of only the observable
+variables of a module. The GUI also lets the user modify the set of
+variables being displayed, as well as change the format of the display
+of values of the variables, by choosing the right options under the
+``Option'' menu. 
+
+
+\section{Invariant Checking}
+Suppose we want to check if the module $\Pete$ satisfies mutual exclusion.
+This is specified as an invariant in the file 
+{\tt examples/pete/pete.spec}:
+
+\begin{center}
+\tt inv "mutex" \NOT(pc1 = inCS \AND\ pc2 = inCS);
+\end{center}
+
+\mypar
+We first read the invariant using the 
+{\tt read\_spec}\index{mocha-commands!read\_spec} command and then check the invariant using the
+{\tt inv\_check}\index{mocha-commands!inv\_check} command.
+
+\mypar
+{\tt 
+mocha: read\_spec pete.spec \\
+mutex \\
+mocha: inv\_check Pete mutex \\
+Typechecking invariant mutex... \\
+Typechecking successful \\
+No sym\_info.. building it(using sym\_trans) \\
+Ordering variables using sym\_static\_order \\
+Transition relation computed : 2 conjuncts \\
+Calling Dynamic Reordering with sift \\
+Done initializing image info...\\
+Initial Region Computed... \\
+\\
+Step 1: image mdd size =          3      |states| =        4    \\
+reached set mdd size =          6        |states| =        8 \\
+Step 2: image mdd size =         12      |states| =        4 \\
+reached set mdd size =         14        |states| =       12 \\
+Step 3: image mdd size =         10      |states| =        6 \\
+reached set mdd size =         14        |states| =       16 \\
+Step 4: image mdd size =         12      |states| =        4 \\
+Done reached set computation... \\
+reached set mdd size =         14        number of states =       16 \\
+Invariant mutex passed\\
+}
+
+\mypar
+If the invariant fails, \mocha\ will display an error trace.
+Let us create a bug in $\Pete$ by deleting a negation in line 12
+of {\tt pete.rm}. The buggy version is found in 
+{\tt petebug.rm}. Let us check the invariant
+on the buggy model.
+
+\mypar
+{\tt
+mocha: read\_module petebug.rm \\
+Module P1 is composed and checked in. \\
+Module P2 is composed and checked in. \\
+Module Pete is composed and checked in. \\
+parse successful. \\
+mocha: read\_spec pete.spec \\
+mutex \\
+mocha: inv\_check Pete mutex \\
+Typechecking invariant mutex... \\
+Typechecking successful \\
+No sym\_info.. building it(using sym\_trans) \\
+Ordering variables using sym\_static\_order \\
+Transition relation computed : 2 conjuncts \\
+Calling Dynamic Reordering with sift \\
+Done initializing image info... \\
+Initial Region Computed... \\
+Step 1: image mdd size =          3      |states| =        4    \\
+reached set mdd size =          6        |states| =        8  \\
+Step 2: image mdd size =         12      |states| =        4  \\
+reached set mdd size =         12        |states| =       10 \\
+Invariant mutex has been violated \\
+Invariant mutex failed in step 2  \\
+Counterexample for invariant mutex \\
+pc1=outCS \$x1\_0=1 pc2=outCS \$x2\_0=0 \\
+pc1=reqCS \$x1\_0=0 pc2=reqCS \$x2\_0=0 \\
+pc1=inCS \$x1\_0=0 pc2=inCS \$x2\_0=0  \\
+}
+
+\mypar
+In this case \mocha\ has produced an error trace of length 3. In the first
+round both process are outside the critical section; in the second round
+they both request access to the critical section; and, in the third round
+both processes enter the critical section.
+
+\section{ATL model checking}
+
+%The following are the commands related to ATL model-checking in \mocha:
+%\begin{itemize}
+%\item
+%\readSpec {\it filename} / \atlRead {\it filename}
+
+%The commands \readSpec and \atlRead read in a file {\it filename} containing the atl
+%specifications. While the command \atlRead only reads in file that contains
+%ATL specifications, the more generic command \readSpec also reads in
+%specifications written in other logics, such as invariants.  Generally, the
+%ATL specifications have the following format:
+%\begin{center}
+%{\it ``formula\_name'' ATL\_formula;}
+%\end{center}
+%where {\it formula\_name} is optional, and {\it ATL\_formula} is a formula generated
+%by the grammar given in Section~\ref{sec:ATL-grammar}. All ATL
+%specifications have to be ended with a semi-colon. If the ATL specification
+%is to be put in a more generic specification file and read by the command
+%\readSpec, the keyword {\tt atl} has to be added at the beginning of the 
+%specification.  
+
+%Multiple specification files can be read by invoking these commands
+%on the files. Specifications of the same names will be
+%overwritten. Specifications without names will be assigned a unique name.
+%For example, the first unnamed ATL specification will be given the name
+%{\tt atl0}, the second {\tt atl1} etc.
+
+
+%\item
+%\showSpec {\tt [-l]}/ \atlShow {\tt [-l]}
+
+%These commands list the names of the read ATL
+%specifications. While the command \atlShow only shows the ATL
+%specifications, the more generic command \showSpec lists all specifications,
+%including invariants. Supplying the option {\tt -l} lists also the formulas
+%as well as the names.
+
+%\item
+%\mc {\tt module\_name formula\_name [formula\_name ...]}
+
+%This is the command to start ATL model checking. 
+
+%\end{itemize}
+
+%\subsection{Example}
+
+We consider the train controller example from
+Section~\ref{subsec:train}. The files for this example
+can be found in {\tt examples/train\_control}. There are
+three agents in the system: the eastbound train {\tt TrainE},
+the westbound train {\tt TrainW}, and the signal controller 
+{\tt Controller}. We are interested in verifying the
+following properties:
+\begin{enumerate}
+\item
+The system is safe: the eastbound train
+and the westbound train are not on the bridge at the same time.  This
+requirement is written as: 
+{\tt
+atl A G \NOT (pcE = bridge \AND\ pcW = bridge);
+}
+Note that the same can be specified as an invariant
+(Section~\ref{subsec:invariant}).
+
+\item
+The trains have the discretion to stay away from
+ the bridge. No other agents can force it to do otherwise. 
+For the eastbound train, this property can be written as:
+{\tt
+atl A G (\NOT(pcE = bridge) => << TrainE >> G \NOT(pcE = bridge));
+}
+
+\item
+Since there is no fairness constraints imposed on the system, once a
+train is granted access to the bridge, it has the discretion to leave
+the bridge at any time--no other agents can force it to leave. For the
+westbound train, this property can be written as:
+{\tt
+atl A G ((pcW = bridge) => << TrainW >> G (pcW = bridge));
+}
+\end{enumerate}
+
+\mypar
+These requirements can be found in the file {\tt train\_control.spec}. After
+reading the \rem\ description file {\tt train\_control.rm} with the
+{\tt read\_module} command, read the specifcations into  \mocha:
+
+\mypar
+{\tt 
+mocha: read\_spec train\_control.spec\\
+safetyInvariant\\
+safety\\
+atl0\\
+atl1\\
+}
+
+\mypar
+\mocha\ read in the specifications. The {\tt show\_spec}\index{mocha-commands!show\_spec} can now be used to give the list
+of read formulas. Supplying the {\tt -l} option lists the formulas and the
+names of the specifications
+
+\mypar
+{\tt
+mocha: show\_spec -l\\
+atl specifications:\\
+atl0\\
+<<  >> G((!((pcE = bridge)) => << TrainE >> G(!((pcE = bridge)))))\\
+\\
+atl1\\
+<<  >> G(((pcW = bridge) => << TrainW >> G((pcW = bridge))))\\
+\\
+safety\\
+<<  >> G(!(((pcE = bridge) \& (pcW = bridge))))\\
+\\
+\\
+inv specifications:\\
+safetyInvariant\\
+!(((pcW = bridge) \& (pcE = bridge)))\\
+\\
+
+}
+
+\mypar
+Note that the specifications are displayed under two sections: atl and inv. 
+
+Invariants are checked with the {\tt inv\_check} command and ATL
+formulas are model checked with the {\tt atl\_check}\index{mocha-commands!atl\_check} command. Both
+commands have to be followed by two arguments: the module-name and the
+formula name. Formula that weren't given a name will be assigned a
+name that can be obtained by the {\tt show\_spec} command. 
+
+There are two modules in the file {\tt train\_control.rm}. {\tt
+System1} is the defective one and {\tt System2} should satisfy all the
+properties (invariants and ATL formulae). 
+
+Try them. Here is what you should get if you try {\tt atl\_check
+System2 atl1}. 
+\begin{verbatim}
+mocha: atl_check System2 atl1
+Converting formula to existential normal form...
+Performing semantic check on the formulas...
+SIM: building atom dependency info
+Start model checking...
+Building transition relations for module...
+Ordering variables using sym_static_order
+Transition relation computed : 5 conjuncts
+Calling Dynamic Reordering with sift
+Done initializing image info...
+Building the initial region of the module...
+Model-checking formula "atl1"
+ATL_CHECK: formula "atl1" passed
+mocha: 
+\end{verbatim}
+
+\mypar
+The last line of the output before the \mocha\ prompt says the formula
+passed. If the property is not satisfied, the last line will indicate
+the failure of the property.
+
+
+\mypar
+{\bf Counter-example generation.}
+Currently, the ATL model-checker does not have any mechanism to generate
+counter-examples. We plan to integrate the game execution facility described in
+Section~\ref{subsec:execution} with the ATL model checker to provide
+counter-examples and witnesses: when an ATL specification fails, the ATL
+model checker synthesizes and outputs a {\em winning} strategy as a
+counter-example, according to which the simulator will play a game with the
+user.  The user tries to win the game by finding an execution sequence that
+satisfies the specification.  We believe that by playing a {\em losing}
+game, the user can be convinced that their model is incorrect and
+subsequently discover the bug in their model.
+
+The invariant check will automatically produce a counter-example, a
+path to a state where the invariant is violated,  for a
+failed invariant. Try:
+
+\begin{center}
+\tt inv\_check System1 safetyInvariant
+\end{center}
+
+\section{Refinement checking}
+Consider the module \SCountThree\ (look for it in the file {\tt
+counter.rm} in the {\tt examples/counter} directory of the
+\mocha\ distribution. It is a 3-bit counter built out of
+gates. A behavioral specification for it is given below.
+
+\mypar
+{\tt
+\MODULE\ \SCountThreeSpec \\
+  \qu \EXTERNAL\ \start, \inc : \bool \\
+  \qu \INTERFACE\ \oouta, \ooutb, \ooutc, \done : \bool \\
+  \qu \PRIVATE\ \cnt : \BITVECTOR 3 \\
+  \qu \ATOM\ \CONTROLS\ \cnt\ \READS\ \cnt\ \start\ \AWAITS\ \inc \\
+  \qu \UPDATE \\
+  \qu \begin{chtab}
+    \start\ \AND\ \NOT\inc' & \cnt' := 0 \\
+    \start\ \AND\ \inc' & \cnt' := 1 \\
+    \NOT\start\ \AND\ \inc' & \cnt' := \cnt\ + 1
+   \end{chtab} \\
+  \qu \ENDATOM \\
+  \qu \ATOM\ \CONTROLS\ \oouta, \ooutb, \ooutc\ \AWAITS\ \cnt \\
+  \qu \INIT\ \UPDATE \\
+  \qu \begin{chtab}
+    \TRUE\ & \oouta' := \cnt'[0]; \ooutb' := \cnt'[1]; \ooutc' := \cnt'[2]  
+  \end{chtab} \\
+  \qu \ENDATOM \\
+  \qu \ATOM\ \CONTROLS\ \done\ \READS\ \cnt, \start\ \AWAITS\ \cnt \\
+  \qu \UPDATE \\
+  \qu \begin{chtab}
+    \NOT\start\ \AND\ \cnt'=\cnt\ + 1 \AND\ \cnt'=0 & \done' := \TRUE \\
+    \DEFAULT\ & \done' := \FALSE
+  \end{chtab} \\
+  \qu \ENDATOM \\
+  \ENDMODULE \\\\
+}
+
+
+\mypar
+In \mocha, the notion of refinement is language containment. As is
+well-known, simulation is a sufficient check for language
+containment. There are two commands available in \mocha\ for checking
+refinement --- {\tt check\_refine}\index{mocha-commands!check\_refine} and
+{\tt check\_simulation}\index{mocha-commands!check\_simulation}. {\tt
+check\_refine} is typically more efficient but it can be used only if 
+there are no hidden variables in the specification. If there are
+private variables in the specification as in this case, then the
+command {\tt check\_simulation} that checks for simulation is used. 
+In this case, the specification has a private variable called
+count. Hence, we use the command {\tt check\_simulation}. 
+
+\mypar
+\begin{verbatim}
+mocha: read_module counter.rm
+Module And is composed and checked in.
+Module Or is composed and checked in.
+Module Not is composed and checked in.
+Module Xor is composed and checked in.
+Module Latch is composed and checked in.
+Module Sync1BitCounter is composed and checked in.
+Module Sync3BitCounter is composed and checked in.
+Module Witness is composed and checked in.
+Module Foo is composed and checked in.
+Module Sync3BitCounterSpec is composed and checked in.
+parse successful.
+mocha: check_simulation Sync3BitCounter Sync3BitCounterSpec
+Building transition relation for module Sync3BitCounter
+Ordering variables using sym_static_order
+Transition relation computed : 24 conjuncts
+Calling Dynamic Reordering with sift
+Done initializing image info...
+Writing order into imporder.dat
+Building transition relation for module Sync3BitCounterSpec
+Ordering variables using sym_static_order
+Transition relation computed : 3 conjuncts
+Calling Dynamic Reordering with sift
+Done initializing image info...
+Dynamic variable ordering is enabled with method sift.
+ 
+ ****************************************************************** 
+ Reached fixpoint after  3 steps
+Yes: There is a simulation from Sync3BitCounter to Sync3BitCounterSpec
+Sync3BitCounter is simulated by Sync3BitCounterSpec
+Freeing syminfo for both specification and implementation
+mocha: 
+\end{verbatim}
+
+

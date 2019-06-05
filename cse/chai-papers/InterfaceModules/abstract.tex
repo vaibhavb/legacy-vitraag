@@ -1,0 +1,76 @@
+
+\begin{abstract}
+% Component-based designs are typically conceived using an ``optimistic'' 
+% approach: 
+% a component is designed under some assumptions about its environment, with 
+% the expectation that the assumptions will be satisfied in the complete 
+% design. 
+% In turn, the design may describe the behavior of the component only when the 
+% component is in an environment that satisfies the assumptions. 
+We present {\em interface models\/} that describe both the input
+assumptions of a component, and its output behavior.
+By enabling us to check that the input assumptions of a component are met in 
+a design, interface models provide a %tah basic kind of 
+{\em compatibility\/} check for component-based design. 
+When refining a design into an implementation, interface models require that 
+the output behavior of a component satisfies the design specification 
+only when the input assumptions of the specification are satisfied, yielding
+greater flexibility in the choice of implementations. 
+%
+Technically, our interface models are games between two players, Input
+and Output; the duality of the players accounts for the dual roles of
+inputs and outputs in composition and refinement. 
+% We illustrate this approach by presenting a simple interface model
+% that captures a basic form of synchronous interaction between hardware
+% components, and we show how the model can be extended to handle
+% bidirectional connections.
+We present two interface models in detail, one for a simple synchronous
+form of interaction between components typical in hardware, and the
+other for more complex synchronous interactions on bidirectional
+connections.
+As an example, we specify the interface of a bidirectional bus,
+with the input assumption that at any time at most one component has write 
+access to the bus.
+% As example for the latter, we specify the interface of a bidirectional bus,
+% with the input assumption that at any time at most one component has write 
+% access to the bus.
+For these interface models, we present algorithms for compatibility and 
+refinement checking, and we describe efficient symbolic implementations.
+% We also show how interface models lead to a rich methodology for the 
+% component-based design and analysis of %tah synchronous 
+% systems.
+\end{abstract}
+
+
+\begin{comment} % submitted version 
+\begin{abstract}
+Component-based designs are typically conceived using an ``optimistic'' 
+approach: 
+a component is designed under some assumptions about its environment, with 
+the expectation that the assumptions will be satisfied in the complete 
+design. 
+In turn, the design may describe the behavior of the component only when the 
+component is in an environment that satisfies the assumptions. 
+We present {\em interface models\/} to capture this approach to design.
+In these models, an interface describes both the input assumptions of a 
+component, and its output behavior.
+By enabling us to check that the input assumptions of a component are met in 
+a design, interface models provide a basic kind of {\em compatibility\/} 
+check for component-based design. 
+When refining a design into an implementation, interface models require that 
+the implementation behavior of a component satisfies the design specification 
+only when the input assumptions of the component are satisfied, yielding
+greater flexibility in the choice of implementations. 
+
+We present two interface models in detail, one for a simple synchronous form
+of interaction between components typical in hardware, and the other for more 
+complex synchronous interactions on bidirectional connections.
+As example for the latter, we specify the interface of a bidirectional bus,
+with the input assumption that at any time at most one component has write 
+access to the bus.
+For these interface models, we present algorithms for compatibility and 
+refinement checking, as well as efficient symbolic implementations.
+We also show how these interface models lead to a rich methodology for the 
+component-based design and analysis of synchronous systems.
+\end{abstract}
+\end{comment}

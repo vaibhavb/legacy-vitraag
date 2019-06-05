@@ -1,0 +1,94 @@
+\subsection{Properties of compatibility and composition} 
+
+If $\mp$ and $\mq$ are composable Moore interfaces, we define their
+{\em product\/} $\mp\oprod\mq$ by 
+$\ovars_{\mp\oprod\mq} = \ovars_\mp \union \ovars_\mq$ and
+$\ivars_{\mp\oprod\mq} = 
+	(\ivars_\mp \union \ivars_\mq) \setm \ovars_{\mp\oprod\mq}$, 
+and by letting 
+$\oinit_{\mp\oprod\mq} = \oinit_\mp \und \oinit_\mq$, 
+$\iinit_{\mp\oprod\mq} = \iinit_\mp \und \iinit_\mq$, 
+$\otrans_{\mp\oprod\mq} = \otrans_\mp \und \otrans_\mq$, and 
+$\itrans_{\mp\oprod\mq} = \otrans_\mp \und \itrans_\mq$.
+\begin{comment} 
+Intuitively, an environment for a Moore interface $\mp$ is an
+interface that drives all free inputs of $\mp$, ensuring that all the
+input assumptions are met. 
+Precisely, we say that a Moore interface $\mq$ is an 
+{\em environment\/} for a Moore interface $\mp$ if 
+(i)~$\mp$ and $\mq$ are composable;
+(ii)~$\mp\prod\mq$ is closed i.e., $\ivars_{\mp\oprod\mq} =
+\emptyset$; 
+(iii)~$\mp\prod\mq$ is non-blocking, i.e., $\iinit_{\mp\oprod\mq}$ is
+satisfiable, and $\forall \ovars_{\mp\oprod\mq} . (\exists
+\ivars_{\mp\oprod\mq})' . \itrans_{\mp\oprod\mq}$ holds; and 
+(iv)~for all sequences $s_0, s_1, s_2, \ldots$ of
+states in $\states[\vars_{\mp\oprod\mq}]$ with $s_0 \sat
+\oinit_{\mp\oprod\mq}$ and $(s_k,s_{k+1}) \sat \otrans_{\mp\oprod\mq}$
+for all $k \geq 0$, we have also that $s_0 \sat \iinit_{\mp\oprod\mq}$
+and $(s_k,s_{k+1}) \sat \itrans_{\mp\oprod\mq}$ for all $k \geq 0$.
+\end{comment}
+%
+Intuitively, an {\em environment\/} for a Moore interface $\mp$ is an
+interface that drives all free inputs of $\mp$, ensuring that all the
+input assumptions are met. 
+Precisely, we say that a Moore interface $\mq$ is an 
+environment for a Moore interface $\mp$ if $\mp$ and $\mq$ are
+composable and closed (i.e., $\ovars_\mp \inters \ovars_\mq =
+\emptyset$, and $\ivars_{\mp\oprod\mq} = \emptyset$), and if the
+following conditions hold:  
+
+%\vspace*{-1ex}
+
+\begin{itemize}
+\item {\em Non-blocking:\/} $\iinit_{\mp\oprod\mq}$ is satisfiable,
+and $\forall \ovars_{\mp\oprod\mq} . (\exists \ivars_{\mp\oprod\mq})'
+. \itrans_{\mp\oprod\mq}$ holds. 
+\item {\em Legal:\/} for all sequences $s_0, s_1, s_2, \ldots$ of
+states in $\states[\vars_{\mp\oprod\mq}]$ with $s_0 \sat
+\oinit_{\mp\oprod\mq}$ and $(s_k,s_{k+1}) \sat \otrans_{\mp\oprod\mq}$
+for all $k \geq 0$, we have also that $s_0 \sat \iinit_{\mp\oprod\mq}$
+and $(s_k,s_{k+1}) \sat \itrans_{\mp\oprod\mq}$ for all $k \geq 0$.
+\end{itemize}
+
+%\vspace*{-1ex}
+
+\noindent
+Analogous definitions for product and environment can be given for
+bidirectional interfaces. 
+The following theorem states the main properties of compatibility and
+composition of Moore interfaces; an analogous result holds for
+bidirectional interfaces. 
+
+\begin{theo}{(properties of compatibility and composition)}
+The following assertions hold: 
+%
+\begin{enumerate}
+
+\item % {\em Associativity:\/} 
+Given three Moore interfaces $\mp$,
+$\mq$, $\mr$, either $(\mp \| \mq) \| \mr$ and $(\mp \| \mq) \| \mr$
+are both undefined (due to non-composability or incompatibility), or
+they are both defined, in which case they are equal.
+
+\item % {\em Compatibility as existence of environment:\/}
+Given two composable Moore interfaces $\mp$ and $\mq$, we have that $\mp
+\compat \mq$ iff there is an environment for $\mp\oprod\mq$. 
+
+\item % {\em Composition and input assumptions:\/} 
+Given two compatible Moore interfaces $\mp$ and $\mq$, 
+and $\mr$ composable with $\mp\|\mq$, 
+we have that $(\mp\|\mq) \compat \mr$ iff there is an environment 
+for $\mp\oprod\mq\oprod\mr$. 
+
+\end{enumerate}
+\end{theo}
+
+\noindent
+The second assertion makes precise our statement that two interfaces
+are compatible iff there is some environment in which they can work
+correctly together. 
+The third assertion states that composition does not unduly restrict
+the input assumptions: checking compatibility with the composition
+$\mp\|\mq$ amounts to checking compatibility with $\mp$ and $\mq$. 
+

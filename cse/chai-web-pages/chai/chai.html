@@ -1,0 +1,355 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Design and Verification Lab</title>
+  <link rel="stylesheet" href="style/esrvg.css">
+</head>
+<body style="background-color: white;" marginwidth="0" marginheight="0"
+ link="#ff6600" vlink="#993300" alink="red">
+<div align="center">
+<table style="width: 801px; height: 3999px;" border="0" cellspacing="0"
+ cellpadding="0">
+  <tbody>
+    <tr>
+      <td bgcolor="#666666" height="100" align="right" valign="bottom">
+      <div class="blogtitle">Design and Verification Lab</div>
+      </td>
+    </tr>
+    <tr>
+      <td bgcolor="#cccccc" height="20">
+      <div class="links">&nbsp;&nbsp;
+<!-- you can place links here by uncommenting out the code below and adjusting the link paths -->
+      <a href="http://www.cse.ucsc.edu/dvlab/" class="links">HOME</a>&nbsp;&nbsp;|
+PROJECTS&nbsp;&nbsp;| PAPERS&nbsp;&nbsp;| PEOPLE&nbsp;&nbsp;| </div>
+      </td>
+    </tr>
+    <tr>
+      <td><br>
+      <div style="margin-left: 360px;"><img src="images/chai.png"
+ title="" alt="Chai Logo" style="width: 78px; height: 49px;"> <br>
+      </div>
+      <ul>
+        <li><a href="#What_is_Chai">What is Chai ?</a><br>
+        </li>
+        <li><a href="#Download_">Download</a><br>
+        </li>
+        <li><a href="#Installation_Notes">Installation Notes</a></li>
+        <li><a href="#Installation_Notes">Documentation</a><br>
+        </li>
+        <li><a href="#Taste_CHAi_-_A_sample_CHAi_Session_">Taste Chai</a></li>
+        <li><a href="#Technical_References_for_CHAI">Relevant
+Publications</a><br>
+        </li>
+        <li><a href="#Relevant_Projects">Relevant Projects</a></li>
+        <li><a href="#Support">Support</a></li>
+      </ul>
+      <hr style="height: 2px; width: 100%;">
+      <h2><b><font size="+2"><a name="What_is_Chai"></a>What is Chai?</font></b></h2>
+      <big style="font-weight: bold;"> C</big><small
+ style="font-weight: bold;">HAI</small> is an extension of <a
+ href="http://www-cad.eecs.berkeley.edu/%7Emocha/">Mocha</a>. The main
+objective is to provide software environment for system specification,
+composition and verification. CHAI is intended as a vehicle for
+development of new verification and composition - algorithms and
+approaches specifically using interface modules.. <br>
+      <br>
+      <big style="font-weight: bold;"> C</big><small
+ style="font-weight: bold;">HAI</small> offers the following
+capabilities: <br>
+      <ul>
+        <li><b>System component specification </b>in the language of <i><b>Interfaces.
+          </b></i>Interfaces are extension to reactive modules so as
+for describing synchronous interfaces.<br>
+        </li>
+        <li><b>System specification</b> in the language of <b><i>Reactive
+Modules</i></b>. Reactive Modules allow the formal specification of
+heterogeneous systems with synchronous, asynchronous, and real-time
+components. Reactive Modules support modular and hierarchical
+structuring and reasoning principles.</li>
+        <li> <b>System execution</b> by randomized, user-guided, or
+mixed-mode trace generation. In mixed-mode trace generation, the user
+plays a game against CHAI in which the user guides the execution of
+some modules, while CHAI controls the execution of other modules.</li>
+        <li> <b>Requirement specification</b> in <i>Alternating
+Temporal Logic</i> . The logic ATL allows the formal specification of
+requirements that refer to collaborative as well as adversarial
+relationships between modules. The popular logic CTL is a sublanguage
+of ATL.&nbsp;</li>
+        <li> <b>Requirement verification</b> by ATL model checking.
+The symbolic model checker in both implementations is based on BDD
+engines developed by the UC Berkeley <a
+ href="http://www-cad.eecs.berkeley.edu/Respep/Research/vis/">VIS</a>
+project. For invariant checking, CHAI supports both symbolic and
+enumerative search.</li>
+        <li> <b>Implementation verification</b> by checking trace
+containment between implementation and specification modules. CHAI
+supports containment checking if the specification module has no hidden
+state, and simulation checking otherwise. For decomposing proofs, CHAI
+supports an assume-guarantee principle.</li>
+      </ul>
+      <b><big>C</big><small>HAI</small></b> follows a software
+architecture similar to <a
+ href="http://www-cad.eecs.berkeley.edu/Respep/Research/vis/">VIS</a>.
+It is written entirely in C and its shell user interface is provided by
+      <a href="http://www.scriptics.com">Tcl</a>. CHAI provides two
+levels of development: designers and application developers can
+customize
+their application or design their own user interface by writing Tcl
+scripts; algorithm developers and researchers can develop new
+algorithms by
+writing C codes, or assemble any verification packages such as those
+provided by <a
+ href="http://www-cad.eecs.berkeley.edu/Respep/Research/vis/">VIS</a>
+through the C interfaces. <br>
+      <hr style="width: 100%; height: 2px;">
+      <h2><a name="Download_"></a>Download<a name="download"><br>
+      </a></h2>
+      <b><big>C</big><small>HAI</small></b>&nbsp;
+Version 1.0 is under <span
+ style="font-weight: bold; color: rgb(255, 102, 102);">alpha</span>
+release. You might want to read the <a href="copyright.txt">Copyright
+agreement</a>. Before you download, we would appreciate if you please
+fill out the Feedback
+Form (coming soon). This will help us collect statistics for the use of
+      <b><big>C</big><small>HAI</small></b><span class="smallcap">.</span><br>
+      <br>
+The files you need to download are:<br>
+      <ul>
+        <li><b><big>C</big><small>HAI - <a
+ href="dist/chai-1.0.0.tar.gz">tarball</a><br>
+          </small></b></li>
+        <li><b><small>GLU - tarball </small></b><b><small>coming soon!</small></b></li>
+        <li><b><small>TCL 7.2 - tarball coming soon!<br>
+          </small></b></li>
+      </ul>
+To get started check the chai session.<br>
+      <hr style="width: 100%; height: 2px;">
+      <h2><a name="Installation_Notes"></a>Installation Notes</h2>
+      <table cellpadding="2" cellspacing="2" border="1"
+ style="text-align: left; width: 594px; height: 525px;">
+        <tbody>
+          <tr>
+            <td style="vertical-align: top;"><small> cd vaibhav (for
+example)</small><br>
+            <small>untar the src code in current directory:</small><br>
+            <small>&gt;gunzip chai-1.0.0.tar.gz<br>
+&gt;tar -xvf chai-1.0.0.tar</small><br>
+            <small></small><small>This will create a directory called
+chai.</small><br>
+            <small><br>
+Make the following helper file to set things up;
+call it chai_setup:</small><br>
+            <small> (I assume you are using tcsh, if not, modify
+accordingly):</small><br>
+            <small>You'll need to set the environment variables
+exemplary as follows:</small><br>
+            <small>#chai</small><br>
+            <small>setenv CHAIDIR
+/projects/bubble/people/vaibhav/code/chai</small><br>
+            <small>setenv CHAISRCDIR ${CHAIDIR}/src</small><br>
+            <small>setenv CHAIHELPDIR ${CHAIDIR}/share/help</small><br>
+            <small>#compilation</small><br>
+            <small>setenv CONFIG_SITE ${CHAIDIR}/share/config.SITE</small><br>
+            <small>setenv PATH ${CHAIDIR}:$PATH</small><br>
+            <small>setenv TCL_LIBRARY
+/projects/bubble/people/vaibhav/code/tcl-chai/lib/tcl7.6</small><br>
+            <small><br>
+Then prepare the compilation:</small><br>
+            <small>source chai_setup</small><br>
+            <small>cd vaibhav/chai</small><br>
+            <small> cp config.SITE.example config.SITE</small><br>
+            <small> Edit config.SITE so that its first line reads as
+follows:</small><br>
+            <small>tcltk_dir=/projects/bubble/people/vaibhav/code/tcl-chai</small><br>
+            <small> Go to chai, and finally compile:</small><br>
+            <small>cd chai</small><br>
+            <small> chmod 700 configure</small><br>
+            <small> ./configure</small><br>
+            <small> make</small><br>
+            <small> Verify that you can access the correct mocha:</small><br>
+            <small>which chai</small><br>
+            <small>(should be the one in the directory you are in).</small><br>
+            <small> Ok, you are done!</small><small><br>
+            </small></td>
+          </tr>
+        </tbody>
+      </table>
+      <hr style="width: 100%; height: 2px;">
+      <h2><a name="Documentation"></a>Documentation</h2>
+      <p>The User's Manual (ps, pdf - <span style="font-weight: bold;">coming
+soon</span>)
+provides a gentle introduction to the use of <span
+ style="font-weight: bold;"><big>C</big><small>HAi</small></span>
+including the modeling formalism interface modules and the composition
+algorithms. </p>
+      <p><span style="font-weight: bold;"><big>C</big><small>HAi</small></span>
+comes with an extensive built-in help system
+which is available through the following help commands in command shell:<i><br>
+      </i></p>
+      <ul>
+        <li><i>help</i>: lists the commands</li>
+        <li><i>help command</i>: gives help for command <i>command</i></li>
+        <li><i>command -h</i>: gives the usage for command <i>command</i></li>
+      </ul>
+The help information for the commands in <span
+ style="font-weight: bold;"><big>C</big><small>HAi</small></span> is
+also available and the function documentation is available <a
+ href="doc/html/index.html">on-line</a>.<br>
+      <br>
+      <hr style="width: 100%; height: 2px;">
+      <h2><big><small><big><small><img src="images/chai.png" title=""
+ alt="Chai Session" style="width: 76px; height: 51px;"></small></big></small></big>
+      <a name="Taste_CHAi_-_A_sample_CHAi_Session_"></a>Taste <big>C<small>HAi
+- An Exemplary <big>C</big><small>HAi</small> Session <br>
+      </small></big></h2>
+      <h2></h2>
+      <table style="height: 728px; width: 423px;" border="1"
+ cellspacing="1" cellpadding="1">
+        <tbody>
+          <tr>
+            <td style="vertical-align: top;"><small>palani 84&gt; chai<br>
+Welcome to CHAI 1.0<br>
+Please report any problems to dvl@cse.ucsc.edu<br>
+chai 1.0 &gt; read_intf counter.intf<br>
+interface counterO<br>
+&nbsp; input vars: x0:&nbsp;&nbsp;&nbsp; bool; x1: bool;<br>
+&nbsp; output vars:&nbsp; toone: bool;<br>
+            <br>
+output atom controls x0, x1 reads x0, x1, toone<br>
+&nbsp; init<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [] true -&gt; x0' := true; x1' :=
+true;<br>
+&nbsp; update<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; []&nbsp;
+toone&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+-&gt; x1' := true;&nbsp; x0' := true<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [] ~toone &amp;&nbsp; x1
+&amp;&nbsp; x0 -&gt; x1' := true;&nbsp; x0' := false<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [] ~toone &amp;&nbsp; x1 &amp; ~x0
+-&gt; x1' := false; x0' := true<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [] ~toone &amp; ~x1 &amp;&nbsp; x0
+-&gt; x1' := false; x0' := false<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [] ~toone &amp; ~x1 &amp; ~x0
+-&gt; x1' := true;&nbsp; x0' := true<br>
+&nbsp; endatom<br>
+input atom controls toone<br>
+&nbsp; init<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [] true -&gt; toone' := nondet<br>
+&nbsp; update<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [] true -&gt; toone' := nondet<br>
+&nbsp; endatom<br>
+endinterface<br>
+            <br>
+Done..<br>
+DEBUG PrsReadIntfCmd :&nbsp; counter.intf.I<br>
+Module counterOI is composed and checked in.<br>
+parse successful.<br>
+Module counterOO is composed and checked in.<br>
+parse successful.<br>
+Building Transition Relation for module "counterOI"<br>
+Transition relation computed : 1 conjuncts<br>
+Dynamic variable ordering is enabled with method sift.<br>
+Done initializing image info...<br>
+"fsm_counterOI" created for module "counterOI"<br>
+Building Transition Relation for module "counterOO"<br>
+Transition relation computed : 1 conjuncts<br>
+Dynamic variable ordering is enabled with method sift.<br>
+Done initializing image info...<br>
+"fsm_counterOO" created for module "counterOO"<br>
+DEBUG Interface Created: counterO<br>
+chai 1.0 &gt; exit<br>
+Thank you for using CHAI 1.0<br>
+            </small></td>
+          </tr>
+        </tbody>
+      </table>
+      <h2><small><a name="chai_session"></a></small></h2>
+      <h2><small><a name="chai_session"></a></small></h2>
+      <hr style="width: 100%; height: 2px;">
+      <h2><b><font size="+2"><a name="Technical_References_for_CHAI"></a>Technical
+References for <big>C</big><small>HAI</small></font></b></h2>
+      <br>
+      <table style="width: 801px; height: 309px;" border="0">
+        <tbody>
+          <tr>
+            <td valign="top"><a name="pubs">[dAH01a]</a> </td>
+            <td valign="top"><b>I</b><b>nterface
+automata</b><br>
+Luca de Alfaro and Thomas A. Henzinger<i>. Proceedings of the Ninth
+Annual Symposium on Foundations of Software Engineering</i> (FSE), ACM
+Press, 2001, pp. 109-120.<br>
+            </td>
+          </tr>
+          <tr>
+            <td valign="top">[dAH01b] </td>
+            <td valign="top"><b>Interface
+theories for component-based design</b><br>
+Luca de Alfaro and Thomas A. Henzinger.<i> Proceedings of the
+First International Workshop on Embedded Software</i> (EMSOFT), Lecture
+Notes in Computer Science 2211, Springer-Verlag, 2001, pp. 148-165. </td>
+          </tr>
+          <tr>
+            <td style="vertical-align: top;">[CdAHJM02]<br>
+            </td>
+            <td style="vertical-align: top;"><span
+ style="font-weight: bold;">Interface compatibility checking for
+software modules</span><br>
+Arindam Chakrabarti, Luca de Alfaro, Thomas A. Henzinger, Marcin
+Jurdzinski, and Freddy Y. C. Mang. <i>Proceedings of the 14th
+International Conference on Computer-Aided Verification</i> (CAV),
+Lecture Notes in Computer Science 2404, Springer-Verlag, 2002, pp.
+428-441.<br>
+            </td>
+          </tr>
+          <tr>
+            <td style="vertical-align: top;">[CdAHM02]<br>
+            </td>
+            <td style="vertical-align: top;"><span
+ style="font-weight: bold;">Synchronous and bidirectional component
+interfaces</span><br>
+Arindam Chakrabarti, Luca de Alfaro, Thomas A. Henzinger, and Freddy Y.
+C. Mang. <i>Proceedings of the 14th International Conference on
+Computer-Aided Verification</i> (CAV), Lecture Notes in Computer
+Science
+2404, Springer-Verlag, 2002, pp. 414-427.<br>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      <br>
+      <hr style="width: 100%; height: 2px;">
+      <h2><a name="Relevant_Projects"></a>Relevant Projects</h2>
+      <ul>
+        <li><a href="http://www-cad.eecs.berkeley.edu/%7Earindam/Chic/">CHIC</a><br>
+        </li>
+        <li><a href="http://www-cad.eecs.berkeley.edu/%7Emocha/">Mocha</a></li>
+        <li><a href="http://research.microsoft.com/vault/">VAULT</a></li>
+        <li><br>
+        </li>
+      </ul>
+      <b><font size="+2"><small></small></font></b>
+      <hr style="width: 100%; height: 2px;">
+      <h2><a name="Support"></a>Support</h2>
+      <ul>
+        <li>Funding from ...<br>
+        </li>
+      </ul>
+      <br>
+      <hr style="width: 100%; height: 2px;"> </td>
+    </tr>
+    <tr>
+      <td bgcolor="#cccccc" height="10" align="right" valign="bottom"><a
+ href="mailto:vaibhav@cse.ucsc.edu">CHAiMaster</a></td>
+    </tr>
+    <tr>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><a href="vaibhav@cse.ucsc.edu"><br>
+      </a></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</body>
+</html>

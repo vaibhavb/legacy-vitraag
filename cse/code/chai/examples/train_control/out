@@ -1,0 +1,118 @@
+Welcome to MOCHA 1.0
+Please report any problems to mocha@eecs.berkeley.edu
+Module Train is composed and checked in.
+Module Controller1 is composed and checked in.
+Module Controller2 is composed and checked in.
+Module TrainW is composed and checked in.
+Module TrainE is composed and checked in.
+Module System1 is composed and checked in.
+Module System2 is composed and checked in.
+parse successful.
+safeCtrl
+try
+No. of explored states = 24
+No sym_info.. building it(using sym_trans)
+Ordering variables using sym_static_order
+Transition relation computed : 3 conjuncts
+Dynamic variable ordering is disabled.
+Done initializing image info...
+
+WARNING: Empty Array of Smoothing Variables
+Initial Region Computed...
+Step 1: image mdd size =         24	 |states| =        5	
+WARNING: Empty Array of Smoothing Variables
+reached set mdd size =         12	 |states| =        5
+Step 2: image mdd size =         35	 |states| =       17	
+WARNING: Empty Array of Smoothing Variables
+reached set mdd size =         14	 |states| =       12
+Step 3: image mdd size =         49	 |states| =       30	
+WARNING: Empty Array of Smoothing Variables
+reached set mdd size =         14	 |states| =       16
+Step 4: image mdd size =         47	 |states| =       40	
+WARNING: Empty Array of Smoothing Variables
+reached set mdd size =         14	 |states| =       20
+Step 5: image mdd size =         51	 |states| =       48	
+WARNING: Empty Array of Smoothing Variables
+reached set mdd size =         15	 |states| =       22
+Step 6: image mdd size =         23	 |states| =        9	
+WARNING: Empty Array of Smoothing Variables
+reached set mdd size =         16	 |states| =       24
+Step 7: image mdd size =         23	 |states| =        9	
+Done reached set computation...
+reached set mdd size =         16	 number of states =       24
+NOTE: Regions are represented only in terms of history dependent variables...
+No. of explored states = 16
+No sym_info.. building it(using sym_trans)
+Ordering variables using sym_static_order
+Transition relation computed : 5 conjuncts
+Dynamic variable ordering is disabled.
+Done initializing image info...
+
+WARNING: Empty Array of Smoothing Variables
+Initial Region Computed...
+Step 1: image mdd size =         18	 |states| =        4	
+WARNING: Empty Array of Smoothing Variables
+reached set mdd size =         10	 |states| =        4
+Step 2: image mdd size =         29	 |states| =       15	
+WARNING: Empty Array of Smoothing Variables
+reached set mdd size =         17	 |states| =        8
+Step 3: image mdd size =         35	 |states| =       21	
+WARNING: Empty Array of Smoothing Variables
+reached set mdd size =         19	 |states| =       12
+Step 4: image mdd size =         37	 |states| =       27	
+WARNING: Empty Array of Smoothing Variables
+reached set mdd size =         19	 |states| =       16
+Step 5: image mdd size =         37	 |states| =       39	
+Done reached set computation...
+reached set mdd size =         19	 number of states =       16
+NOTE: Regions are represented only in terms of history dependent variables...
+Typechecking invariant safeCtrl...
+Typechecking successful
+
+WARNING: Empty Array of Smoothing Variables
+Initial Region Computed...
+Step 1: image mdd size =         24	 |states| =        5	
+WARNING: Empty Array of Smoothing Variables
+reached set mdd size =         12	 |states| =        5
+Step 2: image mdd size =         35	 |states| =       17	
+WARNING: Empty Array of Smoothing Variables
+reached set mdd size =         14	 |states| =       12
+Step 3: image mdd size =         49	 |states| =       30	
+WARNING: Empty Array of Smoothing Variables
+reached set mdd size =         14	 |states| =       16
+Step 4: image mdd size =         47	 |states| =       40	
+WARNING: Empty Array of Smoothing Variables
+reached set mdd size =         14	 |states| =       20
+Step 5: image mdd size =         51	 |states| =       48	
+WARNING: Empty Array of Smoothing Variables
+reached set mdd size =         15	 |states| =       22
+Invariant safeCtrl has been violated
+Invariant safeCtrl failed in step 5
+Counterexample for invariant safeCtrl
+arriveE=0 leaveE=0 pcE=away arriveW=0 leaveW=0 pcW=away signalE=green signalW=green 
+arriveE=1 leaveE=0 pcE=waiting arriveW=1 leaveW=0 pcW=waiting signalE=green signalW=red 
+arriveE=0 leaveE=0 pcE=bridge arriveW=0 leaveW=0 pcW=waiting signalE=green signalW=red 
+arriveE=0 leaveE=1 pcE=away arriveW=0 leaveW=0 pcW=waiting signalE=green signalW=green 
+arriveE=1 leaveE=0 pcE=waiting arriveW=0 leaveW=0 pcW=bridge signalE=green signalW=red 
+arriveE=0 leaveE=0 pcE=bridge arriveW=0 leaveW=0 pcW=bridge signalE=green signalW=red 
+Typechecking invariant safeCtrl...
+Typechecking successful
+
+WARNING: Empty Array of Smoothing Variables
+Initial Region Computed...
+Step 1: image mdd size =         18	 |states| =        4	
+WARNING: Empty Array of Smoothing Variables
+reached set mdd size =         10	 |states| =        4
+Step 2: image mdd size =         29	 |states| =       15	
+WARNING: Empty Array of Smoothing Variables
+reached set mdd size =         17	 |states| =        8
+Step 3: image mdd size =         35	 |states| =       21	
+WARNING: Empty Array of Smoothing Variables
+reached set mdd size =         19	 |states| =       12
+Step 4: image mdd size =         37	 |states| =       27	
+WARNING: Empty Array of Smoothing Variables
+reached set mdd size =         19	 |states| =       16
+Step 5: image mdd size =         37	 |states| =       39	
+Done reached set computation...
+reached set mdd size =         19	 number of states =       16
+Invariant safeCtrl passed

@@ -1,0 +1,11 @@
+
+  isHistoryFreeVariable - Test if a variable is a history-free variable
+     _________________________________________________________________
+   
+   isHistoryFreeVariable variable module
+   
+   This function tests if a variable is a history-free variable of the
+   module. If yes, 1 is returned. Otherwise, 0 is returned.
+     _________________________________________________________________
+   
+   Last updated on 980624 22h10

@@ -1,0 +1,129 @@
+type indexType :  (0..3)
+type sindexType:  (0..4)
+type regType: array indexType of bool
+
+module Spec
+  external  req:bool; free:bool; free_index:indexType; high_priority: bool
+  interface grant:bool; grant_index:indexType; alloc:regType; half_empty:bool
+
+  atom  ALLOC controls alloc 
+	reads  alloc 
+	awaits req, grant, grant_index, free, free_index
+    init
+	[] true -> forall i alloc'[i] := false
+    update
+	[] true -> forall i 
+		   alloc'[i] := 
+		     if(grant' & grant_index' = i) then true
+		     else if (free' & free_index' = i) then false
+		     else alloc[i] fi fi 
+  endatom
+	      
+  atom HALF_EMPTY controls half_empty
+	reads alloc
+  init
+	[] true -> half_empty' := true
+  update
+	[] ~alloc[0]  -> half_empty' := if (~alloc[1] | ~alloc[2] | ~alloc[3]) then true
+					 else false fi
+ 	[] ~alloc[1]  -> half_empty' := if (~alloc[0] | ~alloc[2] | ~alloc[3]) then true
+					 else false fi
+	[] ~alloc[2]  -> half_empty' := if (~alloc[0] | ~alloc[1] | ~alloc[3]) then true
+					 else false fi
+	[] ~alloc[3]  -> half_empty' := if (~alloc[0] | ~alloc[1] | ~alloc[2]) then true 
+					 else false fi
+	[] default    -> half_empty' := 0  & 1
+endatom
+	
+  atom GRANT_INDEX controls grant_index
+  init update
+	[] true -> grant_index' := nondet
+  endatom
+
+  atom GRANT controls grant
+       reads alloc
+       awaits req, high_priority, half_empty, grant_index
+  init
+	[] true -> grant' := false
+  update 
+	[] req' & high_priority' & ~alloc[grant_index'] -> grant' := true
+	[] req'  & half_empty'    & ~alloc[grant_index'] -> grant' := true
+	[] default -> grant' := false
+  endatom
+
+endmodule
+
+module Impl
+  external  req:bool; free:bool; free_index:indexType; high_priority: bool
+  interface grant:bool; grant_index:indexType; alloc:regType; half_empty:bool
+  private sum: sindexType
+
+  atom  ALLOC controls alloc 
+	reads  alloc 
+	awaits grant, grant_index, free, free_index
+    init
+	[] true -> forall i alloc'[i] := false
+    update
+	[] true -> forall i 
+		   alloc'[i] := 
+		     if (grant' & grant_index' = i) then true
+		     else if (free' & free_index' = i) then false
+		     else alloc[i] fi fi 
+  endatom
+
+  
+  atom SUM controls sum
+  	reads sum, alloc
+	awaits grant, free, free_index
+	
+    init
+	[] true -> sum' := 0
+    update
+	[] grant' & ~(free' & alloc[free_index']) -> sum' := sum + 1	
+	[] ~grant' & (free' & alloc[free_index']) -> sum' := sum - 1
+  endatom
+
+	      
+  atom HALF_EMPTY controls half_empty
+	reads sum
+  init
+	[] true  -> half_empty' := true
+  update
+	[] sum > 2    -> half_empty' := false
+	[] default    -> half_empty' := true
+  endatom
+	
+  atom GRANT_INDEX controls grant_index
+	reads alloc
+  init
+	[] true -> grant_index' := 0
+  update
+	[] ~alloc[0] -> grant_index' := 0
+	[] alloc[0] & ~alloc[1] -> grant_index' := 1
+	[] alloc[0] &  alloc[1] & ~alloc[2] -> grant_index' := 2
+	[] alloc[0] &  alloc[1] &  alloc[2] -> grant_index' := 3
+  endatom
+
+  atom GRANT controls grant
+       reads alloc, sum
+       awaits req, high_priority
+  init
+	[] true -> grant' := false
+  update
+	[] req' & high_priority' & sum <= 3 -> grant' := true
+	[] req'  &  sum <= 2 -> grant' := true
+	[] default -> grant' := false
+  endatom
+
+endmodule
+
+
+
+
+
+
+
+ 
+
+
+

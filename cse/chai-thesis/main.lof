@@ -1,0 +1,21 @@
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {2.1}{\ignorespaces A counter and a $\pm 1$ adder, modelled as a synchronous interface.}}{5}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces A 2-bit Down Counter}}{20}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces A 2-bit Down Counter Modelled As An Interface Module}}{21}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces A Simple Gate}}{22}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Syntax of Interface Module}}{26}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Converting Hardware Description Languages to Interfaces}}{31}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Pedestrian Crossing}}{32}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Pedestrian Light Controller in BLIF-MV and {\unhbox \voidb@x \hbox {\scshape Reactive Modules}}}}{34}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Architecture of {\unhbox \voidb@x \hbox {\scshape mv2rm}} }}{35}
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Mapping of {\unhbox \voidb@x \hbox {\scshape BLIF-MV}} constructs to {\unhbox \voidb@x \hbox {\scshape Reactive Modules}}}}{35}
+\contentsline {figure}{\numberline {4.6}{\ignorespaces {Blif-MV} model syntax}}{39}
+\contentsline {figure}{\numberline {4.7}{\ignorespaces Reactive Modules Representing a Down Counter}}{43}
+\contentsline {figure}{\numberline {4.8}{\ignorespaces Interface Representation of Down Counter by {\tt rms2intf}}}{44}
+\contentsline {figure}{\numberline {4.9}{\ignorespaces HDLs in {\unhbox \voidb@x \hbox {\scshape Chai}}}}{44}
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }

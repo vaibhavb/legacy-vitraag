@@ -1,0 +1,16 @@
+Typechecking invariant mutex...
+Step 1: image mdd size =         13	 |states| =       12	
+reached set mdd size =         13	 |states| =       12
+Step 2: image mdd size =         17	 |states| =       16	
+reached set mdd size =         17	 |states| =       20
+Step 3: image mdd size =         17	 |states| =       16	
+reached set mdd size =         17	 number of states =       20
+Typechecking invariant mutex...
+Step 1: image mdd size =          3	 |states| =        4	
+reached set mdd size =          6	 |states| =        8
+Step 2: image mdd size =         12	 |states| =        4	
+reached set mdd size =         12	 |states| =       10
+Counterexample for invariant mutex
+pc1=outCS Pete/x1=1 pc2=outCS Pete/x2=0 
+pc1=reqCS Pete/x1=0 pc2=reqCS Pete/x2=0 
+pc1=inCS Pete/x1=0 pc2=inCS Pete/x2=0 

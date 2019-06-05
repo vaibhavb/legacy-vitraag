@@ -1,0 +1,68 @@
+\setlength{\unitlength}{0.00041667in}
+%
+\begingroup\makeatletter\ifx\SetFigFont\undefined
+% extract first six characters in \fmtname
+\def\x#1#2#3#4#5#6#7\relax{\def\x{#1#2#3#4#5#6}}%
+\expandafter\x\fmtname xxxxxx\relax \def\y{splain}%
+\ifx\x\y   % LaTeX or SliTeX?
+\gdef\SetFigFont#1#2#3{%
+  \ifnum #1<17\tiny\else \ifnum #1<20\small\else
+  \ifnum #1<24\normalsize\else \ifnum #1<29\large\else
+  \ifnum #1<34\Large\else \ifnum #1<41\LARGE\else
+     \huge\fi\fi\fi\fi\fi\fi
+  \csname #3\endcsname}%
+\else
+\gdef\SetFigFont#1#2#3{\begingroup
+  \count@#1\relax \ifnum 25<\count@\count@25\fi
+  \def\x{\endgroup\@setsize\SetFigFont{#2pt}}%
+  \expandafter\x
+    \csname \romannumeral\the\count@ pt\expandafter\endcsname
+    \csname @\romannumeral\the\count@ pt\endcsname
+  \csname #3\endcsname}%
+\fi
+\fi\endgroup
+{\renewcommand{\dashlinestretch}{30}
+\begin{picture}(8710,4728)(0,-10)
+\drawline(12,4026)(12,4026)
+\drawline(6912,3126)(6912,3126)
+\drawline(6912,3126)(6912,3126)
+\drawline(6987,3126)(6987,3126)
+\drawline(6912,2826)(6912,2826)
+\drawline(6912,1626)(6912,1626)
+\drawline(6912,1626)(6912,1626)
+\drawline(6912,1701)(6912,1701)
+\drawline(6912,1626)(6912,1626)
+\path(2187,4701)(6912,4701)(6912,876)
+	(2187,876)(2187,4701)
+\path(6912,1626)(8337,1626)
+\path(8217.000,1596.000)(8337.000,1626.000)(8217.000,1656.000)
+\path(6912,4026)(8337,4026)
+\path(8217.000,3996.000)(8337.000,4026.000)(8217.000,4056.000)
+\path(12,4176)(2187,4176)
+\path(2067.000,4146.000)(2187.000,4176.000)(2067.000,4206.000)
+\path(12,3576)(2187,3576)
+\path(2067.000,3546.000)(2187.000,3576.000)(2067.000,3606.000)
+\path(87,1851)(2187,1851)
+\path(2067.000,1821.000)(2187.000,1851.000)(2067.000,1881.000)
+\drawline(12,4026)(12,4026)
+\path(87,1251)(2187,1251)
+\path(2067.000,1221.000)(2187.000,1251.000)(2067.000,1281.000)
+\put(312,1326){\makebox(0,0)[lb]{\smash{{{\SetFigFont{10}{12.0}{rm}$free\_index$}}}}}
+\path(3912,4476)(4512,4476)(4512,2076)
+	(3912,2076)(3912,4476)
+\path(3912,3876)(4512,3876)
+\path(3912,3276)(4512,3276)
+\path(3912,2676)(4512,2676)
+\put(687,4326){\makebox(0,0)[lb]{\smash{{{\SetFigFont{10}{12.0}{rm}$req$}}}}}
+\put(537,2001){\makebox(0,0)[lb]{\smash{{{\SetFigFont{10}{12.0}{rm}$free$}}}}}
+\put(7062,4176){\makebox(0,0)[lb]{\smash{{{\SetFigFont{10}{12.0}{rm}$grant$}}}}}
+\put(3912,1551){\makebox(0,0)[lb]{\smash{{{\SetFigFont{10}{12.0}{rm}$alloc$}}}}}
+\put(3837,51){\makebox(0,0)[lb]{\smash{{{\SetFigFont{10}{12.0}{rm}Resource Manager}}}}}
+\put(4137,4101){\makebox(0,0)[lb]{\smash{{{\SetFigFont{6}{7.2}{rm}0}}}}}
+\put(4137,3501){\makebox(0,0)[lb]{\smash{{{\SetFigFont{6}{7.2}{rm}1}}}}}
+\put(4137,2901){\makebox(0,0)[lb]{\smash{{{\SetFigFont{6}{7.2}{rm}0}}}}}
+\put(4137,2301){\makebox(0,0)[lb]{\smash{{{\SetFigFont{6}{7.2}{rm}1}}}}}
+\put(6987,1851){\makebox(0,0)[lb]{\smash{{{\SetFigFont{10}{12.0}{rm}$grant\_index$}}}}}
+\put(87,3726){\makebox(0,0)[lb]{\smash{{{\SetFigFont{10}{12.0}{rm}$high\_priority$}}}}}
+\end{picture}
+}

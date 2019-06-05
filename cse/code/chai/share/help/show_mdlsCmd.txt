@@ -1,0 +1,33 @@
+
+  show_mdls - Show all the parsed modules in the current session.
+     _________________________________________________________________
+   
+   show_mdls [-haldg] [<module_name>]
+   
+   List all the parsed modules in the current session. Command Options:
+   
+   -h
+          Prints usage.
+          
+   -a
+          List all the modules, including the internally generated ones
+          (those whose module name is prefixed by an @.)
+          
+   -l
+          Long list of the module descriptions. Also list all the atoms
+          and variables in the module.
+          
+   -d
+          Prints the components of the module. Some modules are defined
+          by operations (namely, parallel composition, variable hiding or
+          variable renaming) on existing modules. This option prints the
+          composing modules.
+          
+   -g
+          Debug option. For developer and package maintainer uses.
+          
+   <module_namegt;
+          Prints information about the specified module only.
+     _________________________________________________________________
+   
+   Last updated on 980624 22h10

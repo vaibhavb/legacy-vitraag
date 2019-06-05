@@ -1,0 +1,76 @@
+<HTML>
+<HEAD><TITLE>The mc package</TITLE></HEAD>
+<BODY>
+
+<DL>
+<dt><pre>
+<A NAME="Mc_FormulaEvaluate"></A>
+mdd_t * <I></I>
+<B>Mc_FormulaEvaluate</B>(
+  Sym_Info_t * <b>symInfo</b>, <i></i>
+  Atlp_Formula_t * <b>formula</b>, <i></i>
+  Mc_VerbosityLevel  <b>verbosity</b> <i></i>
+)
+</pre>
+<dd> This function is called by McModelCheck to evaluate the
+  ATL formula.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<dt><pre>
+<A NAME="Mc_FormulaSemanticCheck"></A>
+boolean <I></I>
+<B>Mc_FormulaSemanticCheck</B>(
+  Atlp_Formula_t * <b>formula</b>, <i></i>
+  Mdl_Module_t * <b>module</b>, <i></i>
+  Var_TypeManager_t * <b>typeManager</b> <i></i>
+)
+</pre>
+<dd> Given a formula, this function will check its semantic
+  against the specified module.  The following will be checked: 1. whether
+  the variables appear in the formula also appears in the module; 2. type of
+  the formula (a type checking routine similar to the typechecking in atm
+  package is used); 3. for formula with path quantifer, check if the
+  formula's agents are refering to the correct ATOMS. For the atomic formulas
+  (formulas with type Atlp_LT_c, Atlp_LE_c, Atlp_GE_c, Atlp_GT_c, Atlp_EQ_c),
+  an Atm_Expr_t is built and stored in the atmExpr field of the formula. This
+  will later be used to compute the set of states in Mc_FormulaEvaluate.
+<p>
+
+<dd> <b>Side Effects</b> It is an error to call this function, if the formula
+  has type Atlp_PLUS_c, Atlp_MINUS_c, Atlp_UMINUS or Atlp_NATNUM_c, since
+  these formula do not evaluate to boolean type.
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<dt><pre>
+<A NAME="Mc_Init"></A>
+int <I></I>
+<B>Mc_Init</B>(
+  Tcl_Interp * <b>interp</b>, <i></i>
+  Main_Manager_t * <b>manager</b> <i></i>
+)
+</pre>
+<dd> Called by TclAppInit for initialization of
+  package. It also calls Atlp_Init to initialize the formula parsing
+  package. Moreover, it creates the command mc for model-checking.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+
+</DL>
+<HR>
+Last updated on 1031103 12h03
+</BODY></HTML>

@@ -1,0 +1,169 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2K.1beta (1.47)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Access Control</TITLE>
+<META NAME="description" CONTENT="Access Control">
+<META NAME="keywords" CONTENT="project">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<META NAME="Generator" CONTENT="LaTeX2HTML v2K.1beta">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="project.css">
+
+<LINK REL="next" HREF="node11.html">
+<LINK REL="previous" HREF="node9.html">
+<LINK REL="up" HREF="node8.html">
+<LINK REL="next" HREF="node11.html">
+</HEAD>
+
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html130"
+  HREF="node11.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="file:/usr/share/latex2html/icons/next.png"></A> 
+<A NAME="tex2html128"
+  HREF="node8.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="file:/usr/share/latex2html/icons/up.png"></A> 
+<A NAME="tex2html122"
+  HREF="node9.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="file:/usr/share/latex2html/icons/prev.png"></A>   
+<BR>
+<B> Next:</B> <A NAME="tex2html131"
+  HREF="node11.html">Maligant Code</A>
+<B> Up:</B> <A NAME="tex2html129"
+  HREF="node8.html">Security Analysis</A>
+<B> Previous:</B> <A NAME="tex2html123"
+  HREF="node9.html">Password Retrieval</A>
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00042000000000000000">
+Access Control</A>
+</H2>
+Implementation of access control is be based the golden standard of authentication, authorization and audit [<A
+ HREF="node19.html#lamp">Lam00</A>].
+
+<P>
+The palm provides data security as individual records marked private in the applications. They are available on presenting correct password. The beaming of data can be prevented by using the <B>beam</B> bit. However this comprises a very primitive and easily breakable access control. Consequently the palm-debugger can gain unauthorised system access easily. This can be relieved by logging all Palm debugger actions with timestamping for audit purpose.
+
+<P>
+In simputer access control is based on the IML access model. IML deals with the user in sessions. Each session has a database having the following format:
+
+<P>
+The session database is simply a three-column table of variable number of rows (limited by the size of the smartcard and the size of the individual entries). The three columns of the table are [<A
+ HREF="node19.html#simpIML">sima</A>]: 
+
+<P>
+<B>Name or key</B> : This holds the name of the variable or key, an arbitrary string. 
+
+<P>
+<B>Magic</B>: This column handles the access security of the varibale and its value. The value of magic can be one of four possible types.
+
+<UL>
+<LI>read (r): the variable can be read by anyone without a password, but to modify it requires a password.
+</LI>
+<LI>exclusive (e): Password is required to read as well as write to this variable.
+</LI>
+<LI>secure (s): The variable is readable by anyone with out a password, but cannot be changed from within IML environment. 
+</LI>
+<LI>transient (t): variable requires password to read and write, but is not stored beyond the current session. 
+</LI>
+</UL>
+
+<P>
+Each of the four types of magic, except type s is a string starting with the single letter that denotes the type followed by a password string, that should be supplied by the user to be allowed access. For secure variables, the magic is single character 's'. 
+
+<P>
+<B>Value</B>: This holds another arbitrary string that will be interpreted as the value of the variable or key named above. 
+An example of a table is given below:
+
+<P></P>
+<DIV ALIGN="CENTER">
+<IMG
+ WIDTH="499" HEIGHT="153" BORDER="0"
+ SRC="img1.png"
+ ALT="\begin{figure}\begin{center}
+\begin{tabular}[!h]{\vert lll\vert}
+\hline
+Name &amp;...
+... \\
+choice &amp; t345tyu &amp; pizza \\
+\hline
+\end{tabular}\end{center}\end{figure}">
+</DIV>
+<P></P>
+
+<BR>
+The first three variables are publicly readable values. Status (married or single) being a sensitive information is accessible only through a password, in this case the string '567rty'. Since the status can change quite quickly in modern times, it is possible to modify the value after the user provides the same password. The phone number is information that is readbale without a password, but needs a password (87iii89) to be modified. The last variable is the choice of food this user has made during a particular session. This value is accessible (read/write) by the production of a password (345tyu), but will not be saved beyond the current session. 
+
+<P>
+Any application that needs to use the data from the session database (or equivalently from a smartcard) can do so by the simple expedient of using the name/key of the data item preceded by an underscore. An example IML segment that uses the databsae varibales is given below.
+<BR>
+<DIV ALIGN="CENTER">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="LEFT"><code>&lt;page&gt;</code></TD>
+</TR>
+<TR><TD ALIGN="LEFT"><code> &lt;tr&gt;&lt;td&gt; Name: &lt;/td&gt;&lt;td&gt;&lt;input type="text" width="15"</code></TD>
+</TR>
+<TR><TD ALIGN="LEFT"><code>		height="1"</code></TD>
+</TR>
+<TR><TD ALIGN="LEFT"><code>var="var0" value="_name" magic="s"/&gt;&lt;/td&gt;&lt;/tr&gt;</code></TD>
+</TR>
+<TR><TD ALIGN="LEFT"><code> &lt;tr&gt;&lt;td&gt; Occupation: &lt;/td&gt;&lt;td&gt;&lt;input type="text" </code></TD>
+</TR>
+<TR><TD ALIGN="LEFT"><code>		width="15" height= 1"</code></TD>
+</TR>
+<TR><TD ALIGN="LEFT"><code>var="var0" value="_occupation" magic="s"/&gt;&lt;/td&gt;&lt;/tr&gt;</code></TD>
+</TR>
+<TR><TD ALIGN="LEFT"><code>&lt;/page&gt;</code></TD>
+</TR>
+</TABLE>
+</DIV>
+
+<P>
+<B>Note</B>: this data can come from the smart card too!!!
+IML restricts access to session DB variables to the input element. The value attribute of this element can be given a database key name (preceded by an underscore) as shown in the example above. When the browser renders the above form, the value of the name key is extracted from the database and filled in the form. 
+This restriction is to ensure complete user control of the session data. Reading or writing of session data has to be at the express approval (as indicated by the correct password) of the user. In addition, transfer of such data to an application (especially an application on a remote machine) can only be through a form (input) element. The user is shown the data that will be sent to the application, and has the ability to delete or modify some fields before submitting the data.
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html130"
+  HREF="node11.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="file:/usr/share/latex2html/icons/next.png"></A> 
+<A NAME="tex2html128"
+  HREF="node8.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="file:/usr/share/latex2html/icons/up.png"></A> 
+<A NAME="tex2html122"
+  HREF="node9.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="file:/usr/share/latex2html/icons/prev.png"></A>   
+<BR>
+<B> Next:</B> <A NAME="tex2html131"
+  HREF="node11.html">Maligant Code</A>
+<B> Up:</B> <A NAME="tex2html129"
+  HREF="node8.html">Security Analysis</A>
+<B> Previous:</B> <A NAME="tex2html123"
+  HREF="node9.html">Password Retrieval</A>
+<!--End of Navigation Panel-->
+<ADDRESS>
+Vaibhav Bhandari
+2001-11-29
+</ADDRESS>
+</BODY>
+</HTML>

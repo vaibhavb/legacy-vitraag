@@ -1,0 +1,196 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+<head>
+  <title>Cil Stunt</title>
+  <link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+<h1> CiL (C intermediate Language) </h1>
+<font color="#ff0000"><br>
+GOAL</font>:<b> Get every function's CFG and a global call Graph.<br>
+</b>
+<h2><a href="theisis-outline.html">Theisis Outline</a></h2>
+<hr width="100%" size="2"><b> </b>
+<h2> To do</h2>
+<ul>
+  <li>Cil code tobe analysed to XML graph. and&nbsp; Scheduler
+generation. Sep 23. "9.30am Friday SVG"</li>
+  <li>Example - Small C program with resources, CFG, XML Format. Aug
+31. (* Mail to Marielle *)<br>
+  </li>
+  <li>Study CiL Data Structure&nbsp;</li>
+  <ul>
+    <li><b>Using graphviz July 15 Call_graph shown</b></li>
+    <li>dot -Tps -o tp.ps tp.dot ; gv tp.ps</li>
+    <li>How does CilVisitorWork ?<br>
+    </li>
+  </ul>
+  <li>Cil CFG and Call Graph walk through of hello-world.c<br>
+  </li>
+  <li>Use CiL api from Ocaml Shell ?? <b>seems not-feasible</b></li>
+  <ul>
+    <li>Pick each module load it and see what it does</li>
+    <li><br>
+    </li>
+  </ul>
+  <li>Make a time-line of things done uptil-now in the project</li>
+  <ul>
+    <li>The lego-stuff as written in Resource interfaces paper</li>
+  </ul>
+</ul>
+<hr width="100%" size="2">
+<h2>Points</h2>
+<ul>
+  <li>
+    <pre><span class="keyword">val</span> <a name="VALprepareCFG"></a>prepareCFG : <code
+ class="type"><a
+ href="http://manju.cs.berkeley.edu/cil/api/Cil.html#TYPEfundec">fundec</a> -&gt; unit</code></pre>
+    <div class="info"> Prepare a function for CFG information
+computation
+by <a
+ href="http://manju.cs.berkeley.edu/cil/api/Cil.html#VALcomputeCFGInfo"><code
+ class="code">Cil.computeCFGInfo</code></a>. This function converts all
+    <code class="code">Break</code>, <code class="code">Switch</code>,
+    <code class="code">Default</code> and <code class="code">Continue</code>
+    <a href="http://manju.cs.berkeley.edu/cil/api/Cil.html#TYPEstmtkind"><code
+ class="code">Cil.stmtkind</code></a>s and <a
+ href="http://manju.cs.berkeley.edu/cil/api/Cil.html#TYPElabel"><code
+ class="code">Cil.label</code></a>s into <code class="code">If</code>s
+and <code class="code">Goto</code>s, giving the function body a very
+CFG-like
+character. This function modifies its argument in place.<br>
+    </div>
+    <pre><span class="keyword">val</span> <a name="VALcomputeCFGInfo"></a>computeCFGInfo : <code
+ class="type"><a
+ href="http://manju.cs.berkeley.edu/cil/api/Cil.html#TYPEfundec">fundec</a> -&gt; bool -&gt; <a
+ href="http://manju.cs.berkeley.edu/cil/api/Cil.html#TYPEstmt">stmt</a> list</code></pre>
+Compute the CFG information for all statements in a fundec and return a
+list of the statements. The input fundec cannot have <code class="code">Break</code>,
+    <code class="code">Switch</code>, <code class="code">Default</code>,
+or <code class="code">Continue</code> <a
+ href="http://manju.cs.berkeley.edu/cil/api/Cil.html#TYPEstmtkind"><code
+ class="code">Cil.stmtkind</code></a>s or <a
+ href="http://manju.cs.berkeley.edu/cil/api/Cil.html#TYPElabel"><code
+ class="code">Cil.label</code></a>s. Use <a
+ href="http://manju.cs.berkeley.edu/cil/api/Cil.html#VALprepareCFG"><code
+ class="code">Cil.prepareCFG</code></a> to transform them away. The
+second
+argument should be <code class="code">true</code> if you wish a global
+statement
+number, <code class="code">false</code> if you wish a local
+(per-function)
+statement numbering.</li>
+  <li>Graphviz: <br>
+  </li>
+  <ul>
+    <li>
+      <table cellpadding="2" cellspacing="2" border="1" width="100%">
+        <tbody>
+          <tr>
+            <td valign="top">digraph ResourceAutomata {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+state0 -&gt; state1 -&gt; state2;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+state0 -&gt; {state4 state5};<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+state1 [shape=box];<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+state2 [label="Illegal State",color=blue,fontsize=24<br>
+,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+fontname="Palatino-Italic",fontcolor=red,style=<br>
+filled];<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+state0 -&gt; state2 [label="x!", weight=100];<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+state4 -&gt; state2 [label="y!\nTransition"];<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+edge [style=dashed,color=red];<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+state1 -&gt; state4;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+{rank=same; state1 state4}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+    </li>
+    <li>dot -Tps -o tp.ps tp.dot</li>
+  </ul>
+  <li>Using cil standalone:</li>
+  <ul>
+    <li>&nbsp;Frontc.parse: string -&gt; unit -&gt; Cil.file function
+with the name of a file containing the output of the preprocessor&nbsp;</li>
+    <ul>
+      <li>Use <b>gcc -E </b>for preprocessor output.<br>
+      </li>
+    </ul>
+    <li>And then invoke your analysis function on the resulting
+Cil.file data structure.</li>
+    <li>You might want to call Rmtmps.removeUnusedTemps first to clean
+up the prototype and variables that are not used.&nbsp;</li>
+    <li>Then you can call the function Cil.printFile: cilPrinter -&gt;
+out_channel -&gt; Cil.file -&gt; unit to print the file to a given
+output channel. A good
+cilPrinter to use is defaultCilPrinter.<br>
+    </li>
+  </ul>
+  <li>Prune cycling parts</li>
+  <li>Prune parts closer to main parts</li>
+  <li>Spawn instruction</li>
+  <li>Lego Mindstorm Platform</li>
+  <li>Wireless Drivers</li>
+  <li>Cil gives <font color="#3366ff">precise semantics</font> to a C
+program.</li>
+  <li><br>
+  </li>
+</ul>
+<hr width="100%" size="2">
+<h2>Progress</h2>
+<ul>
+  <li><br>
+  </li>
+  <li>July 1-14: Getting the crude CFG out-of cil<br>
+  </li>
+  <li>June 30th</li>
+  <ul>
+    <li>Dawson Englers <a
+ href="http://metacomp.stanford.edu/osdi2000/paper.html">System Rules</a>
+give a nice list for <b>possible applications</b> of resource
+interfaces. Especially:</li>
+    <ul>
+      <li>Need for<b> temporal ordering</b> of Copy-in/out and memory
+mgmt.</li>
+    </ul>
+    <li>The <a href="http://boop.sourceforge.net/">Boop </a>Toolkit
+tries to do abstraction and refinement on a C program.</li>
+    <li>A great <a href="http://research.microsoft.com/slam/">summary</a>
+of all the guys in the field.</li>
+    <li>Blast <a
+ href="http://www-cad.eecs.berkeley.edu/%7Erupak/blast/doc/">documentation</a></li>
+    <ul>
+      <li>It says infrastructure for C-program verification</li>
+      <li>Provides nice abstraction in terms of region data-structure
+and post/pre operators.</li>
+      <li><b>Utility</b> is to look at its organization and
+architecture - functors and data-structures.</li>
+      <li>It speaks of <b>Control Flow Automata</b> - ??<br>
+      </li>
+    </ul>
+  </ul>
+</ul>
+<br>
+<br>
+<ul>
+</ul>
+<hr>
+<address>Vaibhav</address>
+<br>
+<br>
+<br>
+<br>
+<br>
+</body>
+</html>

@@ -1,0 +1,163 @@
+#!/usr/bin/perl
+#use Spkg;
+use strict;
+
+# 
+# repo.list : What all packages in repository
+# 
+
+my $inf_files_direc = "/usr/local/store/sget"; # for simp
+#"/projects/bubble/people/vaibhav/spkg-get/s-get/dummy-sget";
+my $dump_direc = "/tmp"; 
+#"/projects/bubble/people/vaibhav/spkg-get/s-get/tmp-sget"; 
+my $cmd_path = "/bin" ; #simputer /bin otherwise
+
+my %rep_list;
+my %pkg_list;
+
+main();
+
+
+sub main {
+    my $option = shift @ARGV;
+    if ( $option eq "-i" ) {
+	my ($package_name) = shift @ARGV;
+	my $actual_package_name = get_package($package_name);
+	print "spkg $option $dump_direc/$actual_package_name";	
+	#Spkg::main $option "$dump_direc/$actual_package_name";
+	(`spkg $option $dump_direc/$actual_package_name` == 0) or die "SPKG failure\n";
+	#exit 0;
+    }
+    if ( $option eq "-update" ) {
+	fetch_package_list();
+	exit 0;
+    }
+    else {
+	display_usage();
+    }
+}
+
+sub get_package {
+    my $pkg_name = shift ;
+    if (lookup_package($pkg_name)) {
+	my $act_name = lookup_package($pkg_name);
+	$act_name =~ s/ //g;
+	fetch_package($act_name);
+	return $act_name;
+    }
+    else {
+	print "Package not found try sget update \n";
+	exit -1;
+    }  
+}
+
+sub lookup_repository {
+    print "Getting source list..\n";
+    open (repolist, "< $inf_files_direc/sources.list");
+    while (<repolist>){
+	if (/^\#/){ } 
+	else{
+	    my ($type, $method, $repos) = split(/ /);
+	    chomp($repos);
+	    my ($ur_mode, $ur_l) = split(/:\/\//, $method);
+	    $rep_list{"type"} = $type;
+	    $rep_list{"ur_mode"} = $ur_mode;
+	    $rep_list{"ur_l"} = $ur_l;
+	    $rep_list{"repos"} = $repos;
+	}
+    }
+    return %rep_list;    
+}
+
+sub fetch_package {
+    my $pkg = shift;
+    chomp($pkg);
+    print "DEBUG: $pkg \n";
+    my %repo  = lookup_repository();
+    for ( $repo{"ur_mode"} ) {	
+	if (/file/) {
+	    print "Copying the package...$repo{\"ur_l\"}/$repo{\"repos\"}/$pkg $dump_direc ..\n"; 
+	    ((qx!$cmd_path/cp $repo{"ur_l"}/$repo{"repos"}/$pkg $dump_direc/!)==0) or die ("Cannot Copy locally.\n");
+	    return;    
+	}
+	if (/http|ftp/) {
+	    print "Getting package....$repo{\"ur_l\"}/$repo{\"repos\"}/$pkg $dump_direc ..\n"; 
+	    chdir($dump_direc);
+	    ((qx!$cmd_path/wget -q $repo{"ur_mode"}/$repo{"ur_l"}/$repo{"repos"}/$pkg!)==0) or die ("Cannot Fetch...\n");	    
+	    return;
+	}
+	else {
+	    die "Unsupported method..$_\n";
+	}
+    } 
+    return;
+}
+
+
+sub lookup_package { 
+    my $pkg_name = shift;
+    if (! %pkg_list) {
+	get_pkg_list ();
+    }
+    return $pkg_list{$pkg_name};
+}
+
+sub get_pkg_list {
+    print "Getting package list..\n";
+    open (repolist, "< $inf_files_direc/repo.list");
+    while (<repolist>){
+	my ($pack_name, $act_name) = split(/:/);
+	$pkg_list{$pack_name} = $act_name;
+    }
+    return;
+}
+
+sub display_usage(){
+    print << "display_usage";
+    
+    Usage :: spkg <option> <package_name> 
+
+<option>:
+         : -i  - Install Package
+	 : -update - Update Current Distribution Info
+         : -dist-upgrade -Upgrade the current distribution TODO
+
+Examples: sget -i iml_examples [to install iml_examples-2.1_4.ppp]
+
+display_usage
+exit(0);
+}
+
+
+sub fetch_package_list {
+    my $pkg = "repo.list";
+    chomp($pkg);
+    print "DEBUG: $pkg \n";
+    my %repo  = lookup_repository();
+    for ( $repo{"ur_mode"} ) {	
+	if (/file/) {
+	    print "Copying the repository list...$repo{\"ur_l\"}/$repo{\"repos\"}/$pkg $inf_files_direc.\n"; 
+	    ((qx!$cmd_path/cp $repo{"ur_l"}/$repo{"repos"}/$pkg $inf_files_direc/!)==0) or die ("Cannot Copy locally.\n");
+	    return;    
+	}
+	if (/http|ftp/) {
+	    print "Getting repository list....$repo{\"ur_l\"}/$repo{\"repos\"}/$pkg $dump_direc ..\n"; 
+	    chdir($inf_files_direc);
+	    ((qx!$cmd_path/wget -q $repo{"ur_mode"}/$repo{"ur_l"}/$repo{"repos"}/$pkg!)==0) or die ("Cannot Fetch...\n");	    
+	    return;
+	}
+	else {
+	    die "Unsupported method..$_\n";
+	}
+    } 
+    return;
+}
+
+
+sub test {
+    #print "$pack_name $act_name";
+    
+    #foreach $KeyValue ( sort(keys(%pkg_list)) ) {
+	#print "$KeyValue : \n";
+    #}
+}

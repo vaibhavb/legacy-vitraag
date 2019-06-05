@@ -1,0 +1,175 @@
+The ref package
+
+routines for refinement checking between modules
+
+Sriram Rajamani
+
+**********************************************************************
+
+Ref_CheckAtomRefinement()
+
+Ref_CheckImplCompatibility()   check implementation compatibility between spec
+                               and impl
+
+Ref_CheckNohiddenRefinement()  Check if implModule is a refinement of
+                               specModule                       with the
+                               assumption that all history dependent
+                               variables of specModule are also present in
+                               implModule
+
+Ref_CheckSimulationUsingPre()  Check if specModule is a simulates of
+                               implModule
+
+Ref_End()                      End function
+
+Ref_Init()                     Init function for tcl.
+
+Ref_IsMemberOfAtomList()       test for membership in list of atoms
+
+Ref_IsMemberOfNameList()       test for membership in list of names
+
+Ref_LookupVarList()            Lookup variable by name from a list of
+                               variables
+
+Ref_Reinit()                   Reinit function
+
+Ref_VariableReadControlAtom()  Ref_VariableReadControlAtom
+
+**********************************************************************
+
+This package has routines that check if one module refines
+another.   1. refinement check is provided via the check_refine      command.
+It requires that all history dependent       variables of the specification
+be witnessed in the       implementation   2. simulation check is provided
+via the check_simulate      command.   3. compositonal refinement facility is
+provided by the      check_refine_atom command. This command helps the
+user carry out one proof oligation in a compositional       proof.
+
+boolean
+Ref_CheckAtomRefinement(
+  Mdl_Manager_t *   mdlManager,
+  Mdl_Module_t *    spec,
+  Atm_Atom_t *      specAtom,
+  Mdl_Module_t *    impl,
+  lsList            varNameList,
+  lsList            forceVarNameList
+  Tcl_Interp *      interp,
+  boolean           checkRef,
+  boolean           verbose,
+  boolean           keepIntermediate
+  int               impBoundary,
+  boolean           checkAtEnd,
+  char *            orderFileName
+)
+  Given implementation, specification and and atom atom1 in implementation,
+  construct new modules newimplementation and newspecification such that 1.
+  new implementation contains atom1 only 2. new specification contains
+  heuristically chosen atoms from specification and implementation that
+  control variables controlled by atom1, but do not include atom1 itself
+
+  Side Effects: required
+
+boolean
+Ref_CheckImplCompatibility(
+  Mdl_Module_t *    spec,
+  Mdl_Module_t *    impl
+)
+  optional
+
+  Side Effects: none
+
+boolean
+Ref_CheckNohiddenRefinement(
+  Mdl_Module_t *    implModule,
+  Sym_Info_t *      implSymInfo,
+  Mdl_Module_t *    specModule,
+  Sym_Info_t *      specSymInfo,
+  boolean           verbose,
+  boolean           checkAtEnd
+)
+  Currently all variables of specModule need to be present in implModule The
+  algorithm for doing this is as follows: -- First check if the initial states
+  of specModule are contained in implModule If not FAIL -- do reachability of
+  implModule During each stage of reachability 1. restrict trans relation of
+  implModule to states in the frontier (ie build (frontier & implTrans)) 2. If
+  restricted implementation trans does NOT imply specification trans, then
+  FAIL and print error trace -- If reachability completes, PASS
+
+  Side Effects: required
+
+boolean
+Ref_CheckSimulationUsingPre(
+  Mdl_Module_t *    implModule,
+  Sym_Info_t *      implSymInfo,
+  Mdl_Module_t *    specModule,
+  Sym_Info_t *      specSymInfo,
+  boolean           verbose
+)
+  Check if specModule is a simulates of implModule
+
+  Side Effects: required
+
+int
+Ref_End(
+  Tcl_Interp *      interp,
+  Main_Manager_t *  manager
+)
+  optional
+
+  Side Effects: required
+
+int
+Ref_Init(
+  Tcl_Interp *      interp,
+  Main_Manager_t *  manager
+)
+  optional
+
+  Side Effects: required
+
+boolean
+Ref_IsMemberOfAtomList(
+  lsList            atomList,
+  Atm_Atom_t *      atom
+)
+  optional
+
+  Side Effects: none
+
+boolean
+Ref_IsMemberOfNameList(
+  lsList            nameList,
+  char *            name
+)
+  optional
+
+  Side Effects: none
+
+Var_Variable_t *
+Ref_LookupVarList(
+  lsList            varList,
+  char *            name
+)
+  optional
+
+  Side Effects: none
+
+int
+Ref_Reinit(
+  Tcl_Interp *      interp,
+  Main_Manager_t *  manager
+)
+  optional
+
+  Side Effects: required
+
+Atm_Atom_t *
+Ref_VariableReadControlAtom(
+  Var_Variable_t *  var
+)
+  Given a variable, get its controlling atom. This differs from
+  Var_VariableReadControllingAtom in that it also works for array and bit-
+  vector variables. In the case of arrays and bit-vectors (or arrays of bit
+  vectors) the atom controlling the first element is returned.
+
+

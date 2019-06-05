@@ -1,0 +1,23 @@
+The sl package
+
+A small script secretful language
+
+Luca de Alfaro & Freddy Mang
+
+**********************************************************************
+
+Sl_Init()                      Initializes the var package.
+
+**********************************************************************
+
+optional
+
+int
+Sl_Init(
+  Tcl_Interp *      interp,
+  Main_Manager_t *  manager
+)
+  Initializes the var package.
+
+  Side Effects: The command, show_types is registered.
+

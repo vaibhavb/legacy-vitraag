@@ -1,0 +1,10 @@
+set mocha_commands(show_mdls) "/projects/mocha/mocha-devel/common/share/help/show_mdlsCmd.txt"
+set mocha_commands(new) "/projects/mocha/mocha-devel/common/share/help/newCmd.txt"
+set mocha_commands(delete)  "/projects/mocha/mocha-devel/common/share/help/deleteCmd.txt"
+set mocha_commands(show_inv) "/projects/mocha/mocha-devel/common/share/help/show_invCmd.txt"
+set mocha_commands(show_vars) "/projects/mocha/mocha-devel/common/share/help/show_varsCmd.txt"
+set mocha_commands(compose) "/projects/mocha/mocha-devel/common/share/help/composeCmd.txt"
+set mocha_commands(hide) "/projects/mocha/mocha-devel/common/share/help/hideCmd.txt"
+set mocha_commands(ren) "/projects/mocha/mocha-devel/common/share/help/renCmd.txt"
+set mocha_commands(isEventVariable) "projects/mocha/mocha-devel/common/share/help/isEventVarCmd.txt"
+

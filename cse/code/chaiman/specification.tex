@@ -1,0 +1,546 @@
+\chapter{Specifications}
+\label{chap:specs}
+\label{sec:specs}
+
+So far, we described the modeling language used to model systems in \mocha.
+In this section we discuss how to describe specifications. Later, we will
+illustrate how to use \mocha\ to check if a specification holds
+true on a module. There are three different ways to state
+specifications in \mocha: (1) invariants, (2) alternating-time temporal logic, and (3) refinement.
+
+\section{Invariants}
+\label{subsec:invariant}
+
+\begin{table}\boxed{
+\begin{tabbing}
+\invFormula \gramdef\ \= \atomicProp\ $|$ \NOT\invFormula \\
+                      \> $|$ $\invFormula_1$ \binbool\ $\invFormula_2$ \\[3ex]
+\atomicProp \gramdef\ \= $\atomicexpr_1$ \compareOp\ $\atomicexpr_2$ \\[1ex]
+                      \> $|$ ($\element_1$ $|$ $\fullsomevar_1$) \EQ\ ($\element_2$ $|$ $\fullsomevar_2$) \\[3ex]
+\atomicexpr\ \gramdef\ \= \intconst\ $|$ \fullsomevar\ \\[1ex]
+                       \> $|$ \LPARA \atomicexpr \RPARA\ $|$ \MINUS \atomicexpr\ \\[1ex]
+                       \> $|$ $\atomicexpr_1$ \PLUS\ $\atomicexpr_2$ \\[1ex]
+                       \> $|$ $\atomicexpr_1$ \MINUS\ $\atomicexpr_2$ \\[3ex]
+\fullsomevar\ \gramdef\ \fullident[\LSQBRAC\atomicexpr\ $|$ \element\RSQBRAC]
+\end{tabbing}}
+\caption{Invariant formula syntax}
+\label{table-inv-syntax}
+\end{table}
+
+An invariant\index{invariant} of a module is a predicate that is intended to hold true
+in all reachable states of a module. The syntax for describing an
+invariant is similar to that for a boolean expression inside a module.
+The formal specification is given in Table~\ref{table-inv-syntax}.
+The \fullident\ construct is a generalized form of an \ident\
+which will be explained in Section~\ref{sec-naming}.
+A \fullident\ may distinguish different variables with the same identifier
+but which belong to different modules.
+
+\mypar
+An invariant $I$ is a predicate on the states of a module.
+A state either satisfies  or does not satisfy $I$. A module
+$M$ satisfies $I$ if all the reachable states of $M$ satisfy $I$.
+For example, consider the module $\Pete$ from Figure~\ref{fig:pete}.
+We would like to state that $P1$ and $P2$ can never be in the 
+critical section at the same time. This is specified by the invariant
+
+\begin{center}
+\tt \NOT((\statuso\ = \incs) \AND\ (\statust\ = \incs))
+\end{center}
+
+\section{Alternating-time temporal logic}
+
+We briefly discuss how to specify Alternating Temporal Logic
+(ATL)\index{Alternating Time Temporal Logic}
+formulas in \mocha.  The reader is referred to \cite{AHK97} for an
+introduction to this logic\index{ATL}.
+
+\begin{table}\boxed{
+\begin{tabbing}
+\pathFormula\ \gramdef\ \= \TTN\ \stateFormula\ $|$ \TTG\ \stateFormula\ $|$ \TTF\ \stateFormula \\
+                        \> $|$ \Tlpara\ $\stateFormula_1$ \TTU\ $\stateFormula_2$ \Trpara \\
+                        \> $|$ \Tlpara\ $\stateFormula_1$ \TTW\ $\stateFormula_2$ \Trpara \\[3ex]
+\stateFormula\ \gramdef\ \= \pathQuantifier\ \pathFormula\ $|$ \atomicProp \\
+                         \> $|$ \NOT\stateFormula \\
+                         \> $|$ $\stateFormula_1$ \binbool\ $\stateFormula_2$ \\[3ex]
+\pathQuantifier\ \gramdef\ \TTA\ $|$ \TTE\ $|$ {\tt <<} \names\ {\tt >>} $|$ {\tt [[} \names\ {\tt ]]} \\[3ex]
+\names\ \gramdef\ \= [$\modulename_1$\COMA\ \ldots \COMA$\modulename_n$] \\
+                  \> $|$ [$\fullatomname_1$\COMA\ \ldots \COMA$\fullatomname_n$] \\[3ex]
+\fullatomname \gramdef\ \fullident
+\end{tabbing}}
+\caption{ATL formula syntax}
+\label{table-atl-syntax}
+\end{table}
+
+ATL is a generalization of the temporal logic CTL \cite{ClarkeEmerson81}.
+If $p$ is a predicate on the states of a module, then
+the CTL formula ${\tt E} {\tt F} p$ means that a state satisfying
+$p$ is reached along {\em some} execution of the module, while
+the CTL formula ${\tt A} {\tt F} p$ means that a state satisfying
+$p$ is reached along {\em every} execution of the module.
+The temporal logic ATL is 
+designed to write requirements of {\em open\/}
+systems \cite{AHK97}, and is
+defined by generalizing the existential
+and universal path quantifiers of CTL.
+For instance, let $\Sigma$ be a set of agents
+corresponding to different components of the system and the external
+environment.  Then, the logic ATL admits formulas of the form
+{\tt <<} $A$ {\tt >>} {\tt F} $p$, where $p$ is a state predicate and $A$ is a subset of
+agents.  The formula {\tt <<} $A$ {\tt >>} {\tt F} $p$ means that the agents in the set $A$
+can cooperate to reach a $p$-state no matter how the remaining agents
+resolve their choices.  This is formalized by defining games, and
+satisfaction of ATL formulas corresponds to existence of winning
+strategies in such games.
+The syntax for ATL formulas is defined inductively by the grammar in Table~\ref{table-atl-syntax}
+and is explained subsequently.
+
+\mypar
+{\bf Atomic formulas.}
+\atomicProp\ as given in Table~\ref{table-inv-syntax} represents the simplest form of state formulas,
+and is made up of comparisons of expressions of different
+types, including integers, natural numbers, ranges and enumerative types. 
+
+\mypar
+{\bf Path formulas.}
+Path formulas are obtained from state formulas using the temporal
+operators {\tt N} (next), {\tt F} (eventually), {\tt G} (always),
+{\tt U} (until), and {\tt W} (while).
+The formal syntax is given in Table~\ref{table-atl-syntax}.
+Path formulas are evaluated over infinite trajectories of a module.
+Consider an infinite trajectory $\overline{s}=s_0s_1\ldots$ of states.
+Then,
+\begin{itemize}
+\item
+The formula ${\tt N}\; p$ holds in $\overline{s}$, for a state formula $p$,
+if the state $s_1$ satisfies $p$.
+\item
+The formula ${\tt F}\; p$ holds in $\overline{s}$, for a state formula $p$,
+if, for some $i\geq 0$, the state $s_i$ satisfies $p$.
+\item
+The formula ${\tt G}\; p$ holds in $\overline{s}$, for a state formula $p$,
+if, for all $i\geq 0$, the state $s_i$ satisfies $p$.
+\item
+The formula $(p\;{\tt U}\; q)$ holds in $\overline{s}$, for state 
+formulas $p$ and $q$,
+if, there exists $i\geq 0$ such that the state $s_i$ satisfies $q$
+and for all $0\leq j<i$, the state $s_j$ satisfies $p$.
+\item
+The formula $(p\;{\tt W}\; q)$ holds in $\overline{s}$, for state 
+formulas $p$ and $q$,
+if either all the states $s_i$ satisfy $p$, or
+there exists $i\geq 0$ such that the state $s_i$
+satisfies $q$ and for all $0\leq j<i$, the state $s_j$ satisfies $p$.
+\end{itemize}
+Observe that, as in CTL, arguments of temporal operators are state formulas,
+rather than path formulas
+(e.g. ${\tt A}\;{\tt G}\;{\tt F}\; p$ is not an ATL formula).
+
+\mypar
+{\bf State formulas.}\index{state formula}
+A state formula is either an atomic proposition,
+or a boolean combination of state formulas, or an application
+of a path quantifier to a path formula.
+While constructing boolean combinations,
+\binbool\ is one of the following: \AND, \OR, \EQUIV, \IMPLY.
+Expressions of boolean types are considered to be
+state formulas, not atomic propositions. As a result, the operator for
+equality test for boolean expressions should be \EQUIV, not \EQ.
+
+In Reactive Modules, each agent corresponds to an atom.
+For each external variable, there is an extra agent which controls it.
+The \pathQuantifier\ construct is given in Table~\ref{table-atl-syntax}
+where \names\ are a list of \fullident{}s separated by comma. All the
+names must refer to identifiers of the same type: either they
+are all module names, or the full atom names.  If module names are
+given, \mocha\ internally break them down into the comprising atoms
+during model checking.
+A space is required 
+between the \pathQuantifier\ and \pathFormula\ . For example, 
+$\TTA\ \TTG$ should be used instead of {\tt AG}.
+The meaning of the path quantifiers\index{path quantifier} is explained below
+\begin{itemize}
+\item
+{\tt E} is existential path quantifier (as in CTL).
+A state $s$ satisfies the formula ${\tt E}\;\varphi$,
+for a path formula $\varphi$, if there is an infinite trajectory
+$\overline{s}$ whose first state is $s$ and which satisfies the formula
+$\varphi$.
+\item
+{\tt A} is universal path quantifier (as in CTL).
+A state $s$ satisfies the formula ${\tt A}\;\varphi$,
+for a path formula $\varphi$, if for every infinite trajectory
+$\overline{s}$ whose first state is $s$, $\overline{s}$ satisfies the formula
+$\varphi$.
+\item
+{\tt <<} \names\ {\tt >>} $\varphi$, for a path formula $\varphi$, means
+that the listed agents have a strategy to produce a trajectory satisfying
+$\varphi$, no matter how the remaining agents behave.
+The satisfaction is formally defined via two-player games.
+To evaluate the formula at a state $s$, consider 
+the following game between a protagonist and an antagonist.
+At every step the protagonist executes the atoms parameterizing the
+path quantifier, while the antagonist executes the remaining atoms.
+The game proceeds for infinitely many rounds resulting in a trajectory.
+The protagonist wins if the resulting trajectory satisfies the path
+formula $\varphi$. The initial state $s$ satisfies the formula
+{\tt <<} \names\ {\tt >>} $\varphi$ if the protagonist has a winning 
+strategy in this game. 
+
+Therefore, the CTL path quantifier {\tt A} is
+equivalent to the ATL path quantifier {\tt << >>}. 
+\item
+The path quantifier {\tt [[ ]]} is the dual of {\tt << >>}:
+{\tt [[} \names\ {\tt ]]} $\varphi$, for a path formula $\varphi$, means
+that the agents that are {\em not} listed in the quantifier
+have a  strategy to produce a trajectory satisfying
+$\varphi$, no matter how the listed agents behave.
+
+Therefore, the CTL path quantifier {\tt E} is equivalent to the ATL
+path quantifier {\tt [[ ]]}. 
+\end{itemize}
+
+The ATL formula ${\tt A}\;{\tt G}\;p$ means that all reachable
+states satisfy $p$. For instance, the mutual exclusion requirement
+for \Pete can be specified by the formula
+
+\begin{center}
+\tt A G \NOT((\statuso\ = \incs) \AND\ (\statust\ = \incs))
+\end{center}
+
+\mypar
+The ATL formula ${\tt A}\;{\tt F}\;p$ means that all trajectories
+contain a $p$-state. The deadlock freedom requirement for {\em Pete}
+can be specified by the formula:
+
+\begin{center}
+\tt A G ((\statuso\ = \reqcs) \IMPLY\ A F (\statuso\ = \incs))
+\end{center}
+
+\mypar
+The ATL fomula
+
+\begin{center}
+\tt {\tt <<} P1 {\tt >>} G (\statuso\ = \outcs)
+\end{center}
+
+\mypar
+means that the module {\tt P1} has a strategy to produce a trajectory
+in which \statuso\ always equals \outcs. This says that
+the choice of {\tt P1} to stay outside is under its own control,
+and does not require any cooperation from $P2$. This formula
+is not expressible in CTL, and is stronger than existential
+CTL (or ATL) formula:
+
+\begin{center}
+\tt E G (\statuso\ = \outcs)
+\end{center}
+
+\mypar
+The ATL formula
+
+\begin{center}
+\tt {\tt <<} P1 {\tt >>} F (\statuso\ = \incs)
+\end{center}
+
+\mypar
+says that the module $P1$ has a strategy to enter the critical section
+no matter how the other module behaves.
+Sample ATL specifications of the railroad controller example
+are given in Section 7.4.
+
+
+%\subsection{Lexical Grammar}
+%Names for modules, atoms and variables have to start with an
+%alphabet. 
+%The following characters can be used in the names:
+%\begin{center}
+%\begin{verbatim}
+%a-z A-Z 0-9 / . _ 
+%\end{verbatim}
+%\end{center}
+
+The model checking problem for ATL is to determine whether a given module
+satisfies a given ATL formula. 
+The ATL model checking problem is solved by generalizing the symbolic fixpoint
+computation procedure for CTL model checking.
+It should be noted that, while ATL is more expressive than CTL,
+its model checking problem is no harder.
+
+\begin{table}\boxed{
+\begin{tabbing}
+\specline\ \gramdef\ \= \inv\ \formulaname\ \invFormula\ \SEMICOLON \\
+                     \> $|$ \atl\ \formulaname\ \pathFormula\ \SEMICOLON \\[3ex]
+\formulaname\ \gramdef\ \ident
+\end{tabbing}}
+\caption{Specification syntax}
+\label{table-spec-syntax}
+\end{table}
+
+\mypar
+{\bf Specification file}.\index{specification file}
+A specification file contains a list of specifications. 
+Each specification is an invariant or an ATL formula. The syntax
+of each line in the specification file is given in Table~\ref{table-spec-syntax}
+where \formulaname\ is a string used to name the formula (and refer to it,
+while model checking the formula) and either \invFormula\ or \pathFormula\ are the actual
+specification formulae. Note that each line needs to be terminated using a semi-colon.
+
+\section{Refinement}\index{refinement}
+Specifications can also be given in terms of abstract modules. In this
+case, both the model and the specification are given as reactive modules,
+and \mocha\ can be used to check if the model is a refinement of the
+specification.
+
+
+The execution of a module results in a trace of observations.
+Reactive modules are related via a trace semantics:
+roughly speaking, one module {\em implements\/}\index{implements} (or {\em refines\/}\index{refines}) another
+module if all possible traces of the former, more detailed module are also
+possible traces of the latter, more abstract module.
+
+
+\section{The trace language of a module}
+
+Let $\ro$ be a reactive module.
+As indicated earlier, a state of $\ro$ is a valuation for the set
+$\rovars{\ro}$ of module variables.
+We write $\states_{\ro}$ for the set of states of~$\ro$.
+
+\mypar
+A state $\state$ of the module $\ro$ is {\em initial\/} if it can be obtained
+by executing all initial actions of $\ro$ in a consistent order.
+We write $\init\ro$ for the set of initial states of the module~$\ro$.
+The set $\init\ro$ is nonempty, because all initial actions are executable.
+For two states $\state$ and $\astate$ of~$\ro$, the state $\astate$ is a 
+{\em successor\/} of~$\state$, written $\state\trans_{\ro}\astate$, if 
+$\astate$ can be obtained from $\state$ by executing all update actions of 
+$\ro$ in a consistent order.
+The binary relation $\trans_{\ro}$ over the state space $\states_{\ro}$ is called
+the {\em transition relation\/} of the module~$\ro$.
+The transition relation $\trans_{\ro}$ is serial 
+(i.e., every state has at least one successor), because all update actions 
+are executable.
+Moreover, a module does not constrain the behavior of the external variables 
+and interacts with its environment in a nonblocking way.
+
+
+\mypar
+In this way, the module $\ro$ defines a state-transition graph with the state
+space~$\states_{\ro}$, the initial states $\init\ro$, and the transition 
+relation~$\trans_{\ro}$. 
+The initialized paths of this graph are called the trajectories of the 
+module:
+a {\em trajectory\/} of $\ro$ is a finite sequence $\state_0\ldots\state_n$ 
+of states of $\ro$ such that 
+(1)~the first state $\state_0$ is initial and
+(2)~for all $0\leq i<n$, the state $\state_{i+1}$ is a successor 
+  of~$\state_i$.
+If $s$ is a valuation to a set of variables,
+we use $[s]_{\ro}$ to denote the set of valuations
+from $s$ restricted to the observable variables of $\ro$.
+If $\stateseq=\state_0\ldots\state_n$ is a trajectory of~$\ro$, then the 
+corresponding sequence 
+$[\stateseq]_{\ro}=[\state_0]_{\ro}\ldots[\state_n]_{\ro}$ of 
+observations is called a {\em trace\/}\index{trace} of~$\ro$.
+Thus, a trace records the sequence of observations that may result from
+executing the module for finitely many steps.
+The {\em trace language\/}\index{trace language} of the module~$\ro$, denoted~$\lang{\ro}$, is the 
+set of traces of~$\ro$.
+By definition, every prefix of a trajectory is also a trajectory, and hence, 
+every prefix of a trace is also a trace.
+Since the set of initial states is nonempty, and the transition relation is 
+serial, every trajectory of a module, and hence also every trace, can be 
+extended.
+It follows that a module cannot deadlock.
+In modeling, therefore, a deadlock situation must be represented by a special
+state with a single outgoing transition back to itself.
+
+
+\section{The implementation preorder between modules}
+
+The semantics of the module $\ro$ consists of the trace 
+language~$\lang{\ro}$, as well as all information that is necessary for
+describing the possible interactions of $\ro$ with the environment:
+the set $\intf{\ro}$ of interface variables, the set $\extl{\ro}$ of external
+variables, and the await dependencies 
+$\awaits_{\ro}\cap\,(\intf{\ro}\times\ovars{\ro})$ between interface variables 
+and observable variables
+(there cannot be any await dependencies between external variables and other 
+variables).
+
+\begin{definition}{refinability}\it
+  {\em [{\bf Refinability}]}
+  The module $\aro$ is {\em refinable\/}\index{refineable} by the module~$\ro$,
+  if the following conditions are met:
+  (1)~every interface variable of $\aro$ is an interface variable of~$\ro$;
+  (2)~every external variable of $\aro$ is an observable variable of~$\ro$; and
+  (3)~for all observable variables $\var$ of ${\aro}$ and all interface 
+    variables $\avar$ of~${\aro}$, if $\avar\awaits_{\aro}\var$, then 
+    $\avar\awaits_{\ro}\var$
+\end{definition}
+
+\begin{definition}{implement}\it
+  {\em [{\bf Implementation}]}
+  The module $\ro$ {\em implements\/}\index{implements} the module~$\aro$, written 
+  $\ro\refines\aro$, if the following conditions are met:
+  (1) $\aro$ is refinable by $\ro$; and
+  (2)~if $\stateseq$ is a trace of~$\ro$, then the projection 
+    $[\stateseq]_{\aro}$ is a trace of~$\aro$.
+\end{definition}
+
+
+\mypar
+Refinability ensures that the compatibility constraints imposed 
+by $\ro$ on its environment are at least as strong as those imposed 
+by~$\aro$.
+The second condition for implementation is conventional trace containment.
+Intuitively, if $\ro\refines\aro$, then the module $\ro$ is 
+{\it as detailed as\/} the module~$\aro$: 
+the implementation $\ro$ has possibly more interface and external variables 
+than the specification~$\aro$;
+some external variables of $\aro$ may be interface variables of~$\ro$, and 
+thus are more constrained in~$\ro$;
+the implementation $\ro$ has possibly more await dependencies among its 
+observable variables than the specification~$\aro$;
+and $\ro$ has possibly fewer traces than~$\aro$, and thus more constraints on
+its execution.
+It is easy to check that every module $\ro$ implements itself, and that if a 
+module $\ro$ implements another module $\aro$, which, in turn, implements a 
+third module $\bro$, then $\ro$ also implements~$\bro$.
+Hence, the implementation relation $\refines$ is a preorder 
+(i.e., reflexive and transitive).
+
+\mypar
+%We write $\ro\refeq\aro$ if $\ro$ implements $\aro$ and $\aro$ 
+%implements~$\ro$. 
+%It follows that $\refeq$ is an equivalence relation on modules.
+%The {\em meaning\/} of a module $\ro$ is the $\refeq$-equivalence class
+%of~$\ro$. 
+
+
+%A weak notion of refinement is the implementation relation between modules
+%defined in Section~\ref{sec:semantics}. 
+
+
+
+
+
+
+Simulation is a stronger notion of
+one module refining another.
+
+\begin{definition}{simulation-relation}\it
+  {\em [{\bf Simulation relation}]}
+Let $\ro$ and $\aro$ be modules such that $\aro$ is refinable by $\ro$. 
+A relation $H \subseteq \states_{\ro} \times \states_{\aro}$ is a 
+{\em simulation}\index{simulation relation} if the following conditions are met:
+ (1) For all states $s \in \states_{\ro}$ and 
+     $t \in \states_{\aro}$, if $H(s, t)$ then 
+     $[s]_{\aro} = [t]_{\aro}$;
+ (2) For all states $s \in \states_{\ro}$ and 
+     $t \in \states_{\aro}$, if $H(s, t)$ and
+     $s \trans_{\ro} s'$ then there is a state $t'$ of $\aro$ such that
+     $ t \trans_{\aro} t'$ and $H(s',t')$.
+\end{definition}
+
+
+
+\begin{definition}{simulation}\it
+  {\em [{\bf Simulation}]}
+Module $\aro$ {\em simulates} module $\ro$ (written
+ $\ro \simul \aro$) 
+if the following conditions are met:
+ (1) $\aro$ is refinable by $\ro$; and
+ (2) There is a simulation relation $H \subseteq \states_{\ro} \times \states_{\aro}$
+     such that, for every $s$ that is an initial state of $\ro$ there is an
+     initial state $t$ of $\aro$ satisfying $H(s,t)$.
+\end {definition}
+
+
+\mypar
+Simulation is a sufficient (but not necessary) condition for
+implementation, as stated by the following proposition:
+
+\begin {proposition}{sufficiency}
+  [Simulation and implementation]
+  For any two modules $\ro$ and $\aro$,
+  if $\ro\simul\aro$ then  $\ro$ $ \refines$ $ \aro$.
+\end {proposition}
+
+\mypar
+The problem of checking if $\ro$ $\refines$ $\aro$ is PSPACE-hard in the
+state space of~$\aro$.  The problem of checking if $\ro\simul\aro$ can
+be checked in time that is linear on the state spaces of $\ro$ and
+$\aro$. For the special case in which all variables of $\aro$ are
+observable, the notions of implementation and simulation coincide. In
+such cases, we just say that $\ro$ refines $\aro$.
+
+\mypar
+\mocha\ provides automatic procedures to check if one module refines
+the other or if one module simulates the other. To cope up with
+large modules, \mocha\ also supports a compositional refinement
+methodology. The user commands to support refinement and simulation
+checks are described in Chapter~\ref{sec:commands}. Compositional
+refinement is discussed in Chapter~\ref{sec:methodology}.
+
+\section{Referencing variables and atoms: the naming convention}
+\label{sec-naming}
+
+\begin{table}\boxed{
+\begin{tabbing}
+\fullident \gramdef\ \ident\ $|$ \modulename\SLASH\fullident
+\end{tabbing}}
+\caption{Syntax of identifiers for variables (atoms) in invariant and ATL formulae}
+\label{table-full-ident-syntax}
+\end{table}
+
+In specifying invariants or atomic propositions in ATL formulae,
+variables in modules need to be referenced. Also, in ATL formulae the
+path quantifiers may be parametized by atoms. The question arises as
+to how to refer to variables and atoms, especially in the case of
+composite modules formed by parallel composition and hiding, etc. 
+
+One option is to use the module browser and obtain the name of the variable or atom.
+The variables and atoms can also be systematically given hierarchical
+names provided certain restrictions are observed in forming composite
+modules (if these restrictions are not oberved, the module browser 
+is the only option to find out variable and atom names). 
+
+If {\tt M} is a module, its visible variables---interface and
+external---are referenced by their names. If {\tt M} is a native module,
+i.e., that which is not formed by hiding or renaming of other
+modules, its atoms are again referenced by their names, if they were
+named, and otherwise their names have to be obtained from the browser. 
+
+If {\tt M2} is a module as below:
+
+\mypar
+\begin{verbatim}
+ M2 := hide x_1, x_2 in M1
+\end{verbatim}
+
+\mypar
+then the private variables {\tt x\_1} and {\tt x\_2} of {\tt M2} can
+be referenced with the names {\tt M2/x\_1} and {\tt M2/x\_2}, respectively.
+Variables and atoms in {\tt M\_1} are then referenced
+inductively with names prefixed by {\tt M2/M1}.
+Syntactically, the identifier of a variable or an atom in a specification is a \fullident.
+The formal syntax of \fullident\ expressions is given in Table~\ref{table-full-ident-syntax}.
+
+A similar rule is invoked to name the variables of 
+
+\mypar
+\begin{verbatim}
+ M3 := hide x_1, x_2 in (M1 || M2)
+\end{verbatim}
+
+For the above defined rules to uniquely name variables and atoms the
+following operations are disallowed:
+\begin{enumerate}
+\item Parallel composition of a module with itself. For instance, {\tt
+P || P}, even if they only have external variables, is not allowed.  
+\item There can be at most one hide in a module expression. For
+instance, {\tt X := (hide x in P ) || (hide x in Q)}, is not allowed
+also. 
+\end{enumerate}

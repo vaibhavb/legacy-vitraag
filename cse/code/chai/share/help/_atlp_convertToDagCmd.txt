@@ -1,0 +1,10 @@
+
+  _atlp_convertToDag - Command that converts a list of formula into a DAG.
+     _________________________________________________________________
+   
+   _atlp_convertToDag optional
+   
+   Temporary command for debugging only.
+     _________________________________________________________________
+   
+   Last updated on 980624 22h10

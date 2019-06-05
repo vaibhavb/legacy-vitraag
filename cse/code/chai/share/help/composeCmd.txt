@@ -1,0 +1,24 @@
+
+  compose - parallel composition of two modules.
+     _________________________________________________________________
+   
+   compose [-h] lt;module_namegt; lt;module_namegt;
+   
+   This function creates a new module which is the parallel composition
+   of the given modules. It returns the name of the newly composed
+   module.
+   
+   The name of the new module is generated internally. To designate a
+   name, use let. For example, the command
+   
+   let P be [compose P1 P2]
+   
+   creates a module P which is the parallel composition of P1 and P2.
+   
+   Command Options:
+   
+   -h
+          Prints usage.
+     _________________________________________________________________
+   
+   Last updated on 980624 22h10

@@ -1,0 +1,104 @@
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="Start" href="index.html">
+<link rel="previous" href="Pretty.html">
+<link rel="next" href="Clist.html">
+<link rel="Up" href="index.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of exceptions" rel=Appendix href="index_exceptions.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of class methods" rel=Appendix href="index_methods.html">
+<link title="Index of classes" rel=Appendix href="index_classes.html">
+<link title="Index of class types" rel=Appendix href="index_class_types.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="Pretty" rel="Chapter" href="Pretty.html">
+<link title="Errormsg" rel="Chapter" href="Errormsg.html">
+<link title="Clist" rel="Chapter" href="Clist.html">
+<link title="Stats" rel="Chapter" href="Stats.html">
+<link title="Cil" rel="Chapter" href="Cil.html">
+<link title="Formatcil" rel="Chapter" href="Formatcil.html"><title>CIL API Documentation (version 1.2.1) : Errormsg</title>
+</head>
+<body>
+<div class="navbar"><a href="Pretty.html">Previous</a>
+&nbsp;<a href="index.html">Up</a>
+&nbsp;<a href="Clist.html">Next</a>
+</div>
+<center><h1>Module <a href="type_Errormsg.html">Errormsg</a></h1></center>
+<br>
+<pre><span class="keyword">module</span> Errormsg: <code class="type">sig  end</code></pre><div class="info">
+Utilities for error reporting.<br>
+</div>
+<hr width="100%">
+<br><code><span class="keyword">type</span> <a name="TYPEparseinfo"></a>parseinfo </code>
+<br>
+<pre><span class="keyword">val</span> <a name="VALnewline"></a>newline : <code class="type">unit -> unit</code></pre><pre><span class="keyword">val</span> <a name="VALparse_error"></a>parse_error : <code class="type">string -> int -> int -> unit</code></pre><br><code><span class="keyword">type</span> <a name="TYPEparseWhat"></a>parseWhat =<br></code><table border="0" cellpadding="1">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span class="constructor">ParseString</span> <span class="keyword">of</span> <code class="type">string</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span class="constructor">ParseFile</span> <span class="keyword">of</span> <code class="type">string</code></code></td>
+
+</tr></table>
+
+<br>
+<pre><span class="keyword">val</span> <a name="VALstartParsing"></a>startParsing : <code class="type"><a href="Errormsg.html#TYPEparseWhat">parseWhat</a> -> Lexing.lexbuf</code></pre><pre><span class="keyword">val</span> <a name="VALfinishParsing"></a>finishParsing : <code class="type">unit -> unit</code></pre><pre><span class="keyword">val</span> <a name="VALsetCurrentLine"></a>setCurrentLine : <code class="type">int -> unit</code></pre><pre><span class="keyword">val</span> <a name="VALsetCurrentFile"></a>setCurrentFile : <code class="type">string -> unit</code></pre><pre><span class="keyword">val</span> <a name="VALcurrentPattern"></a>currentPattern : <code class="type">string Pervasives.ref</code></pre><pre><span class="keyword">val</span> <a name="VALgetPosition"></a>getPosition : <code class="type">unit -> int * string * int</code></pre><pre><span class="keyword">val</span> <a name="VALpush_context"></a>push_context : <code class="type">(unit -> unit) Pervasives.ref</code></pre><pre><span class="keyword">val</span> <a name="VALadd_type"></a>add_type : <code class="type">(string -> unit) Pervasives.ref</code></pre><pre><span class="keyword">val</span> <a name="VALadd_identifier"></a>add_identifier : <code class="type">(string -> unit) Pervasives.ref</code></pre><pre><span class="keyword">val</span> <a name="VALpop_context"></a>pop_context : <code class="type">(unit -> unit) Pervasives.ref</code></pre><pre><span class="keyword">val</span> <a name="VALlogChannel"></a>logChannel : <code class="type">Pervasives.out_channel Pervasives.ref</code></pre><div class="info">
+A channel for printing log messages<br>
+</div>
+<pre><span class="keyword">val</span> <a name="VALdebugFlag"></a>debugFlag : <code class="type">bool Pervasives.ref</code></pre><div class="info">
+If set then print debugging info<br>
+</div>
+<pre><span class="keyword">val</span> <a name="VALverboseFlag"></a>verboseFlag : <code class="type">bool Pervasives.ref</code></pre><pre><span class="keyword">val</span> <a name="VALwarnFlag"></a>warnFlag : <code class="type">bool Pervasives.ref</code></pre><div class="info">
+Set to true if you want to see all warnings.<br>
+</div>
+<pre><span class="keyword">val</span> <a name="VALtheLexbuf"></a>theLexbuf : <code class="type">Lexing.lexbuf Pervasives.ref</code></pre><pre><span class="keyword">exception</span> <a name="EXCEPTIONError"></a>Error</pre>
+<div class="info">
+Error reporting functions raise this exception<br>
+</div>
+<pre><span class="keyword">val</span> <a name="VALerror"></a>error : <code class="type">('a, unit, <a href="Pretty.html#TYPEdoc">Pretty.doc</a>) format -> 'a</code></pre><div class="info">
+Prints an error message of the form <code class="code">Error: ...</code> and then raises the 
+    exception <code class="code">Error</code>. Use in conjunction with s, for example: <code class="code">E.s (E.error 
+    ... )</code>.<br>
+</div>
+<pre><span class="keyword">val</span> <a name="VALbug"></a>bug : <code class="type">('a, unit, <a href="Pretty.html#TYPEdoc">Pretty.doc</a>) format -> 'a</code></pre><div class="info">
+Similar to <code class="code">error</code> except that its output has the form <code class="code">Bug: ...</code><br>
+</div>
+<pre><span class="keyword">val</span> <a name="VALunimp"></a>unimp : <code class="type">('a, unit, <a href="Pretty.html#TYPEdoc">Pretty.doc</a>) format -> 'a</code></pre><div class="info">
+Similar to <code class="code">error</code> except that its output has the form <code class="code">Unimplemented: ...</code><br>
+</div>
+<pre><span class="keyword">val</span> <a name="VALs"></a>s : <code class="type"><a href="Pretty.html#TYPEdoc">Pretty.doc</a> -> 'a</code></pre><pre><span class="keyword">val</span> <a name="VALhadErrors"></a>hadErrors : <code class="type">bool Pervasives.ref</code></pre><div class="info">
+This is set whenever one of the above error functions are called. It must
+    be cleared manually<br>
+</div>
+<pre><span class="keyword">val</span> <a name="VALwarn"></a>warn : <code class="type">('a, unit, <a href="Pretty.html#TYPEdoc">Pretty.doc</a>) format -> 'a</code></pre><div class="info">
+Like <a href="Errormsg.html#VALerror"><code class="code">Errormsg.error</code></a> but does not raise the <a href="Errormsg.html#EXCEPTIONError"><code class="code">Errormsg.Error</code></a> 
+ exception. Use: <code class="code">ignore (E.warn ...)</code><br>
+</div>
+<pre><span class="keyword">val</span> <a name="VALwarnOpt"></a>warnOpt : <code class="type">('a, unit, <a href="Pretty.html#TYPEdoc">Pretty.doc</a>) format -> 'a</code></pre><div class="info">
+Like <a href="Errormsg.html#VALwarn"><code class="code">Errormsg.warn</code></a> but optional. Printed only if the 
+ <a href="Errormsg.html#VALwarnFlag"><code class="code">Errormsg.warnFlag</code></a> is set<br>
+</div>
+<pre><span class="keyword">val</span> <a name="VALlog"></a>log : <code class="type">('a, unit, <a href="Pretty.html#TYPEdoc">Pretty.doc</a>) format -> 'a</code></pre><div class="info">
+Print something to <code class="code">logChannel</code><br>
+</div>
+<pre><span class="keyword">val</span> <a name="VALpushContext"></a>pushContext : <code class="type">(unit -> <a href="Pretty.html#TYPEdoc">Pretty.doc</a>) -> unit</code></pre><div class="info">
+Registers a context printing function<br>
+</div>
+<pre><span class="keyword">val</span> <a name="VALpopContext"></a>popContext : <code class="type">unit -> unit</code></pre><div class="info">
+Removes the last registered context printing function<br>
+</div>
+<pre><span class="keyword">val</span> <a name="VALshowContext"></a>showContext : <code class="type">unit -> unit</code></pre><div class="info">
+Show the context stack to stderr<br>
+</div>
+<pre><span class="keyword">val</span> <a name="VALwithContext"></a>withContext : <code class="type">(unit -> <a href="Pretty.html#TYPEdoc">Pretty.doc</a>) -> ('a -> 'b) -> 'a -> 'b</code></pre><div class="info">
+To ensure that the context is registered and removed properly, use the 
+    function below<br>
+</div>
+</body></html>

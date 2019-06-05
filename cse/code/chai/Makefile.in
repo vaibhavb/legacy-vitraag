@@ -1,0 +1,673 @@
+# FileName	[ Makefile.in ]
+#
+# PackageName	[ mocha ]
+#
+# Synopsis	[ Package-wide Makefile ]
+#
+# Description	[ This file requires GNU's make program.
+#		  Run "configure" to generate the Makefile, or use
+#		  "config.status" (created by configure) to regenerate the
+#		  Makefile after modifying this file. ]
+#
+# SeeAlso	[ configure.in ]
+#
+# Author	[ Stephen Edwards <sedwards@eecs.berkeley.edu>
+#		  Tom Shiple <shiple@eecs.berkeley.edu> ]
+#
+# Copyright	[
+#  Copyright (c) 1994-1996 The Regents of the Univ. of California.
+#  All rights reserved.
+#
+#  Permission is hereby granted, without written agreement and without license
+#  or royalty fees, to use, copy, modify, and distribute this software and its
+#  documentation for any purpose, provided that the above copyright notice and
+#  the following two paragraphs appear in all copies of this software.
+#
+#  IN NO EVENT SHALL THE UNIVERSITY OF CALIFORNIA BE LIABLE TO ANY PARTY FOR
+#  DIRECT, INDIRECT, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL DAMAGES ARISING OUT
+#  OF THE USE OF THIS SOFTWARE AND ITS DOCUMENTATION, EVEN IF THE UNIVERSITY OF
+#  CALIFORNIA HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+#
+#  THE UNIVERSITY OF CALIFORNIA SPECIFICALLY DISCLAIMS ANY WARRANTIES,
+#  INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
+#  FITNESS FOR A PARTICULAR PURPOSE.  THE SOFTWARE PROVIDED HEREUNDER IS ON AN
+#  "AS IS" BASIS, AND THE UNIVERSITY OF CALIFORNIA HAS NO OBLIGATION TO PROVIDE
+#  MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS.
+#  ]
+#
+# Revision	[$Id: Makefile.in,v 1.3 2003/05/24 07:08:54 vaibhav Exp $]
+
+# Default target:
+
+default : all
+
+#----------------------------------------------------------------------
+# The list of packages to compile -- change this if you're not compiling
+# all of MOCHA
+#----------------------------------------------------------------------
+
+#PKGS = tst
+PKGS = $(ALL_PKGS)
+
+#----------------------------------------------------------------------
+# More package stuff
+#----------------------------------------------------------------------
+
+ALL_PKGS = prs inv atlp atm enum img intf main mc mdl mvf ref rtm sim sym trc var sl dddmp
+
+# Generate the list of all packages NOT in the PKGS list
+
+MISSING_PKGS = $(filter-out $(PKGS), $(ALL_PKGS))
+
+# All the BDD packages
+BDDPKGS = cmu cu cal
+
+#----------------------------------------------------------------------
+# For safety
+#----------------------------------------------------------------------
+#----------------------------------------------------------------------
+# File containing the main program.
+#----------------------------------------------------------------------
+MAINFILE = mainMain.c
+SHELL = /bin/sh
+.SUFFIXES:
+
+#----------------------------------------------------------------------
+# The name of the product and its version
+#----------------------------------------------------------------------
+
+PRODUCT = chai
+VERSION = 1.0.0
+
+# Compile and version information printed by the compiler
+#
+# CUR_DATE and CUR_VER are strings surrounded by double quotes that contain
+# spaces, e.g., "mocha release 1.0"
+
+VERDATE = -DCUR_DATE="\"$(shell date)\"" -DCUR_VER="\"$(PRODUCT) release $(VERSION)\""
+
+#----------------------------------------------------------------------
+# Directories for everything
+#----------------------------------------------------------------------
+
+# Directory in which to install architecture-independent files
+# Set by ./configure --prefix=...
+prefix =	@prefix@
+
+# Directory in which to install architecture-dependent files
+# Set by ./configure --exec-prefix=...
+exec_prefix =	@exec_prefix@
+
+# Directory where master source files reside (used with MISSING_PKGS)
+# Defaults to srcdir, but may be overridden with
+# ./configure --srcdir=
+master_srcdir =	@srcdir@
+
+# Directory where local source files (for editing) reside (used with PKGS)
+# Set by ./configure --with-local-srcdir=
+local_srcdir =	@local_srcdir@
+
+# Directory where local source files reside for RCS purposes
+MOCHA_USER_DIR =	$(HOME)/mocha/common
+
+# Directory in which to install binaries
+bindir =	$(exec_prefix)/bin
+
+# Directory in which to install libraries
+libdir =	$(exec_prefix)/lib
+
+# Directory in which to install headers
+includedir =	$(prefix)/include
+
+# Directory in which to install architecture-independent library files
+datadir = 	$(prefix)/share
+
+# Directory where object (and other generated) files will be placed
+# during the build
+objectdir =	obj
+
+# Directory where documentation will be placed during the build
+docdir =	$(master_srcdir)/doc
+htmldocdir =	$(docdir)/html
+txtdocdir =	$(docdir)/txt
+helpdir =	$(master_srcdir)/share/help
+
+# Directories to search for MOCHA library files
+# Set by ./configure --with-mocha-libdir=
+mochalibdir =	@mochalibdir@
+
+# Name of the library to create
+LIBRARY =	lib$(PRODUCT).a
+
+# Directories to search for libglu.a (space-separated)
+glulibdir =	@glulibdir@
+
+# Directories to search for glu .h files (space-separated)
+gluincdir =	@gluincdir@
+
+#----------------------------------------------------------------------
+# The following are set by the configure script
+#----------------------------------------------------------------------
+
+AC_FLAGS =	@DEFS@
+INCDIRS = 	@INCDIRS@
+LIBDIRS =	@LIBDIRS@ @FLEXLIBPATH@
+RANLIB =	@RANLIB@
+CC =		@CC@
+LINKER =	@LINKER@
+CFLAGS =	@CFLAGS@
+LDFLAGS =	@LDFLAGS@
+GLULIBS =	@BDDLIB@ -lglu
+LIBS =		-ltcl7.6 -lX11 -lm @LIBS@ @LEXLIB@ @EXTRALIBS@
+YACC =		@YACC@
+LEX =		@LEX@
+NAWK =		@AWK@
+INSTALL =	@INSTALL@
+INSTALL_PROGRAM = @INSTALL_PROGRAM@
+INSTALL_DATA =	@INSTALL_DATA@
+
+#----------------------------------------------------------------------
+# List of all examples to check
+#----------------------------------------------------------------------
+
+EXAMPLES = arbiter pete swp syncMutex train_control pipeline tomasulo tree msg resource rt_train_control counter
+
+#----------------------------------------------------------------------
+# List of all files in the doc directory
+#----------------------------------------------------------------------
+
+DOCUMENTATION = manual.ps
+
+#----------------------------------------------------------------------
+# List of all files in the share directory
+#----------------------------------------------------------------------
+
+SHAREFILES = config.SITE
+
+HELPFILES = $(notdir $(wildcard $(helpdir)/*))
+
+#----------------------------------------------------------------------
+# Include the make templates from all the packages
+#
+# Each of these templates (e.g., array/array.make) should contains lines
+# of the form
+#
+# CSRC += source1.c source2.c
+# HEADERS += header1.h header2.h
+# SCRIPTS += script1.tk script2.tcl
+# LEXSRC += file1.l
+# YACCSRC += file2.y
+# GENERATEDCSRC += ctlpLex.c ctlpRead.c
+#----------------------------------------------------------------------
+
+MAKEINCLUDES = $(foreach package, $(PKGS), \
+	$(local_srcdir)/src/$(package)/$(package).make)
+
+include $(MAKEINCLUDES)
+
+OBJECTS = $(addprefix $(objectdir)/,$(GENERATEDCSRC:.c=.o) $(CSRC:.c=.o))
+
+#----------------------------------------------------------------------
+# Include and library paths
+#
+# INCLUDEDIRS looks like "-I/projects/glu/ -I/projects/mocha/ ..."
+# LIBRARYDIRS looks like "-L/projects/glu/ -L/projects/mocha/ ..."
+LIBRARYOBJS = $(filter-out $(addprefix $(objectdir)/, $(MAINFILE:.c=.o)), $(OBJECTS))
+
+#----------------------------------------------------------------------
+
+INCLUDEDIRS = $(addprefix -I,$(gluincdir)) \
+		$(foreach package, $(PKGS), -I$(local_srcdir)/src/$(package)) \
+		$(foreach package, $(MISSING_PKGS), \
+			-I$(master_srcdir)/src/$(package)) \
+			-I$(objectdir) \
+			$(INCDIRS)
+		
+
+LIBRARYDIRS = $(addprefix -L,$(mochalibdir)) $(addprefix -L,$(glulibdir)) \
+		$(LIBDIRS)
+
+#----------------------------------------------------------------------
+# Build VPATH so make looks for source and object files in each of the PKG
+# directories as well as the object directory
+#
+# VPATH looks like /projects/mocha:/projects/glu/: ...
+#----------------------------------------------------------------------
+
+VPATH = $(local_srcdir):$(master_srcdir):$(addprefix :$(local_srcdir)/src/,$(PKGS)) \
+		:$(addprefix :$(master_srcdir)/src/,$(MISSING_PKGS)):$(objectdir):$(local_srcdir)/share
+
+#----------------------------------------------------------------------
+# Implicit rules
+#----------------------------------------------------------------------
+
+# For compiling a source file into the object directory
+
+$(objectdir)/%.o : %.c
+	umask 2 ; $(CC) -c $(CFLAGS) $(AC_FLAGS) $(VERDATE) \
+		-DNAWK=\"$(NAWK)\" -DLIBRARY=\"$(datadir)\" \
+		$(INCLUDEDIRS) \
+	-o $@  $<
+
+#----------------------------------------------------------------------
+# Main rules:
+#----------------------------------------------------------------------
+
+all : $(PRODUCT)
+
+$(PRODUCT) : $(LIBRARY)
+	umask 2 ; $(LINKER) -o $(PRODUCT) $(LDFLAGS) $(OBJECTS) \
+		$(LIBRARYDIRS) -l$(PRODUCT) $(GLULIBS) $(LIBS)
+
+allprods : $(LIBRARY)
+	@for bddpkg in $(BDDPKGS) ; do \
+		echo "Creating mocha-$$bddpkg";\
+		umask 2 ; $(LINKER) -o $(PRODUCT)-$$bddpkg $(OBJECTS) \
+	     	$(LIBRARYDIRS) -l$(PRODUCT) -lglu -l$$bddpkg $(LIBS); \
+	done
+
+exe : $(objectdir) $(OBJECTS)
+	$(LINKER) -o $(PRODUCT) $(OBJECTS) \
+		$(LIBRARYDIRS) -l$(PRODUCT) $(LIBS)
+
+$(LIBRARY): $(objectdir) $(OBJECTS)
+	rm -f $(LIBRARY)
+	umask 2 ; $(AR) cq $(LIBRARY) $(LIBRARYOBJS)
+	$(RANLIB) $(LIBRARY)
+
+$(objectdir) :
+	- umask 2 ; mkdir $(objectdir)
+
+#----------------------------------------------------------------------
+# Rules for installation
+#----------------------------------------------------------------------
+
+install : $(LIBRARY) $(PRODUCT) installdirs
+	$(INSTALL_PROGRAM) $(PRODUCT) \
+		$(bindir)/$(PRODUCT)
+	$(INSTALL_DATA) $(LIBRARY) \
+		$(libdir)/$(LIBRARY)
+	@for file in $(SHAREFILES) ; do \
+		echo "Installing $(datadir)/$$file"; \
+		$(INSTALL_DATA) $(master_srcdir)/share/$$file \
+			$(datadir)/$$file; \
+	done
+	@for file in $(HELPFILES) ; do \
+	echo "Installing $(datadir)/help/$$file"; \
+		$(INSTALL_DATA) $(master_srcdir)/share/help/$$file \
+			$(datadir)/help/$$file; \
+	done
+	@for header in $(HEADERS); do \
+		echo "Installing $(includedir)/$$header"; \
+		$(INSTALL_DATA) $(master_srcdir)/src/*/$$header \
+			$(includedir)/$$header; \
+	done
+	@for file in $(SCRIPTS); do\
+		echo "Installing $(datadir)/$$file"; \
+		$(INSTALL_DATA) $(master_srcdir)/src/*/$$file \
+			$(datadir)/$$file;\
+	done 
+
+uninstall :
+	rm -f $(bindir)/$(PRODUCT)	
+	rm -f $(libdir)/$(LIBRARY)
+	@for file in $(SHAREFILES) ; do \
+		echo "Removing $(datadir)/$$file"; \
+		rm -f $(datadir)/$$file; \
+	done
+	@for file in $(HELPFILES) ; do \
+		echo "Removing $(datadir)/help/$$file"; \
+		rm -f $(datadir)/help/$$file; \
+	done
+	@for header in $(HEADERS); do \
+		echo "Removing $(includedir)/$$header"; \
+		rm -f $(includedir)/$$header; \
+	@for file in $(SCRIPTS); do\
+		echo "Removing $(datadir)/$$file"; \
+		rm -f $(datadir)/$$file; \
+	done
+
+installdirs :
+	$(master_srcdir)/mkinstalldirs $(bindir) $(libdir) $(includedir) \
+	$(datadir) $(datadir)/help
+
+#----------------------------------------------------------------------
+# Rules for checking the build
+#----------------------------------------------------------------------
+# Note: Do not put any space between two patterns in the following variable.
+# "egrep" is sensitive to spaces in some cases. Further, the solution of
+# using multiple lines with "\" does not work.
+
+KEY_WORDS = 	((FSM depth)|(reachable states =)|(\# MC: formula passed)|(\# INV: formula passed)|(\# INV: formula failed)|(\# MC: formula failed)|(\# LE: language is not empty)|(\# LE: language emptiness check passes))
+
+CHECK_EXAMPLES = pete train_control tree pipeline msg resource rt_train_control
+
+check : $(PRODUCT)
+	$(MAKE) MOCHA_LIBRARY_PATH=../../share MOCHA=../../mocha \
+	RESULT_DIR=. master_check
+
+
+check_all : 
+	@for bddpkg in $(BDDPKGS) ; do \
+		echo "Checking mocha-$$bddpkg";\
+		$(MAKE) MOCHA_LIBRARY_PATH=../../share MOCHA=../../mocha-$$bddpkg \
+		RESULT_DIR=. master_check;\
+	done
+
+check_local : $(PRODUCT)
+	-mkdir $(MOCHA_USER_DIR)/../$(MACHINE)-g/example
+	$(MAKE) MOCHA_LIBRARY_PATH=$(master_srcdir)/share \
+	MOCHA=$(MOCHA_USER_DIR)/../$(MACHINE)-g/mocha \
+	RESULT_DIR=$(MOCHA_USER_DIR)/../$(MACHINE)-g/example master_check
+
+check_central : $(PRODUCT)
+	-mkdir example
+	$(MAKE) MOCHA_LIBRARY_PATH=$(master_srcdir)/share \
+	MOCHA=../../../$(MACHINE)-g/mocha \
+	RESULT_DIR=../../../$(MACHINE)-g/example master_check
+
+
+master_check : 
+	@for example in $(CHECK_EXAMPLES) ; do \
+		echo "Checking $$example" ; \
+		cd $(master_srcdir)/examples/$$example ; \
+		MOCHA_LIBRARY_PATH=$(MOCHA_LIBRARY_PATH) &&\
+		@PERL@ action $(MOCHA); \
+		if (test  -f success); \
+		then \
+		    echo "PASSED" ; \
+		  else \
+		   echo "FAILED (Please look at $(master_srcdir)/examples/$$example/out.diff)" ; \
+		  fi ; \
+	        cd ../..; \
+	done
+
+#----------------------------------------------------------------------
+# Distribution-related definitions
+#----------------------------------------------------------------------
+EXAMPLEFILES = $(foreach example, $(EXAMPLES), \
+		$(addprefix $(example)/, \
+		$(notdir $(wildcard $(master_srcdir)/examples/$(example)/*))))
+
+DISTRIBUTION = $(PRODUCT)-$(VERSION)
+DISTDIRS = src share share/help obj doc examples \
+	$(addprefix examples/,$(EXAMPLES)) $(addprefix src/,$(PKGS))
+DISTFILES = README INSTALL configure configure.in Makefile.in \
+	$(CSRC) $(HEADERS) $(SCRIPTS) $(LEXSRC) $(YACCSRC) $(MAKEINCLUDES) \
+	install-sh mkinstalldirs \
+	$(foreach examplefile, $(EXAMPLEFILES), examples/$(examplefile)) \
+	$(addprefix doc/,$(DOCUMENTATION)) \
+	$(addprefix share/,$(SHAREFILES)) \
+	$(addprefix share/help/,$(HELPFILES))
+
+#	install-sh mkinstalldirs xsimv\
+
+#----------------------------------------------------------------------
+# Rules for making a distribution file
+#----------------------------------------------------------------------
+
+dist : $(DISTRIBUTION).tar.gz
+
+$(DISTRIBUTION).tar.gz : $(DISTFILES)
+	rm -rf $(DISTRIBUTION)
+	umask 2 ; mkdir $(DISTRIBUTION)
+	for dir in $(DISTDIRS); do \
+	  umask 2 ; mkdir $(DISTRIBUTION)/$$dir; \
+	done
+	@echo "Copying distribution files"
+	@for file in $(patsubst $(local_srcdir)/%, %, $^); do \
+	  echo " $$file "; \
+	    cp -p $(local_srcdir)/$$file \
+		$(DISTRIBUTION)/$$file; \
+	done
+	- chmod -R a+r $(DISTRIBUTION)
+	- chmod -R u+w $(DISTRIBUTION)
+	tar cf - $(DISTRIBUTION) | gzip > $(DISTRIBUTION).tar.gz
+	rm -rf $(DISTRIBUTION)
+
+#----------------------------------------------------------------------
+# Rules for putting a distribution in the ftp area
+# 
+putdist : 
+	cp -p $(DISTRIBUTION).tar.gz /users/ftp/ftp/pub/Mocha/.
+	cp -p ../common/README /users/ftp/ftp/pub/Mocha/README.moch
+
+#----------------------------------------------------------------------
+# Rules for rebuilding the configure file and Makefile
+#----------------------------------------------------------------------
+
+${master_srcdir}/configure : configure.in
+	cd ${master_srcdir} && autoconf
+
+config.status : configure
+	./config.status --recheck
+
+Makefile : Makefile.in config.status
+	@echo "The master Makefile.in has been changed:"
+	@echo "run config.status"
+	@echo "Warning: This will overwrite any local Makefile modifications"
+	@exit 1
+
+#----------------------------------------------------------------------
+# Rules for cleaning
+#----------------------------------------------------------------------
+
+clean mostlyclean :
+	rm -rf examples/*/result examples/*/result_diff \
+		obj/* $(LIBRARY) $(PRODUCT) include
+
+distclean : clean
+	rm -f Makefile config.status config.cache config.log
+
+#----------------------------------------------------------------------
+# Rule for performing a lint-like check on the source code
+#----------------------------------------------------------------------
+
+check_code : $(CSRC)
+	@rm -f *.o_checkcode
+	@for file in $^; do \
+	  echo "------------------------ Checking $$file"; \
+	  gcc -c $(CFLAGS) $(AC_FLAGS) $(VERDATE) $(INCLUDEDIRS) \
+		-Wall -Wno-comment -o obj/checkcode_output.o $$file; \
+	  rm -f obj/checkcode_output.o; \
+	done
+	@rm -f *.o_checkcode
+
+#----------------------------------------------------------------------
+# Rule for generating function prototypes for all the
+# source and header files in all the PKGS
+#----------------------------------------------------------------------
+
+proto :
+	@cd $(local_srcdir)/src ; \
+	for pkg in $(PKGS); do \
+		cd $$pkg ; \
+		extproto *.h *.c ; \
+		cd .. ; \
+	done
+
+#----------------------------------------------------------------------
+# Rules for generating the documentation and command help files
+# for all the packages
+#----------------------------------------------------------------------
+
+allDoc : cleandoc doc indices commandText
+
+doc : $(htmldocdir) $(txtdocdir)
+	for pkg in $(PKGS); do \
+		umask 2 ; extdoc --html=$(htmldocdir) --text=$(txtdocdir) \
+		$(local_srcdir)/src/$$pkg/$$pkg; \
+	done
+
+indices : $(htmldocdir)
+	umask 2 ; extindex $(htmldocdir)
+
+commandText : $(helpdir)
+	for file in $(htmldocdir)/*Cmd.html ; do \
+		echo Converting $$file ; \
+		umask 2 ; lynx -dump $$file > $(helpdir)/`basename $$file .html`.txt ; \
+	done
+
+cleandoc :
+	-rm -f $(htmldocdir)/*.html 
+	-rm -f $(txtdocdir)/*.txt 
+	-rm -f $(helpdir)/*Cmd.txt
+
+$(htmldocdir) :
+	- umask 2 ; mkdir $(htmldocdir)
+
+$(txtdocdir) :
+	- umask 2 ; mkdir $(txtdocdir)
+
+$(helpdir) :
+	- umask 2 ; mkdir $(helpdir)
+
+#----------------------------------------------------------------------
+# RCS rules
+#----------------------------------------------------------------------
+MOCHA             = /projects/mocha/mocha-devel
+RCSFILES        = $(CSRC) $(HEADERS) $(SCRIPTS) $(LEXSRC) $(YACCSRC) $(MAKEINCLUDES)
+RCSDIR          = $(MOCHA)/../rcsRoot/common
+MOCHA_SRC_DIR     = $(MOCHA)/common
+
+# check in user modified files (co -u puts an updated copy in central area)
+rcs_ci: $(RCSFILES)
+	@for file in $^; do\
+		(ci -u $(RCSFLAGS) $(MOCHA_USER_DIR)/$$file \
+                                   $(RCSDIR)/$$file,v;\
+		 chgrp mocha $(RCSDIR)/$$file,v;\
+                 co -u $(MOCHA_SRC_DIR)/$$file $(RCSDIR)/$$file,v;\
+		 chgrp mocha $(MOCHA_SRC_DIR)/$$file)\
+	done
+
+# check out files for modification
+rcs_co: $(RCSFILES)
+	@for file in $^; do\
+		(co -l $(RCSFLAGS) $(MOCHA_USER_DIR)/$$file \
+                                   $(RCSDIR)/$$file,v) \
+	done
+
+# diff between the latest RCS versions and the user modified files	
+rcs_diff: $(RCSFILES)
+	for file in $^; do\
+		(rcsdiff $(RCSFLAGS) $(MOCHA_USER_DIR)/$$file \
+                                     $(RCSDIR)/$$file,v) \
+	done
+
+# search for RCS identifier fields in latest RCS versions
+rcs_ident: $(RCSFILES)
+	@for file in $^; do\
+		(ident $(RCSFLAGS) $(MOCHA_SRC_DIR)/$$file) \
+	done
+
+# determine who has files of this package checked out
+rcs_status: $(RCSFILES)
+	@for file in $^; do\
+		(rlog -L -h $(RCSFLAGS) $(RCSDIR)/$$file,v) \
+	done
+
+#----------------------------------------------------------------------
+# RCS rules for common/share
+#----------------------------------------------------------------------
+RCSSHAREFILES        = $(SHAREFILES) 
+
+# check in user modified files (co -u puts an updated copy in central area)
+rcs_ci_share: $(RCSSHAREFILES)
+	@for file in $^; do\
+		(ci -u $(RCSFLAGS) $(MOCHA_USER_DIR)/$$file \
+                                   $(RCSDIR)/$$file,v;\
+		 chgrp mocha $(RCSDIR)/$$file,v;\
+                 co -u $(MOCHA_SRC_DIR)/$$file $(RCSDIR)/$$file,v;\
+		 chgrp mocha $(MOCHA_SRC_DIR)/$$file)\
+	done
+
+# check out files for modification
+rcs_co_share: $(RCSSHAREFILES)
+	@for file in $^; do\
+		(co -l $(RCSFLAGS) $(MOCHA_USER_DIR)/$$file \
+                                   $(RCSDIR)/$$file,v) \
+	done
+
+# diff between the latest RCS versions and the user modified files	
+rcs_diff_share: $(RCSSHAREFILES)
+	for file in $^; do\
+		(rcsdiff $(RCSFLAGS) $(MOCHA_USER_DIR)/$$file \
+                                     $(RCSDIR)/$$file,v) \
+	done
+
+# search for RCS identifier fields in latest RCS versions
+rcs_ident_share: $(RCSSHAREFILES)
+	@for file in $^; do\
+		(ident $(RCSFLAGS) $(MOCHA_SRC_DIR)/$$file) \
+	done
+
+# determine who has files of this package checked out
+rcs_status_share: $(RCSSHAREFILES)
+	@for file in $^; do\
+		(rlog -L -h $(RCSFLAGS) $(RCSDIR)/$$file,v) \
+	done
+
+#----------------------------------------------------------------------
+# RCS rules for common/{Makefile.in, configure.in, localconfigure, 
+# masterconfigure, mkinstalldirs, install-sh}
+#----------------------------------------------------------------------
+RCSMISCFILES      = Makefile.in configure.in localconfigure \
+	masterconfigure mkinstalldirs install-sh 
+
+# check in user modified files (co -u puts an updated copy in central area)
+rcs_ci_misc: 
+	        @for file in $(RCSMISCFILES); do\
+                (ci -u $(RCSFLAGS) $(MOCHA_USER_DIR)/$$file \
+                                   $(RCSDIR)/$$file,v;\
+		 chgrp mocha $(RCSDIR)/$$file,v;\
+                 co -u $(MOCHA_SRC_DIR)/$$file $(RCSDIR)/$$file,v;\
+		 chgrp mocha $(MOCHA_SRC_DIR)/$$file)\
+        done
+
+# check out files for modification
+rcs_co_misc: 
+	        @for file in $(RCSMISCFILES); do\
+                (co -l $(RCSFLAGS) $(MOCHA_USER_DIR)/$$file \
+                                   $(RCSDIR)/$$file,v) \
+        done
+
+# diff between the latest RCS versions and the user modified files
+rcs_diff_misc: $(RCSMISCFILES)
+	        for file in $^; do\
+                (rcsdiff $(RCSFLAGS) $(MOCHA_USER_DIR)/$$file \
+                                     $(RCSDIR)/$$file,v) \
+        done
+
+# search for RCS identifier fields in latest RCS versions
+rcs_ident_misc: $(RCSMISCFILES)
+	        @for file in $^; do\
+                (ident $(RCSFLAGS) $(MOCHA_SRC_DIR)/$$file) \
+        done
+
+# determine who has files of this package checked out
+rcs_status_misc: $(RCSMISCFILES)
+	        @for file in $^; do\
+                (rlog -L -h $(RCSFLAGS) $(RCSDIR)/$$file,v) \
+        done
+
+#----------------------------------------------------------------------
+# Rules for debugging the Makefile
+#----------------------------------------------------------------------
+
+debug_make:
+	@echo ALL_PKGS=$(ALL_PKGS)
+	@echo PKGS=$(PKGS)
+	@echo MISSING_PKGS=$(MISSING_PKGS)
+	@echo VPATH=$(VPATH)
+	@echo INCLUDEDIRS=$(INCLUDEDIRS)
+	@echo CSRC=$(CSRC)
+	@echo OBJECTS=$(OBJECTS)
+	@echo SCRIPTS=$(SCRIPTS)
+	@echo HEADERS=$(HEADERS)
+	@echo MAKEINCLUDES=$(MAKEINCLUDES)
+	@echo CFLAGS=$(CFLAGS)
+	@echo AC_FLAGS=$(AC_FLAGS)
+	@echo master_srcdir=$(master_srcdir)
+	@echo local_srcdir=$(local_srcdir)
+	@echo RCSFILES=$(RCSFILES)
+	@echo RCSDIR=$(RCSDIR)

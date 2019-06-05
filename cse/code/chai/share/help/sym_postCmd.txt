@@ -1,0 +1,19 @@
+
+  sym_post - compute the image of a region with respect to the module's
+  transition relation
+     _________________________________________________________________
+   
+   sym_post [-v] [-h] <region_name>
+   
+   The command computes the image of a given region with respect to the
+   module's transiton relation. The region is specified by a name
+   assigned to it previously by mocha. Command Options:
+   
+   -v
+          verbose mode
+          
+   -h
+          print usage
+     _________________________________________________________________
+   
+   Last updated on 980624 22h11

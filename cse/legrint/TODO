@@ -1,0 +1,7 @@
+* Decisions in goal manager
+* Wrong resource ordering make complicated
+* Priority inversion
+* Theory of pre-emptive resources
+NO prio/ abort
+ 
+

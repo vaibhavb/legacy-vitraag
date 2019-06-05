@@ -1,0 +1,73 @@
+type specState: {F, G1, G2}
+type implState: {F_1, F_2, G_1, G_2}
+
+---------------------------------------------------------------
+--
+--   SPECIFICATION
+--
+---------------------------------------------------------------
+
+module Spec
+  external req1:bool; req2:bool
+  interface  grant1:bool; grant2:bool
+  private s_state:specState
+
+  atom GRANTER controls grant1, grant2 awaits s_state
+  init update
+	[] s_state' = F -> grant1' := false; grant2' := false
+	[] s_state' = G1 -> grant1' := true; grant2' := false
+	[] s_state' = G2 -> grant1' := false; grant2' := true
+  endatom
+
+  atom S_STATE controls s_state reads req1, req2, s_state
+    init
+      [] true -> s_state' := F
+    update
+      []  s_state = F -> s_state' := F
+      []  s_state = F & req1 -> s_state' := G1
+      []  s_state = F & req2 -> s_state' := G2
+      []  s_state = G1 | s_state = G2 -> s_state' := F
+  endatom
+
+endmodule
+
+---------------------------------------------------------------
+--
+--   IMPLEMENTATION
+--
+---------------------------------------------------------------
+
+module Impl
+  external req1:bool; req2:bool
+  interface  grant1:bool; grant2:bool
+  private i_state:implState
+
+  atom GRANTER controls grant1, grant2 awaits i_state
+  init update
+	[] i_state' = F_1 | i_state' = F_2  -> grant1' := false; grant2' := false
+	[] i_state' = G_1 -> grant1' := true; grant2' := false
+	[] i_state' = G_2 -> grant1' := false; grant2' := true
+  endatom
+
+  atom I_STATE controls i_state reads req1, req2, i_state
+    init
+      [] true -> i_state' := F_1
+    update
+      []  i_state = F_1 & ~req1  -> i_state' := F_2
+      []  i_state = F_2 & ~req2  -> i_state' := F_1
+      []  i_state = F_1 & req1 -> i_state' := G_1
+      []  i_state = F_2 & req2 -> i_state' := G_2
+      []  i_state = G_1        -> i_state' := F_2
+      []  i_state = G_2        -> i_state' := F_1
+  endatom
+
+endmodule
+
+
+
+
+
+ 
+
+
+

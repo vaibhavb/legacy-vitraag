@@ -1,0 +1,117 @@
+% states s,t,r, S, T
+% modules: A, B, C, or M, N
+% transition relation: R, but also, E. 
+% changes: added rvars
+
+% Truth values
+\def\true{\mbox{\sc t}}
+\def\false{\mbox{\sc f}}
+
+% modules
+\def\mp{M}
+\def\mq{N}
+\def\mr{P}
+\def\ms{L}
+\def\env{E}
+
+% module operations
+\def\closure{{\tt Close}}
+\def\lang{{L}} 
+
+% transition relations
+\def\trans{\tau}
+\def\itrans{\tau^i}
+\def\otrans{\tau^o}
+\def\tr{R}
+
+% initial states
+\def\init{\theta}
+\def\iinit{\theta^i}
+\def\oinit{\theta^o}
+\def\sinit{I}
+
+% variables
+\def\allvars{\calw} 
+\def\vars{\calv}
+\def\avars{\calu}
+\def\ovars{\calv^o}
+\def\ivars{\calv^i}
+
+\def\rvars{\calv^r} %reserved variables
+
+% states
+\def\domain{\cald}
+\def\states{\cals}
+
+% logic
+\def\loglang{{\tt{Lang}}}
+\def\Preds{\tt{Preds}}
+\def\pred{\varphi}
+
+% primed, unprimed
+\def\nx#1{\next #1}
+\def\pr#1{\prev #1}
+
+% reachable states
+\def\reach{{\tt Reach}}
+
+% pre and post
+\def\pre{{\tt pre}}
+\def\post{{\tt post}}
+\def\Pre{{\tt Pre}}
+\def\Post{{\tt Post}}
+\def\CPre{{\tt CPre}}
+
+% regions
+\def\reg{\sigma}
+\def\areg{\eta} 
+
+% actions
+\def\aa{a}
+\def\bb{b}
+
+% refinement
+\def\refi{\preceq}
+
+% adaptations
+\def\adapt#1#2#3{#1{\scriptstyle [#2 \setm #3]}}
+\def\adapro#1#2{#1{\scriptstyle [#2]}}
+\def\restr{\psi}
+\def\wh{\widehat}
+
+% for example
+\def\adder{{\tt Adder}}
+\def\strongadder{{\tt AdderOnly}}
+\def\counter{{\tt Counter}}
+\def\od{o}
+\def\oq{q}
+\def\id{i}
+\def\iadd{\oq_0}
+\def\isub{\oq_1}
+\def\itoone{{\tt cl}}
+\def\mod{{\tt mod}}
+
+% traces
+\def\traces{{\tt Traces}}
+
+% controllability 
+\def\ctrl{C}
+\def\htau{\widetilde{\tau}}
+
+% Refinement
+\def\rrel{\rho}
+\def\rrp{R}
+\def\bddc{C}
+\def\abddc{D}
+
+% AG
+\def\trel{\rho} 
+\def\oprod{\otimes}
+\def\ivarsf{v^i}
+\def\ovarsf{v^o}
+
+% compatible
+\def\compat{{\wr}{\wr}}
+
+% compositional
+\def\reach{{\tt Reach}}

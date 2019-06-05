@@ -1,0 +1,77 @@
+\begin{minipage}[t]{2in}
+\scriptsize
+\begin{verbatim}
+subckt:
+      TokSubckt TokVar TokVar param_passing TokEOL
+
+;
+
+param_passing:
+    formal_actual param_passing
+  |
+;
+
+formal_actual:
+      TokVar ASSIGN TokVar
+
+
+;
+
+latch:
+      TokLatch TokVar TokVar TokEOL
+
+;
+
+tabvars:
+      inList ARROW outList { add_in_list ($1);
+                 add_out_list ($3)}
+  |   TokTabVar inList
+
+  | TokTabVar
+
+inList:
+    TokTabVar inList
+  | TokTabVar
+  | {[]}
+;
+
+outList:
+    TokTabVar outList
+  | TokTabVar
+;
+
+relations:
+      vdefault relations
+  | relation relations
+  | {}
+;
+
+vdefault:
+      TokTabDef valList TokEOL
+;
+
+relation:
+      valList TokEOL { ($1) }
+;
+
+valList:
+      valb valList { ([$1]@($2)) }
+  | valb { [$1] }
+;
+
+valb:
+      TokTabVal
+  |   TokTabVar
+  | ASSIGN  TokTabVar
+  | HYPHEN
+  | LBRACE TokTabVal HYPHEN TokTabVal RBRACE
+  | LPAREN vals RPAREN
+  | NOT valb
+;
+
+vals:
+      TokTabVal COMMA vals
+  | TokTabVal
+;
+\end{verbatim}
+\end{minipage}

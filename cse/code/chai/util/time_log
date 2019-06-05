@@ -1,0 +1,3 @@
+#!/bin/csh
+#
+time `space_log {$1}`

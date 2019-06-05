@@ -1,0 +1,125 @@
+<html>
+<head><title>Naming Conventions</title>
+
+<body>
+
+<h1>Naming Conventions</h1>
+
+<hr>
+
+This discusses the conventions for naming functions, macros,
+structures, and variables within the <tt>ext</tt> environment.  The
+objective of these conventions is for a name to be canonical and to
+completely identify its type and scope.  Adhering to these conventions
+is necessary for the <tt>ext</tt> tools to work. <p>
+
+When names are longer than one English word, the words are catenated
+and their first letters capitalized, e.g., <tt>ThisIsALongExample</tt>.
+This is shorter than other styles, and is at least as readable. <P>
+
+The environment defines three scopes, each of which has its own naming
+convention: <P>
+
+<UL>
+
+<LI> External: features visible outside the package.  Names are
+     prefixed with ``<i>package</i><tt>_</tt>''. <P>
+
+<LI> Internal: features not visible outside, but visible throughout
+     the package.  Names are prefixed with ``<i>package</i>''. <P>
+
+<LI> Local: features visible only within a single file or function.
+     Names have no package prefix. <P>
+
+</UL>
+
+Functions and macros, variables, and structures each have their own
+naming convention: <P>
+
+<UL>
+
+<LI> Functions/Macros: The package name and the first word of
+     the rest of the name are both capitalized. <P>
+ 
+     The words in a function name are arranged in an English sentence-like
+     order:  <P>
+
+  <OL>
+  <LI> First word: Name of the object being operated on: the subject of
+       the sentence (e.g., <tt>Range</tt>, <tt>Network</tt>). <P>
+
+  <LI> Second word: The action being performed on the object: the verb
+       of the sentence (e.g., <tt>Read</tt>, <tt>Obtain</tt>,
+       <tt>Alloc</tt>).  <tt>Obtain</tt> is used for functions that
+       return a pointer to a copy of a data structure that must later
+       be freed be the caller.  <tt>Read</tt> is used for all other
+       cases.  <tt>Get</tt> should not be used. <P>
+
+  <LI> Third and successive words: Modifiers: the object of the
+       sentence (e.g., <tt>States</tt>, <tt>RightChild</tt>,
+       <tt>BddIdArrayFromMddId</tt>) <P>
+
+  </OL>
+
+<LI> Variables: The package name is lowercase.  The first word
+     of the rest of name is lowercase except for internal variables. <P>
+
+<LI> Structures: Type definitions for these have the package name and
+     the first word is capitalized, and the name has a <tt>_t</tt> suffix. <P>
+
+<LI> Constants: All letters are capitalized; all words are separated
+     by underlines (``<tt>_</tt>''). <P>
+
+<LI> Enumerations: Type definitions for these have the package name
+     and the first word capitalized, and the name as a <tt>_c</tt> suffix. <P>
+
+</UL>
+
+The table below gives examples of names. <P>
+
+<TABLE BORDER>
+<TR>
+   <TH></TH>
+   <TH> External </TH>
+   <TH> Internal </TH>
+   <TH> Local </TH> 
+</TR>
+<TR>
+  <TD> Functions, Macros </TD>
+  <TD> <TT> Rng_RangeReadLower</TT> </TD>
+  <TD> <TT> RngRangeReadLower</TT> </TD>
+  <TD> <TT> ReadLower</TT> </TD>
+</TR>
+<TR>
+  <TD> Variables </TD>
+  <TD> <TT> rng_numRanges</TT> </TD>
+  <TD> <TT> rngNumRanges</TT> </TD>
+  <TD> <TT> numRanges</TT> </TD>
+</TR>
+<TR>
+  <TD> Structures </TD>
+  <TD> <TT> Rng_IntRange_t</TT> </TD>
+  <TD> <TT> RngIntRange_t</TT> </TD>
+  <TD> <TT> IntRange_t</TT> </TD>
+</TR>
+<TR>
+  <TD> Enumerated types </TD>
+  <TD> <TT> Rng_FastMethod_c</TT> </TD>
+  <TD> <TT> RngFastMethod_c</TT> </TD>
+  <TD> <TT> FastMethod_c</TT> </TD>
+</TR>
+<TR>
+  <TD> Constants </TD>
+  <TD> <TT> RNG_MAX_INT</TT> </TD>
+  <TD> <TT> RNGMAX_INT</TT> </TD>
+  <TD> <TT> MAX_INT</TT> </TD>
+</TR>
+</TABLE> <P>
+
+<hr>
+
+<a href="index.html>The <tt>ext</tt> system</a>
+
+</body>
+</html>
+

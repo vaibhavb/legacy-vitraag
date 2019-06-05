@@ -1,0 +1,3 @@
+tcltk_dir=/projects/bubble/people/vaibhav/code/tcl-chai
+tcl_header_path=$tcltk_dir/include
+tcl_library_path=$tcltk_dir/lib

@@ -1,0 +1,8 @@
+Welcome to MOCHA 1.0
+Please report any problems to mocha@eecs.berkeley.edu
+Module Spec is composed and checked in.
+Module Impl is composed and checked in.
+parse successful.
+Building transition relation for module Impl
+Ordering variables using sym_static_order
+default encountered in Atm_NumConstExprConvertToBitvectorConstExpr

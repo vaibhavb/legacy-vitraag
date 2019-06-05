@@ -1,0 +1,9 @@
+Yes: There is a simulation from SendRecImpl to SendRecSpec
+Step 1: image mdd size =         16	 |states| =      216	reached set mdd size =          7	 |states| =      108
+Step 2: image mdd size =         37	 |states| =      306	reached set mdd size =         19	 |states| =      117
+Step 3: image mdd size =        126	 |states| =      360	reached set mdd size =         50	 |states| =      150
+Step 4: image mdd size =        180	 |states| =      462	reached set mdd size =         66	 |states| =      168
+Step 5: image mdd size =        107	 |states| =       72	reached set mdd size =         78	 |states| =      186
+Step 6: image mdd size =         62	 |states| =       27	
+reached set mdd size =         78	 number of states =      186
+UnhideSendRecImpl refines UnhideSendRecSpec

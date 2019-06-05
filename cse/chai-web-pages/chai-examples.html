@@ -1,0 +1,223 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+<head>
+  <title>Chai Examples</title>
+                                                                        
+             
+  <link rel="stylesheet" href="style/style.css">
+</head>
+   <body>
+                          
+<h1> Examples </h1>
+     
+<ul>
+    <li><a href="#Counter_and_Adder">Counter and Adder</a><br>
+   </li>
+   <li><a href="#Token_Ring">Token Ring</a> </li>
+   <li><a href="#Train_Control">Train Control</a></li>
+ 
+</ul>
+          
+<hr>
+<h2><a name="Counter_and_Adder"></a> Counter and Adder</h2>
+<table cellpadding="2" cellspacing="2" border="1" width="100%">
+  <tbody>
+    <tr>
+      <td valign="top">interface adder<br>
+input cntrl_q0, cntrl_ q1: bool<br>
+input i0, i1, i2, i3, i4, i5, i6, i7 : bool<br>
+outputs o0, o1, o2, o3, o4, o5, o6, o7 : bool<br>
+      <br>
+output atom <br>
+controls  o0, o1, o2, o3, o4, o5, o6, o7<br>
+reads cntrl_q0, cntrl_ q1, i0, i1, i2, i3, i4, i5, i6, i7<br>
+update<br>
+[] cntrl_qo &amp; cntrl_q1 -&gt; o0' = i0; o1' = i1; o2' = i2;  <br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; o3'
+= i3; o4' = i4; o5' = i5;&nbsp;  o6' = i6; o7' = i7;<br>
+[] ~cntrl_qo &nbsp;&amp; cntrl_q1 -&gt; &nbsp;[o0'...o7'] = [i1'..i7']+1
+mod 2^8 --<b>??</b><br>
+[] cntrl_qo &nbsp;&amp; ~cntrl_q1 -&gt; &nbsp;[o0'...o7'] = [i1'..i7']-1
+mod 2^8 --<b>??</b><br>
+end atom<br>
+end interface<br>
+      <br>
+      <br>
+interface counter<br>
+input cl : bool<br>
+output cntrl_q0, cntrl_q1 : bool<br>
+      <br>
+output atom<br>
+controls cntrl_q0, cntrl_q1<br>
+reads cl, cntrl_q0, cntrl_q1<br>
+update <br>
+[] ~cl -&gt; cntrl_q0' := 1; cntrl_q1' := 1<br>
+[] default -&gt; [cntrl_q1'&nbsp; cntrl_q0'] := [cntrl_q0, cntrl_q1] -1 mod
+4 --<b>??</b><br>
+end atom<br>
+end interface <br>
+      <br>
+--<b>Objective : </b>compose adder || counter<br>
+      <br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<hr>              
+<h2><a name="Token_Ring"></a>Token Ring </h2>
+                
+<table cellpadding="2" cellspacing="2" border="1" width="100%">
+       <tbody>
+         <tr>
+           <td valign="top">module cell<br>
+    interface tokenGrantO:bool; tokenReqO:bool; token:bool<br>
+    external tokenGrantI:bool; tokenReqI:bool<br>
+          <br>
+    &nbsp;&nbsp;&nbsp; atom<br>
+    &nbsp;&nbsp;&nbsp; controls tokenGrantO, tokenReqO, token<br>
+    &nbsp;&nbsp;&nbsp; reads tokenGrantO, tokenReqO, tokenGrantI, tokenReqI,
+  token<br>
+          <br>
+    &nbsp;&nbsp;&nbsp; init<br>
+    &nbsp;&nbsp;&nbsp; &nbsp; [] true -&gt; token' := false; tokenGrantO' 
+:=  false;<br>
+    &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; tokenReqO'
+  := false <br>
+          <br>
+    &nbsp;&nbsp;&nbsp; update<br>
+    &nbsp;&nbsp;&nbsp; &nbsp; [] ~(token | tokenGrantO | tokenReqO | tokenGrantI
+        <br>
+    &nbsp;&nbsp;&nbsp; &nbsp; | tokenReqI) | ( ~token &amp; tokenReqI &amp; 
+ ~tokenGrantI) -&gt; tokenReqO' := true<br>
+    &nbsp;&nbsp;&nbsp; &nbsp; [] tokenGrantI &amp; tokenReqO -&gt; tokenReqO'
+  := false; token' := true<br>
+    &nbsp;&nbsp;&nbsp; &nbsp; [] token &amp; tokenReqI -&gt; token' := false;
+  tokenGrantO' := true<br>
+    &nbsp;&nbsp;&nbsp; &nbsp; [] tokenReqI = false -&gt; tokenGrantO' :=
+false<br>
+    &nbsp;&nbsp;&nbsp; endatom<br>
+    endmodule<br>
+          <br>
+    module cellN<br>
+    interface tokenGrantN:bool; tokenReqN:bool; tokenN:bool<br>
+    external tokenGrantW:bool; tokenReqE:bool<br>
+          <br>
+    &nbsp;&nbsp;&nbsp; atom<br>
+    &nbsp;&nbsp;&nbsp; controls tokenGrantN, tokenReqN, tokenN<br>
+    &nbsp;&nbsp;&nbsp; reads tokenGrantN, tokenReqN, tokenGrantW, tokenReqE,
+  tokenN<br>
+          <br>
+    &nbsp;&nbsp;&nbsp; init<br>
+    &nbsp;&nbsp;&nbsp; &nbsp; [] true -&gt; tokenN' := true; tokenGrantN' 
+:=  false;<br>
+    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  tokenReqN' := false<br>
+          <br>
+          <br>
+    &nbsp;&nbsp;&nbsp; update<br>
+    &nbsp;&nbsp;&nbsp; &nbsp; [] ~(tokenN | tokenGrantN | tokenReqN | tokenGrantW<br>
+    &nbsp;&nbsp;&nbsp; &nbsp; | tokenReqE) | ( ~tokenN &amp; tokenReqE &amp;
+  ~tokenGrantW) -&gt; tokenReqN' := true<br>
+    &nbsp;&nbsp;&nbsp; &nbsp; [] tokenGrantW &amp; tokenReqN -&gt; tokenReqN'
+  := false; tokenN' := true<br>
+    &nbsp;&nbsp;&nbsp; &nbsp; [] tokenN &amp; tokenReqE -&gt; tokenN' :=
+false;   tokenGrantN' := true<br>
+    &nbsp;&nbsp;&nbsp; &nbsp; [] tokenReqE = false -&gt; tokenGrantN' :=
+false<br>
+    &nbsp;&nbsp;&nbsp; endatom<br>
+    endmodule<br>
+          <br>
+    cellW := cell[tokenGrantO, tokenReqO, tokenGrantI, tokenReqI, token :=
+ tokenGrantW,  tokenReqW, tokenGrantS, tokenReqN, tokenW]<br>
+          <br>
+    cellS := cell[tokenGrantO, tokenReqO, tokenGrantI, tokenReqI, token :=
+ tokenGrantS,  tokenReqS, tokenGrantE, tokenReqW, tokenS]<br>
+          <br>
+    cellE := cell[tokenGrantO, tokenReqO, tokenGrantI, tokenReqI, token :=
+ tokenGrantE,  tokenReqE, tokenGrantN, tokenReqS, tokenE]<br>
+          <br>
+    tokenRing := hide tokenGrantN, tokenGrantW, tokenGrantE, tokenGrantS,<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  tokenReqN, tokenReqS, tokenReqE, tokenReqW in <br>
+    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp; (cellN || cellS || cellW 
+||  cellE) endhide<br>
+           </td>
+         </tr>
+                       
+  </tbody>         
+</table>
+              
+<hr>         
+<h2><a name="Train_Control"></a>  Train Control</h2>
+                      
+<table cellpadding="2" cellspacing="2" border="1" width="100%">
+          <tbody>
+            <tr>
+              <td valign="top">type ctrlType : {away, waiting, bridge}<br>
+       type signalType : {green, red}<br>
+             <br>
+       module Train <br>
+       interface pc:ctrlType; present: bool<br>
+       external signal:signalType<br>
+             <br>
+       --<b>Use of lazy implies it has option to stay in same state</b><br>
+       &nbsp;&nbsp;&nbsp; lazy atom <br>
+       &nbsp;&nbsp;&nbsp; controls pc, present<br>
+       &nbsp;&nbsp;&nbsp; reads pc, signal, present<br>
+       &nbsp;&nbsp;&nbsp; <br>
+       &nbsp;&nbsp;&nbsp; init<br>
+       &nbsp;&nbsp;&nbsp; [] true -&gt; pc' := away; present' := false<br>
+       &nbsp;&nbsp;&nbsp; update<br>
+       &nbsp;&nbsp;&nbsp; [] pc = away -&gt; pc' := waiting; present' :=
+true<br>
+       &nbsp;&nbsp;&nbsp; [] pc = waiting &amp; signal = green -&gt; pc'
+:=  bridge<br>
+       &nbsp;&nbsp;&nbsp; [] pc = bridge -&gt; pc' := away; present' := false<br>
+       &nbsp;&nbsp;&nbsp; <br>
+       &nbsp;&nbsp;&nbsp; endatom<br>
+             <br>
+       endmodule<br>
+             <br>
+             <br>
+       module Controller2<br>
+       interface signalW, signalE:signalType<br>
+       external presentW, presentE: bool<br>
+             <br>
+       &nbsp;&nbsp;&nbsp; lazy atom <br>
+       &nbsp;&nbsp;&nbsp; controls signalW , signalE<br>
+       &nbsp;&nbsp;&nbsp; reads presentW, presentE, signalW, signalE<br>
+       &nbsp;&nbsp;&nbsp; init<br>
+       &nbsp;&nbsp;&nbsp; [] true -&gt; signalW' := red<br>
+       &nbsp;&nbsp;&nbsp; [] true -&gt; signalE' := red<br>
+       &nbsp;&nbsp;&nbsp; update<br>
+       &nbsp;&nbsp;&nbsp; [] presentW &amp; signalE = red -&gt; signalW'
+:=  green;&nbsp;   signalE' := red<br>
+       &nbsp;&nbsp;&nbsp; [] presentE &amp; signalW = red -&gt; signalE'
+:=  green;&nbsp;   signalW' := red<br>
+       &nbsp;&nbsp;&nbsp; [] ~presentW -&gt; signalW' := red <br>
+       &nbsp;&nbsp;&nbsp; [] ~presentE -&gt; signalE' := red <br>
+       &nbsp;&nbsp;&nbsp; endatom<br>
+             <br>
+       endmodule<br>
+             <br>
+             <br>
+       TrainW := Train[pc, present, signal := pcW, presentW, signalW]<br>
+       TrainE := Train[pc, present, signal := pcE, presentE, signalE]<br>
+             <br>
+       System2 := (TrainW || TrainE || Controller2)<br>
+          <br>
+             --<b>To check </b>: inv "safecntrl" ~(pcW = bridge &amp; pcE 
+=  bridge);<br>
+              </td>
+            </tr>
+                                        
+  </tbody>            
+</table>
+                      
+<hr>              
+<address>Vaibhav</address>
+                    
+</body>
+</html>

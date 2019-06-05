@@ -1,0 +1,96 @@
+<HTML>
+<HEAD><TITLE>The img package: Overview</TITLE></HEAD>
+<BODY>
+
+<H1>The img package</H1>
+<H2>Methods for performing image computations.</H2>
+<H3>By Rajeev Ranjan, Tom Shiple, Abelardo Pardo</H3>
+
+<UL>
+ <LI> <A HREF="imgExt.html" TARGET="_top">
+    Information for programmers</A>
+ <LI> <A HREF="imgAllByFunc.html" TARGET="_top">
+    Information for developers sorted by function</A>
+ <LI> <A HREF="imgAllByFile.html" TARGET="_top">
+    Information for developers sorted by file</A>
+</UL>
+
+<HR>
+
+The image package is used to compute the image (forward or
+  backward) of a set under a vector of functions.  The functions are given by
+  a graph of multi-valued functions (MVFs). This graph is built using the
+  partition package. Each vertex in this graph has an MVF and an MDD id.  The
+  fanins of a vertex v give those vertices upon which the MVF at v depends.
+  The vector of functions to use for an image computation, the "roots", is
+  specified by an array of (names of) vertices of the graph.  The domain
+  variables are the variables over which "from" sets are defined for forward
+  images, and "to" sets are defined for backward images.  The range variables
+  are the variables over which "to" sets are defined for forward images, and
+  "from" sets are defined for backward images.  The quantify variables are
+  additional variables over which the functions are defined; this set is
+  disjoint from domain variables.  These variables are existentially
+  quantified from the results of backward image computation. <p>
+  
+  Computing images is fundamental to many symbolic analysis techniques, and
+  methods for computing images efficiently is an area of ongoing research.
+  For this reason, the image package has been designed with lots of
+  flexibility to easily allow new methods to be integrated (to add a new
+  method, see the instructions in imgInt.h).  Applications that use the image
+  package can switch among different image methods simply by specifying the
+  method type in the image initialization routine.  By using the returned
+  structure (Img_ImageInfo_t) from the initialization routine, all subsequent
+  (forward or backward) image computations will be done using the specified
+  method.<p>
+  
+  VIS users can control which image method is used by appropriately setting
+  the "image_method" flag.  Also, VIS users can set flags to control
+  parameters for different image computation methods.  Because the user has
+  the ability to change the values of these flags, Img_ImageInfo_t structs
+  should be freed and re-initialized whenever the VIS user changes the value
+  of these flags.<p>
+  
+  Following are descriptions of the methods implemented. In the descriptions,
+  x=x_1,...x_n is the set of domain variables, u=u_1,...,u_k is the set of
+  quantify variables, y=y_1,...,y_m is the set of range variables, and
+  f=f_1(x,u),...,f_m(x,u) is the set of functions under which we wish to
+  compute images.<p>
+  
+  <b>Monolithic:</b> This is the most naive approach possible.  A single
+  relation T(x,y) is constructed during the initialization phase, using the
+  computation (exists u (prod_i(y_i = f_i(x,u)))). To compute the forward
+  image, where fromUpperBound=U(x), fromLowerBound=L(x), and toCareSet=C(y),
+  we first compute a set A(x) between U(x) and L(x).  Then, T(x,y) is
+  simplified with respect to A(x) and C(y) to get T*.  Finally, x is
+  quantified from T* to produce the final answer.  Backward images are
+  computed analogously.  The monolithic method does not recognize any
+  user-settable flags for image computation.<p>
+
+  <b>IWLS95:</b> This technique is based on the early quantification heuristic.
+  The initialization process consists of following steps:   
+  <UL>
+  <LI> Create the relation of the roots at the bit level
+  in terms of the quantify and domain variables.
+  <LI> Order the bit level relations.
+  <LI> Group the relations of bits together, making a cluster
+  whenever the BDD size reaches a threshold.
+  <LI> For each cluster, quantify out the quantify variables which
+  are local to that particular cluster.
+  <LI> Order the clusters using the algorithm given in
+  "Efficient BDD Algorithms for FSM Synthesis and
+  Verification", by R. K. Ranjan et. al. in the proceedings of
+  IWLS'95{1}. 
+  <LI> The orders of the clusters for forward and backward image are
+  calculated and stored. Also stored is the schedule of
+  variables for early quantification. 
+  </UL>
+  For forward and backward image computation the corresponding
+  routines are called with appropriate ordering of clusters and
+  early quantification schedule. <p>
+
+<HR>
+
+Last updated on 1031104 18h39
+
+</BODY>
+</HTML>

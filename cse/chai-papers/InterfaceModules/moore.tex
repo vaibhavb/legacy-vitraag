@@ -1,0 +1,516 @@
+\section{Compatibility and Composition} 
+
+\subsection{Moore interfaces} 
+
+Moore interfaces model both the behavior of a system component, and
+the interface between the component and its environment. 
+The state of a module is described by a set of {\em state
+variables,} partitioned into sets of {\em input\/} and {\em output\/}
+variables. 
+% The input variables represent inputs to the module, and their value
+% can be read, but not changed, by the module; the output variables
+% represent outputs of the module, and their value can be changed (and
+% read) by the module. 
+The possible changes of output variables are described by an 
+{\em output transition relation,} while the legal changes of input
+variables are described by an {\em input transition relation.} 
+Hence, the output transition relation describes the module's behavior,
+and the input transition relation describes the input assumptions of
+the interface. 
+% Finally, a set of {\em initial outputs\/} specifies the initial
+% condition of the module, and a set of {\em initial inputs\/} specifies
+% the desired initial condition of the environment. 
+
+
+\begin{comment} 
+\begin{figure}
+\centering
+\input{counter.rm}
+\hspace{4em}
+\input{adder.rm}
+\caption{\small A counter and a $\pm 1$ adder, modeled as Moore interfaces.
+The guarded-command syntax is derived from the one of {\em reactive
+modules\/} \cite{RM96journal}.
+% and Mocha \cite{Mocha98,Mocha2001}; 
+% input atoms describe the input assumptions, and the output atoms
+% describe the output behavior.  
+When more than one guard is true, the command is selected
+nondeterministically. 
+Input variables not mentioned by the command are updated
+nondeterministically.}
+\label{fig-counter}
+\end{figure}
+\end{comment}
+
+\begin{examp}{}
+We illustrate the features of Moore interfaces by modeling 
+% a simple example: 
+a $\pm 1$ adder driven by a binary counter.
+% (Figure~\ref{fig-counter}).  
+The adder $\adder$ has two control inputs $\iadd$ and $\isub$, data inputs 
+$\id_7 \cdots\id_0$, and data outputs $\od_7 \cdots \od_0$. 
+When $\iadd = \isub = 1$, the adder leaves the input unchanged: 
+%
+the next value of $\od_7 \cdots \od_0$ is equal to $\id_7 \cdots\id_0$.
+When $\iadd = 0$ and $\isub = 1$, the next outputs are given by 
+$[\od'_7 \cdots \od'_0] = [\id_7 \cdots\id_0] + 1 \mod 2^8$, where primed
+variables denote the values at the next clock cycle, and
+$[\od'_7 \cdots \od'_0]$ is the integer encoded in binary by 
+$\od'_7 \cdots \od'_0$. 
+%
+% $[\od'_7 \cdots \od'_0] = [\id_7 \cdots\id_0]$, 
+% where primed variables denote the values at the next clock cycle, 
+% and $[\od'_7 \cdots \od'_0]$ is the integer encoded in binary by 
+% $\od'_7 \cdots \od'_0$.
+% When $\iadd = 0$ and $\isub = 1$, the next outputs are given by 
+% $[\od'_7 \cdots \od'_0] = [\id_7 \cdots\id_0] + 1 \mod 2^8$.
+%
+Similarly, when $\isub = 0$ and $\iadd = 1$, we have 
+$[\od'_7 \cdots \od'_0] = [\id_7 \cdots\id_0] - 1 \mod 2^8$. 
+The adder is designed with the assumption that $\isub$ and $\iadd$
+are not both~$0$: hence, the input transition
+relation of $\adder$ states that $\iadd' \isub' \neq 00$.
+In order to cycle between adding $0, +1, -1$, the control
+inputs $\iadd$ and $\isub$ are connected to the outputs
+$\oq_1$ and $\oq_0$ of a two-bit count-to-zero counter $\counter$. 
+The counter has only one input, $\itoone$: 
+when $\itoone = 0$, then $\oq'_1 \oq'_0 = 11$; otherwise, 
+$[\oq'_1 \oq'_0] = [\oq_1 \oq_0] - 1 \mod 4$. 
+
+% When the counter is connected to the adder, the joint system can take a
+% transition to a state where $\oq_1 \oq_0 = 00$, violating the adder's
+% input assumptions. 
+% In spite of this, the counter and the adder are compatible, since
+% there is a way to use them together: to avoid the incompatible transition, 
+% it suffices to assert $\itoone = 0$ early enough in the
+% count-to-zero cycle of the counter.
+% To reflect this, 
+When we compose $\counter$ and $\adder$, we
+synthesize for their composition $\counter \| \adder$ a new input
+assumption, that ensures that the input assumptions of both $\counter$
+and $\adder$ are satisfied. 
+To determine the new input assumption, we solve a game between Input,
+which chooses the next values of $\itoone$ and $\id_7\cdots\id_0$, and
+Output, which chooses the next values of 
+$\oq_0,\oq_1$, and $\od_7 \cdots \od_0$.
+The goal of Input is to avoid a transition to $\oq_1 \oq_0 = 00$.
+At the states where $\oq_1 \oq_0 = 01$, Input can win if 
+$\itoone = 0$, since 
+% at the next clock cycle 
+we will have $\oq'_1 \oq'_0 = 11$;  
+but Input cannot win if $\itoone = 1$. 
+By choosing $\itoone' = 0$, Input can also win from 
+the states where $\oq_1 \oq_0 = 10$. 
+Finally, Input can always win from 
+% the states where 
+$\oq_1 \oq_0 = 11$, for all $\itoone'$. 
+Thus, we associate with $\counter \| \adder$ a new
+input assumption encoded by the transition relation 
+requiring that whenever $\oq_1 \oq_0 = 10$, then $\itoone' = 0$.
+The input requirement $\oq_1 \oq_0 \neq 00$ of the adder gives
+rise, in the composite system, to the requirement that the reset-to-1
+occurs early in the count-to-zero cycle of the counter.
+\qed
+\end{examp}
+
+\noindent
+Given a set $\allvars$ of typed variables with finite domain, a state
+$s$ over  $\allvars$ is a function that 
+assigns to each $x \in \allvars$ a value $s \semb{x}$ of the
+appropriate type;
+we write $\states[\allvars]$ for the set of all states over
+$\allvars$.
+We denote by $\allvars' = \set{x' \mid x \in \allvars}$ the set
+obtained by priming each variable in $\allvars$; 
+given a predicate $\pred$ on $\allvars$, we denote by
+$\pred'$ the predicate on $\allvars'$ obtained by replacing in
+$\pred$ every $x \in \allvars$ with $x' \in \allvars'$. 
+Given a state $s \in \states[\allvars]$ and a predicate
+$\pred$ on $\allvars$, we write $s \sat \pred$ if
+$\pred$ is satisfied under the variable interpretation specified
+by $s$.  
+Given two states $s, s' \in \states[\allvars]$ and a predicate 
+$\pred$ on $\allvars \union \allvars'$, we write 
+$(s,s') \sat \pred$ if $\pred$ is satisfied by the
+interpretation that assigns to $x \in \allvars$ the value 
+$s \semb{x}$,  and to $x' \in \allvars'$ the value $s' \semb{x}$.
+Moore interfaces are defined as follows. 
+
+\begin{defi}{(Moore interface)}
+A {\em Moore interface\/} \\ 
+$\mp = \tuple{\ivars_\mp, \ovars_\mp,
+\iinit_\mp, \oinit_\mp, \itrans_\mp, \otrans_\mp}$
+consists of the following components: 
+%
+\begin{itemize}
+
+\item A finite set $\ivars_\mp$ of {\em input variables,} and a finite
+set $\ovars_\mp$ of {\em output variables.}
+The two sets must be disjoint; 
+% $\ivars_\mp \inters \ovars_\mp = \emptyset$; 
+we define $\vars_\mp = \ivars_\mp \union \ovars_\mp$.
+
+% \item A set $\rvars_\mp$ of {\em reserved variables,} 
+% such that $\ivars_\mp \union \ovars_\mp \subs \rvars_\mp$. 
+% The set $\rvars_\mp$ contains variables that are reserved for use by
+% the module, and constitute the module {\em name space.} 
+
+\item A satisfiable predicate $\iinit_\mp$ on $\ivars_\mp$
+defining the legal initial values for the input variables, and 
+a satisfiable predicate $\oinit_\mp$ on $\ovars_\mp$
+defining the initial values for the output variables. 
+
+\item An {\em input transition predicate\/}
+$\itrans_\mp$ on $\vars_\mp \union (\ivars_\mp)'$, 
+specifying the legal updates for
+the input variables, and an {\em output transition predicate\/}
+$\otrans_\mp$ on $\vars_\mp \union (\ovars_\mp)'$, 
+specifying how the module can update the values of the output variables. 
+We require that the formulas 
+$\forall \vars_\mp . \exists (\ivars_\mp)' . \itrans_\mp$ 
+and 
+$\forall \vars_\mp . \exists (\ovars_\mp)' . \otrans_\mp$ 
+hold. \qed 
+\end{itemize}
+\end{defi}
+
+\noindent
+The above interfaces are called {\em Moore\/} because 
+the next value of the output variables can depend on the
+current state, but not on the next value of the input variables, 
+as in Moore machines. 
+The requirements on the input and output transition relations ensure
+that the interface is non-blocking: from every state there is 
+some legal input and possible output. 
+Given a Moore interface $\mp = \tuple{\ivars_\mp, \ovars_\mp,
+\iinit_\mp, \oinit_\mp, \itrans_\mp, \otrans_\mp}$, we let
+$\traces(\ivars_\mp, \ovars_\mp, \iinit_\mp, \oinit_\mp, \itrans_\mp,
+\otrans_\mp)$ be the set of {\em traces\/} of $\mp$, consisting of all
+the infinite sequences $s_0, s_1, s_2, \ldots$ of states of 
+$\states[\vars_\mp]$ such that $s_0 \sat \iinit_\mp \und \oinit_\mp$, 
+and $(s_k,s_{k+1}) \sat \itrans_\mp \und \otrans_\mp$ for all $k \geq 0$.
+
+\begin{comment}
+\paragraph{Closed and universal interfaces.}
+
+\mynote{useful?}
+A Moore interface is {\em closed\/} if it has no input variables, and
+is {\em universal\/} if it does not make any assumption about the
+input behavior. 
+
+\begin{defi}{(closed and universal Moore interfaces)}
+A Moore interface $\mp = \tuple{\ivars_\mp, \ovars_\mp,
+\iinit_\mp, \oinit_\mp, \itrans_\mp, \otrans_\mp}$ is 
+{\em closed\/} if $\ivars_\mp = \emptyset$, and is 
+{\em universal\/} if $\iinit_\mp = \true$ and $\itrans_\mp = \true$. 
+\qed
+\end{defi}
+
+\noindent
+An universal Moore interface is thus essentially equivalent to a Moore
+version of the classical models used in model checking 
+\cite{SMV96,VIS96,RM96journal}.
+\mynote{better citations?}
+\end{comment}
+
+% \noindent
+% The predicates $\iinit_\mp$ and $\itrans_\mp$ are called the {\em
+% input assumptions\/} of $\mp$, and the predicates $\oinit_\mp$ and 
+% $\otrans_\mp$ are called the {\em output guarantees.} 
+% Note that, so far, input assumptions and output guarantees have been
+% treated in exactly the same way in the definitions of paths or
+% traces. 
+% The distinction is only apparent in the definition of composition, to
+% which we now turn. 
+
+
+\paragraph{Composition of Moore interfaces.}
+%
+Two Moore interfaces $\mp$ and $\mq$ 
+are {\em composable\/} if $\ovars_\mp \inters \ovars_\mq = \emptyset$.
+If $\mp$ and $\mq$ are composable, we merge them into a single
+interface $\mr$ as follows. 
+We let $\ovars_\mr = \ovars_\mp \union \ovars_\mq$ and 
+$\ivars_\mr = (\ivars_\mp \union \ivars_\mq) \setm \ovars_\mr$. 
+The output behavior of $\mr$ is simply the joint output behavior of
+$\mp$ and $\mq$, since each interface is free to choose how to update
+its output variables: hence,
+$\oinit_\mr = \oinit_\mp \und \oinit_\mq$ and 
+$\otrans_\mr = \otrans_\mp \und \otrans_\mq$.
+On the other hand, we cannot simply adopt the symmetrical definition
+for the input assumptions. 
+A syntactic reason is that $\iinit_\mp \und \iinit_\mq$ and 
+$\itrans_\mp \und \itrans_\mq$ may contain variables in $(\ovars_\mr)'$.
+But a deeper reason is that we may need to strengthen the input
+assumptions of $\mr$ further, in order to ensure that the 
+input assumptions of $\mp$ and $\mq$ hold. 
+If we can find such a further strengthening $\iinit$ and
+$\itrans$, then $\mp$ and $\mq$ are said to be
+{\em compatible,} and $\mr = \mp \| \mq$ with $\iinit_\mr$ and $\itrans_\mr$
+being the weakest such strengthenings;
+otherwise, we say that $\mp$ and $\mq$ are incompatible, and
+$\mp\|\mq$ is undefined. 
+Hence, informally, $\mp$ and $\mq$ are compatible if they can be used
+together under some assumptions. 
+
+\begin{defi}{(Compatibility and composition of Moore interfaces)} 
+\label{def-moore-compatible} 
+For any two Moore interfaces $\mp$ and $\mq$, we say that 
+$\mp$ and $\mq$ are {\em composable\/} if 
+$\ovars_\mp \inters \ovars_\mq = \emptyset$. 
+If $\mp$ and $\mq$ are composable, let
+$\ovars_\mr = \ovars_\mp \union \ovars_\mq$, 
+$\ivars_\mr = (\ivars_\mp \union \ivars_\mq) \setm \ovars_\mr$, 
+$\vars_\mr = \ovars_\mr \union \ivars_\mr$, 
+$\oinit_\mr = \oinit_\mp \und \oinit_\mq$, and 
+$\otrans_\mr = \otrans_\mp \und \otrans_\mq$.
+
+The interfaces $\mp$ and $\mq$ are {\em compatible\/} 
+(written $\mp\compat\mq$) if they are composable, and if there are
+predicates $\iinit$ on $\ivars_\mr$ and 
+$\itrans$ on $\vars_\mr \union (\ivars_\mr)'$ such that 
+(i)~$\iinit$ is satisfiable; 
+(ii)~$\forall \vars_\mr . \exists (\ivars_\mr)' . \itrans$ holds; 
+(iii)~ for all $s_0, s_1, s_2, \ldots \in \traces(\ivars_\mr, \ovars_\mr,
+\iinit, \oinit_\mr, \itrans, \otrans_\mr)$ we have 
+$s_0 \sat \iinit_\mp \und \iinit_\mq$ and, for all $k \geq 0$, 
+$(s_k, s_{k+1}) \sat \itrans_\mp \und \itrans_\mq$.
+
+The {\em composition\/} $\mr = \mp \| \mq$ is defined if and only if
+$\mp\compat\mq$, in which case $\mr$ is obtained by
+taking for the input predicate $\iinit_\mr$ and for the input
+transition relation $\itrans_\mr$ the weakest predicates such that the
+above condition holds. 
+\qed
+\end{defi}
+
+\noindent 
+% The definition illustrates how composition composes not only the output
+% behavior, but also the input assumptions. 
+% The algorithm for computing the predicates $\iinit_\mr$ and
+% $\itrans_\mr$ is based on the following idea. 
+% Two Moore interfaces $\mp$ and $\mq$ are compatible if the choice for
+% the next values of $\ivars_\mr$ can be restricted to ensure that the
+% input assumptions of $\mp$ and $\mq$ are satisfied.
+To compute $\mp \| \mq$, we consider a game between Input and Output. 
+At each round of the game, Output chooses new values for the
+output variables $\ovars_\mr$ according to 
+% the output transition relation 
+$\otrans_\mr$; 
+simultaneously and independently, Input chooses (unconstrained) new
+values for the input variables $\ivars_\mr$.
+The goal of Input is to ensure that the resulting behavior satisfies
+$\iinit_\mp \und \iinit_\mr$ at the initial state, and 
+$\itrans_\mp \und \itrans_\mq$ at all state transitions.
+If Input can win the game, then $\mp$ and $\mq$ are
+compatible, and the most general strategy for Input will give
+rise to $\iinit_\mr$ and $\itrans_\mr$; 
+otherwise, $\mp$ and $\mq$ are incompatible. 
+%
+% Possible place for example 
+%
+The algorithm for computing $\iinit_\mr$ and $\itrans_\mr$ proceeds by
+computing iterative approximations to $\itrans_\mr$, and to the set
+$\ctrl$ of states from which Input can win the game. 
+We let $\ctrl_0 = \true$ and, for $k \geq 0$: 
+%
+\begin{equation} 
+  \label{eq-comp}
+  \htau_{k+1} = \forall (\ovars_\mr)' . 
+		\bigl(\otrans_\mr \im (\itrans_\mp \und \itrans_\mq \und \ctrl'_k)\bigr)
+  \eqspa 
+  \ctrl_{k+1} = \ctrl_k \und \exists (\ivars_\mr)' . \htau_{k+1} . 
+\end{equation}
+%
+Note that $\htau_{k+1}$ is a predicate on $\ovars_\mr \union
+\ivars_\mr \union (\ivars_\mr)'$. 
+Hence, $\htau_{k+1}$ ensures that, regardless of how $\ovars_\mr$ are
+chosen, from $\ctrl_{k+1}$ we have that 
+(i)~for one step, $\itrans_\mp$ and $\itrans_\mq$ are satisfied; 
+and (ii)~the step leads to $\ctrl_k$. 
+% \mynote{cut?}
+% Another way of understanding (\ref{eq-compa})
+% is to note that the computation of $\ctrl_{k+1}$ can be rewritten as: 
+% $
+% \exists (\ivars_\mr)' .
+% \forall (\ovars_\mr)' . 
+% (\otrans_\mr \im (\itrans_\mp \und \itrans_\mq \und \ctrl'_k)),
+% $
+% which is the classical controllability fixpoint. 
+Thus, indicating by $\ctrl_* = \lim_{k \go \infty} \ctrl_k$ 
+and $\htau_* = \lim_{k \go \infty} \htau_k$ the fixpoints of
+(\ref{eq-comp}) we have that 
+$\ctrl_*$ represents the set of states from which Input can
+win the game, and $\htau_*$ represents the most liberal Input 
+strategy % (i.e., the most liberal transition relation for $\ivars_\mr$)
+for winning the game.
+This suggests us to take $\itrans_\mr = \htau_*$.
+However, this is not always the weakest choice, as required by
+Definition~\ref{def-moore-compatible}:   
+a weaker choice is $\itrans_\mr = \no \ctrl_* \oder \htau_*$,
+or equivalently $\itrans_\mr = \ctrl_* \im \htau_*$. 
+Contrary to $\itrans_\mr = \htau_*$, this weaker choice ensures
+that the interface $\mr$ is non-blocking.
+We remark that the choices $\itrans_\mr = \htau_*$
+and $\itrans_\mr = \ctrl_* \im \htau_*$ differ only at non-reachable
+states. 
+Since the state-space of $\mr$ is finite, 
+by monotonicity of (\ref{eq-comp}) we can compute the fixpoint 
+$\ctrl_*$ and $\htau_*$ in a finite number of iterations. 
+% and since for all $k \geq 0$
+% we have $\ctrl_{k+1} \im \ctrl_k$ and $\htau_{k+1} \im \htau_k$, by
+% iterating (\ref{eq-comp}) we eventually reach
+% $k$ for which $\ctrl_{k+1} \equiv \ctrl_k$ and $\htau_{k+1} \equiv
+% \htau_k$, so that the fixpoints can be computed in a finite number of
+% iterations. 
+Finally, we define the input initial condition of $\mr$ by 
+$
+  \iinit_\mr = \forall \ovars . 
+  ( \oinit_\mr \im (\iinit_\mp \und \iinit_\mq \und \ctrl_*) )
+$. 
+The following algorithm summarizes these results. 
+
+\begin{algo}{}
+Given two composable Moore interfaces $\mp$ and $\mq$, let 
+$\ctrl_0 = \true$, and for $k > 0$, let the predicates $\ctrl_k$ and
+$\htau_k$ be as defined by (\ref{eq-comp}). 
+Let 
+$\htau_* = \lim_{k \go \infty} \htau_k$ and 
+$\ctrl_* = \lim_{k \go \infty} \ctrl_k$; 
+the limits can be computed with a finite number of iterations,
+and let $\iinit_* = \forall \ovars . 
+\bigl( \oinit_\mr \im (\iinit_\mp \und \iinit_\mq \und \ctrl_*) \bigr)$.
+Then the interfaces $\mp$ and $\mq$ are {\em compatible} iff $\iinit_*$
+is satisfiable; in this case their composition $\mr = \mp \| \mq$ is given by 
+\[
+\begin{array}{rlcrlcrl}
+\ovars_\mr  & = \ovars_\mp \union \ovars_\mq & \hspace*{2em} & 
+\otrans_\mr & = \otrans_\mp \und \otrans_\mq & \hspace*{2em} & 
+\oinit_\mr  & = \oinit_\mp \und \oinit_\mq \\
+%
+\ivars_\mr  & = (\ivars_\mp \union \ivars_\mq) \setm \ovars & \hspace*{2em} & 
+\itrans_\mr & = \ctrl_* \im \htau_* & \hspace*{2em} &
+\iinit_\mr  & = \iinit_*. \hspace{4em} \qed
+\end{array}
+\]
+\end{algo}
+
+
+\noindent
+% As evidenced by the above definition, composing Moore interfaces
+% requires solving a game on the state space of the composed interface. 
+% This contrasts with the case for pessimistic models, where composition
+% simply requires taking the conjunction of the output behaviors, and
+% entails little if any work. 
+% On the other hand, the composition of Moore interfaces provides us
+% with a compatibility check of the interface protocols. 
+% To perform the same check in the pessimistic setting, it is necessary
+% to write special-purpose specifications, and verify them, thus
+% incurring a cumulative computational cost similar to the one for
+% interfaces. 
+%Composition of Moore interfaces is associative. 
+
+% \begin{theo}{} Given three Moore
+% interfaces $\mp$, $\mq$, $\mr$, either $(\mp \| \mq) \| \mr$ and 
+% $(\mp \| \mq) \| \mr$ are both undefined (due to incompatibilities), 
+% or they are both defined, in which case they are equal.
+% \end{theo}
+
+\vspace*{-2ex}
+
+\paragraph{Implementation considerations.}
+%
+We have implemented composition and compatibility checking for Moore
+interfaces by extending the 
+%CUDD BDD package and the
+%VIS BDD manipulation package \cite{VIS96}, and the 
+Mocha model checker \cite{Mocha98} to interfaces. 
+% All operations, including the fixpoint computation (\ref{eq-comp}),
+% can be implemented in a straightforward manner. 
+% old 
+\begin{comment}
+To obtain an efficient implementation, it is important to use a
+conjunctively decomposed representation for the BDDs representing the 
+transition relations, and to derive the new input transition relation
+for a composed interface again in conjunctively decomposed form. 
+In fact, the (output) transition relation $\otrans$ 
+of a module is best represented not as a single BDD, but
+as a list of BDDs $\otrans_1, \otrans_2, \ldots, \otrans_n$, 
+such that $\otrans = \bigwedge_{i=1}^n \otrans_i$: 
+the BDDs $\otrans_1, \otrans_2, \ldots, \otrans_n$ are often
+small, and can be constructed efficiently while parsing the input. 
+For example, in {\em reactive modules\/} \cite{RM96journal} 
+each $\otrans_i$, for $1 \leq i \leq  n$, can be obtained by parsing a
+single {\em atom,} which describes the updates of only a handful of
+variables;
+%: hence, even as the number $|\vars|$ of total variables
+%grows, $\max_i |\vars_i|$ is likely to stay constant. 
+a similar consideration holds for the input language of e.g.\ SMV
+\cite{SMV96}. 
+Furthermore, highly efficient {\em image computation techniques\/}
+have been implemented for computing formulas of the form 
+$\exists \vars . \bigwedge_{i=1}^n \otrans_i$; such techniques are at
+the heart of symbolic reachability algorithms \cite{Ranjan97}.
+We represent both the input and output transition relations of Moore
+interfaces in conjunctively decomposed form, as lists of BDDs.
+\end{comment}
+%
+To obtain an efficient implementation, we represent both the input and
+the output transition relations % of Moore interfaces 
+using a conjunctively decomposed representation, where a relation
+$\trans$ is represented by a list of BDDs $\trans_1, \trans_2,
+\ldots, \trans_n$ such that $\trans = \wedge_{i=1}^n \trans_i$. 
+% Often, such conjunctive representations can be much smaller than
+% representing $\trans$ by a single BDD. 
+% Furthermore, highly efficient {\em image computation techniques\/}
+% have been implemented for computing formulas of the form 
+% $\exists \vars . \bigwedge_{i=1}^n \otrans_i$, that are at
+% the heart of symbolic reachability.
+When computing $\mr = \mp \| \mq$, the list for 
+$\otrans_\mr$ can be readily obtained by concatenating the lists
+for $\otrans_\mp$ and $\otrans_\mq$. 
+Moreover, 
+% by rearranging the computation of (\ref{eq-comp}), 
+% we can obtain a conjunctively decomposed representation of 
+% $\itrans_\mr$ from the conjunctive decompositions for $\mp$ and $\mq$. 
+assume that $\otrans_\mr$ is represented as $\bigwedge_{i=1}^n \otrans_i$,
+and that $\itrans_\mp \und \itrans_\mq$ is represented as 
+$\bigwedge_{j=1}^m \otrans_j$. 
+Given $\ctrl_k$, from  (\ref{eq-comp}) we obtain the conjunctive decomposition
+$\bigwedge_{j=1}^{m+1} \htau_{k+1,j}$ for $\htau_{k+1}$
+by taking 
+$  \htau_{k+1,m+1} = \no \exists (\ovars_\mr)' . 
+  (\otrans_\mr \und \no \ctrl'_{k})$ 
+and, for $1 \leq j \leq m$, by taking 
+$   \htau_{k+1,j}  = \no \exists (\ovars_\mr)' . 
+    (\otrans_\mr \und \no \itrans_j)$. 
+% \[ 
+%   \htau_{k+1,j}  = \no \exists (\ovars_\mr)' . 
+%   ((\bigwedge_{i=1}^n \otrans_i) \und \no \itrans_j) 
+%   \eqspa 
+%   \htau_{k+1,m+1} = \no \exists (\ovars_\mr)' . 
+%   ((\bigwedge_{i=1}^n \otrans_i) \und \no \ctrl'_{k}).
+% \]
+% The existential quantification in these expressions can be
+% performed using image computation techniques. 
+We also obtain 
+$\ctrl_{k+1} = \exists (\ivars_\mr)' . \bigwedge_{j=1}^{m+1}
+\htau_{k+1,j}$. 
+All these operations can be performed using image computation
+techniques.  
+Once we reach $k$ such that $\ctrl_k \equiv \ctrl_{k+1}$, 
+the BDDs $\htau_{k,1}, \ldots, \htau_{k,m+1}$ form a conjunctive
+decomposition for $\htau_*$. 
+Since the two transition relations $\htau_*$ and $\ctrl_* \im \htau_*$
+differ only for the behavior at non-reachable states, in our
+implementation we take directly $\itrans_\mr = \htau_*$, obtaining
+again a conjunctive decomposition. 
+With these techniques, the size (number of BDD variables) of the
+interfaces that our tool is able to check for compatibility, and
+compose, is roughly equivalent to the size of the 
+models that Mocha \cite{Mocha98} can verify with respect to safety
+properties.  
+
+
+%\mynote{it would be nice to say something about what kind of
+%diagnostic information do we provide if compatibility does not hold}

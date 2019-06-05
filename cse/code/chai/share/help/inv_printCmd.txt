@@ -1,0 +1,19 @@
+
+  inv_print - Prints all the invariants.
+     _________________________________________________________________
+   
+   inv_print [-l] [invariant_name]
+   
+   The command prints invariants. If invariant_name is specified then
+   only that invariant is printed else all invariants are printed.
+   
+   Command options:
+   
+   -h
+          Print usage.
+          
+   -l
+          The full invariant expression is printed.
+     _________________________________________________________________
+   
+   Last updated on 980624 22h10

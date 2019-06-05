@@ -1,0 +1,14 @@
+\begin{minipage}[h]{2in} 
+\scriptsize
+\begin{verbatim}
+ atom 
+   controls  CarSignal 
+   reads  Tmp 
+     init 
+     []  true  -> CarSignal':= 1  
+     []  true  -> CarSignal':= 0  
+     update 
+     []  true ->  CarSignal':=Tmp 
+ endatom
+\end{verbatim}
+\end{minipage}

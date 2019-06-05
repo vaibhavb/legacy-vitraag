@@ -1,0 +1,11 @@
+
+  rtm_static_order - Orders mdd variables of a module as specified by a file
+     _________________________________________________________________
+   
+   rtm_static_order [-h] -f <file_name> <module_name;>
+   
+   This command reads the current ordering of MDD variables from a file,
+   specified by the given file name
+     _________________________________________________________________
+   
+   Last updated on 980624 22h11

@@ -1,0 +1,379 @@
+<HTML>
+<HEAD><TITLE>sym package abstract</TITLE></HEAD>
+<BODY>
+
+
+<!-- Function Abstracts -->
+
+<dl>
+<DT> <A HREF="symAllDet.html#CommandBuildTrans" TARGET="MAIN"><CODE>CommandBuildTrans()</CODE></A>
+<DD> driver for building transition relation
+
+<DT> <A HREF="symAllDet.html#CommandComputeInitSet" TARGET="MAIN"><CODE>CommandComputeInitSet()</CODE></A>
+<DD> driver for building initial state
+
+<DT> <A HREF="symAllDet.html#CommandComputePostSet" TARGET="MAIN"><CODE>CommandComputePostSet()</CODE></A>
+<DD> compute the post set of a given set
+
+<DT> <A HREF="symAllDet.html#CommandComputeReachSet" TARGET="MAIN"><CODE>CommandComputeReachSet()</CODE></A>
+<DD> driver for building reached set
+
+<DT> <A HREF="symAllDet.html#CommandComputeUnion" TARGET="MAIN"><CODE>CommandComputeUnion()</CODE></A>
+<DD> compute the union of two regions
+
+<DT> <A HREF="symAllDet.html#CommandDynamicVarOrdering" TARGET="MAIN"><CODE>CommandDynamicVarOrdering()</CODE></A>
+<DD> Implements the dynamic_var_ordering command.
+
+<DT> <A HREF="symAllDet.html#CommandPrintRegion" TARGET="MAIN"><CODE>CommandPrintRegion()</CODE></A>
+<DD> Print the given region
+
+<DT> <A HREF="symAllDet.html#CommandReadOrder" TARGET="MAIN"><CODE>CommandReadOrder()</CODE></A>
+<DD> Order the MDD variables of a module as specified by a file
+
+<DT> <A HREF="symAllDet.html#CommandWriteOrder" TARGET="MAIN"><CODE>CommandWriteOrder()</CODE></A>
+<DD> Write the current ordering of the module into a file
+
+<DT> <A HREF="symAllDet.html#DynOrderTypeConvertToString" TARGET="MAIN"><CODE>DynOrderTypeConvertToString()</CODE></A>
+<DD> Converts a dynamic ordering method type to a string.
+
+<DT> <A HREF="symAllDet.html#IntegersCompare" TARGET="MAIN"><CODE>IntegersCompare()</CODE></A>
+<DD> Used to sort an array of integers in ascending order.
+
+<DT> <A HREF="symAllDet.html#MddGroupVariables" TARGET="MAIN"><CODE>MddGroupVariables()</CODE></A>
+<DD> Group all bdd vars corresponding to mdd vars initMddId to
+  initMddId + (blockSize-1) in a block which will not be split in reordering.
+
+<DT> <A HREF="symAllDet.html#ModuleAssignMddIdsToVariables" TARGET="MAIN"><CODE>ModuleAssignMddIdsToVariables()</CODE></A>
+<DD> Create MDD variables according to the specified total ordering
+
+<DT> <A HREF="symAllDet.html#ModuleTotalOrderVariables" TARGET="MAIN"><CODE>ModuleTotalOrderVariables()</CODE></A>
+<DD> Convert an ordering of a subset of variables to a total 
+                      ordering
+
+<DT> <A HREF="symAllDet.html#StringConvertToDynOrderType" TARGET="MAIN"><CODE>StringConvertToDynOrderType()</CODE></A>
+<DD> Converts a string to a dynamic ordering method type.
+
+<DT> <A HREF="symAllDet.html#SymAssignmentBuildMddBoolean" TARGET="MAIN"><CODE>SymAssignmentBuildMddBoolean()</CODE></A>
+<DD> Build MDD for boolean assignment with LHS and RHS
+                      of type boolean
+
+<DT> <A HREF="symAllDet.html#SymAssignmentBuildMddStandard" TARGET="MAIN"><CODE>SymAssignmentBuildMddStandard()</CODE></A>
+<DD> build MDD for a standard asssignment
+
+<DT> <A HREF="symAllDet.html#SymBitVectorBuildAssignmentMdd" TARGET="MAIN"><CODE>SymBitVectorBuildAssignmentMdd()</CODE></A>
+<DD> build MDD for bit vector assignment
+
+<DT> <A HREF="symAllDet.html#SymBitVectorBuildBooleanExpressionMdd" TARGET="MAIN"><CODE>SymBitVectorBuildBooleanExpressionMdd()</CODE></A>
+<DD> build MDD for a boolean expression of bit vectors
+
+<DT> <A HREF="symAllDet.html#SymBitVectorBuildMddArrayForVar" TARGET="MAIN"><CODE>SymBitVectorBuildMddArrayForVar()</CODE></A>
+<DD> return and mdd array for a bitvector variable
+
+<DT> <A HREF="symAllDet.html#SymBitVectorBuildMddArray" TARGET="MAIN"><CODE>SymBitVectorBuildMddArray()</CODE></A>
+<DD> build MDD array for bit vector expression
+
+<DT> <A HREF="symAllDet.html#SymCreateMddVariable" TARGET="MAIN"><CODE>SymCreateMddVariable()</CODE></A>
+<DD> utility to create an MDD variable
+
+<DT> <A HREF="symAllDet.html#SymExprBuildExprConstMdd" TARGET="MAIN"><CODE>SymExprBuildExprConstMdd()</CODE></A>
+<DD> build MDD for an expression-constant equality
+
+<DT> <A HREF="symAllDet.html#SymExprBuildMvf" TARGET="MAIN"><CODE>SymExprBuildMvf()</CODE></A>
+<DD> Given a parse tree for a multivalued expression compute its mvf
+
+<DT> <A HREF="symAllDet.html#SymGetArrayElementVar" TARGET="MAIN"><CODE>SymGetArrayElementVar()</CODE></A>
+<DD> required
+
+<DT> <A HREF="symAllDet.html#SymGetArrayId" TARGET="MAIN"><CODE>SymGetArrayId()</CODE></A>
+<DD> required
+
+<DT> <A HREF="symAllDet.html#SymGetArrayNvals" TARGET="MAIN"><CODE>SymGetArrayNvals()</CODE></A>
+<DD> required
+
+<DT> <A HREF="symAllDet.html#SymGetConstant" TARGET="MAIN"><CODE>SymGetConstant()</CODE></A>
+<DD> utility to get a constant value from an expression
+
+<DT> <A HREF="symAllDet.html#SymGetMddLiteral" TARGET="MAIN"><CODE>SymGetMddLiteral()</CODE></A>
+<DD> utility to get and MDD literal
+
+<DT> <A HREF="symAllDet.html#SymGetNvals" TARGET="MAIN"><CODE>SymGetNvals()</CODE></A>
+<DD> utility to get the number of possible values of a multi
+  valued variable
+
+<DT> <A HREF="symAllDet.html#SymGetRelExprMdd" TARGET="MAIN"><CODE>SymGetRelExprMdd()</CODE></A>
+<DD> required
+
+<DT> <A HREF="symAllDet.html#SymGetTopMddId" TARGET="MAIN"><CODE>SymGetTopMddId()</CODE></A>
+<DD> get top mdd id
+
+<DT> <A HREF="symAllDet.html#SymGetVariableIdConstantAndPlus" TARGET="MAIN"><CODE>SymGetVariableIdConstantAndPlus()</CODE></A>
+<DD> utility to get the components of an expression of the
+  form v + c or v - c
+
+<DT> <A HREF="symAllDet.html#SymGetVariableId" TARGET="MAIN"><CODE>SymGetVariableId()</CODE></A>
+<DD> utility to get the mdd variable id corresponding to the expression
+
+<DT> <A HREF="symAllDet.html#SymInfoReadModule" TARGET="MAIN"><CODE>SymInfoReadModule()</CODE></A>
+<DD> required
+
+<DT> <A HREF="symAllDet.html#SymIsMultiValuedVariable" TARGET="MAIN"><CODE>SymIsMultiValuedVariable()</CODE></A>
+<DD> is the given expression a multi-valued variable?
+
+<DT> <A HREF="symAllDet.html#SymIsNumEnumRangeConstant" TARGET="MAIN"><CODE>SymIsNumEnumRangeConstant()</CODE></A>
+<DD> utility to check if a given expression is a num or enum or range
+                      constant
+
+<DT> <A HREF="symAllDet.html#SymIsUnprimedId" TARGET="MAIN"><CODE>SymIsUnprimedId()</CODE></A>
+<DD> does this id belong to a primed or unprimed variable
+
+<DT> <A HREF="symAllDet.html#SymMVBuildAssignmentMdd" TARGET="MAIN"><CODE>SymMVBuildAssignmentMdd()</CODE></A>
+<DD> Build MDD for multi valued assignment
+
+<DT> <A HREF="symAllDet.html#SymMVBuildBooleanExpressionMdd" TARGET="MAIN"><CODE>SymMVBuildBooleanExpressionMdd()</CODE></A>
+<DD> Given a boolean expression involving multivalued
+                      variables, build mdd for it
+
+<DT> <A HREF="symAllDet.html#SymMddArrayAndComponents" TARGET="MAIN"><CODE>SymMddArrayAndComponents()</CODE></A>
+<DD> do "and" of all MDD array components
+
+<DT> <A HREF="symAllDet.html#SymMddArrayAndMddArray" TARGET="MAIN"><CODE>SymMddArrayAndMddArray()</CODE></A>
+<DD> do "and" on two MDD arrays
+
+<DT> <A HREF="symAllDet.html#SymMddArrayAndMdd" TARGET="MAIN"><CODE>SymMddArrayAndMdd()</CODE></A>
+<DD> Does "and" on all components of MDD array  with given mdd
+
+<DT> <A HREF="symAllDet.html#SymMddArrayCompareEqual" TARGET="MAIN"><CODE>SymMddArrayCompareEqual()</CODE></A>
+<DD> do equality check on two MDD arrays
+
+<DT> <A HREF="symAllDet.html#SymMddArrayCompareGreaterEqual" TARGET="MAIN"><CODE>SymMddArrayCompareGreaterEqual()</CODE></A>
+<DD> do greater than or equal check on two MDD arrays
+
+<DT> <A HREF="symAllDet.html#SymMddArrayCompareGreater" TARGET="MAIN"><CODE>SymMddArrayCompareGreater()</CODE></A>
+<DD> do greater than check on two MDD arrays
+
+<DT> <A HREF="symAllDet.html#SymMddArrayCompareLesserEqual" TARGET="MAIN"><CODE>SymMddArrayCompareLesserEqual()</CODE></A>
+<DD> do lesser than or equal check on two MDD arrays
+
+<DT> <A HREF="symAllDet.html#SymMddArrayCompareLesser" TARGET="MAIN"><CODE>SymMddArrayCompareLesser()</CODE></A>
+<DD> do lesser than check on two MDD arrays
+
+<DT> <A HREF="symAllDet.html#SymMddArrayFree" TARGET="MAIN"><CODE>SymMddArrayFree()</CODE></A>
+<DD> free MDD array
+
+<DT> <A HREF="symAllDet.html#SymMddArrayImpliesMddArray" TARGET="MAIN"><CODE>SymMddArrayImpliesMddArray()</CODE></A>
+<DD> do "implies" on two MDD arrays
+
+<DT> <A HREF="symAllDet.html#SymMddArrayMinusMddArray" TARGET="MAIN"><CODE>SymMddArrayMinusMddArray()</CODE></A>
+<DD> do "subtract" on two MDD arrays
+
+<DT> <A HREF="symAllDet.html#SymMddArrayNot" TARGET="MAIN"><CODE>SymMddArrayNot()</CODE></A>
+<DD> do "not" on MDD array
+
+<DT> <A HREF="symAllDet.html#SymMddArrayObtainConstant" TARGET="MAIN"><CODE>SymMddArrayObtainConstant()</CODE></A>
+<DD> Obtain constant MDD array
+
+<DT> <A HREF="symAllDet.html#SymMddArrayOrMddArray" TARGET="MAIN"><CODE>SymMddArrayOrMddArray()</CODE></A>
+<DD> do "or" on two MDD arrays
+
+<DT> <A HREF="symAllDet.html#SymMddArrayOrMdd" TARGET="MAIN"><CODE>SymMddArrayOrMdd()</CODE></A>
+<DD> Door "or" on all components of MDD array  with given mdd
+
+<DT> <A HREF="symAllDet.html#SymMddArrayPlusMddArray" TARGET="MAIN"><CODE>SymMddArrayPlusMddArray()</CODE></A>
+<DD> do "add" on two MDD arrays
+
+<DT> <A HREF="symAllDet.html#SymMddArrayPrint" TARGET="MAIN"><CODE>SymMddArrayPrint()</CODE></A>
+<DD> print MDD array
+
+<DT> <A HREF="symAllDet.html#SymMddArrayRedAnd" TARGET="MAIN"><CODE>SymMddArrayRedAnd()</CODE></A>
+<DD> do Reduction And of an Array
+
+<DT> <A HREF="symAllDet.html#SymMddArrayRedOr" TARGET="MAIN"><CODE>SymMddArrayRedOr()</CODE></A>
+<DD> do Reduction Or of an Array
+
+<DT> <A HREF="symAllDet.html#SymMddArrayRedXor" TARGET="MAIN"><CODE>SymMddArrayRedXor()</CODE></A>
+<DD> do Reduction Or of an Array
+
+<DT> <A HREF="symAllDet.html#SymMddArrayXnorMddArray" TARGET="MAIN"><CODE>SymMddArrayXnorMddArray()</CODE></A>
+<DD> do "xnor" on two MDD arrays
+
+<DT> <A HREF="symAllDet.html#SymMddArrayXorMddArray" TARGET="MAIN"><CODE>SymMddArrayXorMddArray()</CODE></A>
+<DD> do "xor" on two MDD arrays
+
+<DT> <A HREF="symAllDet.html#SymMddInTrueSupport" TARGET="MAIN"><CODE>SymMddInTrueSupport()</CODE></A>
+<DD> Check if the given variable is in the true support of
+                      the given mdd
+
+<DT> <A HREF="symAllDet.html#SymModuleSearch" TARGET="MAIN"><CODE>SymModuleSearch()</CODE></A>
+<DD> do reachability + invariant checking
+
+<DT> <A HREF="symAllDet.html#SymRangeReadDummyId" TARGET="MAIN"><CODE>SymRangeReadDummyId()</CODE></A>
+<DD> Utility to access a dummyId for a range
+
+<DT> <A HREF="symAllDet.html#SymReadOrder" TARGET="MAIN"><CODE>SymReadOrder()</CODE></A>
+<DD> Read variable order for module from a file
+
+<DT> <A HREF="symAllDet.html#SymWriteOrder" TARGET="MAIN"><CODE>SymWriteOrder()</CODE></A>
+<DD> Write variable order for symInfo into a file
+
+<DT> <A HREF="symAllDet.html#Sym_AssignmentBuildMdd" TARGET="MAIN"><CODE>Sym_AssignmentBuildMdd()</CODE></A>
+<DD> build MDD for an assignment
+
+<DT> <A HREF="symAllDet.html#Sym_AtomBuildInitialRegion" TARGET="MAIN"><CODE>Sym_AtomBuildInitialRegion()</CODE></A>
+<DD> build initial region for an atom
+
+<DT> <A HREF="symAllDet.html#Sym_AtomBuildTransitionRelation" TARGET="MAIN"><CODE>Sym_AtomBuildTransitionRelation()</CODE></A>
+<DD> build transition relation for an atom
+
+<DT> <A HREF="symAllDet.html#Sym_AtomsBuildPartialInitialRegion" TARGET="MAIN"><CODE>Sym_AtomsBuildPartialInitialRegion()</CODE></A>
+<DD> build mdd for partial initial region
+
+<DT> <A HREF="symAllDet.html#Sym_AtomsComputePartialImage" TARGET="MAIN"><CODE>Sym_AtomsComputePartialImage()</CODE></A>
+<DD> Compute partial image with respect to a set of atoms
+
+<DT> <A HREF="symAllDet.html#Sym_DebugTracePrint" TARGET="MAIN"><CODE>Sym_DebugTracePrint()</CODE></A>
+<DD> print debug trace for an invariant
+
+<DT> <A HREF="symAllDet.html#Sym_End" TARGET="MAIN"><CODE>Sym_End()</CODE></A>
+<DD> Termination function for sym package
+
+<DT> <A HREF="symAllDet.html#Sym_ExprBuildMdd" TARGET="MAIN"><CODE>Sym_ExprBuildMdd()</CODE></A>
+<DD> build MDD for an expression
+
+<DT> <A HREF="symAllDet.html#Sym_Init" TARGET="MAIN"><CODE>Sym_Init()</CODE></A>
+<DD> Initilization function for sym package
+
+<DT> <A HREF="symAllDet.html#Sym_MddPickMinterm" TARGET="MAIN"><CODE>Sym_MddPickMinterm()</CODE></A>
+<DD> utility to pick a minterm form a MDD
+
+<DT> <A HREF="symAllDet.html#Sym_MddPrintCubesImplSpec" TARGET="MAIN"><CODE>Sym_MddPrintCubesImplSpec()</CODE></A>
+<DD> Utility to dump mdds
+
+<DT> <A HREF="symAllDet.html#Sym_MddPrintCubes" TARGET="MAIN"><CODE>Sym_MddPrintCubes()</CODE></A>
+<DD> Utility to dump mdds
+
+<DT> <A HREF="symAllDet.html#Sym_MddPrintRawCubes" TARGET="MAIN"><CODE>Sym_MddPrintRawCubes()</CODE></A>
+<DD> Utility to dump mdds - in terms of raw mdd ids
+
+<DT> <A HREF="symAllDet.html#Sym_MddPrintStateForErrorTrace" TARGET="MAIN"><CODE>Sym_MddPrintStateForErrorTrace()</CODE></A>
+<DD> Utility to generate a state string for Tcl error
+                      trace display
+
+<DT> <A HREF="symAllDet.html#Sym_ModuleBuildInitialRegion" TARGET="MAIN"><CODE>Sym_ModuleBuildInitialRegion()</CODE></A>
+<DD> build mdd for initial region of module
+
+<DT> <A HREF="symAllDet.html#Sym_ModuleBuildTransitionRelation" TARGET="MAIN"><CODE>Sym_ModuleBuildTransitionRelation()</CODE></A>
+<DD> build symbolic transtion relation for a module
+
+<DT> <A HREF="symAllDet.html#Sym_ModuleMatchMddIds" TARGET="MAIN"><CODE>Sym_ModuleMatchMddIds()</CODE></A>
+<DD> match mdd ids of two modules
+
+<DT> <A HREF="symAllDet.html#Sym_ModulePerformBFS" TARGET="MAIN"><CODE>Sym_ModulePerformBFS()</CODE></A>
+<DD> do invariant checking
+
+<DT> <A HREF="symAllDet.html#Sym_RegionAlloc" TARGET="MAIN"><CODE>Sym_RegionAlloc()</CODE></A>
+<DD> Allocate a region struct
+
+<DT> <A HREF="symAllDet.html#Sym_RegionFree" TARGET="MAIN"><CODE>Sym_RegionFree()</CODE></A>
+<DD> required
+
+<DT> <A HREF="symAllDet.html#Sym_RegionManagerAddModuleToSymInfo" TARGET="MAIN"><CODE>Sym_RegionManagerAddModuleToSymInfo()</CODE></A>
+<DD> Add a module and symInfo pair to the moduleToSymInfo table
+
+<DT> <A HREF="symAllDet.html#Sym_RegionManagerAlloc" TARGET="MAIN"><CODE>Sym_RegionManagerAlloc()</CODE></A>
+<DD> Allocate a region manager
+
+<DT> <A HREF="symAllDet.html#Sym_RegionManagerDeleteModuleToSymInfo" TARGET="MAIN"><CODE>Sym_RegionManagerDeleteModuleToSymInfo()</CODE></A>
+<DD> Delete a module-syminfo pair from moduleToSymInfo table
+
+<DT> <A HREF="symAllDet.html#Sym_RegionManagerFree" TARGET="MAIN"><CODE>Sym_RegionManagerFree()</CODE></A>
+<DD> required
+
+<DT> <A HREF="symAllDet.html#Sym_RegionManagerIncrementCounter" TARGET="MAIN"><CODE>Sym_RegionManagerIncrementCounter()</CODE></A>
+<DD> Increment region manager's region counter
+
+<DT> <A HREF="symAllDet.html#Sym_RegionManagerReadCounter" TARGET="MAIN"><CODE>Sym_RegionManagerReadCounter()</CODE></A>
+<DD> Read region manager's region counter
+
+<DT> <A HREF="symAllDet.html#Sym_RegionManagerReadRegionTable" TARGET="MAIN"><CODE>Sym_RegionManagerReadRegionTable()</CODE></A>
+<DD> Read region manager's region table
+
+<DT> <A HREF="symAllDet.html#Sym_RegionManagerReadSymInfo" TARGET="MAIN"><CODE>Sym_RegionManagerReadSymInfo()</CODE></A>
+<DD> Find the symInfo for the given module
+
+<DT> <A HREF="symAllDet.html#Sym_Reinit" TARGET="MAIN"><CODE>Sym_Reinit()</CODE></A>
+<DD> Re-initialization function for sym package
+
+<DT> <A HREF="symAllDet.html#Sym_StateInMddWithResidueMdd" TARGET="MAIN"><CODE>Sym_StateInMddWithResidueMdd()</CODE></A>
+<DD> Check if a state is in the mdd.
+
+<DT> <A HREF="symAllDet.html#Sym_StateInMdd" TARGET="MAIN"><CODE>Sym_StateInMdd()</CODE></A>
+<DD> Check if a state is in the mdd.
+
+<DT> <A HREF="symAllDet.html#Sym_SymInfoAlloc" TARGET="MAIN"><CODE>Sym_SymInfoAlloc()</CODE></A>
+<DD> Allocate and return a symInfo struct
+
+<DT> <A HREF="symAllDet.html#Sym_SymInfoBuildFlatTrans" TARGET="MAIN"><CODE>Sym_SymInfoBuildFlatTrans()</CODE></A>
+<DD> Utility to build a flat transition relation
+
+<DT> <A HREF="symAllDet.html#Sym_SymInfoFree" TARGET="MAIN"><CODE>Sym_SymInfoFree()</CODE></A>
+<DD> Utility to free symInfo
+
+<DT> <A HREF="symAllDet.html#Sym_SymInfoLookupPrimedVariableId" TARGET="MAIN"><CODE>Sym_SymInfoLookupPrimedVariableId()</CODE></A>
+<DD> lookup primed mdd id for a variable
+
+<DT> <A HREF="symAllDet.html#Sym_SymInfoLookupUnprimedVariableId" TARGET="MAIN"><CODE>Sym_SymInfoLookupUnprimedVariableId()</CODE></A>
+<DD> lookup unprimed mdd id for a variable
+
+<DT> <A HREF="symAllDet.html#Sym_SymInfoReadConjunctForAtom" TARGET="MAIN"><CODE>Sym_SymInfoReadConjunctForAtom()</CODE></A>
+<DD> read the conjunct  (transtion relation) for the given atom
+
+<DT> <A HREF="symAllDet.html#Sym_SymInfoReadConjuncts" TARGET="MAIN"><CODE>Sym_SymInfoReadConjuncts()</CODE></A>
+<DD> read the conjuncts from symInfo
+
+<DT> <A HREF="symAllDet.html#Sym_SymInfoReadIdToVar" TARGET="MAIN"><CODE>Sym_SymInfoReadIdToVar()</CODE></A>
+<DD> read the idToVar table from symInfo
+
+<DT> <A HREF="symAllDet.html#Sym_SymInfoReadImgInfo" TARGET="MAIN"><CODE>Sym_SymInfoReadImgInfo()</CODE></A>
+<DD> read the image info from symInfo
+
+<DT> <A HREF="symAllDet.html#Sym_SymInfoReadManager" TARGET="MAIN"><CODE>Sym_SymInfoReadManager()</CODE></A>
+<DD> read the mdd manager from symInfo
+
+<DT> <A HREF="symAllDet.html#Sym_SymInfoReadPrimedIdArray" TARGET="MAIN"><CODE>Sym_SymInfoReadPrimedIdArray()</CODE></A>
+<DD> read the primedIdArray array
+
+<DT> <A HREF="symAllDet.html#Sym_SymInfoReadQuantifyIdArray" TARGET="MAIN"><CODE>Sym_SymInfoReadQuantifyIdArray()</CODE></A>
+<DD> read the quantifyIdArray array
+
+<DT> <A HREF="symAllDet.html#Sym_SymInfoReadUnprimedIdArray" TARGET="MAIN"><CODE>Sym_SymInfoReadUnprimedIdArray()</CODE></A>
+<DD> read the unprimedIdArray array
+
+<DT> <A HREF="symAllDet.html#Sym_SymInfoReadVarToPrimedId" TARGET="MAIN"><CODE>Sym_SymInfoReadVarToPrimedId()</CODE></A>
+<DD> read the varToPrimedId st_table
+
+<DT> <A HREF="symAllDet.html#Sym_SymInfoReadVarToUnprimedId" TARGET="MAIN"><CODE>Sym_SymInfoReadVarToUnprimedId()</CODE></A>
+<DD> read the varToUnprimedId st_table
+
+<DT> <A HREF="symAllDet.html#Sym_SymInfoSetConjunctForAtom" TARGET="MAIN"><CODE>Sym_SymInfoSetConjunctForAtom()</CODE></A>
+<DD> set the conjunct  (transtion relation) for the given atom
+
+<DT> <A HREF="symAllDet.html#Sym_SymInfoSetImgInfo" TARGET="MAIN"><CODE>Sym_SymInfoSetImgInfo()</CODE></A>
+<DD> read the image info from symInfo
+
+<DT> <A HREF="symAllDet.html#VarBuildBddIdArray" TARGET="MAIN"><CODE>VarBuildBddIdArray()</CODE></A>
+<DD> Gets the levels of the BDD variables corresponding to the MDD
+  variable of a node.
+
+<DT> <A HREF="symAllDet.html#VarOrderIsInArray" TARGET="MAIN"><CODE>VarOrderIsInArray()</CODE></A>
+<DD> check if a variable is in a varOrderArray
+
+<DT> <A HREF="symAllDet.html#VarOrdersCompareBddIdArray" TARGET="MAIN"><CODE>VarOrdersCompareBddIdArray()</CODE></A>
+<DD> Used to sort an array of nodes in ascending order of lowest BDD
+  level.
+
+</DL>
+
+<HR>
+
+Last updated on 1031103 12h03
+</BODY></HTML>

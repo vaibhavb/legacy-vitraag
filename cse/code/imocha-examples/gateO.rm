@@ -1,0 +1,16 @@
+module gateO
+  interface y0: bool; y1: bool;
+  external  x0: bool; x1: bool;
+
+atom controls y0, y1 reads x0, x1, y0, y1 
+  init
+      [] true -> y0' := false; y1' := nondet 
+      [] true -> y1' := false; y0' := nondet  
+  update
+      [] ~x0 & ~x1 -> y0' := true;  y1' := true
+      [] ~x0 &  x1 -> y0' := true;  y1' := false
+      []  x0 & ~x1 -> y0' := false; y1' := true
+      []  x0 &  x1 -> y0' := y0;    y1' := y1
+  endatom
+endmodule
+

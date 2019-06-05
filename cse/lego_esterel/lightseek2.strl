@@ -1,0 +1,281 @@
+% lightseek.strl - Esterel version of light-seeking Lego robot
+% Jeremy Stolarz, brzlnut@cats
+
+
+%Module responsible for orienting the bot in the brightest direction
+module SCAN:
+output   MOTOR_A_SPEED(integer), MOTOR_C_SPEED(integer), CPUTS(string), 
+         MOTOR_A_DIR(integer), MOTOR_C_DIR(integer), SCAN_START, SCAN_END, 
+	 SCAN_MOT;
+input    TOUCH_1, TOUCH_3, SPEED : integer;
+sensor   LIGHT_2_VALUE : integer;
+relation TOUCH_1 # TOUCH_3;
+constant MOTOR_FWD, MOTOR_REV, MOTOR_OFF, MAX_SPEED : integer;
+
+var north : integer, south : integer, east : integer, west : integer, 
+   temp1 : integer, temp2 : integer, nsflg : integer, ewflg : integer, 
+   bright : integer in
+   emit SCAN_START;
+   emit CPUTS("SCAN");
+
+   %get value to north
+   north := ?LIGHT_2_VALUE;
+
+   %get value to east
+   emit MOTOR_A_DIR(MOTOR_FWD);
+   emit MOTOR_C_DIR(MOTOR_REV);
+   emit MOTOR_A_SPEED(?SPEED);
+   emit MOTOR_C_SPEED(?SPEED);
+   repeat 37 times
+      emit SCAN_MOT;
+      pause;
+   end repeat;
+   east := ?LIGHT_2_VALUE;
+
+   %get value to south
+   repeat 37 times
+      emit SCAN_MOT;
+      pause;
+   end repeat;
+   south := ?LIGHT_2_VALUE;
+
+   %get value to west
+   repeat 37 times
+      emit SCAN_MOT;
+       pause;
+   end repeat;
+   west := ?LIGHT_2_VALUE;
+
+   %compare values
+   if north > south then
+      temp1 := north;
+      nsflg := 1;      
+   else
+      temp1 := south;
+      nsflg := 2;
+   end if;
+
+   if east > west then
+      temp2 := east;
+      ewflg := 3;
+   else
+      temp2 := west;
+      ewflg := 4;
+   end if; 
+
+   if temp1 > temp2 then 
+      bright := nsflg;
+   else
+      bright := ewflg;
+   end if;
+
+   %point the bot in brightest direction
+   if bright = 1 then 
+      repeat 37 times
+         emit SCAN_MOT;
+	 pause;
+      end repeat;
+   elsif bright = 2 then 
+      emit MOTOR_A_DIR(MOTOR_REV);
+      emit MOTOR_C_DIR(MOTOR_FWD);
+      repeat 37 times
+         emit SCAN_MOT;
+	 pause;
+      end repeat;
+   elsif bright = 3 then
+      repeat 74 times
+         emit SCAN_MOT;
+	 pause;
+      end repeat;
+   else
+      nothing;
+   end if;
+end var;
+
+emit SCAN_END;
+end module
+
+
+%Bump recovery module
+module BUMP:
+output   MOTOR_A_SPEED(integer), MOTOR_C_SPEED(integer), CPUTS(string),
+         MOTOR_A_DIR(integer), MOTOR_C_DIR(integer), BUMP_START, BUMP_END, 
+	 BUMP_MOT;
+input    TOUCH_1, TOUCH_3, SPEED : integer;
+sensor   LIGHT_2_VALUE : integer;
+relation TOUCH_1 # TOUCH_3;
+constant MOTOR_FWD, MOTOR_REV, MOTOR_OFF,  MAX_SPEED : integer;
+
+var which : integer in
+   every [TOUCH_1 or TOUCH_3] do
+      emit BUMP_START;
+      emit CPUTS("BUMP");
+
+      %find out which sensor was hit
+      present TOUCH_3 then
+         which := 1;
+      else 
+         which := 3;
+      end present;
+
+      %backup and turn
+      emit MOTOR_A_DIR(MOTOR_REV);
+      emit MOTOR_C_DIR(MOTOR_REV);
+      emit MOTOR_A_SPEED(?SPEED);
+      emit MOTOR_C_SPEED(?SPEED);
+      positive repeat 100 times
+         emit BUMP_MOT;
+	 pause;
+      end repeat;
+      if which=1 then 
+         emit MOTOR_A_DIR(MOTOR_FWD);
+      else
+         emit MOTOR_C_DIR(MOTOR_FWD);
+      end if;
+      positive repeat 37 times
+         emit BUMP_MOT;
+	 pause;
+      end repeat;
+
+      emit BUMP_END;
+   end every;
+end var;
+end module
+
+
+%Module responsible for driving the bot forward and testing for changes in light.
+%Assumes that the bot is already pointing in the right direction
+module SEEK:
+output   MOTOR_A_SPEED(integer), MOTOR_C_SPEED(integer), CPUTS(string), SEEK_MOT,
+         MOTOR_A_DIR(integer), MOTOR_C_DIR(integer);
+input    TOUCH_1, TOUCH_3, SPEED : integer;
+sensor   LIGHT_2_VALUE : integer;
+relation TOUCH_1 # TOUCH_3;
+constant MOTOR_FWD, MOTOR_REV, MOTOR_OFF,  MAX_SPEED : integer;
+
+%Go forward 1.5 seconds
+emit MOTOR_A_DIR(MOTOR_FWD);
+emit MOTOR_C_DIR(MOTOR_FWD);
+emit MOTOR_A_SPEED(?SPEED);
+emit MOTOR_C_SPEED(?SPEED);
+emit CPUTS("FWD");
+repeat 150 times
+   emit SEEK_MOT;
+   pause;
+end repeat;
+
+%Look for light again;
+var left : integer, right : integer, center : integer in
+
+   %look straight ahead
+   center := ?LIGHT_2_VALUE;
+
+   %look left
+   emit MOTOR_A_DIR(MOTOR_REV);
+   repeat 30 times
+      emit SEEK_MOT;
+      pause;
+   end repeat;
+   left := ?LIGHT_2_VALUE;
+
+   %look right
+   emit MOTOR_A_DIR(MOTOR_FWD);
+   emit MOTOR_C_DIR(MOTOR_REV);
+   repeat 60 times
+      emit SEEK_MOT;
+      pause;
+   end repeat;
+   right := ?LIGHT_2_VALUE;
+
+   %choose brightest and turn that way
+   if center < left then
+      if right < left then
+         emit CPUTS("left");
+         emit MOTOR_A_DIR(MOTOR_REV);
+         emit MOTOR_C_DIR(MOTOR_FWD);
+         repeat 60 times
+            emit SEEK_MOT;
+	    pause;
+         end repeat;
+      else
+         emit CPUTS("rite");
+      end if
+   elsif center < right then
+      emit CPUTS("rite");
+   else
+      emit CPUTS("cent");
+      emit MOTOR_A_DIR(MOTOR_REV);
+      emit MOTOR_C_DIR(MOTOR_FWD);
+      repeat 30 times
+         emit SEEK_MOT;
+ 	 pause;
+      end repeat;
+   end if
+end var
+end module
+
+
+%Module that observes whether or not more than one resource wants to use the 
+%motor at the same time
+module OBSERVER:
+output   MOTOR_A_SPEED(integer), MOTOR_C_SPEED(integer), CPUTS(string),
+         MOTOR_A_DIR(integer), MOTOR_C_DIR(integer), MOTOR_CONFLICT : integer;
+input    TOUCH_1, TOUCH_3, BUMP_MOT, SEEK_MOT, SCAN_MOT;
+sensor   LIGHT_2_VALUE : integer;
+relation TOUCH_1 # TOUCH_3;
+constant MOTOR_FWD, MOTOR_REV, MOTOR_OFF,  MAX_SPEED : integer;
+
+present 
+   case [SEEK_MOT and SCAN_MOT and BUMP_MOT] do
+      emit MOTOR_CONFLICT(1);
+   case [BUMP_MOT and SEEK_MOT] do
+      emit MOTOR_CONFLICT(2);
+   case [BUMP_MOT and SCAN_MOT] do
+      emit MOTOR_CONFLICT(3);
+   case [SEEK_MOT and SCAN_MOT] do
+      emit MOTOR_CONFLICT(4);
+end present
+end module  
+
+   
+%Main module: gets the robot to the most light (hopefully ;)
+module LIGHTSEEK:
+output   MOTOR_A_SPEED(integer), MOTOR_C_SPEED(integer), CPUTS(string),
+         MOTOR_A_DIR(integer), MOTOR_C_DIR(integer);
+input    TOUCH_1, TOUCH_3;
+sensor   LIGHT_2_VALUE : integer;
+relation TOUCH_1 # TOUCH_3;
+constant MOTOR_FWD, MOTOR_REV, MOTOR_OFF,  MAX_SPEED : integer;
+
+%Scan once to get oriented in right direction
+%run SCAN;
+
+%Go forward until hit a bump, then recover and rescan
+signal BUMP_START, BUMP_END, SCAN_START, SCAN_END, BUMP_MOT, SCAN_MOT, SEEK_MOT,
+       MOTOR_CONFLICT: integer, SPEED : integer in
+   run BUMP;
+||
+   loop 
+      abort
+         run SCAN;
+      when immediate BUMP_START;
+      await BUMP_END;
+   end loop
+||
+   loop
+      abort
+         run SEEK;
+      when immediate [BUMP_START or SCAN_START] do
+         await SCAN_END;
+      end abort;
+      pause;
+   end loop
+||
+   sustain SPEED(3 * MAX_SPEED/4);
+||
+   loop
+      run OBSERVER;
+      pause;
+   end loop
+end signal
+end module

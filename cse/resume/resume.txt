@@ -1,0 +1,114 @@
+Vaibhav Bhandari
+401 spring street
+Santa Cruz, CA 95060 US.
+vaibhav@cse.ucsc.edu.
+http://www.cse.ucsc.edu/~vaibhav/
+_________________________________________________________________                                                      
+Objective 
+
+Summer 2002 internship position in field of Computer Science with special 
+interest in Systems. Typically, as a Systems' Programmer for general purpose, 
+embedded or consumer electronics environments.
+_________________________________________________________________                          
+Interests 
+
+Systems' programming, Embedded and Real-time Systems, Code Optimization and Compilers. 
+_________________________________________________________________ 
+Work Experience
+
+Teaching Assistant, at UC Santa Cruz since Sep 2001 for Introductory 
+and Advanced Java courses.
+
+Research Assistant, at Tata Institute of Fundamental Reseach, India; from Feb-July 2000. 
+Worked on MicroPayment protocol design for kiosk based consumer points and related security issues.
+
+Instructor, at Vidhyalankar Classes, Mumbai(India) from June-Nov 1999 for 
+Computer Programming course.
+_________________________________________________________________ 
+Education 
+
+Pursuing MS Computer Science, UC Santa Cruz, Santa Cruz, CA 95060. Sep 2001 onwards with TAship.
+
+B.E. Computer Engineering, VES Institute of Technology, Mumbai, India. 
+Aug 1997 - Aug 2001. 
+Score 68% (Top 5%) 
+
+DBF (alpha, beta)-Diploma in Business Finance-part Time, 
+ICFAI,Hyderabad, India. June 2000 -onwards. 
+Score 60% (Top 10%) 
+_________________________________________________________________ 
+Research Skills 
+
+Implementation of Mulit-Queue Earliest Deadline First Scheduler in Linux 
+Kernel with encouraging results.
+
+Security Analysis Of Handhelds, term paper submitted to IEEE IWAWSC'2002.
+
+BE Thesis, Final Year Project, VES IT, Mumbai,India Aug 2000-01 
+* Researched, and implented various Java Bytecode Optimization techniques 
+with performance gain of 1-2%. 
+* Proposed an architecture- VegaRekha for obtaining advanced optimization 
+by using annotated bytecode. 
+
+Home Papers VES IT, Mumbai India. 
+* Hashing Revisited. 
+* Design Of Online Stock Exchanges. 
+
+Maths Research Workshop, Bhaskaracharya Prathisthan, Pune, India Summer 1995. 
+* The workshop focussed on the Maths Olympiad competition covering 
+Number Theory, Pure Geometry, Combinatorics, Graph Theory, and 
+Algebra. 
+_________________________________________________________________ 
+Software Skills 
+
+Projects 
+* Linux Kernal internals and Implementation Of Schedulers.
+* VegaRekha a tool for java bytecode optimization written in java 
+supporting GUI, Commandline and import executions. 
+* Yaadein a website for collaborative authoring of my graduate class 
+yearbook. Done using PHP/MySql combo. 
+* MA Awards online voting system forbidding double voting based on 
+PhP/MySql session handling. 
+* Library Management System a compact implementation of library 
+system using C++ and STL library under GCC environment. 
+* Zee Interpreter an interpreter using Lex and Yacc tools for an 
+experimental language Zee. 
+* Collision Avoidance System, system integration cell as a part of 
+IEEE branch project. Based on MC6811 microcontroller. 
+
+Languages and Packages Known 
+* Programming Languages:Pascal, C(4 years) , C++(2 years), Java(2 years). 
+* Scripting Languages: PHP, SQL 
+* Mark Ups: HTML, XML(1 year), LATEX. 
+* Editors: Emacs, MS-Word, MS-Publisher, MCedit, ilyx. 
+* Compliers and debuggers: GCC, GDB, Turbo C++, JDK 1.2, Forte 
+* Platforms: x86 Linux, x86 Win, Solaris. 
+_________________________________________________________________ 
+Other Activities 
+
+Editorial 
+* Chief Editor of *.*, the annual inter-collegiate student magazine 
+of Computer Society Of India's Mumbai chapter. 
+* Editor and Conceptualizer of e-Sense, CSI-VESIT's newsletter. 
+* Editor and Conceptualizer of Saransh - brochure of United Jain 
+Students' Home, Mumbai. 
+
+Leadership 
+* Founder, Vitraag Inc (www.vitraag.com) a consultancy and software development company.
+* Won Most Promising Speaker Award from DEBSOC, 1999. 
+* Member of Core committee of Emerge2000 - technical symposium 
+ organized by CSI India. 
+* Conceptualizer of Inflections'99 a technical event. 
+* Chief Organizer of a cultural festival Mirage2000. 
+_________________________________________________________________ 
+Academic Honors 
+
+Won the coveted National Talent Search Examination (NTSE) Scholarship 
+awarded byNational Council of Education Research and Training, India. 
+
+Kaprepar Mathematics Scholarship. 
+_________________________________________________________________ 
+Mission Statement 
+
+Mode: Happiness Method: Practicality and Goal: Dreams. 
+_________________________________________________________________ 

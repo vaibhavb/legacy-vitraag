@@ -1,0 +1,128 @@
+\chapter{Introduction}
+Interface models \cite{cav-paper} help to decompose a design into
+components that can be implemented independently. Interface models
+can represent both the input or environment requirements of a
+component, and its output behavior or guarantees. Thus, interface
+models enable the decomposition of a global design problem into
+the design of smaller components, with the guarantee that the
+components, once implemented, will work together correctly. In
+this thesis we present \chai, a tool for applying interface models
+to hardware design.  Specifically, we elaborate on the
+implementation issues for \chai, and on the construction of a
+smooth path from standard hardware design languages such as
+Verilog to \chai.
+%% This essentially consists of two parts
+%% translating from \mv \ to \rm \, and translating from \im \ to
+%% {\rm }. We have also designed an \im \ based input language for
+%% \chai\ to make it an holistic environment for interface models.
+
+\textbf{Interface models} capture the behavior of a system
+component, and the interaction between the component and its
+environment. Since interfaces allow a designer to model
+assumptions about the environment, they can effectively handle
+formalization of component based designs. They aid component based
+design by allowing:
+\begin{itemize}
+\item {\bf Top-down design decomposition.} A design is decomposed
+into components that can be designed and implemented separately.
+The component model is used to specify the task of each component;
+and the interface specification ensures that the components, once
+implemented, can work together correctly.
+
+ \item {\bf Component Reuse}. In component-based approach, designs are
+created by combining pre-existing and application-specific components
+promoting component reuse. The models of the components and their
+interfaces help in selecting and combining the components, and in
+checking that the component interfaces are compatible with one
+another.
+
+\item {\bf Compositional verification.} In order to verify a
+complete design, each component is studied with the help of
+assumptions about its environment. The results for the single
+components are then combined into an analysis for the complete
+system. Interface models capture both the assumptions about the
+environment, and the component behavior. If interface models are
+compatible one can be sure that the component implementations are
+compatible.
+\end{itemize}
+
+To enable the application of interface models to concrete design and
+verification problems we have implemented the tool
+\textbf{\chai}. \chai\ is intended to be a vehicle for
+experimentation with interfaces and related compositional
+verification algorithms and methodologies. \chai\ is an extension
+of \mocha\ \cite{Mo98}, and it follows a software architecture
+similar to VIS \cite{VIS96}; it is written entirely in C and its
+shell user interface is provided by Tcl. 
+%% In \chai \
+%% \emph{designers and application developers} can customize their
+%% application or design with their own user interface by writing Tcl
+%% scripts while \emph{algorithm developers and researchers} can
+%% develop new algorithms by writing C code.
+
+The input language of \chai \ for interfaces is {\im}.  \im \ are
+built on {\rm} \cite{RM96journal}. \rm \ enable only the
+description of the output behavior of a component, \im \ add to
+this the capability of describing input assumptions.
+
+In order to build a smooth path from standard design languages to
+\chai, we have implemented a translator, \mvrm, from \mv\
+(Berkeley Logic Interchange Format - Multivariate) \cite{vl2mv} to
+the input language of \chai. As many design languages, such as
+Verilog, VHDL, and Esterel, can be translated into \mv, the
+translator \mvrm\ opens the way to the use of interface models in
+the design and analysis of real hardware.
+
+%
+%\para{Interfaces}
+%Mocha Chai and Adaptations. Say that i present it inside out.
+%
+%
+%Component based design is optimistic in nature. The designers
+%assume a lot of things about the environment while designing the
+%components. Interface modules try to capture this design
+%discipline in a formal way.
+%
+%\chai \ is a tool that enables the use of interface formalism for
+%component based design. Its a vehicle for experimentation with
+%interfaces and related compositional verification algorithms and
+%methodologies.
+%
+%\section{Why interface modules?}
+%Interfaces model both the behavior of a system component, and the
+%interaction between the component and its environment. Interface
+%modules are primarily interesting and applicable in component
+%based design paradigm as they support following activities:
+%
+%\begin{itemize}
+%
+%\item {\bf Component Reuse}. In component-based approach, designs
+%are created by combining pre-existing and application-specific
+%components. The models of the components and their interfaces help
+%in selecting and combining the components, and in checking that
+%the component interfaces are compatible with one another. This
+%promotes component re-use.
+%
+%\item {\bf Top-down design decomposition.} A design is decomposed
+%into components that can be designed and implemented separately.
+%The component model is used to specify the task of each component;
+%the interface specification ensures that the components, once
+%implemented, can work together correctly.
+%
+%\item {\bf Compositional verification.} In order to verify a
+%complete design, each component is studied with the help of
+%assumptions about its environment. The results for the single
+%components are then combined into an analysis for the complete
+%system. Interface models capture both the assumptions about the
+%environment, and the component behavior.
+%\end{itemize}
+
+
+\section{Organization of this thesis}
+Chapter 2 describes and defines {\im}, their composition and
+compatibility. In Chapter 3 we explore \chai \ and introduce its
+roots. It explains modelling with interfaces and sheds some light
+on implementation of interface modules. Chapter 4 presents
+conversion of hardware description languages to interface modules.
+Specifically it elaborates {\mvrm }, a tool implemented to convert
+from \mv \ to {\rm }. Chapter 5 concludes this work.

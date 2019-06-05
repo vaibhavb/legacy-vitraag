@@ -1,0 +1,2 @@
+int scan_sensors();
+

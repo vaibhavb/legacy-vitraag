@@ -1,0 +1,295 @@
+<HTML>
+<HEAD><TITLE>img package abstract</TITLE></HEAD>
+<BODY>
+
+
+<!-- Function Abstracts -->
+
+<dl>
+<DT> <A HREF="imgAllDet.html#ArrayBddArrayFree" TARGET="MAIN"><CODE>ArrayBddArrayFree()</CODE></A>
+<DD> Frees an array of array of BDDs.
+
+<DT> <A HREF="imgAllDet.html#BddArrayDup" TARGET="MAIN"><CODE>BddArrayDup()</CODE></A>
+<DD> Duplicates an array of BDDs.
+
+<DT> <A HREF="imgAllDet.html#BddArrayFree" TARGET="MAIN"><CODE>BddArrayFree()</CODE></A>
+<DD> Frees an array of BDDs.
+
+<DT> <A HREF="imgAllDet.html#BddLinearAndSmooth" TARGET="MAIN"><CODE>BddLinearAndSmooth()</CODE></A>
+<DD> Returns a BDD after taking the product of fromSet with the BDDs
+  in the relationArray and quantifying out the variables using the schedule
+  given in the arraySmoothVarBddArray.
+
+<DT> <A HREF="imgAllDet.html#CalculateBenefit" TARGET="MAIN"><CODE>CalculateBenefit()</CODE></A>
+<DD> Gets the necessary options for computing the image and returns
+               in the option structure.
+
+<DT> <A HREF="imgAllDet.html#CheckCtrInfoArray" TARGET="MAIN"><CODE>CheckCtrInfoArray()</CODE></A>
+<DD> Checks the validity of an array of CtrInfoStructs.
+
+<DT> <A HREF="imgAllDet.html#CheckCtrInfo" TARGET="MAIN"><CODE>CheckCtrInfo()</CODE></A>
+<DD> Checks the validity of a CtrInfoStruct.
+
+<DT> <A HREF="imgAllDet.html#CheckImageValidity" TARGET="MAIN"><CODE>CheckImageValidity()</CODE></A>
+<DD> Checks the validity of image
+
+<DT> <A HREF="imgAllDet.html#CheckQuantificationSchedule" TARGET="MAIN"><CODE>CheckQuantificationSchedule()</CODE></A>
+<DD> Given an array of BDD's representing the relations and another
+  array of BDD cubes (in the form of array of bdd_t of variable) representing
+  the quantification schedule, this function checks if the schedule is correct.
+
+<DT> <A HREF="imgAllDet.html#CheckVarInfoArray" TARGET="MAIN"><CODE>CheckVarInfoArray()</CODE></A>
+<DD> Checks the validity of an array of VarInfoStruct.
+
+<DT> <A HREF="imgAllDet.html#CreateClusters" TARGET="MAIN"><CODE>CreateClusters()</CODE></A>
+<DD> Forms the clusters of relations based on BDD size heuristic.
+
+<DT> <A HREF="imgAllDet.html#CtrInfoMaxIndexCompare" TARGET="MAIN"><CODE>CtrInfoMaxIndexCompare()</CODE></A>
+<DD> Compare function used to sort the ctrInfoStruct based on the
+  maxSmoothVarIndex field.
+
+<DT> <A HREF="imgAllDet.html#CtrInfoStructAlloc" TARGET="MAIN"><CODE>CtrInfoStructAlloc()</CODE></A>
+<DD> Allocates and initializes memory for ctrInfoStruct.
+
+<DT> <A HREF="imgAllDet.html#CtrInfoStructFree" TARGET="MAIN"><CODE>CtrInfoStructFree()</CODE></A>
+<DD> Frees the memory associated with ctrInfoStruct.
+
+<DT> <A HREF="imgAllDet.html#CtrItemStructFree" TARGET="MAIN"><CODE>CtrItemStructFree()</CODE></A>
+<DD> Frees the memory associated with CtrItemStruct
+
+<DT> <A HREF="imgAllDet.html#HashIdToBddTable" TARGET="MAIN"><CODE>HashIdToBddTable()</CODE></A>
+<DD> Hashes bdd id to bdd in the table.
+
+<DT> <A HREF="imgAllDet.html#ImageComputeMonolithic" TARGET="MAIN"><CODE>ImageComputeMonolithic()</CODE></A>
+<DD> A generic routine for computing the image.
+
+<DT> <A HREF="imgAllDet.html#ImageInfoPrint" TARGET="MAIN"><CODE>ImageInfoPrint()</CODE></A>
+<DD> Print information about the image package
+
+<DT> <A HREF="imgAllDet.html#ImgArrayBddArrayCheckValidity" TARGET="MAIN"><CODE>ImgArrayBddArrayCheckValidity()</CODE></A>
+<DD> This function checks the validity of an array of array
+  of BDD nodes.
+
+<DT> <A HREF="imgAllDet.html#ImgBddArrayCheckValidity" TARGET="MAIN"><CODE>ImgBddArrayCheckValidity()</CODE></A>
+<DD> This function checks the validity of array of BDD nodes.
+
+<DT> <A HREF="imgAllDet.html#ImgBddCheckValidity" TARGET="MAIN"><CODE>ImgBddCheckValidity()</CODE></A>
+<DD> This function checks the validity of a BDD.
+
+<DT> <A HREF="imgAllDet.html#ImgBddGetSupportIdTable" TARGET="MAIN"><CODE>ImgBddGetSupportIdTable()</CODE></A>
+<DD> Returns the st_table containing the bdd id of the support
+  variables of the function.
+
+<DT> <A HREF="imgAllDet.html#ImgImageInfoComputeBwdDisjunctive" TARGET="MAIN"><CODE>ImgImageInfoComputeBwdDisjunctive()</CODE></A>
+<DD> Computes the backward image of a set of states between
+  fromLowerBound and fromUpperBound.
+
+<DT> <A HREF="imgAllDet.html#ImgImageInfoComputeBwdIwls95" TARGET="MAIN"><CODE>ImgImageInfoComputeBwdIwls95()</CODE></A>
+<DD> Computes the backward image of domainSubset.
+
+<DT> <A HREF="imgAllDet.html#ImgImageInfoComputeBwdMono" TARGET="MAIN"><CODE>ImgImageInfoComputeBwdMono()</CODE></A>
+<DD> Computes the backward image of a set of states between
+  fromLowerBound and fromUpperBound.
+
+<DT> <A HREF="imgAllDet.html#ImgImageInfoComputeBwdWithDomainVarsDisjunctive" TARGET="MAIN"><CODE>ImgImageInfoComputeBwdWithDomainVarsDisjunctive()</CODE></A>
+<DD> Computes the backward image of a set of states between
+  fromLowerBound and fromUpperBound.
+
+<DT> <A HREF="imgAllDet.html#ImgImageInfoComputeBwdWithDomainVarsIwls95" TARGET="MAIN"><CODE>ImgImageInfoComputeBwdWithDomainVarsIwls95()</CODE></A>
+<DD> Computes the backward image of a set of states.
+
+<DT> <A HREF="imgAllDet.html#ImgImageInfoComputeBwdWithDomainVarsMono" TARGET="MAIN"><CODE>ImgImageInfoComputeBwdWithDomainVarsMono()</CODE></A>
+<DD> Computes the backward image of a set of states between
+  fromLowerBound and fromUpperBound.
+
+<DT> <A HREF="imgAllDet.html#ImgImageInfoComputeFwdDisjunctive" TARGET="MAIN"><CODE>ImgImageInfoComputeFwdDisjunctive()</CODE></A>
+<DD> Computes the forward image of a set of states between
+  fromLowerBound and fromUpperBound.
+
+<DT> <A HREF="imgAllDet.html#ImgImageInfoComputeFwdIwls95" TARGET="MAIN"><CODE>ImgImageInfoComputeFwdIwls95()</CODE></A>
+<DD> Computes the forward image of a set of states.
+
+<DT> <A HREF="imgAllDet.html#ImgImageInfoComputeFwdMono" TARGET="MAIN"><CODE>ImgImageInfoComputeFwdMono()</CODE></A>
+<DD> Computes the forward image of a set of states between
+  fromLowerBound and fromUpperBound.
+
+<DT> <A HREF="imgAllDet.html#ImgImageInfoComputeFwdWithDomainVarsDisjunctive" TARGET="MAIN"><CODE>ImgImageInfoComputeFwdWithDomainVarsDisjunctive()</CODE></A>
+<DD> Computes the forward image on domain variables of a set
+  of states between fromLowerBound and fromUpperBound.
+
+<DT> <A HREF="imgAllDet.html#ImgImageInfoComputeFwdWithDomainVarsIwls95" TARGET="MAIN"><CODE>ImgImageInfoComputeFwdWithDomainVarsIwls95()</CODE></A>
+<DD> Computes the forward image of a set of states in terms
+  of domain variables.
+
+<DT> <A HREF="imgAllDet.html#ImgImageInfoComputeFwdWithDomainVarsMono" TARGET="MAIN"><CODE>ImgImageInfoComputeFwdWithDomainVarsMono()</CODE></A>
+<DD> Computes the forward image on domain variables of a set
+  of states between fromLowerBound and fromUpperBound.
+
+<DT> <A HREF="imgAllDet.html#ImgImageInfoFreeDisjunctive" TARGET="MAIN"><CODE>ImgImageInfoFreeDisjunctive()</CODE></A>
+<DD> Frees the method data associated with the disjunctive method.
+
+<DT> <A HREF="imgAllDet.html#ImgImageInfoFreeIwls95" TARGET="MAIN"><CODE>ImgImageInfoFreeIwls95()</CODE></A>
+<DD> Frees the memory associated with imageInfo.
+
+<DT> <A HREF="imgAllDet.html#ImgImageInfoFreeMono" TARGET="MAIN"><CODE>ImgImageInfoFreeMono()</CODE></A>
+<DD> Frees the method data associated with the monolithic method.
+
+<DT> <A HREF="imgAllDet.html#ImgImageInfoInitializeDisjunctive" TARGET="MAIN"><CODE>ImgImageInfoInitializeDisjunctive()</CODE></A>
+<DD> Initializes an image structure for image computation
+  using a disjunctively partitioned transition relation.
+
+<DT> <A HREF="imgAllDet.html#ImgImageInfoInitializeIwls95" TARGET="MAIN"><CODE>ImgImageInfoInitializeIwls95()</CODE></A>
+<DD> Initializes an image data structure for image
+  computation using the Iwls95 technique.
+
+<DT> <A HREF="imgAllDet.html#ImgImageInfoInitializeMono" TARGET="MAIN"><CODE>ImgImageInfoInitializeMono()</CODE></A>
+<DD> Initializes an image structure for image computation
+  using a monolithic transition relation.
+
+<DT> <A HREF="imgAllDet.html#ImgImageInfoPrintMethodParamsDisjunctive" TARGET="MAIN"><CODE>ImgImageInfoPrintMethodParamsDisjunctive()</CODE></A>
+<DD> Prints information about the disjunctive method.
+
+<DT> <A HREF="imgAllDet.html#ImgImageInfoPrintMethodParamsIwls95" TARGET="MAIN"><CODE>ImgImageInfoPrintMethodParamsIwls95()</CODE></A>
+<DD> Prints information about the IWLS95 method.
+
+<DT> <A HREF="imgAllDet.html#ImgImageInfoPrintMethodParamsMono" TARGET="MAIN"><CODE>ImgImageInfoPrintMethodParamsMono()</CODE></A>
+<DD> Prints information about the IWLS95 method.
+
+<DT> <A HREF="imgAllDet.html#Img_End" TARGET="MAIN"><CODE>Img_End()</CODE></A>
+<DD> End the image package.
+
+<DT> <A HREF="imgAllDet.html#Img_ImageInfoComputeBwdWithDomainVars" TARGET="MAIN"><CODE>Img_ImageInfoComputeBwdWithDomainVars()</CODE></A>
+<DD> Computes the backward image of a set expressed in terms of domain
+  variables.
+
+<DT> <A HREF="imgAllDet.html#Img_ImageInfoComputeBwd" TARGET="MAIN"><CODE>Img_ImageInfoComputeBwd()</CODE></A>
+<DD> Computes the backward image of a set.
+
+<DT> <A HREF="imgAllDet.html#Img_ImageInfoComputeFwdWithDomainVars" TARGET="MAIN"><CODE>Img_ImageInfoComputeFwdWithDomainVars()</CODE></A>
+<DD> Computes the forward image of a set and expresses it in terms of
+  domain variables.
+
+<DT> <A HREF="imgAllDet.html#Img_ImageInfoComputeFwd" TARGET="MAIN"><CODE>Img_ImageInfoComputeFwd()</CODE></A>
+<DD> Computes the forward image of a set.
+
+<DT> <A HREF="imgAllDet.html#Img_ImageInfoFree" TARGET="MAIN"><CODE>Img_ImageInfoFree()</CODE></A>
+<DD> Frees the memory associated with imageInfo.
+
+<DT> <A HREF="imgAllDet.html#Img_ImageInfoInitializeMocha" TARGET="MAIN"><CODE>Img_ImageInfoInitializeMocha()</CODE></A>
+<DD> Initializes the image info structure for use in Mocha
+
+<DT> <A HREF="imgAllDet.html#Img_ImageInfoInitialize" TARGET="MAIN"><CODE>Img_ImageInfoInitialize()</CODE></A>
+<DD> Initializes an imageInfo structure for the given method and
+  direction.
+
+<DT> <A HREF="imgAllDet.html#Img_ImageInfoObtainMethodTypeAsString" TARGET="MAIN"><CODE>Img_ImageInfoObtainMethodTypeAsString()</CODE></A>
+<DD> Returns a string giving the method type of an imageInfo.
+
+<DT> <A HREF="imgAllDet.html#Img_ImageInfoPrintMethodParams" TARGET="MAIN"><CODE>Img_ImageInfoPrintMethodParams()</CODE></A>
+<DD> Prints information about the image technique currently used.
+
+<DT> <A HREF="imgAllDet.html#Img_ImageInfoReadMddManager" TARGET="MAIN"><CODE>Img_ImageInfoReadMddManager()</CODE></A>
+<DD> Returns the mdd manager.
+
+<DT> <A HREF="imgAllDet.html#Img_Init" TARGET="MAIN"><CODE>Img_Init()</CODE></A>
+<DD> Initialize the image package.
+
+<DT> <A HREF="imgAllDet.html#Img_MultiwayLinearAndSmooth" TARGET="MAIN"><CODE>Img_MultiwayLinearAndSmooth()</CODE></A>
+<DD> Returns the result after existentially quantifying a
+  set of variables after taking the product of the array of relations.
+
+<DT> <A HREF="imgAllDet.html#Img_Reinit" TARGET="MAIN"><CODE>Img_Reinit()</CODE></A>
+<DD> Reinitializes the img package.
+
+<DT> <A HREF="imgAllDet.html#Iwls95GetOptions" TARGET="MAIN"><CODE>Iwls95GetOptions()</CODE></A>
+<DD> Gets the necessary options for computing the image and returns
+               in the option structure.
+
+<DT> <A HREF="imgAllDet.html#Iwls95InfoStructAlloc" TARGET="MAIN"><CODE>Iwls95InfoStructAlloc()</CODE></A>
+<DD> Allocates and initializes the info structure for IWLS95
+  technique.
+
+<DT> <A HREF="imgAllDet.html#MddArrayFree" TARGET="MAIN"><CODE>MddArrayFree()</CODE></A>
+<DD> Frees an array of MDDs.
+
+<DT> <A HREF="imgAllDet.html#MddFnArrayToBddRelArray" TARGET="MAIN"><CODE>MddFnArrayToBddRelArray()</CODE></A>
+<DD> Given an Mvf representing the functionality of a multi-valued
+  variable, it returns an array of Bdd's representing the characteristic
+  function of the relation of the various bits of the multi-valued variable.
+
+<DT> <A HREF="imgAllDet.html#MddIdArrayToBddArray" TARGET="MAIN"><CODE>MddIdArrayToBddArray()</CODE></A>
+<DD> Returns an array of Bdd_t's corresponding to an array of Mdd
+  ids.
+
+<DT> <A HREF="imgAllDet.html#MddIdToBddArray" TARGET="MAIN"><CODE>MddIdToBddArray()</CODE></A>
+<DD> Returns an array of Bdd_t's corresponding to a Mdd variable.
+
+<DT> <A HREF="imgAllDet.html#MddIdToBddIdArray" TARGET="MAIN"><CODE>MddIdToBddIdArray()</CODE></A>
+<DD> Returns an array of BDD ids corresponding to a MDD variable.
+
+<DT> <A HREF="imgAllDet.html#OrderRelationArrayAux" TARGET="MAIN"><CODE>OrderRelationArrayAux()</CODE></A>
+<DD> An auxiliary routine for orderRelationArray to order the
+  clusters.
+
+<DT> <A HREF="imgAllDet.html#OrderRelationArray" TARGET="MAIN"><CODE>OrderRelationArray()</CODE></A>
+<DD> This function returns an array of ordered relations and an array
+               of BDD cubes (array of BDDs).  
+               This consists of following steps:
+               a. Initialize the array of ctrInfoStructs and varInfoStructs.
+               b. Fill in the list of varItemStruct's of ctrInfo's and
+                  ctrItemStruct's of varInfo's.
+               c. Simplify the relations by quantifying out the quantify
+                  variables local to a particular relation.
+               d. Order the relations according to the cost function described
+                  in "CalculateRelationBenefit".
+
+<DT> <A HREF="imgAllDet.html#PrintBddIdFromBddArray" TARGET="MAIN"><CODE>PrintBddIdFromBddArray()</CODE></A>
+<DD> Prints Ids of an array of BDDs.
+
+<DT> <A HREF="imgAllDet.html#PrintBddIdTable" TARGET="MAIN"><CODE>PrintBddIdTable()</CODE></A>
+<DD> Prints the integers from a symbol table.
+
+<DT> <A HREF="imgAllDet.html#PrintCtrInfoStruct" TARGET="MAIN"><CODE>PrintCtrInfoStruct()</CODE></A>
+<DD> Prints the CtrInfo_t data structure.
+
+<DT> <A HREF="imgAllDet.html#PrintIntegerArray" TARGET="MAIN"><CODE>PrintIntegerArray()</CODE></A>
+<DD> Prints integers from an array.
+
+<DT> <A HREF="imgAllDet.html#PrintOption" TARGET="MAIN"><CODE>PrintOption()</CODE></A>
+<DD> Prints the option values used in IWLS95 techinique for
+  image computation.
+
+<DT> <A HREF="imgAllDet.html#PrintSmoothIntroducedCount" TARGET="MAIN"><CODE>PrintSmoothIntroducedCount()</CODE></A>
+<DD> Prints information about the schedule of clusters and
+  the the corresponding smooth cubes.
+
+<DT> <A HREF="imgAllDet.html#PrintVarIdTable" TARGET="MAIN"><CODE>PrintVarIdTable()</CODE></A>
+<DD> Prints the content of a table containing integers.
+
+<DT> <A HREF="imgAllDet.html#PrintVarInfoStruct" TARGET="MAIN"><CODE>PrintVarInfoStruct()</CODE></A>
+<DD> Prints the VarInfo_t structure.
+
+<DT> <A HREF="imgAllDet.html#RelationArraySmoothLocalVars" TARGET="MAIN"><CODE>RelationArraySmoothLocalVars()</CODE></A>
+<DD> This function takes an array of relations and quantifies out the
+               quantify variables which are local to a particular relation.
+
+<DT> <A HREF="imgAllDet.html#UpdateInfoArrays" TARGET="MAIN"><CODE>UpdateInfoArrays()</CODE></A>
+<DD> This function computes the set of variables which can be
+  smoothed out once a particular cluster is chosen to be multiplied in the
+  product.
+
+<DT> <A HREF="imgAllDet.html#VarInfoStructAlloc" TARGET="MAIN"><CODE>VarInfoStructAlloc()</CODE></A>
+<DD> Allocates and initializes memory for varInfoStruct.
+
+<DT> <A HREF="imgAllDet.html#VarInfoStructFree" TARGET="MAIN"><CODE>VarInfoStructFree()</CODE></A>
+<DD> Frees the memory associated with varInfoStruct.
+
+<DT> <A HREF="imgAllDet.html#VarItemStructFree" TARGET="MAIN"><CODE>VarItemStructFree()</CODE></A>
+<DD> Frees the memory associated with VarItemStruct
+
+</DL>
+
+<HR>
+
+Last updated on 1031103 12h03
+</BODY></HTML>

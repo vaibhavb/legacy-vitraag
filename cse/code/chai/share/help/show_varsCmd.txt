@@ -1,0 +1,26 @@
+
+  show_vars - shows the variables in side the given module.
+     _________________________________________________________________
+   
+   show_vars [-vHF|HD|EV|ALL] module
+   
+   It prints out the variables in the given module. Without option, it
+   prints a list of roughly formatted list of the variables of module.
+   Command Options:
+   
+   -vHF
+          It returns a list of all the history free variables inside the
+          module.
+          
+   -vHD
+          It returns a list of all the history dependent variables inside
+          the module.
+          
+   -vEV
+          It returns a list of all the event variables inside the module.
+          
+   -vALL
+          It returns a list of all variables inside the module.
+     _________________________________________________________________
+   
+   Last updated on 980624 22h10

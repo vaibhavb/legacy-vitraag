@@ -1,0 +1,184 @@
+<HTML>
+<HEAD><TITLE>The rtm package: files</TITLE></HEAD>
+<BODY>
+
+<DL>
+ <DT> <A HREF="#rtm.h"><CODE>rtm.h</CODE></A>
+ <DD> External header file
+ <DT> <A HREF="#rtmInt.h"><CODE>rtmInt.h</CODE></A>
+ <DD> Internal header file
+ <DT> <A HREF="#rtm.c"><CODE>rtm.c</CODE></A>
+ <DD> 
+ <DT> <A HREF="#rtmUtil.c"><CODE>rtmUtil.c</CODE></A>
+ <DD> 
+</DL><HR>
+<A NAME="rtm.h"><H1>rtm.h</H1></A>
+External header file <P>
+<B>By: Serdar Tasiran</B><P>
+<DL>
+</DL>
+<HR>
+<A NAME="rtmInt.h"><H1>rtmInt.h</H1></A>
+Internal header file <P>
+<B>By: Serdar Tasiran</B><P>
+<DL>
+</DL>
+<HR>
+<A NAME="rtm.c"><H1>rtm.c</H1></A>
+ <P>
+<B>By: Serdar Tasiran</B><P>
+<DL>
+ <DT> <A HREF="rtmAllDet.html#Rtm_Init" TARGET="MAIN"><CODE>Rtm_Init()</CODE></A>
+ <DD> Initializes the rtm package
+
+ <DT> <A HREF="rtmAllDet.html#Rtm_Reinit" TARGET="MAIN"><CODE>Rtm_Reinit()</CODE></A>
+ <DD> Re-initializes the rtm package
+
+ <DT> <A HREF="rtmAllDet.html#Rtm_End" TARGET="MAIN"><CODE>Rtm_End()</CODE></A>
+ <DD> Closes the rtm package
+
+ <DT> <A HREF="rtmAllDet.html#Rtm_ModulePerformBFS" TARGET="MAIN"><CODE>Rtm_ModulePerformBFS()</CODE></A>
+ <DD> do invariant checking on a timed module
+
+ <DT> <A HREF="rtmAllDet.html#Rtm_ModuleBuildTransitionRelation" TARGET="MAIN"><CODE>Rtm_ModuleBuildTransitionRelation()</CODE></A>
+ <DD> build transition relation (as an MDD) for a timed module
+
+ <DT> <A HREF="rtmAllDet.html#Rtm_AtomBuildTransitionRelation" TARGET="MAIN"><CODE>Rtm_AtomBuildTransitionRelation()</CODE></A>
+ <DD> build transition relation for an atom
+
+ <DT> <A HREF="rtmAllDet.html#Rtm_AtomBuildUpdateCmdListMdds" TARGET="MAIN"><CODE>Rtm_AtomBuildUpdateCmdListMdds()</CODE></A>
+ <DD> updates mdds by processing the update commands of the atom
+
+ <DT> <A HREF="rtmAllDet.html#Rtm_AtomBuildWaitCmdListMdds" TARGET="MAIN"><CODE>Rtm_AtomBuildWaitCmdListMdds()</CODE></A>
+ <DD> updates mdds by processing the wait(delay) commands of the atom
+
+ <DT> <A HREF="rtmAllDet.html#Rtm_GuardBuildMdd" TARGET="MAIN"><CODE>Rtm_GuardBuildMdd()</CODE></A>
+ <DD> builds the mdd for the guard of a command
+
+ <DT> <A HREF="rtmAllDet.html#Rtm_AssignmentsBuildMdd" TARGET="MAIN"><CODE>Rtm_AssignmentsBuildMdd()</CODE></A>
+ <DD> builds the mdd for the assignments of a command
+
+ <DT> <A HREF="rtmAllDet.html#Rtm_InitAssignmentsBuildMdd" TARGET="MAIN"><CODE>Rtm_InitAssignmentsBuildMdd()</CODE></A>
+ <DD> builds the mdd for the assignments of an init command
+
+ <DT> <A HREF="rtmAllDet.html#Rtm_AtomProcessDefaultUpdateCommand" TARGET="MAIN"><CODE>Rtm_AtomProcessDefaultUpdateCommand()</CODE></A>
+ <DD> updates mdds by processing the default update command of the atom
+
+ <DT> <A HREF="rtmAllDet.html#Rtm_AtomProcessImplicitUpdateCommand" TARGET="MAIN"><CODE>Rtm_AtomProcessImplicitUpdateCommand()</CODE></A>
+ <DD> Process the implicit command for the update command list of an atom
+
+ <DT> <A HREF="rtmAllDet.html#Rtm_WaitAssignmentsBuildMdd" TARGET="MAIN"><CODE>Rtm_WaitAssignmentsBuildMdd()</CODE></A>
+ <DD> builds the mdd for all of the assignments of a wait command
+
+ <DT> <A HREF="rtmAllDet.html#Rtm_BuildOneWaitAssignmentMdd" TARGET="MAIN"><CODE>Rtm_BuildOneWaitAssignmentMdd()</CODE></A>
+ <DD> builds the mdd for a single assignment of a wait command
+
+ <DT> <A HREF="rtmAllDet.html#Rtm_BuildUnconstrainedTimerIncMdd" TARGET="MAIN"><CODE>Rtm_BuildUnconstrainedTimerIncMdd()</CODE></A>
+ <DD> Builds the mdd for timers not constrained by a wait command
+
+ <DT> <A HREF="rtmAllDet.html#RtmReadOrder" TARGET="MAIN"><CODE>RtmReadOrder()</CODE></A>
+ <DD> Read variable order for module from a file
+
+ <DT> <A HREF="rtmAllDet.html#RtmCreateTimeIncVar" TARGET="MAIN"><CODE>RtmCreateTimeIncVar()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="rtmAllDet.html#Rtm_RegionManagerReadRegionTable" TARGET="MAIN"><CODE>Rtm_RegionManagerReadRegionTable()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="rtmAllDet.html#Rtm_RegionManagerObtainRtmInfoFromModule" TARGET="MAIN"><CODE>Rtm_RegionManagerObtainRtmInfoFromModule()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="rtmAllDet.html#Rtm_RegionManagerAlloc" TARGET="MAIN"><CODE>Rtm_RegionManagerAlloc()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="rtmAllDet.html#Rtm_RegionManagerAddModuleToRtmInfo" TARGET="MAIN"><CODE>Rtm_RegionManagerAddModuleToRtmInfo()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="rtmAllDet.html#Rtm_ModuleBuildInitialRegion" TARGET="MAIN"><CODE>Rtm_ModuleBuildInitialRegion()</CODE></A>
+ <DD> build mdd for initial region of module
+
+ <DT> <A HREF="rtmAllDet.html#Rtm_AtomBuildInitialRegion" TARGET="MAIN"><CODE>Rtm_AtomBuildInitialRegion()</CODE></A>
+ <DD> build initial region for an atom in a timed module
+
+ <DT> <A HREF="rtmAllDet.html#Rtm_AtomBuildInitCmdListMdds" TARGET="MAIN"><CODE>Rtm_AtomBuildInitCmdListMdds()</CODE></A>
+ <DD> updates mdds by processing the init commands of the atom
+
+ <DT> <A HREF="rtmAllDet.html#Rtm_AtomProcessDefaultInitCommand" TARGET="MAIN"><CODE>Rtm_AtomProcessDefaultInitCommand()</CODE></A>
+ <DD> updates mdds by processing the default init command of the atom
+
+ <DT> <A HREF="rtmAllDet.html#Rtm_AllocateRegionStruct" TARGET="MAIN"><CODE>Rtm_AllocateRegionStruct()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="rtmAllDet.html#Rtm_RtmRegionManagerReadCounter" TARGET="MAIN"><CODE>Rtm_RtmRegionManagerReadCounter()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="rtmAllDet.html#Rtm_RtmRegionManagerIncrementCounter" TARGET="MAIN"><CODE>Rtm_RtmRegionManagerIncrementCounter()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="rtmAllDet.html#Rtm_MddPrintCubes" TARGET="MAIN"><CODE>Rtm_MddPrintCubes()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="rtmAllDet.html#RtmGetNvals" TARGET="MAIN"><CODE>RtmGetNvals()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="rtmAllDet.html#RtmGetTopMddId" TARGET="MAIN"><CODE>RtmGetTopMddId()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="rtmAllDet.html#RtmModuleSearch" TARGET="MAIN"><CODE>RtmModuleSearch()</CODE></A>
+ <DD> do reachability + invariant checking on timed modules
+
+ <DT> <A HREF="rtmAllDet.html#Rtm_DebugTracePrint" TARGET="MAIN"><CODE>Rtm_DebugTracePrint()</CODE></A>
+ <DD> print debug trace for an invariant for timed modules
+
+ <DT> <A HREF="rtmAllDet.html#Rtm_MddPickMinterm" TARGET="MAIN"><CODE>Rtm_MddPickMinterm()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="rtmAllDet.html#CommandReadOrder" TARGET="MAIN"><CODE>CommandReadOrder()</CODE></A>
+ <DD> Order the MDD variables of a module as specified by a file
+
+ <DT> <A HREF="rtmAllDet.html#CommandComputeReachSet" TARGET="MAIN"><CODE>CommandComputeReachSet()</CODE></A>
+ <DD> Computes the reached state set of a timed module
+
+ <DT> <A HREF="rtmAllDet.html#CommandComputeInitSet" TARGET="MAIN"><CODE>CommandComputeInitSet()</CODE></A>
+ <DD> driver for building initial state of a timed module
+
+ <DT> <A HREF="rtmAllDet.html#CommandBuildTrans" TARGET="MAIN"><CODE>CommandBuildTrans()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="rtmAllDet.html#RtmStringConvertToDynOrderType" TARGET="MAIN"><CODE>RtmStringConvertToDynOrderType()</CODE></A>
+ <DD> Converts a string to a dynamic ordering method type.
+
+ <DT> <A HREF="rtmAllDet.html#RtmDynOrderTypeConvertToString" TARGET="MAIN"><CODE>RtmDynOrderTypeConvertToString()</CODE></A>
+ <DD> Converts a dynamic ordering method type to a string.
+
+ <DT> <A HREF="rtmAllDet.html#CommandRtmDynamicVarOrdering" TARGET="MAIN"><CODE>CommandRtmDynamicVarOrdering()</CODE></A>
+ <DD> Implements the rtm_dynamic_var_ordering command for the rtm
+               package .
+
+ <DT> <A HREF="rtmAllDet.html#ModuleTotalOrderVariables" TARGET="MAIN"><CODE>ModuleTotalOrderVariables()</CODE></A>
+ <DD> Convert an ordering of a subset of variables to a total 
+                      ordering
+
+ <DT> <A HREF="rtmAllDet.html#VarOrderIsInArray" TARGET="MAIN"><CODE>VarOrderIsInArray()</CODE></A>
+ <DD> check if a variable is in a varOrderArray
+
+ <DT> <A HREF="rtmAllDet.html#ModuleAssignMddIdsToVariables" TARGET="MAIN"><CODE>ModuleAssignMddIdsToVariables()</CODE></A>
+ <DD> Create MDD variables according to the specified total ordering
+
+</DL>
+<HR>
+<A NAME="rtmUtil.c"><H1>rtmUtil.c</H1></A>
+ <P>
+<B>By: Serdar Tasiran</B><P>
+<DL>
+ <DT> <A HREF="rtmAllDet.html#RtmMddInTrueSupport" TARGET="MAIN"><CODE>RtmMddInTrueSupport()</CODE></A>
+ <DD> Check if the given variable is in the true support of
+                      the given mdd
+
+ <DT> <A HREF="rtmAllDet.html#RtmGetMddLiteral" TARGET="MAIN"><CODE>RtmGetMddLiteral()</CODE></A>
+ <DD> utility to get and MDD literal
+
+</DL>
+<HR>
+Last updated on 1031103 12h03
+</BODY></HTML>

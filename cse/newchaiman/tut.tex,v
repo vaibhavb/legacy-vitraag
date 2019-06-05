@@ -1,0 +1,719 @@
+head     1.1;
+branch   1.1.1;
+access   ;
+symbols  vb:1.1.1.1 r1:1.1.1;
+locks    ; strict;
+comment  @% @;
+
+
+1.1
+date     2003.05.29.18.40.17;  author vaibhav;  state Exp;
+branches 1.1.1.1;
+next     ;
+
+1.1.1.1
+date     2003.05.29.18.40.17;  author vaibhav;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@\label{chap:tut}
+\section{Introduction}
+
+\intfs\ is the modeling formalism and input language to \chai. \intfs\ is rich
+enough to model systems with heterogeneous components: synchronous,
+asynchronous, speed-independent or real-time, finite or infinite
+state, etc. In this tutorial chapter we illustrate the facilities of \chai\
+by considering two simple examples, one from hardware and the other
+from software. 
+
+The hardware example is a simple counter adapted from a
+similar example in the Symbolic Model Verifier ({\sc SMV}) example suite~\cite{};
+the tricks developed here should enable the reader to translate any design in the commonly
+used subsets of hardware description languages (HDLs) such as
+{\sc Verilog}~\cite{} or {\sc Vhdl}~\cite{} into \rem. 
+The software example we consider is Peterson's mutual-exclusion
+protocol. In addition to modeling these examples in \rem, specifying and verifying correctness
+requirements, we walk the reader through an interactive session with
+the \chai\ tool.
+
+\section{$3$-bit counter}
+Consider a counter that counts the number of 1's in a binary
+input stream, modulo~8. We construct this out of three 1-bit
+counter cells. 
+
+%\begin{figure}
+%\centerline{\includegraphics[totalheight=3.0in]{figs/countercell.idraw}}
+%\caption{{\tt counterCell}: Mealy FSM}
+%\label{fig:countercell_ckt}
+%\end{figure}
+
+The Mealy Finite State Machine (FSM)
+shown in Figure~\ref{fig:countercell_ckt}, {\tt counterCell} implements the
+1-bit counter-cell.  {\tt counterCell} receives a {\tt carryIn} bit as
+input, maintains a {\tt sumBit}, and outputs a {\tt carryOut}
+bit. {\tt sumBit} is
+stored in a register. The register assumes an initial value~$0$ (the
+initialization circuitry is not shown in Figure~\ref{fig:countercell_ckt}).
+During each clock cycle, the combinational
+logic computes the values of the next-state of the register and the
+carry-out bit as 
+\begin{equation}
+\label{eqn:countercell}
+{\tt (carryOut, sumBit') = (sumBit + carryIn) }
+\end{equation}
+where {\tt carryOut} is the high order bit of the sum and {\tt sumBit} is the low order
+bit of the sum. Notice, the next-state of {\tt sumBit}, being a latch, is
+denoted by {\tt sumBit'}, whereas the other signals are outputs of
+combinational gates. It is easy to see that the FSM of Figure~\ref{fig:countercell_ckt}
+implements~(\ref{eqn:countercell}). 
+
+The 3-bit counter is produced by connecting up three of the
+counter-cells as shown in Figure~\ref{fig:3bit_ckt}. 
+%\begin{figure}
+%\centerline{\includegraphics[totalheight=0.75in]{figs/3bitcounter.idraw}}
+%\caption{$3$-bit counter}
+%\label{fig:3bit_ckt}
+%\end{figure}
+The {\tt carryOut} bit of the first (second) cell is the {\tt carryIn} bit of the second
+cell (third). This is achieved by physically connecting a wire between the
+appropriate terminals.  The {\tt sumBit}'s of the three counter-cells
+store the three bit sum of the input stream. 
+
+
+\section{Modeling the $3$-bit counter in \rem}
+A \rem\ specification consists of one or more {\em modules}. A module
+roughly corresponds to a module in a HDL or a function in a
+programming language. A module consists of set of variables and a set
+of rules to define the evolution in time of the subset of variables it
+controls. The input variables are called the {\em external} variables and
+the output variables are called the {\em interface} variables.
+The other variables of the module that are not exchanged with
+its environment are called {\em private} variables. The private and
+interface variables of a module are controlled by it. 
+
+For the {\tt counterCell}, {\tt sumBit} is a private variable, {\tt carryIn} is an
+external variable, and {\tt carryOut} is an interface variable, as in Figure~\ref{fig:counter_cell_rm}. 
+
+In synchronous digital hardware, in each cycle, the primary inputs
+(PIs) and the present state values of latches propagate to determine
+the next state values of latches and the outputs (including the
+primary outputs). Then, all the latches simultaneously assume their
+next state values, and the process repeats in this manner every clock cycle. 
+
+Similarly, with \rem, in every {\em round} (like cycle) the variables
+are updated. No apriori distinction is made between variables for
+latches and variables for combinational gates. Instead, the semantic
+distinction between these is captured in their update rules specified
+by {\em atoms}. 
+
+If the value of a variable $x$---the present value---at the beginning
+of a round is denoted by $x$, the update round computes the next or
+primed value $x'$. The initial value computation that happens in the
+init round is specified by the init section of the atom, and the
+subsequent updates in the update rounds are specified by the update
+sections of the atoms.
+
+An atom specifies the next state function as a set of guarded
+commands: when the guard is satisfied the action is taken.  The
+next-state function of the variable an atom controls may be a function
+of the present value of variables (i.e., unprimed version) it {\em
+reads} and primed value of variables it {\em awaits}. In particular,
+both the guards and the commands may only involve expressions over the
+unprimed variables that are read and the primed variables that are
+awaited.  For instance, the next value of {\tt carryOut} (i.e. {\tt carryOut'}),
+is a function of the present value of {\tt sumBit} (being a latch) and the
+next value of {\tt carryIn} (being a primary input): its atom, in
+Figure~\ref{fig:counter_cell_rm}, reads {\tt sumBit} and awaits {\tt
+carryIn}. 
+
+Also, this means that the next value of a variable will be computed
+after the next values of the variables it awaits are computed.
+Note that cyclic await dependencies are disallowed.
+In fact, the partial order induced by the await dependencies among all atoms
+must be completable to a linear order.
+
+Figure~\ref{fig:counter_cell_rm} shows the \rem\ description of the
+counter-cell. In each round, the next value of carryIn is first
+computed, and then sumBit and carryOut may be computed in each order. 
+A sample execution of the module is given in the table below:
+
+\begin{center}
+\begin{tabular}{r|rrrrrc}
+Round: 
+ & 0 (initial) & 1 & 2 & 3 & 4 & $\cdots$ \\ \hline
+{\tt carryIn}:  & {\sc t} & {\sc t} & {\sc t} & {\sc f} & {\sc t} & $\cdots$ \\
+{\tt sumBit}:  & {\sc f} & {\sc t} & {\sc f} & {\sc f} & {\sc t} & $\cdots$ \\
+{\tt carryOut}:   & {\sc f} & {\sc f} & {\sc t} & {\sc f} & {\sc f} & $\cdots$ \\ \hline
+\end{tabular}
+\end{center}
+
+\begin{figure}
+\begin{verbatim}
+module counterCell
+  private sumBit : bool
+  external carryIn : bool
+  interface carryOut : bool
+
+-- this is a comment; a comment line starts with --
+
+atom controls sumBit reads sumBit awaits carryIn 
+init
+  [] true -> sumBit' := false
+update
+  [] ~sumBit -> sumBit' := carryIn'
+  [] sumBit  -> sumBit' := if (~carryIn') then true else false fi
+endatom
+
+atom controls carryOut reads sumBit awaits carryIn
+init
+  [] true -> carryOut' := false
+update
+  [] true -> carryOut' := sumBit & carryIn'
+endatom
+
+endmodule  -- end counterCell
+
+\end{verbatim}
+\caption{1-bit counter-cell}
+\label{fig:counter_cell_rm}
+\end{figure}
+
+
+From the exercise of modeling the counter-cell in \rem, we can derive
+the rules in Table~\ref{tab:recipe_mealy_fsm_rm} to translate a
+Mealy FSM module to \rem. 
+
+\begin{table}\boxed{
+If a signal $x$ is a function of signal $y$, then in the atom
+controlling variable $x$:
+\bigskip
+
+\begin{enumerate}
+
+\item \label{item:latch}
+if $y$ is a latch-output, the variable $y$ should be read, i.e.,
+its unprimed version should be used.
+
+\item if $y$ is a gate output, the variable $y$ should be awaited,
+i.e., its primed version should be used. 
+
+\item \label{item:pi}
+if $y$ is an input signal, the variable $y$ should be awaited,
+i.e., its primed version should be used. 
+\end{enumerate}}
+\caption{Recipe for variable assignment in translating a Mealy FSM
+module to \rem}
+\label{tab:recipe_mealy_fsm_rm}
+\end{table}
+\subsection{Module instantiation and composition}
+New modules can be created from previously defined modules by
+instantiating them with renaming as well as by composing together modules. The
+desired interconnection of the counter-cells in Figure~\ref{fig:3bit_ckt} is done as follows: 
+
+
+\begin{verbatim}
+cell0 := counterCell[carryIn, carryOut := input, out0]
+cell1 := counterCell[carryIn, carryOut := out0, out1]
+cell2 := counterCell[carryIn, carryOut := out1, out2]
+threebitcounter := hide out0, out1 in (cell0 || cell1 || cell2) endhide
+\end{verbatim}
+
+Three instances of {\tt counterCell} are created by renaming the
+external and interface variables using common names for the desired
+interconnections. For instance, {\tt out0} is the {\tt carryOut} of
+{\tt cell0} and the {\tt carryIn} of {\tt cell1}. 
+
+The actual interconnection is achieved by the parallel composition of
+the three instances: {\tt cell0}, {\tt cell1}, and {\tt cell2}, and
+hiding the {\tt carryOut} variables of {\tt cell0} and {\tt cell1},
+making these private variables of {\tt threebitcounter}. The module \\
+{\tt threebitcounter} has one external variable {\tt input} and one
+interface variable {\tt out2}. 
+
+The order of {\tt cell0}, {\tt cell1}, and {\tt cell2}
+in the parallel composition statement is not important.
+For example, the previous parallel composition statement is equivalent to the following line:
+
+\begin{verbatim}
+threebitcounter := hide out0, out1 in (cell1 || cell0 || cell2) endhide
+\end{verbatim}
+
+\section{Other issues in modeling hardware}
+
+\subsection{Connecting a latch output to a primary input}
+
+At times we might need to compose modules and connect a latch from one
+module to the input of another module. This would lead to a violation
+of item~\ref{item:latch} of Table~\ref{tab:recipe_mealy_fsm_rm} since
+we decreed that an input variable is to be awaited
+(by item~\ref{item:pi} of Table~\ref{tab:recipe_mealy_fsm_rm}). 
+
+To work around this we have to insert a unit-delay non-inverting
+buffer with the appropriate initial value between the latch-output and
+the input of the module it connects to. A unit-delay non-inverting
+buffer with initial value~$0$ is modeled in \rem\ as follows:
+
+\begin{verbatim}
+module noninvertingbuffer0
+  external latchoutput
+  interface onedelayed
+
+--unit delay non inverting buffer with initial value 0 
+atom controls onedelayed reads latchoutput
+init 
+  [] true -> onedelayed' := false
+update
+  [] true -> onedelayed' := latchoutput
+endatom 
+endmodule
+\end{verbatim}
+
+We have one additional rule to invoke in translating a network of
+Mealy FSMs to \rem, and it is stated in Table~\ref{tab:addtl_rule}. 
+
+\begin{table}\boxed{
+If $y$ is a latch-output and the output of a module $A$ and is being
+connected to $x$ an external variable of module $B$, introduce a
+unit-delay non-inverting buffer with the appropriate initial value
+between $y$ and $x$. 
+}
+\caption{Rule for connecting the latch-output of one module to the
+input of another module}
+\label{tab:addtl_rule}
+\end{table}
+
+\subsection{Non-determinism}
+Non-determinism is useful in modeling systems at an abstract
+level. There are two ways to model non-determinism in \rem:
+\begin{enumerate}
+\item With a non-deterministic assignment. 
+\item By having multiple guarded commands with the same guard. 
+\end{enumerate}
+
+We illustrate both ways of having non-determinism with a simple
+example. We design a module that will serve as the input to the
+three-bit-counter {\tt threebitcounter} to result in a closed system,
+i.e., one with no inputs (no external variables), and will
+non-deterministically output a~$0$ or~$1$. The first way of modeling
+this is shown below:
+
+\begin{verbatim}
+module nondetinput
+  interface output : bool
+
+atom controls output
+init update
+  [] true -> output' := nondet
+endatom 
+endmodule 
+\end{verbatim}
+
+The variable {\tt output} is assigned a value non-deterministically from the
+range of values it can assume. 
+The keyword \NONDET\ is used to assign to a variable a
+nondeterministic element of the variable domain.
+
+The second equivalent way of modeling the module {\tt nondetinput} is by using multiple
+guarded commands with the same guard is:
+
+\begin{verbatim}
+module nondetinput
+  interface output : bool
+
+atom controls output
+init update
+  [] true -> output' := false
+  [] true -> output' := true
+endatom 
+endmodule 
+\end{verbatim}
+
+This second method is useful (and the only way) currently to model a
+non-deterministic assignment to a variable from a {\em subset} of the
+possible values it may assume. 
+
+\subsection{Simple exercises}
+$\clubsuit$ Modify the module {\tt threebitcounter} to output a signal
+whenever the three bit sum has value~$0$. 
+
+\noindent
+$\clubsuit$ Create a new
+module that is the composition of threebitcounter and nondetinput. 
+
+\section{Running \chai}
+All the module definitions have to be entered into a single file named
+typically with the suffix .rm; in our case, (say) this file is
+counter.rm (Figure~\ref{fig:finalfile}). \chai\ is invoked by typing {\tt chai} at the shell
+prompt. If you do not want to bring up \chai\ with its GUI, start
+\chai\ in the text mode typing {\tt chai -t}.
+
+\begin{figure}
+\begin{verbatim}
+-- this is a comment
+-- 3 bit counter found in the SMV example suite 
+module counterCell
+  private sumBit : bool
+  external carryIn : bool
+  interface carryOut : bool
+
+atom controls sumBit reads sumBit awaits carryIn 
+init
+  [] true -> sumBit' := false
+update
+  [] ~sumBit -> sumBit' := carryIn'
+  [] sumBit -> sumBit' := if (~carryIn') then true else false fi
+endatom
+
+atom controls carryOut reads sumBit awaits carryIn
+init
+  [] true -> carryOut' := false
+update
+  [] true -> carryOut' := sumBit & carryIn'
+endatom
+endmodule  -- end counterCell
+
+cell0 := counterCell[ carryIn, carryOut := input, out0 ]
+cell1 := counterCell[ carryIn, carryOut := out0, out1 ]
+cell2 := counterCell[ carryIn, carryOut := out1, out2 ]
+
+threebitcounter := hide out0, out1 in
+   (cell0 || cell1 || cell2) endhide
+
+module nondetinput
+  interface output : bool
+
+atom controls output
+init update
+  [] true -> output' := nondet
+endatom 
+endmodule 
+
+InputModule := nondetinput[ output := input ]
+closedthreebitcounter := hide input in
+   (InputModule || threebitcounter) endhide
+\end{verbatim}
+\caption{Input file: counter.rm}
+\label{fig:finalfile}
+\end{figure}
+
+The module  is read and parsed with the {\tt read\_module} command.
+\chai\ displays the names of the modules that were successfully
+parsed. In the case of a parse error, an appropriate message is
+displayed. 
+
+\begin{verbatim}
+chai:   read_module counter.rm
+Module counterCell is composed and checked in.
+Module cell0 is composed and checked in.
+Module cell1 is composed and checked in.
+Module cell2 is composed and checked in.
+Module threebitcounter is composed and checked in.
+Module nondetinput is composed and checked in.
+Module InputModule is composed and checked in.
+Module closedthreebitcounter is composed and checked in.
+parse successful.
+\end{verbatim}
+
+The command {\tt show\_mdls} lists the modules that have been read
+in. 
+
+\begin{verbatim}
+chai: show_mdls
+closedthreebitcounter
+InputModule         
+cell0               
+cell1               
+cell2               
+counterCell         
+threebitcounter     
+\end{verbatim}
+
+\chai\ provides many methods of verifying the correctness of a design:
+execution (i.e., simulation), invariant checking, refinement checking,
+and ATL model checking. We highlight execution and ATL model checking
+in this tutorial, being the distinguishing features of \chai, and
+treat refinement checking and assume-guarantee reasoning in subsequent
+chapters. 
+
+\subsection{Executing modules}
+\chai\ allows the user to execute any module in three modes: manual,
+random, and game, via a Tk-based GUI for interacting with the tool and
+viewing the execution trace. To execute a module, first read it in
+using the {\tt read\_module} command. Then choose it by selecting it in the
+browser, that is in turn brought up by choosing under the browse
+option under the ``File'' pull down menu. 
+
+After selecting the module, press the open button. For instance,
+choose the module {\tt closedthreebitcounter}. A new window will pop
+up containing the\\ \rem\ definition of the module selected. Now click
+the ``Execute'' button. A new window pops up giving the three options
+for execution as radio buttons. For the Game execution option, the
+user gets to choose the atoms for which he can specify the next state
+(i.e., resolve the non-determinism); the other atoms' next states will
+be chosen by \chai; use the browse button to choose the atoms the
+user wants to control. 
+
+The upper window presents (by default) a table of the external and interface
+variables for the chosen module and possible values at the current
+state. The user gets to choose the particular tuple he wants to
+proceed with in the case of manual or game execution.  Additional
+variables to view can be selected by choosing the ``Select Variables''
+option under the options pull down menu. For instance, if you chose to
+execute {\tt closedthreebitcounter} under the game mode, and chose to
+play the module {\tt InputModule}, you will have to choose the
+input variable to be made visible. When the user's button is lit, the
+user should make a choice from the upper window and then press the
+``Go!'' button. When it's the system's turn pressing the ``Go!''
+button, executes the system's move. Try it!
+
+\section{ATL model checking}
+
+ATL is a new temporal logic that subsumes CTL and is appropriate for
+reasoning about open systems. The difference between ATL and CTL is
+that the path quantifiers in ATL are parametrized by a set of atoms,
+and a formula is true along all paths that the parametrized atoms can
+take the system into, no matter how the other atoms behave. 
+
+For instance, the CTL formula $A F (out2)$ is not true with respect to
+the module {\tt closedthreebitcounter}.
+We obtain a counterexample to the formula if the input to the counter is set to~$0$.
+In this case the sum is always~$0$ and the carry-out from the third ({\tt out2})
+counter-cell never becomes~$1$.
+
+The formula $A F (out2)$ stated in ATL is: $$<< >> F (out2) $$ where the set
+of atoms parametrizing the path quantifier (within angle brackets) is
+empty. The formula is to be read as follows: no matter how the agents
+(i.e, atoms) behave it is the case that the system reaches a state
+where {\tt out2} is true.
+
+Similarly, the exists ($E$) path quantifier of CTL is the ATL path
+quantifier parametrized by all the atoms. For instance, the module
+{\tt closedthreebitcounter} satisfies the CTL formula $E F (out2)$.
+The equivalent ATL formula is $$<< U >> F (out2)$$ where $U$
+stands for a list of all the atoms in the module {\tt closedthreebitcounter}. 
+
+ATL thus let us specify games where we can divide up the set of
+atoms into two teams; with some atoms in one team and the remainder in the
+other team, we can pose adversarial questions as to whether a team
+can enforce a condition no matter how the other team behaves.
+
+For instance, we can pose the following ATL formula that is stronger than the CTL formula $E F
+(out2)$:
+\begin{equation}
+\label{eqn:atl_formula}
+ << InputModule >> F (out2) 
+\end{equation}
+This formula asks: what are the states from which the module
+{\tt InputModule}, i.e. the team comprised of atoms in the module {\tt
+InputModule} has a strategy to make sure that {\tt
+closedthreebitcounter} reaches  a state where {\tt out2} is true no
+matter how the other modules (atoms) behave. Notice that in CTL the
+only two teams possible are where one is the empty set and the other
+all the atoms, whereas ATL let us partition the atoms into two teams
+any way we want. 
+
+The ATL formula of (\ref{eqn:atl_formula}) is also true of {\tt
+closedthreebitcounter}, because again (for instance) a winning strategy
+for {\tt InputModule} is to set the input to~$1$ sometime.
+The reader should be convinced that it is not
+difficult to come up with instances of modules that can be
+distinguished by ATL formulae but not by CTL formulae. 
+Note that in ATL formulae we may use the short hand $A$ and $E$ to stand for
+the parametrized path quantifier with the empty set of atoms and the set of all atoms, respectively.
+
+The ATL formulae can be entered into a file whose name is suffixed
+by {\tt .spec}, named say {\tt counter.spec}:
+
+\begin{verbatim}
+atl "atl1" A F (out2) ;
+atl "atl2" E F (out2) ;
+atl "atl3" << InputModule >>  F (out2); 
+\end{verbatim}
+
+Lines containing ATL formulae start with word {\tt atl}, followed by
+the name of the formula, and then the formula, with a semi-colon
+terminating the line. The command {\tt show\_spec} prints out the names
+of ATL formulae read in (as well as invariants read in). Try it. 
+
+The command for ATL model checking is {\tt atl\_check}. The following command:
+
+\begin{verbatim}
+atl_check closedthreebitcounter atl1
+\end{verbatim}
+
+\noindent
+which says check if the module {\tt closedthreebitcounter} satisfies
+the ATL formula {\tt atl1}. When you run this, you will get a message
+reporting a failure. On the otherhand:
+
+\begin{verbatim}
+atl_check closedthreebitcounter atl2
+\end{verbatim}
+
+\noindent
+should pass as should {\tt atl\_check closedthreebitcounter atl3}. 
+
+%As we saw above, ATL model checking lets one separate the environment
+%of a module from the module itself. It is the hoped that ATL model
+%checking will form the foundation of a good modular design
+%methodology.
+
+\section{Peterson's mutual exclusion protocol}
+
+As an example of a concurrent program consisting of processes that
+communicate through read-shared variables, we consider a mutual-exclusion
+protocol, which ensures that no two processes simultaneously access a common
+resource.
+The modules $P_1$ and $P_2$ of Figure~\ref{fig:pete} model the two processes
+of Peterson's solution to the mutual-exclusion problem for shared variables.
+Each process  has a program counter ($\statuso,~\statust$) and a flag ($x1,~x2$), both
+of which can be observed by the other process.
+The program counter indicates whether a process is outside its critical
+section ($\outcs$), requesting the critical section
+($\reqcs$), or occupying the critical section ($\incs$).
+In each update round, a process looks at the latched values of all
+variables (reads them) and, nondeterministically, either updates its controlled variables or sleeps
+(i.e., leaves the controlled variables unchanged: achieved by the last
+guarded command with a true guard and no actions), without waiting to see
+what the other process does.
+Note that each process may sleep for arbitrarily many rounds:
+nondeterminism is used to ensure that there is no relationship between the
+execution speeds of the two processes.
+
+\mypar
+{\bf Interleaving.}
+Unlike in interleaving models, both processes may modify their variables in
+the same round.
+While Peterson's protocol ensures mutual exclusion even under these weaker
+conditions, if one were to insist on the interleaving assumption, one would
+add a third module that, in each update round, nondeterministically schedules
+either or none of the two processes.
+Alternatively, one could describe the complete protocol as a single module
+containing a single atom whose update action is the union of the update
+actions of the atoms of Figure~\ref{fig:pete}.
+The guarded command that specifies a union of actions consists simply of the
+union of all guarded assignments of the individual actions.
+This style of describing asynchronous programs as an unstructured collection
+of guarded assignments is pursued in formalisms such as
+{\sc Unity}~\cite{ChandyMisra88} and {\sc Mur}$\varphi$~\cite{Dill96}.
+
+\mypar
+{\bf Write-shared variables.}
+The original formulation of Peterson's protocol uses a single write-shared
+boolean variable~$x$, whose value always corresponds to the value of the
+predicate $x1=x2$ in our formulation.
+If one were to insist on modeling $x$ as a write-shared variable, one would
+add a third module with the interface variable $x$ and awaited external
+variables such as {\em P$_i$\_sets\_x\_to\_}0, which is a boolean interface
+variable of the $i$-th process that indicates when the process wants to set
+$x$ to~0.
+This style of describing write-shared memory makes explicit what happens when
+several processes write simultaneously to the same location.
+
+\section{Verification}
+The two modules {\tt P1} and {\tt P2} are composed to give module {\tt Pete}. 
+We verify that the version of Peterson's mutual exclusion
+protocol in Figure~\ref{fig:pete} does implement mutual exclusion. 
+The following invariant says that both processes are not simultaneously in their
+critical sections:\\
+
+{\noindent\tt
+inv "mutex" $\sim$ (pc1 = inCS \AND\ pc2 = inCS);
+}\\
+
+The invariant can be entered into a file (say) {\tt pete.spec}.
+The name of the invariant is {\tt mutex}.
+Start up \chai, and first read in the
+module definitions of Figure~\ref{fig:pete} by typing:\\
+
+{\noindent\tt
+chai: read\_module pete.rm
+}\\
+
+\noindent
+The specification is read in with the {\tt read\_spec} command:\\
+
+{\noindent\tt
+chai: read\_spec pete.spec
+}\\
+
+\noindent
+The mutual-exclusion is tested with the command:\\
+
+{\noindent\tt
+chai:  inv\_check Pete mutex
+}\\
+
+\noindent
+which says check if the module {\tt Pete} satisfies the invariant {\tt
+mutex}. {\tt Pete} should satisfy the invariant. 
+
+\section{Where to find the files for the examples in this chapter}
+
+The \rem\ files as well as the ATL specs., etc., can be found on the WWW at
+{\tt http://www-cad.eecs.berkeley.edu/chai/demo.html}
+
+\begin{figure}
+{\tt
+  \MODULE\ P1\\
+  \qu \INTERFACE\ \statuso : \set{\outcs,\reqcs,\incs} ;  x1 : \bool\\
+  \qu \EXTERNAL\ \statust : \set{\outcs,\reqcs,\incs} ;  x2 : \bool\\
+  \qu \ATOM\ \CONTROLS\ \statuso, x1\ \READS\ \statuso, \statust, x1, x2\\
+  \qu \INIT\\
+  \qu \begin{chtab}
+      \TRUE & \statuso' := \outcs
+  \end{chtab} \\
+  \qu \UPDATE\\
+  \qu \begin{chtab}
+      \statuso=\outcs & \statuso' := \reqcs ;  x1' := x2\\
+      \statuso=\reqcs\ \AND\ (\statust=\outcs\ \OR\ \NOT(x1=x2)) & \statuso' := \incs\\
+      \statuso=\incs & \statuso' := \outcs\\
+      \TRUE &
+  \end{chtab} \\
+  \qu \ENDATOM \\
+  \ENDMODULE \\\\
+
+  \MODULE\ P2\\
+  \qu \INTERFACE\ \statust : \set{\outcs,\reqcs,\incs} ;  x2 : \bool\\
+  \qu \EXTERNAL\ \statuso : \set{\outcs,\reqcs,\incs} ;  x1 : \bool\\
+  \qu \ATOM\ \CONTROLS\ \statust, x2\ \READS\ \statuso, \statust, x1, x2\\
+  \qu \INIT\\
+  \qu \begin{chtab}
+      \TRUE & \statust' := \outcs
+  \end{chtab}\\
+  \qu \UPDATE\\
+  \qu \begin{chtab}
+      \statust=\outcs & \statust' := \reqcs ; x2' := \NOT x1\\
+      \statust=\reqcs\ \AND\ (\statuso=\outcs\ \OR\ x1=x2) & \statust' := \incs\\
+      \statust=\incs & \statust' := \outcs\\
+      \TRUE &
+  \end{chtab} \\
+  \qu \ENDATOM \\
+  \ENDMODULE \\
+}
+{\tt
+Pete:= hide x1, x2 in (P1 || P2) endhide\\
+}
+\caption{Asynchronous mutual-exclusion protocol}
+\label{fig:pete}
+\end{figure}
+@
+
+
+1.1.1.1
+log
+@Newchaiman
+@
+text
+@@

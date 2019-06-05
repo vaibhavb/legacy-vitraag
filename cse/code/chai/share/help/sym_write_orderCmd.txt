@@ -1,0 +1,11 @@
+
+  sym_write_order - write the current ordering into a file
+     _________________________________________________________________
+   
+   sym_write_order [-h] -f <file_name> <module_name;>
+   
+   This command writes the current ordering of MDD variables into a file,
+   specified by the given file name
+     _________________________________________________________________
+   
+   Last updated on 980624 22h11

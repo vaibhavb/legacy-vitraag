@@ -1,0 +1,121 @@
+parse successful.
+Done initializing image info...
+Step 1: image mdd size =         20	 |states| =        6	
+reached set mdd size =         20	 |states| =        3
+Step 2: image mdd size =         25	 |states| =        8	
+reached set mdd size =         26	 |states| =        5
+Step 3: image mdd size =         29	 |states| =       12	
+reached set mdd size =         32	 |states| =        8
+Step 4: image mdd size =         31	 |states| =       14	
+reached set mdd size =         37	 |states| =       11
+Step 5: image mdd size =         29	 |states| =       14	
+reached set mdd size =         43	 |states| =       14
+Step 6: image mdd size =         31	 |states| =       18	
+reached set mdd size =         51	 |states| =       19
+Step 7: image mdd size =         33	 |states| =       24	
+reached set mdd size =         57	 |states| =       25
+Step 8: image mdd size =         35	 |states| =       30	
+reached set mdd size =         61	 |states| =       31
+Step 9: image mdd size =         39	 |states| =       26	
+reached set mdd size =         66	 |states| =       38
+Step 10: image mdd size =         35	 |states| =       34	
+reached set mdd size =         70	 |states| =       46
+Step 11: image mdd size =         36	 |states| =       38	
+reached set mdd size =         68	 |states| =       54
+Step 12: image mdd size =         35	 |states| =       44	
+reached set mdd size =         70	 |states| =       63
+Step 13: image mdd size =         39	 |states| =       64	
+reached set mdd size =         70	 |states| =       74
+Step 14: image mdd size =         35	 |states| =       44	
+reached set mdd size =         70	 |states| =       83
+Step 15: image mdd size =         34	 |states| =       50	
+reached set mdd size =         71	 |states| =       94
+Step 16: image mdd size =         34	 |states| =       46	
+reached set mdd size =         69	 |states| =      104
+Step 17: image mdd size =         39	 |states| =       84	
+reached set mdd size =         70	 |states| =      119
+Step 18: image mdd size =         42	 |states| =      130	
+reached set mdd size =         68	 |states| =      133
+Step 19: image mdd size =         49	 |states| =      140	
+reached set mdd size =         62	 |states| =      145
+Step 20: image mdd size =         37	 |states| =       50	
+reached set mdd size =         59	 |states| =      152
+Step 21: image mdd size =         41	 |states| =       36	
+reached set mdd size =         55	 |states| =      159
+Step 22: image mdd size =         37	 |states| =      100	
+reached set mdd size =         48	 |states| =      165
+Step 23: image mdd size =         27	 |states| =      112	
+reached set mdd size =         45	 |states| =      167
+Step 24: image mdd size =         16	 |states| =       28	
+reached set mdd size =         40	 |states| =      168
+Step 25: image mdd size =         14	 |states| =       36	
+Done reached set computation...
+reached set mdd size =         40	 number of states =      168
+Step 1: image mdd size =         20	 |states| =        6	
+reached set mdd size =         20	 |states| =        3
+Step 2: image mdd size =         25	 |states| =        8	
+reached set mdd size =         26	 |states| =        5
+Step 3: image mdd size =         29	 |states| =       12	
+reached set mdd size =         32	 |states| =        8
+Step 4: image mdd size =         31	 |states| =       14	
+reached set mdd size =         37	 |states| =       11
+Step 5: image mdd size =         29	 |states| =       14	
+reached set mdd size =         43	 |states| =       14
+Step 6: image mdd size =         31	 |states| =       18	
+reached set mdd size =         51	 |states| =       19
+Step 7: image mdd size =         33	 |states| =       24	
+reached set mdd size =         57	 |states| =       25
+Step 8: image mdd size =         35	 |states| =       30	
+reached set mdd size =         61	 |states| =       31
+Step 9: image mdd size =         39	 |states| =       26	
+reached set mdd size =         66	 |states| =       38
+Step 10: image mdd size =         35	 |states| =       34	
+reached set mdd size =         70	 |states| =       46
+Step 11: image mdd size =         36	 |states| =       38	
+reached set mdd size =         68	 |states| =       54
+Step 12: image mdd size =         35	 |states| =       44	
+reached set mdd size =         70	 |states| =       63
+Step 13: image mdd size =         39	 |states| =       64	
+reached set mdd size =         70	 |states| =       74
+Step 14: image mdd size =         35	 |states| =       44	
+reached set mdd size =         70	 |states| =       83
+Invariant safe has been violated
+Step 15: image mdd size =         34	 |states| =       50	
+reached set mdd size =         71	 |states| =       94
+Step 16: image mdd size =         34	 |states| =       46	
+reached set mdd size =         69	 |states| =      104
+Step 17: image mdd size =         39	 |states| =       84	
+reached set mdd size =         70	 |states| =      119
+Step 18: image mdd size =         42	 |states| =      130	
+reached set mdd size =         68	 |states| =      133
+Step 19: image mdd size =         49	 |states| =      140	
+reached set mdd size =         62	 |states| =      145
+Step 20: image mdd size =         37	 |states| =       50	
+reached set mdd size =         59	 |states| =      152
+Step 21: image mdd size =         41	 |states| =       36	
+reached set mdd size =         55	 |states| =      159
+Step 22: image mdd size =         37	 |states| =      100	
+reached set mdd size =         48	 |states| =      165
+Step 23: image mdd size =         27	 |states| =      112	
+reached set mdd size =         45	 |states| =      167
+Step 24: image mdd size =         16	 |states| =       28	
+reached set mdd size =         40	 |states| =      168
+Step 25: image mdd size =         14	 |states| =       36	
+Done reached set computation...
+reached set mdd size =         40	 number of states =      168
+Invariant safe failed in step 14
+System/arrive=0 pcTrain=far System/RealTimeTrain/x=0 pcGate=open System/RealTimeGate/y=0 timeIncrement=0 
+System/arrive=1 pcTrain=near System/RealTimeTrain/x=0 pcGate=closing System/RealTimeGate/y=0 timeIncrement=1 
+System/arrive=1 pcTrain=near System/RealTimeTrain/x=1 pcGate=closing System/RealTimeGate/y=1 timeIncrement=0 
+System/arrive=1 pcTrain=near System/RealTimeTrain/x=1 pcGate=closed System/RealTimeGate/y=0 timeIncrement=1 
+System/arrive=1 pcTrain=near System/RealTimeTrain/x=2 pcGate=closed System/RealTimeGate/y=1 timeIncrement=1 
+System/arrive=1 pcTrain=near System/RealTimeTrain/x=3 pcGate=closed System/RealTimeGate/y=2 timeIncrement=1 
+System/arrive=1 pcTrain=near System/RealTimeTrain/x=4 pcGate=closed System/RealTimeGate/y=3 timeIncrement=0 
+System/arrive=1 pcTrain=gate System/RealTimeTrain/x=0 pcGate=closed System/RealTimeGate/y=3 timeIncrement=1 
+System/arrive=1 pcTrain=gate System/RealTimeTrain/x=1 pcGate=closed System/RealTimeGate/y=4 timeIncrement=0 
+System/arrive=0 pcTrain=far System/RealTimeTrain/x=1 pcGate=closed System/RealTimeGate/y=4 timeIncrement=0 
+System/arrive=1 pcTrain=near System/RealTimeTrain/x=0 pcGate=closed System/RealTimeGate/y=4 timeIncrement=1 
+System/arrive=1 pcTrain=near System/RealTimeTrain/x=1 pcGate=closed System/RealTimeGate/y=5 timeIncrement=1 
+System/arrive=1 pcTrain=near System/RealTimeTrain/x=2 pcGate=closed System/RealTimeGate/y=6 timeIncrement=1 
+System/arrive=1 pcTrain=near System/RealTimeTrain/x=3 pcGate=closed System/RealTimeGate/y=7 timeIncrement=0 
+System/arrive=1 pcTrain=gate System/RealTimeTrain/x=0 pcGate=open System/RealTimeGate/y=7 

@@ -1,0 +1,16 @@
+0a1,15
+> Step 1: image mdd size =         23	 |states| =       32	
+> reached set mdd size =         13	 |states| =        2
+> Step 2: image mdd size =         43	 |states| =       64	
+> reached set mdd size =         17	 |states| =        4
+> Step 3: image mdd size =         74	 |states| =      124	
+> reached set mdd size =         20	 |states| =        7
+> Step 4: image mdd size =        156	 |states| =      212	
+> reached set mdd size =         21	 |states| =       12
+> Step 5: image mdd size =        257	 |states| =      361	
+> reached set mdd size =         21	 |states| =       15
+> Step 6: image mdd size =        285	 |states| =      445	
+> reached set mdd size =         21	 |states| =       16
+> Step 7: image mdd size =        284	 |states| =      465	
+> reached set mdd size =         21	 number of states =       16
+> Impl refines Spec

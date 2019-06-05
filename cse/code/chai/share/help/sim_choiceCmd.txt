@@ -1,0 +1,25 @@
+
+  sim_choice - Return the choices available to user.
+     _________________________________________________________________
+   
+   sim_choice [-hnx] <module>
+   
+   This command returns the choices available to the user during the
+   current simulation for the specified module.
+   
+   Command options:
+   
+   -h
+          Prints usage.
+          
+   -n
+          Returns only the number of choices.
+          
+   -x
+          Returns the result in the format of a Tcl list.
+          
+   <module>
+          Specify the module.
+     _________________________________________________________________
+   
+   Last updated on 980624 22h11

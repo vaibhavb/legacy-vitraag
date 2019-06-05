@@ -1,0 +1,69 @@
+<html>
+<head><title>sim_info</title></head>
+<body>
+
+<h3>sim_info - Provides miscellaneous information about the current simulation.</h3>
+<hr>
+<code>sim_info [-h] &lt;module&gt; &lt;option&gt;</code><p>
+This command returns miscellaneous information about
+  current simulation of the specified module, depending on the option
+  supplied. <p>
+
+  Command options:<p>
+
+  <dl>
+  <dt> -h
+  <dd> Prints usage.
+
+  <dt> &lt;option&gt;
+  <dd> option can be one of the following keyword:
+
+  <p>
+  <dl>
+  <dt> isStartOfRound
+  <dd> Returns 1 if the simulation is at the start of a round, and 0
+  otherwise.
+
+  <p>
+  <dt> isEndOfRound
+  <dd> Returns 1 if the current round has just finished, and 0
+  otherwise. Usually if the simulation is at the end of a round, it is also at
+  the start of the round and vice versa. But there is a subtlety: at the start
+  of the initial round, isStartOfRound will return 1, but isEndOfRound will
+  return 0.
+
+  <p>
+  <dt> atomOrdering
+  <dd> Returns a linear order of the atoms. The sub-rounds of execution are
+  carried according to this order.
+  
+  <p>
+  <dt> variableOrdering
+  <dd> Returns a linear order of the variables. Variables controlled by the
+  same atoms are grouped together.
+  
+  <p>
+  <dt> isUserTurn
+  <dd> Returns 1 if it is the user's turn during the simulation, and 0
+  otherwise. 
+  
+  <p>
+  <dt> isInitialRound
+  <dd> Returns 1 if the current round is the initial round, and 0 otherwise.
+  
+  <p>
+  <dt> mode
+  <dd> Returns the mode of the current simulation. The result is "random",
+  "manual" or "game".
+  
+  <p>
+  <dt> isSimulated
+  <dd> Returns 1 if the module is being simulated, 0 otherwise.
+  
+  </dl>
+
+  </dl>
+
+<HR>
+Last updated on 1031104 18h39
+</body></html>

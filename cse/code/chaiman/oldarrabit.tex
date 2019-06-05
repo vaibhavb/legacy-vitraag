@@ -1,0 +1,63 @@
+
+\subsection{Arrays}\index{type!array}\index{array}
+
+\mocha\ also has array and
+bitvector\index{type!bitvector}\TYPE{bitvector} types.  Arrays are
+essentially as in ordinary programming languages, except that
+multidimensional arrays are not provided, and other minor limitations
+are present.  Each array variable has to be controlled by the same
+module, but different array elements can be controlled by different
+atoms: hence, you can think at arrays as a bus of wires or signals,
+not necessarily controlled jointly. 
+The syntax for declaring an array type is: 
+%
+\begin{quote} 
+  \ARRAY\ \indextype\ \OF\ \elementtype
+\end{quote}
+%
+Type \indextype\ is the type of the array index, and can be a boolean,
+an enumeration type, or a range type (perhaps the most common case).
+Type \elementtype\ is the type of the array elements, and can be a
+boolean, integer, natural, enumeration, range, or bitvector type.
+An example of declaration is 
+%
+\begin{quote} \tt
+  interface x: array (0..10) of bool
+\end{quote}
+%
+You can declare that an atom controls the whole array {\tt x} by
+writing {\tt controls x}.  If the atom controls only some elements of
+{\tt x}, you can specify these simply by listing them, as in {\tt
+controls x[0], x[2], x[4]}.  You can specify which elements are read
+or awaited in a similar way. 
+Note that the array elements that are controlled, read, or awaited
+must be specified using constants only: you cannot write {\tt controls
+x[1 + 2]} or {\tt awaits x[a]}. 
+If an array is controlled by the module (i.e.\ if it is declared as
+{\tt interface} or {\tt private} in the module), then all array
+elements must be controlled by some atom of the module.
+
+You can refer to array elements by writing the variable name followed
+by a range expression in square brackets, as in {\tt x[4]} or {\tt x[z
++ 1]}.  In an expression, you can refer to an element of an array of
+type \ARRAY\ \indextype\ \OF\ \elementtype\ whenever you can refer to
+a variable of type \elementtype.
+
+You can assign values only to individual array elements, not to arrays
+as a whole.  Moreover, you must specify the array element being
+updated using constants only: for example, you can write {\tt x'[3] :=
+true}, but not {\tt x'[y] := true} nor even {\tt x'[3+1] := true}.
+
+forall assignment
+
+How is the \AWAITS relation computed: on array elements? How can you
+check that you are referring only to array elements that you declared
+as read? Or must you read whole vectors at once? 
+
+
+\subsection{Bitvectors}\index{type!bitvector}\TYPE{bitvector}
+
+Bitvectors are essentially arrays of booleans, except that you can
+perform arithmetic and logical operations on a bitvector as a whole,
+and that as a consequence each bitvector variable has to be controlled
+by a single atom. 

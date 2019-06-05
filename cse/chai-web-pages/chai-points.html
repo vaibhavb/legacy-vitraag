@@ -1,0 +1,383 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+<head>
+  <title>Chai manual</title>
+  <link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+<h1> Chai Manual Points </h1>
+<hr>
+<h2> To do</h2>
+<ul>
+  <li>Change the command names <b>sl to NONE</b> and document it. &lt;<b>Prev/Now</b>&gt;</li>
+  <ul>
+    <li>Touch make-file to remove mocha remains<br>
+    </li>
+  </ul>
+  <li>Take a look at <a
+ href="http://www-cad.eecs.berkeley.edu/%7Earindam/Chic/"><b>Chic</b></a>
+there is lots to copy<br>
+  </li>
+  <li>Chai logo use <a href="tea.jpg">Chai Pot</a></li>
+  <li>Encode the examples in <a href="#chai_refs">reference</a>. touch
+then up.</li>
+  <ul>
+    <li><a href="chai-examples.html">Examples</a> <b>Add Latch and
+Counter Example.</b><br>
+    </li>
+  </ul>
+  <li><b>Code Issues</b>: Defaults (Freddy will look in to it)</li>
+  <b>Priority One</b> <li>The <a href="chaicommands.html">commands.</a></li>
+</ul>
+<hr>
+<h2> Points </h2>
+<ul>
+  <li>There is <b>make distribution </b>in make file <a
+ href="http://people.debian.org/%7Ecalvin/unofficial/">Tips</a> for
+apt-get.<br>
+  </li>
+  <li>Making a debian package</li>
+  <ul>
+    <li>dh_make</li>
+    <li>dpkg_buildpackage<br>
+    </li>
+  </ul>
+  <li><b>Luca</b>: Does using lazy make mocha asynchronous? <b>-Yes.
+Note: </b>throw lazy inputs restrict them as they dont make any sense!<br>
+  </li>
+  <li>How to <a href="#How_to_interfaces">Interfaces</a> : blurb on
+installing Chai.</li>
+  <li>A Chai <a href="#chai_session">Session</a></li>
+  <li>Chai <a href="#commands">Commands</a></li>
+  <ul>
+    <li>Using chai-scripts an example<br>
+    </li>
+  </ul>
+  <li>Interface formalism based on reactive modules : how to accomodate
+the input output variable renaming which is so ingrain in RMs..should
+be change them too??</li>
+  <li><a href="chai-examples.html">Interface examples</a>:</li>
+  <ul>
+    <li><a href="#counter">Counter</a> gate</li>
+    <li>Counter ref</li>
+    <li>Demarcation protocol</li>
+    <li>Gate strength</li>
+    <li>Jessica</li>
+  </ul>
+  <li> <font size="+2"><big> C</big><small>HAI</small> (Version 0.0.1)</font></li>
+  <ul>
+    <li> Chai (Version 0.0.1) is an extension of <a
+ href="http://www-cad.eecs.berkeley.edu/%7Emocha"><font size="+1">M</font><font
+ size="-1">OCHA</font></a> written in C. Chai is based on <a
+ href="http://www.scriptics.com">Tcl7.6</a> . Please refer to the <a
+ href="#chai_overview">overview</a> of<big> C</big><small>HAI</small>
+for more information.&nbsp;</li>
+  </ul>
+  <li>Savoring Chai : <b>&nbsp;A Trial Run (use a python script!)</b></li>
+  <li>Related Technical <a href="#chai_refs">References</a></li>
+  <li> <font size="+2">Get&nbsp; <big>C</big><small>HAI &nbsp;(and
+Manual).</small></font></li>
+</ul>
+<hr>
+<h2>Progress</h2>
+<ul>
+  <li>Chai-logo V0.1</li>
+  <ul>
+    <ul>
+      <ul>
+        <ul>
+          <ul>
+            <li><img src="chai-logo.jpg" alt="chai-log" width="114"
+ height="54"> <br>
+            </li>
+          </ul>
+        </ul>
+      </ul>
+    </ul>
+  </ul>
+  <li>Chai installation procedure. <b>July 1</b></li>
+  <li>Some examples coded <b>June 24</b><br>
+  </li>
+  <li>Chai **<b>No longe</b>r** depends on Tk and Tix. <b>June 14</b><br>
+  </li>
+</ul>
+<hr width="100%" size="2"><a name="How_to_interfaces"></a><br>
+<ul>
+  <li> cd vaibhav (for example)</li>
+  <li>checkout a copy of the source code:</li>
+  <li>cvs -d /projects/bubble/cvs co&nbsp; code/chai</li>
+  <li>cvs -d /projects/bubble/cvs co&nbsp; code/tcl-chai</li>
+  <li>cvs -d /projects/bubble/cvs co&nbsp; code/glu-chai</li>
+  <li> This will create a directories called code/chai code/tcl-chai
+code/glu-chai</li>
+  <li>Make the following helper file to set things up; call it
+chai_setup:</li>
+  <li> (I assume you are using tcsh, if not, modify accordingly):</li>
+  <li>You'll need to set the environment variables exemplary as follows:</li>
+  <li>#chai</li>
+  <li>setenv CHAIDIR /projects/bubble/people/vaibhav/code/chai</li>
+  <li>setenv CHAISRCDIR ${CHAIDIR}/src</li>
+  <li>setenv CHAIHELPDIR ${CHAIDIR}/share/help</li>
+  <li>#compilation</li>
+  <li>setenv CONFIG_SITE ${CHAIDIR}/share/config.SITE</li>
+  <li>setenv PATH ${CHAIDIR}:$PATH</li>
+  <li>setenv TCL_LIBRARY
+/projects/bubble/people/vaibhav/code/tcl-chai/lib/tcl7.6</li>
+  <li>Then prepare the compilation:</li>
+  <li>source chai_setup</li>
+  <li>cd vaibhav/code/chai</li>
+  <li> cp config.SITE.example config.SITE</li>
+  <li> Edit config.SITE so that its first line reads as follows:</li>
+  <li>tcltk_dir=/projects/bubble/people/vaibhav/code/tcl-chai</li>
+  <li> Go to chai, and finally compile:</li>
+  <li>cd chai</li>
+  <li> chmod 700 configure</li>
+  <li> ./configure</li>
+  <li> make</li>
+  <li> Verify that you can access the correct mocha:</li>
+  <li>which chai</li>
+  <li>(should be the one in the directory you are in).</li>
+  <li> Ok, you are done!</li>
+  <li> REMEMBER: Check and extracheck that everything
+works before checking</li>
+  <li> any change into cvs.</li>
+</ul>
+<hr>
+<h2><a name="chai_session"></a> Chai Session. </h2>
+<table cellpadding="2" cellspacing="2" border="1" width="100%">
+  <tbody>
+    <tr>
+      <td valign="top">palani 84&gt; chai<br>
+Welcome to CHAI 1.0<br>
+Please report any problems to dvl@cse.ucsc.edu<br>
+chai 1.0 &gt; read_intf counter.intf<br>
+interface counterO<br>
+&nbsp; input vars: x0:&nbsp;&nbsp;&nbsp; bool; x1: bool;<br>
+&nbsp; output vars:&nbsp; toone: bool;<br>
+      <br>
+output atom controls x0, x1 reads x0, x1, toone<br>
+&nbsp; init<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [] true -&gt; x0' := true; x1' :=
+true;<br>
+&nbsp; update<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; []&nbsp;
+toone&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+-&gt; x1' := true;&nbsp; x0' := true<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [] ~toone &amp;&nbsp; x1
+&amp;&nbsp; x0 -&gt; x1' := true;&nbsp; x0' := false<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [] ~toone &amp;&nbsp; x1 &amp; ~x0
+-&gt; x1' := false; x0' := true<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [] ~toone &amp; ~x1 &amp;&nbsp; x0
+-&gt; x1' := false; x0' := false<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [] ~toone &amp; ~x1 &amp; ~x0
+-&gt; x1' := true;&nbsp; x0' := true<br>
+&nbsp; endatom<br>
+input atom controls toone<br>
+&nbsp; init<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [] true -&gt; toone' := nondet<br>
+&nbsp; update<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [] true -&gt; toone' := nondet<br>
+&nbsp; endatom<br>
+endinterface<br>
+      <br>
+Done..<br>
+DEBUG PrsReadIntfCmd :&nbsp; counter.intf.I<br>
+Module counterOI is composed and checked in.<br>
+parse successful.<br>
+Module counterOO is composed and checked in.<br>
+parse successful.<br>
+Building Transition Relation for module "counterOI"<br>
+Transition relation computed : 1 conjuncts<br>
+Dynamic variable ordering is enabled with method sift.<br>
+Done initializing image info...<br>
+"fsm_counterOI" created for module "counterOI"<br>
+Building Transition Relation for module "counterOO"<br>
+Transition relation computed : 1 conjuncts<br>
+Dynamic variable ordering is enabled with method sift.<br>
+Done initializing image info...<br>
+"fsm_counterOO" created for module "counterOO"<br>
+DEBUG Interface Created: counterO<br>
+chai 1.0 &gt; exit<br>
+Thank you for using CHAI 1.0<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<hr width="100%" size="2">
+<h2><a name="commands"></a>Chai Commands</h2>
+<ul>
+  <li><b>Parsing</b></li>
+  <ul>
+    <li>read_intf</li>
+    <li>read_modules</li>
+    <li>read_spec<br>
+    </li>
+  </ul>
+  <li><b>Execution</b></li>
+  <ul>
+    <li>SL Commands in intfs<br>
+    </li>
+    <ul>
+      <li>What are the composing commands?? ..sl_compose_intf</li>
+      <li>sl_check_intf_ref</li>
+      <li>sl_strengthen_intf_inv</li>
+      <li><br>
+      </li>
+    </ul>
+    <li>rm Commands</li>
+    <ul>
+      <li>inv_check</li>
+      <li>atl_check</li>
+      <li>check_refine</li>
+      <li>check_refine_atom<br>
+      </li>
+    </ul>
+    <li>bdd Commands</li>
+    <li>other</li>
+  </ul>
+  <li><b>Shows n Prints</b><br>
+  </li>
+  <ul>
+    <li>SL</li>
+    <ul>
+      <li>print_levels</li>
+      <li>print_intf</li>
+      <li>print_intf_support<br>
+      </li>
+    </ul>
+    <li>rm</li>
+    <ul>
+      <li>show_mdls</li>
+      <li>show_atoms</li>
+      <li>show_types<br>
+      </li>
+    </ul>
+    <li>Other</li>
+    <ul>
+      <li>show_spec : shows atl n inv specs.</li>
+      <li>atl_print</li>
+      <li>show_vars [-vHF|HD|EV|ALL] Module<br>
+      </li>
+    </ul>
+    <li>bdd<br>
+    </li>
+  </ul>
+</ul>
+<hr>
+<h2><a name="counter"></a>Counter</h2>
+<table cellpadding="2" cellspacing="2" border="1" width="100%">
+  <tbody>
+    <tr>
+      <td valign="top"> interface counter0<br>
+&nbsp; input vars: x0:&nbsp;&nbsp;&nbsp; bool; x1: bool;<br>
+&nbsp; output vars:&nbsp; toone: bool;<br>
+      <br>
+output atom controls x0, x1 reads x0, x1, toone<br>
+&nbsp; init<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [] true -&gt; x0' := true; x1' :=
+true;<br>
+&nbsp; update<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; []&nbsp;
+toone&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+-&gt; x1' := true;&nbsp; x0' := true<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [] ~toone &amp;&nbsp; x1
+&amp;&nbsp; x0 -&gt; x1' := true;&nbsp; x0' := false<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [] ~toone &amp;&nbsp; x1 &amp; ~x0
+-&gt; x1' := false; x0' := true<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [] ~toone &amp; ~x1 &amp;&nbsp; x0
+-&gt; x1' := false; x0' := false<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [] ~toone &amp; ~x1 &amp; ~x0
+-&gt; x1' := true;&nbsp; x0' := true<br>
+&nbsp; endatom<br>
+input atom controls toone<br>
+&nbsp; init<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [] true -&gt; toone' := nondet<br>
+&nbsp; update<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [] true -&gt; toone' := nondet<br>
+&nbsp; endatom<br>
+endinterface<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<hr> <a name="chai_overview"></a><b><font size="+2">What is Chai?</font></b><br>
+CHAI is an extension of <a
+ href="http://www-cad.eecs.berkeley.edu/%7Emocha/">Mocha</a>. The main
+objective is to provide software environment for system specification,
+composition and verification. CHAI is intended as a vehicle for
+development of new verification and composition - algorithms and
+approaches. <br>
+<br>
+Chai offers the following capabilities: <br>
+<ul>
+  <li><b>System component specification </b>in the language of <i><b>Interfaces.
+    </b></i>Interfaces are extension to reactive modules so as for
+describing synchronous interfaces.<br>
+  </li>
+  <li><b>System specification</b> in the language of <b><i>Reactive
+Modules</i></b>. Reactive Modules allow the formal specification of
+heterogeneous systems with synchronous, asynchronous, and real-time
+components. Reactive Modules support modular and hierarchical
+structuring and reasoning principles.</li>
+  <li> <b>System execution</b> by randomized, user-guided, or
+mixed-mode trace generation. In mixed-mode trace generation, the user
+plays a game against CHAI in which the user guides the execution of
+some modules, while CHAI controls the execution of other modules.</li>
+  <li> <b>Requirement specification</b> in <i>Alternating Temporal
+Logic</i> . The logic ATL allows the formal specification of
+requirements that refer to collaborative as well as adversarial
+relationships between modules. The popular logic CTL is a sublanguage
+of ATL.&nbsp;</li>
+  <li> <b>Requirement verification</b> by ATL model checking. The
+symbolic model checker in both implementations is based on BDD engines
+developed by the UC Berkeley <a
+ href="http://www-cad.eecs.berkeley.edu/Respep/Research/vis/">VIS</a>
+project. For invariant checking, CHAI supports both symbolic and
+enumerative search.</li>
+  <li> <b>Implementation verification</b> by checking trace
+containment between implementation and specification modules. CHAI
+supports containment checking if the specification module has no hidden
+state, and simulation checking otherwise. For decomposing proofs, CHAI
+supports an assume-guarantee principle.</li>
+</ul>
+<b>CHAI</b> follows a software architecture similar to
+<a href="http://www-cad.eecs.berkeley.edu/Respep/Research/vis/">VIS</a>.
+It is written entirely in C and its shell user interface is provided by
+<a href="http://www.scriptics.com">Tcl</a>. CHAI provides two levels of
+development: designers and application developers can customize
+their application or design their own user interface by writing Tcl
+scripts; algorithm developers and researchers can develop new
+algorithms by
+writing C codes, or assemble any verification packages such as those
+provided by <a
+ href="http://www-cad.eecs.berkeley.edu/Respep/Research/vis/">VIS</a>
+through the C interfaces. <br>
+<hr width="100%" size="2"><b><font size="+2"><a name="chai_refs"></a>Technical
+References for <big>C</big><small>HAI</small></font></b><br>
+<ul>
+  <li>Arindam Chakrabarti, Luca de Alfaro, Thomas A. Henzinger, and
+Freddy Y.C. Mang. <a
+ href="http://www-cad.eecs.berkeley.edu/%7Etah/Publications/synchronous_and_bidirectional_component_interfaces.html">
+Synchronous and bidirectional component interfaces.</a> <i>Proceedings
+of the 14th International Conference on Computer-Aided Verification</i>
+(CAV), Lecture Notes in Computer Science 2404, Springer-Verlag, 2002,
+pp. 414-427.</li>
+</ul>
+<br>
+<hr>
+<address>Vaibhav<br>
+</address>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+</body>
+</html>

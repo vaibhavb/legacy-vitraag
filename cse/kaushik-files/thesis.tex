@@ -1,0 +1,69 @@
+%=============================================================
+%  Set up local macros
+%=============================================================
+%\documentstyle[10pt,psfig]{report}
+
+\documentclass{ucscthesis}
+\usepackage{psfig}
+
+
+
+\usepackage{times}
+
+
+\input{psfig}
+
+%=============================================================
+%  Set up title info
+%=============================================================
+
+\title{ {Lavy: Architecture Design and Synthesis of a SIMD System-on-Chip }}
+\author{Kaushik Narayanun}
+
+\degreeyear{2003}
+\degreemonth{June}
+\degree{Master of Science}
+\numberofmembers{3}
+\chair{Professor Richard Hughey}
+\committeememberone{Professor Anujan Varma}
+\committeemembertwo{Asst. Professor Hai Tao}
+
+\field{Computer Engineering}
+\campus{Santa Cruz}
+
+
+
+%=============================================================
+%  Start paper
+%=============================================================
+\begin{document}
+\pagenumbering{roman}
+\maketitle
+\copyrightpage
+\tableofcontents
+\listoffigures
+\listoftables
+
+\clearpage
+\pagenumbering{arabic}
+
+\input{introduction/intro}
+
+\input{chapter1/applications}
+
+\input{chapter2/machines}
+
+\input{chapter3/system}
+
+\input{chapter4/processingelement}
+
+\input{conclusion/conclusion}
+
+\appendix
+\input{chapter4/appendixa}
+
+\bibliography{thesis}
+\bibliographystyle{plain}
+
+
+\end{document}

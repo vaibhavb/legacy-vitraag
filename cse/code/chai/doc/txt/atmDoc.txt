@@ -1,0 +1,731 @@
+The atm package
+
+External header file for the package Atm.
+
+Shaz Qadeer, Sriram Rajamani
+
+**********************************************************************
+
+Atm_AssignEventAlloc()         Allocates an event assignment.
+
+Atm_AssignForallAlloc()        Allocates a forall assignment.
+
+Atm_AssignFree()               Frees an assignment.
+
+Atm_AssignIndexAlloc()         Allocates an index assignment.
+
+Atm_AssignReadExprAddress()    Returns the address of expr on the right hand
+                               side of assignment.
+
+Atm_AssignReadExpr()           Returns the expr on the right hand side of
+                               assignment.
+
+Atm_AssignReadIndexExpr()      Returns the index expr of an index assignment.
+
+Atm_AssignReadIndexVar()       Returns the index variable of a forall
+                               assignment.
+
+Atm_AssignReadType()           Returns the type of an assignment.
+
+Atm_AssignReadVariable()       Returns the variable on the left hand side of
+                               the                       assignment.
+
+Atm_AssignStdAlloc()           Allocates a standard assignment.
+
+Atm_AtomAddAwaitVar()          Add the given variable to the await variable
+                               list
+
+Atm_AtomAddControlVar()        Add the given variable to the controlled
+                               variable list
+
+Atm_AtomAddInitCommandList()   Add the given init command to the atom
+
+Atm_AtomAddReadVar()           Add the given variable to the read variable
+                               list
+
+Atm_AtomAddUpdateCommandList() Add the given update command list to the atom
+
+Atm_AtomAddWaitCommandList()   Add the given wait command list to the atom
+
+Atm_AtomAlloc()                Allocates an atom.
+
+Atm_AtomChangeName()           Changes the name of an atom.
+
+Atm_AtomCounterReset()         Reset the global atom counter.
+
+Atm_AtomDup()                  Duplicate an atom.
+
+Atm_AtomFree()                 Frees an atom.
+
+Atm_AtomNewName()              Generates a new atom name.
+
+Atm_AtomObtainReadAwaitVarList()
+                               Computes the set of variables that are both
+                               read and                       awaited by an
+                               atom.
+
+Atm_AtomObtainReadOrAwaitVarList()
+                               Computes the set of variables that are either
+                               read or                       awaited by an
+                               atom.
+
+Atm_AtomReadAtomType()         Returns the atom type.
+
+Atm_AtomReadAwaitVarList()     Returns the list of await variables for the
+                               atom
+
+Atm_AtomReadControlVarList()   Returns the list of control variables for the
+                               atom
+
+Atm_AtomReadDefaultInitCommand()
+                               Returns the default init guarded command of the
+                               atom.
+
+Atm_AtomReadDefaultUpdateCommand()
+                               Returns the default update guarded command of
+                               the atom.
+
+Atm_AtomReadInitCommandList()  Returns the list of init commands for the atom
+
+Atm_AtomReadName()             Returns the name of the atom.
+
+Atm_AtomReadPostorder()        Read the postorder of the given atom.
+
+Atm_AtomReadPreorder()         Read the preorder of the given atom.
+
+Atm_AtomReadReadVarList()      Returns the list of read variables for the atom
+
+Atm_AtomReadUpdateCommandList()
+                               Returns the list of update commands for the
+                               atom
+
+Atm_AtomReadWaitCommandList()  Returns the list of wait commands for the atom
+
+Atm_AtomSetAtomType()          Set the atom type.
+
+Atm_AtomSetDefaultInitCommand()
+                               Sets the default init command of atom.
+
+Atm_AtomSetDefaultUpdateCommand()
+                               Sets the default update command of atom.
+
+Atm_AtomSetPostorder()         Set the postorder of the given atom.
+
+Atm_AtomSetPreorder()          Set the preorder of the given atom.
+
+Atm_CmdAlloc()                 Allocates a guarded command.
+
+Atm_CmdFree()                  Frees a guarded command.
+
+Atm_CmdReadAssignList()        Returns the list of assignments of a guarded
+                               command.
+
+Atm_CmdReadGuard()             Returns the guard expression of a guarded
+                               command.
+
+Atm_End()                      Ends the atm package.
+
+Atm_ExprAlloc()                Build an expression from two expression and an
+                               operator.
+
+Atm_ExprFreeExpression()       Frees an expression recursively.
+
+Atm_ExprPrintExpression()      Prints the expression.
+
+Atm_ExprReadLeftChild()        Reads the left child of an expression.
+
+Atm_ExprReadRightChild()       Reads the right child of an expression.
+
+Atm_ExprReadType()             Returns the type of an expression.
+
+Atm_ExprSubstituteConstantForDummyVar()
+                               Substitute a constant for the dummy variable
+                               everywhere   in an expression.
+
+Atm_ExprTypeConvertToString()  Returns the symbolic character for an
+                               expression type.
+
+Atm_Init()                     Initializes the atm package.
+
+Atm_NumConstExprConvertToBitvectorConstExpr()
+                               Converts leaves of type Atm_NumConst_c of the
+                               expr to
+                               Atm_BitwiseNumConst_c.
+
+Atm_ReinitTypeCheck()          required
+
+Atm_Reinit()                   Reinitializes the atm package.
+
+Atm_TypeCheckNew()             Typecheck an expression.
+
+**********************************************************************
+
+Data structure  and routines to manipulate atoms.
+
+Atm_Assign_t*
+Atm_AssignEventAlloc(
+  Var_Variable_t*   var
+)
+  The function allocates an event assignment.
+
+  Side Effects: None
+
+Atm_Assign_t*
+Atm_AssignForallAlloc(
+  Var_Variable_t*   var,
+  Var_Variable_t *  indexVar,
+  Atm_Expr_t*       expr
+)
+  The function allocates a forall assignment.
+
+  Side Effects: None
+
+void
+Atm_AssignFree(
+  Atm_Assign_t*     assign
+)
+  This function frees an assignment.
+
+  Side Effects: None
+
+Atm_Assign_t*
+Atm_AssignIndexAlloc(
+  Var_Variable_t*   var,
+  Atm_Expr_t *      indexExpr,
+  Atm_Expr_t*       expr
+)
+  The function allocates an index assignment.
+
+  Side Effects: None
+
+Atm_Expr_t **
+Atm_AssignReadExprAddress(
+  Atm_Assign_t *    assign
+)
+  Returns the address of expr on the right hand side of assignment.
+
+  Side Effects: None
+
+Atm_Expr_t *
+Atm_AssignReadExpr(
+  Atm_Assign_t *    assign
+)
+  Returns the expr on the right hand side of assignment.
+
+  Side Effects: None
+
+Atm_Expr_t*
+Atm_AssignReadIndexExpr(
+  Atm_Assign_t *    assign
+)
+  Returns the index expr of an index assignment.
+
+  Side Effects: None
+
+Var_Variable_t*
+Atm_AssignReadIndexVar(
+  Atm_Assign_t *    assign
+)
+  Returns the index variable of a forall assignment.
+
+  Side Effects: None
+
+Atm_AssignType
+Atm_AssignReadType(
+  Atm_Assign_t *    assign
+)
+  Returns the type of an assignment.
+
+  Side Effects: None
+
+Var_Variable_t*
+Atm_AssignReadVariable(
+  Atm_Assign_t *    assign
+)
+  Returns the variable on the left hand side of the assignment.
+
+  Side Effects: None
+
+Atm_Assign_t*
+Atm_AssignStdAlloc(
+  Var_Variable_t*   var,
+  Atm_Expr_t*       expr
+)
+  The function allocates a standard assignment.
+
+  Side Effects: None
+
+void
+Atm_AtomAddAwaitVar(
+  Atm_Atom_t *      atom,
+  Var_Variable_t*   var
+)
+  [Add the given variable to the await variable list. The variable now becomes
+  a property of the atom. The user should not free it
+
+  Side Effects: awaitVarList is modified.
+
+void
+Atm_AtomAddControlVar(
+  Atm_Atom_t *      atom,
+  Var_Variable_t*   var
+)
+  [Add the given variable to the controlled variable list. The variable now
+  becomes a property of the atom. The user should not free it
+
+  Side Effects: ctrlVarList in atom is modified.
+
+void
+Atm_AtomAddInitCommandList(
+  Atm_Atom_t *      atom,
+  lsList            cmdlist
+)
+  Add the given init command to the atom. If an init command list is already
+  present it is freed and cmdList is put in its place.
+
+  Side Effects: The old init command list will be freed. The content of the
+  original init command list will not be freed. The user should free them
+  before calling this function.
+
+void
+Atm_AtomAddReadVar(
+  Atm_Atom_t *      atom,
+  Var_Variable_t*   var
+)
+  [Add the given variable to the read variable list. The variable now becomes
+  a property of the atom. The user should not free it
+
+  Side Effects: None
+
+void
+Atm_AtomAddUpdateCommandList(
+  Atm_Atom_t *      atom,
+  lsList            cmdList
+)
+  Add the given update command list to the atom. The update command now
+  becomes a property of the atom. The user should not free it
+
+  Side Effects: The old update command list will be freed. The content of the
+  original update command list will not be freed. The user should free them
+  before calling this function.
+
+void
+Atm_AtomAddWaitCommandList(
+  Atm_Atom_t *      atom,
+  lsList            cmdList
+)
+  Add the given wait command list to the atom. The wait command now becomes a
+  property of the atom. The user should not free it
+
+  Side Effects: None
+
+Atm_Atom_t*
+Atm_AtomAlloc(
+  char *            name
+)
+  The function allocates an atom with the given name. name should not be NULL.
+  A copy of name is made. Hence, it is the caller's responsibility to free
+  name.
+
+  Side Effects: None
+
+void
+Atm_AtomChangeName(
+  Atm_Atom_t *      atom,
+  char *            newname
+)
+  This function changes the name of an atom. It is an error to call this
+  function with a NULL atom name.
+
+  Side Effects: The old name will be freed automatically.
+
+void
+Atm_AtomCounterReset(
+
+)
+  Reset the global atom counter.
+
+  Side Effects: None
+
+Atm_Atom_t *
+Atm_AtomDup(
+  Atm_Atom_t *      atom,
+  char *            newAtmName,
+  st_table *        variableMappingT
+)
+  This function duplicates an atom, with a new atom name, and put it in the
+  atom table of the newModule. This function assumes that the newModule has
+  been created, and that all the variables associated with the atom (ie.
+  controlled, read and awaited variables) are already present in the
+  newModule. This function also updates the pointer from the variables to the
+  atoms. It is an error to call this function with an NULL newAtmName, NULL
+  atom or NULL newModule.
+
+  Side Effects: None
+
+void
+Atm_AtomFree(
+  Atm_Atom_t *      atom
+)
+  This function frees an atom.
+
+
+char*
+Atm_AtomNewName(
+
+)
+  The function controls a global variable which is a counter that counts the
+  number of intermediate module generated. The counter is also used to
+  generate a name for the modules. For example, if the counter counts 14, the
+  generated module name will be ATM14. It should be used in conjuction with
+  Mdl_NamePrefixWithString to prefix the module name before the atm name.
+
+  Side Effects: None
+
+lsList
+Atm_AtomObtainReadAwaitVarList(
+  Atm_Atom_t *      atom
+)
+  The function returns a list of variables that are both read and awaited by
+  atom.
+
+  Side Effects: None
+
+lsList
+Atm_AtomObtainReadOrAwaitVarList(
+  Atm_Atom_t *      atom
+)
+  The function returns a list of variables that are both read and awaited by
+  atom.
+
+  Side Effects: None
+
+Atm_AtomType
+Atm_AtomReadAtomType(
+  Atm_Atom_t*       atom
+)
+  The function returns the atom type for the atom (Atm_Event_c, Atm_Lazy_c,
+  Atm_Normal_c).
+
+  Side Effects: None
+
+lsList
+Atm_AtomReadAwaitVarList(
+  Atm_Atom_t *      atom
+)
+  Returns the list of await variables for the atom. The user should not free
+  or modfy this list in any way
+
+  Side Effects: None
+
+lsList
+Atm_AtomReadControlVarList(
+  Atm_Atom_t *      atom
+)
+  Returns the list of control variables for the atom. The user should not free
+  or modfy this list in any way
+
+  Side Effects: None
+
+Atm_Cmd_t *
+Atm_AtomReadDefaultInitCommand(
+  Atm_Atom_t *      atom
+)
+  Returns the default init guarded command of the atom.
+
+  Side Effects: None
+
+Atm_Cmd_t *
+Atm_AtomReadDefaultUpdateCommand(
+  Atm_Atom_t *      atom
+)
+  Returns the default update guarded command of the atom.
+
+  Side Effects: None
+
+lsList
+Atm_AtomReadInitCommandList(
+  Atm_Atom_t *      atom
+)
+  Returns the list of init commands for the atom. The user should not free or
+  modfy this list in any way.
+
+  Side Effects: None
+
+char*
+Atm_AtomReadName(
+  Atm_Atom_t*       atom
+)
+  Returns a copy of the name of the given atom. The user should not free the
+  returned string.
+
+  Side Effects: None
+
+int
+Atm_AtomReadPostorder(
+  Atm_Atom_t*       atom
+)
+  This function returns the preorder of an given atom. The first atom in the
+  preordering is 0. By default, every atom has a preorder value -1.
+
+  Side Effects: None
+
+int
+Atm_AtomReadPreorder(
+  Atm_Atom_t*       atom
+)
+  This function returns the preorder of an given atom. The first atom in the
+  preordering is 0. By default, every atom has a preorder value -1.
+
+  Side Effects: None
+
+lsList
+Atm_AtomReadReadVarList(
+  Atm_Atom_t *      atom
+)
+  Returns the list of read variables for the atom. The user should not free or
+  modfy this list in any way
+
+  Side Effects: None
+
+lsList
+Atm_AtomReadUpdateCommandList(
+  Atm_Atom_t *      atom
+)
+  Returns the list of update commands for the atom. The user should not free
+  or modfy this list in any way.
+
+  Side Effects: None
+
+lsList
+Atm_AtomReadWaitCommandList(
+  Atm_Atom_t *      atom
+)
+  Returns the list of wait commands for the atom. The user should not free or
+  modfy this list in any way
+
+  Side Effects: None
+
+void
+Atm_AtomSetAtomType(
+  Atm_Atom_t*       atom,
+  Atm_AtomType      t
+)
+  Given a pointer to an atom_atom_t, an integer indicating the type of the
+  atom (0 for unspecified, 1 for event atom, and 2 for lazy atom), the
+  functions sets the the atomtype field.
+
+  Side Effects: None
+
+void
+Atm_AtomSetDefaultInitCommand(
+  Atm_Atom_t *      atom,
+  Atm_Cmd_t *       cmd
+)
+  This function sets the default init command of atom.
+
+  Side Effects: None
+
+void
+Atm_AtomSetDefaultUpdateCommand(
+  Atm_Atom_t *      atom,
+  Atm_Cmd_t *       cmd
+)
+  This function sets the default update command of atom.
+
+  Side Effects: None
+
+void
+Atm_AtomSetPostorder(
+  Atm_Atom_t*       atom,
+  int               postorder
+)
+  This function sets the preorder of an given atom.
+
+  Side Effects: None
+
+void
+Atm_AtomSetPreorder(
+  Atm_Atom_t*       atom,
+  int               preorder
+)
+  This function sets the preorder of an given atom.
+
+  Side Effects: None
+
+Atm_Cmd_t*
+Atm_CmdAlloc(
+  Atm_Expr_t*       guard,
+  lsList            assignList
+)
+  Given a guard and a list of assigments, the routine returns a pointer to a
+  new guarded command.
+
+  Side Effects: None
+
+void
+Atm_CmdFree(
+  Atm_Cmd_t*        cmd
+)
+  The function frees a guarded command.
+
+  Side Effects: None
+
+lsList
+Atm_CmdReadAssignList(
+  Atm_Cmd_t *       command
+)
+  The function returns the list of assignments of a guarded command.
+
+  Side Effects: None
+
+Atm_Expr_t *
+Atm_CmdReadGuard(
+  Atm_Cmd_t *       command
+)
+  This function returns the guard expression of a guarded command.
+
+  Side Effects: None
+
+int
+Atm_End(
+  Tcl_Interp *      interp,
+  Main_Manager_t *  manager
+)
+  Ends the atm package.
+
+  Side Effects: None
+
+Atm_Expr_t*
+Atm_ExprAlloc(
+  Atm_ExprType      exprtype,
+  Atm_Expr_t*       leftchild,
+  Atm_Expr_t*       rightchild
+)
+  This routine returns a pointer to a new Atm_Expr_t tree, which is built from
+  the two child expressions, leftchild and rightchild. The expr_type is set to
+  the desired type. It retuns NIL(Atm_Expr_t) if fails. It is the user's
+  responsibility to free the tree after use. Note that the following expr_type
+  only has one child.
+
+  Side Effects: None
+
+void
+Atm_ExprFreeExpression(
+  Atm_Expr_t*       expr
+)
+  This function frees an expression recursively.
+
+  Side Effects: None
+
+void
+Atm_ExprPrintExpression(
+  Atm_Expr_t*       expr
+)
+  This function prints the given expression in infix notation.
+
+  Side Effects: None
+
+Atm_Expr_t *
+Atm_ExprReadLeftChild(
+  Atm_Expr_t *      expr
+)
+  Reads the left child of an expression.
+
+  Side Effects: None
+
+Atm_Expr_t *
+Atm_ExprReadRightChild(
+  Atm_Expr_t *      expr
+)
+  Reads the right child of an expression.
+
+  Side Effects: None
+
+Atm_ExprType
+Atm_ExprReadType(
+  Atm_Expr_t *      expr
+)
+  Returns the type of an expression.
+
+  Side Effects: None
+
+Atm_Expr_t *
+Atm_ExprSubstituteConstantForDummyVar(
+  Atm_Expr_t *      e,
+  Var_Variable_t *  var,
+  int               c,
+  boolean           isEnum
+)
+  This function is useful for manipulating forall assignments. It substitutes
+  a constant c for the dummy variable var everywhere in the expression on the
+  right hand side of the assignment. The function returns the new expression.
+
+  Side Effects: None
+
+char*
+Atm_ExprTypeConvertToString(
+  Atm_ExprType      type
+)
+  This function returns a string containing the operator corresponding to an
+  expression type.
+
+  Side Effects: None
+
+int
+Atm_Init(
+  Tcl_Interp *      interp,
+  Main_Manager_t *  manager
+)
+  Initializes the atm package.
+
+  Side Effects: None
+
+void
+Atm_NumConstExprConvertToBitvectorConstExpr(
+  Atm_Expr_t *      expr,
+  int               numBits
+)
+  The function expects the argument expression to have all its children of
+  type Atm_IfThenElseFi_c or Atm_NumConst_c. It modifies the leaf
+  Atm_NumConst_c expression to a bitvector with numBits which when interpreted
+  as an integer has value equal to the value of the numerical constant in the
+  old expression.
+
+  Side Effects: expr is modified.
+
+void
+Atm_ReinitTypeCheck(
+  Var_TypeManager_t typeManager
+)
+  optional
+
+  Side Effects: required
+
+int
+Atm_Reinit(
+  Tcl_Interp *      interp,
+  Main_Manager_t *  manager
+)
+  Reinitializes the atm package.
+
+  Side Effects: None
+
+boolean
+Atm_TypeCheckNew(
+  Var_Type_t *      type,
+  Atm_Expr_t **     expr
+)
+  Given a type "type" and an atmExpr_t * "expr", this function checks if
+  "type" is contained in the allowable types of "expr". In general an
+  expression may allow multiple types. For example, the number constant "1"
+  may be interpreted as a range constant, an integer, a nat or the boolean
+  constant "true". Upon success typechecking, the routine does the following
+  two things in order: 1. It resolve the types of expression. In the previous
+  example, it may turn the node "1" into a boolean constant node "true". 2. It
+  then simplifies the expression by evaluating the sub-expression containing
+  only constants. For example, the sub-expression "true | false", will be
+  evaluted to "true".
+
+  Side Effects: required
+

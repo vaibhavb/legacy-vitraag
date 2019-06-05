@@ -1,0 +1,51 @@
+<html>
+<head><title> extindex </title></head>
+
+<body>
+
+<h2>NAME</h2>
+extindex - Extract indices from extdoc-generated documentation
+
+<h2>SYNOPSIS</h2>
+
+<tt>extindex</tt> <i> directory </i> [ <i> directory </i> ... ]
+
+<h2>DESCRIPTION</h2>
+
+<i>Extindex</i> generates simple indices from <i>extdoc</i>-generated
+HTML documentation.  It searches each of the given directories for
+command and package documentation and generates
+<tt>cmdIndex.html</tt>, which lists the commands and their synopses,
+and <tt>pkgIndex.html</tt>, which lists the packages and their synopses.
+
+
+<h2>EXAMPLES</h2>
+
+Scan the files in the <tt>/projects/vis/doc</tt> directory, and write
+<tt>/projects/vis/doc/cmdIndex.html</tt> and
+<tt>/projects/vis/doc/pkgIndex.html</tt>:
+
+<blockquote>
+<tt> example% extindex /projects/vis/doc </tt>
+</blockquote>
+
+<h2>FILES</h2>
+
+See the list with the <a href="extdoc.html">extdoc</a> page.
+
+<h2>SEE ALSO</h2>
+
+<a href="extdoc.html">extdoc</a>,
+<a href="extproto.html">extproto</a>,
+<a href="packages.html">Documentation on Packages and File Structure</a>,
+<a href="naming.html">Documentation on Naming Conventions</a>,
+<a href="index.html">The Ext System</a>
+
+<h2>AUTHOR</h2>
+
+<a href="http://www.eecs.berkeley.edu/~sedwards/">Stephen Edwards</a> <br>
+<a href="http://www.berkeley.edu/">University of California, Berkeley</a> <br>
+<a href="mailto:sedwards@eecs.berkeley.edu"><tt>sedwards@eecs.berkeley.edu</tt></a>
+
+</body>
+</html>

@@ -1,0 +1,11 @@
+
+  let - creates an exact copy of a module with the given name
+     _________________________________________________________________
+   
+   let new_module be module
+   
+   This function creates an exact copy of a module with the given name.
+   It is usually used in conjuction with compose, hide and rename.
+     _________________________________________________________________
+   
+   Last updated on 980624 22h10

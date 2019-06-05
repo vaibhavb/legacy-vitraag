@@ -1,0 +1,8 @@
+\begin{minipage}[t]{2in} 
+\scriptsize
+\begin{verbatim}
+.subckt ControlLogic CL \
+    PresentSignal=CarSignal \
+    Button=Button NextSignal=Tmp
+\end{verbatim}
+\end{minipage}

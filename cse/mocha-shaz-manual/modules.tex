@@ -1,0 +1,1690 @@
+\section{Reactive Modules}
+
+A discrete reactive system is a collection of variables that, over time,
+change their values in a sequence of rounds.
+We model discrete reactive systems that may interact with each other by
+mathematical objects that are called {\em reactive modules\/}
+(or {\em modules}, for short).
+
+\mypar {\bf Variables vs.\ events.} A module $\ro$ has a finite
+set of typed variables, denoted~$\rovars{\ro}$. A {\em state\/} of
+$\ro$ is a valuation for the variables in~$\rovars{\ro}$. Events,
+such as clock ticks, are modelled by toggling boolean variables.
+For example, the event that is represented by the boolean variable
+$\tick$ occurs whenever the module proceeds from a state $\state$
+to a state $\astate$ such that
+$\state[\tick]\not=\astate[\tick]$.\footnote{
+  If $\state$ is a state and $\var$ is a variable in the domain of~$\state$,
+  we write $\state[\var]$ for the value assigned by $\state$ to~$\var$.}
+
+\mypar
+{\bf System vs.\ environment.}
+The module $\ro$ represents a system that interacts with an environment.
+Some of the variables in $\rovars{\ro}$ are updated by the system, and the
+other variables in $\rovars{\ro}$ are updated by the environment.
+Hence, the set $\rovars{\ro}$ is partitioned into two sets:
+the set $\cvars{\ro}$ of {\em controlled variables}, and the set
+$\extl{\ro}$ of {\em external variables}.
+
+\mypar
+{\bf States vs.\ observations.}
+Not all controlled variables of the module $\ro$ are visible to the
+environment.
+Hence, the set $\cvars{\ro}$ is partitioned further into two sets:
+the set $\priv{\ro}$ of {\em private variables}, and the set $\intf{\ro}$ of
+{\em interface variables}.
+The interface variables and the external variables are visible to the
+environment, and therefore called {\em observable}.
+The set of observable variables of $\ro$ is denoted~$\ovars{\ro}$.
+An {\em observation\/} of $\ro$ is a valuation for the variables
+in~$\ovars{\ro}$.
+The various classes of module variables and their relationships are
+summarized in Table~1.
+The distinction between private, interface, and external variables is similar
+to the distinction between internal, output, and input events in the
+formalism of I/O automata~\cite{Lynch96}.
+
+\begin{table}
+\begin{center}
+\begin{tabular}{|c|c|c|}
+  \hline
+  $\priv{\ro}$ &$\intf{\ro}$&$\extl{\ro}$\\
+  \hline
+  \multicolumn{2}{|c|}{$\cvars{\ro}$} & \\
+  \hline
+  &\multicolumn{2}{c|}{$\ovars{\ro}$}\\
+  \hline
+  \multicolumn{3}{|c|}{$\rovars{\ro}$}\\
+  \hline
+\end{tabular}
+\end{center}
+\caption{Module variables}
+\end{table}
+
+\mypar
+{\bf Asynchrony vs.\ synchrony.}
+During the execution of the module $\ro$ the variables in $\rovars{\ro}$
+change their values in a sequence of rounds.
+As in synchronous programming languages
+\cite{BerryGonthier88,BRS93,Halbwachs93:book}, each round consists of several
+subrounds, and the system and the environment take turns in executing
+subrounds to update variables.
+However, unlike in synchronous programming languages, the number of subrounds
+per round is fixed:
+each variable is updated in exactly one subround of each round.
+For this purpose, the controlled variables of a module are partitioned into
+groups called {\em atoms}, and the variables within a group are updated
+simultaneously, in the same subround.
+The atoms are partially ordered.
+If atom $\atom$ precedes atom $\aatom$ in the partial order, then in each
+round, the $\atom$-subround must precede the $\aatom$-subround, and the
+updated values of the variables controlled by $\aatom$ may depend on the
+updated values of the variables controlled by~$\atom$.
+
+\mypar
+{\bf Latched vs.\ updated values.}
+In each round, every variable $\var$ has two values.
+The value of $\var$ at the beginning of the round is called the
+{\em latched value}, and the value of $\var$ at the end of the round is
+called the {\em updated value}.
+We use unprimed symbols, such as~$\var$, to refer to latched values, and
+primed symbols, such as~$\var'$, to refer to the corresponding updated
+values.
+Given a set $\vars$ of unprimed symbols, we write $\vars'$ for the set of
+corresponding primed symbols.
+
+\mypar
+{\bf Initial vs.\ update actions.}
+The module $\ro$ proceeds in a sequence of rounds.
+The first round is an {\em initialization round}, during which the variables
+in $\rovars{\ro}$ are initialized.
+Each subsequent round is an {\em update round}, during which the variables in
+$\rovars{\ro}$ are updated.
+The initialization and updating of variables are specified by actions.
+An {\em action\/} from $\vars$ to $\avars$ is a nondeterministic guarded
+command ---that is, a list of guarded assignments--- so that
+(1)~all guards and all right-hand-sides of assignments are expressions over
+  the variables in~$\vars$, and
+(2)~all left-hand-sides of assignments are variables from~$\avars$.
+The action $\act$ from $\vars$ to $\avars$ is {\em executable\/} if the
+disjunction of all guards is true.
+Executable actions are enabled in all states.
+
+\mypar
+{\bf Atoms vs.\ modules.}
+The controlled variables of a module $\ro$ are partitioned into atoms;
+that is, every controlled variable of $\ro$ is controlled by one and only one
+atom of~$\ro$.
+The initialization round and all update rounds consist of several subrounds,
+one for the environment and one for each atom.
+For each atom~$\atom$, in the $\atom$-subround of the initialization round,
+all variables controlled by $\atom$ are initialized simultaneously, as
+defined by an initial action.
+In the $\atom$-subround of each update round, all variables controlled by
+$\atom$ are updated simultaneously, as defined by an update action.
+
+\begin{definition}{atom}\it
+  {\em [{\bf Atom}]}
+  Let $\vars$ be a finite set of typed variables.
+  An {\em $\vars$-atom\/} $\atom$ consists of a declaration and a body.
+  The atom declaration consists of a set $\cvars{\atom}\subseteq\vars$ of
+  {\em controlled variables}, a set $\rvars{\atom}\subseteq\vars$ of
+  {\em read variables}, and a set
+  $\wvars{\atom}\subseteq\vars\bs\cvars{\atom}$ of {\em awaited variables}.
+  The atom body consists of an executable {\em initial action\/}
+  $\init{\atom}$ from $\wvars{\atom}'$ to $\cvars{\atom}'$ and an executable
+  {\em update action\/} $\update{\atom}$ from
+  $\rvars{\atom}\cup\wvars{\atom}'$ to~$\cvars{\atom}'$.
+\end{definition}
+
+\mypar
+In the initialization round, the initial action of the atom $\atom$ assigns
+initial values to the controlled variables as a nondeterministic function of
+the initial values of the awaited variables.
+In each update round, the update action of $\atom$ assigns updated values to
+the controlled variables as a nondeterministic function of the latched values
+of the read variables and the updated values of the awaited variables.
+Hence, in each round, the $\atom$-subround can take place only after all
+awaited variables have already been updated.
+The variable $\var$ {\em awaits\/} the variable~$\avar$, written
+$\var\awaits_\atom\avar$, if $\var\in\cvars{\atom}$ and
+$\avar\in\wvars{\atom}$.
+Now, we can define reactive modules.
+
+\begin{definition}{module}\it
+  {\em [{\bf Module}]}
+  A {\em (reactive) module\/} $\ro$ consists of a declaration and a body.
+  The module declaration is a finite set $\rovars{\ro}$ of typed variables
+  that is partitioned as shown in Table~1.
+  The module body is a set $\roatoms{\ro}$ of $\rovars{\ro}$-atoms such that
+  (1)~$(\cup_{\atom\in\roatoms{\ro}}\,\cvars{\atom})=\cvars{\ro}$;
+  (2)~for all atoms $\atom$ and $\aatom$ in~$\roatoms{\ro}$,
+    $\cvars{\atom}\cap\cvars{\aatom}=\emptyset$;
+    and
+  (3)~the transitive closure
+    $\awaits_\ro\,=(\cup_{\atom\in\roatoms{\ro}}\awaits_\atom)^+$ is
+    asymmetric.
+\end{definition}
+
+\mypar
+The first two conditions ensure that the atoms of $\ro$ control precisely the
+variables in $\cvars{\ro}$, and that each variable in $\cvars{\ro}$ is
+controlled by precisely one atom.
+The third condition ensures that the await dependencies among the variables
+in $\rovars{\ro}$ are acyclic.
+A linear order $\atom_0,\ldots,\atom_{k-1}$ of the atoms in $\roatoms{\ro}$
+is {\em consistent\/} if for all $0\le i<j<k$, the awaited variables of
+$\atom_i$ are disjoint from the controlled variables of~$\atom_j$.
+The asymmetry of $\awaits_\ro$ ensures that there exists a consistent order
+of the atoms in~$\roatoms{\ro}$.
+
+\mypar
+{\bf Module execution.}
+When executing the module~$\ro$, in each round, first the external variables
+are assigned arbitrary values of the correct types, and then the atoms in
+$\roatoms{\ro}$ are executed in an arbitrary consistent order
+$\atom_0,\ldots,\atom_{k-1}$.
+Specifically, in the initialization round, after the external variables have
+been initialized, the initial action of $\atom_0$ is followed by the initial
+action of $\atom_1$ etc.;
+and in each update round, after the external variables have been updated, the
+update action of $\atom_0$ is followed by the update action of $\atom_1$ etc.
+In this manner, all awaited values are available when they are needed during
+the execution, and thus every round can be completed in $k+1$ subrounds
+---one subround for the environment followed by one subround for each atom.
+Moreover, all nondeterminism in the completion of a round is caused by the
+nondeterminism of the environment and by the nondeterminism of individual
+atoms, not by the order of the atoms.
+
+
+\section{Examples of Reactive Modules}
+
+The syntax we use for specifying modules will be comprehensible once a few
+conventions are explained.
+Variable declarations are indicated by keywords such as \AWAITS, for the
+awaited variables of an atom, or \PRIV, for the private variables of a
+module.
+The initial and update actions of atoms are specified by the keywords \INIT\
+and \UPDATE, followed by nondeterministic guarded commands.
+The combined keyword \INIT\ \UPDATE\ indicates that the guarded command that
+follows specifies both the initial and update actions.
+If several guards of a guarded command are true, then one of the
+corresponding assignments is chosen nondeterministically;
+if none of the guards are true, then all controlled variables obtain their
+default values.
+In the initialization round, the default initial value of a variable is
+chosen nondeterministically
+(this is legal only if the variable has finite type).
+In each update round, the default updated value of a variable is equal to the
+latched value of the variable
+(i.e., the value of the variable stays unchanged).
+The default values are also invoked if a controlled variable does not appear
+on the left-hand-side of an assignment, or if the initial command is omitted
+altogether.
+
+\begin{figure}
+\begin{mtab}{l}
+  \MODULE\ \SNot\\
+  \qu \EXTL\ \iin : \bool\\
+  \qu \INTF\ \oout : \bool\\
+  \qu \ATOM\ \CONTROLS \oout\ \AWAITS\ \iin\\
+  \qqu \INIT\ \UPDATE\\
+  \qqu \begin{chtab}
+    \iin'=0 &\oout':=1\\
+    \iin'=1 &\oout':=0
+  \end{chtab}\\
+  \qu \ENDA \\
+  \qu \ENDM \\\\
+
+  \MODULE\ \SAnd \\
+  \qu \EXTL\ \iino,\iint : \bool \\
+  \qu \INTF\ \oout : \bool \\
+  \qu \ATOM\ \CONTROLS \oout\ \AWAITS\ \iino,\iint \\
+  \qqu \INIT\ \UPDATE\\
+  \qqu \begin{chtab}
+    \iino'=0 &\oout':=0\\
+    \iint'=0 &\oout':=0\\
+    \iino'=1\AND\iint'=1 &\oout':=1
+  \end{chtab}\\
+  \qu \ENDA \\
+  \qu \ENDM \\\\
+
+  \MODULE\ \SLatch\\
+  \qu \EXTL\ \iin, \reset : \bool\\
+  \qu \INTF\ \oout : \bool\\
+  \qu \PRIV\ \sstate:\bool\\
+  \qu \ATOM\ \CONTROLS \oout\ \READS\ \sstate\\
+  \qqu \UPDATE\\
+  \qqu \begin{chtab}
+    \true &\oout':=\sstate
+  \end{chtab}\\
+  \qu \ENDA \\
+
+  \qu \ATOM\ \CONTROLS \sstate\ \AWAITS\ \iin,\reset\\
+  \qqu \INIT\ \UPDATE\\
+  \qqu \begin{chtab}
+    \reset' & \sstate':= \false \\
+    \NOT\reset' & \sstate':=\iin'\\
+  \end{chtab}\\
+  \qu \ENDA \\
+  \qu \ENDM \\
+\end{mtab}
+\caption{Synchronous \Not\ gate, \And\ gate, and latch}
+\label{fig:syncand}
+\end{figure}
+
+
+\subsection{Synchronous circuits}
+
+Synchronous circuits are built from logic gates and memory cells that are
+driven by a sequence of clock ticks.
+Each logic gate computes a boolean value once per clock cycle, and each
+memory cell stores a boolean value from one clock cycle to the next.
+We model each logic gate and each memory cell as a reactive module so that
+every update round represents a clock cycle.
+All sequential circuits can be constructed from the building blocks shown in
+Figure~\ref{fig:syncand}.
+
+\mypar The module $\SNot$ models a synchronous \Not\ gate, which
+takes a boolean input and produces a boolean output. The input is
+modelled as an external variable, $\iin$, because it is modified
+by the environment and visible to the gate. The output is modelled
+as an interface variable, $\oout$, because it is modified by the
+gate and visible to the environment. In the initialization round,
+the \Not\ gate waits for the input value to be initialized before
+computing the initial output value, by negating the initial input
+value. In each update round, the \Not\ gate waits for the input
+value to be updated before computing the next output value, by
+negating the updated input value.
+
+\mypar
+The module $\SAnd$ models a synchronous \And\ gate that produces the boolean
+output $\oout$ as a function of the two boolean inputs $\iino$ and $\iint$.
+In each round, the interface variable $\oout$ is initialized or updated after
+both external variables $\iino$ and $\iint$ have been initialized or
+updated.
+
+\mypar
+The synchronous latch $\SLatch$ takes the two boolean inputs $\sset$ and
+$\reset$, produces the boolean output $\oout$, and maintains the private bit
+$\sstate$.
+In each update round, the latch copies its state to the interface variable
+$\oout$, without waiting for the updated values of the external variables.
+In a later subround, after both external variables have been updated, the
+latch updates its state:
+if both updated external variables are low, then $\sstate$ stays unchanged;
+if only $\sset$ is high, then $\sstate$ goes to~1;
+if only $\reset$ is high, then $\sstate$ goes to~0;
+if both are high, then $\sstate$ goes to an arbitrary value.
+In the initialization round, the output of the latch is arbitrary, and the
+state of the latch is initialized after both inputs have been initialized.
+If both inputs are initially low, then the initial state of the latch is
+arbitrary, but equal to the initial output.
+
+\mypar
+{\bf History-free variables in verification.}
+Given a module~$\ro$, a variable $\var$ of $\ro$ is {\em history-free\/} if
+$\var$ is not read by any atom of~$\ro$.
+Then, the update commands of $\ro$ can refer only to the updated value
+$\var'$ and not to the latched value~$\var$.
+In synchronous circuits, all variables that represent wires are history-free.
+Specifically, all variables of Figure~\ref{fig:syncand} except for the latch
+state, $\sstate$, are history-free.
+In each round, the possible updated values of a history-free variable $\var$
+depend only on the latched values of variables that are not history-free, and
+on the updated values of variables other than~$\var$.
+In this way, history-free variables are analogous to the combinational
+variables of hardware description languages, the selection variables of
+{\sc Cospan}~\cite{Kurshan94}, and the pointwise functions of dataflow
+languages.
+During the verification of a module by explicit search through the state
+space, the values of history-free variables are omitted from the search
+stack.
+Similarly, during the symbolic verification of a module, the history-free
+variables are eliminated using existential quantification in each
+image-computation step.
+Hence, unlike other variables, extra history-free variables cause little
+extra cost in verification.
+
+
+\begin{figure}
+\begin{mtab}{l}
+  \MODULE\ P1\\
+  \qu \INTF\ \statuso : \set{\outcs,\reqcs,\incs} ;  x1 : \bool\\
+  \qu \EXTL\ \statust : \set{\outcs,\reqcs,\incs} ;  x2 : \bool\\
+  \qu \ATOM\ \CONTROLS \statuso,x1\ \READS\ \statuso,\statust,x1,x2\\
+  \qqu \INIT\\
+  \qqu \begin{chtab}
+    \true &\statuso':=\outcs
+  \end{chtab} \\
+  \qqu \UPDATE\\
+  \qqu \begin{chtab}
+     \statuso=\outcs & \statuso':=\reqcs ;  x1':=x2\\
+     \statuso=\reqcs\AND(\statust=\outcs \OR \NOT(x1=x2))&\
+     \statuso':=\incs\\
+     \statuso=\incs &\statuso':=\outcs\\
+     \true &
+  \end{chtab} \\
+  \qu \ENDA \\
+  \qu \ENDM \\\\
+
+  \MODULE\ P2\\
+  \qu \INTF\ \statust : \set{\outcs,\reqcs,\incs} ;  x2 : \bool\\
+  \qu \EXTL\ \statuso : \set{\outcs,\reqcs,\incs} ;  x1 : \bool\\
+  \qu \ATOM\ \CONTROLS \statust,x2\ \READS\ \statuso,\statust,x1,x2\\
+  \qqu \INIT\\
+  \qqu \begin{chtab}
+    \true &\statust':=\outcs
+  \end{chtab}\\
+  \qqu \UPDATE\\
+  \qqu \begin{chtab}
+    \statust=\outcs &\statust':=\reqcs ;  x2':=\NOT x1\\
+    \statust=\reqcs\AND(\statuso=\outcs\OR x1=x2)&\
+    \statust':=\incs\\
+    \statust=\incs &\statust':=\outcs\\
+    \true &
+  \end{chtab} \\
+  \qu \ENDA \\
+  \qu \ENDM \\\\
+
+\end{mtab}
+\caption{Asynchronous mutual-exclusion protocol}
+\label{fig:pete}
+\end{figure}
+
+\subsection{Asynchronous shared-memory programs}
+
+As an example of a concurrent program consisting of processes that
+communicate through read-shared variables, we consider a mutual-exclusion
+protocol, which ensures that no two processes simultaneously access a common
+resource.
+The modules $P_1$ and $P_2$ of Figure~\ref{fig:pete} model the two processes
+of Peterson's solution to the mutual-exclusion problem for shared variables.
+Each process  has a program counter ($\statuso,~\statust$) and a flag ($x1,~x2$), both
+of which can be observed by the other process.
+The program counter indicates whether a process is outside its critical
+section ($\outcs$), requesting the critical section
+($\reqcs$), or occupying the critical section ($\incs$).
+In each update round, a process looks at the latched values of all variables
+and, nondeterministically, either updates its controlled variables or sleeps
+(i.e., leaves the controlled variables unchanged), without waiting to see
+what the other process does.
+Note that each process may sleep for arbitrarily many rounds:
+nondeterminism is used to ensure that there is no relationship between the
+execution speeds of the two processes.
+
+\mypar {\bf Interleaving.} Unlike in interleaving models, both
+processes may modify their variables in the same round. While
+Peterson's protocol ensures mutual exclusion even under these
+weaker conditions, if one were to insist on the interleaving
+assumption, one would add a third module that, in each update
+round, nondeterministically schedules either or none of the two
+processes. The modelling of interleaving by a scheduler module
+introduces only history-free variables, and thus, does not
+increase the search space during verification. Alternatively, one
+could describe the complete protocol as a single module containing
+a single atom whose update action is the union of the update
+actions of the atoms of Figure~\ref{fig:pete}. The guarded command
+that specifies a union of actions consists simply of the union of
+all guarded assignments of the individual actions. This style of
+describing asynchronous programs as an unstructured collection of
+guarded assignments is pursued in formalisms such as {\sc
+Unity}~\cite{ChandyMisra88} and {\sc Mur}$\varphi$~\cite{}.
+
+\mypar {\bf Write-shared variables.} The original formulation of
+Peterson's protocol uses a single write-shared boolean
+variable~$x$, whose value always corresponds to the value of the
+predicate $x1=x2$ in our formulation. If one were to insist on
+modelling $x$ as a write-shared variable, one would add a third
+module with the interface variable $x$ and awaited external
+variables such as {\em P$_i$\_sets\_x\_to\_}0, which is a boolean
+interface variable of the $i$-th process that indicates when the
+process wants to set $x$ to~0. Since all of these variables with
+the exception of $x$ are history-free, the modelling does not
+increase the search space during verification. This style of
+describing write-shared memory makes explicit what happens when
+several processes write simultaneously to the same location.
+
+
+\begin{figure}
+\begin{mtab}{l}
+ \TYPE \msgType : \bool \\
+  \MODULE\ \SSender\\
+  \qu \EXTL\ \ready : \event\\
+  \qu \INTF\ \transmit : \event ;  \msgS,\msgP : \msgType\\
+  \qu \PRIV\ \status : \set{\produce,\send} ;  \doneP : \event\\
+  \qu \ATOM\ \CONTROLS \status,\transmit,\msgS\
+    \READS\ \status,\transmit,\msgS,\doneP,\msgP,\ready\
+    \AWAITS\ \doneP,\ready\\
+  \qqu \INIT\\
+  \qqu \begin{chtab}
+    \true &\status':=\produce
+  \end{chtab}\\
+  \qqu \UPDATE\\
+  \qqu \begin{chtab}
+    \status=\produce\AND\doneP? &\status':=\send\\
+    \status=\send\AND\ready? &\
+     \transmit! ;  \msgS':=\msgP ;  \status':=\produce
+  \end{chtab}\\
+  \qu \ENDA \\
+  \qu \ATOM\ \AProd~ \CONTROLS \doneP,\msgP\ \READS\ \status,\doneP,\msgP\\
+  \qqu \UPDATE\\
+  \qqu \begin{chtab}
+    \status=\produce &\doneP! ;  \msgP':=\msgType\\
+    \true & \\
+  \end{chtab}\\
+  \qu \ENDA \\
+  \qu \ENDM \\\\
+
+  \MODULE\ \SReceiver\\
+  \qu \EXTL\ \transmit : \event ;  \msgS : \msgType\\
+  \qu \INTF\ \ready : \event ;  \msgC : \msgType\\
+  \qu \PRIV\ \status : \set{\receive,\consume} ;  \doneC : \event ;
+     \msgR : \msgType\\
+  \qu \ATOM\ \CONTROLS \status, \msgR\
+    \READS\ \status,\transmit,\doneC\
+    \AWAITS\ \transmit,\msgS,\doneC\\
+  \qqu \INIT\\
+  \qqu \begin{chtab}
+    \true &\status':=\receive
+  \end{chtab}\\
+  \qqu \UPDATE\\
+  \qqu \begin{chtab}
+    \status=\receive\AND\transmit? &\
+      \msgR':=\msgS' ;  \status':=\consume\\
+    \status=\consume\AND\doneC? &\status':=\receive
+  \end{chtab}\\
+  \qu \ENDA \\
+  \qu \ENDM \\\\
+
+  \qu \ATOM\ \CONTROLS \ready\ \READS\ \status,\ready\\
+  \qqu \UPDATE\\
+  \qqu \begin{chtab}
+    \status=\receive &\ready!\\
+    \true &
+  \end{chtab}\\
+  \qu \ENDA \\
+  \qu  \ATOM\ \ACons~ \CONTROLS \doneC,\msgC\ \READS\ \status,\doneC,\msgR\\
+  \qqu \UPDATE\\
+  \qqu \begin{chtab}
+    \status=\consume &\doneC!; \msgC' := \msgR\\
+    \true &
+  \end{chtab}\\
+  \qu \ENDA \\
+  \qu \ENDM \\
+\end{mtab}
+\caption{Synchronous message-passing protocol}
+\label{fig:syncmsg}
+\end{figure}
+
+\subsection{Synchronous message-passing protocols}
+
+The modules $\SSender$ and $\SReceiver$ of
+Figure~\ref{fig:syncmsg} communicate via events in order to
+transmit a stream of messages. We write $\var : \event$ to declare
+$\var$ to be a boolean variable that is used for modelling events.
+To issue an event represented by~$\var$, we write $\var!$, which
+stands for the assignment $\var':=\NOT\var$. To check if an event
+represented by $\var$ is present, we write $\var?$, which stands
+for the predicate $\var'\not=\var$.
+
+\mypar
+The private variable $\status$ of the sender indicates if it is producing a
+message ($\status=\produce$), or attempting to send a message
+($\status=\send$).
+The private variable $\status$ of the receiver indicates if it is waiting to
+receive a message ($\status=\receive$), or consuming a message
+($\status=\consume$).
+Messages are produced by the atom $\AProd$, which requires an unknown number
+of rounds to produce a message.
+Once a message is produced, the event $\doneP$ is issued, and the message is
+shown as~$\msgP$
+(the actual value of message is chosen nondeterministically from the finite
+type $\msgType$).
+Once a message has been produced, the sender is ready to send the message,
+and $\status$ is updated.
+When ready to send a message, the sender sleeps until the receiver becomes
+ready to receive, and when ready to receive a message, the receiver sleeps
+until the sender transmits a message.
+
+\mypar
+The synchronization of both agents is achieved by two-way handshaking in
+three subrounds within a single update round.
+The first subround belongs to the receiver.
+If the receiver is ready to receive a message, it issues the interface event
+$\ready$ to signal its readiness to the sender.
+The second subround belongs to the sender.
+If the sender sees the external event $\ready$ and is ready to send a
+message, it issues the interface event $\transmit$ to signal a transmission.
+The third subround belongs to the receiver.
+If the receiver sees the external event $\transmit$, it copies the message
+from the external variable $\msgS$ to the private variable~$\msgR$.
+The sender goes on to wait for the production of another message, and the
+receiver goes on to consume~$\msgR$.
+Messages are consumed by the atom $\ACons$, which requires an unknown number
+of rounds to consume a message.
+Once a message is consumed, the event $\doneC$ is issued, the consumed
+message is shown as~$\msgC$, and the receiver waits to receive another
+message.
+
+\mypar
+{\bf Event variables in verification.}
+Like history-free variables, event variables are also used only for
+interaction within a round, and their actual values at the beginning of a
+round are immaterial.
+In a sense, the values of event variables behave like labels on the
+transitions of a state-transition graph, unlike the values of other
+variables, which behave like labels on the states.
+Consequently, during explicit verification, the values of event variables are
+omitted from the search stack, and during symbolic verification, event
+variables are eliminated using existential quantification.
+
+\subsection{ A train controller}
+
+{\small
+
+\begin{figure}
+\begin{mtab}{l}
+  \MODULE\ \Train\\
+  \qu \INTF\ \pc : \set{\away,\wait,\bridge}\;; \arrive,\leave : \event\\
+  \qu \EXTL\ \signal : \set{\green,\red}\\
+  \qu \LAZY\ \ATOM\ \CONTROLS \pc,\arrive,\leave\ \READS\ \pc,\arrive,\leave,\signal\\
+  \qqu \INIT\\
+  \qqu \begin{chtab}
+    \true &\pc':=\away
+  \end{chtab}\\
+  \qqu \UPDATE\\
+  \qqu \begin{chtab}
+    \pc=\away &\arrive!;\; \pc':=\wait\\
+    \pc=\wait\AND\signal=\green &\pc':=\bridge\\
+    \pc=\bridge &\leave!;\; \pc':=\away
+  \end{chtab} \\
+  \qu \ENDA\\
+  \ENDM\\\\
+    \TrainW =
+    \Train[\pc,\arrive,\signal,\leave:=
+    \pcW,\arriveW,\signalW,\leaveW]\\
+    \TrainE =
+    \Train[\pc,\arrive,\signal,\leave:=
+    \pcE,\arriveE,\signalE,\leaveE]\\\\
+  \MODULE\ \Controller\\
+  \qu \PRIV\ \nearW,\nearE : \bool\\
+  \qu \INTF\ \signalW,\signalE : \set{\green,\red}\\
+  \qu \EXTL\ \arriveW,\arriveE,\leaveW,\leaveE : \event\\
+  \qu \ATOM\
+    \CONTROLS \nearW\
+    \READS\ \nearW,\arriveW,\leaveW\
+    \AWAITS\ \arriveW,\leaveW\\
+  \qqu \INIT\\
+  \qqu \begin{chtab}
+    \true &\nearW':=\false
+  \end{chtab}\\
+  \qqu \UPDATE\\
+  \qqu \begin{chtab}
+    \arriveW? &\nearW':=\true\\
+    \leaveW? &\nearW':=\false
+  \end{chtab}\\
+  \qu \ENDA\\
+  \qu \ATOM\
+    \CONTROLS \nearE\
+    \READS\ \nearE,\arriveE,\leaveE\
+    \AWAITS\ \arriveE,\leaveE\\
+  \qqu \INIT\\
+  \qqu \begin{chtab}
+    \true &\nearE':=\false
+  \end{chtab}\\
+  \qqu \UPDATE\\
+  \qqu \begin{chtab}
+    \arriveE? &\nearE':=\true\\
+    \leaveE? &\nearE':=\false
+  \end{chtab}\\
+  \qu \ENDA\\
+  \qu \LAZY\ \ATOM\
+    \CONTROLS \signalW,\signalE\
+    \READS\ \nearW,\nearE,\signalW,\signalE\\
+  \qqu \INIT\\
+  \qqu \begin{chtab}
+    \true &\signalW':=\red;\; \signalE':=\red
+  \end{chtab}\\
+  \qqu \UPDATE\\
+  \qqu \begin{chtab}
+    \nearW\AND\signalE=\red &\signalW':=\green\\
+    \nearE\AND\signalW=\red &\signalE':=\green\\
+    \NOT\nearW &\signalW':=\red\\
+    \NOT\nearE &\signalE':=\red
+  \end{chtab}\\
+  \qu \ENDA\\
+  \ENDM\\\\
+  \TrainSystem = \HIDE\ \arriveW,\arriveE,\leaveW,\leaveE\ \IN
+  \TrainW
+  \pppar\TrainE
+  \pppar\Controller
+\end{mtab}
+
+\caption{Railroad controller}
+\label{fig:rail}
+\end{figure}
+
+}
+
+Consider a railway system with two circular railroad tracks, one
+for the train travelling clockwise, and the other for the train
+travelling counter-clockwise.  At one point of the circle, there
+is a bridge that is not wide enough to accommodate both tracks.
+The two tracks merge on the bridge, and for controlling the access
+to the bridge, there is a signal at either entrance.  If the
+signal at the western entrance is green, then a train coming from
+the west may enter the bridge; if the signal is red, the train
+must wait.  The signal at the eastern entrance to the bridge
+controls trains coming from the east in the same fashion.
+
+\mypar Figure~\ref{fig:rail} shows the Reactive Modules
+description for the a generic train {\it Train}. The module has
+three interface variables: {\it pc} of enumerative type (\{$\away,
+\wait, \bridge$\}) and {\it arrive, leave} of type event
+($\event$); and one external variable {\it signal}. An event
+variable $x$ is a boolean variable with restricted operations:
+$x!$ stands for the assignment $x':=\NOT x$ (emission of the
+event) and $x?$ stands for the condition $x'\neq x$ (checking for
+presence). The module has only one atom which controls all the
+interface variables. The keyword {\bf lazy} indicates that the
+atom may choose not to update the variables, in which case the
+variables retain their old values. This is useful to model the
+assumption regarding independence of the speeds of different
+modules. The keyword {\bf reads} indicates the old values of the
+read variables ({\it pc, arrive, leave, signal}) are used for
+updating the controlled variables.
+
+\mypar The module does the following: when the train approaches
+the bridge, it sends the event $\arrive$ to the railroad
+controller and checks the signal at the entrance to the bridge
+($\pc=\wait$).  When the signal is red, the train stops and keeps
+checking the signal.  When the signal is green, the train proceeds
+onto the bridge ($\pc=\bridge$). When the train exits from the
+bridge, it sends the event $\leave$ to the controller and travels
+around the circular track ($\pc=\away$). Multiple copies of the
+{\it Train} are created by variable renaming. $\TrainW$, which
+represents the train travelling clockwise, is constructed by
+renaming variables $\pc$ to $\pcW$, $\arrive$ to $\arriveW$,
+$\signal$ to $\signalW$ and $\leave$ to $\leaveW$. $\TrainE$,
+which represents the train travelling counter-clockwise, is
+constructed in a similar fashion.
+
+\mypar
+Figure~\ref{fig:rail} also shows a controller controlling the signals to
+prevent collisions of the two trains. The complete railway system is represented by the module {\it Rail},
+which is the composition of the trains with the controller, with
+variables $\arriveW, \arriveE, \leaveW$ and $\leaveE$ hidden.
+
+\subsection{ A resource manager}
+
+\begin{figure}
+\label{fig:rmanager}
+\begin{center}
+\resizebox{!}{35ex}{\input{rmanager.pstex_t}}
+\caption{ Resource Manager}
+\end{center}
+\end{figure}
+
+{\small
+
+\begin{figure}
+\begin{mtab}{l}
+\TYPE \indexType :  (0..3) \\
+\TYPE \regType : \ARRAY \indexType \OF \bool \\
+\MODULE \Rmanager\\
+\qu \INTF \grant\ : \bool;\; \grantindex:\indexType;\;  \\
+\qu \EXTL \req, \free, \highpriority:\bool;\; \freeindex:\indexType \\
+\qu \PRIV \halfempty\ :\bool;\;  \alloc:\regType \\
+
+\qu \ATOM \ALLOC\; \CONTROLS \alloc\;
+    \READS  \alloc\;
+    \AWAITS \req, \grant, \grantindex, \free, \freeindex \\
+\qqu \INIT\\
+\qqu \begin{chtab}
+    \true &  \FORALL  i\ \alloc'[i] := \false
+     \end{chtab} \\
+\qqu \UPDATE \\
+\qqqu  \choice \true \limp  \FORALL i\  \alloc'[i] := \\
+\qqqqu       \IF (\grant' \AND \grantindex' = i)\; \THEN \true\; \\
+\qqqqu       \ELSE \IF (\free' \AND \freeindex' = i)\; \THEN \false\; \\
+\qqqqu           \ELSE \alloc[i]\; \FI \FI \\
+\qu \ENDA \\
+\qu \ATOM \HALFEMPTY \CONTROLS \halfempty\;
+    \READS \alloc \\
+\qqu \INIT \\
+\qqu \begin{chtab}
+    \true & \halfempty' := \true
+     \end{chtab} \\
+\qqu \UPDATE \\
+\qqu \begin{chtab}
+    \NOT \alloc[0] & \halfempty' := \IF (\NOT ( \alloc[1] \AND \alloc[2] \AND \alloc[3]) ) \; \THEN \true\;
+                     \ELSE \false\; \FI \\
+    \NOT \alloc[1] & \halfempty' := \IF (\NOT ( \alloc[0] \AND \alloc[2] \AND \alloc[3]) )\; \THEN \true\;
+                     \ELSE \false\; \FI \\
+    \NOT \alloc[2]  & \halfempty':= \IF (\NOT ( \alloc[0] \AND \alloc[1] \AND \alloc[3]) )\; \THEN \true\;
+                     \ELSE \false\; \FI \\
+    \NOT \alloc[3]  & \halfempty' := \IF(\NOT ( \alloc[0] \AND \alloc[1] \AND \alloc[2]) )\; \THEN \true\;
+                     \ELSE \false\; \FI \\
+    \DEFAULT   & \halfempty' := \false
+     \end{chtab} \\
+\qu \ENDA \\
+\qu \ATOM \GRANTINDEX\; \CONTROLS \grantindex \\
+\qqu \INIT \UPDATE \\
+\qqu \begin{chtab}
+    true & grantindex' := nondet
+\end{chtab} \\
+\qu \ENDA \\
+\qu \ATOM \GRANT\; \CONTROLS \grant
+       \READS \alloc\;
+       \AWAITS \req, \highpriority, \halfempty, \grantindex \\
+\qqu \INIT \\
+\qqu \begin{chtab}
+    true & grant' := false
+\end{chtab} \\
+\qqu \UPDATE \\
+\qqu \begin{chtab}
+    \req' \AND \highpriority' \AND \NOT \alloc[\grantindex'] & \grant' := \true \\
+    \req'  \AND \halfempty'    \AND \NOT \alloc[\grantindex'] & \grant' :=
+    \true \\
+    \DEFAULT & \grant' := \false
+\end{chtab} \\
+\qu \ENDA \\
+\ENDM \\\\
+\end{mtab}
+
+\caption{Resource Manager (Specification)}
+\label{fig:rmanagerspec}
+\end{figure}
+}
+
+
+Consider a resource manager used to resolve accesses to instances of a
+shared resource. A block diagram of a resource manager is given in
+Figure~\ref{fig:rmanager}.  There are four instances of the resource
+available.  The environment interacts with the resource manager by
+allocate and free requests. If a resource is available, the resource
+manager responds by granting an instance of the resource.
+
+
+\mypar Figure~\ref{fig:rmanagerspec} shows a reactive modules
+description of the resource manager.  The module $\Rmanager$
+receives allocate and free requests through the boolean external
+variables $\req$ and $\free$ respectively.  The environment also
+sets the external variable $\highpriority$ to $\true$ in the case
+of a high-priority request. For a normal-prioroty request,
+$\highpriority$ is set to $\false$. The manager may grant a
+high-priority request, even if only one instance of the resource
+is available. A normal-priority request, on the other hand may be
+granted only if at least two instances of the resource are
+available. The module $\Rmanager$ signals grants to the
+environment through the interface variable $\grant$ of type
+$\bool$. The interface variable $\grantindex$ is set to the index
+of the resource that is granted. While freeing the resource, the
+environment is expected to set the external variable $\freeindex$
+to the appropriate index of the resource that is being freed.
+
+\mypar
+Private variable \alloc (a boolean array) is used to maintain a bit
+for each resource to indicate if it is free or allocated. The
+history-free private variable $\halfempty$ of type $\bool$ is
+set to true if at least two instances of the resource are free.
+It is used in handling normal-priority requests.
+
+
+{\small
+
+\begin{figure}
+\begin{mtab}{l}
+
+\MODULE \RmanagerImpl \\
+\qu \EXTL  \req, \free, \highpriority:\bool;\; \freeindex:\indexType \\
+\qu \INTF \grant,\halfempty:bool;\; \grantindex:indexType;
+    alloc:regType \\
+\qu \PRIV \halfempty\:\bool;\;  \alloc:\regType;\; \total\:\sindexType \\
+\qu \ATOM \ALLOC\; \CONTROLS \alloc\;
+    \READS  \alloc
+    \AWAITS \req, \grant, \grantindex, \free, \freeindex \\
+\qqu \INIT\\
+\qqu \begin{chtab}
+    \true & \FORALL i\ \alloc'[i] := \false
+     \end{chtab} \\
+\qqu \UPDATE \\
+\qqu \UPDATE \\
+\qqqu  \choice \true \limp  \FORALL i\  \alloc'[i] := \\
+\qqqqu       \IF (\grant' \AND \grantindex' = i)\; \THEN \true\; \\
+\qqqqu       \ELSE \IF (\free' \AND \freeindex' = i)\; \THEN \false\; \\
+\qqqqu           \ELSE \alloc[i]\; \FI \FI \\
+\qu \ENDA \\
+\qu \ATOM \TOTAL\; \CONTROLS \total\;
+    \READS \total, \alloc\;
+    \AWAITS \grant, \free, \freeindex \\
+\qqu \INIT \\
+\qqu \begin{chtab}
+    \true & \total' := 0
+\end{chtab}
+\qqu \UPDATE \\
+\qqu \begin{chtab}
+  \grant' \AND \NOT (\free' \AND \alloc[\freeindex']) & \total' := \total + 1 \\
+  \NOT \grant' \AND (\free' \AND \alloc[\freeindex']) & \total' := \total - 1
+\end{chtab}\\
+\qu \ENDA \\
+\qu \ATOM \HALFEMPTY\; \CONTROLS \halfempty\;
+    \READS \total \\
+\qqu \INIT \\
+\qqu \begin{chtab}
+    \true  & \halfempty' := \true \\
+\end{chtab} \\
+\qqu \UPDATE \\
+\qqu \begin{chtab}
+    \total > 2   &  \halfempty' := \false \\
+    \DEFAULT     &  \halfempty' := \true
+\end{chtab}\\
+\qu \ENDA\\
+
+\qu \ATOM \GRANTINDEX\; \CONTROLS \grantindex\;
+    \READS \alloc \\
+\qqu \INIT \\
+\qqu \begin{chtab}
+    \true & \grantindex' := 0
+\end{chtab} \\
+\qqu \UPDATE \\
+\qqu \begin{chtab}
+    \NOT\alloc[0] & \grantindex' := 0 \\
+    \alloc[0] \AND \NOT \alloc[1] &  \grantindex' := 1 \\
+    \alloc[0] \AND  \alloc[1] \AND \NOT \alloc[2] &  \grantindex' := 2 \\
+    \alloc[0] \AND  \alloc[1] \AND  \alloc[2] & \grantindex' := 3
+\end{chtab}\\
+\qu \ENDA\\
+\qu \ATOM \GRANT\; \CONTROLS \grant\;
+    \READS \alloc , \total\;
+    \AWAITS \req, \highpriority \\
+\qqu \INIT \\
+\qqu \begin{chtab}
+    \true & \grant' := \false \\
+\end{chtab} \\
+\qqu \UPDATE \\
+\qqu \begin{chtab}
+    \req' \AND \highpriority' \AND \total = 3 & \grant' := \true \\
+     \req'  \AND  \total <= 2 & \grant' := \true\\
+     \DEFAULT & \grant' := \false
+\end{chtab} \\
+\qu \ENDA \\
+\ENDM
+\end{mtab}
+
+\caption{Resource Manager (Implementation)}
+\label{fig:rmanagerimpl}
+\end{figure}
+}
+
+\mypar
+Module $\RmanagerImpl$ in Figure~\ref{fig:rmanagerimpl} is a
+``less-abstract'' lower-level description of the resource allocator,
+First, note that the modules $\Rmanager$ and $\RmanagerImpl$ have same
+set of external and interface variables.
+However, some design decisions have been taken to implement the
+non-deterministic choices allowed in $\Rmanager$.
+The $\grantindex$ variable always points to the available resource
+with the least index, if one is available (as opposed to the
+non-deterministic choice in $\Rmanager$) and there is a new private
+variable $\total$ that keeps track of the number of resources that
+have been allocated. We will later use \mocha to show that
+$\RmanagerImpl$ is a valid implementation of the module $\Rmanager$.
+
+
+\section{Semantics of Reactive Modules}
+
+The execution of a module results in a trace of observations.
+Reactive modules are related via a trace semantics:
+roughly speaking, one module {\em implements\/} (or {\em refines\/}) another
+module if all possible traces of the former, more detailed module are also
+possible traces of the latter, more abstract module.
+
+
+\subsection{The trace language of a module}
+
+Let $\ro$ be a reactive module.
+As indicated earlier, a state of $\ro$ is a valuation for the set
+$\rovars{\ro}$ of module variables.
+We write $\states_\ro$ for the set of states of~$\ro$.
+
+\mypar
+A state $\state$ of the module $\ro$ is {\em initial\/} if it can be obtained
+by executing all initial actions of $\ro$ in a consistent order.
+We write $\init\ro$ for the set of initial states of the module~$\ro$.
+The set $\init\ro$ is nonempty, because all initial actions are executable.
+For two states $\state$ and $\astate$ of~$\ro$, the state $\astate$ is a
+{\em successor\/} of~$\state$, written $\state\trans_\ro\astate$, if
+$\astate$ can be obtained from $\state$ by executing all update actions of
+$\ro$ in a consistent order.
+The binary relation $\trans_\ro$ over the state space $\states_\ro$ is called
+the {\em transition relation\/} of the module~$\ro$.
+The transition relation $\trans_\ro$ is serial
+(i.e., every state has at least one successor), because all update actions
+are executable.
+Moreover, a module does not constrain the behavior of the external variables
+and interacts with its environment in a nonblocking way.
+
+
+\mypar
+In this way, the module $\ro$ defines a state-transition graph with the state
+space~$\states_\ro$, the initial states $\init\ro$, and the transition
+relation~$\trans_\ro$.
+The initialized paths of this graph are called the trajectories of the
+module:
+a {\em trajectory\/} of $\ro$ is a finite sequence $\state_0\ldots\state_n$
+of states of $\ro$ such that
+(1)~the first state $\state_0$ is initial and
+(2)~for all $0\le i<n$, the state $\state_{i+1}$ is a successor
+  of~$\state_i$.
+If $\stateseq=\state_0\ldots\state_n$ is a trajectory of~$\ro$, then the
+corresponding sequence
+$\stateseq[\ovars{\ro}]=\state_0[\ovars{\ro}]\ldots\state_n[\ovars{\ro}]$ of
+observations is called a {\em trace\/} of~$\ro$.\footnote{
+  If $\state$ is a state and $\vars$ is a set of variables in the domain
+  of~$\state$, we write $\state[\vars]$ for the valuation for $\vars$ that
+  assigns to each variable $\var\in\vars$ the value~$\state[\var]$.}
+Thus, a trace records the sequence of observations that may result
+from executing the module for finitely many steps. The {\em trace
+language\/} of the module~$\ro$, denoted~$\lang{\ro}$, is the set
+of traces of~$\ro$. By definition, every prefix of a trajectory is
+also a trajectory, and hence, every prefix of a trace is also a
+trace. Since the set of initial states is nonempty, and the
+transition relation is serial, every trajectory of a module, and
+hence also every trace, can be extended. It follows that a module
+cannot deadlock. In modelling, therefore, a deadlock situation
+must be represented by a special state with a single outgoing
+transition back to itself.
+
+
+\subsection{The implementation preorder between modules}
+
+The semantics of the module $\ro$ consists of the trace
+language~$\lang{\ro}$, as well as all information that is necessary for
+describing the possible interactions of $\ro$ with the environment:
+the set $\intf{\ro}$ of interface variables, the set $\extl{\ro}$ of external
+variables, and the await dependencies
+$\awaits_\ro\cap\,(\intf{\ro}\times\ovars{\ro})$ between interface variables
+and observable variables
+(there cannot be any await dependencies between external variables and other
+variables).
+
+\begin{definition}{implement}\it
+  {\em [{\bf Implementation}]}
+  The module $\ro$ {\em implements\/} the module~$\aro$, written
+  $\ro\refines\aro$, if the following conditions are met:
+  (1)~every interface variable of $\aro$ is an interface variable of~$\ro$;
+  (2)~every external variable of $\aro$ is an observable variable of~$\ro$;
+  (3)~for all observable variables $\var$ of ${\aro}$ and all interface
+    variables $\avar$ of~${\aro}$, if $\avar\awaits_\aro\var$, then
+    $\avar\awaits_\ro\var$;
+    and
+  (4)~if $\stateseq$ is a trace of~$\ro$, then the projection
+    $\stateseq[\ovars{\aro}]$ is a trace of~$\aro$.
+\end{definition}
+
+
+\mypar
+The first three conditions ensure that the compatibility constraints imposed
+by $\ro$ on its environment are at least as strong as those imposed
+by~$\aro$.
+The fourth condition is conventional trace containment.
+Intuitively, if $\ro\refines\aro$, then the module $\ro$ is
+{\it as detailed as\/} the module~$\aro$:
+the implementation $\ro$ has possibly more interface and external variables
+than the specification~$\aro$;
+some external variables of $\aro$ may be interface variables of~$\ro$, and
+thus are more constrained in~$\ro$;
+the implementation $\ro$ has possibly more await dependencies among its
+observable variables than the specification~$\aro$;
+and $\ro$ has possibly fewer traces than~$\aro$, and thus more constraints on
+its execution.
+It is easy to check that every module $\ro$ implements itself, and that if a
+module $\ro$ implements another module $\aro$, which, in turn, implements a
+third module $\bro$, then $\ro$ also implements~$\bro$.
+Hence, the implementation relation $\refines$ is a preorder
+(i.e., reflexive and transitive).
+
+\mypar
+We write $\ro\refeq\aro$ if $\ro$ implements $\aro$ and $\aro$
+implements~$\ro$.
+It follows that $\refeq$ is an equivalence relation on modules.
+The {\em meaning\/} of a module $\ro$ is the $\refeq$-equivalence class
+of~$\ro$.
+
+
+\subsection{Special classes of atoms and modules}
+
+{\bf Combinational vs.\ sequential atoms.}
+An atom $\atom$ is {\em combinational\/} if it has
+(1)~no read variables and
+(2)~identical initial and update actions:
+$\rvars{\atom}=\emptyset$, and $\init{\atom}=\update{\atom}$.
+In each update round, the updated values of the controlled variables of a
+combinational atom depend only on the updated values of other variables, and
+not on any latched values.
+Furthermore, a combinational atom cannot distinguish between the
+initialization round and later rounds.
+If an atom is not combinational, then it is called {\em sequential}.
+For example, in Figure~\ref{fig:syncand}, the atoms of the modules $\SNot$
+and $\SAnd$ and the atom that controls the variable $\sstate$ of the module
+$\SLatch$ are combinational;
+the atom that controls the variable $\oout$ of $\SLatch$ is sequential.
+Note that a combinational atom may control some variables that are not
+history-free, and an atom may be sequential despite controlling only
+history-free variables.
+The two cases apply to the two atoms of the module $\SLatch$.
+
+
+\mypar
+For further illustration of the difference between combinational and
+sequential atoms, consider the following example.
+Given two variables $x$ and $y$ of the same type, we want $x$ to duplicate
+the behavior of~$y$.
+The combinational atom
+\begin{mtab}{l}
+    \qu \ATOM \CCopy~\CONTROLS\ x\ \AWAITS y'\\
+    \qqu \INIT \UPDATE\\
+    \qqu \begin{chtab}
+      \true &\ x':=y'
+    \end{chtab}\\
+    \qu \ENDA \\
+\end{mtab}
+
+copies $y$ into $x$ without delay, and ensures that both $x$ and $y$ have the
+same value at the end of each round.
+The sequential atom
+  \begin{mtab}{l}
+    \qu \ATOM\ \SCopy~ \CONTROLS\ x\ \READS\ y\\
+    \qqu \UPDATE\\
+    \qqu \begin{chtab}
+      \true &\ x':=y
+    \end{chtab} \\
+    \qu \ENDA \\
+\end{mtab}
+copies $y$ into $x$ with a delay of one round.
+In each update round, $x$ is assigned the value of~$y$ at the beginning of
+the round
+(the initial command is irrelevant for the purposes of this example).
+
+\mypar
+{\bf Lazy vs.\ eager atoms.}
+An atom {\em sleeps\/} in an update round if the values of all controlled
+variables stay unchanged.
+An $\vars$-atom $\atom$ is {\em lazy\/} if it may sleep in every update
+round.
+A sufficient syntactic condition for laziness is the presence of the guarded
+assignment ``$\true\ra$'' in the update command, which leaves the values of
+all controlled variables unchanged.
+For example, the atoms of the modules $P_1$ and $P_2$ from
+Figure~\ref{fig:pete} are lazy.
+Typically, lazy atoms are nondeterministic and sequential, with all
+controlled variables being read in order to keep their values unchanged.
+
+\mypar
+If an atom is not lazy, then it is called {\em eager}.
+Both atoms $\CCopy$ and $\SCopy$ are eager.
+In the first case, all updates of $x$ follow immediately, within the same
+round, the corresponding updates of~$y$;
+in the second case, the updates of $x$ are delayed by exactly one round.
+By contrast, the lazy atom
+\begin{mtab}{l}
+  \qu \ATOM\   \LCopy\ \CONTROLS\ x\ \READS\ x\ \AWAITS\ y'\\
+  \qqu \INIT\ \UPDATE\\
+  \qqu \begin{chtab}
+    \true &\ x':=y'\\
+    \true &
+  \end{chtab} \\
+  \qu \ENDA \\
+\end{mtab}
+copies $y$ into $x$ at arbitrary times.
+In each update round, either the value of $x$ stays unchanged, or it is set
+to the updated value of~$y$.
+Consequently, some values of $y$ may not be copied into~$x$.
+
+\mypar
+{\bf Event-driven vs.\ round-driven atoms. }
+In each update round, an atom can notice changes in the values of variables
+only for variables that are both read and awaited.
+For these variables, which are called {\em watched}, the atom can compare the
+latched values with the updated values.
+Therefore, each change in the value of a watched variable is an observable
+event.
+An $\vars$-atom $\atom$ is {\em event-driven\/} if it may sleep in every
+update round in which no observable event occurs;
+that is, the atom may sleep whenever the values of all watched variables stay
+unchanged.
+A sufficient syntactic condition for being event-driven is the presence of a
+conjunct of the form $x?$ in each guard of the update command.
+Also, every lazy atom is event-driven.
+For example, all atoms of the modules $\SSender$ and $\SReceiver$ from
+Figure~\ref{fig:syncmsg} are event-driven.
+
+\mypar
+While the progress of a lazy atom cannot be enforced at all, the progress of
+an event-driven atom can be enforced by other atoms that modify watched
+variables.
+However, the progress of an event-driven atom cannot be enforced solely by
+the expiration of rounds.
+Hence, if an atom is not event-driven, then it is called {\em round-driven}.
+Both atoms $\CCopy$ and $\SCopy$ are round-driven.
+The behavior of $\CCopy$ can also be defined in an event-driven manner by
+the atom
+\begin{mtab}{l}
+  \qu \ATOM\   \ECopy\ \CONTROLS\ x\ \READS\ x,y\ \AWAITS\ y'\\
+  \qqu \INIT\\
+  \qqu \begin{chtab}
+    \true &\ x':=y'
+  \end{chtab}\\
+  \qqu \UPDATE\\
+  \qqu \begin{chtab}
+    y'\not=y &\ x':=y'
+  \end{chtab} \\
+  \qu \ENDA \\
+\end{mtab}
+because the value of $x$ needs to be modified only when the value of $y$
+changes.
+The event-driven specification of immediate copying, however, reads both $x$
+and~$y$, and is no longer combinational
+($y$~is read to check if the value of $y$ changes, and $x$ is read to keep
+the value of $x$ unchanged).
+
+\mypar
+{\bf Asynchronous modules.}
+A module {\em stutters\/} in an update round if the values of all interface
+variables stay unchanged.
+Asynchronous modules are defined so that they may stutter in every update
+round.
+
+\begin{definition}{async}\it
+  {\em [{\bf Asynchrony}]}
+  A module $\ro$ is {\em asynchronous\/} if all interface variables of $\ro$
+  are controlled by lazy atoms.
+\end{definition}
+
+\mypar
+It follows that the environment cannot enforce the observable progress of an
+asynchronous module.
+While an asynchronous module can privately record all changes in the values
+of external variables, all updates of interface variables proceed at a speed
+that is independent of the environment speed.
+For example, the modules $P_1$ and $P_2$ from Figure~\ref{fig:pete} are
+asynchronous.
+
+\mypar
+{\bf Round-insensitive modules.}
+A module {\em sleeps\/} in an update round if the values of all controlled
+variables stay unchanged, and the environment {\em stutters\/} in an update
+round if the values of all external variables stay unchanged.
+Round-insensitive modules are defined so that they may sleep in every update
+round in which the environment stutters.
+
+\begin{definition}{round-insensitive}\it
+  {\em [{\bf Round-insensitivity}]}
+  A module $\ro$ is {\em round-insensitive\/} if all atoms of $\ro$ are
+  combinational or event-driven.
+\end{definition}
+
+\mypar
+It follows that the trace language of a round-insensitive module $\ro$ is
+closed under the insertion of stutter steps:
+if $\obs_0\ldots\obs_n$ is a trace of~$\ro$, then so are the observation
+sequences $\obs_0\ldots\obs_i\obs_i\ldots\obs_n$ for all $0\le i\le n$.
+%%% WHY IS THIS RELEVANT ?
+%Therefore, for round-insensitive modules $\ro$ and~$\aro$, we have
+%$\lang{\ro}\subseteq\lang{\aro}$ iff the stutter closure of $\lang{\ro}$ is
+%a subset of the stutter closure of~$\lang{\aro}$.
+For example, the modules $\SSender$ and $\SReceiver$ from
+Figure~\ref{fig:syncmsg} are round-insensitive.
+
+\begin{figure}
+  \begin{mtab}{l}
+    \MODULE\ \CCount\\
+    \qu \INTF\ \cnt : \nat\\
+    \qu \ATOM\ \CONTROLS\ \cnt\ \READS\ \cnt\\
+    \qqu \INIT\\
+    \qqu \begin{chtab}
+      \true &\ \cnt':=0
+    \end{chtab}\\
+    \qqu \UPDATE\\
+    \qqu \begin{chtab}
+      \true &\cnt':=\cnt+1
+      \end{chtab}\\
+    \qu \ENDA \\
+    \qu \ENDM \\\\
+
+    \MODULE\ \SCount\\
+    \qu \EXTL\ \tick : \event\\
+    \qu \INTF\ \cnt : \nat\\
+    \qu \ATOM\ \cnt\ \READS\ \cnt,\tick\ \AWAITS\ \tick'\\
+    \qqu \INIT\\
+    \qqu \begin{chtab}
+      \true &\ \cnt':=0
+    \end{chtab}\\
+    \qqu \UPDATE\\
+    \qqu \begin{chtab}
+      \tick? &\cnt':=\cnt+1\\
+      \end{chtab}\\
+    \qu \ENDA \\
+    \qu \ENDM \\\\
+
+
+    \MODULE\ \ACount\\
+    \qu \INTF\ \cnt : \nat\\
+    \qu \ATOM\ \CONTROLS\ \cnt\ \READS\ \cnt\\
+    \qqu \INIT\\
+    \qqu \begin{chtab}
+      \true &\ \cnt':=0
+    \end{chtab}\\
+    \qqu \UPDATE\\
+    \qqu \begin{chtab}
+      \true &\cnt':=\cnt+1\\
+      \true &
+    \end{chtab}\\
+    \qu \ENDA \\
+    \qu \ENDM \\
+
+  \end{mtab}
+\caption{Three counters}
+\label{fig:count}
+\end{figure}
+
+\mypar
+Asynchrony and round-insensitivity are independent:
+a module may be synchronous and round-sensitive, asynchronous and
+round-sensitive, synchronous and round-insensitive, or asynchronous and
+round-insensitive.
+The difference between asynchrony and round-insensitivity is illustrated by
+the three counters shown in Figure~\ref{fig:count}.
+While the environment cannot enforce observable progress of an asynchronous
+module, it can enforce observable progress of a round-insensitive module by
+modifying external variables.
+A round-insensitive module, on the other hand, cannot count rounds, but only
+changes in the values of external variables.
+In our example, the round-sensitive synchronous counter $\CCount$ is
+incremented in each round, the round-insensitive synchronous counter
+$\SCount$ is incremented with every occurrence of the external event~$\tick$,
+and the round-insensitive asynchronous counter $\ACount$ is incremented
+nondeterministically.
+
+
+\section{Operations on Reactive Modules}
+
+We create complex modules from simple modules using the five operations of
+variable renaming, parallel composition, variable hiding, round abstraction,
+and triggering.
+%%% MOVED THIS HERE
+All five operations $f$ are compositional in the sense that the
+equivalence relation $\refeq$ is a congruence with respect to~$f$:
+if $\ro\refines\aro$, then $f(\ro)\refines f(\aro)$.
+Thus, if we prove that module $\ro$ is $\refeq$-equivalent to module~$\aro$,
+then $\ro$ can be substituted for $\aro$ in every context without affecting
+the meaning of the compound module.
+Furthermore, in order to prove that $f(\ro)$ implements~$f(\aro)$, it
+suffices to prove that $\ro$ implements~$\aro$.
+In this way, reasoning about compound modules can be reduced to reasoning
+about the component modules.
+
+
+\subsection{Variable renaming}
+
+The renaming operation is useful for creating different instances of a
+module, and for avoiding name conflicts.
+Let $\ro$ be a module, and let $\var$ and $\avar$ be two variables of the
+same type such that $\avar$ is not in~$\rovars{\ro}$.
+Then the module $\ro[\var:=\avar]$ results from $\ro$ by renaming $\var$
+to~$\avar$.
+Henceforth, whenever we write $\ro[\var:=\avar]$, we assume that $\var$ and
+$\avar$ have the same type, and that $\avar$ is not a module variable
+of~$\ro$.
+We furthermore assume that for any two modules, a private variable of one
+module is not a module variable of the other module.
+This can always be achieved by renaming private variables, which does not
+change the meaning of a module.
+It is obvious that the renaming operation is compositional:
+for all modules $\ro$ and~$\aro$, if $\ro\refines\aro$, then
+$\ro[\var:=\avar]\refines\aro[\var:=\avar]$.
+
+
+\subsection{Parallel composition}
+
+The composition operation combines two modules into a single module whose
+behavior captures the interaction between the two component modules.
+The two modules $\ro$ and $\aro$ are {\em compatible\/} if
+(1)~the interface variables of $\ro$ and $\aro$ are disjoint, and
+(2)~the await dependencies among the observable variables of $\ro$ and $\aro$
+  are acyclic
+  ---that is, the transitive closure $(\awaits_\ro\cup\awaits_\aro)^+$ is
+  asymmetric.
+It follows that if $\ro$ and $\bro$ are compatible modules, and
+$\ro\refines\aro$, then $\aro$ and $\bro$ are also compatible.
+
+\begin{definition}{compose}\it
+  {\em [{\bf Composition\/}]}
+  If $\ro$ and $\aro$ are two compatible modules, then the
+  {\em composition\/} $\ro\|\aro$ is the module with the set
+  $\priv{\ro\|\aro}=\priv{\ro}\cup\priv{\aro}$ of private variables, the set
+  $\intf{\ro\|\aro}=\intf{\ro}\cup\intf{\aro}$ of interface variables, the set
+  $\extl{\ro\|\aro}=(\extl{\ro}\cup\extl{\aro})\bs\intf{\ro\|\aro}$ of
+  external variables, and the set
+  $\roatoms{\ro\|\aro}=\roatoms{\ro}\cup\roatoms{\aro}$ of atoms.
+\end{definition}
+
+\mypar
+It is easy to check that for two compatible modules $\ro$ and~$\aro$, the
+composition $\ro\|\aro$ is again a module.
+The composition $\ro\|\aro$ is asynchronous iff both $\ro$ and $\aro$ are
+asynchronous, and $\ro\|\aro$ is round-insensitive iff both $\ro$ and $\aro$
+are round-insensitive.
+Henceforth, whenever we write $\ro\|\aro$, we assume that the modules $\ro$
+and $\aro$ are compatible.
+The composition operation on modules is commutative and associative.
+We therefore omit parentheses when writing $\ro\|\aro\|\bro$.
+
+\mypar
+Parallel composition behaves like language intersection.
+Let $\ro$ and $\aro$ be two compatible modules, and let $\obsseq$ be a finite
+sequence of observations of the compound module $\ro\|\aro$.
+Then, $\obsseq$ belongs to the language $\linsem{\ro\|\aro}$ iff the
+projection $\obsseq[\ovars\ro]$ belongs to $\linsem\ro$ and the projection
+$\obsseq[\ovars\aro]$ belongs to~$\linsem\aro$.
+In particular, if $\ro$ and $\aro$ have identical observations, then
+$\lang{\ro\|\aro}=\lang\ro\cap\lang\aro$.
+It follows that, up to projection, the trace language of a compound module is
+a subset of the trace language of each component.
+Hence, the composition of two modules creates a module that is equally or
+more detailed than its components.
+This is captured by the first part of the following proposition.
+The second part asserts that the composition operation is compositional.
+
+\begin{proposition}{comp2}
+  Let $\ro$, $\aro$, and $\bro$ be three modules such that $\ro$ and $\bro$
+  are compatible.
+  Then
+  {\rm (1)}~$\ro\|\bro$ $\refines$ $\ro$, and
+  {\rm (2)}~$\ro\refines\aro$ implies $\ro\|\bro$ $\refines$ $\aro\|\bro$.
+\end{proposition}
+
+\mypar
+It follows that, in order to prove that a complex compound module
+$\ro_1\|\ro_2$ (with a large state space) implements a simpler compound
+module $\aro_1\|\aro_2$ (with a small state space), it suffices to prove
+(1)~$\ro_1$ implements~$\aro_1$ and
+(2)~$\ro_2$ implements~$\aro_2$.
+We call this the {\em compositional proof rule\/} for reactive modules.
+It is valid, because parallel composition and implementation behave like
+language intersection and language containment, respectively.
+
+\mypar
+{\bf Assume-guarantee reasoning.}
+While the compositional proof rule decomposes the verification task of
+proving implementation between compound modules into subtasks, it may not
+always be applicable.
+In particular, $\ro_1$ may not implement $\aro_1$ for all environments, but
+only if the environment behaves like $\ro_2$, and vice versa.
+For such cases, an assume-guarantee proof rule is needed
+\cite{Stark,AbadiLamport,GrumbergLong94,Reactive95}.
+The {\em assume-guarantee proof rule\/} for reactive modules asserts that in
+order to prove that $\ro_1\|\ro_2$ implements $\aro_1\|\aro_2$, it suffices
+to prove
+(1)~$\ro_1\|\aro_2$ implements $\aro_1$, and
+(2)~$\aro_1\|\ro_2$ implements $\aro_2$.
+Both proof obligations (1) and (2) typically involve smaller state spaces
+than the original proof obligation, because the complex compound module
+$\ro_1\|\ro_2$ usually has the largest state space involved.
+The assume-guarantee proof rule is circular;
+unlike the compositional proof rule, it does not simply follow from the
+fact that parallel composition and implementation behave like language
+intersection and language containment.
+Rather the proof of the validity of the assume-guarantee proof rule proceeds
+by induction on the length of traces.
+For this, it is crucial that every trace of a module can be extended.
+
+\begin{proposition}{ag}
+  Let $\ro_1$ and $\ro_2$ be two compatible modules, and let $\aro_1$ and
+  $\aro_2$ be two compatible modules such that every external variable of
+  $\aro_1\|\aro_2$ is an observable variable of $\ro_1\|\ro_2$.
+  If $\ro_1\|\aro_2\linimp\aro_1$ and $\aro_1\|\ro_2\linimp\aro_2$, then
+  $\ro_1\|\ro_2\linimp\aro_1\|\aro_2$.
+\end{proposition}
+
+
+\subsection{Variable hiding}
+
+The hiding of interface variables allows us to construct module abstractions
+of varying degrees of detail.
+For instance, after composing two modules, it may be appropriate to convert
+some interface variables to private variables, so that they are used only for
+the interaction of the component modules, and are no longer visible to the
+environment of the compound module.
+
+\begin{definition}{hiding}\it
+  {\em [{\bf Hiding}]}
+  Given a module $\ro$ and a variable~$\var$, by {\em hiding\/} $\var$ in
+  $\ro$ we obtain the module $\HIDE\ \var\ \IN\ \ro$.
+  If $\var$ is an interface variable of~$\ro$, then $\HIDE\ \var\ \IN\ \ro$
+  has the set $\priv{\ro}\cup\set{\var}$ of private variables, the set
+  $\intf{\ro}\bs\set{\var}$ of interface variables, the set $\extl{\ro}$ of
+  external variables, and the set $\roatoms{\ro}$ of atoms.
+  If $\var$ is not an interface variable of~$\ro$, then
+  $\HIDE\ \var\ \IN\ \ro$ is identical to~$\ro$.
+\end{definition}
+
+\mypar
+We write $\HIDE\ \var_1,\var_2\ \IN\ \ro$ short for the module
+$\HIDE\ \var_1\ \IN\ (\HIDE\ \var_2\ \IN\ \ro)$, which is identical to the
+module $\HIDE\ \var_2\ \IN\ (\HIDE\ \var_1\ \IN\ \ro)$.
+The hiding of a variable creates in a module that is equally or less
+detailed, and the hiding operation is compositional.
+Both facts are stated in the following proposition.
+
+\begin{proposition}{hide}
+  For all modules $\ro$ and~$\aro$, and every variable~$\var$,
+  (1)~$\ro$ $\refines$ $(\HIDE\ \var\ \IN\ \ro)$, and
+  (2)~if $\ro\refines\aro$, then
+    $(\HIDE\ \var\ \IN\ \ro)$ $\refines$ $(\HIDE\ \var\ \IN\ \aro)$.
+\end{proposition}
+
+\mypar
+{\bf Spatial scaling.}
+The three operations of renaming, composition, and hiding allow us to
+construct a space hierarchy of modules.
+This can be illustrated by the example of synchronous circuits.
+
+\begin{figure}
+\begin{mtab}{l}
+  \MODULE\ \SOrSpec\\
+  \qu \EXTL\ \iino,\iint : \bool \\
+  \qu \INTF\ \oout : \bool \\
+  \qu \ATOM\ \CONTROLS\ \oout\ \AWAITS\ \iino',\iint' \\
+  \qqu \INIT\ \UPDATE\\
+  \qqu \begin{chtab}
+    \iino'=0 &\oout':=0\\
+    \iint'=0 &\oout':=0\\
+    \iino'=1\OR\iint'=1 &\oout':=1
+  \end{chtab}\\
+  \qu \ENDA \\
+  \qu \ENDM \\\\
+
+  \SOrImp\ =\ \HIDE\ z_1,z_2,z_3\ \IN\\
+  \qu \pppar\SAnd[\iino,\iint,\oout:=z_1,z_2,z_3]\\
+  \qu \pppar\SNot[\iin,\oout:=\iino,z_1]\\
+  \qu \pppar\SNot[\iin,\oout:=\iint,z_2]\\
+  \qu \pppar\SNot[\iin,\oout:=z_3,\oout]
+\end{mtab}
+\caption{Two definitions of a synchronous \Or\ gate}
+\label{fig:syncor}
+\end{figure}
+
+%%% EXTENDED EXAMPLE
+\mypar
+Figure~\ref{fig:syncor} shows two module definitions for a synchronous \Or\
+gate.
+The module $\SOrSpec$ specifies the input-output behavior of an \Or\ gate
+similar to the definition of the synchronous \And\ gate from
+Figure~\ref{fig:syncand}.
+The module $\SOrImp$ builds an \Or\ gate from an \And\ gate and three
+inverters.
+First, we rename the variables of the modules from Figure~\ref{fig:syncand}
+that define synchronous \And\ and \Not\ gates in order to create three
+instances of a \Not\ gate and connect, for example, the output of the \And\
+gate with the input of the third \Not\ gate.
+Second, we compose the four modules representing the \And\ gate and the three
+\Not\ gates.
+Third, we hide the variables that represent internal wires, for example, the
+wire $z_3$ that connects the output of the \And\ gate with the input of the
+third \Not\ gate.
+It is easy to check that the two modules $\SOrSpec$ and $\SOrImp$ are
+$\refeq$-equivalent;
+in particular, they have the same traces.
+
+%\begin{figure}
+%\strut\centerline{\input synccount.eepic}
+%\caption{Block diagram for the three-bit binary counter}
+%\label{fig:synccount}
+%\end{figure}
+
+\begin{figure}
+\begin{mtab}{l}
+  \SXor\ =\ \HIDE\ \za, \zb, \zc, \zd\ \IN \\
+  \qu \comment\EXTL\ \iino,\iint \\
+  \qu \comment\INTF\ \oout \\
+  \qu \SNot[\iin, \oout := \iino, \za] \\
+  \qu \pppar \SNot[\iin, \oout := \iint, \zb] \\
+  \qu \pppar \SAnd[\iint, \oout := \zb, \zc] \\
+  \qu \pppar \SAnd[\iino, \oout :=  \za, \zd] \\
+  \qu \pppar \SOr[\iino, \iint := \zc, \zd] \\\\
+  \SCountOne\ =\ \HIDE\ \za\ \IN \\
+  \qu \comment\EXTL\ \start,\inc\\
+  \qu \comment\INTF\ \oout,\carry\\
+  \qu \SLatch[\reset, \iin, \oout := \start, \oout, \za] \\
+  \qu \pppar \SAnd[\iino, \iint, \oout := \inc, \za, \carry] \\
+  \qu \pppar \SXor[\iino, \iint := \inc, \za] \\\\
+%  \SCountOne\ =\ \HIDE\ \sset,\reset,z\ \IN\\
+%  \qu \comment\EXTL\ \start,\inc\\
+%  \qu \comment\INTF\ \oout,\carry\\
+%  \qu \pppar\SLatch[\sset,\reset,\oout]\\
+%  \qu \pppar\SAnd[\iino,\iint,\oout:=\oout,\inc,\carry]\\
+%  \qu \pppar\SOr[\iino,\iint,\oout:=\carry,\start,\reset]\\
+%  \qu \pppar\SNot[\iin,\oout:=\reset,z]\\
+%  \qu \pppar \SAnd[\iino,\iint,\oout:=\inc,z,\sset]\\\\
+  \SCountThree\ =\ \HIDE\ \carrya,\carryb,\carryc\ \IN\\
+  \qu \comment\EXTL\ \start,\inc\\
+  \qu \comment\INTF\ \oouta,\ooutb,\ooutc\\
+  \qu \pppar\SCountOne[\start,\inc,\oout,\carry:=
+    \start,\inc,\oouta,\carrya]\\
+  \qu \pppar\SCountOne[\start,\inc,\oout,\carry:=
+    \start,\carrya,\ooutb,\carryb]\\
+  \qu \pppar\SCountOne[\start,\inc,\oout,\carry:=
+    \start,\carryb,\ooutc,\carryc]
+\end{mtab}
+\caption{Three-bit binary counter}
+\label{fig:synccount1}
+\end{figure}
+
+\mypar
+Using the definitions of synchronous gates and latches from
+Figure~\ref{fig:syncand}, and the three operations of renaming, composition,
+and hiding, we can build sequential circuits whose clock cycles correspond to
+rounds.
+As an example, we design a three-bit binary counter.
+The counter takes two boolean inputs, represented by the external variables
+$\start$ and $\inc$, for starting and incrementing the counter.
+The counter value ranges from 0 to~7, and is represented by three bits.
+We do not make any assumption about the initial counter value.
+A start command resets the counter value to 0 and overrides any increment
+command that is issued in the same round.
+An increment command increases the counter value by~1.
+If the counter value is~7, the increment command changes the counter value
+to~0.
+In each round, the counter issues its value as output
+---the low bit on the interface variable $\oout_0$, the middle bit on the
+interface variable $\oout_1$, and the high bit on the interface variable
+$\oout_2$.
+
+\mypar Figure~\ref{fig:synccount} shows a possible design of the
+three-bit counter from three one-bit counters. This design is
+defined by the module \SCountThree\ of Figure~\ref{fig:synccount1}
+(for clarity, we sometimes annotate both component and compound
+modules with the names of the observable variables). Note that
+$\carry_0$ waits for both $\start$ and $\inc$, that $\carry_1$
+waits for $\carry_0$, and that $\carry_2$ waits for $\carry_1$. It
+follows that all three bits of the counter are updated within a
+single round. By contrast, a combinational cycle would result in
+cyclic await dependencies, and thus cannot be modelled in this
+way, by identifying each clock cycle with a round. Rather,
+circuits that contain combinational cycles need to be modelled by
+identifying a single clock cycle with several rounds
+---say, as many rounds as it takes for the external event $\tick$ to happen.
+%%% WOULDN'T THIS MAKE A GOOD EXAMPLE FOR ROUND ABSTRACTION ?
+
+\mypar
+{\bf From synchrony to asynchrony.}
+Hiding preserves asynchrony, round-sensitivity, and round-insensitivity, but
+not synchrony.
+Hence, hiding is useful for constructing asynchronous modules from
+synchronous modules.
+Consider, for example, an asynchronous module $\Clock$ that
+nondeterministically issues the interface event $\tick$:
+\begin{mtab}{l}
+    \MODULE\ \Clock\\
+    \qu \INTF\ \tick : \event\\
+    \qu \ATOM\ \CONTROLS\ \tick\ \READS\ \tick\\
+    \qqu \UPDATE\\
+    \qqu \begin{chtab}
+      \true&\tick!\\
+      \true&
+      \end{chtab}\\
+    \qu \ENDA \\
+    \qu \ENDM \\
+
+\end{mtab}
+Then, given the synchronous counter $\SCount$ from Figure~\ref{fig:count},
+we can implement the asynchronous counter $\ACount$ using hiding:
+  \[\ACount\ \refeq\ \HIDE\ \tick\ \IN\ \SCount\ppar\Clock\]
+
+\begin{figure}
+\begin{mtab}{l}
+  \MODULE\ \SRSpec\\
+  \qu \INTF\ \msgP,\msgC:\msgType\\
+  \qu \PRIV\ \status : \set{\prodcons,\prods,\cons}\; \msgO : \msgType\\
+  \qu \ATOM\ \CONTROLS \status,\msgP,\msgC,\msgO\ \READS\ \\
+  \qqu \INIT\\
+  \qqu \begin{chtab}
+    \true &\status':=\prods
+  \end{chtab}\\
+  \qqu \UPDATE\\
+  \qqu \begin{chtab}
+    \status=\prods&
+      \msgP':=\msgType\;\status':=\prodcons\\
+    \status=\prodcons&
+      \msgC':=\msgP\;\msgP':=\msgType\;\status':=\prodcons\\
+    \status=\prodcons&
+      \msgO':=\msgP\;\msgP':=\msgType\;\status':=\cons\\
+    \status=\prodcons&
+      \msgC':=\msgP\;\status':=\prods\\
+    \status=\cons&
+      \msgC':=\msgO\;\status':=\prodcons\\
+    \true &
+  \end{chtab} \\
+  \qu \ENDA \\
+  \qu \ENDM \\
+\end{mtab}
+\caption{Asynchronous message-passing specification}
+\label{fig:asyncmsg}
+\end{figure}
+
+%%% EXTENDED EXAMPLE
+\mypar
+For a more elaborate example, recall the synchronous message-passing protocol
+from Figure~\ref{fig:syncmsg}:
+  \[\SR\ =\ \SSender\ppar\SReceiver\]
+After hiding the communication events, so that only the streams of produced
+and consumed messages remain visible, we obtain an asynchronous module:
+  \[\SRImpl\ =\ \HIDE\ \ready,\transmit,\msgS\ \IN\ \SR\]
+This module implements the asynchronous module \SRSpec\ of
+Figure~\ref{fig:asyncmsg}, which contains a single lazy atom:
+  \[\SRImpl\ \refines\ \SRSpec\]
+Alternatively, \SRSpec\ could be implemented by sender and receiver processes
+that communicate via asynchronous, rather than synchronous, handshaking.

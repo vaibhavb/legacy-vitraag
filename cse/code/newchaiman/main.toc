@@ -1,0 +1,16 @@
+\contentsline {chapter}{\numberline {1}Introduction}{4}
+\contentsline {chapter}{\numberline {2}Tutorial introduction to \unhbox \voidb@x \hbox {\sc Chai}}{5}
+\contentsline {section}{\numberline {2.1}Introduction}{5}
+\contentsline {section}{\numberline {2.2}$3$-bit counter}{5}
+\contentsline {section}{\numberline {2.3}Modeling the $3$-bit counter in \unhbox \voidb@x \hbox {\sc ReactiveModules}}{6}
+\contentsline {subsection}{\numberline {2.3.1}Module instantiation and composition}{8}
+\contentsline {section}{\numberline {2.4}Other issues in modeling hardware}{9}
+\contentsline {subsection}{\numberline {2.4.1}Connecting a latch output to a primary input}{9}
+\contentsline {subsection}{\numberline {2.4.2}Non-determinism}{9}
+\contentsline {subsection}{\numberline {2.4.3}Simple exercises}{10}
+\contentsline {section}{\numberline {2.5}Running \unhbox \voidb@x \hbox {\sc Chai}}{10}
+\contentsline {subsection}{\numberline {2.5.1}Executing modules}{12}
+\contentsline {section}{\numberline {2.6}ATL model checking}{13}
+\contentsline {section}{\numberline {2.7}Peterson's mutual exclusion protocol}{14}
+\contentsline {section}{\numberline {2.8}Verification}{15}
+\contentsline {section}{\numberline {2.9}Where to find the files for the examples in this chapter}{16}

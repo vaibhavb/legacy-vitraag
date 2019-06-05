@@ -1,0 +1,12 @@
+
+  _mocha_end - Frees all mocha data structures.
+     _________________________________________________________________
+   
+   _mocha_end
+   
+   The command frees all allocated resources in mocha. This command is
+   not visible to the user. It is used to implement the command quit,
+   which is visible.
+     _________________________________________________________________
+   
+   Last updated on 980624 22h10

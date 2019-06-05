@@ -1,0 +1,8 @@
+read_module rt_train_control.rm
+rtm_trans System
+rtm_init System
+rtm_search System
+read_spec rt_train_control.spec
+inv_check -r System safe
+exit
+

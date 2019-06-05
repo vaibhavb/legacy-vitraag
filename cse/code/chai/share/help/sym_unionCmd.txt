@@ -1,0 +1,16 @@
+
+  sym_union - Computes the union of two regions
+     _________________________________________________________________
+   
+   sym_union [-v] [-h] <region_name1> <region_name2>
+   
+   The command computes the union of two regions Command Options:
+   
+   -v
+          verbose mode
+          
+   -h
+          print usage
+     _________________________________________________________________
+   
+   Last updated on 980624 22h11

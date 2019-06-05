@@ -1,0 +1,384 @@
+<HTML>
+<HEAD><TITLE>mdl package abstract</TITLE></HEAD>
+<BODY>
+
+
+<!-- Function Abstracts -->
+
+<dl>
+<DT> <A HREF="mdlAllDet.html#CheckVarIsInListRecursively" TARGET="MAIN"><CODE>CheckVarIsInListRecursively()</CODE></A>
+<DD> Checks if all components of a variable are present in a
+  list of variables.
+
+<DT> <A HREF="mdlAllDet.html#MdlAtomNameCheckConflict" TARGET="MAIN"><CODE>MdlAtomNameCheckConflict()</CODE></A>
+<DD> Check if there is any name conflict in the atoms.
+
+<DT> <A HREF="mdlAllDet.html#MdlAtomsCopyToNewModule" TARGET="MAIN"><CODE>MdlAtomsCopyToNewModule()</CODE></A>
+<DD> Copy the atoms of a module.
+
+<DT> <A HREF="mdlAllDet.html#MdlAtomsWrapUp" TARGET="MAIN"><CODE>MdlAtomsWrapUp()</CODE></A>
+<DD> adjust the atom names.
+
+<DT> <A HREF="mdlAllDet.html#MdlComposeCmd" TARGET="MAIN"><CODE>MdlComposeCmd()</CODE></A>
+<DD> Compose a module on the command line
+
+<DT> <A HREF="mdlAllDet.html#MdlDFSOnAtoms" TARGET="MAIN"><CODE>MdlDFSOnAtoms()</CODE></A>
+<DD> running DFS to do reachability test
+
+<DT> <A HREF="mdlAllDet.html#MdlDeleteCmd" TARGET="MAIN"><CODE>MdlDeleteCmd()</CODE></A>
+<DD> Delete a module.
+
+<DT> <A HREF="mdlAllDet.html#MdlExprAlloc" TARGET="MAIN"><CODE>MdlExprAlloc()</CODE></A>
+<DD> Allocating a module expression node.
+
+<DT> <A HREF="mdlAllDet.html#MdlExprConvertToString" TARGET="MAIN"><CODE>MdlExprConvertToString()</CODE></A>
+<DD> Convert a module expression to a string
+
+<DT> <A HREF="mdlAllDet.html#MdlExprEvaluate" TARGET="MAIN"><CODE>MdlExprEvaluate()</CODE></A>
+<DD> Evaluate an module expression tree.
+
+<DT> <A HREF="mdlAllDet.html#MdlExprListConvertToString" TARGET="MAIN"><CODE>MdlExprListConvertToString()</CODE></A>
+<DD> Concatenates a list of strings to a single string.
+
+<DT> <A HREF="mdlAllDet.html#MdlExprListDup" TARGET="MAIN"><CODE>MdlExprListDup()</CODE></A>
+<DD> required
+
+<DT> <A HREF="mdlAllDet.html#MdlExprReadAtomIntoArray" TARGET="MAIN"><CODE>MdlExprReadAtomIntoArray()</CODE></A>
+<DD> required
+
+<DT> <A HREF="mdlAllDet.html#MdlExprReadComponentsRecursively" TARGET="MAIN"><CODE>MdlExprReadComponentsRecursively()</CODE></A>
+<DD> required
+
+<DT> <A HREF="mdlAllDet.html#MdlExprSearchForComponent" TARGET="MAIN"><CODE>MdlExprSearchForComponent()</CODE></A>
+<DD> Returns an array of matched modules.
+
+<DT> <A HREF="mdlAllDet.html#MdlExprSetAtomPointers" TARGET="MAIN"><CODE>MdlExprSetAtomPointers()</CODE></A>
+<DD> Update/Allocate the atom pointers in the module expr
+
+<DT> <A HREF="mdlAllDet.html#MdlExprSetLeftChild" TARGET="MAIN"><CODE>MdlExprSetLeftChild()</CODE></A>
+<DD> Setting the left child of the module expression
+
+<DT> <A HREF="mdlAllDet.html#MdlExprSetList1" TARGET="MAIN"><CODE>MdlExprSetList1()</CODE></A>
+<DD> Setting the auxillary list1
+
+<DT> <A HREF="mdlAllDet.html#MdlExprSetList2" TARGET="MAIN"><CODE>MdlExprSetList2()</CODE></A>
+<DD> Setting the auxillary list2
+
+<DT> <A HREF="mdlAllDet.html#MdlExprSetRightChild" TARGET="MAIN"><CODE>MdlExprSetRightChild()</CODE></A>
+<DD> Setting the right child of the module expression
+
+<DT> <A HREF="mdlAllDet.html#MdlHideCmd" TARGET="MAIN"><CODE>MdlHideCmd()</CODE></A>
+<DD> Hide a list of variables on the command line
+
+<DT> <A HREF="mdlAllDet.html#MdlIsEventVariableCmd" TARGET="MAIN"><CODE>MdlIsEventVariableCmd()</CODE></A>
+<DD> required
+
+<DT> <A HREF="mdlAllDet.html#MdlIsExternalVariableCmd" TARGET="MAIN"><CODE>MdlIsExternalVariableCmd()</CODE></A>
+<DD> required
+
+<DT> <A HREF="mdlAllDet.html#MdlIsHistoryFreeCmd" TARGET="MAIN"><CODE>MdlIsHistoryFreeCmd()</CODE></A>
+<DD> required
+
+<DT> <A HREF="mdlAllDet.html#MdlIsInterfaceVariableCmd" TARGET="MAIN"><CODE>MdlIsInterfaceVariableCmd()</CODE></A>
+<DD> required
+
+<DT> <A HREF="mdlAllDet.html#MdlIsModuleUpdateCmd" TARGET="MAIN"><CODE>MdlIsModuleUpdateCmd()</CODE></A>
+<DD> isModuleUpdate
+
+<DT> <A HREF="mdlAllDet.html#MdlIsPrivateVariableCmd" TARGET="MAIN"><CODE>MdlIsPrivateVariableCmd()</CODE></A>
+<DD> Command line function that test a private variable
+
+<DT> <A HREF="mdlAllDet.html#MdlLetCmd" TARGET="MAIN"><CODE>MdlLetCmd()</CODE></A>
+<DD> Give a name to a module.
+
+<DT> <A HREF="mdlAllDet.html#MdlModuleCompose" TARGET="MAIN"><CODE>MdlModuleCompose()</CODE></A>
+<DD> Performs parallel composition.
+
+<DT> <A HREF="mdlAllDet.html#MdlModuleCounterReset" TARGET="MAIN"><CODE>MdlModuleCounterReset()</CODE></A>
+<DD> Reset Module Counter.
+
+<DT> <A HREF="mdlAllDet.html#MdlModuleHideVariables" TARGET="MAIN"><CODE>MdlModuleHideVariables()</CODE></A>
+<DD> Hides a list of variables.
+
+<DT> <A HREF="mdlAllDet.html#MdlModulePrintAtoms" TARGET="MAIN"><CODE>MdlModulePrintAtoms()</CODE></A>
+<DD> List all the atoms in a module of a given name.
+
+<DT> <A HREF="mdlAllDet.html#MdlModulePrintGuardedCommand" TARGET="MAIN"><CODE>MdlModulePrintGuardedCommand()</CODE></A>
+<DD> Print one guarded assignment
+
+<DT> <A HREF="mdlAllDet.html#MdlModulePrintVariables" TARGET="MAIN"><CODE>MdlModulePrintVariables()</CODE></A>
+<DD> List all the variables in a module of a given name.
+
+<DT> <A HREF="mdlAllDet.html#MdlModuleRenameVariables" TARGET="MAIN"><CODE>MdlModuleRenameVariables()</CODE></A>
+<DD> Rename the variables of a module
+
+<DT> <A HREF="mdlAllDet.html#MdlNameSplit" TARGET="MAIN"><CODE>MdlNameSplit()</CODE></A>
+<DD> Split a name into four parts
+
+<DT> <A HREF="mdlAllDet.html#MdlRenameCmd" TARGET="MAIN"><CODE>MdlRenameCmd()</CODE></A>
+<DD> Rename a variable of  a module on the command line
+
+<DT> <A HREF="mdlAllDet.html#MdlSaveCmd" TARGET="MAIN"><CODE>MdlSaveCmd()</CODE></A>
+<DD> Saves the modules in an interactive session
+
+<DT> <A HREF="mdlAllDet.html#MdlShowAtomsCmd" TARGET="MAIN"><CODE>MdlShowAtomsCmd()</CODE></A>
+<DD> required
+
+<DT> <A HREF="mdlAllDet.html#MdlShowModuleCmd" TARGET="MAIN"><CODE>MdlShowModuleCmd()</CODE></A>
+<DD> Command for show_mdls.
+
+<DT> <A HREF="mdlAllDet.html#MdlShowVariableCmd" TARGET="MAIN"><CODE>MdlShowVariableCmd()</CODE></A>
+<DD> Show all information about all variables in a module
+
+<DT> <A HREF="mdlAllDet.html#MdlTraverseCmd" TARGET="MAIN"><CODE>MdlTraverseCmd()</CODE></A>
+<DD> Command that traverses the module expression tree.
+
+<DT> <A HREF="mdlAllDet.html#MdlUpdateModuleCmd" TARGET="MAIN"><CODE>MdlUpdateModuleCmd()</CODE></A>
+<DD> updateModule
+
+<DT> <A HREF="mdlAllDet.html#MdlVariableCopyVariableAwaitedbyAtomList" TARGET="MAIN"><CODE>MdlVariableCopyVariableAwaitedbyAtomList()</CODE></A>
+<DD> Updates the awaitByAtomList of the variables.
+
+<DT> <A HREF="mdlAllDet.html#MdlVariableCopyVariableReadbyAtomList" TARGET="MAIN"><CODE>MdlVariableCopyVariableReadbyAtomList()</CODE></A>
+<DD> Updates the readByAtomList of the variables.
+
+<DT> <A HREF="mdlAllDet.html#MdlVariablesCopyToNewModule" TARGET="MAIN"><CODE>MdlVariablesCopyToNewModule()</CODE></A>
+<DD> Copy the variables of a module.
+
+<DT> <A HREF="mdlAllDet.html#MdlVariablesWrapUp" TARGET="MAIN"><CODE>MdlVariablesWrapUp()</CODE></A>
+<DD> Renames the private variables to the standard.
+
+<DT> <A HREF="mdlAllDet.html#Mdl_End" TARGET="MAIN"><CODE>Mdl_End()</CODE></A>
+<DD> End the mdl package
+
+<DT> <A HREF="mdlAllDet.html#Mdl_ExprComposeAlloc" TARGET="MAIN"><CODE>Mdl_ExprComposeAlloc()</CODE></A>
+<DD> Allocates an module expression with Compose type.
+
+<DT> <A HREF="mdlAllDet.html#Mdl_ExprDup" TARGET="MAIN"><CODE>Mdl_ExprDup()</CODE></A>
+<DD> Duplicate a module expression tree.
+
+<DT> <A HREF="mdlAllDet.html#Mdl_ExprFree" TARGET="MAIN"><CODE>Mdl_ExprFree()</CODE></A>
+<DD> Frees a module expression.
+
+<DT> <A HREF="mdlAllDet.html#Mdl_ExprHideAlloc" TARGET="MAIN"><CODE>Mdl_ExprHideAlloc()</CODE></A>
+<DD> Allocates an module expression with Hide type.
+
+<DT> <A HREF="mdlAllDet.html#Mdl_ExprModuleDefAlloc" TARGET="MAIN"><CODE>Mdl_ExprModuleDefAlloc()</CODE></A>
+<DD> Allocates an module expression with ModuleDef type.
+
+<DT> <A HREF="mdlAllDet.html#Mdl_ExprModuleDupAlloc" TARGET="MAIN"><CODE>Mdl_ExprModuleDupAlloc()</CODE></A>
+<DD> Allocates an module expression with ModuleDup type.
+
+<DT> <A HREF="mdlAllDet.html#Mdl_ExprReadLeftChild" TARGET="MAIN"><CODE>Mdl_ExprReadLeftChild()</CODE></A>
+<DD> Read the left child of the module expression
+
+<DT> <A HREF="mdlAllDet.html#Mdl_ExprReadList1" TARGET="MAIN"><CODE>Mdl_ExprReadList1()</CODE></A>
+<DD> Read the list1 of the module expression
+
+<DT> <A HREF="mdlAllDet.html#Mdl_ExprReadList2" TARGET="MAIN"><CODE>Mdl_ExprReadList2()</CODE></A>
+<DD> Read the list2 of the module expression
+
+<DT> <A HREF="mdlAllDet.html#Mdl_ExprReadModuleExprType" TARGET="MAIN"><CODE>Mdl_ExprReadModuleExprType()</CODE></A>
+<DD> Read the moduleExprType of the module expression
+
+<DT> <A HREF="mdlAllDet.html#Mdl_ExprReadRightChild" TARGET="MAIN"><CODE>Mdl_ExprReadRightChild()</CODE></A>
+<DD> Read the right child of the module expression
+
+<DT> <A HREF="mdlAllDet.html#Mdl_ExprRenameAlloc" TARGET="MAIN"><CODE>Mdl_ExprRenameAlloc()</CODE></A>
+<DD> Allocates an module expression with Rename type.
+
+<DT> <A HREF="mdlAllDet.html#Mdl_ExprReturnAtomArray" TARGET="MAIN"><CODE>Mdl_ExprReturnAtomArray()</CODE></A>
+<DD> required
+
+<DT> <A HREF="mdlAllDet.html#Mdl_ExprTreeReadComponents" TARGET="MAIN"><CODE>Mdl_ExprTreeReadComponents()</CODE></A>
+<DD> Reads the leaves of an expr tree.
+
+<DT> <A HREF="mdlAllDet.html#Mdl_Init" TARGET="MAIN"><CODE>Mdl_Init()</CODE></A>
+<DD> Init function for tcl.
+
+<DT> <A HREF="mdlAllDet.html#Mdl_InvariantAlloc" TARGET="MAIN"><CODE>Mdl_InvariantAlloc()</CODE></A>
+<DD> Allocate an invariant structure.
+
+<DT> <A HREF="mdlAllDet.html#Mdl_InvariantFree" TARGET="MAIN"><CODE>Mdl_InvariantFree()</CODE></A>
+<DD> Free an invariant structure.
+
+<DT> <A HREF="mdlAllDet.html#Mdl_InvariantReadExpression" TARGET="MAIN"><CODE>Mdl_InvariantReadExpression()</CODE></A>
+<DD> Return the expression of an invariant
+
+<DT> <A HREF="mdlAllDet.html#Mdl_InvariantReadName" TARGET="MAIN"><CODE>Mdl_InvariantReadName()</CODE></A>
+<DD> Return the name of an invariant
+
+<DT> <A HREF="mdlAllDet.html#Mdl_InvariantReadStatus" TARGET="MAIN"><CODE>Mdl_InvariantReadStatus()</CODE></A>
+<DD> Return the status of an invariant
+
+<DT> <A HREF="mdlAllDet.html#Mdl_InvariantSetExpression" TARGET="MAIN"><CODE>Mdl_InvariantSetExpression()</CODE></A>
+<DD> Set the invariant expression of an invariant struct.
+
+<DT> <A HREF="mdlAllDet.html#Mdl_InvariantSetStatus" TARGET="MAIN"><CODE>Mdl_InvariantSetStatus()</CODE></A>
+<DD> Set the status of the invariant.
+
+<DT> <A HREF="mdlAllDet.html#Mdl_ModuleAddAtom" TARGET="MAIN"><CODE>Mdl_ModuleAddAtom()</CODE></A>
+<DD> Add an atom to the module.
+
+<DT> <A HREF="mdlAllDet.html#Mdl_ModuleAddToManager" TARGET="MAIN"><CODE>Mdl_ModuleAddToManager()</CODE></A>
+<DD> Add a module to the module manager.
+
+<DT> <A HREF="mdlAllDet.html#Mdl_ModuleAddValueInfo" TARGET="MAIN"><CODE>Mdl_ModuleAddValueInfo()</CODE></A>
+<DD> Add information to the module.
+
+<DT> <A HREF="mdlAllDet.html#Mdl_ModuleAddVariable" TARGET="MAIN"><CODE>Mdl_ModuleAddVariable()</CODE></A>
+<DD> Add a variable to the module.
+
+<DT> <A HREF="mdlAllDet.html#Mdl_ModuleAlloc" TARGET="MAIN"><CODE>Mdl_ModuleAlloc()</CODE></A>
+<DD> Allocate memory for a new module.
+
+<DT> <A HREF="mdlAllDet.html#Mdl_ModuleCreateFromAtoms" TARGET="MAIN"><CODE>Mdl_ModuleCreateFromAtoms()</CODE></A>
+<DD> required
+
+<DT> <A HREF="mdlAllDet.html#Mdl_ModuleDeleteVariable" TARGET="MAIN"><CODE>Mdl_ModuleDeleteVariable()</CODE></A>
+<DD> Delete a variable.
+
+<DT> <A HREF="mdlAllDet.html#Mdl_ModuleDup" TARGET="MAIN"><CODE>Mdl_ModuleDup()</CODE></A>
+<DD> Creates a copy of module, with a given name.
+
+<DT> <A HREF="mdlAllDet.html#Mdl_ModuleExprEvaluate" TARGET="MAIN"><CODE>Mdl_ModuleExprEvaluate()</CODE></A>
+<DD> Creates a new module by module operations.
+
+<DT> <A HREF="mdlAllDet.html#Mdl_ModuleFree" TARGET="MAIN"><CODE>Mdl_ModuleFree()</CODE></A>
+<DD> It frees a module.
+
+<DT> <A HREF="mdlAllDet.html#Mdl_ModuleGetExternalVariableList" TARGET="MAIN"><CODE>Mdl_ModuleGetExternalVariableList()</CODE></A>
+<DD> Returns a list of external variables given a module.
+
+<DT> <A HREF="mdlAllDet.html#Mdl_ModuleGetInterfaceVariableList" TARGET="MAIN"><CODE>Mdl_ModuleGetInterfaceVariableList()</CODE></A>
+<DD> Returns a list of interface variables given a module.
+
+<DT> <A HREF="mdlAllDet.html#Mdl_ModuleIsUpdate" TARGET="MAIN"><CODE>Mdl_ModuleIsUpdate()</CODE></A>
+<DD> Checks if a module is update
+
+<DT> <A HREF="mdlAllDet.html#Mdl_ModuleManagerAlloc" TARGET="MAIN"><CODE>Mdl_ModuleManagerAlloc()</CODE></A>
+<DD> It creates a module manager.
+
+<DT> <A HREF="mdlAllDet.html#Mdl_ModuleManagerFree" TARGET="MAIN"><CODE>Mdl_ModuleManagerFree()</CODE></A>
+<DD> Free the module manager.
+
+<DT> <A HREF="mdlAllDet.html#Mdl_ModuleManagerObtainModuleList" TARGET="MAIN"><CODE>Mdl_ModuleManagerObtainModuleList()</CODE></A>
+<DD> Returns a list of  module names.
+
+<DT> <A HREF="mdlAllDet.html#Mdl_ModuleObtainAtomList" TARGET="MAIN"><CODE>Mdl_ModuleObtainAtomList()</CODE></A>
+<DD> Returns a list of atoms given a module.
+
+<DT> <A HREF="mdlAllDet.html#Mdl_ModuleObtainComponentAtomArray" TARGET="MAIN"><CODE>Mdl_ModuleObtainComponentAtomArray()</CODE></A>
+<DD> required
+
+<DT> <A HREF="mdlAllDet.html#Mdl_ModuleObtainEventVariableList" TARGET="MAIN"><CODE>Mdl_ModuleObtainEventVariableList()</CODE></A>
+<DD> returns a list of event variables.
+
+<DT> <A HREF="mdlAllDet.html#Mdl_ModuleObtainHistoryDependentVariableList" TARGET="MAIN"><CODE>Mdl_ModuleObtainHistoryDependentVariableList()</CODE></A>
+<DD> returns a list of history_dependent variables.
+
+<DT> <A HREF="mdlAllDet.html#Mdl_ModuleObtainHistoryFreeVariableList" TARGET="MAIN"><CODE>Mdl_ModuleObtainHistoryFreeVariableList()</CODE></A>
+<DD> Returns a list of history free variables.
+
+<DT> <A HREF="mdlAllDet.html#Mdl_ModuleObtainNewName" TARGET="MAIN"><CODE>Mdl_ModuleObtainNewName()</CODE></A>
+<DD> Generates a new module name.
+
+<DT> <A HREF="mdlAllDet.html#Mdl_ModuleObtainSortedAtomList" TARGET="MAIN"><CODE>Mdl_ModuleObtainSortedAtomList()</CODE></A>
+<DD> Returns a list of topologically sorted atoms.
+
+<DT> <A HREF="mdlAllDet.html#Mdl_ModuleObtainVariableList" TARGET="MAIN"><CODE>Mdl_ModuleObtainVariableList()</CODE></A>
+<DD> returns a list of all variables.
+
+<DT> <A HREF="mdlAllDet.html#Mdl_ModuleReadAtomFromName" TARGET="MAIN"><CODE>Mdl_ModuleReadAtomFromName()</CODE></A>
+<DD> Returns a pointer to the atom specified by its name
+
+<DT> <A HREF="mdlAllDet.html#Mdl_ModuleReadAtomTable" TARGET="MAIN"><CODE>Mdl_ModuleReadAtomTable()</CODE></A>
+<DD> Returns a pointer to the atom table.
+
+<DT> <A HREF="mdlAllDet.html#Mdl_ModuleReadCreationTime" TARGET="MAIN"><CODE>Mdl_ModuleReadCreationTime()</CODE></A>
+<DD> Returns the creation time of the module.
+
+<DT> <A HREF="mdlAllDet.html#Mdl_ModuleReadFromName" TARGET="MAIN"><CODE>Mdl_ModuleReadFromName()</CODE></A>
+<DD> Returns a pointer to  a module.
+
+<DT> <A HREF="mdlAllDet.html#Mdl_ModuleReadModuleExpr" TARGET="MAIN"><CODE>Mdl_ModuleReadModuleExpr()</CODE></A>
+<DD> Read the moduleExpr of a module
+
+<DT> <A HREF="mdlAllDet.html#Mdl_ModuleReadName" TARGET="MAIN"><CODE>Mdl_ModuleReadName()</CODE></A>
+<DD> Returns the name of a module.
+
+<DT> <A HREF="mdlAllDet.html#Mdl_ModuleReadStateInvTable" TARGET="MAIN"><CODE>Mdl_ModuleReadStateInvTable()</CODE></A>
+<DD> Obtain the invariant table from a module.
+
+<DT> <A HREF="mdlAllDet.html#Mdl_ModuleReadTranInvTable" TARGET="MAIN"><CODE>Mdl_ModuleReadTranInvTable()</CODE></A>
+<DD> Read the transition invariant table from a module.
+
+<DT> <A HREF="mdlAllDet.html#Mdl_ModuleReadVariableFromName" TARGET="MAIN"><CODE>Mdl_ModuleReadVariableFromName()</CODE></A>
+<DD> Return a pointer to the variable given a name and a module
+
+<DT> <A HREF="mdlAllDet.html#Mdl_ModuleReadVariableTable" TARGET="MAIN"><CODE>Mdl_ModuleReadVariableTable()</CODE></A>
+<DD> Returns a pointer to the variable table.
+
+<DT> <A HREF="mdlAllDet.html#Mdl_ModuleRemoveFromManager" TARGET="MAIN"><CODE>Mdl_ModuleRemoveFromManager()</CODE></A>
+<DD> Remove a module of a given name from a manager.
+
+<DT> <A HREF="mdlAllDet.html#Mdl_ModuleSearchForComponent" TARGET="MAIN"><CODE>Mdl_ModuleSearchForComponent()</CODE></A>
+<DD> required
+
+<DT> <A HREF="mdlAllDet.html#Mdl_ModuleSetModuleExprForTypeModuleDef" TARGET="MAIN"><CODE>Mdl_ModuleSetModuleExprForTypeModuleDef()</CODE></A>
+<DD> required
+
+<DT> <A HREF="mdlAllDet.html#Mdl_ModuleSetModuleExpr" TARGET="MAIN"><CODE>Mdl_ModuleSetModuleExpr()</CODE></A>
+<DD> Set the moduleExpr of a module.
+
+<DT> <A HREF="mdlAllDet.html#Mdl_ModuleTestForAcyclicity" TARGET="MAIN"><CODE>Mdl_ModuleTestForAcyclicity()</CODE></A>
+<DD> Acyclicity Test.
+
+<DT> <A HREF="mdlAllDet.html#Mdl_ModuleUpdate" TARGET="MAIN"><CODE>Mdl_ModuleUpdate()</CODE></A>
+<DD> Update a module, in case of its components have changed.
+
+<DT> <A HREF="mdlAllDet.html#Mdl_NamePrefixWithString" TARGET="MAIN"><CODE>Mdl_NamePrefixWithString()</CODE></A>
+<DD> Returns a name with a new prefix.
+
+<DT> <A HREF="mdlAllDet.html#Mdl_Reinit" TARGET="MAIN"><CODE>Mdl_Reinit()</CODE></A>
+<DD> Reinitializes the mdl package.
+
+<DT> <A HREF="mdlAllDet.html#Mdl_StateInvAddToModule" TARGET="MAIN"><CODE>Mdl_StateInvAddToModule()</CODE></A>
+<DD> Add an state invariant to the module.
+
+<DT> <A HREF="mdlAllDet.html#Mdl_TranInvAddToModule" TARGET="MAIN"><CODE>Mdl_TranInvAddToModule()</CODE></A>
+<DD> Add an transition invariant to the module.
+
+<DT> <A HREF="mdlAllDet.html#Mdl_VariableRename" TARGET="MAIN"><CODE>Mdl_VariableRename()</CODE></A>
+<DD> Change the name of a variable, and update the vartable.
+
+<DT> <A HREF="mdlAllDet.html#ReturnWhiteSpacesNeeded" TARGET="MAIN"><CODE>ReturnWhiteSpacesNeeded()</CODE></A>
+<DD> Return a string of spaces.
+
+<DT> <A HREF="mdlAllDet.html#VarNameObtainComponents" TARGET="MAIN"><CODE>VarNameObtainComponents()</CODE></A>
+<DD> required
+
+<DT> <A HREF="mdlAllDet.html#VarObtainComponentsRecursively" TARGET="MAIN"><CODE>VarObtainComponentsRecursively()</CODE></A>
+<DD> required
+
+<DT> <A HREF="mdlAllDet.html#traverse" TARGET="MAIN"><CODE>traverse()</CODE></A>
+<DD> required
+
+<DT> <A HREF="mdlAllDet.html#" TARGET="MAIN"><CODE>()</CODE></A>
+<DD> A control structure for looping through all the invariants
+
+<DT> <A HREF="mdlAllDet.html#" TARGET="MAIN"><CODE>()</CODE></A>
+<DD> A control structure for looping through all the invariants
+
+<DT> <A HREF="mdlAllDet.html#" TARGET="MAIN"><CODE>()</CODE></A>
+<DD> required
+
+<DT> <A HREF="mdlAllDet.html#" TARGET="MAIN"><CODE>()</CODE></A>
+<DD> required
+
+</DL>
+
+<HR>
+
+Last updated on 1031103 12h03
+</BODY></HTML>

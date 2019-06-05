@@ -1,0 +1,600 @@
+\documentclass[11pt]{article}
+\usepackage{amssymbols}
+\usepackage{epsfig}
+\usepackage{latexsym}
+\usepackage{epsf}
+
+\newcommand{\vitem}{\item}
+
+\newcommand{\ppar}{\ \|\ }
+\newcommand{\mocha}{\mbox {\sc Mocha}~}
+\newcommand{\vis}{\mbox VIS~}
+
+\newcommand{\za}{z1}
+\newcommand{\zb}{z2}
+\newcommand{\zc}{z3}
+\newcommand{\zd}{z4}
+
+%%
+%% ATL Stuff 
+%%
+
+\newcommand{\ors}[1]{\langle\!\langle #1 \rangle\!\rangle}
+\newcommand{\ands}[1]{[\![ #1 ]\!]}
+
+% typewriter font
+\newcommand{\TTA}{{\tt A}}
+\newcommand{\TTN}{{\tt N}}
+\newcommand{\TTG}{{\tt G}}
+\newcommand{\TTF}{{\tt F}}
+\newcommand{\TTU}{{\tt U}}
+\newcommand{\TTW}{{\tt W}}
+\newcommand{\Tsep}{{\tt |}\;}
+\newcommand{\Tlpara}{{\tt (}}
+\newcommand{\Trpara}{{\tt )}}
+
+\newcommand{\atlRead}{{\tt atl\_read\ }}
+\newcommand{\readSpec}{{\tt read\_spec\ }}
+\newcommand{\showSpec}{{\tt show\_spec\ }}
+\newcommand{\atlShow}{{\tt atl\_show\ }}
+\newcommand{\mc}{{\tt mc}}
+
+
+% italic fonts
+\newcommand{\pathFormula}{{\it path\_formula}}
+\newcommand{\stateFormula}{{\it state\_formula}}
+\newcommand{\atomicProp}{{\it atomic\_proposition}}
+\newcommand{\pathQuantifier}{{\it path\_quantifier}}
+\newcommand{\binaryBoolOp}{{\it binary\_boolOp}}
+\newcommand{\names}{{\it names}}
+
+\newcommand{\G}{\Box}
+\newcommand{\F}{\Diamond}
+\newcommand{\U}{U}
+%\newcommand{\U}{{\cal U}}
+\newcommand{\N}{\hspace{4pt}\raise 3pt \hbox{\circle{7}} \hspace{4pt} }
+\newcommand{\sem}[1]{[ #1 ]}
+\newcommand{\A}{\forall}
+\newcommand{\E}{\exists}
+\newcommand{\EF}{\E\F\,}
+\newcommand{\EG}{\exists\Box\,}
+\newcommand{\AF}{\A\F\,}
+\newcommand{\AG}{\A\G\,}
+\newcommand{\EN}{\E\N\,}
+\newcommand{\AN}{\A\N\,}
+\newcommand{\EU}{\E\U\,}
+\newcommand{\W}{{\cal W}}
+
+%\newcommand{\OR}[1]{\langle{#1}\rangle}
+%\newcommand{\AND}[1]{[{#1}]}
+
+\newcommand{\REF}[1]{\RE{#1}\Diamond\,}
+\newcommand{\REG}[1]{\RE{#1}\Box\,}
+\newcommand{\RAF}[1]{\RA{#1}\Diamond\,}
+\newcommand{\RAG}[1]{\RA{#1}\Box\,}
+\newcommand{\RE}[1]{\ors{#1}\,}
+\newcommand{\RA}[1]{\ands{#1}\,}
+
+\newcommand{\sys}{{\it sys}}
+\newcommand{\true}{{\it true}}
+\newcommand{\false}{{\it false}}
+\newcommand{\ctr}{{\it control}}
+
+%\newcommand{\lts}{M}
+\newcommand{\sub}{{\it sub\/}}
+\newcommand{\Pre}{{\it Pre\/}}
+\newcommand{\Init}{{\it Init\/}}
+\newcommand{\lsem}{[\![}
+\newcommand{\rsem}{]\!]}
+
+\newcommand{\qu}{\quad}
+\newcommand{\qqu}{\qu\qu}
+\newcommand{\qqqu}{\qqu\qu}
+\newcommand{\qqqqu}{\qqqu\qu}
+\newcommand{\mypar}{\addvspace{\topsep}\noindent}
+\newcommand{\reg}{\sigma}
+\newcommand{\areg}{\tau}
+\newcommand{\Atom}{{\it AtomicCheck\/}}
+
+\newcommand{\ATL}{ATL}
+\newcommand{\ATLS}{ATL$^\star$}
+
+%%
+%% Reactive Modules Stuff
+%%
+%\newcommand{\AND}{{\wedge}}
+%\newcommand{\OR}{{\vee}}
+%\newcommand{\NOT}{{\neg}}
+\newcommand{\AND}{\hbox {\ensuremath {~\&~}}}
+\newcommand{\OR}{\hbox {\ensuremath {~|~}}}
+\newcommand{\NOT}{\sim}
+\newcommand{\TYPE}{\hbox{\bf type~}}
+\newcommand{\LAZY}{\hbox{\bf lazy~}}
+\newcommand{\BOX}{[]~}
+\newcommand{\MODULE}{\hbox{\bf module~}}
+\newcommand{\ENDM}{\hbox{\bf endmodule~}}
+\newcommand{\ATOM}{\hbox{\bf atom~}}
+\newcommand{\ENDA}{\hbox{\bf endatom~}}
+\newcommand{\INIT}{\hbox{\bf init~}}
+\newcommand{\UPDATE}{\hbox{\bf update~}}
+\newcommand{\CONTROLS}{\hbox{\bf controls~}}
+\newcommand{\AWAITS}{\hbox{\bf awaits~}}
+\newcommand{\READS}{\hbox{\bf reads~}}
+\newcommand{\PRIV}{\hbox{\bf private~}}
+\newcommand{\INTF}{\hbox{\bf interface~}}
+\newcommand{\EXTL}{\hbox{\bf external~}}
+\newcommand{\DEFAULT}{\hbox{\bf default~}}
+\newcommand{\OUTP}{\hbox{\bf output}}
+\newcommand{\INP}{\hbox{\bf input}}
+\newcommand{\HIDE}{\hbox{\bf hide}}
+\newcommand{\IN}{\hbox{\bf in}}
+\newcommand{\NEXT}{\hbox{\bf next}}
+\newcommand{\TRIG}{\hbox{\bf trigger}}
+\newcommand{\FOR}{\hbox{\bf for}}
+\newcommand{\ATOMIC}{\hbox{\bf atomic}}
+\newcommand{\vars}{X}
+\newcommand{\avars}{Y}
+\newcommand{\bvars}{Z}
+\newcommand{\var}{x}
+\newcommand{\avar}{y}
+\newcommand{\bvar}{z}
+\newcommand{\state}{s}
+\newcommand{\astate}{t}
+\newcommand{\stateseq}{{\overline\state}}
+\newcommand{\states}{\Sigma}
+\newcommand{\trans}{\rightarrow}
+\newcommand{\act}{\alpha}
+\newcommand{\aact}{\beta}
+\newcommand{\clock}{p}
+\newcommand{\aclock}{q}
+\newcommand{\trig}{\clock}
+\newcommand{\atrig}{\aclock}
+
+\newcommand{\awaits}{\succ}
+\newcommand{\refines}{\preceq}
+\newcommand{\refeq}{\cong}
+\newcommand{\lang}[1]{L_{#1}}
+\newcommand{\TS}[1]{G_{#1}}	
+
+\newcommand{\ra}{\rightarrow}
+\newcommand{\limp}{\ \ra\ }
+\newcommand{\lrsem}{[\!]}
+\newcommand{\choice}{\ \lrsem\ }
+
+%%%
+\newcommand{\nats}{{\rm I\!N}}
+\newcommand{\reals}{{\rm I\!R}}
+\newcommand{\acty}{\gamma}
+\newcommand{\flow}{f}
+\newcommand{\aflow}{g}
+\newcommand{\bflow}{h}
+
+\newcommand{\TwoTanks}{{\it TwoTanks}}
+%\newcommand{\left}{{\it left\/}}
+%\newcommand{\right}{{\it right\/}}
+\newcommand{\sign}{{\rm sign\/}}
+\newcommand{\pipe}{{\it pipe\/}}
+\newcommand{\FLOW}{{\bf flow}}
+
+\newcommand{\NRThermostat}{{\it Nonreceptive\-Thermostat\/}}
+\newcommand{\RThermostat}{{\it Receptive\-Thermostat\/}}
+\newcommand{\on}{{\it on\/}}
+\newcommand{\off}{{\it off}}
+\newcommand{\temp}{{\it temp\/}}
+\newcommand{\opening}{{\it going\_on\/}}
+\newcommand{\closing}{{\it going\_off\/}}
+
+\newcommand{\re}{\cong^R}
+\newcommand{\pre}{{\it Pre\/}}
+\newcommand{\post}{{\it Post\/}}
+\newcommand{\now}{{\it now\/}}
+\newcommand{\win}{\varphi_{{\it win}}}
+\newcommand{\awin}{\psi_{{\it win}}}
+\newcommand{\blame}{{\it blame\/}}
+\newcommand{\Env}{{\it env\/}}
+\newcommand{\Mod}{{\it module\/}}
+\newcommand{\safe}{{\it safe\/}}
+\newcommand{\control}{{\it controllable\/}}
+
+\newcommand{\normal}{{\it normal\/}}
+\newcommand{\initial}{{\it initial\/}}
+\newcommand{\error}{{\it error\/}}
+\newcommand{\event}{{\hbox {\bf event\/}}}
+
+\newcommand{\nat}{{\Bbb N}}
+
+\newcommand{\delay}{\beta}
+
+\newcommand{\atom}{A}
+\newcommand{\aatom}{B}
+\newcommand{\rovars}[1]{\vars_{#1}}
+\newcommand{\disc}[1]{{\it disc}\vars_{#1}}
+\newcommand{\cont}[1]{{\it cont}\vars_{#1}}
+\newcommand{\clk}[1]{{\it clk}\vars_{#1}}
+\newcommand{\cvars}[1]{{\it ctr}\vars_{#1}}
+\newcommand{\rvars}[1]{{\it read}\vars_{#1}}
+\newcommand{\wvars}[1]{{\it wait}\vars_{#1}}
+\newcommand{\priv}[1]{{\it priv}\vars_{#1}}
+\newcommand{\intf}[1]{{\it intf}\vars_{#1}}
+\newcommand{\extl}[1]{{\it extl}\vars_{#1}}
+\newcommand{\ovars}[1]{{\it obs}\vars_{#1}}
+\newcommand{\atoms}{\A}
+\newcommand{\roatoms}[1]{\atoms_{#1}}
+\newcommand{\init}[1]{{\it Init}_{#1}}
+\newcommand{\update}[1]{{\it Update}_{#1}}
+\newcommand{\activity}[1]{{\it Flow}_{#1}}
+\newcommand{\Delay}[1]{{\it Delay\/}_{#1}}
+
+\newcommand{\DLatch}{{\it Delay\/}}
+\newcommand{\iin}{{\it in\/}}
+\newcommand{\iino}{{\it in1\/}}
+\newcommand{\iint}{{\it in2\/}}
+\newcommand{\oout}{{\it out\/}}
+\newcommand{\oouta}{{\it out0\/}}
+\newcommand{\ooutb}{{\it out1\/}}
+\newcommand{\ooutc}{{\it out2\/}}
+\newcommand{\ooutd}{{\it out3\/}}
+\newcommand{\ooute}{{\it out4\/}}
+\newcommand{\ooutf}{{\it out5\/}}
+\newcommand{\sstate}{{\it state\/}}
+\newcommand{\stable}{{\it stable\/}}
+\newcommand{\unstable}{{\it unstable\/}}
+\newcommand{\RTCount}{{\it RealTimeCount\/}}
+\newcommand{\trace}{\gamma}
+\newcommand{\inttrace}{[\gamma]}
+
+\newcommand{\mon}{M}
+\newcommand{\EqOppMonitor}{{\it Eq\-Opp\-\-Monitor\/}}
+\newcommand{\level}{{\it alert\/}}
+
+\newcommand{\SCountOne}{{\it Sync\-1Bit\-Counter\/}}
+\newcommand{\SCountThree}{{\it Sync\-3Bit\-Counter\/}}
+\newcommand{\SCountThreeSpec}{{\it Sync\-3Bit\-CounterSpec\/}}
+\newcommand{\SCountSixSpec}{{\it Sync\-6Bit\-CounterSpec\/}}
+\newcommand{\CCount}{{\it RoundCount\/}}
+\newcommand{\SCount}{{\it EventCount\/}}
+\newcommand{\ACount}{{\it AsyncCount\/}}
+\newcommand{\Clock}{Clock}
+\newcommand{\cnt}{{\it count\/}}
+\newcommand{\tick}{{\it tick\/}}
+\newcommand{\start}{{\it start\/}}
+\newcommand{\carry}{{\it carry\/}}
+\newcommand{\carrya}{{\it carry0\/}}
+\newcommand{\carryb}{{\it carry1\/}}
+\newcommand{\carryc}{{\it carry2\/}}
+\newcommand{\inc}{{\it inc\/}}
+\newcommand{\done}{{\it done\/}}
+\newcommand{\comment}{\mbox{---}}
+\newcommand{\prodcons}{{\it produce\_consume}}
+\newcommand{\prods}{{\it produce\/}}
+\newcommand{\cons}{{\it consume\/}}
+\newcommand{\bs}{\backslash}
+
+\newcommand{\And}{{\sc and}}
+\newcommand{\Or}{{\sc or}}
+\newcommand{\Not}{{\sc not}}
+\newcommand{\SAnd}{And}
+\newcommand{\SOr}{Or}
+\newcommand{\SXor}{Xor}
+\newcommand{\SOrSpec}{BehavOr}
+\newcommand{\SOrImp}{StructOr}
+\newcommand{\SNot}{Not}
+\newcommand{\SLatch}{Latch}
+\newcommand{\sset}{{\it set\/}}
+\newcommand{\reset}{{\it reset\/}}
+
+\newcommand{\SSender}{{\it Sender\/}}
+\newcommand{\SReceiver}{{\it Receiver\/}}
+\newcommand{\AProd}{A{\rm Prod}}
+\newcommand{\ACons}{A{\rm Cons}}
+\newcommand{\produce}{{\it produce\/}}
+\newcommand{\consume}{{\it consume\/}}
+\newcommand{\send}{{\it send\/}}
+\newcommand{\receive}{{\it receive\/}}
+\newcommand{\msgP}{{\it msgP\/}}
+\newcommand{\msgR}{{\it msgR\/}}
+\newcommand{\msgS}{{\it msgS\/}}
+\newcommand{\msgC}{{\it msgC\/}}
+\newcommand{\msgO}{{\it msgO\/}}
+\newcommand{\ready}{{\it ready\/}}
+\newcommand{\doneP}{{\it doneP\/}}
+\newcommand{\doneC}{{\it doneC\/}}
+\newcommand{\transmit}{{\it transmit\/}}
+\newcommand{\msgType}{{\it msgType\/}}
+
+\newcommand{\Pete}{{\it Pete\/}}
+\newcommand{\status}{{\it pc\/}}
+\newcommand{\statuso}{{\it pc1\/}}
+\newcommand{\statust}{{\it pc2\/}}
+\newcommand{\outcs}{{\it outCS\/}}
+\newcommand{\reqcs}{{\it reqCS\/}}            
+\newcommand{\incs}{{\it inCS\/}}
+
+\newcommand{\CCopy}{A{\rm Comb\-Copy}}
+\newcommand{\SCopy}{A{\rm Seq\-Copy}}
+\newcommand{\LCopy}{A{\rm Lazy\-Copy}}
+\newcommand{\ECopy}{A{\rm Event\-Copy}}
+
+\newcommand{\obs}{a}
+\newcommand{\aobs}{b}
+\newcommand{\bobs}{c}
+\newcommand{\obsseq}{\overline\obs}
+\newcommand{\aobsseq}{\overline\aobs}
+\newcommand{\linsem}[1]{L_{#1}}
+\newcommand{\linimp}{\preceq}
+
+\newcommand{\SR}{{\it SendRec\/}}
+\newcommand{\SRImpl}{{\it SendRecImpl\/}}
+\newcommand{\SRSpec}{{\it SendRecSpec\/}}
+
+%These we need as we would probably change the margins...
+\setlength{\textwidth}{15truecm}  %original is 12.2   
+\setlength{\textheight}{23truecm}  %original is 19.3   
+\setlength{\topmargin}{-0.2in}
+\setlength{\leftmargin}{-0.1in}
+
+\newcommand{\bi}{\begin{itemize}}
+\newcommand{\ib}{\item[$\bullet$]}
+\newcommand{\ei}{\end{itemize}}
+%\newtheorem{theorem}{Theorem}
+%\newtheorem{lemma}[theorem]{Lemma}
+%\newtheorem{fact}[theorem]{Fact}
+%\newtheorem{proposition}[theorem]{Proposition}
+%\newtheorem{claim}[theorem]{Claim}
+%\newtheorem{remark}[theorem]{Remark}
+%\newtheorem{corollary}[theorem]{Corollary}
+%\newtheorem{definition}[theorem]{Definition}
+
+\newcommand{\bdf}{\begin{definition}}
+\newcommand{\edf}{\end{definition}}
+\newcommand{\LL}{\langle}
+\newcommand{\RR}{\rangle}
+\newcommand{\PP}{{\cal P}}
+\newcommand{\simul}{{\:\preceq_s\:}}
+\newcommand{\fsimul}{{\:\preceq^F_s\:}}
+
+\newenvironment{cmtab}
+  {\begin{center}$\arraycolsep=0pt\begin{array}}{\end{array}$\end{center}}
+\newenvironment{proof}{\noindent{\bf Proof:\hspace{1mm}}}{\hfill\rule{2mm}{2mm}}
+\newenvironment{theorem}[1]
+  {\begin{@theorem}\label{thm:#1}}{\end{@theorem}}
+\newtheorem{@theorem}{Theorem}[section]
+\newenvironment{lemma}[1]
+  {\begin{@lemma}\label{lemma:#1}}{\end{@lemma}}
+\newtheorem{@lemma}{Lemma}[section]
+\newenvironment{fact}[1]
+  {\begin{@fact}\label{fact:#1}}{\end{@fact}}
+\newtheorem{@fact}{Fact}[section]
+\newenvironment{corollary}[1]
+  {\begin{@corollary}\label{cor:#1}}{\end{@corollary}}
+\newtheorem{@corollary}{Corollary}[section]
+\newenvironment{proposition}[1]
+  {\begin{@proposition}\label{prop:#1}}{\end{@proposition}}
+\newtheorem{@proposition}{Proposition}[section]
+\newenvironment{definition}[1]
+  {\begin{@definition}\label{def:#1}\rm}{\end{@definition}}
+\newtheorem{@definition}{Definition}[section]
+\newenvironment{example}[1]
+  {\begin{@example}\label{eg:#1}\rm}{\end{@example}}
+\newtheorem{@example}{Example}[section]
+
+\newenvironment{mtab}
+  {\[\arraycolsep=0pt\begin{array}}{\end{array}\]}
+\newenvironment{chtab}
+  {\arraycolsep=0pt\begin{array}{@{\qu\choice\ }l@{\ \limp\ }l}}{\end{array}}
+\newenvironment{tchtab}
+  {\arraycolsep=0pt\begin{array}{l}}{\end{array}}
+
+\newcommand{\tr}[2]{{\stackrel{{#1}}{\rightarrow}}_{#2}}
+\newcommand{\comp}{{\:\parallel\:}}
+
+\newcommand{\ro}{{P}}
+\newcommand{\aro}{{Q}}
+\newcommand{\wit}{{W}}
+\newcommand{\bro}{{R}}
+\newcommand{\raro}{{K}}
+\newcommand{\ros}{{P'}}
+\newcommand{\aros}{{Q'}}
+
+
+\newcommand{\fro}{{\cal P}}
+\newcommand{\faro}{{\cal Q}}
+\newcommand{\fbro}{{\cal R}}
+\newcommand{\fraro}{{\cal K}}
+\newcommand{\fros}{{\cal P'}}
+\newcommand{\faros}{{\cal Q'}}
+
+
+
+\newcommand{\fair}{{\it fair}}
+\newcommand{\unfair}{{\it unfair}}
+
+\newcommand{\zug}[1]{\mbox {$\langle #1  \rangle $}}
+\newcommand{\Proj}[2]{{[#2]_{#1}}}
+%%\newcommand{\States}[1]{{S^{#1}}
+%%\States{\ro}
+\newcommand{\States}[1]{{S^{#1}}}
+\newcommand{\InitSt}[1]{{s^{#1}}}
+\newcommand{\Inputs}[1]{{I^{#1}}}
+\newcommand{\Outputs}[1]{{O^{#1}}}
+\newcommand{\Map}[1]{{L^{#1}}}
+\newcommand{\Trans}[1]{{R^{#1}}}
+\newcommand{\Fair}[1]{{F^{#1}}}
+\newcommand{\Safe}[1]{{{{\bf \it Safe}}(#1)}}
+
+\newcommand{\Nat}{\mbox{I$\!$N}}
+
+\newcommand{\lab}{{\Gamma}}
+\newcommand{\sseq}{{\overline s}}
+\newcommand{\ssigma}{{\overline \sigma}}
+
+\newcommand{\away}{{\it away\/}}
+\newcommand{\bridge}{{\it bridge\/}}
+\newcommand{\arrive}{{\it arrive\/}}
+\newcommand{\arriveW}{{\it arriveW\/}}
+\newcommand{\arriveE}{{\it arriveE\/}}
+\newcommand{\leave}{{\it leave\/}}
+\newcommand{\leaveW}{{\it leaveW\/}}
+\newcommand{\leaveE}{{\it leaveE\/}}
+\newcommand{\wait}{{\it wait\/}}
+\newcommand{\pc}{{\it pc\/}}
+\newcommand{\pcW}{{\it pcW\/}}
+\newcommand{\pcE}{{\it pcE\/}}
+\newcommand{\signal}{{\it signal\/}}
+\newcommand{\signalW}{{\it signalW\/}}
+\newcommand{\signalE}{{\it signalE\/}}
+\newcommand{\Train}{{\it Train\/}}
+\newcommand{\TrainW}{{\it TrainW\/}}
+\newcommand{\TrainE}{{\it TrainE\/}}
+\newcommand{\Controller}{{\it Controller\/}}
+%\newcommand{\ControllerOne}{{\it Controller1\/}}
+%\newcommand{\ControllerTwo}{{\it Controller2\/}}
+\newcommand{\set}[1]{\{#1\}}
+\newcommand{\green}{{\it green\/}}
+\newcommand{\red}{{\it red\/}}
+\newcommand{\near}{{\it near\/}}
+\newcommand{\nearW}{{\it nearW\/}}
+\newcommand{\nearE}{{\it nearE\/}}
+\newcommand{\bool}{\hbox{\bf bool}}
+\newcommand{\TrainSystem}{{\it Railroad\-System\/}}
+\newcommand{\pppar}{\|\ }
+%\newcommand{\comment}{\mbox{---}}
+
+
+\newcommand{\TYPEDEF}{{\bf type}\ensuremath{\;}}
+\newcommand{\CHOICE}{{\bf []}\ensuremath{\;}}
+\newcommand{\ARRAY}{{\bf array}\ensuremath{\;}}
+\newcommand{\OF}{{\bf of}\ensuremath{\;}}
+\newcommand{\BITVECTOR}{{\bf bitvector}\ensuremath{\;}}
+%\newcommand{\MODULE}{{\bf module}\ensuremath{\;}}
+%\newcommand{\ATOM}{{\bf atom}\ensuremath{\;}}
+\newcommand{\ENDMODULE}{{\bf endmodule}\ensuremath{\;}}
+\newcommand{\ENDATOM}{{\bf endatom}\ensuremath{\;}}
+%\newcommand{\CONTROLS}{{\bf controls}\ensuremath{\;}}
+%\newcommand{\READS}{{\bf reads}\ensuremath{\;}}
+%\newcommand{\AWAITS}{{\bf awaits}\ensuremath{\;}}
+\newcommand{\INTERFACE}{{\bf interface}\ensuremath{\;}}
+\newcommand{\EXTERNAL}{{\bf external}\ensuremath{\;}}
+\newcommand{\PRIVATE}{{\bf private}\ensuremath{\;}}
+%\newcommand{\INIT}{{\bf init}\ensuremath{\;}}
+%\newcommand{\UPDATE}{{\bf update}\ensuremath{\;}}
+%\newcommand{\HIDE}{{\bf hide}\ensuremath{\;}}
+%\newcommand{\IN}{{\bf in}\ensuremath{\;}}
+\newcommand{\ENDHIDE}{{\bf endhide}\ensuremath{\;}}
+%\newcommand{\LAZY}{{\bf lazy}\ensuremath{\;}}
+\newcommand{\EVENT}{{\bf event}\ensuremath{\;}}
+%\newcommand{\DEFAULT}{{\bf default}\ensuremath{\;}}
+\newcommand{\IF}{{\bf if}\ensuremath{\;}}
+\newcommand{\THEN}{{\bf then}\ensuremath{\;}}
+\newcommand{\ELSE}{{\bf else}\ensuremath{\;}}
+\newcommand{\FI}{{\bf fi}\ensuremath{\;}}
+\newcommand{\PAR}{{\bf $||$}\ensuremath{\;}}
+\newcommand{\ASSIGN}{{\bf :=}\ensuremath{\;}}
+\newcommand{\FORALL}{{\bf forall}\ensuremath{\;}}
+\newcommand{\COLON}{{\bf :}\ensuremath{\;}}
+\newcommand{\SEMICOLON}{{\bf ;}\ensuremath{\;}}
+\newcommand{\COMA}{{\bf ,}\ensuremath{\;}}
+\newcommand{\ARROW}{${\bf ->}\;$}
+\newcommand{\EQUIV}{${\bf <->}\;$}
+\newcommand{\NATNUM}{{\it integer-constant}\ensuremath{\;}}
+\newcommand{\IDENTIFIER}{{\it identifier}\ensuremath{\;}}
+\newcommand{\EVENTSEND}{{\it event-identifier!}\ensuremath{\;}}
+\newcommand{\EVENTQUERY}{{\it event-identifier?}\ensuremath{\;}}
+\newcommand{\NONDET}{{\bf nondet}\ensuremath{\;}}
+\newcommand{\INT}{{\bf int}\ensuremath{\;}}
+\newcommand{\NAT}{{\it nat}\ensuremath{\;}}
+\newcommand{\BOOL}{{\bf bool}\ensuremath{\;}}
+\newcommand{\EVENTID}{{\it event-identifier}\ensuremath{\;}}
+\newcommand{\ENUMID}{{\it enum-type-identifier}\ensuremath{\;}}
+\newcommand{\RANGEID}{{\it range-type-identifier}\ensuremath{\;}}
+\newcommand{\ARRAYID}{{\it array-type-identifier}\ensuremath{\;}}
+\newcommand{\BITVECID}{{\it bitvector-type-identifier}\ensuremath{\;}}
+\newcommand{\MODULEID}{{\it module-identifier}\ensuremath{\;}}
+\newcommand{\ATOMID}{{\it atom-identifier}\ensuremath{\;}}
+\newcommand{\DUMMYID}{{\it dummy-var-identifier}\ensuremath{\;}}
+\newcommand{\ARRAYORBITVECID}{{\it array-or-bitvector-identifier}\ensuremath{\;}}
+
+
+\newcommand{\RTTrain}{{\it RealTimeTrain\/}}
+\newcommand{\RTGate}{{\it RealTimeGate\/}}
+\newcommand{\far}{{\it far\/}}
+\newcommand{\gate}{{\it gate\/}}
+\newcommand{\open}{{\it open\/}}
+\newcommand{\toclose}{{\it closing\/}}
+\newcommand{\closed}{{\it closed\/}}
+\newcommand{\WAIT}{{\bf wait}}
+
+\newcommand{\indexType}{{\it indexType\/}}
+\newcommand{\regType}{{\it regType\/}}
+\newcommand{\Spec}{{\it Spec\/}}
+\newcommand{\Rmanager}{{\it RManager\/}}
+\newcommand{\RmanagerImpl}{{\it RManagerImpl\/}}
+\newcommand{\grant}{{\it grant\/}}
+\newcommand{\halfempty}{{\it halfEmpty\/}}
+\newcommand{\grantindex}{{\it grantIndex\/}}
+\newcommand{\alloc}{{\it alloc\/}}
+\newcommand{\req}{{\it req\/}}
+\newcommand{\free}{{\it free\/}}
+\newcommand{\highpriority}{{\it highPriority\/}}
+\newcommand{\freeindex}{{\it freeIndex\/}}
+\newcommand{\ALLOC}{{\it ALLOC\/}}
+\newcommand{\HALFEMPTY}{{\it HALFEMPTY\/}}
+\newcommand{\Impl}{{\it Impl\/}}
+\newcommand{\GRANTINDEX}{{\it GRANTINDEX\/}}
+\newcommand{\GRANT}{{\it GRANT\/}}
+\newcommand{\sindexType}{{\it sindexType\/}}
+\newcommand{\TOTAL}{{\it SUM\/}}
+\newcommand{\total}{{\it sum\/}}
+
+
+\newenvironment{tab}
+  {\begin{verse}}{\end{verse}}
+
+
+\title{\sc{Mocha} User Manual}
+\author{R.~Alur \and T.A.~Henzinger \and F.Y.C.~Mang
+\and S.~Qadeer \and S.K.~Rajamani \and S.~Tasiran}
+
+
+%\institute{Computer \& Information Science Department, University of
+%  	Pennsylvania, Philadelphia, PA 19104. \\
+%  	Computing Science Research Center, 
+%  	Bell Laboratories, Murray Hill, NJ 07974. \\
+%  	\email{alur@cis.upenn.edu} \\
+%\and
+%	Electrical Engineering \& Computer Sciences Department,
+%	University of California, Berkeley, CA 94720. \\
+%	\email{\{tah,fmang,shaz,sriramr,serdar\}@eecs.berkeley.edu}}
+
+
+\begin{document}
+\maketitle
+
+\input{intro}
+\input{modules}
+\input{ATL}
+\input{usercommands}
+\input{methodology}
+\input{rtm}
+\input{grammar}
+
+\small
+%\newpage
+\bibliographystyle{alpha}
+\bibliography{/projects/mocha/TEX/diss}
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

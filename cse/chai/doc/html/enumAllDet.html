@@ -1,0 +1,1422 @@
+<html>
+<head><title>The enum package: all functions </title></head>
+<body>
+
+
+<HR>
+<DL>
+<dt><pre>
+<A NAME="AssignListRemoveNondetAssignment"></A>
+static lsList <I></I>
+<B>AssignListRemoveNondetAssignment</B>(
+  lsList  <b>assignList</b>, <i></i>
+  lsList  <b>nondetVarList</b> <i></i>
+)
+</pre>
+<dd> The function those assignments from assignList that do
+                      not involve nondet. It adds all variables to which nondet
+		      assignment was done to the list nondetVarList.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<DD> <B>Defined in </B> <A HREF="enumAllFile.html#enumPost.c"TARGET="ABSTRACT"><CODE>enumPost.c</CODE></A>
+
+<dt><pre>
+<A NAME="EnumAssignListExecuteOnState"></A>
+void <I></I>
+<B>EnumAssignListExecuteOnState</B>(
+  lsList  <b>assignList</b>, <i></i>
+  Enum_VarInfo_t * <b>varInfo</b>, <i></i>
+  Enum_State_t * <b>prevState</b>, <i></i>
+  Enum_State_t * <b>state</b> <i></i>
+)
+</pre>
+<dd> The function updates state in according to the
+                      assignments in assignList.
+<p>
+
+<dd> <b>Side Effects</b> state is updated.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="enumAllFile.html#enumPost.c"TARGET="ABSTRACT"><CODE>enumPost.c</CODE></A>
+
+<dt><pre>
+<A NAME="EnumBitvectorExprEvaluate"></A>
+EnumBitwise_t * <I></I>
+<B>EnumBitvectorExprEvaluate</B>(
+  Atm_Expr_t * <b>expr</b>, <i></i>
+  Enum_VarInfo_t * <b>varInfo</b>, <i></i>
+  Enum_State_t * <b>prevState</b>, <i></i>
+  Enum_State_t * <b>state</b> <i></i>
+)
+</pre>
+<dd> The function evaluates an expression whose value is a
+                      bitvector at the previous state
+                      prevState and the partially updated state. Every
+                      expression is evaluated as the structure EnumBitwise_t.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#EnumExprIsTrue">EnumExprIsTrue</a>
+<a href="#EnumExprEvaluate">EnumExprEvaluate</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="enumAllFile.html#enumPost.c"TARGET="ABSTRACT"><CODE>enumPost.c</CODE></A>
+
+<dt><pre>
+<A NAME="EnumBitwiseAlloc"></A>
+EnumBitwise_t * <I></I>
+<B>EnumBitwiseAlloc</B>(
+  int  <b>size</b> <i></i>
+)
+</pre>
+<dd> Allocates an EnumBitwise_t structure.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#EnumBitwiseFree">EnumBitwiseFree</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="enumAllFile.html#enumPost.c"TARGET="ABSTRACT"><CODE>enumPost.c</CODE></A>
+
+<dt><pre>
+<A NAME="EnumBitwiseFree"></A>
+void <I></I>
+<B>EnumBitwiseFree</B>(
+  EnumBitwise_t * <b>a</b> <i></i>
+)
+</pre>
+<dd> Frees an EnumBitwise_t structure.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#EnumBitwiseAlloc">EnumBitwiseAlloc</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="enumAllFile.html#enumPost.c"TARGET="ABSTRACT"><CODE>enumPost.c</CODE></A>
+
+<dt><pre>
+<A NAME="EnumCounterExamplePrint"></A>
+void <I></I>
+<B>EnumCounterExamplePrint</B>(
+  Tcl_Interp * <b>interp</b>, <i></i>
+  Enum_StateManager_t * <b>stateManager</b>, <i></i>
+  Mdl_Module_t * <b>module</b>, <i></i>
+  char * <b>invName</b>, <i></i>
+  Enum_State_t * <b>badState</b> <i></i>
+)
+</pre>
+<dd> This function prints the sequence of states, starting
+                      from an initial state to badState, that led to the
+                      violation of some invariant.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<DD> <B>Defined in </B> <A HREF="enumAllFile.html#enumSearch.c"TARGET="ABSTRACT"><CODE>enumSearch.c</CODE></A>
+
+<dt><pre>
+<A NAME="EnumExprEvaluate"></A>
+long <I></I>
+<B>EnumExprEvaluate</B>(
+  Atm_Expr_t * <b>expr</b>, <i></i>
+  Enum_VarInfo_t * <b>varInfo</b>, <i></i>
+  Enum_State_t * <b>prevState</b>, <i></i>
+  Enum_State_t * <b>state</b> <i></i>
+)
+</pre>
+<dd> The function evaluates expr at the previous state
+                      prevState and the partially updated state. Every
+                      expression is evaluated as a long. The enumerated values
+                      of a symbolic variable are coded up as natural numbers
+                      also.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#EnumExprIsTrue">EnumExprIsTrue</a>
+<a href="#EnumBitvectorExprEvaluate">EnumBitvectorExprEvaluate</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="enumAllFile.html#enumPost.c"TARGET="ABSTRACT"><CODE>enumPost.c</CODE></A>
+
+<dt><pre>
+<A NAME="EnumExprIsTrue"></A>
+boolean <I></I>
+<B>EnumExprIsTrue</B>(
+  Atm_Expr_t * <b>expr</b>, <i></i>
+  Enum_VarInfo_t * <b>varInfo</b>, <i></i>
+  Enum_State_t * <b>prevState</b>, <i></i>
+  Enum_State_t * <b>state</b> <i></i>
+)
+</pre>
+<dd> The function returns TRUE if the expresion expr is true,
+                      otherwise it returns FALSE. The primed variables in expr
+                      refer to values in state and the unprimed variables
+                      refer to values in prevState.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#EnumExprEvaluate">EnumExprEvaluate</a>
+<a href="#EnumBitvectorExprEvaluate">EnumBitvectorExprEvaluate</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="enumAllFile.html#enumPost.c"TARGET="ABSTRACT"><CODE>enumPost.c</CODE></A>
+
+<dt><pre>
+<A NAME="EnumInitAssignListExecuteSetup"></A>
+lsList <I></I>
+<B>EnumInitAssignListExecuteSetup</B>(
+  Atm_Atom_t * <b>atom</b>, <i></i>
+  Enum_VarInfo_t * <b>varInfo</b>, <i></i>
+  lsList  <b>assignList</b>, <i></i>
+  Enum_State_t * <b>state</b> <i></i>
+)
+</pre>
+<dd> The function takes an atom, a list of assignments, and a
+                      partial state and produces a list of states generated
+		      from the state by executing the assignments in the list.
+		      First, the nondet assignments are removed from assignList
+		      and the rest of the assignments are executed. The remaining
+		      controlled variables including the ones that had nondet
+		      assigned to them are then chosen nondeterministically.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#EnumUpdateAssignListExecuteSetup">EnumUpdateAssignListExecuteSetup</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="enumAllFile.html#enumPost.c"TARGET="ABSTRACT"><CODE>enumPost.c</CODE></A>
+
+<dt><pre>
+<A NAME="EnumListConcatenate"></A>
+void <I></I>
+<B>EnumListConcatenate</B>(
+  lsList  <b>list1</b>, <i></i>
+  lsList  <b>list2</b> <i></i>
+)
+</pre>
+<dd> Appends the elements of list2 to the end of list1. The
+                      elements themselves are not copied.
+<p>
+
+<dd> <b>Side Effects</b> list1 is modified.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="enumAllFile.html#enumPost.c"TARGET="ABSTRACT"><CODE>enumPost.c</CODE></A>
+
+<dt><pre>
+<A NAME="EnumNumVarCmd"></A>
+int <I></I>
+<B>EnumNumVarCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char ** <b>argv</b> <i></i>
+)
+</pre>
+<dd> The function implementing the command enum_numVar.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<DD> <B>Defined in </B> <A HREF="enumAllFile.html#enumUtil.c"TARGET="ABSTRACT"><CODE>enumUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="EnumPrintValueToString"></A>
+char * <I></I>
+<B>EnumPrintValueToString</B>(
+  Var_Variable_t * <b>var</b>, <i></i>
+  long  <b>value</b> <i></i>
+)
+</pre>
+<dd> This function, given a variable and a numeric value of
+                      that variable, returns a string indicating the symbolic
+                      value of that variable.
+<p>
+
+<dd> <b>Side Effects</b> User has to free the returned string.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="enumAllFile.html#enumUtil.c"TARGET="ABSTRACT"><CODE>enumUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="EnumStateAddToTable"></A>
+boolean <I></I>
+<B>EnumStateAddToTable</B>(
+  Enum_StateTable_t * <b>stateTable</b>, <i></i>
+  Enum_State_t * <b>state</b>, <i></i>
+  Enum_VarInfo_t * <b>varInfo</b> <i></i>
+)
+</pre>
+<dd> The function adds a state to the state table if it is
+                      not present in the state table already. In this case, it
+                      returns TRUE, otherwise it returns FALSE. The function
+                      first computes index of the bucket where the state has
+                      to be put and then puts the state in the front of the
+                      linked list in the bucket.
+<p>
+
+<dd> <b>Side Effects</b> size field of state table is incremented by 1.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="enumAllFile.html#enumSearch.c"TARGET="ABSTRACT"><CODE>enumSearch.c</CODE></A>
+
+<dt><pre>
+<A NAME="EnumStatePrint"></A>
+void <I></I>
+<B>EnumStatePrint</B>(
+  Enum_State_t * <b>state</b>, <i></i>
+  Enum_VarInfo_t * <b>varInfo</b> <i></i>
+)
+</pre>
+<dd> Prints a state.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<DD> <B>Defined in </B> <A HREF="enumAllFile.html#enumSearch.c"TARGET="ABSTRACT"><CODE>enumSearch.c</CODE></A>
+
+<dt><pre>
+<A NAME="EnumStateTablePrint"></A>
+void <I></I>
+<B>EnumStateTablePrint</B>(
+  Enum_StateTable_t * <b>stateTable</b>, <i></i>
+  Enum_VarInfo_t * <b>varInfo</b> <i></i>
+)
+</pre>
+<dd> Prints all the states in the hash table.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<DD> <B>Defined in </B> <A HREF="enumAllFile.html#enumSearch.c"TARGET="ABSTRACT"><CODE>enumSearch.c</CODE></A>
+
+<dt><pre>
+<A NAME="EnumUpdateAssignListSetup"></A>
+lsList <I></I>
+<B>EnumUpdateAssignListSetup</B>(
+  Atm_Atom_t * <b>atom</b>, <i></i>
+  Enum_VarInfo_t * <b>varInfo</b>, <i></i>
+  lsList  <b>assignList</b>, <i></i>
+  Enum_State_t * <b>state</b>, <i></i>
+  Enum_State_t * <b>partialState</b> <i></i>
+)
+</pre>
+<dd> The function takes an atom, a list of assignments, a state
+                      and a partially evaluated state, and produces a list of
+		      states generated from the state by executing the assignments
+		      in the list. First, the nondet assignments are removed from
+		      assignList and the rest of the assignments are executed. Of
+		      the remaining variables, those that have nondet assigned to
+		      them or are unassigned and are not read by the atom are
+		      updated nondeterministically and the others have the value
+		      from the previous state copied.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#EnumInitAssignListExecuteSetup">EnumInitAssignListExecuteSetup</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="enumAllFile.html#enumPost.c"TARGET="ABSTRACT"><CODE>enumPost.c</CODE></A>
+
+<dt><pre>
+<A NAME="EnumValueCmd"></A>
+int <I></I>
+<B>EnumValueCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char ** <b>argv</b> <i></i>
+)
+</pre>
+<dd> The function implementing the command enum_numVar.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<DD> <B>Defined in </B> <A HREF="enumAllFile.html#enumUtil.c"TARGET="ABSTRACT"><CODE>enumUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="EnumVarCmd"></A>
+int <I></I>
+<B>EnumVarCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char ** <b>argv</b> <i></i>
+)
+</pre>
+<dd> The function implementing the command enum_numVar.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<DD> <B>Defined in </B> <A HREF="enumAllFile.html#enumUtil.c"TARGET="ABSTRACT"><CODE>enumUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="Enum_AtomComputeSetOfPartialInitialStates"></A>
+lsList <I></I>
+<B>Enum_AtomComputeSetOfPartialInitialStates</B>(
+  Atm_Atom_t * <b>atom</b>, <i></i>
+  Enum_VarInfo_t * <b>varInfo</b>, <i></i>
+  Enum_State_t * <b>partialState</b> <i></i>
+)
+</pre>
+<dd> The function returns all possible extensions of the partial
+  state by executing the init guarded commands of the atom. If there are no init
+  guarded commands all possible evaluations of the non-event controlled variables
+  are done. If some guarded command does not specify the initial value of a
+  non-event variable, then all possible evaluations are generated. The reason for
+  generating all possible combinations of event variables is that they would not
+  affect the update of any variable in the next round. If no guard is true an empty
+  list is returned.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Enum_AtomComputeSetOfPartialPostStates">Enum_AtomComputeSetOfPartialPostStates</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="enumAllFile.html#enumPost.c"TARGET="ABSTRACT"><CODE>enumPost.c</CODE></A>
+
+<dt><pre>
+<A NAME="Enum_AtomComputeSetOfPartialPostStates"></A>
+lsList <I></I>
+<B>Enum_AtomComputeSetOfPartialPostStates</B>(
+  Atm_Atom_t * <b>atom</b>, <i></i>
+  Enum_VarInfo_t * <b>varInfo</b>, <i></i>
+  Enum_State_t * <b>state</b>, <i></i>
+  Enum_State_t * <b>partialState</b> <i></i>
+)
+</pre>
+<dd> The function generates all possible augmentations of the
+  partial state by executing the update guarded commands of the atom. If a
+  guarded command does not update a variable, then its value is same as its
+  value in state if it is read by the atom otherwise it is updated
+  nondeterministically. If the atom is lazy or event appropriate post states
+  are generated. Note that it is imperative for a lazy or event atom to read
+  all its controlled variables.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Enum_AtomComputeSetOfPartialInitialStates">Enum_AtomComputeSetOfPartialInitialStates</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="enumAllFile.html#enumPost.c"TARGET="ABSTRACT"><CODE>enumPost.c</CODE></A>
+
+<dt><pre>
+<A NAME="Enum_End"></A>
+int <I></I>
+<B>Enum_End</B>(
+  Tcl_Interp * <b>interp</b>, <i></i>
+  Main_Manager_t * <b>manager</b> <i></i>
+)
+</pre>
+<dd> The function terminates the enum package. It is called
+                      when mocha exits.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Enum_Init">Enum_Init</a>
+<a href="#Enum_Reinit">Enum_Reinit</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="enumAllFile.html#enumMain.c"TARGET="ABSTRACT"><CODE>enumMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="Enum_Init"></A>
+int <I></I>
+<B>Enum_Init</B>(
+  Tcl_Interp * <b>interp</b>, <i></i>
+  Main_Manager_t * <b>manager</b> <i></i>
+)
+</pre>
+<dd> The function registers all commands implemented by the
+                      enum package with the TCL interpreter. This function is
+                      called whenever mocha is started.
+<p>
+
+<dd> <b>Side Effects</b> The global TCL associative array mocha_commands is
+                      modified.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Enum_Reinit">Enum_Reinit</a>
+<a href="#Enum_End">Enum_End</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="enumAllFile.html#enumMain.c"TARGET="ABSTRACT"><CODE>enumMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="Enum_ModuleComputeSetOfInitialStates"></A>
+lsList <I></I>
+<B>Enum_ModuleComputeSetOfInitialStates</B>(
+  Mdl_Module_t * <b>module</b>, <i></i>
+  Enum_VarInfo_t * <b>varInfo</b> <i></i>
+)
+</pre>
+<dd> The function returns the set of initial states of a
+                      module. The 
+                      module should not have any external variables that are
+                      not boolean, event or enumerated type. If successful,
+                      the function returns a list of initial states, otherwise
+                      it returns NULL.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Enum_ModuleComputeSetOfPostStates">Enum_ModuleComputeSetOfPostStates</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="enumAllFile.html#enumPost.c"TARGET="ABSTRACT"><CODE>enumPost.c</CODE></A>
+
+<dt><pre>
+<A NAME="Enum_ModuleComputeSetOfPostStates"></A>
+lsList <I></I>
+<B>Enum_ModuleComputeSetOfPostStates</B>(
+  Mdl_Module_t * <b>module</b>, <i></i>
+  Enum_VarInfo_t * <b>varInfo</b>, <i></i>
+  Enum_State_t * <b>state</b> <i></i>
+)
+</pre>
+<dd> The function returns a list of successor states of state
+                      in module. The module should not have any external
+                      variables that are not boolean, event or enumerated
+                      types. If successful, the function returns a list of
+                      successor states, otherwise it returns NULL.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Enum_ModuleComputeSetOfInitialStates">Enum_ModuleComputeSetOfInitialStates</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="enumAllFile.html#enumPost.c"TARGET="ABSTRACT"><CODE>enumPost.c</CODE></A>
+
+<dt><pre>
+<A NAME="Enum_ModulePerformBFS"></A>
+void <I></I>
+<B>Enum_ModulePerformBFS</B>(
+  Tcl_Interp * <b>interp</b>, <i></i>
+  Main_Manager_t * <b>mainManager</b>, <i></i>
+  Mdl_Module_t * <b>module</b>, <i></i>
+  array_t * <b>invNameArray</b>, <i></i>
+  array_t * <b>typedExprArray</b> <i></i>
+)
+</pre>
+<dd> Currently, there could be a bug in this routine if transition
+  invariants are being checked. No next states are generated if the histrory
+  dependent part of the state has been encountered earlier in some other state
+  and hence no transition invariant is checked also. For state invariants,
+  this is fine but for transition invariants, satisfaction of an invariant by
+  the transition <ps, ns> might depend on the history-free variables of
+  ps. This needs to be worked out.
+<p>
+
+<dd> <b>Side Effects</b> If checkInvariant is TRUE, then the function changes
+                      the status of the unchecked invariants to either passed
+                      or failed.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Enum_ModulePerformDFS">Enum_ModulePerformDFS</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="enumAllFile.html#enumSearch.c"TARGET="ABSTRACT"><CODE>enumSearch.c</CODE></A>
+
+<dt><pre>
+<A NAME="Enum_ModulePerformDFS"></A>
+void <I></I>
+<B>Enum_ModulePerformDFS</B>(
+  Tcl_Interp * <b>interp</b>, <i></i>
+  Main_Manager_t * <b>mainManager</b>, <i></i>
+  Mdl_Module_t * <b>module</b>, <i></i>
+  array_t * <b>invNameArray</b>, <i></i>
+  array_t * <b>typedExprArray</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> If checkInvariant is TRUE, then the function changes
+                      the status of the unchecked invariants to either passed
+                      or failed.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Enum_ModulePerformBFS">Enum_ModulePerformBFS</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="enumAllFile.html#enumSearch.c"TARGET="ABSTRACT"><CODE>enumSearch.c</CODE></A>
+
+<dt><pre>
+<A NAME="Enum_PartialStatePrintToString"></A>
+char * <I></I>
+<B>Enum_PartialStatePrintToString</B>(
+  Enum_VarInfo_t * <b>varInfo</b>, <i></i>
+  Enum_State_t * <b>partialState</b> <i></i>
+)
+</pre>
+<dd> This function returns a string which contains the
+  valuation of the variables in the given partial state.
+<p>
+
+<dd> <b>Side Effects</b> User should free the string after use.
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="enumAllFile.html#enumPost.c"TARGET="ABSTRACT"><CODE>enumPost.c</CODE></A>
+
+<dt><pre>
+<A NAME="Enum_Reinit"></A>
+int <I></I>
+<B>Enum_Reinit</B>(
+  Tcl_Interp * <b>interp</b>, <i></i>
+  Main_Manager_t * <b>manager</b> <i></i>
+)
+</pre>
+<dd> Reinitializes the enum package.
+<p>
+
+<dd> <b>Side Effects</b> The state manager of the enum package is reset. All
+                      states are freed and the varInfo associated with all
+                      modules freed. The stateCounter is also reset to 0.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Enum_Init">Enum_Init</a>
+<a href="#Enum_End">Enum_End</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="enumAllFile.html#enumMain.c"TARGET="ABSTRACT"><CODE>enumMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="Enum_StateAlloc"></A>
+Enum_State_t * <I></I>
+<B>Enum_StateAlloc</B>(
+  Enum_VarInfo_t * <b>varInfo</b> <i></i>
+)
+</pre>
+<dd> The function allocates and returns a state. It
+                      initializes all variable values in the state to {LONG,
+                      INT}_MAX, which means that these variables are
+                      uninitialized. The parentState field is set to NULL.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Enum_StateFree">Enum_StateFree</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="enumAllFile.html#enumPost.c"TARGET="ABSTRACT"><CODE>enumPost.c</CODE></A>
+
+<dt><pre>
+<A NAME="Enum_StateAssignAllVarCombinations"></A>
+lsList <I></I>
+<B>Enum_StateAssignAllVarCombinations</B>(
+  Enum_State_t * <b>state</b>, <i></i>
+  lsList  <b>varList</b>, <i></i>
+  Enum_VarInfo_t * <b>varInfo</b> <i></i>
+)
+</pre>
+<dd> The function takes as arguments a partial state and a
+                      variable list. The variables in varList should not have
+                      been assigned a value in state. All variables
+                      in varList should be of one of three types -
+                      Var_Boolean_c, Var_Enumerated_c or Var_Event_c. If
+                      successful, the function returns a list of states
+                      (possibly partial) that have the same value as state for
+                      all variables assigned to in state and all combinations
+                      of the values to the variables in varList.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<DD> <B>Defined in </B> <A HREF="enumAllFile.html#enumPost.c"TARGET="ABSTRACT"><CODE>enumPost.c</CODE></A>
+
+<dt><pre>
+<A NAME="Enum_StateDup"></A>
+Enum_State_t * <I></I>
+<B>Enum_StateDup</B>(
+  Enum_State_t * <b>state</b>, <i></i>
+  Enum_VarInfo_t * <b>varInfo</b> <i></i>
+)
+</pre>
+<dd> The function returnss a duplicate copy of state. It is the
+                      responsibility of the caller function to free the
+                      returned state. The parentState field is just copied
+                      from state.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<DD> <B>Defined in </B> <A HREF="enumAllFile.html#enumPost.c"TARGET="ABSTRACT"><CODE>enumPost.c</CODE></A>
+
+<dt><pre>
+<A NAME="Enum_StateFreeEventVars"></A>
+void <I></I>
+<B>Enum_StateFreeEventVars</B>(
+  Enum_State_t * <b>state</b> <i></i>
+)
+</pre>
+<dd> The function frees the event variables of a state and
+                      sets the field eventVars to NULL.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<DD> <B>Defined in </B> <A HREF="enumAllFile.html#enumPost.c"TARGET="ABSTRACT"><CODE>enumPost.c</CODE></A>
+
+<dt><pre>
+<A NAME="Enum_StateFreeHistFreeVars"></A>
+void <I></I>
+<B>Enum_StateFreeHistFreeVars</B>(
+  Enum_State_t * <b>state</b> <i></i>
+)
+</pre>
+<dd> The function frees the history free variables of a
+                      state and sets the field histFreeVars to NULL.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<DD> <B>Defined in </B> <A HREF="enumAllFile.html#enumPost.c"TARGET="ABSTRACT"><CODE>enumPost.c</CODE></A>
+
+<dt><pre>
+<A NAME="Enum_StateFree"></A>
+void <I></I>
+<B>Enum_StateFree</B>(
+  Enum_State_t * <b>state</b> <i></i>
+)
+</pre>
+<dd> The function frees all the internal memory of a state
+                      and the state itself.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Enum_StateAlloc">Enum_StateAlloc</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="enumAllFile.html#enumPost.c"TARGET="ABSTRACT"><CODE>enumPost.c</CODE></A>
+
+<dt><pre>
+<A NAME="Enum_StateIsVariableAssigned"></A>
+boolean <I></I>
+<B>Enum_StateIsVariableAssigned</B>(
+  Enum_State_t * <b>state</b>, <i></i>
+  Var_Variable_t * <b>var</b>, <i></i>
+  Enum_VarInfo_t * <b>varInfo</b> <i></i>
+)
+</pre>
+<dd> The function returns TRUE if var has been assigned a
+                      value, otherwise it returns FALSE.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Enum_StateSetVariableValue">Enum_StateSetVariableValue</a>
+<a href="#Enum_StateReadVariableValue">Enum_StateReadVariableValue</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="enumAllFile.html#enumPost.c"TARGET="ABSTRACT"><CODE>enumPost.c</CODE></A>
+
+<dt><pre>
+<A NAME="Enum_StateManagerAddVarInfo"></A>
+void <I></I>
+<B>Enum_StateManagerAddVarInfo</B>(
+  Enum_StateManager_t * <b>stateManager</b>, <i></i>
+  Mdl_Module_t * <b>module</b>, <i></i>
+  Enum_VarInfo_t * <b>varInfo</b> <i></i>
+)
+</pre>
+<dd> Adds varInfo of a module to the state manager.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<DD> <B>Defined in </B> <A HREF="enumAllFile.html#enumPost.c"TARGET="ABSTRACT"><CODE>enumPost.c</CODE></A>
+
+<dt><pre>
+<A NAME="Enum_StateManagerAlloc"></A>
+Enum_StateManager_t * <I></I>
+<B>Enum_StateManagerAlloc</B>(
+   <b></b> <i></i>
+)
+</pre>
+<dd> Allocates and initializes a state manager.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Enum_StateManagerFree">Enum_StateManagerFree</a>
+<a href="#Enum_StateManagerReinitialize">Enum_StateManagerReinitialize</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="enumAllFile.html#enumMain.c"TARGET="ABSTRACT"><CODE>enumMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="Enum_StateManagerFree"></A>
+void <I></I>
+<B>Enum_StateManagerFree</B>(
+  Enum_StateManager_t * <b>stateManager</b> <i></i>
+)
+</pre>
+<dd> The function frees all memory associated with a state
+                      manager, including all states and varInfo associated
+                      with every module.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Enum_StateManagerAlloc">Enum_StateManagerAlloc</a>
+<a href="#Enum_StateManagerReinitialize">Enum_StateManagerReinitialize</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="enumAllFile.html#enumMain.c"TARGET="ABSTRACT"><CODE>enumMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="Enum_StateManagerIncrementStateCounter"></A>
+void <I></I>
+<B>Enum_StateManagerIncrementStateCounter</B>(
+  Enum_StateManager_t * <b>stateManager</b> <i></i>
+)
+</pre>
+<dd> This function increments the state counter in the state
+                      manager.
+<p>
+
+<dd> <b>Side Effects</b> Increments the state counter.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="enumAllFile.html#enumMain.c"TARGET="ABSTRACT"><CODE>enumMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="Enum_StateManagerObtainVarInfoFromModule"></A>
+Enum_VarInfo_t * <I></I>
+<B>Enum_StateManagerObtainVarInfoFromModule</B>(
+  Enum_StateManager_t * <b>stateManager</b>, <i></i>
+  Mdl_Module_t * <b>module</b> <i></i>
+)
+</pre>
+<dd> The function returns the varInfo of a module if it
+                      exists in the state manager. Otherwise it creates the
+                      Enum_VarInfo_t data structure, registers it with
+                      state manager and returns the new data structure.
+<p>
+
+<dd> <b>Side Effects</b> moduleToVarInfo hash table inside stateManager could be
+                      updated.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="enumAllFile.html#enumPost.c"TARGET="ABSTRACT"><CODE>enumPost.c</CODE></A>
+
+<dt><pre>
+<A NAME="Enum_StateManagerReadStateCounter"></A>
+unsigned long <I></I>
+<B>Enum_StateManagerReadStateCounter</B>(
+  Enum_StateManager_t * <b>stateManager</b> <i></i>
+)
+</pre>
+<dd> This function returns the state counter in the state
+                      manager.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<DD> <B>Defined in </B> <A HREF="enumAllFile.html#enumMain.c"TARGET="ABSTRACT"><CODE>enumMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="Enum_StateManagerReadStateNameTable"></A>
+Tcl_HashTable * <I></I>
+<B>Enum_StateManagerReadStateNameTable</B>(
+  Enum_StateManager_t * <b>stateManager</b> <i></i>
+)
+</pre>
+<dd> This function returns the state table in the state
+                      manager.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<DD> <B>Defined in </B> <A HREF="enumAllFile.html#enumMain.c"TARGET="ABSTRACT"><CODE>enumMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="Enum_StateNameTableAddStateWithNameSuffix"></A>
+char * <I></I>
+<B>Enum_StateNameTableAddStateWithNameSuffix</B>(
+  Enum_StateManager_t * <b>stateManager</b>, <i></i>
+  char * <b>moduleName</b>, <i></i>
+  Enum_State_t * <b>state</b>, <i></i>
+  char * <b>nameSuffix</b> <i></i>
+)
+</pre>
+<dd> Add a state to the TclHashTable.
+<p>
+
+<dd> <b>Side Effects</b> return string has to be freed by user.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="enumAllFile.html#enumMain.c"TARGET="ABSTRACT"><CODE>enumMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="Enum_StateNameTableAddState"></A>
+char * <I></I>
+<B>Enum_StateNameTableAddState</B>(
+  Enum_StateManager_t * <b>stateManager</b>, <i></i>
+  char * <b>moduleName</b>, <i></i>
+  Enum_State_t * <b>state</b> <i></i>
+)
+</pre>
+<dd> Add a state to the TclHashTable.
+<p>
+
+<dd> <b>Side Effects</b> return string has to be freed by user.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="enumAllFile.html#enumMain.c"TARGET="ABSTRACT"><CODE>enumMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="Enum_StateReadVariableValue"></A>
+long <I></I>
+<B>Enum_StateReadVariableValue</B>(
+  Enum_State_t * <b>state</b>, <i></i>
+  Var_Variable_t * <b>var</b>, <i></i>
+  Enum_VarInfo_t * <b>varInfo</b> <i></i>
+)
+</pre>
+<dd> The function returns the value of var in state. Note
+                      that the function does not check if var has been
+                      assigned a value in state. It is the user's
+                      responsibility to make sure that he reads only a
+                      variable that has been assigned.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Enum_StateSetVariableValue">Enum_StateSetVariableValue</a>
+<a href="#Enum_StateIsVariableAssigned">Enum_StateIsVariableAssigned</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="enumAllFile.html#enumPost.c"TARGET="ABSTRACT"><CODE>enumPost.c</CODE></A>
+
+<dt><pre>
+<A NAME="Enum_StateSetParentState"></A>
+void <I></I>
+<B>Enum_StateSetParentState</B>(
+  Enum_State_t * <b>state</b>, <i></i>
+  Enum_State_t * <b>parentState</b> <i></i>
+)
+</pre>
+<dd> The function sets the parentState field of state. This
+                      field is used in producing a counterexample in case an
+                      invariant check fails.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<DD> <B>Defined in </B> <A HREF="enumAllFile.html#enumSearch.c"TARGET="ABSTRACT"><CODE>enumSearch.c</CODE></A>
+
+<dt><pre>
+<A NAME="Enum_StateSetVariableValue"></A>
+void <I></I>
+<B>Enum_StateSetVariableValue</B>(
+  Enum_State_t * <b>state</b>, <i></i>
+  Var_Variable_t * <b>var</b>, <i></i>
+  Enum_VarInfo_t * <b>varInfo</b>, <i></i>
+  long  <b>value</b> <i></i>
+)
+</pre>
+<dd> The value of the variable is set to value. Value is a
+                      number for boolean, integer or natural number variables.
+                      For symbolically enumerated variables, value is an index
+                      associated with the symbolic values of the variable.
+<p>
+
+<dd> <b>Side Effects</b> The old value of the variable is overwritten by the new
+                      value.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Enum_StateReadVariableValue">Enum_StateReadVariableValue</a>
+<a href="#Enum_StateIsVariableAssigned">Enum_StateIsVariableAssigned</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="enumAllFile.html#enumPost.c"TARGET="ABSTRACT"><CODE>enumPost.c</CODE></A>
+
+<dt><pre>
+<A NAME="Enum_StateTableAlloc"></A>
+Enum_StateTable_t * <I></I>
+<B>Enum_StateTableAlloc</B>(
+  int  <b>power</b>, <i></i>
+  Enum_VarInfo_t * <b>varInfo</b> <i></i>
+)
+</pre>
+<dd> The function allocates and initializes a state table
+                      data structure with 2^power number of buckets. The
+                      number of buckets in the state table is always a power
+                      of 2.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Enum_StateTableFree">Enum_StateTableFree</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="enumAllFile.html#enumSearch.c"TARGET="ABSTRACT"><CODE>enumSearch.c</CODE></A>
+
+<dt><pre>
+<A NAME="Enum_StateTableEntryAlloc"></A>
+Enum_StateTableEntry_t * <I></I>
+<B>Enum_StateTableEntryAlloc</B>(
+  Enum_State_t * <b>state</b>, <i></i>
+  Enum_StateTableEntry_t * <b>next</b> <i></i>
+)
+</pre>
+<dd> Allocates a state table entry data structure.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Enum_StateTableEntryFree">Enum_StateTableEntryFree</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="enumAllFile.html#enumSearch.c"TARGET="ABSTRACT"><CODE>enumSearch.c</CODE></A>
+
+<dt><pre>
+<A NAME="Enum_StateTableEntryFree"></A>
+void <I></I>
+<B>Enum_StateTableEntryFree</B>(
+  Enum_StateTableEntry_t * <b>entry</b> <i></i>
+)
+</pre>
+<dd> This function frees a state table entry. Note that it
+                      does not free the state in the entry.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Enum_StateTableEntryAlloc">Enum_StateTableEntryAlloc</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="enumAllFile.html#enumSearch.c"TARGET="ABSTRACT"><CODE>enumSearch.c</CODE></A>
+
+<dt><pre>
+<A NAME="Enum_StateTableFree"></A>
+void <I></I>
+<B>Enum_StateTableFree</B>(
+  Enum_StateTable_t * <b>stateTable</b> <i></i>
+)
+</pre>
+<dd> This function frees a state table and all the states in
+                      it.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Enum_StateTableAlloc">Enum_StateTableAlloc</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="enumAllFile.html#enumSearch.c"TARGET="ABSTRACT"><CODE>enumSearch.c</CODE></A>
+
+<dt><pre>
+<A NAME="Enum_VarInfoAlloc"></A>
+Enum_VarInfo_t * <I></I>
+<B>Enum_VarInfoAlloc</B>(
+  Mdl_Module_t * <b>module</b> <i></i>
+)
+</pre>
+<dd> Allocates the varInfo data structure of a module.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Enum_VarInfoFree">Enum_VarInfoFree</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="enumAllFile.html#enumMain.c"TARGET="ABSTRACT"><CODE>enumMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="Enum_VarInfoFree"></A>
+void <I></I>
+<B>Enum_VarInfoFree</B>(
+  Enum_VarInfo_t * <b>varInfo</b> <i></i>
+)
+</pre>
+<dd> Frees a varInfo data structure.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Enum_VarInfoAlloc">Enum_VarInfoAlloc</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="enumAllFile.html#enumMain.c"TARGET="ABSTRACT"><CODE>enumMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="Enum_VarInfoReadEventVars"></A>
+Var_Variable_t ** <I></I>
+<B>Enum_VarInfoReadEventVars</B>(
+  Enum_VarInfo_t * <b>varInfo</b> <i></i>
+)
+</pre>
+<dd> Returns the event variables.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<DD> <B>Defined in </B> <A HREF="enumAllFile.html#enumPost.c"TARGET="ABSTRACT"><CODE>enumPost.c</CODE></A>
+
+<dt><pre>
+<A NAME="Enum_VarInfoReadHistDependVars"></A>
+Var_Variable_t ** <I></I>
+<B>Enum_VarInfoReadHistDependVars</B>(
+  Enum_VarInfo_t * <b>varInfo</b> <i></i>
+)
+</pre>
+<dd> Returns the history dependent variables.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<DD> <B>Defined in </B> <A HREF="enumAllFile.html#enumPost.c"TARGET="ABSTRACT"><CODE>enumPost.c</CODE></A>
+
+<dt><pre>
+<A NAME="Enum_VarInfoReadHistFreeVars"></A>
+Var_Variable_t ** <I></I>
+<B>Enum_VarInfoReadHistFreeVars</B>(
+  Enum_VarInfo_t * <b>varInfo</b> <i></i>
+)
+</pre>
+<dd> Returns the history free variables.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<DD> <B>Defined in </B> <A HREF="enumAllFile.html#enumPost.c"TARGET="ABSTRACT"><CODE>enumPost.c</CODE></A>
+
+<dt><pre>
+<A NAME="Enum_VarInfoReadNumEventVars"></A>
+int <I></I>
+<B>Enum_VarInfoReadNumEventVars</B>(
+  Enum_VarInfo_t * <b>varInfo</b> <i></i>
+)
+</pre>
+<dd> Returns the number of event variables.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<DD> <B>Defined in </B> <A HREF="enumAllFile.html#enumPost.c"TARGET="ABSTRACT"><CODE>enumPost.c</CODE></A>
+
+<dt><pre>
+<A NAME="Enum_VarInfoReadNumHistDependVars"></A>
+int <I></I>
+<B>Enum_VarInfoReadNumHistDependVars</B>(
+  Enum_VarInfo_t * <b>varInfo</b> <i></i>
+)
+</pre>
+<dd> Returns the number of history dependent variables.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<DD> <B>Defined in </B> <A HREF="enumAllFile.html#enumPost.c"TARGET="ABSTRACT"><CODE>enumPost.c</CODE></A>
+
+<dt><pre>
+<A NAME="Enum_VarInfoReadNumHistFreeVars"></A>
+int <I></I>
+<B>Enum_VarInfoReadNumHistFreeVars</B>(
+  Enum_VarInfo_t * <b>varInfo</b> <i></i>
+)
+</pre>
+<dd> Returns the number of history free variables.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<DD> <B>Defined in </B> <A HREF="enumAllFile.html#enumPost.c"TARGET="ABSTRACT"><CODE>enumPost.c</CODE></A>
+
+<dt><pre>
+<A NAME="IsInList"></A>
+static boolean <I></I>
+<B>IsInList</B>(
+  lsList  <b>list</b>, <i></i>
+  lsGeneric  <b>item</b> <i></i>
+)
+</pre>
+<dd> The function returns TRUE if item is found in list,
+                      otherwise it returns FALSE.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<DD> <B>Defined in </B> <A HREF="enumAllFile.html#enumPost.c"TARGET="ABSTRACT"><CODE>enumPost.c</CODE></A>
+
+<dt><pre>
+<A NAME="ModuleComputeInitialSet"></A>
+static int <I></I>
+<B>ModuleComputeInitialSet</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char ** <b>argv</b> <i></i>
+)
+</pre>
+<dd> The function implementing the command enum_init.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#StateComputePostSet">StateComputePostSet</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="enumAllFile.html#enumMain.c"TARGET="ABSTRACT"><CODE>enumMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="ModulePerformEnumerativeSearch"></A>
+static int <I></I>
+<B>ModulePerformEnumerativeSearch</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char ** <b>argv</b> <i></i>
+)
+</pre>
+<dd> The function implementing the command enum_search.
+<p>
+
+<dd> <b>Side Effects</b> The command could modify the status of the invariants
+                      associated with the module on which it is executed.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Enum_ModulePerformBFS">Enum_ModulePerformBFS</a>
+<a href="#Enum_ModulePerformDFS">Enum_ModulePerformDFS</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="enumAllFile.html#enumMain.c"TARGET="ABSTRACT"><CODE>enumMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="StateCompactToNumber"></A>
+unsigned long <I></I>
+<B>StateCompactToNumber</B>(
+  Enum_State_t * <b>state</b>, <i></i>
+  int  <b>numStoredVars</b> <i></i>
+)
+</pre>
+<dd> The function converts the history dependent part of a
+                      state to a natural number. Each history dependent
+                      variable contributes a bit to the number. The bit is set
+                      to 1 if the variable value is odd and to 0 if the
+                      variable value is even.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#StateHashFunction">StateHashFunction</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="enumAllFile.html#enumSearch.c"TARGET="ABSTRACT"><CODE>enumSearch.c</CODE></A>
+
+<dt><pre>
+<A NAME="StateCompare"></A>
+boolean <I></I>
+<B>StateCompare</B>(
+  Enum_State_t * <b>state1</b>, <i></i>
+  Enum_State_t * <b>state2</b>, <i></i>
+  Enum_VarInfo_t * <b>varInfo</b> <i></i>
+)
+</pre>
+<dd> The function returns TRUE if the history dependent part
+                      of state1 and state2 is the same, otherwise it returns
+                      FALSE.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<DD> <B>Defined in </B> <A HREF="enumAllFile.html#enumSearch.c"TARGET="ABSTRACT"><CODE>enumSearch.c</CODE></A>
+
+<dt><pre>
+<A NAME="StateComputePostSet"></A>
+static int <I></I>
+<B>StateComputePostSet</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char ** <b>argv</b> <i></i>
+)
+</pre>
+<dd> The function implementing the command enum_post.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#StateComputeInitialSet">StateComputeInitialSet</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="enumAllFile.html#enumMain.c"TARGET="ABSTRACT"><CODE>enumMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="StateHashFunction"></A>
+unsigned long <I></I>
+<B>StateHashFunction</B>(
+  Enum_StateTable_t * <b>stateTable</b>, <i></i>
+  Enum_State_t * <b>state</b> <i></i>
+)
+</pre>
+<dd> The function first converts the state into a natural
+                      number. This natural number is then converted into an
+                      index into the state hash table by using the
+                      multiplication method given on page 228 of the book
+                      "Introduction to Algorithms" by Cormen, Leiserson and
+                      Rivest. It returns the index into the hash table.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#StateCompactToNumber">StateCompactToNumber</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="enumAllFile.html#enumSearch.c"TARGET="ABSTRACT"><CODE>enumSearch.c</CODE></A>
+
+<dt><pre>
+<A NAME="StateNameExtractModuleName"></A>
+char * <I></I>
+<B>StateNameExtractModuleName</B>(
+  char * <b>stateName</b> <i></i>
+)
+</pre>
+<dd> This function extracts the module name from a state
+                      name. A state name begins with the name of the module to
+                      which it belongs followed by a ".".
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<DD> <B>Defined in </B> <A HREF="enumAllFile.html#enumMain.c"TARGET="ABSTRACT"><CODE>enumMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="StatePrintVariableValues"></A>
+static int <I></I>
+<B>StatePrintVariableValues</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char ** <b>argv</b> <i></i>
+)
+</pre>
+<dd> The function implementing the command state_print.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<DD> <B>Defined in </B> <A HREF="enumAllFile.html#enumMain.c"TARGET="ABSTRACT"><CODE>enumMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="StateTableResize"></A>
+void <I></I>
+<B>StateTableResize</B>(
+  Enum_StateTable_t * <b>stateTable</b> <i></i>
+)
+</pre>
+<dd> The function resizes a state table to twice the current
+                      number of buckets. The number of buckets in the state
+                      table is always a power of 2. The function rehashes the
+                      states in stateTable into the new table.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Enum_StateAddToTable">Enum_StateAddToTable</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="enumAllFile.html#enumSearch.c"TARGET="ABSTRACT"><CODE>enumSearch.c</CODE></A>
+
+<dt><pre>
+<A NAME="VariablesAddRecursively"></A>
+static void <I></I>
+<B>VariablesAddRecursively</B>(
+  lsList  <b>varList</b>, <i></i>
+  Var_Variable_t * <b>var</b> <i></i>
+)
+</pre>
+<dd> The function flattens compound variables like bitvectors
+                      and arrays into the component variables and adds these
+		      variables to varList. The function is invoked by
+		      AssignListRemoveNondetAssignment.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#AssignListRemoveNondetAssignment">AssignListRemoveNondetAssignment</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="enumAllFile.html#enumPost.c"TARGET="ABSTRACT"><CODE>enumPost.c</CODE></A>
+
+
+</DL>
+<HR>
+Last updated on 1031104 18h39
+</BODY></HTML>

@@ -1,0 +1,25 @@
+GLU NEWS				-*-indented-text-*-
+  History of user-visible changes.
+
+Please send bug reports to vis@ic.eecs.berkeley.edu
+
+Version 1.3
+
+* Configure now supports both gcc and native compilers on many
+  systems.  The native compiler is the default, but this can be
+  overridden by invoking "configure" with the "--enable-gcc" option.
+
+  As a result, the following configuration options have been removed
+
+    --with-comp-mode=solaris
+    --with-comp-mode=mips
+    --with-comp-mode=alpha32
+    --with-comp-mode=alpha64
+
+* Configure now defaults to using 32-bit pointers on DEC Alpha
+  machines.  To use 64-bit pointers, invoke "configure" with "--enable-64."
+
+* "gmake check" now compiles simple check programs that test some
+  functionality of the BDD packages.
+
+* New versions of CUDD (2.3.0) and CAL (2.0.1) are included.

@@ -1,0 +1,121 @@
+\subsection{Compositional verification} 
+
+In compositional verification, one attempts to verify that an
+implementation $\mp' \| \mq'$ refines a specificaton $\mp \| \mq$ 
+by reasoning separately about $\mp'$ and $\mq'$. 
+The simplest approach consists in proving that $\mp' \refi \mp$ and 
+$\mq' \refi \mq$, but this seldom succeeds: usually, $\mp'$ refines
+$\mp$ only in an environment (such as, hopefully, $\mq'$) that
+provides it with the appropriate input. 
+This approach has been refined by allowing the use of an environment
+$\env_{\mp'}$ to restrict the possible inputs to $\mp$; 
+then, in order to prove $\mp' \| \mq' \refi \mp \| \mq$, we show 
+that both $\mp' \| \env_{\mp'} \refi \mp$ and 
+$\mq' \| \env_{\mq'} \refi \mq$ hold. 
+This approach is an instance of {\em assume-guarantee\/} reasoning 
+\cite{Stark85,AbLa95,RM96,McMillan97}.
+In \cite{RM96}, the environment $\env_{\mp'}$ is taken to be
+$\mq$ (rule AG-SPEC):  
+the specification itself is used to constrain the implementation; 
+in \cite{concur99freddy}, $\env_{\mp'}$ is derived automatically from
+$\mq$ (rule AG-IMPL), so that it reflects the implementation
+(and symmetrically for $\env_{\mq'}$). 
+
+In our interface formalisms we can restrict the possible inputs to a
+component directly, without resorting to auxiliary environments, and
+we can restate the above rules in a more direct and general way.
+In the composition $\mp \| \mq$, the inputs of $\mp$ that are connected
+to $\mq$ will only see output values that can be produced by $\mq$,
+rather than arbitrary values; 
+we can represent this constraint by an additional input restriction
+for $\mp$. 
+There are several possible ways of deriving these input restrictions 
+from $\mq$;
+for lack of space, we discuss here only 
+an approach based on \cite{concur99freddy}. 
+The approach, presented for Moore interfaces, can be readily adapted
+to bidirectional A/G interfaces. 
+Given two Moore interfaces $\mp$ and $\mq$, let $R$ be the predicate
+defining the set of reachable states of $\mq$, computed as usual as
+the fixpoint of the reachability computation $R_0 = \iinit_\mq \und
+\oinit_\mq$, and $R'_{k+1} = R'_k \oder \exists \vars_\mq .  (R_k \und
+\itrans_\mq \und \otrans_\mq)$, for $k \geq 0$.
+%
+Let $\avars$ be a set of variables that we wish to abstract away, 
+let $\avars_\mq = (\vars_\mq \setm \vars_\mp) \inters \avars$
+be the subset of those variables that appear in $\mq$ only, 
+and let $\avars_\mp = \vars_\mq \setm (\vars_\mp \union \avars)$
+be the variables of $\mq$ that we wish to include as inputs in $\mp$. 
+%
+Define $\adapt{\mp}{\mq}{\avars}$  to be the interface obtained
+from $\mp$ by replacing $\ivars_\mp$ with 
+$\ivars_\mp \union \avars_\mp$, 
+%
+by replacing $\iinit_\mp$ with 
+$\iinit_\mp \und \exists \avars_\mq . \oinit_\mq$, 
+%
+and by replacing $\itrans_\mp$ with 
+$\itrans_\mp \und \exists (\avars_\mq \union \avars_\mq') . 
+(\reach(\vars_\mq,\oinit_\mq \und \iinit_\mq,\otrans_\mq \und
+\itrans_\mq) \und \otrans_\mq)$.
+%
+Thus, the interface $\adapt{\mp}{\mq}{\avars}$ is obtained by
+restricting the input assumptions of $\mp$ to reflect the possible
+outputs of $\mq$. 
+We can then state the following verification rule. 
+
+\begin{theo}{(compositional refinement and adaptation)} 
+\label{theo-comp-refi} 
+For all interfaces $\mp, \mq, \mp', \mq'$ such that 
+(i)~$\mp \compat \mq$, 
+(ii)~$\mp'$ and $\mq'$ are composable (but not necessarily
+compatible),
+(iii)~$(\ovars_{\mp'} \inters \ivars_\mq) \subs (\ovars_\mp \inters \ivars_\mq)$,
+and 
+(iv)~$(\ovars_{\mq'} \inters \ivars_\mp) \subs (\ovars_\mq \inters \ivars_\mp)$,
+and for all sets of variables $\avars_1$, $\avars_2$, $\avars_3$,
+$\avars_4$, the following verification rule is valid: 
+\[
+  \frac{\adapt{\mp'}{\mq'}{\avars_1} \refi \adapt{\mp}{\mq}{\avars_2}; \hspace{1em} 
+        \adapt{\mq'}{\mp'}{\avars_3} \refi \adapt{\mq}{\mp}{\avars_4}}{
+	\mp' \compat \mq' \tand \ 
+	\mp' \| \mq' \refi \mp \| \mq} \hspace{1em} (\mbox{\rm AG-INTF})
+\]
+\end{theo}
+
+\noindent
+In the rule, the input assumptions of both implementation and the
+specification interfaces have been restricted to reflect their actual
+environment. 
+The proviso over the variables is necessary to ensure that the
+compatibility of $\mp$ and $\mq$ implies that of $\mp'$ and $\mq'$,
+once the refinement is proved. 
+The theorem states a circular assume-guarantee principle: in fact,
+$\adapt{\mp'}{\mq'}{\avars_1}$ is constructed using the fact that the
+input assumptions of $\mq'$ are respected, even though the
+compatibility of $\mp'$ and $\mq'$ is a conclusion of the rule, rather
+than a premise; symmetrically for $\adapt{\mq'}{\mp'}{\avars_3}$.
+
+
+It is easy to see that rule (AG-INTF) generalizes (AG-IMPL); to see
+that it also generalizes (AG-SPEC), 
+note that rule (AG-SPEC) can be restated as 
+$(\mp' \refi \adapt{\mp}{\mq}{\emptyset}; 
+  \mq' \refi \adapt{\mq}{\mp}{\emptyset})/
+ (\mp' \| \mq' \refi \mp \| \mq)$.
+In fact, our alternating notion of refinement requires the
+implementation to match the specification only when the implementation
+is subject to the same inputs as the specification. 
+Hence, if we restrict the input assumptions of the specification (as
+in $\adapt{\mp}{\mq}{\emptyset}$), we need to check that the
+refinement holds only when the implementation $\mp'$ is subject to
+similarly restricted inputs: thus, checking the alternating refinement  
+$\mp' \refi \adapt{\mp}{\mq}{\emptyset}$ corresponds to checking the
+regular refinement $\mp' \| \mq \refi \mp$ (where $\mp$, $\mq$, and
+$\mp'$ are interpreted as regular modules, rather than interfaces). 
+A symmetrical argument holds for the other premise. 
+
+
+
+
+

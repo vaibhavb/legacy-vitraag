@@ -1,0 +1,509 @@
+<html>
+<head><title>The ref package: all functions </title></head>
+<body>
+
+optional
+<HR>
+<DL>
+<dt><pre>
+<A NAME="RefCheckCompositionalRefinementOneAtom"></A>
+int <I></I>
+<B>RefCheckCompositionalRefinementOneAtom</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char ** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> trnasition relations for new modules will be built if -r option is used
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="refAllFile.html#ref.c"TARGET="ABSTRACT"><CODE>ref.c</CODE></A>
+
+<dt><pre>
+<A NAME="RefCheckNohiddenRefinement"></A>
+int <I></I>
+<B>RefCheckNohiddenRefinement</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char ** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="refAllFile.html#ref.c"TARGET="ABSTRACT"><CODE>ref.c</CODE></A>
+
+<dt><pre>
+<A NAME="RefCheckSimulation"></A>
+int <I></I>
+<B>RefCheckSimulation</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char ** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="refAllFile.html#refSym1.c"TARGET="ABSTRACT"><CODE>refSym1.c</CODE></A>
+
+<dt><pre>
+<A NAME="RefCheckTransitionInvariant"></A>
+boolean <I></I>
+<B>RefCheckTransitionInvariant</B>(
+  Mdl_Module_t * <b>module</b>, <i></i>
+  Sym_Info_t * <b>symInfo</b>, <i></i>
+  mdd_t * <b>transInv</b>, <i></i>
+  mdd_t * <b>initSet</b>, <i></i>
+  array_t * <b>eventIdArray</b>, <i></i>
+  array_t * <b>histFreeIdArray</b>, <i></i>
+  array_t * <b>histDependIdArray</b>, <i></i>
+  array_t * <b>transQuanIdArr</b>, <i></i>
+  boolean  <b>verbose</b>, <i></i>
+  boolean  <b>checkAtEnd</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="refAllFile.html#ref.c"TARGET="ABSTRACT"><CODE>ref.c</CODE></A>
+
+<dt><pre>
+<A NAME="RefConjunctsAddExtra"></A>
+array_t * <I></I>
+<B>RefConjunctsAddExtra</B>(
+  Sym_Info_t * <b>symInfo</b>, <i></i>
+  mdd_t * <b>extra</b> <i></i>
+)
+</pre>
+<dd> Add one mdd to the conjuncts array and return a new
+                      conjuncts array. The user is responsible for freeing
+		      the new array and all the mdds in the new array
+<p>
+
+<dd> <b>Side Effects</b> none
+<p>
+
+<dd> <b>See Also</b> <code><a href="#RefUnprimedIdsMerge">RefUnprimedIdsMerge</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="refAllFile.html#refSym1.c"TARGET="ABSTRACT"><CODE>refSym1.c</CODE></A>
+
+<dt><pre>
+<A NAME="RefDumpIds"></A>
+void <I></I>
+<B>RefDumpIds</B>(
+  array_t * <b>a</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="refAllFile.html#ref.c"TARGET="ABSTRACT"><CODE>ref.c</CODE></A>
+
+<dt><pre>
+<A NAME="RefGetFlatSpecTransRelation"></A>
+mdd_t * <I></I>
+<B>RefGetFlatSpecTransRelation</B>(
+  Mdl_Module_t * <b>specModule</b>, <i></i>
+  Sym_Info_t * <b>specSymInfo</b>, <i></i>
+  Mdl_Module_t * <b>implModule</b>, <i></i>
+  Sym_Info_t * <b>implSymInfo</b>, <i></i>
+  array_t * <b>specIdArray</b>, <i></i>
+  array_t * <b>implIdArray</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> specIdArray and implId array will be filled with matching mddIds
+                      from specification and implementation
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="refAllFile.html#ref.c"TARGET="ABSTRACT"><CODE>ref.c</CODE></A>
+
+<dt><pre>
+<A NAME="RefMddArrayFree"></A>
+void <I></I>
+<B>RefMddArrayFree</B>(
+  array_t * <b>mddArray</b> <i></i>
+)
+</pre>
+<dd> Free the MDD array along with all MDDs contained in it
+<p>
+
+<dd> <b>Side Effects</b> none
+<p>
+
+<DD> <B>Defined in </B> <A HREF="refAllFile.html#refUtil.c"TARGET="ABSTRACT"><CODE>refUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="RefMddBuildNoChange"></A>
+mdd_t * <I></I>
+<B>RefMddBuildNoChange</B>(
+  Sym_Info_t * <b>symInfo</b> <i></i>
+)
+</pre>
+<dd> Build one conjunct for each variable x,
+                      saying that (x' = x), and take conjunction
+		      of all these
+<p>
+
+<dd> <b>Side Effects</b> none
+<p>
+
+<dd> <b>See Also</b> <code><a href="#RefMddBuildObseq">RefMddBuildObseq</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="refAllFile.html#refSym1.c"TARGET="ABSTRACT"><CODE>refSym1.c</CODE></A>
+
+<dt><pre>
+<A NAME="RefMddBuildObseq"></A>
+mdd_t * <I></I>
+<B>RefMddBuildObseq</B>(
+  Mdl_Module_t * <b>impl</b>, <i></i>
+  Sym_Info_t * <b>implSymInfo</b>, <i></i>
+  Mdl_Module_t * <b>spec</b>, <i></i>
+  Sym_Info_t * <b>specSymInfo</b> <i></i>
+)
+</pre>
+<dd> Preconditions:
+                      1. Each interface variable of the specification needs to be
+                      an interface variable of the implementation.
+                      2. Each external variable of the specification needs to be
+                      an interface or external variable of the implementation.
+
+		      If these conditions are met, this routine returns an MDD that 
+		      forces equality for corresponding UNPRIMED variables of
+		      specification and implementation.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#RefMddBuildNoChange">RefMddBuildNoChange</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="refAllFile.html#refSym1.c"TARGET="ABSTRACT"><CODE>refSym1.c</CODE></A>
+
+<dt><pre>
+<A NAME="RefPrimedIdsMerge"></A>
+array_t * <I></I>
+<B>RefPrimedIdsMerge</B>(
+  Sym_Info_t * <b>symInfo1</b>, <i></i>
+  Sym_Info_t * <b>symInfo2</b> <i></i>
+)
+</pre>
+<dd> merge primed ids of two modules and return the 
+                      result in a new array. It is the caller's responsibility
+		      to free this array
+<p>
+
+<dd> <b>Side Effects</b> none
+<p>
+
+<dd> <b>See Also</b> <code><a href="#RefUnprimedIdsMerge">RefUnprimedIdsMerge</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="refAllFile.html#refSym1.c"TARGET="ABSTRACT"><CODE>refSym1.c</CODE></A>
+
+<dt><pre>
+<A NAME="RefUnprimedIdsMerge"></A>
+array_t * <I></I>
+<B>RefUnprimedIdsMerge</B>(
+  Sym_Info_t * <b>symInfo1</b>, <i></i>
+  Sym_Info_t * <b>symInfo2</b> <i></i>
+)
+</pre>
+<dd> merge unprimed ids of two modules and return the 
+                      result in a new array. It is the caller's responsibility
+		      to free this array
+<p>
+
+<dd> <b>Side Effects</b> none
+<p>
+
+<dd> <b>See Also</b> <code><a href="#RefPrimedIdsMerge">RefPrimedIdsMerge</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="refAllFile.html#refSym1.c"TARGET="ABSTRACT"><CODE>refSym1.c</CODE></A>
+
+<dt><pre>
+<A NAME="Ref_CheckAtomRefinement"></A>
+boolean <I></I>
+<B>Ref_CheckAtomRefinement</B>(
+  Mdl_Manager_t * <b>mdlManager</b>, <i></i>
+  Mdl_Module_t * <b>spec</b>, <i></i>
+  Atm_Atom_t * <b>specAtom</b>, <i></i>
+  Mdl_Module_t * <b>impl</b>, <i></i>
+  lsList  <b>varNameList</b>, <i></i>
+  lsList  <b>forceVarNameList</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  boolean  <b>checkRef</b>, <i></i>
+  boolean  <b>verbose</b>, <i></i>
+  boolean  <b>keepIntermediate</b>, <i></i>
+  int  <b>impBoundary</b>, <i></i>
+  boolean  <b>checkAtEnd</b>, <i></i>
+  char * <b>orderFileName</b> <i></i>
+)
+</pre>
+<dd> Given implementation, specification and and atom atom1 in implementation,
+                       construct new modules newimplementation and newspecification
+                       such that
+                          1. new implementation contains atom1 only
+                          2. new specification contains heuristically chosen atoms
+                             from specification and implementation that control variables
+                             controlled by atom1, but do not include atom1 itself
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="refAllFile.html#ref.c"TARGET="ABSTRACT"><CODE>ref.c</CODE></A>
+
+<dt><pre>
+<A NAME="Ref_CheckImplCompatibility"></A>
+boolean <I></I>
+<B>Ref_CheckImplCompatibility</B>(
+  Mdl_Module_t * <b>spec</b>, <i></i>
+  Mdl_Module_t * <b>impl</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> none
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="refAllFile.html#refUtil.c"TARGET="ABSTRACT"><CODE>refUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="Ref_CheckNohiddenRefinement"></A>
+boolean <I></I>
+<B>Ref_CheckNohiddenRefinement</B>(
+  Mdl_Module_t * <b>implModule</b>, <i></i>
+  Sym_Info_t * <b>implSymInfo</b>, <i></i>
+  Mdl_Module_t * <b>specModule</b>, <i></i>
+  Sym_Info_t * <b>specSymInfo</b>, <i></i>
+  boolean  <b>verbose</b>, <i></i>
+  boolean  <b>checkAtEnd</b> <i></i>
+)
+</pre>
+<dd> Currently all variables of specModule need to be present in implModule
+  
+  The algorithm for doing this is as follows:
+  -- First check if the initial states of specModule are contained in implModule
+     If not FAIL
+  
+   -- do reachability of implModule
+       During each stage of reachability 
+             1. restrict trans relation of implModule to states in the frontier (ie build (frontier & implTrans))
+             2. If restricted implementation trans does NOT imply specification trans, then FAIL and print error trace
+
+   -- If reachability completes, PASS
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="refAllFile.html#ref.c"TARGET="ABSTRACT"><CODE>ref.c</CODE></A>
+
+<dt><pre>
+<A NAME="Ref_CheckSimulationUsingPre"></A>
+boolean <I></I>
+<B>Ref_CheckSimulationUsingPre</B>(
+  Mdl_Module_t * <b>implModule</b>, <i></i>
+  Sym_Info_t * <b>implSymInfo</b>, <i></i>
+  Mdl_Module_t * <b>specModule</b>, <i></i>
+  Sym_Info_t * <b>specSymInfo</b>, <i></i>
+  boolean  <b>verbose</b> <i></i>
+)
+</pre>
+<dd> Check if specModule is a simulates of implModule
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="refAllFile.html#refSym1.c"TARGET="ABSTRACT"><CODE>refSym1.c</CODE></A>
+
+<dt><pre>
+<A NAME="Ref_End"></A>
+int <I></I>
+<B>Ref_End</B>(
+  Tcl_Interp * <b>interp</b>, <i></i>
+  Main_Manager_t * <b>manager</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="refAllFile.html#ref.c"TARGET="ABSTRACT"><CODE>ref.c</CODE></A>
+
+<dt><pre>
+<A NAME="Ref_Init"></A>
+int <I></I>
+<B>Ref_Init</B>(
+  Tcl_Interp * <b>interp</b>, <i></i>
+  Main_Manager_t * <b>manager</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="refAllFile.html#ref.c"TARGET="ABSTRACT"><CODE>ref.c</CODE></A>
+
+<dt><pre>
+<A NAME="Ref_IsMemberOfAtomList"></A>
+boolean <I></I>
+<B>Ref_IsMemberOfAtomList</B>(
+  lsList  <b>atomList</b>, <i></i>
+  Atm_Atom_t * <b>atom</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> none
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="refAllFile.html#refUtil.c"TARGET="ABSTRACT"><CODE>refUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="Ref_IsMemberOfNameList"></A>
+boolean <I></I>
+<B>Ref_IsMemberOfNameList</B>(
+  lsList  <b>nameList</b>, <i></i>
+  char * <b>name</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> none
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="refAllFile.html#refUtil.c"TARGET="ABSTRACT"><CODE>refUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="Ref_LookupVarList"></A>
+Var_Variable_t * <I></I>
+<B>Ref_LookupVarList</B>(
+  lsList  <b>varList</b>, <i></i>
+  char * <b>name</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> none
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="refAllFile.html#refUtil.c"TARGET="ABSTRACT"><CODE>refUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="Ref_Reinit"></A>
+int <I></I>
+<B>Ref_Reinit</B>(
+  Tcl_Interp * <b>interp</b>, <i></i>
+  Main_Manager_t * <b>manager</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="refAllFile.html#ref.c"TARGET="ABSTRACT"><CODE>ref.c</CODE></A>
+
+<dt><pre>
+<A NAME="Ref_VariableReadControlAtom"></A>
+Atm_Atom_t * <I></I>
+<B>Ref_VariableReadControlAtom</B>(
+  Var_Variable_t * <b>var</b> <i></i>
+)
+</pre>
+<dd> Given a variable, get its controlling atom.
+                      This differs from Var_VariableReadControllingAtom
+		      in that it also works for array and bit-vector variables.
+		      In the case of arrays and bit-vectors (or arrays of bit vectors)
+		      the atom controlling the first element is returned.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Var_VariableReadControlAtom">Var_VariableReadControlAtom</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="refAllFile.html#ref.c"TARGET="ABSTRACT"><CODE>ref.c</CODE></A>
+
+
+</DL>
+<HR>
+Last updated on 1031104 18h39
+</BODY></HTML>

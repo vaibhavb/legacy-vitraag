@@ -1,0 +1,1060 @@
+<HTML>
+<HEAD><TITLE>The atm package</TITLE></HEAD>
+<BODY>
+
+<DL>
+<dt><pre>
+<A NAME="Atm_AssignEventAlloc"></A>
+Atm_Assign_t* <I></I>
+<B>Atm_AssignEventAlloc</B>(
+  Var_Variable_t* <b>var</b> <i></i>
+)
+</pre>
+<dd> The function allocates an event assignment.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Atm_AssignFree">Atm_AssignFree</a>
+</code>
+
+<dt><pre>
+<A NAME="Atm_AssignForallAlloc"></A>
+Atm_Assign_t* <I></I>
+<B>Atm_AssignForallAlloc</B>(
+  Var_Variable_t* <b>var</b>, <i></i>
+  Var_Variable_t * <b>indexVar</b>, <i></i>
+  Atm_Expr_t* <b>expr</b> <i></i>
+)
+</pre>
+<dd> The function allocates a forall assignment.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Atm_AssignFree">Atm_AssignFree</a>
+</code>
+
+<dt><pre>
+<A NAME="Atm_AssignFree"></A>
+void <I></I>
+<B>Atm_AssignFree</B>(
+  Atm_Assign_t* <b>assign</b> <i></i>
+)
+</pre>
+<dd> This function frees an assignment.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dt><pre>
+<A NAME="Atm_AssignIndexAlloc"></A>
+Atm_Assign_t* <I></I>
+<B>Atm_AssignIndexAlloc</B>(
+  Var_Variable_t* <b>var</b>, <i></i>
+  Atm_Expr_t * <b>indexExpr</b>, <i></i>
+  Atm_Expr_t* <b>expr</b> <i></i>
+)
+</pre>
+<dd> The function allocates an index assignment.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Atm_AssignFree">Atm_AssignFree</a>
+</code>
+
+<dt><pre>
+<A NAME="Atm_AssignReadExprAddress"></A>
+Atm_Expr_t ** <I></I>
+<B>Atm_AssignReadExprAddress</B>(
+  Atm_Assign_t * <b>assign</b> <i></i>
+)
+</pre>
+<dd> Returns the address of expr on the right hand side of assignment.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Atm_AssignReadType">Atm_AssignReadType</a>
+<a href="#Atm_AssignReadVariable">Atm_AssignReadVariable</a>
+</code>
+
+<dt><pre>
+<A NAME="Atm_AssignReadExpr"></A>
+Atm_Expr_t * <I></I>
+<B>Atm_AssignReadExpr</B>(
+  Atm_Assign_t * <b>assign</b> <i></i>
+)
+</pre>
+<dd> Returns the expr on the right hand side of assignment.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Atm_AssignReadType">Atm_AssignReadType</a>
+<a href="#Atm_AssignReadVariable">Atm_AssignReadVariable</a>
+</code>
+
+<dt><pre>
+<A NAME="Atm_AssignReadIndexExpr"></A>
+Atm_Expr_t* <I></I>
+<B>Atm_AssignReadIndexExpr</B>(
+  Atm_Assign_t * <b>assign</b> <i></i>
+)
+</pre>
+<dd> Returns the index expr of an index assignment.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Atm_AssignReadIndexVar">Atm_AssignReadIndexVar</a>
+</code>
+
+<dt><pre>
+<A NAME="Atm_AssignReadIndexVar"></A>
+Var_Variable_t* <I></I>
+<B>Atm_AssignReadIndexVar</B>(
+  Atm_Assign_t * <b>assign</b> <i></i>
+)
+</pre>
+<dd> Returns the index variable of a forall assignment.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Atm_AssignReadIndexExpr">Atm_AssignReadIndexExpr</a>
+</code>
+
+<dt><pre>
+<A NAME="Atm_AssignReadType"></A>
+Atm_AssignType <I></I>
+<B>Atm_AssignReadType</B>(
+  Atm_Assign_t * <b>assign</b> <i></i>
+)
+</pre>
+<dd> Returns the type of an assignment.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Atm_AssignReadVariable">Atm_AssignReadVariable</a>
+<a href="#Atm_AssignReadExpr">Atm_AssignReadExpr</a>
+</code>
+
+<dt><pre>
+<A NAME="Atm_AssignReadVariable"></A>
+Var_Variable_t* <I></I>
+<B>Atm_AssignReadVariable</B>(
+  Atm_Assign_t * <b>assign</b> <i></i>
+)
+</pre>
+<dd> Returns the variable on the left hand side of the
+                      assignment.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Atm_AssignReadType">Atm_AssignReadType</a>
+<a href="#Atm_AssignReadExpr">Atm_AssignReadExpr</a>
+</code>
+
+<dt><pre>
+<A NAME="Atm_AssignStdAlloc"></A>
+Atm_Assign_t* <I></I>
+<B>Atm_AssignStdAlloc</B>(
+  Var_Variable_t* <b>var</b>, <i></i>
+  Atm_Expr_t* <b>expr</b> <i></i>
+)
+</pre>
+<dd> The function allocates a standard assignment.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Atm_AssignFree">Atm_AssignFree</a>
+</code>
+
+<dt><pre>
+<A NAME="Atm_AtomAddAwaitVar"></A>
+void <I></I>
+<B>Atm_AtomAddAwaitVar</B>(
+  Atm_Atom_t * <b>atom</b>, <i></i>
+  Var_Variable_t* <b>var</b> <i></i>
+)
+</pre>
+<dd> [Add the given variable to the await variable list.
+              The variable now becomes a property of the atom.
+              The user should not free it
+<p>
+
+<dd> <b>Side Effects</b> awaitVarList is modified.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Atm_AtomReadAwaitVarList">Atm_AtomReadAwaitVarList</a>
+</code>
+
+<dt><pre>
+<A NAME="Atm_AtomAddControlVar"></A>
+void <I></I>
+<B>Atm_AtomAddControlVar</B>(
+  Atm_Atom_t * <b>atom</b>, <i></i>
+  Var_Variable_t* <b>var</b> <i></i>
+)
+</pre>
+<dd> [Add the given variable to the controlled variable list.
+              The variable now becomes a property of the atom.
+              The user should not free it
+<p>
+
+<dd> <b>Side Effects</b> ctrlVarList in atom is modified.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Atm_AtomReadControlVarList">Atm_AtomReadControlVarList</a>
+</code>
+
+<dt><pre>
+<A NAME="Atm_AtomAddInitCommandList"></A>
+void <I></I>
+<B>Atm_AtomAddInitCommandList</B>(
+  Atm_Atom_t * <b>atom</b>, <i></i>
+  lsList  <b>cmdlist</b> <i></i>
+)
+</pre>
+<dd> Add the given init command to the atom. If an init command list
+              is already present it is freed and cmdList is put in its place.
+<p>
+
+<dd> <b>Side Effects</b> The old init command list will be freed. The content of
+  the original init command list will not be freed.  The user should free
+  them before calling this function.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Atm_AtomReadInitCmdList">Atm_AtomReadInitCmdList</a>
+</code>
+
+<dt><pre>
+<A NAME="Atm_AtomAddReadVar"></A>
+void <I></I>
+<B>Atm_AtomAddReadVar</B>(
+  Atm_Atom_t * <b>atom</b>, <i></i>
+  Var_Variable_t* <b>var</b> <i></i>
+)
+</pre>
+<dd> [Add the given variable to the read variable list.
+              The variable now becomes a property of the atom.
+              The user should not free it
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Atm_AtomReadReadVarList">Atm_AtomReadReadVarList</a>
+</code>
+
+<dt><pre>
+<A NAME="Atm_AtomAddUpdateCommandList"></A>
+void <I></I>
+<B>Atm_AtomAddUpdateCommandList</B>(
+  Atm_Atom_t * <b>atom</b>, <i></i>
+  lsList  <b>cmdList</b> <i></i>
+)
+</pre>
+<dd> Add the given update command list to the atom.
+              The update command now becomes a property of the atom.
+              The user should not free it
+<p>
+
+<dd> <b>Side Effects</b> The old update command list will be freed. The content of
+  the original update command list will not be freed.  The user should free
+  them before calling this function.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Atm_AtomReadUpdateCmdList">Atm_AtomReadUpdateCmdList</a>
+</code>
+
+<dt><pre>
+<A NAME="Atm_AtomAddWaitCommandList"></A>
+void <I></I>
+<B>Atm_AtomAddWaitCommandList</B>(
+  Atm_Atom_t * <b>atom</b>, <i></i>
+  lsList  <b>cmdList</b> <i></i>
+)
+</pre>
+<dd> Add the given wait command list to the atom.
+              The wait command now becomes a property of the atom.
+              The user should not free it
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Atm_AtomReadWaitCmdList">Atm_AtomReadWaitCmdList</a>
+</code>
+
+<dt><pre>
+<A NAME="Atm_AtomAlloc"></A>
+Atm_Atom_t* <I></I>
+<B>Atm_AtomAlloc</B>(
+  char * <b>name</b> <i></i>
+)
+</pre>
+<dd> The function allocates an atom with the given name. name should
+  not be NULL. A copy of name is made. Hence, it is the caller's responsibility
+  to free name.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Atm_AtomFree">Atm_AtomFree</a>
+</code>
+
+<dt><pre>
+<A NAME="Atm_AtomChangeName"></A>
+void <I></I>
+<B>Atm_AtomChangeName</B>(
+  Atm_Atom_t * <b>atom</b>, <i></i>
+  char * <b>newname</b> <i></i>
+)
+</pre>
+<dd> This function changes the name of an atom. It is an
+  error to call this function with a NULL atom name.
+<p>
+
+<dd> <b>Side Effects</b> The old name will be freed automatically.
+<p>
+
+<dt><pre>
+<A NAME="Atm_AtomCounterReset"></A>
+void <I></I>
+<B>Atm_AtomCounterReset</B>(
+   <b></b> <i></i>
+)
+</pre>
+<dd> Reset the global atom counter.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Atm_AtomNewName">Atm_AtomNewName</a>
+</code>
+
+<dt><pre>
+<A NAME="Atm_AtomDup"></A>
+Atm_Atom_t * <I></I>
+<B>Atm_AtomDup</B>(
+  Atm_Atom_t * <b>atom</b>, <i></i>
+  char * <b>newAtmName</b>, <i></i>
+  st_table * <b>variableMappingTable</b> <i></i>
+)
+</pre>
+<dd> This function duplicates an atom, with a new atom name,
+  and put it in the atom table of the newModule.  This function assumes that
+  the newModule has been created, and that all the variables associated with
+  the atom (ie. controlled, read and awaited variables) are already present in
+  the newModule.  This function also updates the pointer from the variables to
+  the atoms. It is an error to call this function with an NULL
+  newAtmName, NULL atom or NULL newModule.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Var_VariableDup">Var_VariableDup</a>
+<a href="#Mdl_ModuleDup">Mdl_ModuleDup</a>
+<a href="#Mdl_ParComp">Mdl_ParComp</a>
+</code>
+
+<dt><pre>
+<A NAME="Atm_AtomFree"></A>
+void <I></I>
+<B>Atm_AtomFree</B>(
+  Atm_Atom_t * <b>atom</b> <i></i>
+)
+</pre>
+<dd> This function frees an atom.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Atm_AtomAlloc">Atm_AtomAlloc</a>
+</code>
+
+<dt><pre>
+<A NAME="Atm_AtomNewName"></A>
+char* <I></I>
+<B>Atm_AtomNewName</B>(
+   <b></b> <i></i>
+)
+</pre>
+<dd> The function controls a global variable which is a counter
+                      that counts the number of intermediate
+                      module generated.  The counter is also used to generate a
+		      name for the modules.  For example, if the counter
+		      counts 14, the generated module name will be ATM14.
+		      It should be used in conjuction with Mdl_NamePrefixWithString
+		      to prefix the module name before the atm name.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dt><pre>
+<A NAME="Atm_AtomObtainReadAwaitVarList"></A>
+lsList <I></I>
+<B>Atm_AtomObtainReadAwaitVarList</B>(
+  Atm_Atom_t * <b>atom</b> <i></i>
+)
+</pre>
+<dd> The function returns a list of variables that are both
+                      read and awaited by atom.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Atm_AtomReadReadVarList">Atm_AtomReadReadVarList</a>
+<a href="#Atm_AtomReadAwaitVarList">Atm_AtomReadAwaitVarList</a>
+</code>
+
+<dt><pre>
+<A NAME="Atm_AtomObtainReadOrAwaitVarList"></A>
+lsList <I></I>
+<B>Atm_AtomObtainReadOrAwaitVarList</B>(
+  Atm_Atom_t * <b>atom</b> <i></i>
+)
+</pre>
+<dd> The function returns a list of variables that are both
+                      read and awaited by atom.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Atm_AtomReadReadVarList">Atm_AtomReadReadVarList</a>
+<a href="#Atm_AtomReadAwaitVarList">Atm_AtomReadAwaitVarList</a>
+</code>
+
+<dt><pre>
+<A NAME="Atm_AtomReadAtomType"></A>
+Atm_AtomType <I></I>
+<B>Atm_AtomReadAtomType</B>(
+  Atm_Atom_t* <b>atom</b> <i></i>
+)
+</pre>
+<dd> The function returns the atom type for the atom
+                      (Atm_Event_c, Atm_Lazy_c, Atm_Normal_c).
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dt><pre>
+<A NAME="Atm_AtomReadAwaitVarList"></A>
+lsList <I></I>
+<B>Atm_AtomReadAwaitVarList</B>(
+  Atm_Atom_t * <b>atom</b> <i></i>
+)
+</pre>
+<dd> Returns the list of await variables for the atom.
+               The user should not free or modfy this list in any
+               way
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Atm_AtomAddAwaitVar">Atm_AtomAddAwaitVar</a>
+</code>
+
+<dt><pre>
+<A NAME="Atm_AtomReadControlVarList"></A>
+lsList <I></I>
+<B>Atm_AtomReadControlVarList</B>(
+  Atm_Atom_t * <b>atom</b> <i></i>
+)
+</pre>
+<dd> Returns the list of control variables for the atom.
+               The user should not free or modfy this list in any
+               way
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Atm_AtomAddControlVar">Atm_AtomAddControlVar</a>
+</code>
+
+<dt><pre>
+<A NAME="Atm_AtomReadDefaultInitCommand"></A>
+Atm_Cmd_t * <I></I>
+<B>Atm_AtomReadDefaultInitCommand</B>(
+  Atm_Atom_t * <b>atom</b> <i></i>
+)
+</pre>
+<dd> Returns the default init guarded command of the atom.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Atm_AtomReadDefaultUpdateCommand">Atm_AtomReadDefaultUpdateCommand</a>
+</code>
+
+<dt><pre>
+<A NAME="Atm_AtomReadDefaultUpdateCommand"></A>
+Atm_Cmd_t * <I></I>
+<B>Atm_AtomReadDefaultUpdateCommand</B>(
+  Atm_Atom_t * <b>atom</b> <i></i>
+)
+</pre>
+<dd> Returns the default update guarded command of the atom.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Atm_AtomReadDefaultInitCommand">Atm_AtomReadDefaultInitCommand</a>
+</code>
+
+<dt><pre>
+<A NAME="Atm_AtomReadInitCommandList"></A>
+lsList <I></I>
+<B>Atm_AtomReadInitCommandList</B>(
+  Atm_Atom_t * <b>atom</b> <i></i>
+)
+</pre>
+<dd> Returns the list of init commands for the atom.
+               The user should not free or modfy this list in any
+               way.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Atm_AtomAddInitCommand">Atm_AtomAddInitCommand</a>
+</code>
+
+<dt><pre>
+<A NAME="Atm_AtomReadName"></A>
+char* <I></I>
+<B>Atm_AtomReadName</B>(
+  Atm_Atom_t* <b>atom</b> <i></i>
+)
+</pre>
+<dd> Returns a copy of the name of the given atom. The user
+                      should not free the returned string.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dt><pre>
+<A NAME="Atm_AtomReadPostorder"></A>
+int <I></I>
+<B>Atm_AtomReadPostorder</B>(
+  Atm_Atom_t* <b>atom</b> <i></i>
+)
+</pre>
+<dd> This function returns the preorder of an given atom.
+                      The first atom in the preordering is 0.  By default,
+		      every atom has a preorder value -1.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Atm_AtomReadPreorder">Atm_AtomReadPreorder</a>
+<a href="#Atm_AtomSetPreorder">Atm_AtomSetPreorder</a>
+<a href="#Atm_AtomSetPostorder">Atm_AtomSetPostorder</a>
+</code>
+
+<dt><pre>
+<A NAME="Atm_AtomReadPreorder"></A>
+int <I></I>
+<B>Atm_AtomReadPreorder</B>(
+  Atm_Atom_t* <b>atom</b> <i></i>
+)
+</pre>
+<dd> This function returns the preorder of an given atom.
+                      The first atom in the preordering is 0.  By default,
+		      every atom has a preorder value -1.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Atm_AtomReadPostorder">Atm_AtomReadPostorder</a>
+<a href="#Atm_AtomSetPreorder">Atm_AtomSetPreorder</a>
+<a href="#Atm_AtomSetPostorder">Atm_AtomSetPostorder</a>
+</code>
+
+<dt><pre>
+<A NAME="Atm_AtomReadReadVarList"></A>
+lsList <I></I>
+<B>Atm_AtomReadReadVarList</B>(
+  Atm_Atom_t * <b>atom</b> <i></i>
+)
+</pre>
+<dd> Returns the list of read variables for the atom.
+               The user should not free or modfy this list in any
+               way
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Atm_AtomAddReadVar">Atm_AtomAddReadVar</a>
+</code>
+
+<dt><pre>
+<A NAME="Atm_AtomReadUpdateCommandList"></A>
+lsList <I></I>
+<B>Atm_AtomReadUpdateCommandList</B>(
+  Atm_Atom_t * <b>atom</b> <i></i>
+)
+</pre>
+<dd> Returns the list of update commands for the atom.
+               The user should not free or modfy this list in any
+               way.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Atm_AtomAddUpdateCommand">Atm_AtomAddUpdateCommand</a>
+</code>
+
+<dt><pre>
+<A NAME="Atm_AtomReadWaitCommandList"></A>
+lsList <I></I>
+<B>Atm_AtomReadWaitCommandList</B>(
+  Atm_Atom_t * <b>atom</b> <i></i>
+)
+</pre>
+<dd> Returns the list of wait commands for the atom.
+               The user should not free or modfy this list in any
+               way
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Atm_AtomAddWaitCommandList">Atm_AtomAddWaitCommandList</a>
+</code>
+
+<dt><pre>
+<A NAME="Atm_AtomSetAtomType"></A>
+void <I></I>
+<B>Atm_AtomSetAtomType</B>(
+  Atm_Atom_t* <b>atom</b>, <i></i>
+  Atm_AtomType  <b>t</b> <i></i>
+)
+</pre>
+<dd> Given a pointer to an atom_atom_t, an integer indicating
+                      the type of the atom (0 for unspecified, 1 for event atom,
+		      and 2 for lazy atom), the functions sets the the
+		      atomtype field.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dt><pre>
+<A NAME="Atm_AtomSetDefaultInitCommand"></A>
+void <I></I>
+<B>Atm_AtomSetDefaultInitCommand</B>(
+  Atm_Atom_t * <b>atom</b>, <i></i>
+  Atm_Cmd_t * <b>cmd</b> <i></i>
+)
+</pre>
+<dd> This function sets the default init command of atom.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Atm_AtomSetDefaultUpdateCommand">Atm_AtomSetDefaultUpdateCommand</a>
+</code>
+
+<dt><pre>
+<A NAME="Atm_AtomSetDefaultUpdateCommand"></A>
+void <I></I>
+<B>Atm_AtomSetDefaultUpdateCommand</B>(
+  Atm_Atom_t * <b>atom</b>, <i></i>
+  Atm_Cmd_t * <b>cmd</b> <i></i>
+)
+</pre>
+<dd> This function sets the default update command of atom.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Atm_AtomSetDefaultInitCommand">Atm_AtomSetDefaultInitCommand</a>
+</code>
+
+<dt><pre>
+<A NAME="Atm_AtomSetPostorder"></A>
+void <I></I>
+<B>Atm_AtomSetPostorder</B>(
+  Atm_Atom_t* <b>atom</b>, <i></i>
+  int  <b>postorder</b> <i></i>
+)
+</pre>
+<dd> This function sets the preorder of an given atom.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Atm_AtomReadPostorder">Atm_AtomReadPostorder</a>
+<a href="#Atm_AtomSetPreorder">Atm_AtomSetPreorder</a>
+<a href="#Atm_AtomReadPreorder">Atm_AtomReadPreorder</a>
+</code>
+
+<dt><pre>
+<A NAME="Atm_AtomSetPreorder"></A>
+void <I></I>
+<B>Atm_AtomSetPreorder</B>(
+  Atm_Atom_t* <b>atom</b>, <i></i>
+  int  <b>preorder</b> <i></i>
+)
+</pre>
+<dd> This function sets the preorder of an given atom.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Atm_AtomReadPostorder">Atm_AtomReadPostorder</a>
+<a href="#Atm_AtomReadPreorder">Atm_AtomReadPreorder</a>
+<a href="#Atm_AtomSetPostorder">Atm_AtomSetPostorder</a>
+</code>
+
+<dt><pre>
+<A NAME="Atm_CmdAlloc"></A>
+Atm_Cmd_t* <I></I>
+<B>Atm_CmdAlloc</B>(
+  Atm_Expr_t* <b>guard</b>, <i></i>
+  lsList  <b>assignList</b> <i></i>
+)
+</pre>
+<dd> Given a guard and a list of assigments, the routine
+                      returns a pointer to a new guarded command.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Atm_CmdFree">Atm_CmdFree</a>
+</code>
+
+<dt><pre>
+<A NAME="Atm_CmdFree"></A>
+void <I></I>
+<B>Atm_CmdFree</B>(
+  Atm_Cmd_t* <b>cmd</b> <i></i>
+)
+</pre>
+<dd> The function frees a guarded command.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dt><pre>
+<A NAME="Atm_CmdReadAssignList"></A>
+lsList <I></I>
+<B>Atm_CmdReadAssignList</B>(
+  Atm_Cmd_t * <b>command</b> <i></i>
+)
+</pre>
+<dd> The function returns the list of assignments of a guarded
+  command.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Atm_CmdReadGuard">Atm_CmdReadGuard</a>
+</code>
+
+<dt><pre>
+<A NAME="Atm_CmdReadGuard"></A>
+Atm_Expr_t * <I></I>
+<B>Atm_CmdReadGuard</B>(
+  Atm_Cmd_t * <b>command</b> <i></i>
+)
+</pre>
+<dd> This function returns the guard expression of a guarded
+  command.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Atm_CmdReadAssignList">Atm_CmdReadAssignList</a>
+</code>
+
+<dt><pre>
+<A NAME="Atm_End"></A>
+int <I></I>
+<B>Atm_End</B>(
+  Tcl_Interp * <b>interp</b>, <i></i>
+  Main_Manager_t * <b>manager</b> <i></i>
+)
+</pre>
+<dd> Ends the atm package.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dt><pre>
+<A NAME="Atm_ExprAlloc"></A>
+Atm_Expr_t* <I></I>
+<B>Atm_ExprAlloc</B>(
+  Atm_ExprType  <b>exprtype</b>, <i></i>
+  Atm_Expr_t* <b>leftchild</b>, <i></i>
+  Atm_Expr_t* <b>rightchild</b> <i></i>
+)
+</pre>
+<dd> This routine returns a pointer to a new Atm_Expr_t tree,
+                      which is built from the two child expressions,
+		      leftchild and rightchild.  The expr_type is set to the
+		      desired type.  It retuns NIL(Atm_Expr_t) if fails. It is 
+		      the user's responsibility to free the tree after use.
+		      Note that the following expr_type only has one child.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Atm_ExprFreeExpression">Atm_ExprFreeExpression</a>
+</code>
+
+<dt><pre>
+<A NAME="Atm_ExprFreeExpression"></A>
+void <I></I>
+<B>Atm_ExprFreeExpression</B>(
+  Atm_Expr_t* <b>expr</b> <i></i>
+)
+</pre>
+<dd> This function frees an expression recursively.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dt><pre>
+<A NAME="Atm_ExprPrintExpression"></A>
+void <I></I>
+<B>Atm_ExprPrintExpression</B>(
+  Atm_Expr_t* <b>expr</b> <i></i>
+)
+</pre>
+<dd> This function prints the given expression in infix
+                      notation.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Atm_ExprTypeConvertToString">Atm_ExprTypeConvertToString</a>
+</code>
+
+<dt><pre>
+<A NAME="Atm_ExprReadLeftChild"></A>
+Atm_Expr_t * <I></I>
+<B>Atm_ExprReadLeftChild</B>(
+  Atm_Expr_t * <b>expr</b> <i></i>
+)
+</pre>
+<dd> Reads the left child of an expression.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Atm_ExprReadRightChild">Atm_ExprReadRightChild</a>
+</code>
+
+<dt><pre>
+<A NAME="Atm_ExprReadRightChild"></A>
+Atm_Expr_t * <I></I>
+<B>Atm_ExprReadRightChild</B>(
+  Atm_Expr_t * <b>expr</b> <i></i>
+)
+</pre>
+<dd> Reads the right child of an expression.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Atm_ExprReadLeftChild">Atm_ExprReadLeftChild</a>
+</code>
+
+<dt><pre>
+<A NAME="Atm_ExprReadType"></A>
+Atm_ExprType <I></I>
+<B>Atm_ExprReadType</B>(
+  Atm_Expr_t * <b>expr</b> <i></i>
+)
+</pre>
+<dd> Returns the type of an expression.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dt><pre>
+<A NAME="Atm_ExprSubstituteConstantForDummyVar"></A>
+Atm_Expr_t * <I></I>
+<B>Atm_ExprSubstituteConstantForDummyVar</B>(
+  Atm_Expr_t * <b>e</b>, <i></i>
+  Var_Variable_t * <b>var</b>, <i></i>
+  int  <b>c</b>, <i></i>
+  boolean  <b>isEnum</b> <i></i>
+)
+</pre>
+<dd> This function is useful for manipulating forall
+  assignments. It substitutes a constant c for the dummy variable var everywhere
+  in the expression on the right hand side of the assignment. The function
+  returns the new expression.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dt><pre>
+<A NAME="Atm_ExprTypeConvertToString"></A>
+char* <I></I>
+<B>Atm_ExprTypeConvertToString</B>(
+  Atm_ExprType  <b>type</b> <i></i>
+)
+</pre>
+<dd> This function returns a string containing the operator
+  corresponding to an expression type.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Atm_ExprPrintExpression">Atm_ExprPrintExpression</a>
+</code>
+
+<dt><pre>
+<A NAME="Atm_Init"></A>
+int <I></I>
+<B>Atm_Init</B>(
+  Tcl_Interp * <b>interp</b>, <i></i>
+  Main_Manager_t * <b>manager</b> <i></i>
+)
+</pre>
+<dd> Initializes the atm package.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dt><pre>
+<A NAME="Atm_NumConstExprConvertToBitvectorConstExpr"></A>
+void <I></I>
+<B>Atm_NumConstExprConvertToBitvectorConstExpr</B>(
+  Atm_Expr_t * <b>expr</b>, <i></i>
+  int  <b>numBits</b> <i></i>
+)
+</pre>
+<dd> The function expects the argument expression to have all
+  its children of type Atm_IfThenElseFi_c or Atm_NumConst_c. It modifies the
+  leaf Atm_NumConst_c expression to a bitvector with numBits which when
+  interpreted as an integer has value equal to the value of the numerical
+  constant in the old expression.
+<p>
+
+<dd> <b>Side Effects</b> expr is modified.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Atm_NumConstExprConvertToRangeConstExpr">Atm_NumConstExprConvertToRangeConstExpr</a>
+</code>
+
+<dt><pre>
+<A NAME="Atm_ReinitTypeCheck"></A>
+void <I></I>
+<B>Atm_ReinitTypeCheck</B>(
+  Var_TypeManager_t* <b>typeManager</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<dt><pre>
+<A NAME="Atm_Reinit"></A>
+int <I></I>
+<B>Atm_Reinit</B>(
+  Tcl_Interp * <b>interp</b>, <i></i>
+  Main_Manager_t * <b>manager</b> <i></i>
+)
+</pre>
+<dd> Reinitializes the atm package.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dt><pre>
+<A NAME="Atm_TypeCheckNew"></A>
+boolean <I></I>
+<B>Atm_TypeCheckNew</B>(
+  Var_Type_t * <b>type</b>, <i></i>
+  Atm_Expr_t ** <b>expr</b> <i></i>
+)
+</pre>
+<dd> Given a type "type" and an atmExpr_t * "expr", this function
+                      checks if "type" is contained in the allowable types of "expr".
+		      In general an expression may allow multiple types. For example,
+		      the number constant "1" may be interpreted as a range constant,
+		      an integer, a nat or the boolean constant "true".
+
+		      Upon success typechecking, the routine does the following 
+		      two things in order: 1. It resolve the types of expression.
+		      In the previous example, it may turn the node "1" into a 
+		      boolean constant node "true". 2. It then simplifies the
+		      expression by evaluating the sub-expression containing
+		      only constants. For example, the sub-expression "true | false", 
+		      will be evaluted to "true".
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+
+</DL>
+<HR>
+Last updated on 1031104 18h39
+</BODY></HTML>

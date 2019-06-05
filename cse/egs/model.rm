@@ -1,0 +1,22 @@
+\begin{minipage}[t]{2in} 
+\scriptsize
+\begin{verbatim}
+module a_ControlLogic
+ external 
+    PresentSignal: (0..1) ;
+    Button: (0..1) 
+ interface 
+    NextSignal: (0..1) 
+ 
+ atom 
+   controls  NextSignal 
+   awaits  PresentSignal , Button 
+     init update 
+     []  PresentSignal' = 1  & \
+     Button' = 1  -> NextSignal':= 0  
+     [] default -> NextSignal':=1  
+ endatom 
+ endmodule
+ ControlLogic:= a_ControlLogic
+\end{verbatim}
+\end{minipage}

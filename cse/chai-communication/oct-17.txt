@@ -1,0 +1,24 @@
+hi Luca,
+
+I have checked the draft of the thesis in the CVS as:
+/projects/bubble/cvs/chai-thesis
+
+Currently it is the skeleton of the thesis as we discussed in the last meeting.
+
+All the earlier chai related web-pages are in:
+/projects/bubble/dvlab/p/vaibhav/
+
+The mv2rm documentaion is in:
+/projects/bubble/dvlab/p/chai/
+
+Lets keep the "chai-thesis cvs" as the communication point. The chapters are:
+* Introduction                   ~ 1 page(s)
+* Interfaces                     ~ 2
+* The Starting Point- Mocha       ~ 5
+* Chai                           ~ 15
+* Interfaces for hardware design ~ 10
+
+I'm writing the chapter interfaces right now. I have few questions on it which i delve in next email.
+
+regards,
+vaibhav 

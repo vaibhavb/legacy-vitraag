@@ -1,0 +1,14 @@
+
+  sym_print - print the given region
+     _________________________________________________________________
+   
+   sym_print [-h] <region_name>
+   
+   The command prints the given region. The region is specified by a name
+   assigned to it previously by mocha. Command Options:
+   
+   -h
+          print usage
+     _________________________________________________________________
+   
+   Last updated on 980624 22h11

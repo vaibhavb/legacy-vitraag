@@ -1,0 +1,362 @@
+\chapter{Grammar for Reactive Modules}
+\label{chap:grammar}
+The following is the grammar for Reactive Modules in BNF. Keywords are 
+in typewriter fonts. Symbols including {\it 
+integer-constant, 
+event-identifier,
+enum-type-identifier, 
+range-type-identifier,
+array-type-identifier,
+bitvector-type-identifier,
+module-identifier,
+atom-identifier,
+dummy-var-identifier,
+array-or-bitvector-identifier
+} are undefined terminal symbols.
+
+\begin{tab}
+\begin{tabbing}
+
+%setting the tab position
+==== \= ==== \= \kill
+
+program : definitions \\
+
+definitions  \\
+\>: definition \\
+\>$|$ definitions definition \\
+\>; \\
+
+/* A definition is either a type definition or a module definition */ \\
+
+definition  \\
+\> : type-definition \\
+\> $|$ module-definition \\
+\> ; \\
+
+/* definition of type starts here */ \\
+type-definition  \\
+\>: \TYPEDEF \ENUMID \COLON enum-const-list \\
+\>$|$ \TYPEDEF \RANGEID \COLON range-declarator \\
+\>$|$ \TYPEDEF \ARRAYID \COLON \ARRAY array-index-type \OF array-entry-type \\
+\>$|$ \TYPEDEF \BITVECID \COLON \BITVECTOR int-const \\
+\>; \\
+
+enum-const-list  \\
+\>: \LBRACE identifier-list \RBRACE \\
+\>; \\
+
+range-declarator : \LPARA{\tt 0..}int-const\RPARA; \\
+
+array-entry-type \\
+\>:   finite-type \\
+\>$|$ infinite-type \\
+\>$|$ \ENUMID \\
+\>$|$ \RANGEID \\
+\>$|$ \BITVECID \\
+\>;\\
+
+array-index-type \\
+\>:   finite-type \\
+\>$|$ \ENUMID \\
+\>$|$ \RANGEID \\
+\>$|$ \BITVECID \\
+\>;\\
+
+finite-type \\
+\>: \BOOL \\
+\>$|$ enum-const-list \\
+\>$|$ range-declaraton \\
+\>;\\
+
+infinite-type \\
+\>: \INT \\
+\>$|$ \NAT \\
+\>;\\
+
+all-type \\
+\>$|$ \EVENT \\
+\>$|$ finite-type \\
+\>$|$ infinite-type \\
+\>$|$ \ENUMID \\
+\>$|$ \BITVECID \\
+\>$|$ \ARRAYID \\
+\>$|$ \RANGEID \\
+\>;\\
+
+
+
+/* Module definition starts here */ \\
+
+module-definition \\
+\>: \TTMODULE \MODULEID ctlvars-definition atoms-def \ENDMODULE \\
+\>$|$ \MODULEID \ASSIGN module-expression \\
+\>; \\
+
+ctlvars-definition \\
+\>: ctlvar-def \\
+\>$|$ ctlvars-definition ctlvar-def \\
+\>; \\
+
+ctlvar-def \\
+\>: ctlvar-keyword  declarations \\
+
+ctlvar-keyword \\
+\>: \PRIVATE \\
+\>$|$ \INTERFACE \\
+\>$|$ \EXTERNAL \\
+\>; \\
+
+atoms-def \\
+\>: atom-def \\
+\>$|$ atoms-def atom-def \\
+
+declarations \\
+\>: declaration \\
+\>$|$ declarations \SEMICOLON declaration \\
+\>; \\
+
+declaration \\
+\>: identifier-list \COLON all-type \\
+\>; \\
+
+/* definition of Atom starts here */ \\
+
+atom-def \\
+\>: atom-keyword \TTATOM atom-header actions-definition \ENDATOM \\
+\>$|$ atom-keyword \TTATOM \ATOMID atom-header actions-definition
+\ENDATOM \\
+\>; \\
+
+atom-header \\
+\>: \TTCONTROLS var-identifier-list optional-reads optional-awaits \\
+\>; \\
+
+atom-keyword \\
+\>: /* no keyword */  \\
+\>$|$ \TTLAZY \\
+\>$|$ \EVENT \\
+\>; \\
+
+optional-reads \\
+\>: /* no read variables */ \\
+\>$|$ \TTREADS var-identifier-list \\
+\>; \\
+
+optional-awaits \\
+\>: /* no await variablbes */ \\
+\>$|$ \TTAWAITS var-identifier-list \\
+\>; \\
+
+actions-definition \\
+\>: \TTINIT guarded-commands \TTUPDATE guarded-commands \\
+\>$|$ \TTINIT \TTUPDATE guarded-commands \\
+\>$|$ \TTUPDATE guarded-commands \\
+\>; \\
+
+/* module expressions */ \\
+
+module-expression \\
+\>: \MODULEID \\
+\>$|$ \LPARA module-expression \RPARA \\
+\>$|$ \TTHIDE identifier-list \TTIN module-expression \ENDHIDE \\
+\>$|$ module-expression variable-rename \\
+\>$|$ module-expression \PAR module-expression  \\
+\>; \\
+
+variable-rename  \\
+\>: \LSQBRAC renames \RSQBRAC \\
+\>; \\
+
+renames \\
+\>: var-identifier \ASSIGN var-identifier \\
+\>$|$ var-identifier \COMA renames \COMA var-identifier \\
+\>; \\
+
+identifier-list \\
+\>: \IDENTIFIER \\
+\>$|$ identifier-list \COMA \IDENTIFIER \\
+\>; \\
+
+var-identifier-list \\
+\>: var-identifier  \\
+\>$|$ var-identifier-list \COMA var-identifier \\
+\>; \\
+  
+/* The following are the definitions the guarded commands */ \\
+
+guarded-commands \\
+\>: guarded-command \\
+\>$|$ guarded-commands guarded-command \\
+\>;  \\
+
+guarded-command \\
+\>: \CHOICE bool-exp \ARROW commands \\
+\>$|$ \CHOICE \TTDEFAULT \ARROW commands \\
+\>; \\
+
+
+commands \\
+\>: /* no command */ \\
+\>$|$ command \\
+\>$|$ commands \SEMICOLON command \\
+\>; \\
+\> \\
+
+command \\
+\>: \FORALL \DUMMYID \ARRAYORBITVECID\LSQBRAC\DUMMYID\RSQBRAC \\
+\>\> \ASSIGN exp-or-nondet  \\
+\>$|$ var-identifier \ASSIGN exp-or-nondet \\
+\>$|$ \EVENTSEND \\
+\>; \\
+
+exp-or-nondet \\
+\>: \TTNONDET  \\
+\>$|$ exp \\
+\>; \\
+
+
+exp
+\>: bool-or-enum-or-range-exp  \\
+\>$|$ int-exp \\
+\>$|$ nat-exp  \\
+\>$|$ bitvector-exp  \\
+\>; \\
+
+
+bool-or-enum-or-range-exp \\
+\>: bool-exp  \\
+\>$|$ enum-exp \\
+\>$|$ range-exp  \\
+\>; \\
+
+int-exp \\
+\>$:$ \NATNUM  \\
+\>$|$ var-identifier \\
+\>$|$ \ARRAYORBITVECID\LSQBRAC bool-or-enum-or-range-exp \RSQBRAC  \\
+\>$|$ \LPARA int-exp \RPARA \\
+\>$|$ int-exp \PLUS int-exp \\
+\>$|$ int-exp \MINUS int-exp \\
+\>$|$ \MINUS int-exp \\
+\>$|$ \IF bool-exp \THEN int-exp \ELSE int-exp \FI \\
+\>; \\
+
+
+nat-exp \\
+\>: \NATNUM  \\
+\>$|$ var-identifier \\
+\>$|$ \ARRAYORBITVECID\LSQBRAC bool-or-enum-or-range-exp \RSQBRAC \\
+\>$|$ \LPARA nat-exp \RPARA \\
+\>$|$ nat-exp \PLUS nat-exp \\
+\>$|$ \IF bool-exp \THEN nat-exp \ELSE nat-exp \FI \\
+\>; \\
+
+range-exp \\
+\>: \NATNUM  \\
+\>$|$ var-identifier \\
+\>$|$ \ARRAYORBITVECID\LSQBRAC bool-or-enum-or-range-exp \RSQBRAC \\
+\>$|$ \LPARA range-exp \RPARA \\
+\>$|$ range-exp \PLUS range-exp \\
+\>$|$ range-exp \MINUS range-exp \\
+\>$|$ \MINUS range-exp \\
+\>$|$ \IF bool-exp \THEN range-exp \ELSE range-exp \FI \\
+\>; \\
+
+
+bool-exp \\
+\>: {\tt true} \\
+\>$|$ {\tt false} \\
+\>$|$ var-identifier \\
+\>$|$ \ARRAYORBITVECID \LSQBRAC bool-or-enum-or-range-exp \RSQBRAC \\
+\>$|$ \EVENTQUERY  \\
+\>$|$ \LPARA bool-exp \RPARA \\
+\>$|$ bool-exp \AMPERSAND bool-exp \\
+\>$|$ bool-exp \VERTBAR bool-exp \\
+\>$|$ bool-exp \IMPLY bool-exp \\
+\>$|$ bool-exp \EQUIV bool-exp \\
+\>$|$ bool-exp \EQ bool-exp \\
+\>$|$ \TILDE bool-exp \\
+\>$|$ int-comparison \\
+\>$|$ nat-comparison \\
+\>$|$ enum-comparison \\
+\>$|$ range-comparison \\
+\>; \\
+
+bitvector-exp \\
+\>: var-identifier \\
+\>$|$ \ARRAYORBITVECID \LSQBRAC bool-or-enum-or-range-exp \RSQBRAC \\
+\>$|$ \LPARA bitvector-exp \RPARA \\
+\>$|$ bitvector-exp \AMPERSAND bitvector-exp \\
+\>$|$ bitvector-exp \VERTBAR bitvector-exp \\
+\>$|$ bitvector-exp \IMPLY  bitvector-exp \\
+\>$|$ bitvector-exp \EQUIV  bitvector-exp \\
+\>$|$ bitvector-exp \EQ bitvector-exp \\
+\>$|$ \TILDE bitvector-exp \\
+\>; \\
+
+
+int-comparison \\
+\>: int-exp \GT int-exp \\
+\>$|$ int-exp \LT int-exp \\
+\>$|$ int-exp \GE int-exp \\
+\>$|$ int-exp \LE int-exp \\
+\>$|$ int-exp \EQ int-exp \\
+\>; \\
+
+
+nat-comparison \\
+\>: nat-exp \GT nat-exp \\
+\>$|$ nat-exp \LT nat-exp \\
+\>$|$ nat-exp \GE nat-exp \\
+\>$|$ nat-exp \LE nat-exp \\
+\>$|$ nat-exp \EQ nat-exp \\
+\>; \\
+
+enum-comparions\\
+\>: enum-exp \EQ enum-exp \\
+\>; \\
+
+
+range-comparison\\
+\>: range-exp \GT range-exp \\
+\>$|$ range-exp \LT range-exp \\
+\>$|$ range-exp \GE range-exp \\
+\>$|$ range-exp \LE range-exp \\
+\>$|$ range-exp \EQ range-exp \\
+\>; \\
+
+int-const \\
+\>: \NATNUM \\
+\>$|$ int-const \MINUS int-const \\
+\>$|$ int-const \PLUS int-const \\
+\>$|$ int-const \STAR int-const \\
+\>$|$ int-const \SLASH int-const \\
+\>$|$ int-const \PERCENT int-const \\
+\>$|$ \LPARA int-const \RPARA \\
+\>;\\
+
+
+var-identifier \\
+\>: index-identifier \\
+\>$|$ \IDENTIFIER  \\
+\>; \\
+
+
+index-identifier \\
+\>: \ARRAYORBITVECID\LSQBRAC \IDENTIFIER \RSQBRAC \\
+\>$|$ \ARRAYORBITVECID\LSQBRAC \NATNUM \RSQBRAC \\
+\>;  \\
+
+\end{tabbing}
+\end{tab}
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,30 @@
+\begin{minipage}[t]{2in}
+\scriptsize
+\begin{verbatim}
+iovals:
+      TokVar iovals
+  | TokVar
+;
+body:
+   table body
+  | subckt body
+  | mv  body
+  | reset  body
+  | latch body
+  |
+;
+table:
+      TokTable tabvars \
+      TokEOL relations
+
+;
+mv:
+      TokMV mvvars TokVal \
+      values TokEOL
+;
+mvvars:
+      TokVar COMMA mvvars
+  | TokVar
+;
+\end{verbatim}
+\end{minipage}

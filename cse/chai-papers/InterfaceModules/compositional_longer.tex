@@ -1,0 +1,156 @@
+\section{Compositional Verification} 
+
+The goal of compositional methods is to prove that an implementation
+satisfies a specification by reasoning separately on the various
+components of the implementation. 
+When the components $\mp$ and $\mq$ of a design are implemented as
+$\mp'$ and $\mq'$, to prove the correctness of the implementation it
+is necessary to prove the refinement $(\mp' \| \mq) \refi (\mp \| \mq)$.
+The simplest approach to proving this refinement consists in proving
+separately that $\mp' \refi \mp$ and $\mq' \refi \mq$. 
+Unfortunately, this approach seldom works: usually, the
+implementation $\mp'$ refines the specification $\mp$ only 
+when it receives suitable inputs from an 
+appropriate environment such as, hopefully, $\mq'$;
+similarly for $\mq'$ and $\mq$. 
+Various improvements to this basic rule have been proposed, based on
+the idea of using an environment $\env_{\mp'}$ to restrict the inputs
+to $\mp'$, and proving $\mp' \| \env_{\mp'} \refi \mp$ (and
+symmetrically for $\mq'$). 
+For instance, the following two rules have been proposed: 
+\[
+  \frac{\mp' \| \mq \refi \mp; \hspace{1em} \mq' \| \mp \refi \mq}{%
+	\mp' \| \mq' \refi \mp \| \mq} \hspace{1em} (\mbox{\rm AG-SPEC})
+  \hspace{3em} 
+  \frac{\mp' \| \env_{\mp'} \refi \mp; \hspace{1em} 
+	\mq' \| \env_{\mq'} \refi \mq}{%
+	\mp' \| \mq' \refi \mp \| \mq} \hspace{1em} (\mbox{\rm AG-IMPL})
+\]
+In Rule~(AG-SPEC), the environment for $\mp'$ is the specification
+$\mq$ \cite{RM96journal,FMCAD98}; 
+in Rule~(AG-IMPL), the environment $\env_{\mp'}$ for $\mp'$ describes 
+$\mq'$ and is either provided by the user, or is obtained 
+with approximate automatic methods \cite{concur99freddy}. 
+Since interfaces can represent input restrictions directly, instead of
+providing an environment $\env_{\mp'}$ for $\mp'$, we can restrict the
+input assumptions of $\mp'$ to reflect the inputs that can occur in
+its actual environment $\mq'$. 
+Given two compatible interfaces $\mp'$ and $\mq'$, we call the 
+{\em adaptation of $\mp'$ to the environment $\mq'$\/}
+%(denoted $\adapt{\mp'}{\mq'}$) 
+a strenghening of the input assumptions of $\mp'$ that reflects the
+inputs that $\mp'$ can receive from $\mq'$ in $\mp'\|\mq'$. 
+
+\begin{defi}{(adaptation to environment)}
+\label{def-adapt} 
+Given two compatible interfaces $\mp$ and $\mq$, an 
+{\em adaptation of $\mp$ to $\mq$\/} is any interface 
+$\wh{\mp}$ that differs from $\mp$ only for the input assumptions, and
+such that
+(i)~$\mp \refi \wh{\mp}$, 
+(ii)~$\wh{\mp} \compat \mq$ iff $\mp \compat \mp$, 
+and (iii)~if $\mp \compat \mq$, then for all interfaces $\mr$,  
+we have that 
+$(\wh{\mp} \| \mq) \compat\mr$ iff $(\mp\|\mq)\compat\mr$.
+\end{defi}
+
+\noindent
+Condition~(i) ensures that the input invariants of $\wh{\mp}$
+do not weaken those of $\mp$.
+Conditions~(ii) and~(iii) together require that $\mp\|\mq\|\mr$ is
+defined iff $\wh{\mp}\|\mq\|\mr$ is defined: hence, the input
+strengthening cannot rule out any input that $\mp$ will receive when
+in the environment of $\mq$. 
+There are several ways of adapting an interface $\mp$ to its
+environment $\mq$. 
+The following proposition describes a method for Moore interfaces that
+is informed by the technique of \cite{concur99freddy} for the
+automated construction of environments.
+Given a set $\vars$ of variables, a predicate $\init$ on $\vars$, 
+and a predicate $\trans$ on $\vars \union \vars'$, 
+define $\reach(\vars,\init,\trans)$ to be the fixpoint of the
+reachability computation $R_0 = \init$, and 
+$R'_{k+1} = R'_k \oder \exists \vars . (R_k \und \trans)$, for $k \geq 0$.
+The proposition strengthens the input assumptions of $\mp$ on the
+basis of both the output {\em and the input\/} behavior of $\mq$. 
+
+\begin{prop}{} 
+\label{prop-adapt} 
+Given two Moore interfaces $\mp$ and $\mq$, 
+let $\avars = \vars_\mq \setm \vars_\mp$,
+and let $\wh{\mp}$ be obtained
+from $\mp$ by replacing $\iinit_\mp$ with 
+$\iinit_\mp \und \exists \avars . \oinit_\mq$, 
+and by replacing $\itrans_\mp$ with 
+$\itrans_\mp \und \exists (\avars \union \avars') . 
+(\reach(\vars_\mq,\oinit_\mq \und \iinit_\mq,\otrans_\mq \und
+\itrans_\mq) \und \otrans_\mq)$.
+Then, $\wh{\mp}$ is an adaptation of $\mp$ to $\mq$. 
+\end{prop}
+
+\noindent
+The subtlety of the proposition lies in the fact that, to adapt 
+$\mp$, we use a reachability predicate for $\mq$ that is computed
+under the assumption that the input assumptions of $\mq$ are
+respected, even though $\mp$ itself may violate them. 
+The correctness of the proposition depends on the fact that, if $\mp$
+violates the input assumptions of $\mq$, then so does the adaptation
+$\wh{\mp}$, so that in Definition~\ref{def-adapt} it will be neither
+$\mp \compat \mq$ nor $\wh{\mp} \compat \mq$. 
+The following theorem states that, in proving a compositional
+refinement, we can adapt each interface to its environment.
+In the theorem, and in the discussion below, we use the notation 
+$\adapt{\mp}{\mq}$ to denote an interface that is an adaptation of
+$\mp$ to $\mq$. 
+
+\begin{theo}{(compositional refinement and adaptation)} 
+\label{theo-comp-refi} 
+For all interfaces $\mp, \mq, \mp', \mq'$ such that 
+(i)~$\mp \compat \mq$, 
+(ii)~$\mp'$ and $\mq'$ are composable (but not necessarily
+compatible),
+(iii)~$(\ovars_{\mp'} \inters \ivars_\mq) \subs (\ovars_\mp \inters \ivars_\mq)$,
+and 
+(iv)~$(\ovars_{\mq'} \inters \ivars_\mp) \subs (\ovars_\mq \inters \ivars_\mp)$,
+the following verification rule is valid: 
+\[
+  \frac{\adapt{\mp'}{\mq'} \refi \adapt{\mp}{\mq}; \hspace{1em} 
+        \adapt{\mq'}{\mp'} \refi \adapt{\mq}{\mp}}{
+	\mp' \compat \mq' \tand \ 
+	\mp' \| \mq' \refi \mp \| \mq} \hspace{1em} (\mbox{\rm AG-INTF})
+\]
+\end{theo}
+
+\noindent
+The proviso over the variables is necessary to ensure that the
+compatibility of $\mp$ and $\mq$ implies that of $\mp'$ and $\mq'$,
+once the refinement is proved. 
+The theorem states a circular assume-guarantee principle: in fact, 
+as illustrated by Proposition~\ref{prop-adapt}, the adaptation of
+$\mp'$ on $\mq'$ can be constructed using the fact that the input
+assumptions of $\mq'$ are respected, even though the compatibility of
+$\mp'$ and $\mq'$ is a conclusion of the rule, rather than a premise. 
+It is easy to see that rule (AG-INTF) generalizes (AG-IMPL); to see
+that it also generalizes (AG-SPEC), 
+note that rule (AG-SPEC) can be restated as 
+$(\mp' \refi \adapt{\mp}{\mq}; \mq' \refi \adapt{\mq}{\mp})/
+(\mp' \| \mq' \refi \mp \| \mq)$. \mynote{Hey this is a cool notation!}
+In fact, our alternating notion of refinement requires the
+implementation to match the specification only when the implementation
+is subject to the same inputs as the specification. 
+Hence, if we restrict the input assumptions of the specification (as
+in $\adapt{\mp}{\mq}$), we need to check that the refinement holds only
+when the implementation $\mp'$ is subject to similarly restricted
+inputs: thus, checking the alternating refinement 
+$\mp' \refi \adapt{\mp}{\mq}$ corresponds to checking the regular
+refinement $\mp' \| \mq \refi \mp$ (where $\mp$, $\mq$, and $\mp'$ are
+interpreted as regular modules, rather than interfaces). 
+A symmetrical argument holds for the other premise. 
+Thus, Theorem~\ref{theo-comp-refi} highlights how the essence of
+compositional refinement checking lies in studying both implementation
+and specification components adapted to their actual environment. 
+
+
+
+
+

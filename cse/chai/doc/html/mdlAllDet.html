@@ -1,0 +1,2484 @@
+<html>
+<head><title>The mdl package: all functions </title></head>
+<body>
+
+optional
+<HR>
+<DL>
+<dt><pre>
+<A NAME="CheckVarIsInListRecursively"></A>
+static boolean <I></I>
+<B>CheckVarIsInListRecursively</B>(
+  Var_Variable_t * <b>var</b>, <i></i>
+  lsList  <b>varList</b> <i></i>
+)
+</pre>
+<dd> This function checks if all components of a variable are
+  present in a list of variables. For compound variables like arrays or
+  bitvectors, this check is done recursively for all entries of the array or
+  bitvector.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code>VariableObtainComponentsRecursively
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdlOper.c"TARGET="ABSTRACT"><CODE>mdlOper.c</CODE></A>
+
+<dt><pre>
+<A NAME="MdlAtomNameCheckConflict"></A>
+static boolean <I></I>
+<B>MdlAtomNameCheckConflict</B>(
+  Mdl_Module_t * <b>newmodule</b>, <i></i>
+  char ** <b>name1</b>, <i></i>
+  char ** <b>name2</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdl.c"TARGET="ABSTRACT"><CODE>mdl.c</CODE></A>
+
+<dt><pre>
+<A NAME="MdlAtomsCopyToNewModule"></A>
+st_table * <I></I>
+<B>MdlAtomsCopyToNewModule</B>(
+  Mdl_Module_t* <b>newmodule</b>, <i></i>
+  Mdl_Module_t* <b>oldmodule</b>, <i></i>
+  st_table* <b>variableMappingTable</b> <i></i>
+)
+</pre>
+<dd> Copy the atoms of a module.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdl.c"TARGET="ABSTRACT"><CODE>mdl.c</CODE></A>
+
+<dt><pre>
+<A NAME="MdlAtomsWrapUp"></A>
+void <I></I>
+<B>MdlAtomsWrapUp</B>(
+  Mdl_Module_t * <b>module</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdl.c"TARGET="ABSTRACT"><CODE>mdl.c</CODE></A>
+
+<dt><pre>
+<A NAME="MdlComposeCmd"></A>
+static int <I></I>
+<B>MdlComposeCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdlMain.c"TARGET="ABSTRACT"><CODE>mdlMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="MdlDFSOnAtoms"></A>
+static int <I></I>
+<B>MdlDFSOnAtoms</B>(
+  Atm_Atom_t* <b>atom</b>, <i></i>
+  int* <b>preorder</b>, <i></i>
+  int* <b>postorder</b> <i></i>
+)
+</pre>
+<dd> This function is called by Mdl_ModuleTestForAcyclicity.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdlOper.c"TARGET="ABSTRACT"><CODE>mdlOper.c</CODE></A>
+
+<dt><pre>
+<A NAME="MdlDeleteCmd"></A>
+static int <I></I>
+<B>MdlDeleteCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> not implemented yet.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdlMain.c"TARGET="ABSTRACT"><CODE>mdlMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="MdlExprAlloc"></A>
+Mdl_Expr_t * <I></I>
+<B>MdlExprAlloc</B>(
+  Mdl_ExprType  <b>moduleExprType</b> <i></i>
+)
+</pre>
+<dd> This functions allocates a module expression node
+  with the moduleType specified.  It is an internal function and is
+  not exported to other packages.  Hence this function can only be used
+  indirectly.
+<p>
+
+<dd> <b>Side Effects</b> The user should free the allocated module expression.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Mdl_ExprComposeAlloc">Mdl_ExprComposeAlloc</a>
+<a href="#Mdl_ExprRenameAlloc">Mdl_ExprRenameAlloc</a>
+<a href="#Mdl_ExprHideAlloc">Mdl_ExprHideAlloc</a>
+<a href="#Mdl_ExprModuleDupAlloc">Mdl_ExprModuleDupAlloc</a>
+<a href="#Mdl_ExpFree">Mdl_ExpFree</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdl.c"TARGET="ABSTRACT"><CODE>mdl.c</CODE></A>
+
+<dt><pre>
+<A NAME="MdlExprConvertToString"></A>
+char * <I></I>
+<B>MdlExprConvertToString</B>(
+  Mdl_Expr_t * <b>mexpr</b> <i></i>
+)
+</pre>
+<dd> This function converts a module expression to a string.
+<p>
+
+<dd> <b>Side Effects</b> The user should free the returned string.
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdl.c"TARGET="ABSTRACT"><CODE>mdl.c</CODE></A>
+
+<dt><pre>
+<A NAME="MdlExprEvaluate"></A>
+Mdl_Module_t * <I></I>
+<B>MdlExprEvaluate</B>(
+  Mdl_Expr_t * <b>mexpr</b>, <i></i>
+  Mdl_Manager_t * <b>moduleManager</b> <i></i>
+)
+</pre>
+<dd> This function evaluates a module expression and
+  returns the resultant module.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdl.c"TARGET="ABSTRACT"><CODE>mdl.c</CODE></A>
+
+<dt><pre>
+<A NAME="MdlExprListConvertToString"></A>
+char * <I></I>
+<B>MdlExprListConvertToString</B>(
+  lsList  <b>list</b> <i></i>
+)
+</pre>
+<dd> This function concatenates a list of strings to a single
+  string. The user should free the returned string.
+<p>
+
+<dd> <b>Side Effects</b> User has to make sure that the elements of the list are
+  proper character strings.
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdl.c"TARGET="ABSTRACT"><CODE>mdl.c</CODE></A>
+
+<dt><pre>
+<A NAME="MdlExprListDup"></A>
+static lsList <I></I>
+<B>MdlExprListDup</B>(
+  lsList  <b>list</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdl.c"TARGET="ABSTRACT"><CODE>mdl.c</CODE></A>
+
+<dt><pre>
+<A NAME="MdlExprReadAtomIntoArray"></A>
+static void <I></I>
+<B>MdlExprReadAtomIntoArray</B>(
+  Mdl_Expr_t* <b>mexpr</b>, <i></i>
+  array_t ** <b>atomArray</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdl.c"TARGET="ABSTRACT"><CODE>mdl.c</CODE></A>
+
+<dt><pre>
+<A NAME="MdlExprReadComponentsRecursively"></A>
+static void <I></I>
+<B>MdlExprReadComponentsRecursively</B>(
+  Mdl_Expr_t * <b>mexpr</b>, <i></i>
+  array_t ** <b>leafArray</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdl.c"TARGET="ABSTRACT"><CODE>mdl.c</CODE></A>
+
+<dt><pre>
+<A NAME="MdlExprSearchForComponent"></A>
+static boolean <I></I>
+<B>MdlExprSearchForComponent</B>(
+  char * <b>name</b>, <i></i>
+  Mdl_Expr_t * <b>mexpr</b>, <i></i>
+  array_t ** <b>matchArray</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdl.c"TARGET="ABSTRACT"><CODE>mdl.c</CODE></A>
+
+<dt><pre>
+<A NAME="MdlExprSetAtomPointers"></A>
+void <I></I>
+<B>MdlExprSetAtomPointers</B>(
+  Mdl_Expr_t * <b>mexpr</b>, <i></i>
+  st_table * <b>atomMappingTable</b> <i></i>
+)
+</pre>
+<dd> This function allocates/updates the atom pointers in the
+  module expression, depending on the module expression type. The atom
+  pointers will be stored as a list in list1 of the structure.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdl.c"TARGET="ABSTRACT"><CODE>mdl.c</CODE></A>
+
+<dt><pre>
+<A NAME="MdlExprSetLeftChild"></A>
+void <I></I>
+<B>MdlExprSetLeftChild</B>(
+  Mdl_Expr_t * <b>mexpr</b>, <i></i>
+  Mdl_Expr_t * <b>child</b> <i></i>
+)
+</pre>
+<dd> This function sets the left child of the module.
+<p>
+
+<dd> <b>Side Effects</b> It is an error to call this function with a NULL module
+  expression.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#MdlExprSetRightChild">MdlExprSetRightChild</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdl.c"TARGET="ABSTRACT"><CODE>mdl.c</CODE></A>
+
+<dt><pre>
+<A NAME="MdlExprSetList1"></A>
+void <I></I>
+<B>MdlExprSetList1</B>(
+  Mdl_Expr_t * <b>mexpr</b>, <i></i>
+  lsList  <b>list</b> <i></i>
+)
+</pre>
+<dd> This function sets the auxillary list1 of the module.
+<p>
+
+<dd> <b>Side Effects</b> It is an error to call this function with a NULL module
+  expression.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#MdlExprSetList2">MdlExprSetList2</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdl.c"TARGET="ABSTRACT"><CODE>mdl.c</CODE></A>
+
+<dt><pre>
+<A NAME="MdlExprSetList2"></A>
+void <I></I>
+<B>MdlExprSetList2</B>(
+  Mdl_Expr_t * <b>mexpr</b>, <i></i>
+  lsList  <b>list</b> <i></i>
+)
+</pre>
+<dd> This function sets the auxillary list2 of the module.
+<p>
+
+<dd> <b>Side Effects</b> It is an error to call this function with a NULL module
+  expression.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#MdlExprSetList1">MdlExprSetList1</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdl.c"TARGET="ABSTRACT"><CODE>mdl.c</CODE></A>
+
+<dt><pre>
+<A NAME="MdlExprSetRightChild"></A>
+void <I></I>
+<B>MdlExprSetRightChild</B>(
+  Mdl_Expr_t * <b>mexpr</b>, <i></i>
+  Mdl_Expr_t * <b>child</b> <i></i>
+)
+</pre>
+<dd> This function sets the right child of the module.
+<p>
+
+<dd> <b>Side Effects</b> It is an error to call this function with a NULL module
+  expression.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#MdlExprSetLeftChild">MdlExprSetLeftChild</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdl.c"TARGET="ABSTRACT"><CODE>mdl.c</CODE></A>
+
+<dt><pre>
+<A NAME="MdlHideCmd"></A>
+static int <I></I>
+<B>MdlHideCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> This function implements the user command hide.
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdlMain.c"TARGET="ABSTRACT"><CODE>mdlMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="MdlIsEventVariableCmd"></A>
+static int <I></I>
+<B>MdlIsEventVariableCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdlMain.c"TARGET="ABSTRACT"><CODE>mdlMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="MdlIsExternalVariableCmd"></A>
+static int <I></I>
+<B>MdlIsExternalVariableCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdlMain.c"TARGET="ABSTRACT"><CODE>mdlMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="MdlIsHistoryFreeCmd"></A>
+static int <I></I>
+<B>MdlIsHistoryFreeCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdlMain.c"TARGET="ABSTRACT"><CODE>mdlMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="MdlIsInterfaceVariableCmd"></A>
+static int <I></I>
+<B>MdlIsInterfaceVariableCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdlMain.c"TARGET="ABSTRACT"><CODE>mdlMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="MdlIsModuleUpdateCmd"></A>
+static int <I></I>
+<B>MdlIsModuleUpdateCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> disabled for the present release.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdlMain.c"TARGET="ABSTRACT"><CODE>mdlMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="MdlIsPrivateVariableCmd"></A>
+static int <I></I>
+<B>MdlIsPrivateVariableCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdlMain.c"TARGET="ABSTRACT"><CODE>mdlMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="MdlLetCmd"></A>
+static int <I></I>
+<B>MdlLetCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> Calling let will give made a copy of the module with the
+                      name given on the command line.  The module will be
+                      hashed into the module manager whereas using the TCL
+                      command set will only attach a name to the module
+                      without actually creating a new module.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdlMain.c"TARGET="ABSTRACT"><CODE>mdlMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="MdlModuleCompose"></A>
+Mdl_Module_t* <I></I>
+<B>MdlModuleCompose</B>(
+  Mdl_Module_t* <b>module1</b>, <i></i>
+  Mdl_Module_t* <b>module2</b>, <i></i>
+  st_table ** <b>atomMappingTable</b>, <i></i>
+  st_table ** <b>varMappingTable</b> <i></i>
+)
+</pre>
+<dd> This function performs parallel composition of two modules 
+               A and B.  The procedure goes on like this:
+	       1. Create a copy of A.
+	       2. Copy the variables/atoms of B to the copy of A.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdlOper.c"TARGET="ABSTRACT"><CODE>mdlOper.c</CODE></A>
+
+<dt><pre>
+<A NAME="MdlModuleCounterReset"></A>
+void <I></I>
+<B>MdlModuleCounterReset</B>(
+   <b></b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdl.c"TARGET="ABSTRACT"><CODE>mdl.c</CODE></A>
+
+<dt><pre>
+<A NAME="MdlModuleHideVariables"></A>
+Mdl_Module_t * <I></I>
+<B>MdlModuleHideVariables</B>(
+  Mdl_Module_t* <b>module</b>, <i></i>
+  lsList  <b>varlist</b>, <i></i>
+  st_table ** <b>atomMappingTable</b>, <i></i>
+  st_table ** <b>varMappingTable</b> <i></i>
+)
+</pre>
+<dd> Given a module and a list of variable names, this function 
+                      "hides" the variables by turning them into private
+		      variables.  Warnings will be given if any of the variables 
+		      are not defined in the module, or they are already
+		      private.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdlOper.c"TARGET="ABSTRACT"><CODE>mdlOper.c</CODE></A>
+
+<dt><pre>
+<A NAME="MdlModulePrintAtoms"></A>
+static void <I></I>
+<B>MdlModulePrintAtoms</B>(
+  Tcl_Interp * <b>interp</b>, <i></i>
+  char* <b>name</b>, <i></i>
+  Mdl_Manager_t* <b>mdlmanager</b>, <i></i>
+  int  <b>mode</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdlMain.c"TARGET="ABSTRACT"><CODE>mdlMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="MdlModulePrintGuardedCommand"></A>
+static void <I></I>
+<B>MdlModulePrintGuardedCommand</B>(
+  Tcl_Interp* <b>interp</b>, <i></i>
+  Atm_Cmd_t* <b>cmd</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdlMain.c"TARGET="ABSTRACT"><CODE>mdlMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="MdlModulePrintVariables"></A>
+static void <I></I>
+<B>MdlModulePrintVariables</B>(
+  Tcl_Interp * <b>interp</b>, <i></i>
+  char* <b>name</b>, <i></i>
+  Mdl_Manager_t* <b>mdlmanager</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdlMain.c"TARGET="ABSTRACT"><CODE>mdlMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="MdlModuleRenameVariables"></A>
+Mdl_Module_t * <I></I>
+<B>MdlModuleRenameVariables</B>(
+  Mdl_Module_t * <b>module</b>, <i></i>
+  lsList  <b>designatorList</b>, <i></i>
+  lsList  <b>destinationList</b>, <i></i>
+  st_table ** <b>atomMappingTable</b>, <i></i>
+  st_table ** <b>varMappingTable</b> <i></i>
+)
+</pre>
+<dd> This function renames the variables in the
+  designatorList to the names in the destinationList.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdlOper.c"TARGET="ABSTRACT"><CODE>mdlOper.c</CODE></A>
+
+<dt><pre>
+<A NAME="MdlNameSplit"></A>
+static boolean <I></I>
+<B>MdlNameSplit</B>(
+  char * <b>name</b>, <i></i>
+  char ** <b>firstName</b>, <i></i>
+  char ** <b>middleName</b>, <i></i>
+  char ** <b>lastName</b>, <i></i>
+  int * <b>ctr</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdl.c"TARGET="ABSTRACT"><CODE>mdl.c</CODE></A>
+
+<dt><pre>
+<A NAME="MdlRenameCmd"></A>
+static int <I></I>
+<B>MdlRenameCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdlMain.c"TARGET="ABSTRACT"><CODE>mdlMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="MdlSaveCmd"></A>
+static int <I></I>
+<B>MdlSaveCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> Not implemented yet.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdlMain.c"TARGET="ABSTRACT"><CODE>mdlMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="MdlShowAtomsCmd"></A>
+static int <I></I>
+<B>MdlShowAtomsCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdlMain.c"TARGET="ABSTRACT"><CODE>mdlMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="MdlShowModuleCmd"></A>
+static int <I></I>
+<B>MdlShowModuleCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdlMain.c"TARGET="ABSTRACT"><CODE>mdlMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="MdlShowVariableCmd"></A>
+static int <I></I>
+<B>MdlShowVariableCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdlMain.c"TARGET="ABSTRACT"><CODE>mdlMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="MdlTraverseCmd"></A>
+static int <I></I>
+<B>MdlTraverseCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> This is a command for debugging. This command is called
+  with the name of a module. It traverses the module expression tree and
+  prints the leaf modules/atoms.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdlMain.c"TARGET="ABSTRACT"><CODE>mdlMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="MdlUpdateModuleCmd"></A>
+static int <I></I>
+<B>MdlUpdateModuleCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> disabled for the present release.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdlMain.c"TARGET="ABSTRACT"><CODE>mdlMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="MdlVariableCopyVariableAwaitedbyAtomList"></A>
+static void <I></I>
+<B>MdlVariableCopyVariableAwaitedbyAtomList</B>(
+  char* <b>modname</b>, <i></i>
+  Var_Variable_t* <b>newvar</b>, <i></i>
+  Var_Variable_t* <b>oldvar</b>, <i></i>
+  st_table* <b>newatmtable</b> <i></i>
+)
+</pre>
+<dd> This function is called when making a copy of the modules.
+                      When given two varaibles, newvar and oldvar, as well
+		      as the atom table (newatmtable) corresponding to newvar,
+		      this function identifies the list of atoms in the
+		      awaitByAtomList inn oldvar, and correspondingly 
+		      updates the awaitByAtomList in newvar.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdl.c"TARGET="ABSTRACT"><CODE>mdl.c</CODE></A>
+
+<dt><pre>
+<A NAME="MdlVariableCopyVariableReadbyAtomList"></A>
+static void <I></I>
+<B>MdlVariableCopyVariableReadbyAtomList</B>(
+  char* <b>modname</b>, <i></i>
+  Var_Variable_t* <b>newvar</b>, <i></i>
+  Var_Variable_t* <b>oldvar</b>, <i></i>
+  st_table* <b>newatmtable</b> <i></i>
+)
+</pre>
+<dd> This function is called when making a copy of the modules.
+                      When given two varaibles, newvar and oldvar, as well
+		      as the atom table (newatmtable) corresponding to newvar,
+		      this function identifies the list of atoms in the
+		      readByAtomList inn oldvar, and correspondingly 
+		      updates the readByAtomList in newvar.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdl.c"TARGET="ABSTRACT"><CODE>mdl.c</CODE></A>
+
+<dt><pre>
+<A NAME="MdlVariablesCopyToNewModule"></A>
+st_table * <I></I>
+<B>MdlVariablesCopyToNewModule</B>(
+  Mdl_Module_t* <b>newmodule</b>, <i></i>
+  Mdl_Module_t* <b>module2</b> <i></i>
+)
+</pre>
+<dd> When called, this
+<p>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdl.c"TARGET="ABSTRACT"><CODE>mdl.c</CODE></A>
+
+<dt><pre>
+<A NAME="MdlVariablesWrapUp"></A>
+void <I></I>
+<B>MdlVariablesWrapUp</B>(
+  Mdl_Module_t* <b>module</b> <i></i>
+)
+</pre>
+<dd> All private variable names are prefixed with a $ sign, followed
+  by an underscore and a counter. The counter is used to distinguish private
+  variables of the same name.  For example, if x is declared to be the
+  private variables in a module, it will be automatically renamed to be
+  $x_0.  In subsequent compositions, the variable will be renamed to be
+  $x_0, or $x_1 etc.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdl.c"TARGET="ABSTRACT"><CODE>mdl.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mdl_End"></A>
+int <I></I>
+<B>Mdl_End</B>(
+  Tcl_Interp * <b>interp</b>, <i></i>
+  Main_Manager_t * <b>manager</b> <i></i>
+)
+</pre>
+<dd> The function frees all memory associated with the mdl
+                      package.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Mdl_Reinit">Mdl_Reinit</a>
+<a href="#Mdl_Init">Mdl_Init</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdlMain.c"TARGET="ABSTRACT"><CODE>mdlMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mdl_ExprComposeAlloc"></A>
+Mdl_Expr_t * <I></I>
+<B>Mdl_ExprComposeAlloc</B>(
+  Mdl_Expr_t * <b>module1</b>, <i></i>
+  Mdl_Expr_t * <b>module2</b> <i></i>
+)
+</pre>
+<dd> This function allocates a module expression with
+  the compose type.  The two composing modules are set as the left
+  and right child of the module expression.
+<p>
+
+<dd> <b>Side Effects</b> validity of module1 and module2 are not checked. So the
+  user should make sure that they are not NULL.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#MdlExprAlloc">MdlExprAlloc</a>
+<a href="#MdlExprFree">MdlExprFree</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdl.c"TARGET="ABSTRACT"><CODE>mdl.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mdl_ExprDup"></A>
+Mdl_Expr_t * <I></I>
+<B>Mdl_ExprDup</B>(
+  Mdl_Expr_t * <b>mexpr</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdl.c"TARGET="ABSTRACT"><CODE>mdl.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mdl_ExprFree"></A>
+void <I></I>
+<B>Mdl_ExprFree</B>(
+  Mdl_Expr_t * <b>mexpr</b> <i></i>
+)
+</pre>
+<dd> This function recursively frees a module expression.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Mdl_ExprComposeAlloc">Mdl_ExprComposeAlloc</a>
+<a href="#Mdl_ExprRenameAlloc">Mdl_ExprRenameAlloc</a>
+<a href="#Mdl_ExprHideAlloc">Mdl_ExprHideAlloc</a>
+<a href="#Mdl_ExprModuleDupAlloc">Mdl_ExprModuleDupAlloc</a>
+<a href="#MdlExprAlloc">MdlExprAlloc</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdl.c"TARGET="ABSTRACT"><CODE>mdl.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mdl_ExprHideAlloc"></A>
+Mdl_Expr_t * <I></I>
+<B>Mdl_ExprHideAlloc</B>(
+  Mdl_Expr_t * <b>module</b>, <i></i>
+  lsList  <b>variableNameList</b> <i></i>
+)
+</pre>
+<dd> This function allocates a module expression with
+  the Hide type. The variableList is set to be the auxilliary list2.
+<p>
+
+<dd> <b>Side Effects</b> validity of module is not checked. The user should
+  make sure that they are not NULL.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#MdlExprAlloc">MdlExprAlloc</a>
+<a href="#MdlExprFree">MdlExprFree</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdl.c"TARGET="ABSTRACT"><CODE>mdl.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mdl_ExprModuleDefAlloc"></A>
+Mdl_Expr_t * <I></I>
+<B>Mdl_ExprModuleDefAlloc</B>(
+   <b></b> <i></i>
+)
+</pre>
+<dd> This function allocates a module expression with the
+  ModuleDef type.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#MdlExprAlloc">MdlExprAlloc</a>
+<a href="#MdlExprFree">MdlExprFree</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdl.c"TARGET="ABSTRACT"><CODE>mdl.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mdl_ExprModuleDupAlloc"></A>
+Mdl_Expr_t * <I></I>
+<B>Mdl_ExprModuleDupAlloc</B>(
+  char * <b>name</b> <i></i>
+)
+</pre>
+<dd> This function allocates a module expression with the
+  ModuleDup type.  The name of the module will be set as the left child.
+<p>
+
+<dd> <b>Side Effects</b> validity of module is not checked. The user should
+  make sure that it is not NULL.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#MdlExprAlloc">MdlExprAlloc</a>
+<a href="#MdlExprFree">MdlExprFree</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdl.c"TARGET="ABSTRACT"><CODE>mdl.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mdl_ExprReadLeftChild"></A>
+Mdl_Expr_t * <I></I>
+<B>Mdl_ExprReadLeftChild</B>(
+  Mdl_Expr_t * <b>mexpr</b> <i></i>
+)
+</pre>
+<dd> This function returns a pointer to the left child of the
+  module expression.
+<p>
+
+<dd> <b>Side Effects</b> It is an error to call this function with a NULL module
+  expression.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Mdl_ExprReadRightChild">Mdl_ExprReadRightChild</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdl.c"TARGET="ABSTRACT"><CODE>mdl.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mdl_ExprReadList1"></A>
+lsList <I></I>
+<B>Mdl_ExprReadList1</B>(
+  Mdl_Expr_t * <b>mexpr</b> <i></i>
+)
+</pre>
+<dd> This function returns a pointer to the list1 of the
+  module expression.
+<p>
+
+<dd> <b>Side Effects</b> It is an error to call this function with a NULL module
+  expression.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Mdl_ExprReadList2">Mdl_ExprReadList2</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdl.c"TARGET="ABSTRACT"><CODE>mdl.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mdl_ExprReadList2"></A>
+lsList <I></I>
+<B>Mdl_ExprReadList2</B>(
+  Mdl_Expr_t * <b>mexpr</b> <i></i>
+)
+</pre>
+<dd> This function returns a pointer to the list2 of the
+  module expression.
+<p>
+
+<dd> <b>Side Effects</b> It is an error to call this function with a NULL module
+  expression.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Mdl_ExprReadList1">Mdl_ExprReadList1</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdl.c"TARGET="ABSTRACT"><CODE>mdl.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mdl_ExprReadModuleExprType"></A>
+Mdl_ExprType <I></I>
+<B>Mdl_ExprReadModuleExprType</B>(
+  Mdl_Expr_t * <b>mexpr</b> <i></i>
+)
+</pre>
+<dd> This function returns a pointer to the moduleExprType of
+  the module expression.
+<p>
+
+<dd> <b>Side Effects</b> It is an error to call this function with a NULL module
+  expression.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Mdl_ExprReadList1">Mdl_ExprReadList1</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdl.c"TARGET="ABSTRACT"><CODE>mdl.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mdl_ExprReadRightChild"></A>
+Mdl_Expr_t * <I></I>
+<B>Mdl_ExprReadRightChild</B>(
+  Mdl_Expr_t * <b>mexpr</b> <i></i>
+)
+</pre>
+<dd> This function returns a pointer to the right child of the
+  module expression.
+<p>
+
+<dd> <b>Side Effects</b> It is an error to call this function with a NULL module
+  expression.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Mdl_ExprReadLeftChild">Mdl_ExprReadLeftChild</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdl.c"TARGET="ABSTRACT"><CODE>mdl.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mdl_ExprRenameAlloc"></A>
+Mdl_Expr_t * <I></I>
+<B>Mdl_ExprRenameAlloc</B>(
+  Mdl_Expr_t * <b>module</b>, <i></i>
+  lsList  <b>oldVariableNameList</b>, <i></i>
+  lsList  <b>newVariableNameList</b> <i></i>
+)
+</pre>
+<dd> This function allocates a module expression with
+  the Rename type. The oldVariableNameList is set to be the auxilliary
+  list1, and the newVariableNameList is set to be the auxilliary list2.
+<p>
+
+<dd> <b>Side Effects</b> validity of module1 is not checked. The user should
+  make sure that they are not NULL.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#MdlExprAlloc">MdlExprAlloc</a>
+<a href="#MdlExprFree">MdlExprFree</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdl.c"TARGET="ABSTRACT"><CODE>mdl.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mdl_ExprReturnAtomArray"></A>
+array_t* <I></I>
+<B>Mdl_ExprReturnAtomArray</B>(
+  Mdl_Expr_t* <b>mexpr</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdl.c"TARGET="ABSTRACT"><CODE>mdl.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mdl_ExprTreeReadComponents"></A>
+array_t * <I></I>
+<B>Mdl_ExprTreeReadComponents</B>(
+  Mdl_Expr_t * <b>mexpr</b> <i></i>
+)
+</pre>
+<dd> This function returns an array of pointers pointing to
+  the leaves of the given expr tree. The leaves must be of types either
+  ExprModuleDup of ExprModuleDef.
+<p>
+
+<dd> <b>Side Effects</b> The arrays should be freed, but not its content.
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdl.c"TARGET="ABSTRACT"><CODE>mdl.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mdl_Init"></A>
+int <I></I>
+<B>Mdl_Init</B>(
+  Tcl_Interp * <b>interp</b>, <i></i>
+  Main_Manager_t * <b>manager</b> <i></i>
+)
+</pre>
+<dd> It creates all the new tcl commands defined in this
+  package.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdlMain.c"TARGET="ABSTRACT"><CODE>mdlMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mdl_InvariantAlloc"></A>
+Mdl_Invariant_t * <I></I>
+<B>Mdl_InvariantAlloc</B>(
+  char * <b>name</b>, <i></i>
+  Mdl_Module_t * <b>module</b> <i></i>
+)
+</pre>
+<dd> Allocate an invariant structure and return a pointer to
+                      it.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Mdl_InvariantFree">Mdl_InvariantFree</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdl.c"TARGET="ABSTRACT"><CODE>mdl.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mdl_InvariantFree"></A>
+void <I></I>
+<B>Mdl_InvariantFree</B>(
+  Mdl_Invariant_t * <b>invariant</b> <i></i>
+)
+</pre>
+<dd> Free an invariant structure.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Mdl_InvariantAlloc">Mdl_InvariantAlloc</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdl.c"TARGET="ABSTRACT"><CODE>mdl.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mdl_InvariantReadExpression"></A>
+Atm_Expr_t * <I></I>
+<B>Mdl_InvariantReadExpression</B>(
+  Mdl_Invariant_t * <b>invariant</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdl.c"TARGET="ABSTRACT"><CODE>mdl.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mdl_InvariantReadName"></A>
+char * <I></I>
+<B>Mdl_InvariantReadName</B>(
+  Mdl_Invariant_t * <b>invariant</b> <i></i>
+)
+</pre>
+<dd> The user should free the string after use.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdl.c"TARGET="ABSTRACT"><CODE>mdl.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mdl_InvariantReadStatus"></A>
+Mdl_InvStatus_t <I></I>
+<B>Mdl_InvariantReadStatus</B>(
+  Mdl_Invariant_t * <b>invariant</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdl.c"TARGET="ABSTRACT"><CODE>mdl.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mdl_InvariantSetExpression"></A>
+void <I></I>
+<B>Mdl_InvariantSetExpression</B>(
+  Mdl_Invariant_t * <b>invariant</b>, <i></i>
+  Atm_Expr_t * <b>exptree</b> <i></i>
+)
+</pre>
+<dd> Set the invariant expression of an invariant struct.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdl.c"TARGET="ABSTRACT"><CODE>mdl.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mdl_InvariantSetStatus"></A>
+void <I></I>
+<B>Mdl_InvariantSetStatus</B>(
+  Mdl_Invariant_t * <b>invariant</b>, <i></i>
+  Mdl_InvStatus_t  <b>status</b> <i></i>
+)
+</pre>
+<dd> Set the status of the invariant.  Can set it
+                      to one of these three values: Mdl_InvPassed_c,
+                      Mdl_InvFailed_c, Mdl_InvUnchecked_c.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdl.c"TARGET="ABSTRACT"><CODE>mdl.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mdl_ModuleAddAtom"></A>
+int <I></I>
+<B>Mdl_ModuleAddAtom</B>(
+  Mdl_Module_t* <b>module</b>, <i></i>
+  char* <b>atmname</b>, <i></i>
+  Atm_Atom_t* <b>atm</b> <i></i>
+)
+</pre>
+<dd> returns 1 if addition is successful, 0 if variable
+                      of the same name already exists in the module.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdl.c"TARGET="ABSTRACT"><CODE>mdl.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mdl_ModuleAddToManager"></A>
+int <I></I>
+<B>Mdl_ModuleAddToManager</B>(
+  Mdl_Module_t* <b>module</b>, <i></i>
+  Mdl_Manager_t* <b>mdlmanager</b> <i></i>
+)
+</pre>
+<dd> When adding a module, the name of the module and its
+  creation time are hashed into the module dependency table.  Also, it
+  maintains a list of pointers pointing to the its component modules.
+  It feturns 1 if successful, 0 otherwise.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdl.c"TARGET="ABSTRACT"><CODE>mdl.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mdl_ModuleAddValueInfo"></A>
+int <I></I>
+<B>Mdl_ModuleAddValueInfo</B>(
+  Mdl_Module_t* <b>module</b>, <i></i>
+  st_table* <b>atmTable</b>, <i></i>
+  st_table* <b>varTable</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdl.c"TARGET="ABSTRACT"><CODE>mdl.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mdl_ModuleAddVariable"></A>
+int <I></I>
+<B>Mdl_ModuleAddVariable</B>(
+  Mdl_Module_t* <b>module</b>, <i></i>
+  char* <b>varname</b>, <i></i>
+  Var_Variable_t* <b>var</b> <i></i>
+)
+</pre>
+<dd> returns 1 if addition is successful, 0 if variable
+                      of the same name already exists in the module.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdl.c"TARGET="ABSTRACT"><CODE>mdl.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mdl_ModuleAlloc"></A>
+Mdl_Module_t* <I></I>
+<B>Mdl_ModuleAlloc</B>(
+  char* <b>name</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdl.c"TARGET="ABSTRACT"><CODE>mdl.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mdl_ModuleCreateFromAtoms"></A>
+Mdl_Module_t * <I></I>
+<B>Mdl_ModuleCreateFromAtoms</B>(
+  lsList  <b>atomList</b>, <i></i>
+  lsList  <b>privateVarNameList</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdlOper.c"TARGET="ABSTRACT"><CODE>mdlOper.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mdl_ModuleDeleteVariable"></A>
+int <I></I>
+<B>Mdl_ModuleDeleteVariable</B>(
+  Mdl_Module_t* <b>module</b>, <i></i>
+  char* <b>varname</b> <i></i>
+)
+</pre>
+<dd> Delete a variable from the module. This routine only
+                      deletes the entry of the variable from the varTable
+		      of the module.  It is the user's responsibility to
+		      free the memory allocated to the variable.
+
+		      The routine returns 0 if the variable is not found
+		      in the module, 1 if deletion is successful.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdl.c"TARGET="ABSTRACT"><CODE>mdl.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mdl_ModuleDup"></A>
+Mdl_Module_t* <I></I>
+<B>Mdl_ModuleDup</B>(
+  char* <b>name</b>, <i></i>
+  Mdl_Module_t* <b>module</b>, <i></i>
+  st_table ** <b>atomMappingTable</b>, <i></i>
+  st_table ** <b>variableMappingTable</b> <i>mapping between original vars to new
+vars</i>
+)
+</pre>
+<dd> This function creates a copy of the module, with a given
+                      name.  It also creates a new copy of the module table
+		      and atom table, with atom names prefixed with the new 
+		      module name, and the private variables prefixed with
+		      the new module name too.
+
+		      The function returns a pointer to the new module.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdl.c"TARGET="ABSTRACT"><CODE>mdl.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mdl_ModuleExprEvaluate"></A>
+Mdl_Module_t* <I></I>
+<B>Mdl_ModuleExprEvaluate</B>(
+  char * <b>name</b>, <i></i>
+  Mdl_Expr_t * <b>mexpr</b>, <i></i>
+  Mdl_Manager_t * <b>moduleManager</b> <i></i>
+)
+</pre>
+<dd> This function evaluates a module expression and the
+  result module will have the given name.
+<p>
+
+<dd> <b>Side Effects</b> During MdlExprEvaluate, list1 of the leaves of mexpr
+  will become the list of pointers pointer to the atoms.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#MdlExprEvaluate">MdlExprEvaluate</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdl.c"TARGET="ABSTRACT"><CODE>mdl.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mdl_ModuleFree"></A>
+void <I></I>
+<B>Mdl_ModuleFree</B>(
+  Mdl_Module_t* <b>module</b> <i></i>
+)
+</pre>
+<dd> It is the user's responsibility to free the atoms and
+                      variables in the vartable and atomtable first, before
+		      freeing the module.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdl.c"TARGET="ABSTRACT"><CODE>mdl.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mdl_ModuleGetExternalVariableList"></A>
+lsList <I></I>
+<B>Mdl_ModuleGetExternalVariableList</B>(
+  Mdl_Module_t* <b>module</b> <i></i>
+)
+</pre>
+<dd> User should free the list with the function:
+                      (void) lsDestroy(list, (void (*) ()) NULL);
+		      so as NOT to free the variables themselves.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdlOper.c"TARGET="ABSTRACT"><CODE>mdlOper.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mdl_ModuleGetInterfaceVariableList"></A>
+lsList <I></I>
+<B>Mdl_ModuleGetInterfaceVariableList</B>(
+  Mdl_Module_t* <b>module</b> <i></i>
+)
+</pre>
+<dd> User should free the list with the function:
+                      (void) lsDestroy(list, (void (*) ()) NULL);
+		      so as NOT to free the variables themselves.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdlOper.c"TARGET="ABSTRACT"><CODE>mdlOper.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mdl_ModuleIsUpdate"></A>
+boolean <I></I>
+<B>Mdl_ModuleIsUpdate</B>(
+  Mdl_Module_t * <b>module</b>, <i></i>
+  Mdl_Manager_t * <b>manager</b> <i></i>
+)
+</pre>
+<dd> This function takes in a module and the module manager,
+  and check if all the components of the module are created before this
+  module.  It returns TRUE if this is the case, else FALSE.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdl.c"TARGET="ABSTRACT"><CODE>mdl.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mdl_ModuleManagerAlloc"></A>
+Mdl_Manager_t * <I></I>
+<B>Mdl_ModuleManagerAlloc</B>(
+   <b></b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdlMain.c"TARGET="ABSTRACT"><CODE>mdlMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mdl_ModuleManagerFree"></A>
+void <I></I>
+<B>Mdl_ModuleManagerFree</B>(
+  Mdl_Manager_t* <b>mdlmanager</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdl.c"TARGET="ABSTRACT"><CODE>mdl.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mdl_ModuleManagerObtainModuleList"></A>
+lsList <I></I>
+<B>Mdl_ModuleManagerObtainModuleList</B>(
+  Mdl_Manager_t* <b>mdlmanager</b> <i></i>
+)
+</pre>
+<dd> This function returns a list of module names. 
+                      Will later add the definition of the modules.
+		      It is the user's responsibility to free the list.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdl.c"TARGET="ABSTRACT"><CODE>mdl.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mdl_ModuleObtainAtomList"></A>
+lsList <I></I>
+<B>Mdl_ModuleObtainAtomList</B>(
+  Mdl_Module_t* <b>module</b> <i></i>
+)
+</pre>
+<dd> Returns a list of atoms given a module.  Each
+                      element of the list is a pointer to the atoms
+		      in the atom table. 
+		      
+		      In later implementation, this should return a 
+		      {em copy} of the {em linearized partial ordering}
+		      of the atoms.
+
+		      The user should NOT free or modify the list.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdl.c"TARGET="ABSTRACT"><CODE>mdl.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mdl_ModuleObtainComponentAtomArray"></A>
+array_t * <I></I>
+<B>Mdl_ModuleObtainComponentAtomArray</B>(
+  Mdl_Module_t * <b>module</b>, <i></i>
+  array_t * <b>nameArray</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdl.c"TARGET="ABSTRACT"><CODE>mdl.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mdl_ModuleObtainEventVariableList"></A>
+lsList <I></I>
+<B>Mdl_ModuleObtainEventVariableList</B>(
+  Mdl_Module_t* <b>module</b> <i></i>
+)
+</pre>
+<dd> Given a module (pointer), this function returns
+                      a list of event variables.  The
+		      variables are arranged according to the topological
+		      order of the atoms that controls the variables.
+		      External variables come first. It is the user's
+		      responsibility to free the list (but not the list
+		      elements).
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdl.c"TARGET="ABSTRACT"><CODE>mdl.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mdl_ModuleObtainHistoryDependentVariableList"></A>
+lsList <I></I>
+<B>Mdl_ModuleObtainHistoryDependentVariableList</B>(
+  Mdl_Module_t* <b>module</b> <i></i>
+)
+</pre>
+<dd> Given a module (pointer), this function returns
+                      a list of history_dependent variables.  The
+		      variables are arranged according to the topological
+		      order of the atoms that controls the variables.
+		      External variables come first. It is the user's
+		      responsibility to free the list (but not the list
+		      elements).
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdl.c"TARGET="ABSTRACT"><CODE>mdl.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mdl_ModuleObtainHistoryFreeVariableList"></A>
+lsList <I></I>
+<B>Mdl_ModuleObtainHistoryFreeVariableList</B>(
+  Mdl_Module_t* <b>module</b> <i></i>
+)
+</pre>
+<dd> Given a module (pointer), this function returns
+                      a list of history free variables.  The
+		      variables are arranged according to the topological
+		      order of the atoms that controls the variables.
+		      External variables come first. It is the user's
+		      responsibility to free the list (but not the list
+		      elements).
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdl.c"TARGET="ABSTRACT"><CODE>mdl.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mdl_ModuleObtainNewName"></A>
+char* <I></I>
+<B>Mdl_ModuleObtainNewName</B>(
+   <b></b> <i></i>
+)
+</pre>
+<dd> It keeps a counter that counts the number of intermediate
+                      module generated.  The counter is also used to generate a
+		      name for the modules.  For example, if the counter
+		      counts 14, the generated module name will be @M14.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdl.c"TARGET="ABSTRACT"><CODE>mdl.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mdl_ModuleObtainSortedAtomList"></A>
+lsList <I></I>
+<B>Mdl_ModuleObtainSortedAtomList</B>(
+  Mdl_Module_t* <b>module</b> <i></i>
+)
+</pre>
+<dd> This function, when given module, will return a
+                      list of topologically sorted atoms.  The atoms
+		      at the head of the list are those that should
+		      be updated first.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdlOper.c"TARGET="ABSTRACT"><CODE>mdlOper.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mdl_ModuleObtainVariableList"></A>
+lsList <I></I>
+<B>Mdl_ModuleObtainVariableList</B>(
+  Mdl_Module_t* <b>module</b> <i></i>
+)
+</pre>
+<dd> Given a module (pointer), this function returns
+                      a list of all variables.  The
+		      variables are arranged according to the topological
+		      order of the atoms that controls the variables.
+		      External variables come first. It is the user's
+		      responsibility to free the list (but not the list
+		      elements).
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdl.c"TARGET="ABSTRACT"><CODE>mdl.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mdl_ModuleReadAtomFromName"></A>
+Atm_Atom_t * <I></I>
+<B>Mdl_ModuleReadAtomFromName</B>(
+  char * <b>name</b>, <i></i>
+  Mdl_Module_t * <b>module</b> <i></i>
+)
+</pre>
+<dd> This function returns a pointer to the atom, given
+  the atom name and the module.
+<p>
+
+<dd> <b>Side Effects</b> The user should not free the atom.
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdl.c"TARGET="ABSTRACT"><CODE>mdl.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mdl_ModuleReadAtomTable"></A>
+st_table* <I></I>
+<B>Mdl_ModuleReadAtomTable</B>(
+  Mdl_Module_t* <b>module</b> <i></i>
+)
+</pre>
+<dd> Given a pointer to a module, this function
+                      returns a pointer to the atom table.
+
+		      The user should not free or modify the table.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdl.c"TARGET="ABSTRACT"><CODE>mdl.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mdl_ModuleReadCreationTime"></A>
+int <I></I>
+<B>Mdl_ModuleReadCreationTime</B>(
+  Mdl_Module_t * <b>module</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdl.c"TARGET="ABSTRACT"><CODE>mdl.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mdl_ModuleReadFromName"></A>
+Mdl_Module_t* <I></I>
+<B>Mdl_ModuleReadFromName</B>(
+  Mdl_Manager_t* <b>mdlmanager</b>, <i></i>
+  char* <b>name</b> <i></i>
+)
+</pre>
+<dd> When called with a name of a module, this function
+                      looks up the name in the module manager.  If found,
+                      this function returns a pointer to this module.
+		      Otherwise, it returns NIL(Mdl_Module_t).
+
+		      The user should NOT free or modify this module.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdl.c"TARGET="ABSTRACT"><CODE>mdl.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mdl_ModuleReadModuleExpr"></A>
+Mdl_Expr_t * <I></I>
+<B>Mdl_ModuleReadModuleExpr</B>(
+  Mdl_Module_t * <b>module</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdl.c"TARGET="ABSTRACT"><CODE>mdl.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mdl_ModuleReadName"></A>
+char* <I></I>
+<B>Mdl_ModuleReadName</B>(
+  Mdl_Module_t* <b>module</b> <i></i>
+)
+</pre>
+<dd> This function returns a pointer to the name of the
+                      module.  User should not free or modify the string.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdl.c"TARGET="ABSTRACT"><CODE>mdl.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mdl_ModuleReadStateInvTable"></A>
+st_table * <I></I>
+<B>Mdl_ModuleReadStateInvTable</B>(
+  Mdl_Module_t * <b>module</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdl.c"TARGET="ABSTRACT"><CODE>mdl.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mdl_ModuleReadTranInvTable"></A>
+st_table * <I></I>
+<B>Mdl_ModuleReadTranInvTable</B>(
+  Mdl_Module_t * <b>module</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdl.c"TARGET="ABSTRACT"><CODE>mdl.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mdl_ModuleReadVariableFromName"></A>
+Var_Variable_t* <I></I>
+<B>Mdl_ModuleReadVariableFromName</B>(
+  char* <b>varname</b>, <i></i>
+  Mdl_Module_t* <b>module</b> <i></i>
+)
+</pre>
+<dd> When given a name of a variable, and a pointer to a module,
+                      this function returns a pointer to the variable of the given
+		      name.  If the desired variable is not found, a 
+		      NIL(Var_Variable_t) will be returned.  User should not free
+		      of modifiy the pointer.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdl.c"TARGET="ABSTRACT"><CODE>mdl.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mdl_ModuleReadVariableTable"></A>
+st_table* <I></I>
+<B>Mdl_ModuleReadVariableTable</B>(
+  Mdl_Module_t* <b>module</b> <i></i>
+)
+</pre>
+<dd> Given a pointer to a module, this function
+                      returns a pointer to the variable table.
+
+		      The user should not free or modify the table.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdl.c"TARGET="ABSTRACT"><CODE>mdl.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mdl_ModuleRemoveFromManager"></A>
+boolean <I></I>
+<B>Mdl_ModuleRemoveFromManager</B>(
+  char* <b>name</b>, <i></i>
+  Mdl_Manager_t* <b>mdlmanager</b> <i></i>
+)
+</pre>
+<dd> This remove a module of a given name from a module
+                      manager.  If the module is found, this routine
+		      returns a pointer to the module. If not, NIL(Mdl_Module_t)
+		      is returned instead.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdl.c"TARGET="ABSTRACT"><CODE>mdl.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mdl_ModuleSearchForComponent"></A>
+array_t * <I></I>
+<B>Mdl_ModuleSearchForComponent</B>(
+  char * <b>name</b>, <i></i>
+  Mdl_Module_t * <b>module</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdl.c"TARGET="ABSTRACT"><CODE>mdl.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mdl_ModuleSetModuleExprForTypeModuleDef"></A>
+boolean <I></I>
+<B>Mdl_ModuleSetModuleExprForTypeModuleDef</B>(
+  Mdl_Module_t * <b>module</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdl.c"TARGET="ABSTRACT"><CODE>mdl.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mdl_ModuleSetModuleExpr"></A>
+void <I></I>
+<B>Mdl_ModuleSetModuleExpr</B>(
+  Mdl_Module_t * <b>module</b>, <i></i>
+  Mdl_Expr_t * <b>moduleExpr</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdl.c"TARGET="ABSTRACT"><CODE>mdl.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mdl_ModuleTestForAcyclicity"></A>
+int <I></I>
+<B>Mdl_ModuleTestForAcyclicity</B>(
+  Mdl_Module_t* <b>module</b> <i></i>
+)
+</pre>
+<dd> This function is called when never a module is composed:
+               whether it is defined by enumerating the atoms, or by parallel
+	       composition.  This routine returns 1 if there is no
+	       interdependence of variables within a module, and 0 otherwise.
+
+	       Acyclicity test is primarily done by looking at the dependence
+	       of atoms and variables in a DFS-like manner.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#MdlDFSOnAtoms">MdlDFSOnAtoms</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdlOper.c"TARGET="ABSTRACT"><CODE>mdlOper.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mdl_ModuleUpdate"></A>
+Mdl_Module_t * <I></I>
+<B>Mdl_ModuleUpdate</B>(
+  Mdl_Module_t * <b>module</b>, <i></i>
+  Mdl_Manager_t * <b>manager</b> <i></i>
+)
+</pre>
+<dd> This function first checks if all the components of the
+  module are created before it.  If not, then it means one of the components
+  have been updated, and the module will be composed once again, replacing the
+  old module.
+<p>
+
+<dd> <b>Side Effects</b> The original module will be deleted and freed if any
+  of the components are newer than the original module.
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdl.c"TARGET="ABSTRACT"><CODE>mdl.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mdl_NamePrefixWithString"></A>
+char* <I></I>
+<B>Mdl_NamePrefixWithString</B>(
+  char* <b>prefix</b>, <i></i>
+  char* <b>name</b> <i></i>
+)
+</pre>
+<dd> This function takes in a prefix string and a name.
+<p>
+
+<dd> <b>Side Effects</b> User should free the returned string.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdl.c"TARGET="ABSTRACT"><CODE>mdl.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mdl_Reinit"></A>
+int <I></I>
+<B>Mdl_Reinit</B>(
+  Tcl_Interp * <b>interp</b>, <i></i>
+  Main_Manager_t * <b>manager</b> <i></i>
+)
+</pre>
+<dd> The function frees all modules in the module manager and
+                      allocates a new module manager. It does the same for the
+                      type manager.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Mdl_Init">Mdl_Init</a>
+<a href="#Mdl_End">Mdl_End</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdlMain.c"TARGET="ABSTRACT"><CODE>mdlMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mdl_StateInvAddToModule"></A>
+boolean <I></I>
+<B>Mdl_StateInvAddToModule</B>(
+  Mdl_Module_t * <b>module</b>, <i></i>
+  Mdl_Invariant_t * <b>invariant</b> <i></i>
+)
+</pre>
+<dd> Add an invariant to a module. Returns TRUE if
+                      successful, FALSE else.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdl.c"TARGET="ABSTRACT"><CODE>mdl.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mdl_TranInvAddToModule"></A>
+boolean <I></I>
+<B>Mdl_TranInvAddToModule</B>(
+  Mdl_Module_t * <b>module</b>, <i></i>
+  Mdl_Invariant_t * <b>invariant</b> <i></i>
+)
+</pre>
+<dd> Add an invariant to a module. Returns TRUE if
+                      successful, FALSE else.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdl.c"TARGET="ABSTRACT"><CODE>mdl.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mdl_VariableRename"></A>
+int <I></I>
+<B>Mdl_VariableRename</B>(
+  st_table* <b>vartable</b>, <i></i>
+  char* <b>oldname</b>, <i></i>
+  char* <b>newname</b> <i></i>
+)
+</pre>
+<dd> Given a vartable, a variable and a new name, this function
+                      remove the entry from the vartable, updates the name, and
+		      insert it again into the vartable.  It returns 1 if
+		      successful, and 0 otherwise.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdlOper.c"TARGET="ABSTRACT"><CODE>mdlOper.c</CODE></A>
+
+<dt><pre>
+<A NAME="ReturnWhiteSpacesNeeded"></A>
+static char* <I></I>
+<B>ReturnWhiteSpacesNeeded</B>(
+  int  <b>numSpaces</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> The user should free the string after use.
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdlMain.c"TARGET="ABSTRACT"><CODE>mdlMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="VarNameObtainComponents"></A>
+void <I></I>
+<B>VarNameObtainComponents</B>(
+  char * <b>name</b>, <i></i>
+  char ** <b>name1</b>, <i></i>
+  char ** <b>name2</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdlOper.c"TARGET="ABSTRACT"><CODE>mdlOper.c</CODE></A>
+
+<dt><pre>
+<A NAME="VarObtainComponentsRecursively"></A>
+void <I></I>
+<B>VarObtainComponentsRecursively</B>(
+  Var_Variable_t * <b>var</b>, <i></i>
+  lsList  <b>varList</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdlOper.c"TARGET="ABSTRACT"><CODE>mdlOper.c</CODE></A>
+
+<dt><pre>
+<A NAME="traverse"></A>
+static void <I></I>
+<B>traverse</B>(
+  Mdl_Expr_t * <b>mexpr</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdlMain.c"TARGET="ABSTRACT"><CODE>mdlMain.c</CODE></A>
+
+<dt><pre>
+<A NAME=""></A>
+ <I></I>
+<B></B>(
+   <b></b> <i></i>
+)
+</pre>
+<dd> This is a control structure for looping through all the
+  invariants of a give module.
+<p>
+
+<dd> <b>Side Effects</b> none
+<p>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdl.h"TARGET="ABSTRACT"><CODE>mdl.h</CODE></A>
+
+<dt><pre>
+<A NAME=""></A>
+ <I></I>
+<B></B>(
+   <b></b> <i></i>
+)
+</pre>
+<dd> This is a control structure for looping through all the
+  invariants of a give module.
+<p>
+
+<dd> <b>Side Effects</b> none
+<p>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdl.h"TARGET="ABSTRACT"><CODE>mdl.h</CODE></A>
+
+<dt><pre>
+<A NAME=""></A>
+ <I></I>
+<B></B>(
+   <b></b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdl.h"TARGET="ABSTRACT"><CODE>mdl.h</CODE></A>
+
+<dt><pre>
+<A NAME=""></A>
+ <I></I>
+<B></B>(
+   <b></b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mdlAllFile.html#mdl.h"TARGET="ABSTRACT"><CODE>mdl.h</CODE></A>
+
+
+</DL>
+<HR>
+Last updated on 1031104 18h39
+</BODY></HTML>

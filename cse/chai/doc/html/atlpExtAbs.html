@@ -1,0 +1,148 @@
+<html>
+<head><title>atlp package abstract</title></head>
+<body>
+
+
+<!-- Function Abstracts -->
+
+<dl>
+<dt> <a href="atlpAllDet.html#Atlp_AgentAllocWithName" TARGET="MAIN"><code>Atlp_AgentAllocWithName()</code></a>
+<dd> Allocate an agent with its name only.
+
+<dt> <a href="atlpAllDet.html#Atlp_AgentAlloc" TARGET="MAIN"><code>Atlp_AgentAlloc()</code></a>
+<dd> Allocates an agent.
+
+<dt> <a href="atlpAllDet.html#Atlp_AgentFree" TARGET="MAIN"><code>Atlp_AgentFree()</code></a>
+<dd> Free an Agent structure.
+
+<dt> <a href="atlpAllDet.html#Atlp_AgentIsAgentSet" TARGET="MAIN"><code>Atlp_AgentIsAgentSet()</code></a>
+<dd> Set the isAgent flag of the agent
+
+<dt> <a href="atlpAllDet.html#Atlp_AgentIsAgent" TARGET="MAIN"><code>Atlp_AgentIsAgent()</code></a>
+<dd> Is this agent specified in the formula?
+
+<dt> <a href="atlpAllDet.html#Atlp_AgentReadAtom" TARGET="MAIN"><code>Atlp_AgentReadAtom()</code></a>
+<dd> Reads the atom of an agent.
+
+<dt> <a href="atlpAllDet.html#Atlp_AgentReadName" TARGET="MAIN"><code>Atlp_AgentReadName()</code></a>
+<dd> Reads the name of an agent.
+
+<dt> <a href="atlpAllDet.html#Atlp_FileParseFormula" TARGET="MAIN"><code>Atlp_FileParseFormula()</code></a>
+<dd> Parses a file containing a set of ATL formulas.
+
+<dt> <a href="atlpAllDet.html#Atlp_FlushStates" TARGET="MAIN"><code>Atlp_FlushStates()</code></a>
+<dd> Frees States field of Atlp_Formula_t recursively
+
+<dt> <a href="atlpAllDet.html#Atlp_FormulaArrayConvertToDAG" TARGET="MAIN"><code>Atlp_FormulaArrayConvertToDAG()</code></a>
+<dd> Converts an array of ATL formulae to a multi-rooted DAG.
+
+<dt> <a href="atlpAllDet.html#Atlp_FormulaArrayConvertToExistentialFormTree" TARGET="MAIN"><code>Atlp_FormulaArrayConvertToExistentialFormTree()</code></a>
+<dd> Converts an array of ATL formulas to existential form.
+
+<dt> <a href="atlpAllDet.html#Atlp_FormulaArrayFree" TARGET="MAIN"><code>Atlp_FormulaArrayFree()</code></a>
+<dd> Frees an array of ATL formulas.
+
+<dt> <a href="atlpAllDet.html#Atlp_FormulaConvertToExistentialForm" TARGET="MAIN"><code>Atlp_FormulaConvertToExistentialForm()</code></a>
+<dd> Converts a ATL formula to existential form.
+
+<dt> <a href="atlpAllDet.html#Atlp_FormulaConvertToString" TARGET="MAIN"><code>Atlp_FormulaConvertToString()</code></a>
+<dd> Returns formula as a character string.
+
+<dt> <a href="atlpAllDet.html#Atlp_FormulaCreateWithAgents" TARGET="MAIN"><code>Atlp_FormulaCreateWithAgents()</code></a>
+<dd> Creates a ATL formula with the specified fields.
+
+<dt> <a href="atlpAllDet.html#Atlp_FormulaCreate" TARGET="MAIN"><code>Atlp_FormulaCreate()</code></a>
+<dd> Creates a ATL formula, without the list of agents.
+
+<dt> <a href="atlpAllDet.html#Atlp_FormulaDAGConvertToExistentialFormDAG" TARGET="MAIN"><code>Atlp_FormulaDAGConvertToExistentialFormDAG()</code></a>
+<dd> Converts a DAG of ATL formulae to a DAG of existential ATL
+  formulae.
+
+<dt> <a href="atlpAllDet.html#Atlp_FormulaDup" TARGET="MAIN"><code>Atlp_FormulaDup()</code></a>
+<dd> Duplicates a ATL formula.
+
+<dt> <a href="atlpAllDet.html#Atlp_FormulaFree" TARGET="MAIN"><code>Atlp_FormulaFree()</code></a>
+<dd> Frees a formula if no other formula refers to it as a
+  sub-formula.
+
+<dt> <a href="atlpAllDet.html#Atlp_FormulaObtainStates" TARGET="MAIN"><code>Atlp_FormulaObtainStates()</code></a>
+<dd> Gets a copy of the set of states for which this formula is true.
+
+<dt> <a href="atlpAllDet.html#Atlp_FormulaPrint" TARGET="MAIN"><code>Atlp_FormulaPrint()</code></a>
+<dd> Prints a formula to a file.
+
+<dt> <a href="atlpAllDet.html#Atlp_FormulaReadAgentList" TARGET="MAIN"><code>Atlp_FormulaReadAgentList()</code></a>
+<dd> Reads the agent list of a formula
+
+<dt> <a href="atlpAllDet.html#Atlp_FormulaReadAtmExpr" TARGET="MAIN"><code>Atlp_FormulaReadAtmExpr()</code></a>
+<dd> Reads the atmexpr in the formula
+
+<dt> <a href="atlpAllDet.html#Atlp_FormulaReadByName" TARGET="MAIN"><code>Atlp_FormulaReadByName()</code></a>
+<dd> Returns a pointer to the formula, given name.
+
+<dt> <a href="atlpAllDet.html#Atlp_FormulaReadDebugData" TARGET="MAIN"><code>Atlp_FormulaReadDebugData()</code></a>
+<dd> Returns the debug data associated with a formula.
+
+<dt> <a href="atlpAllDet.html#Atlp_FormulaReadLeftChild" TARGET="MAIN"><code>Atlp_FormulaReadLeftChild()</code></a>
+<dd> Gets the left child of a formula.
+
+<dt> <a href="atlpAllDet.html#Atlp_FormulaReadLeft" TARGET="MAIN"><code>Atlp_FormulaReadLeft()</code></a>
+<dd> Read the left pointer of the formula
+
+<dt> <a href="atlpAllDet.html#Atlp_FormulaReadOriginalFormula" TARGET="MAIN"><code>Atlp_FormulaReadOriginalFormula()</code></a>
+<dd> Returns original formula corresponding to converted formula.
+
+<dt> <a href="atlpAllDet.html#Atlp_FormulaReadRightChild" TARGET="MAIN"><code>Atlp_FormulaReadRightChild()</code></a>
+<dd> Gets the right child of a formula.
+
+<dt> <a href="atlpAllDet.html#Atlp_FormulaReadRight" TARGET="MAIN"><code>Atlp_FormulaReadRight()</code></a>
+<dd> Read the right pointer of the formula
+
+<dt> <a href="atlpAllDet.html#Atlp_FormulaReadType" TARGET="MAIN"><code>Atlp_FormulaReadType()</code></a>
+<dd> Gets the type of a formula.
+
+<dt> <a href="atlpAllDet.html#Atlp_FormulaReadVariableName" TARGET="MAIN"><code>Atlp_FormulaReadVariableName()</code></a>
+<dd> Reads the variable name of a leaf formula.
+
+<dt> <a href="atlpAllDet.html#Atlp_FormulaSetAgentList" TARGET="MAIN"><code>Atlp_FormulaSetAgentList()</code></a>
+<dd> Stores the agentList with the formula
+
+<dt> <a href="atlpAllDet.html#Atlp_FormulaSetAtmExpr" TARGET="MAIN"><code>Atlp_FormulaSetAtmExpr()</code></a>
+<dd> Stores the atmExpr with the formula.
+
+<dt> <a href="atlpAllDet.html#Atlp_FormulaSetDbgInfo" TARGET="MAIN"><code>Atlp_FormulaSetDbgInfo()</code></a>
+<dd> Sets the debug information of a formula.
+
+<dt> <a href="atlpAllDet.html#Atlp_FormulaSetStates" TARGET="MAIN"><code>Atlp_FormulaSetStates()</code></a>
+<dd> Stores the set of states with the formula.
+
+<dt> <a href="atlpAllDet.html#Atlp_FormulaTestIsConverted" TARGET="MAIN"><code>Atlp_FormulaTestIsConverted()</code></a>
+<dd> Returns TRUE if formula was converted, else FALSE.
+
+<dt> <a href="atlpAllDet.html#Atlp_FormulaTestIsQuantifierFree" TARGET="MAIN"><code>Atlp_FormulaTestIsQuantifierFree()</code></a>
+<dd> Returns TRUE if formula contains no path quantifiers.
+
+<dt> <a href="atlpAllDet.html#Atlp_Init" TARGET="MAIN"><code>Atlp_Init()</code></a>
+<dd> Init function for tcl.
+
+<dt> <a href="atlpAllDet.html#Atlp_ManagerAlloc" TARGET="MAIN"><code>Atlp_ManagerAlloc()</code></a>
+<dd> Allocate a atlp manager.
+
+<dt> <a href="atlpAllDet.html#Atlp_ManagerFree" TARGET="MAIN"><code>Atlp_ManagerFree()</code></a>
+<dd> Frees a atlp manager
+
+<dt> <a href="atlpAllDet.html#Atlp_ManagerReadFormulaNames" TARGET="MAIN"><code>Atlp_ManagerReadFormulaNames()</code></a>
+<dd> Returns a list of Atl formula Names
+
+<dt> <a href="atlpAllDet.html#Atlp_ManagerReadFormulas" TARGET="MAIN"><code>Atlp_ManagerReadFormulas()</code></a>
+<dd> Returns an array of Atl Formula from the ATL Manager
+
+<dt> <a href="atlpAllDet.html#Atlp_ReadAtlpManager" TARGET="MAIN"><code>Atlp_ReadAtlpManager()</code></a>
+<dd> Export the Atlp Global Manager
+
+</dl>
+
+<hr>
+
+Last updated on 1031104 18h39
+</body></html>

@@ -1,0 +1,913 @@
+<HTML>
+<HEAD><TITLE>The sym package</TITLE></HEAD>
+<BODY>
+
+<DL>
+<dt><pre>
+<A NAME="Sym_AssignmentBuildMdd"></A>
+mdd_t * <I></I>
+<B>Sym_AssignmentBuildMdd</B>(
+  Sym_Info_t * <b>symInfo</b>, <i></i>
+  Atm_Assign_t * <b>assign</b>, <i></i>
+  st_table * <b>assignedVarTable</b> <i></i>
+)
+</pre>
+<dd> Given an assignment, build an MDD for the assignment
+<p>
+
+<dd> <b>Side Effects</b> The variables that are assigned to, are added to the
+                      assignedVarTable that is passed in
+<p>
+
+<dd> <b>See Also</b> <code><a href="#SymAssignmentBuildMddStandard">SymAssignmentBuildMddStandard</a>
+</code>
+
+<dt><pre>
+<A NAME="Sym_AtomBuildInitialRegion"></A>
+mdd_t * <I></I>
+<B>Sym_AtomBuildInitialRegion</B>(
+  Sym_Info_t * <b>symInfo</b>, <i></i>
+  Atm_Atom_t * <b>atom</b> <i></i>
+)
+</pre>
+<dd> build intial region for atom
+<p>
+
+<dd> <b>Side Effects</b> none
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Sym_AtomBuildTransitionRelation">Sym_AtomBuildTransitionRelation</a>
+</code>
+
+<dt><pre>
+<A NAME="Sym_AtomBuildTransitionRelation"></A>
+mdd_t * <I></I>
+<B>Sym_AtomBuildTransitionRelation</B>(
+  Sym_Info_t * <b>symInfo</b>, <i></i>
+  Atm_Atom_t * <b>atom</b> <i></i>
+)
+</pre>
+<dd> build transition relation for an atom
+<p>
+
+<dd> <b>Side Effects</b> none
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Sym_ModuleBuildTransitionRelation">Sym_ModuleBuildTransitionRelation</a>
+</code>
+
+<dt><pre>
+<A NAME="Sym_AtomsBuildPartialInitialRegion"></A>
+mdd_t * <I></I>
+<B>Sym_AtomsBuildPartialInitialRegion</B>(
+  Sym_Info_t * <b>symInfo</b>, <i></i>
+  array_t * <b>atomArray</b>, <i></i>
+  mdd_t * <b>partialState</b> <i></i>
+)
+</pre>
+<dd> build mdd for partial initial region
+<p>
+
+<dd> <b>Side Effects</b> none
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Sym_AtomsComputePartialImage">Sym_AtomsComputePartialImage</a>
+</code>
+
+<dt><pre>
+<A NAME="Sym_AtomsComputePartialImage"></A>
+mdd_t * <I></I>
+<B>Sym_AtomsComputePartialImage</B>(
+  Sym_Info_t * <b>symInfo</b>, <i></i>
+  array_t * <b>atomArray</b>, <i></i>
+  mdd_t * <b>prevState</b>, <i></i>
+  mdd_t * <b>partialState</b> <i></i>
+)
+</pre>
+<dd> Compute partial image with respect to a set of atoms
+<p>
+
+<dd> <b>Side Effects</b> none
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Sym_AtomsBuildPartialInitialRegion">Sym_AtomsBuildPartialInitialRegion</a>
+</code>
+
+<dt><pre>
+<A NAME="Sym_DebugTracePrint"></A>
+void <I></I>
+<B>Sym_DebugTracePrint</B>(
+  Sym_Info_t * <b>symInfo</b>, <i></i>
+  array_t * <b>savedOnions</b>, <i></i>
+  int  <b>step</b>, <i></i>
+  mdd_t * <b>notInv</b>, <i></i>
+  array_t * <b>eventIdArray</b>, <i></i>
+  array_t * <b>histDependIdArray</b>, <i></i>
+  char * <b>invName</b>, <i></i>
+  char * <b>moduleName</b> <i></i>
+)
+</pre>
+<dd> Given an array of MDDs (representing the onion ring),
+                      the step at which the error occured,
+		      the negation of the invariant that got violated,
+		      arrays of event and history free ids of the module,
+		      name of the invariant and module, this function
+		      prints the debug trace.
+		      It starts with the onion ring at the specified step and 
+		      intersects it with the negation of the invariant. Then
+		      it successivey does pre-image computations and finds 
+		      a path to an initial state. Then it reverses the path and
+		      and prints an error trace.
+<p>
+
+<dd> <b>Side Effects</b> none
+<p>
+
+<dd> <b>See Also</b> <code><a href="#SymModuleSearch">SymModuleSearch</a>
+</code>
+
+<dt><pre>
+<A NAME="Sym_End"></A>
+int <I></I>
+<B>Sym_End</B>(
+  Tcl_Interp * <b>interp</b>, <i></i>
+  Main_Manager_t * <b>manager</b> <i></i>
+)
+</pre>
+<dd> Currently this function does nothing. During a subsequent
+                      cleanup this should be made to free all memeory allocated by sym
+<p>
+
+<dd> <b>Side Effects</b> none
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Sym_Init">Sym_Init</a>
+<a href="#Sym_Reinit">Sym_Reinit</a>
+</code>
+
+<dt><pre>
+<A NAME="Sym_ExprBuildMdd"></A>
+mdd_t * <I></I>
+<B>Sym_ExprBuildMdd</B>(
+  Sym_Info_t * <b>symInfo</b>, <i></i>
+  Atm_Expr_t * <b>expr</b> <i></i>
+)
+</pre>
+<dd> This routined builds an MDD for an expression. Note that
+                      the expression *must* evaluate to a boolean value in
+                      order to be able to build an MDD. Otherwise
+                      an error message is printed, and the routine aborts
+<p>
+
+<dd> <b>Side Effects</b> none
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<dt><pre>
+<A NAME="Sym_Init"></A>
+int <I></I>
+<B>Sym_Init</B>(
+  Tcl_Interp * <b>interp</b>, <i></i>
+  Main_Manager_t * <b>manager</b> <i></i>
+)
+</pre>
+<dd> This function is called when Mocha comes up and does the following:
+                      1. Create hooks to sym package's functions for the
+		      supported commands
+		      2. Allocate memory for SymRegionManager and deposit it in the
+		      main manager
+<p>
+
+<dd> <b>Side Effects</b> none
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Sym_End">Sym_End</a>
+<a href="#Sym_Reinit">Sym_Reinit</a>
+</code>
+
+<dt><pre>
+<A NAME="Sym_MddPickMinterm"></A>
+mdd_t  * <I></I>
+<B>Sym_MddPickMinterm</B>(
+  Sym_Info_t * <b>symInfo</b>, <i></i>
+  mdd_t * <b>mdd</b> <i></i>
+)
+</pre>
+<dd> utility to pick a minterm form a MDD
+<p>
+
+<dd> <b>Side Effects</b> none
+<p>
+
+<dt><pre>
+<A NAME="Sym_MddPrintCubesImplSpec"></A>
+void <I></I>
+<B>Sym_MddPrintCubesImplSpec</B>(
+  Sym_Info_t * <b>implSymInfo</b>, <i></i>
+  Sym_Info_t * <b>specSymInfo</b>, <i></i>
+  mdd_t * <b>mdd</b>, <i></i>
+  int  <b>level</b> <i></i>
+)
+</pre>
+<dd> Dump the given MDD as a sum of cubes.
+                      Using symInfo, the MDD ids are translated to variable
+		      names in the reactive module description
+<p>
+
+<dd> <b>Side Effects</b> none
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Sym_MddPrintRawCubes">Sym_MddPrintRawCubes</a>
+</code>
+
+<dt><pre>
+<A NAME="Sym_MddPrintCubes"></A>
+void <I></I>
+<B>Sym_MddPrintCubes</B>(
+  Sym_Info_t * <b>symInfo</b>, <i></i>
+  mdd_t * <b>mdd</b>, <i></i>
+  int  <b>level</b> <i></i>
+)
+</pre>
+<dd> Dump the given MDD as a sum of cubes.
+                      Using symInfo, the MDD ids are translated to variable
+		      names in the reactive module description
+<p>
+
+<dd> <b>Side Effects</b> none
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Sym_MddPrintRawCubes">Sym_MddPrintRawCubes</a>
+</code>
+
+<dt><pre>
+<A NAME="Sym_MddPrintRawCubes"></A>
+void <I></I>
+<B>Sym_MddPrintRawCubes</B>(
+  Sym_Info_t * <b>symInfo</b>, <i></i>
+  mdd_t * <b>mdd</b>, <i></i>
+  int  <b>level</b> <i></i>
+)
+</pre>
+<dd> Utility to dump mdds - in terms of raw mdd ids
+<p>
+
+<dd> <b>Side Effects</b> none
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Sym_MddPrintCubes">Sym_MddPrintCubes</a>
+</code>
+
+<dt><pre>
+<A NAME="Sym_MddPrintStateForErrorTrace"></A>
+void <I></I>
+<B>Sym_MddPrintStateForErrorTrace</B>(
+  Sym_Info_t * <b>symInfo</b>, <i></i>
+  mdd_t * <b>mdd</b>, <i></i>
+  char ** <b>stateString</b> <i></i>
+)
+</pre>
+<dd> Given an mdd representinga state, generate a string
+                      in the form x1=v1 x2=v2 ...
+<p>
+
+<dd> <b>Side Effects</b> desired sting is padded to the end of stateString
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Sym_MddPrintCubes">Sym_MddPrintCubes</a>
+</code>
+
+<dt><pre>
+<A NAME="Sym_ModuleBuildInitialRegion"></A>
+mdd_t * <I></I>
+<B>Sym_ModuleBuildInitialRegion</B>(
+  Sym_Info_t * <b>symInfo</b>, <i></i>
+  Mdl_Module_t * <b>module</b> <i></i>
+)
+</pre>
+<dd> build mdd for initial region of module
+<p>
+
+<dd> <b>Side Effects</b> none
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Sym_ModuleBuildTransitionRelation">Sym_ModuleBuildTransitionRelation</a>
+</code>
+
+<dt><pre>
+<A NAME="Sym_ModuleBuildTransitionRelation"></A>
+void <I></I>
+<B>Sym_ModuleBuildTransitionRelation</B>(
+  Sym_Info_t * <b>symInfo</b>, <i></i>
+  Mdl_Module_t * <b>module</b> <i></i>
+)
+</pre>
+<dd> build symbloic transition relation for a module.
+                      A conjunct is created for each atom and all conjuncts
+		      are stored in an array
+<p>
+
+<dd> <b>Side Effects</b> transtion relation is build and stored inside symInfo
+<p>
+
+<dd> <b>See Also</b> <code><a href="#SymSearchModule">SymSearchModule</a>
+</code>
+
+<dt><pre>
+<A NAME="Sym_ModuleMatchMddIds"></A>
+boolean <I></I>
+<B>Sym_ModuleMatchMddIds</B>(
+  Mdl_Module_t * <b>module1</b>, <i></i>
+  Mdl_Module_t * <b>module2</b>, <i></i>
+  Sym_Info_t * <b>symInfo1</b>, <i></i>
+  Sym_Info_t * <b>symInfo2</b>, <i></i>
+  array_t * <b>idArray1</b>, <i></i>
+  array_t * <b>idArray2</b> <i></i>
+)
+</pre>
+<dd> returns arrays of matching mdd ids for unprimed vars of
+                        two modules (through the arguments). The return value is
+			true if every variable of module2 is also present
+			in module 1 (this is the no-hidden variable case)
+<p>
+
+<dd> <b>Side Effects</b> matching ids are returned in corresponding indices of
+                       idArray1 and idArray2
+<p>
+
+<dt><pre>
+<A NAME="Sym_ModulePerformBFS"></A>
+void <I></I>
+<B>Sym_ModulePerformBFS</B>(
+  Tcl_Interp * <b>interp</b>, <i></i>
+  Main_Manager_t * <b>mainManager</b>, <i></i>
+  Mdl_Module_t * <b>module</b>, <i></i>
+  array_t * <b>invNameArray</b>, <i></i>
+  array_t * <b>typedExprArray</b> <i></i>
+)
+</pre>
+<dd> Do invariant checking. This is the entry point
+                      for the sym invariant engine to be called from
+		      the inv package
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Sym_ModuleBuildTransitionRelation">Sym_ModuleBuildTransitionRelation</a>
+</code>
+
+<dt><pre>
+<A NAME="Sym_RegionAlloc"></A>
+Sym_Region_t * <I></I>
+<B>Sym_RegionAlloc</B>(
+  Mdl_Module_t * <b>module</b>, <i></i>
+  mdd_t * <b>regionMdd</b> <i></i>
+)
+</pre>
+<dd> Allocate a region struct and set its module
+                      and image pointers to the arguments passed
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<dt><pre>
+<A NAME="Sym_RegionFree"></A>
+void <I></I>
+<B>Sym_RegionFree</B>(
+  Sym_Region_t * <b>region</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<dt><pre>
+<A NAME="Sym_RegionManagerAddModuleToSymInfo"></A>
+void <I></I>
+<B>Sym_RegionManagerAddModuleToSymInfo</B>(
+  Sym_RegionManager_t * <b>regionManager</b>, <i></i>
+  Mdl_Module_t * <b>module</b>, <i></i>
+  Sym_Info_t * <b>symInfo</b> <i></i>
+)
+</pre>
+<dd> Given a module and its symInfo, add it to the region manager's
+                      moduleToSymInfo hash table
+<p>
+
+<dd> <b>Side Effects</b> none
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Sym_RegionManagerReadSymInfo">Sym_RegionManagerReadSymInfo</a>
+<a href="#Sym_RegionManagerDeleteModuleToSymInfo">Sym_RegionManagerDeleteModuleToSymInfo</a>
+</code>
+
+<dt><pre>
+<A NAME="Sym_RegionManagerAlloc"></A>
+Sym_RegionManager_t * <I></I>
+<B>Sym_RegionManagerAlloc</B>(
+   <b></b> <i></i>
+)
+</pre>
+<dd> A region manager manintains:
+                     1. mapping from modules to their symInfos and 
+		     2. region tables mapping region names to regions
+		     3. region counter used to generate unique region names
+
+		     This routine allocates and returns a 
+		     pointer to a region manager
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dt><pre>
+<A NAME="Sym_RegionManagerDeleteModuleToSymInfo"></A>
+void <I></I>
+<B>Sym_RegionManagerDeleteModuleToSymInfo</B>(
+  Sym_RegionManager_t * <b>regionManager</b>, <i></i>
+  Mdl_Module_t * <b>module</b> <i></i>
+)
+</pre>
+<dd> Given a module, delete it (and it's symInfo) from the
+                      region manager's moduleToSymInfo table. If the module is
+		      not in the table, this is a no-op
+<p>
+
+<dd> <b>Side Effects</b> none
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Sym_RegionManagerAddModuleToSymInfo">Sym_RegionManagerAddModuleToSymInfo</a>
+</code>
+
+<dt><pre>
+<A NAME="Sym_RegionManagerFree"></A>
+void <I></I>
+<B>Sym_RegionManagerFree</B>(
+  Sym_RegionManager_t * <b>regionManager</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<dt><pre>
+<A NAME="Sym_RegionManagerIncrementCounter"></A>
+void <I></I>
+<B>Sym_RegionManagerIncrementCounter</B>(
+  Sym_RegionManager_t * <b>regionManager</b> <i></i>
+)
+</pre>
+<dd> Given a pointer to the region manager, increment
+                      the value of the region counter
+<p>
+
+<dd> <b>Side Effects</b> none
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Sym_RegionManagerReadCounter">Sym_RegionManagerReadCounter</a>
+</code>
+
+<dt><pre>
+<A NAME="Sym_RegionManagerReadCounter"></A>
+unsigned long <I></I>
+<B>Sym_RegionManagerReadCounter</B>(
+  Sym_RegionManager_t * <b>regionManager</b> <i></i>
+)
+</pre>
+<dd> Given a pointer to the region manager, return
+                      the value of the region counter inside the manager
+<p>
+
+<dd> <b>Side Effects</b> none
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Sym_RegionManagerReadRegionTable">Sym_RegionManagerReadRegionTable</a>
+<a href="#Sym_RegionManagerIncrementCounter">Sym_RegionManagerIncrementCounter</a>
+</code>
+
+<dt><pre>
+<A NAME="Sym_RegionManagerReadRegionTable"></A>
+Tcl_HashTable * <I></I>
+<B>Sym_RegionManagerReadRegionTable</B>(
+  Sym_RegionManager_t * <b>regionManager</b> <i></i>
+)
+</pre>
+<dd> Given a pointer to the region manager, return the
+                      region table (a Tcl hash table) associated with it.
+		      The region table hashes region names to SymRegionStruct
+		      vlaues. The user should NOT free this table
+<p>
+
+<dd> <b>Side Effects</b> none
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Sym_RegionManagerReadCounter">Sym_RegionManagerReadCounter</a>
+</code>
+
+<dt><pre>
+<A NAME="Sym_RegionManagerReadSymInfo"></A>
+Sym_Info_t * <I></I>
+<B>Sym_RegionManagerReadSymInfo</B>(
+  Sym_RegionManager_t * <b>regionManager</b>, <i></i>
+  Mdl_Module_t * <b>module</b> <i></i>
+)
+</pre>
+<dd> Given a region manager and a module pointer,
+                      this routine returns a pointer to the module's
+		      symInfo it it exists, and 0 otherwise.
+		      The caller should NOT free this pointer
+<p>
+
+<dd> <b>Side Effects</b> SymRegionManagerAddModuleToSymInfo
+<p>
+
+<dt><pre>
+<A NAME="Sym_Reinit"></A>
+int <I></I>
+<B>Sym_Reinit</B>(
+  Tcl_Interp * <b>interp</b>, <i></i>
+  Main_Manager_t * <b>manager</b> <i></i>
+)
+</pre>
+<dd> This function is called when the user types a re-init command. 
+                      Re-initialization is not yet supported by sym.
+		      Currently, this function does nothing
+<p>
+
+<dd> <b>Side Effects</b> none
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Sym_Init">Sym_Init</a>
+<a href="#Sym_End">Sym_End</a>
+</code>
+
+<dt><pre>
+<A NAME="Sym_StateInMddWithResidueMdd"></A>
+int <I></I>
+<B>Sym_StateInMddWithResidueMdd</B>(
+  mdd_manager * <b>mddManager</b>, <i></i>
+  mdd_t * <b>mdd</b>, <i></i>
+  array_t * <b>varIdArray</b>, <i></i>
+  array_t * <b>valueArray</b>, <i></i>
+  mdd_t ** <b>returnMdd</b> <i></i>
+)
+</pre>
+<dd> A state is given as an array of varids (corresponding to
+                      the unprimed variables) and an array of values
+                      (corresponding to the values of the variables). This
+                      function checks if the state is in the onset of the mdd.
+                      This function assumes that the values are within the
+                      domain size of the corresponding variables. (For
+                      example, the value of a boolean variable can only be
+                      0 or 1, and the value of a enumerative variable with
+                      3 values can only be 0, 1 or 2).
+
+		      It returns 0 if the state is not in the mdd, 1 if it is,
+		      or 2 if it is not determined.  This happens when
+		      the state is a partial state and there is not enough
+		      information to check if it is in the mdd.  In this case,
+                      the returnMdd pointer will point to the "residue mdd",
+                      i.e., the remaining mdd that is not resolved.
+                     
+
+		      Note: this implementation is based on cofactoring and 
+		      in theory is inefficient. It should be
+		      replaced by a more efficient one which is based on traversal
+		      of the mdd.
+<p>
+
+<dd> <b>Side Effects</b> none
+<p>
+
+<dt><pre>
+<A NAME="Sym_StateInMdd"></A>
+int <I></I>
+<B>Sym_StateInMdd</B>(
+  mdd_manager * <b>mddManager</b>, <i></i>
+  mdd_t * <b>mdd</b>, <i></i>
+  array_t * <b>varIdArray</b>, <i></i>
+  array_t * <b>valueArray</b> <i></i>
+)
+</pre>
+<dd> A state is given as an array of varids (corresponding to
+                      the unprimed variables) and an array of values
+                      (corresponding to the values of the variables). This
+                      function checks if the state is in the onset of the mdd.
+                      This function assumes that the values are within the
+                      domain size of the corresponding variables. (For
+                      example, the value of a boolean variable can only be
+                      0 or 1, and the value of a enumerative variable with
+                      3 values can only be 0, 1 or 2).
+
+		      It returns 0 if the state is not in the mdd, 1 if it is,
+		      or 2 if it is not determined.  This happens when
+		      the state is a partial state and there is not enough
+		      information to check if it is in the mdd.                       
+
+		      Note: this implementation is based on cofactoring and 
+		      in theory is inefficient. It should be
+		      replaced by a more efficient one which is based on traversal
+		      of the mdd.
+<p>
+
+<dd> <b>Side Effects</b> none
+<p>
+
+<dt><pre>
+<A NAME="Sym_SymInfoAlloc"></A>
+Sym_Info_t * <I></I>
+<B>Sym_SymInfoAlloc</B>(
+  Tcl_Interp * <b>interp</b>, <i></i>
+  Mdl_Module_t * <b>module</b>, <i></i>
+  mdd_manager * <b>manager</b> <i></i>
+)
+</pre>
+<dd> Allocate and return a symInfo struct
+<p>
+
+<dd> <b>Side Effects</b> none
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Sym_SymInfoFree">Sym_SymInfoFree</a>
+</code>
+
+<dt><pre>
+<A NAME="Sym_SymInfoBuildFlatTrans"></A>
+mdd_t * <I></I>
+<B>Sym_SymInfoBuildFlatTrans</B>(
+  Sym_Info_t * <b>syminfo</b> <i></i>
+)
+</pre>
+<dd> symInfo maintains a transition relation for a module
+                      as an array of conjuncts.  This utility takes "and"
+		      of all the conjuncts and builds a flat
+		      transition relation
+<p>
+
+<dd> <b>Side Effects</b> none
+<p>
+
+<dt><pre>
+<A NAME="Sym_SymInfoFree"></A>
+void <I></I>
+<B>Sym_SymInfoFree</B>(
+  Sym_Info_t * <b>symInfo</b> <i></i>
+)
+</pre>
+<dd> Utility to free symInfo
+<p>
+
+<dd> <b>Side Effects</b> none
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Sym_SymInfoAlloc">Sym_SymInfoAlloc</a>
+</code>
+
+<dt><pre>
+<A NAME="Sym_SymInfoLookupPrimedVariableId"></A>
+boolean <I></I>
+<B>Sym_SymInfoLookupPrimedVariableId</B>(
+  Sym_Info_t * <b>symInfo</b>, <i></i>
+  Var_Variable_t * <b>var</b>, <i></i>
+  int * <b>id</b> <i></i>
+)
+</pre>
+<dd> lookup primed mdd id for a variable
+<p>
+
+<dd> <b>Side Effects</b> none
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Sym_SymInfoLookupUnprimedVariableId">Sym_SymInfoLookupUnprimedVariableId</a>
+</code>
+
+<dt><pre>
+<A NAME="Sym_SymInfoLookupUnprimedVariableId"></A>
+boolean <I></I>
+<B>Sym_SymInfoLookupUnprimedVariableId</B>(
+  Sym_Info_t * <b>symInfo</b>, <i></i>
+  Var_Variable_t * <b>var</b>, <i></i>
+  int * <b>id</b> <i></i>
+)
+</pre>
+<dd> lookup unprimed mdd id for a variable
+<p>
+
+<dd> <b>Side Effects</b> none
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Sym_SymInfoLookupPrimedVariableId">Sym_SymInfoLookupPrimedVariableId</a>
+</code>
+
+<dt><pre>
+<A NAME="Sym_SymInfoReadConjunctForAtom"></A>
+mdd_t * <I></I>
+<B>Sym_SymInfoReadConjunctForAtom</B>(
+  Sym_Info_t * <b>symInfo</b>, <i></i>
+  Atm_Atom_t * <b>atom</b> <i></i>
+)
+</pre>
+<dd> read the conjunct  (transtion relation) for the given atom
+<p>
+
+<dd> <b>Side Effects</b> none
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Sym_SymInfoReadManager">Sym_SymInfoReadManager</a>
+</code>
+
+<dt><pre>
+<A NAME="Sym_SymInfoReadConjuncts"></A>
+array_t * <I></I>
+<B>Sym_SymInfoReadConjuncts</B>(
+  Sym_Info_t * <b>symInfo</b> <i></i>
+)
+</pre>
+<dd> read the conjuncts from symInfo
+<p>
+
+<dd> <b>Side Effects</b> none
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Sum_SymInfoReadImgInfo">Sum_SymInfoReadImgInfo</a>
+</code>
+
+<dt><pre>
+<A NAME="Sym_SymInfoReadIdToVar"></A>
+st_table * <I></I>
+<B>Sym_SymInfoReadIdToVar</B>(
+  Sym_Info_t * <b>symInfo</b> <i></i>
+)
+</pre>
+<dd> read the idToVar table from symInfo
+<p>
+
+<dd> <b>Side Effects</b> none
+<p>
+
+<dt><pre>
+<A NAME="Sym_SymInfoReadImgInfo"></A>
+Img_ImageInfo_t * <I></I>
+<B>Sym_SymInfoReadImgInfo</B>(
+  Sym_Info_t * <b>symInfo</b> <i></i>
+)
+</pre>
+<dd> read the image info from symInfo
+<p>
+
+<dd> <b>Side Effects</b> none
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Sym_SymInfoReadUnprimedArray">Sym_SymInfoReadUnprimedArray</a>
+</code>
+
+<dt><pre>
+<A NAME="Sym_SymInfoReadManager"></A>
+mdd_manager * <I></I>
+<B>Sym_SymInfoReadManager</B>(
+  Sym_Info_t * <b>symInfo</b> <i></i>
+)
+</pre>
+<dd> read the mdd manager from symInfo
+<p>
+
+<dd> <b>Side Effects</b> none
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Sym_SymInfoReadConjuncts">Sym_SymInfoReadConjuncts</a>
+</code>
+
+<dt><pre>
+<A NAME="Sym_SymInfoReadPrimedIdArray"></A>
+array_t * <I></I>
+<B>Sym_SymInfoReadPrimedIdArray</B>(
+  Sym_Info_t * <b>symInfo</b> <i></i>
+)
+</pre>
+<dd> read the primedIdArray array
+<p>
+
+<dd> <b>Side Effects</b> none
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Sym_SymInfoReadUnprimedIdArray">Sym_SymInfoReadUnprimedIdArray</a>
+</code>
+
+<dt><pre>
+<A NAME="Sym_SymInfoReadQuantifyIdArray"></A>
+array_t * <I></I>
+<B>Sym_SymInfoReadQuantifyIdArray</B>(
+  Sym_Info_t * <b>symInfo</b> <i></i>
+)
+</pre>
+<dd> read the quantifyIdArray array
+<p>
+
+<dd> <b>Side Effects</b> none
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Sym_SymInfoReadUnprimedIdArray">Sym_SymInfoReadUnprimedIdArray</a>
+</code>
+
+<dt><pre>
+<A NAME="Sym_SymInfoReadUnprimedIdArray"></A>
+array_t * <I></I>
+<B>Sym_SymInfoReadUnprimedIdArray</B>(
+  Sym_Info_t * <b>symInfo</b> <i></i>
+)
+</pre>
+<dd> read the unprimedIdArray array
+<p>
+
+<dd> <b>Side Effects</b> none
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Sym_SymInfoReadPrimedIdArray">Sym_SymInfoReadPrimedIdArray</a>
+</code>
+
+<dt><pre>
+<A NAME="Sym_SymInfoReadVarToPrimedId"></A>
+st_table * <I></I>
+<B>Sym_SymInfoReadVarToPrimedId</B>(
+  Sym_Info_t * <b>symInfo</b> <i></i>
+)
+</pre>
+<dd> read the varToPrimedId st_table
+<p>
+
+<dd> <b>Side Effects</b> none
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Sym_SymInfoReadVarToUnprimedId">Sym_SymInfoReadVarToUnprimedId</a>
+</code>
+
+<dt><pre>
+<A NAME="Sym_SymInfoReadVarToUnprimedId"></A>
+st_table * <I></I>
+<B>Sym_SymInfoReadVarToUnprimedId</B>(
+  Sym_Info_t * <b>symInfo</b> <i></i>
+)
+</pre>
+<dd> read the varToUnprimedId st_table
+<p>
+
+<dd> <b>Side Effects</b> none
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Sym_SymInfoReadVarToPrimedId">Sym_SymInfoReadVarToPrimedId</a>
+</code>
+
+<dt><pre>
+<A NAME="Sym_SymInfoSetConjunctForAtom"></A>
+void <I></I>
+<B>Sym_SymInfoSetConjunctForAtom</B>(
+  Sym_Info_t * <b>symInfo</b>, <i></i>
+  Atm_Atom_t * <b>atom</b>, <i></i>
+  mdd_t * <b>atomMdd</b> <i></i>
+)
+</pre>
+<dd> set the conjunct  (transtion relation) for the given atom
+<p>
+
+<dd> <b>Side Effects</b> none
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Sym_SymInfoReadManager">Sym_SymInfoReadManager</a>
+</code>
+
+<dt><pre>
+<A NAME="Sym_SymInfoSetImgInfo"></A>
+void <I></I>
+<B>Sym_SymInfoSetImgInfo</B>(
+  Sym_Info_t * <b>symInfo</b>, <i></i>
+  Img_ImageInfo_t * <b>imgInfo</b> <i></i>
+)
+</pre>
+<dd> read the image info from symInfo
+<p>
+
+<dd> <b>Side Effects</b> none
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Sym_SymInfoReadUnprimedArray">Sym_SymInfoReadUnprimedArray</a>
+</code>
+
+
+</DL>
+<HR>
+Last updated on 1031104 18h39
+</BODY></HTML>

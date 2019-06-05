@@ -1,0 +1,11 @@
+
+  isInterfaceVariable - Test if a variable is a interface variable
+     _________________________________________________________________
+   
+   isInterfaceVariable variable module
+   
+   This function tests if a variable is a interface variable of the
+   module. If yes, 1 is returned. Otherwise, 0 is returned.
+     _________________________________________________________________
+   
+   Last updated on 980624 22h10

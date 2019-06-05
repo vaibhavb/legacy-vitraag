@@ -1,0 +1,1238 @@
+<HTML>
+<HEAD><TITLE>The var package</TITLE></HEAD>
+<BODY>
+
+<DL>
+<dt><pre>
+<A NAME="Var_End"></A>
+int <I></I>
+<B>Var_End</B>(
+  Tcl_Interp * <b>interp</b>, <i></i>
+  Main_Manager_t * <b>manager</b> <i></i>
+)
+</pre>
+<dd> Ends the var package.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Var_Init">Var_Init</a>
+<a href="#Var_Reinit">Var_Reinit</a>
+</code>
+
+<dt><pre>
+<A NAME="Var_EnumElementAlloc"></A>
+Var_EnumElement_t * <I></I>
+<B>Var_EnumElementAlloc</B>(
+  char * <b>name</b>, <i></i>
+  Var_Type_t * <b>dataType</b> <i></i>
+)
+</pre>
+<dd> Allocates a new symbolic constant for an enumerated data
+                      type. It makes a copy of name. Hence, it is the user's
+                      responsibility to free his copy.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dt><pre>
+<A NAME="Var_EnumElementFree"></A>
+void <I></I>
+<B>Var_EnumElementFree</B>(
+  Var_EnumElement_t * <b>typeconst</b> <i></i>
+)
+</pre>
+<dd> It frees an enumerative constant.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<dt><pre>
+<A NAME="Var_EnumElementObtainIndex"></A>
+int <I></I>
+<B>Var_EnumElementObtainIndex</B>(
+  Var_EnumElement_t * <b>element</b> <i></i>
+)
+</pre>
+<dd> The function returns the index of the enumerated element
+                      of a symbolic variable, if successful. Otherwise, it
+                      returns -1.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dt><pre>
+<A NAME="Var_EnumElementReadName"></A>
+char* <I></I>
+<B>Var_EnumElementReadName</B>(
+  Var_EnumElement_t* <b>element</b> <i></i>
+)
+</pre>
+<dd> This function returns a pointer to the name of the
+                      enumerative type constant.  User should not free
+                      or modify the string.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<dt><pre>
+<A NAME="Var_EnumElementReadType"></A>
+Var_Type_t* <I></I>
+<B>Var_EnumElementReadType</B>(
+  Var_EnumElement_t* <b>element</b> <i></i>
+)
+</pre>
+<dd> Should not free the pointer.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<dt><pre>
+<A NAME="Var_Init"></A>
+int <I></I>
+<B>Var_Init</B>(
+  Tcl_Interp * <b>interp</b>, <i></i>
+  Main_Manager_t * <b>manager</b> <i></i>
+)
+</pre>
+<dd> Initializes the var package.
+<p>
+
+<dd> <b>Side Effects</b> The command, show_types is registered.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Var_Reinit">Var_Reinit</a>
+<a href="#Var_End">Var_End</a>
+</code>
+
+<dt><pre>
+<A NAME="Var_RangeTypeReadFromRange"></A>
+Var_Type_t * <I></I>
+<B>Var_RangeTypeReadFromRange</B>(
+  Var_TypeManager_t * <b>typeManager</b>, <i></i>
+  int  <b>num</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<dt><pre>
+<A NAME="Var_Reinit"></A>
+int <I></I>
+<B>Var_Reinit</B>(
+  Tcl_Interp * <b>interp</b>, <i></i>
+  Main_Manager_t * <b>manager</b> <i></i>
+)
+</pre>
+<dd> Reinitializes the var package.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Var_Init">Var_Init</a>
+<a href="#Var_End">Var_End</a>
+</code>
+
+<dt><pre>
+<A NAME="Var_TypeConvertToString"></A>
+char * <I></I>
+<B>Var_TypeConvertToString</B>(
+  Var_Type_t * <b>type</b> <i></i>
+)
+</pre>
+<dd> This routine prints a type (without name) to a
+  string. For example, a range type is printed as "(0..n)", and a bitvector type
+  is printed as "bitvector n", where n in both cases refer to the size of the
+  data type.  This routine should not be called when the type is one of the
+  built-in type, namely, event, bool, int and nat.
+<p>
+
+<dd> <b>Side Effects</b> It returns a string. User should free the string after
+  use.
+<p>
+
+<dt><pre>
+<A NAME="Var_TypeIsArray"></A>
+boolean <I></I>
+<B>Var_TypeIsArray</B>(
+  Var_Type_t * <b>type</b> <i></i>
+)
+</pre>
+<dd> This function returns true if the type is an array
+  type.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<dt><pre>
+<A NAME="Var_TypeIsBV"></A>
+boolean <I></I>
+<B>Var_TypeIsBV</B>(
+  Var_Type_t * <b>type</b> <i></i>
+)
+</pre>
+<dd> This function returns true if the type is a bitvector
+  type.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<dt><pre>
+<A NAME="Var_TypeIsBitvectorN"></A>
+boolean <I></I>
+<B>Var_TypeIsBitvectorN</B>(
+  Var_Type_t * <b>type</b> <i></i>
+)
+</pre>
+<dd> This function returns true if the type is a bitvector
+  type.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<dt><pre>
+<A NAME="Var_TypeIsBitvector"></A>
+boolean <I></I>
+<B>Var_TypeIsBitvector</B>(
+  Var_Type_t * <b>type</b> <i></i>
+)
+</pre>
+<dd> This function returns true if the type is a bitvector
+  type.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<dt><pre>
+<A NAME="Var_TypeIsBoolean"></A>
+boolean <I></I>
+<B>Var_TypeIsBoolean</B>(
+  Var_Type_t * <b>type</b> <i></i>
+)
+</pre>
+<dd> This function returns true if the type is a boolean
+  type.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<dt><pre>
+<A NAME="Var_TypeIsCompatibleWithNumConst"></A>
+boolean <I></I>
+<B>Var_TypeIsCompatibleWithNumConst</B>(
+  Var_Type_t * <b>type</b> <i></i>
+)
+</pre>
+<dd> This function checks if the give type is compatible with
+  number constants. This is used in type checking, where, for instance, a
+  variable of type Range can add to a number constant. Other compatible types
+  are Integer, Natural, Bitvector and NumConst.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dt><pre>
+<A NAME="Var_TypeIsEnum"></A>
+boolean <I></I>
+<B>Var_TypeIsEnum</B>(
+  Var_Type_t * <b>type</b> <i></i>
+)
+</pre>
+<dd> This function returns true if the type is an enum
+  type.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<dt><pre>
+<A NAME="Var_TypeIsEvent"></A>
+boolean <I></I>
+<B>Var_TypeIsEvent</B>(
+  Var_Type_t * <b>type</b> <i></i>
+)
+</pre>
+<dd> This function returns true if the type is an event
+  type.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<dt><pre>
+<A NAME="Var_TypeIsFinite"></A>
+boolean <I></I>
+<B>Var_TypeIsFinite</B>(
+  Var_Type_t * <b>type</b> <i></i>
+)
+</pre>
+<dd> This function returns true if the type is a finite
+  type.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<dt><pre>
+<A NAME="Var_TypeIsRange"></A>
+boolean <I></I>
+<B>Var_TypeIsRange</B>(
+  Var_Type_t * <b>type</b> <i></i>
+)
+</pre>
+<dd> This function returns true if the type is an range
+  type.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<dt><pre>
+<A NAME="Var_TypeIsTimer"></A>
+boolean <I></I>
+<B>Var_TypeIsTimer</B>(
+  Var_Type_t * <b>type</b> <i></i>
+)
+</pre>
+<dd> This function returns true if the type is a timer
+  type.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<dt><pre>
+<A NAME="Var_TypeManagerAddEnumElement"></A>
+boolean <I></I>
+<B>Var_TypeManagerAddEnumElement</B>(
+  Var_TypeManager_t * <b>typeManager</b>, <i></i>
+  Var_EnumElement_t * <b>element</b> <i></i>
+)
+</pre>
+<dd> If successful, return a pointer to the new element.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<dt><pre>
+<A NAME="Var_TypeManagerAddType"></A>
+Var_Type_t * <I></I>
+<B>Var_TypeManagerAddType</B>(
+  Var_TypeManager_t* <b>typeManager</b>, <i></i>
+  Var_Type_t* <b>type</b> <i></i>
+)
+</pre>
+<dd> This function adds a type into the type manager. First
+  it looks up if the type is already defined. If so, return the pointer to the
+  defined one, and frees the given one. If not, add the type into the type
+  manager.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<dt><pre>
+<A NAME="Var_TypeManagerFree"></A>
+void <I></I>
+<B>Var_TypeManagerFree</B>(
+  Var_TypeManager_t * <b>typemanager</b> <i></i>
+)
+</pre>
+<dd> This frees all the variable types first, then the type
+  table and the enum constant table, as well as the typemanager itself.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dt><pre>
+<A NAME="Var_TypeManagerInit"></A>
+Var_TypeManager_t* <I></I>
+<B>Var_TypeManagerInit</B>(
+   <b></b> <i></i>
+)
+</pre>
+<dd> This function initializes the type manager. The variable
+  type table and the enumerative elements table are initialized. Built in
+  variable types, namely bool, int, nat and event are created and hashed in
+  the variable type table. It returns the type manager.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dt><pre>
+<A NAME="Var_TypeManagerObtainType"></A>
+Var_Type_t* <I></I>
+<B>Var_TypeManagerObtainType</B>(
+  Var_TypeManager_t* <b>typeManager</b>, <i></i>
+  Var_Type_t* <b>type</b> <i></i>
+)
+</pre>
+<dd> Should not free the pointer.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<dt><pre>
+<A NAME="Var_TypeManagerReadEnumElementFromName"></A>
+Var_EnumElement_t* <I></I>
+<B>Var_TypeManagerReadEnumElementFromName</B>(
+  Var_TypeManager_t * <b>typeManager</b>, <i></i>
+  char * <b>name</b> <i></i>
+)
+</pre>
+<dd> for enumerative type, given a name and the typemanager,
+                      this function first lookup the type_element_table, and
+		      return a pointer the the element if found.
+
+		      Returns NIL(Var_EnumElement_t) if the element is not
+		      found.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<dt><pre>
+<A NAME="Var_TypeManagerReadTypeFromName"></A>
+Var_Type_t* <I></I>
+<B>Var_TypeManagerReadTypeFromName</B>(
+  Var_TypeManager_t* <b>typeManager</b>, <i></i>
+  char* <b>name</b> <i></i>
+)
+</pre>
+<dd> Should not free the pointer.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<dt><pre>
+<A NAME="Var_TypeManagerReadVarTypeTable"></A>
+st_table * <I></I>
+<B>Var_TypeManagerReadVarTypeTable</B>(
+  Var_TypeManager_t * <b>typeManager</b> <i></i>
+)
+</pre>
+<dd> This functions returns the var type table from the type
+  manager. Users should not free the table.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dt><pre>
+<A NAME="Var_TypesAreCompatible"></A>
+boolean <I></I>
+<B>Var_TypesAreCompatible</B>(
+  Var_Type_t * <b>type1</b>, <i></i>
+  Var_Type_t * <b>type2</b> <i></i>
+)
+</pre>
+<dd> This function returns true if the given two types are
+  compatible. It checks if any of the two type is a num_const. If so, check if
+  the other one is compatible with a num_const. Otherwise, check if the two
+  types are equal.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Var_TypeIsCompatibleWithNumConst">Var_TypeIsCompatibleWithNumConst</a>
+</code>
+
+<dt><pre>
+<A NAME="Var_VarNewTimerTypeAlloc"></A>
+Var_Type_t * <I></I>
+<B>Var_VarNewTimerTypeAlloc</B>(
+   <b></b> <i></i>
+)
+</pre>
+<dd> Allocates a new variable type for a timer variable.   Returns a pointer to
+  the variable if success. Otherwise, NIL(Var_Type_t) is returned.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Var_VariableFree">Var_VariableFree</a>
+</code>
+
+<dt><pre>
+<A NAME="Var_VarTimeIncrementTypeAlloc"></A>
+Var_Type_t * <I></I>
+<B>Var_VarTimeIncrementTypeAlloc</B>(
+  long  <b>maxIncrement</b> <i></i>
+)
+</pre>
+<dd> Allocates a variable type for the time increment variable.
+<p>
+
+<dt><pre>
+<A NAME="Var_VarTypeArrayAlloc"></A>
+Var_Type_t * <I></I>
+<B>Var_VarTypeArrayAlloc</B>(
+  char * <b>name</b>, <i></i>
+  Var_Type_t * <b>indexType</b>, <i></i>
+  Var_Type_t * <b>entryType</b> <i></i>
+)
+</pre>
+<dd> Allocates a new array type.  The name string is copied for
+  internal use. The user is responsible for freeing the original
+  string. Returns a pointer to the type if success. Otherwise, NIL(Var_Type_t)
+  is returned.
+<p>
+
+<dt><pre>
+<A NAME="Var_VarTypeArrayOrBitvectorReadSize"></A>
+int <I></I>
+<B>Var_VarTypeArrayOrBitvectorReadSize</B>(
+  Var_Type_t* <b>type</b> <i></i>
+)
+</pre>
+<dd> The function returns the size of the domain of a variable
+                      type for enumerated and range data types. For other
+                      variable types it returns -1.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dt><pre>
+<A NAME="Var_VarTypeBasicAlloc"></A>
+Var_Type_t * <I></I>
+<B>Var_VarTypeBasicAlloc</B>(
+  char * <b>name</b>, <i></i>
+  Var_DataType  <b>datatype</b> <i></i>
+)
+</pre>
+<dd> Allocates a new variable type.  The name string
+  is copied for internal use. The user is responsible for freeing
+  the original string. Returns a pointer to
+  the variable if success. Otherwise, NIL(Var_Type_t) is returned.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Var_VariableAddRangeInfo">Var_VariableAddRangeInfo</a>
+<a href="#Var_VariableFree">Var_VariableFree</a>
+</code>
+
+<dt><pre>
+<A NAME="Var_VarTypeBitvectorAlloc"></A>
+Var_Type_t * <I></I>
+<B>Var_VarTypeBitvectorAlloc</B>(
+  char * <b>name</b>, <i></i>
+  int  <b>size</b> <i></i>
+)
+</pre>
+<dd> Allocates a new bitvector type.  The name string
+  is copied for internal use. The user is responsible for freeing
+  the original string. Returns a pointer to
+  the type if success. Otherwise, NIL(Var_Type_t) is returned.
+<p>
+
+<dt><pre>
+<A NAME="Var_VarTypeBitvectorNAlloc"></A>
+Var_Type_t * <I></I>
+<B>Var_VarTypeBitvectorNAlloc</B>(
+  char * <b>name</b>, <i></i>
+  int  <b>size</b> <i></i>
+)
+</pre>
+<dd> Allocates a new bitvector type.  The name string
+  is copied for internal use. The user is responsible for freeing
+  the original string. Returns a pointer to
+  the type if success. Otherwise, NIL(Var_Type_t) is returned.
+<p>
+
+<dt><pre>
+<A NAME="Var_VarTypeDup"></A>
+Var_Type_t * <I></I>
+<B>Var_VarTypeDup</B>(
+  Var_Type_t * <b>type</b>, <i></i>
+  char * <b>name</b> <i></i>
+)
+</pre>
+<dd> Makes a copy of a variable type, which is then assigned a new
+  name. Typically, the new type will be put into the typetable afterwards. The
+  name can be NIL(char).
+<p>
+
+<dt><pre>
+<A NAME="Var_VarTypeEnumeratedAlloc"></A>
+Var_Type_t * <I></I>
+<B>Var_VarTypeEnumeratedAlloc</B>(
+  char * <b>name</b>, <i></i>
+  array_t * <b>indexToValue</b>, <i></i>
+  st_table * <b>valueToIndex</b> <i></i>
+)
+</pre>
+<dd> Allocates a new enumerated type.  The name string
+  is copied for internal use. The user is responsible for freeing
+  the original string. Returns a pointer to
+  the type if success. Otherwise, NIL(Var_Type_t) is returned.
+<p>
+
+<dt><pre>
+<A NAME="Var_VarTypeFree"></A>
+void <I></I>
+<B>Var_VarTypeFree</B>(
+  Var_Type_t * <b>type</b> <i></i>
+)
+</pre>
+<dd> It frees a variable type. For enumerative types, it is the
+  users responsbility to free the enum constants before freeing this type.
+<p>
+
+<dt><pre>
+<A NAME="Var_VarTypeRangeAlloc"></A>
+Var_Type_t * <I></I>
+<B>Var_VarTypeRangeAlloc</B>(
+  char * <b>name</b>, <i></i>
+  int  <b>range</b> <i></i>
+)
+</pre>
+<dd> Allocates a new rnage type.  The name string
+  is copied for internal use. The user is responsible for freeing
+  the original string. Returns a pointer to
+  the type if success. Otherwise, NIL(Var_Type_t) is returned.
+<p>
+
+<dt><pre>
+<A NAME="Var_VarTypeReadDataType"></A>
+Var_DataType <I></I>
+<B>Var_VarTypeReadDataType</B>(
+  Var_Type_t* <b>type</b> <i></i>
+)
+</pre>
+<dd> The function returns the data type of a varable type.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<dt><pre>
+<A NAME="Var_VarTypeReadDomainSize"></A>
+int <I></I>
+<B>Var_VarTypeReadDomainSize</B>(
+  Var_Type_t* <b>type</b> <i></i>
+)
+</pre>
+<dd> The function returns the size of the domain of a variable
+                      type for enumerated and range data types. For other
+                      variable types it returns -1.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dt><pre>
+<A NAME="Var_VarTypeReadEntryType"></A>
+Var_Type_t * <I></I>
+<B>Var_VarTypeReadEntryType</B>(
+  Var_Type_t * <b>varType</b> <i></i>
+)
+</pre>
+<dd> The function returns the entry type of an array data type.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Var_VarTypeReadIndexType">Var_VarTypeReadIndexType</a>
+</code>
+
+<dt><pre>
+<A NAME="Var_VarTypeReadIndexFromSymbolicValue"></A>
+int <I></I>
+<B>Var_VarTypeReadIndexFromSymbolicValue</B>(
+  Var_Type_t * <b>type</b>, <i></i>
+  Var_EnumElement_t * <b>symValue</b> <i></i>
+)
+</pre>
+<dd> The function returns the integer index associated with a
+               symbolic constant for and enumerated data type. If the data
+               type is not enumerated or the symbolic name is not valid, the
+               routine returns -1.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Var_VarTypeReadSymbolicValueFromIndex">Var_VarTypeReadSymbolicValueFromIndex</a>
+</code>
+
+<dt><pre>
+<A NAME="Var_VarTypeReadIndexToValue"></A>
+array_t * <I></I>
+<B>Var_VarTypeReadIndexToValue</B>(
+  Var_Type_t* <b>varType</b> <i></i>
+)
+</pre>
+<dd> The function returns TRUE if the variable is an external
+                      variable, otherwise it returns FALSE.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dt><pre>
+<A NAME="Var_VarTypeReadIndexType"></A>
+Var_Type_t * <I></I>
+<B>Var_VarTypeReadIndexType</B>(
+  Var_Type_t * <b>varType</b> <i></i>
+)
+</pre>
+<dd> The function returns the index type of an array data type.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Var_VarTypeReadEntryType">Var_VarTypeReadEntryType</a>
+</code>
+
+<dt><pre>
+<A NAME="Var_VarTypeReadName"></A>
+char* <I></I>
+<B>Var_VarTypeReadName</B>(
+  Var_Type_t* <b>type</b> <i></i>
+)
+</pre>
+<dd> The user should not free the returned string.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dt><pre>
+<A NAME="Var_VarTypeReadSymbolicValueFromIndex"></A>
+Var_EnumElement_t * <I></I>
+<B>Var_VarTypeReadSymbolicValueFromIndex</B>(
+  Var_Type_t * <b>type</b>, <i></i>
+  int  <b>i</b> <i></i>
+)
+</pre>
+<dd> The function returns the name of the symbolic constant
+               associated with an integer index for an enumerated data
+               type. For other types, it returns NIL(Var_EnumElement_t).
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dt><pre>
+<A NAME="Var_VariableAddToAwaitByAtomList"></A>
+void <I></I>
+<B>Var_VariableAddToAwaitByAtomList</B>(
+  Var_Variable_t* <b>var</b>, <i></i>
+  VarAtomGeneric  <b>atom</b> <i></i>
+)
+</pre>
+<dd> Add an atom to the awaitByAtomList.  Note since atm
+  package is not included in this package, user should cast the pointer to the
+  atom to VarAtomGeneric before calling this function.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<dt><pre>
+<A NAME="Var_VariableAddToReadByAtomList"></A>
+void <I></I>
+<B>Var_VariableAddToReadByAtomList</B>(
+  Var_Variable_t* <b>var</b>, <i></i>
+  VarAtomGeneric  <b>atom</b> <i></i>
+)
+</pre>
+<dd> Add an atom to the readByAtomList.  Note since atm
+  package is not included in this package, user should cast the pointer to the
+  atom to VarAtomGeneric before calling this function.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<dt><pre>
+<A NAME="Var_VariableAlloc"></A>
+Var_Variable_t * <I></I>
+<B>Var_VariableAlloc</B>(
+  VarModuleGeneric  <b>module</b>, <i></i>
+  char * <b>name</b>, <i></i>
+  Var_Type_t * <b>type</b> <i></i>
+)
+</pre>
+<dd> Allocates a new variable.  The arguments of this function are a
+  pointer to the module to which a new variable belongs, name of the variable,
+  and a pointer to the type of the variable. The name string is copied for
+  internal use. The user is responsible for freeing the original string.
+  Returns a pointer to the variable if success. Otherwise, NIL(Var_Variable_t)
+  is returned.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Var_VariableFree">Var_VariableFree</a>
+</code>
+
+<dt><pre>
+<A NAME="Var_VariableChangeName"></A>
+void <I></I>
+<B>Var_VariableChangeName</B>(
+  Var_Variable_t * <b>var</b>, <i></i>
+  char * <b>name</b> <i></i>
+)
+</pre>
+<dd> Changes the name of a variable.
+<p>
+
+<dd> <b>Side Effects</b> The original name is freed. A copy of the new name is
+  stored.
+<p>
+
+<dt><pre>
+<A NAME="Var_VariableFree"></A>
+int <I></I>
+<B>Var_VariableFree</B>(
+  Var_Variable_t * <b>var</b> <i></i>
+)
+</pre>
+<dd> It frees a variable structure.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Var_VariableAlloc">Var_VariableAlloc</a>
+</code>
+
+<dt><pre>
+<A NAME="Var_VariableIsBoolean"></A>
+boolean <I></I>
+<B>Var_VariableIsBoolean</B>(
+  Var_Variable_t * <b>var</b> <i></i>
+)
+</pre>
+<dd> Returns TRUE if the variable is boolean, FALSE
+  otherwise.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dt><pre>
+<A NAME="Var_VariableIsDummy"></A>
+boolean <I></I>
+<B>Var_VariableIsDummy</B>(
+  Var_Variable_t* <b>var</b> <i></i>
+)
+</pre>
+<dd> The function returns TRUE if the variable is an external
+                      variable, otherwise it returns FALSE.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dt><pre>
+<A NAME="Var_VariableIsEvent"></A>
+boolean <I></I>
+<B>Var_VariableIsEvent</B>(
+  Var_Variable_t* <b>var</b> <i></i>
+)
+</pre>
+<dd> The function returns TRUE if the variable is an event
+                      variable, otherwise it returns FALSE. There are three
+                      categories in which the set of variables is partitioned
+                      - event variables, history free variables and history
+                      dependent variables.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dt><pre>
+<A NAME="Var_VariableIsExternal"></A>
+boolean <I></I>
+<B>Var_VariableIsExternal</B>(
+  Var_Variable_t* <b>var</b> <i></i>
+)
+</pre>
+<dd> The function returns TRUE if the variable is an external
+                      variable, otherwise it returns FALSE.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dt><pre>
+<A NAME="Var_VariableIsHistoryDependent"></A>
+boolean <I></I>
+<B>Var_VariableIsHistoryDependent</B>(
+  Var_Variable_t * <b>var</b> <i></i>
+)
+</pre>
+<dd> The function returns TRUE if the variable is history
+                      dependent, otherwise it returns FALSE. There are three
+                      categories in which the set of variables is partitioned
+                      - event variables, history free variables and history
+                      dependent variables.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dt><pre>
+<A NAME="Var_VariableIsHistoryFree"></A>
+boolean <I></I>
+<B>Var_VariableIsHistoryFree</B>(
+  Var_Variable_t* <b>var</b> <i></i>
+)
+</pre>
+<dd> The function returns TRUE if the variable is history
+                      free, otherwise it returns FALSE. There are three
+                      categories in which the set of variables is partitioned
+                      - event variables, history free variables and history
+                      dependent variables.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dt><pre>
+<A NAME="Var_VariableIsInterface"></A>
+boolean <I></I>
+<B>Var_VariableIsInterface</B>(
+  Var_Variable_t* <b>var</b> <i></i>
+)
+</pre>
+<dd> The function returns TRUE if the variable is an interface
+                      variable, otherwise it returns FALSE.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dt><pre>
+<A NAME="Var_VariableIsPrivate"></A>
+boolean <I></I>
+<B>Var_VariableIsPrivate</B>(
+  Var_Variable_t* <b>var</b> <i></i>
+)
+</pre>
+<dd> The function returns TRUE if the variable is an private
+                      variable, otherwise it returns FALSE.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dt><pre>
+<A NAME="Var_VariableObtainEnumElementFromIndex"></A>
+Var_EnumElement_t * <I></I>
+<B>Var_VariableObtainEnumElementFromIndex</B>(
+  Var_Variable_t * <b>var</b>, <i></i>
+  int  <b>index</b> <i></i>
+)
+</pre>
+<dd> The function returns the enumerated element of a
+                      symbolic variable from its index if the index is within
+                      the the domain size of the variable. If the variable is
+                      not symbolic or the index is not within the domain size
+                      NIL(Var_EnumElemant_t) is returned.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dt><pre>
+<A NAME="Var_VariableReadAwaitList"></A>
+lsList <I></I>
+<B>Var_VariableReadAwaitList</B>(
+  Var_Variable_t* <b>var</b> <i></i>
+)
+</pre>
+<dd> It returns the pointer pointing to the list of
+                      atoms awaiting the variable.  User should not free this
+		      pointer.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dt><pre>
+<A NAME="Var_VariableReadControlAtom"></A>
+VarAtomGeneric <I></I>
+<B>Var_VariableReadControlAtom</B>(
+  Var_Variable_t* <b>var</b> <i></i>
+)
+</pre>
+<dd> This function returns the pointer to the atom that
+  controls this variable. If the atom is an external variable, the pointer is
+  NIL.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dt><pre>
+<A NAME="Var_VariableReadDataType"></A>
+Var_DataType <I></I>
+<B>Var_VariableReadDataType</B>(
+  Var_Variable_t* <b>var</b> <i></i>
+)
+</pre>
+<dd> The function returns the data type of the variable.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<dt><pre>
+<A NAME="Var_VariableReadIndexToValue"></A>
+array_t * <I></I>
+<B>Var_VariableReadIndexToValue</B>(
+  Var_Variable_t* <b>var</b> <i></i>
+)
+</pre>
+<dd> The function returns TRUE if the variable is an external
+                      variable, otherwise it returns FALSE.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dt><pre>
+<A NAME="Var_VariableReadModule"></A>
+VarModuleGeneric <I></I>
+<B>Var_VariableReadModule</B>(
+  Var_Variable_t * <b>var</b> <i></i>
+)
+</pre>
+<dd> It returns a pointer to the module to which this variable
+  belongs. Since the the module structure is defined in the mdl package, which
+  is "higher" than the var package, the pointer to the module is casted to
+  VarModuleGeneric. User should cast the pointer to Mdl_Module_t* when this
+  function is used.
+<p>
+
+<dd> <b>Side Effects</b> User should not free the module.
+<p>
+
+<dt><pre>
+<A NAME="Var_VariableReadName"></A>
+char * <I></I>
+<B>Var_VariableReadName</B>(
+  Var_Variable_t * <b>var</b> <i></i>
+)
+</pre>
+<dd> It reads the name of a variable. User should not free the
+  name.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dt><pre>
+<A NAME="Var_VariableReadPEID"></A>
+int <I></I>
+<B>Var_VariableReadPEID</B>(
+  Var_Variable_t* <b>var</b> <i></i>
+)
+</pre>
+<dd> returns 0 if private, 1 if external, 2 if interface, and
+  3 if it is a dummy variable.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dt><pre>
+<A NAME="Var_VariableReadReadList"></A>
+lsList <I></I>
+<B>Var_VariableReadReadList</B>(
+  Var_Variable_t* <b>var</b> <i></i>
+)
+</pre>
+<dd> It returns the pointer pointing to the list of
+                      atoms reading the variable.  User should not free this
+		      pointer.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dt><pre>
+<A NAME="Var_VariableReadTypeName"></A>
+char* <I></I>
+<B>Var_VariableReadTypeName</B>(
+  Var_Variable_t * <b>var</b> <i></i>
+)
+</pre>
+<dd> Returns a string containing the type name of a variable.
+<p>
+
+<dd> <b>Side Effects</b> The string should not be freed.
+<p>
+
+<dt><pre>
+<A NAME="Var_VariableReadType"></A>
+Var_Type_t* <I></I>
+<B>Var_VariableReadType</B>(
+  Var_Variable_t * <b>var</b> <i></i>
+)
+</pre>
+<dd> Returns a pointer to the type of a variable.
+<p>
+
+<dt><pre>
+<A NAME="Var_VariableSetControlAtom"></A>
+void <I></I>
+<B>Var_VariableSetControlAtom</B>(
+  Var_Variable_t* <b>var</b>, <i></i>
+  VarAtomGeneric  <b>atm</b> <i></i>
+)
+</pre>
+<dd> The pointer, ctrlByAtom, is pointing to the atom that
+                      controls this atom.  This routine set this pointer
+		      to the appropriate atom.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dt><pre>
+<A NAME="Var_VariableSetPEID"></A>
+void <I></I>
+<B>Var_VariableSetPEID</B>(
+  Var_Variable_t* <b>var</b>, <i></i>
+  int  <b>peid</b> <i></i>
+)
+</pre>
+<dd> set the class(private/external/interface/dummy) of the 
+                      variable.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dt><pre>
+<A NAME="Var_VariableTypeReadNumVals"></A>
+int <I></I>
+<B>Var_VariableTypeReadNumVals</B>(
+  Var_Type_t* <b>type</b> <i></i>
+)
+</pre>
+<dd> The function returns the number of values a variable of
+  this type can take - this makes sensse only for timer and time increment data
+  types
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<dt><pre>
+<A NAME="Var_VariableTypeSetNumVals"></A>
+int <I></I>
+<B>Var_VariableTypeSetNumVals</B>(
+  Var_Type_t* <b>type</b>, <i></i>
+  int  <b>numValues</b> <i></i>
+)
+</pre>
+<dd> The function modifies the number of values a variable of
+  this type can take - this makes sensse only for timer and range data
+  types
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+
+</DL>
+<HR>
+Last updated on 1031104 18h39
+</BODY></HTML>

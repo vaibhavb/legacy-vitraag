@@ -1,0 +1,285 @@
+The main package
+
+External header file for the main package.
+
+Shaz Qadeer
+
+**********************************************************************
+
+Main_AppendElement()           Append element to the Tcl interpreter.
+
+Main_AppendResult()            Append result to the Tcl interpreter.
+
+Main_ClearResult()             Clears the result in the Tcl interpreter.
+
+Main_ConvertIntToString()      Convert an integer into string.
+
+Main_End()                     Ends the main package.
+
+Main_Init()                    Initializes the main package.
+
+Main_ManagerReadMddManager()   Returns the mdd manager.
+
+Main_ManagerReadModuleManager()
+                               Returns the module manager.
+
+Main_ManagerReadRegionManager()
+                               Returns the region manager.
+
+Main_ManagerReadRtmRegionManager()
+                               Returns the manager for the rtm package.
+
+Main_ManagerReadStateManager() Returns the state manager.
+
+Main_ManagerReadTypeManager()  Returns the type manager.
+
+Main_ManagerSetMddManager()    Sets the mdd manager.
+
+Main_ManagerSetModuleManager() Sets the module manager.
+
+Main_ManagerSetRegionManager() Sets the region manager.
+
+Main_ManagerSetRtmRegionManager()
+                               Sets the rtm region manager.
+
+Main_ManagerSetStateManager()  Sets the state manager.
+
+Main_ManagerSetTypeManager()   Sets the variable type manager.
+
+Main_MochaErrorPrint()         Prints error messages appropriately to Tcl
+                               interface.
+
+Main_MochaFilePrint()          Prints to file pointer fp
+
+Main_MochaPrint()              Prints appropriately to either the Tcl
+                               interface.
+
+Main_Reinit()                  Reinitializes the main package.
+
+Main_ReturnCreationTime()      Returns the creation time
+
+Main_strConcat()               required
+
+**********************************************************************
+
+
+
+void
+Main_AppendElement(
+  char *            format,
+
+)
+  This function appends result to the Tcl Interpreter.
+
+  Side Effects: required
+
+void
+Main_AppendResult(
+  char *            format,
+
+)
+  This function appends result to the Tcl Interpreter.
+
+  Side Effects: required
+
+void
+Main_ClearResult(
+
+)
+  It clears the result field in the Tcl interpreter.
+
+  Side Effects: required
+
+char *
+Main_ConvertIntToString(
+  int               i
+)
+  This function converts an integer (both positive and negative) into a
+  string. It is the inverse of the library function atoi.
+
+  Side Effects: User should free the string after use.
+
+int
+Main_End(
+  Tcl_Interp *      interp,
+  Main_Manager_t *  manager
+)
+  Ends the main package.
+
+  Side Effects: None
+
+int
+Main_Init(
+  Tcl_Interp *      interp,
+  Main_Manager_t *  manager
+)
+  Initializes the main package.
+
+  Side Effects: Registers commands by modifying the TCL variable
+  mocha_commands.
+
+Main_MddManagerGeneric
+Main_ManagerReadMddManager(
+  Main_Manager_t *  manager
+)
+  This function returns the mdd manager.
+
+  Side Effects: None
+
+Main_MdlManagerGeneric
+Main_ManagerReadModuleManager(
+  Main_Manager_t *  manager
+)
+  This function returns a pointer to the current module manager. The pointer
+  should be cast to Mdl_Manager_t * before use.
+
+  Side Effects: None
+
+Main_RegionManagerGeneric
+Main_ManagerReadRegionManager(
+  Main_Manager_t *  manager
+)
+  This function returns the region manager.
+
+  Side Effects: None
+
+Main_RtmRegionManagerGeneric
+Main_ManagerReadRtmRegionManager(
+  Main_Manager_t *  manager
+)
+  This function returns manager containing the info that the rtm package uses.
+
+  Side Effects: None
+
+Main_StateManagerGeneric
+Main_ManagerReadStateManager(
+  Main_Manager_t *  manager
+)
+  This function returns the state manager.
+
+  Side Effects: None
+
+Main_TypeManagerGeneric
+Main_ManagerReadTypeManager(
+  Main_Manager_t *  manager
+)
+  This function returns a pointer to the current type manager. The pointer
+  should be cast to Var_TypeManager_t * before use.
+
+  Side Effects: None
+
+void
+Main_ManagerSetMddManager(
+  Main_Manager_t *  manager,
+  Main_MddManagerGe mddManager
+)
+  This function sets the value of the mdd manager in the main manager.
+
+  Side Effects: The value of the mdd manager is changed.
+
+void
+Main_ManagerSetModuleManager(
+  Main_Manager_t *  manager,
+  Main_MdlManagerGe mdlManager
+)
+  This function sets the value of the module manager in the main manager.
+
+  Side Effects: The value of the module manager is changed.
+
+void
+Main_ManagerSetRegionManager(
+  Main_Manager_t *  manager,
+  Main_RegionManage rgnManager
+)
+  This function sets the value of the region manager in the main manager.
+
+  Side Effects: The value of the region manager is changed.
+
+void
+Main_ManagerSetRtmRegionManager(
+  Main_Manager_t *  manager,
+  Main_RtmRegionMan rtmRegionManager
+)
+  This function sets the value of the rtm region manager in the main manager.
+
+  Side Effects: The value of the rtm region manager is changed.
+
+void
+Main_ManagerSetStateManager(
+  Main_Manager_t *  manager,
+  Main_StateManager stateManager
+)
+  This function sets the value of the state manager in the main manager.
+
+  Side Effects: The value of the state manager is changed.
+
+void
+Main_ManagerSetTypeManager(
+  Main_Manager_t *  manager,
+  Main_TypeManagerG typeManager
+)
+  This function sets the value of the variable type manager in the main
+  manager.
+
+  Side Effects: The value of the variable type manager is changed.
+
+void
+Main_MochaErrorPrint(
+  char*             format,
+
+)
+  This function simulates the fprintf(stderr, ...) command. Users should use
+  this command instead of fprintf(stderr, ...)
+
+  Side Effects: None
+
+void
+Main_MochaFilePrint(
+  FILE *            fp,
+  char*             format,
+
+)
+  This function simulates the fprintf(fp, ...) command. Users should use this
+  command instead of fprintf(stderr, ...)
+
+  Side Effects: None
+
+void
+Main_MochaPrint(
+  char*             format,
+
+)
+  This function simulates the printf() command. Users should use this command
+  instead of printf().
+
+  Side Effects: None
+
+int
+Main_Reinit(
+  Tcl_Interp *      interp,
+  Main_Manager_t *  manager
+)
+  Reinitializes the main package.
+
+  Side Effects: None
+
+int
+Main_ReturnCreationTime(
+
+)
+  It returns the system-generated creation time. The system keeps an internal
+  counter which increment once each time when this function is called. The
+  creation time can be used to keep track of when the modules/atoms etc. are
+  generated and it can be used for comparison.
+
+  Side Effects: MainCreationTime is incremented.
+
+char *
+Main_strConcat(
+  int               numArgs,
+
+)
+  optional
+
+  Side Effects: required
+

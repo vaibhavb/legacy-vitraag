@@ -1,0 +1,22 @@
+<html>
+<title>Add contact</title>
+<link rel="stylesheet" href="style/style.css">
+<body>
+<h1>UCSC Contact List</h1>
+<form ACTION="cgi-bin/contact.pl" method="post">
+<INPUT TYPE=HIDDEN NAME="contact-file" VALUE="/cse/grads/vaibhav/.html/ucsc-contacts.html">
+<!--<TEXTAREA ROWS=3 COLS=60 NAME="Opinion"></TEXTAREA>-->
+<p>Name:<input name="contact-name" size="70">
+<p>Email:<input name="contact-email" size="70">
+<p>Home-Tel:<input name="contact-home" size="40">
+<p>Office-tel:<input name="contact-office" size="40">
+<p>Birth Date(like Oct 12):<input name="contact-bday" size="30">
+<p>Type (like new grad CS, 2nd Yr grad Eco):<input name="contact-type" 
+size="30">
+<INPUT TYPE=HIDDEN NAME="contact-action" VALUE="add">
+<p><INPUT TYPE="SUBMIT" VALUE="Add This Info">
+<INPUT TYPE="RESET">
+</form>
+
+</body>
+</html>

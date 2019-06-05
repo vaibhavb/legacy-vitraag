@@ -1,0 +1,23 @@
+
+  hide - hides the interface variables of the module
+     _________________________________________________________________
+   
+   hide lt;variable_namegt; lt;variable_namegt; ... Module
+   
+   This function creates a new module which hides the given variables of
+   the specified module. It returns the name of the new module.
+   
+   The name of the new module is generated internally. To designate a
+   name, use let. For example, the command
+   
+   let P be [hide x1 x2 Pete]
+   
+   creates a module P which has x1 and x2 hidden.
+   
+   Command Options:
+   
+   -h
+          Prints usage.
+     _________________________________________________________________
+   
+   Last updated on 980624 22h10

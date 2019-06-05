@@ -1,0 +1,37 @@
+\begin{minipage}[t]{2in}
+\scriptsize
+\begin{verbatim}
+reset:
+      TokReset tabvars TokEOL relations
+;
+relations:
+      vdefault relations
+  | relation relations
+  | {}
+;
+vdefault:
+      TokTabDef valList TokEOL
+;
+relation:
+      valList TokEOL { ($1) }
+;
+valList:
+      valb valList { ([$1]@($2)) }
+  | valb { [$1] }
+;
+valb:
+      TokTabVal
+  |   TokTabVar
+  | ASSIGN  TokTabVar
+  | HYPHEN
+  | LBRACE TokTabVal HYPHEN
+        TokTabVal RBRACE
+  | LPAREN vals RPAREN
+  | NOT valb
+;
+vals:
+      TokTabVal COMMA vals
+  | TokTabVal
+;
+\end{verbatim}
+\end{minipage}

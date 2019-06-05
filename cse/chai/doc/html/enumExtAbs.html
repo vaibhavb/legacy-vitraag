@@ -1,0 +1,143 @@
+<html>
+<head><title>enum package abstract</title></head>
+<body>
+
+
+<!-- Function Abstracts -->
+
+<dl>
+<dt> <a href="enumAllDet.html#Enum_AtomComputeSetOfPartialInitialStates" TARGET="MAIN"><code>Enum_AtomComputeSetOfPartialInitialStates()</code></a>
+<dd> Updates the partial initial state to generate all possible
+                      initial states for the atom.
+
+<dt> <a href="enumAllDet.html#Enum_AtomComputeSetOfPartialPostStates" TARGET="MAIN"><code>Enum_AtomComputeSetOfPartialPostStates()</code></a>
+<dd> Executes an atom on a partial state to generate all
+  possible partial post states.
+
+<dt> <a href="enumAllDet.html#Enum_End" TARGET="MAIN"><code>Enum_End()</code></a>
+<dd> Ends the enum package.
+
+<dt> <a href="enumAllDet.html#Enum_Init" TARGET="MAIN"><code>Enum_Init()</code></a>
+<dd> Initializes the enum package.
+
+<dt> <a href="enumAllDet.html#Enum_ModuleComputeSetOfInitialStates" TARGET="MAIN"><code>Enum_ModuleComputeSetOfInitialStates()</code></a>
+<dd> Computes the set of initial states of a module.
+
+<dt> <a href="enumAllDet.html#Enum_ModuleComputeSetOfPostStates" TARGET="MAIN"><code>Enum_ModuleComputeSetOfPostStates()</code></a>
+<dd> Computes the post set of a state.
+
+<dt> <a href="enumAllDet.html#Enum_ModulePerformBFS" TARGET="MAIN"><code>Enum_ModulePerformBFS()</code></a>
+<dd> Performs a breadth-first search on the state space of
+                      module.
+
+<dt> <a href="enumAllDet.html#Enum_ModulePerformDFS" TARGET="MAIN"><code>Enum_ModulePerformDFS()</code></a>
+<dd> Performs a depth-first search on the state space of
+                      module.
+
+<dt> <a href="enumAllDet.html#Enum_PartialStatePrintToString" TARGET="MAIN"><code>Enum_PartialStatePrintToString()</code></a>
+<dd> Prints the partial state to a string.
+
+<dt> <a href="enumAllDet.html#Enum_Reinit" TARGET="MAIN"><code>Enum_Reinit()</code></a>
+<dd> Reinitializes the enum package.
+
+<dt> <a href="enumAllDet.html#Enum_StateAlloc" TARGET="MAIN"><code>Enum_StateAlloc()</code></a>
+<dd> Allocates a state.
+
+<dt> <a href="enumAllDet.html#Enum_StateAssignAllVarCombinations" TARGET="MAIN"><code>Enum_StateAssignAllVarCombinations()</code></a>
+<dd> Produces a list of states in which all combinations of
+                      values to variables in varList have been assigned.
+
+<dt> <a href="enumAllDet.html#Enum_StateDup" TARGET="MAIN"><code>Enum_StateDup()</code></a>
+<dd> Returns a duplicate copy of a state.
+
+<dt> <a href="enumAllDet.html#Enum_StateFreeEventVars" TARGET="MAIN"><code>Enum_StateFreeEventVars()</code></a>
+<dd> Frees the event variables of a state.
+
+<dt> <a href="enumAllDet.html#Enum_StateFreeHistFreeVars" TARGET="MAIN"><code>Enum_StateFreeHistFreeVars()</code></a>
+<dd> Frees the history free part of a state.
+
+<dt> <a href="enumAllDet.html#Enum_StateFree" TARGET="MAIN"><code>Enum_StateFree()</code></a>
+<dd> Frees a state.
+
+<dt> <a href="enumAllDet.html#Enum_StateIsVariableAssigned" TARGET="MAIN"><code>Enum_StateIsVariableAssigned()</code></a>
+<dd> Checks if a variable in a state has been assigned a
+                      value.
+
+<dt> <a href="enumAllDet.html#Enum_StateManagerAddVarInfo" TARGET="MAIN"><code>Enum_StateManagerAddVarInfo()</code></a>
+<dd> Adds varInfo of a module to the state manager.
+
+<dt> <a href="enumAllDet.html#Enum_StateManagerAlloc" TARGET="MAIN"><code>Enum_StateManagerAlloc()</code></a>
+<dd> Allocates and initializes a state manager.
+
+<dt> <a href="enumAllDet.html#Enum_StateManagerFree" TARGET="MAIN"><code>Enum_StateManagerFree()</code></a>
+<dd> Frees a state manager.
+
+<dt> <a href="enumAllDet.html#Enum_StateManagerIncrementStateCounter" TARGET="MAIN"><code>Enum_StateManagerIncrementStateCounter()</code></a>
+<dd> Increments the state counter.
+
+<dt> <a href="enumAllDet.html#Enum_StateManagerObtainVarInfoFromModule" TARGET="MAIN"><code>Enum_StateManagerObtainVarInfoFromModule()</code></a>
+<dd> Returns the varInfo of a module.
+
+<dt> <a href="enumAllDet.html#Enum_StateManagerReadStateCounter" TARGET="MAIN"><code>Enum_StateManagerReadStateCounter()</code></a>
+<dd> Returns the state counter.
+
+<dt> <a href="enumAllDet.html#Enum_StateManagerReadStateNameTable" TARGET="MAIN"><code>Enum_StateManagerReadStateNameTable()</code></a>
+<dd> Returns the state table.
+
+<dt> <a href="enumAllDet.html#Enum_StateNameTableAddStateWithNameSuffix" TARGET="MAIN"><code>Enum_StateNameTableAddStateWithNameSuffix()</code></a>
+<dd> Add a state to the TclHashTable.
+
+<dt> <a href="enumAllDet.html#Enum_StateNameTableAddState" TARGET="MAIN"><code>Enum_StateNameTableAddState()</code></a>
+<dd> Add a state to the TclHashTable.
+
+<dt> <a href="enumAllDet.html#Enum_StateReadVariableValue" TARGET="MAIN"><code>Enum_StateReadVariableValue()</code></a>
+<dd> Reads the value of a variable in a state.
+
+<dt> <a href="enumAllDet.html#Enum_StateSetParentState" TARGET="MAIN"><code>Enum_StateSetParentState()</code></a>
+<dd> Sets the parentState field of state.
+
+<dt> <a href="enumAllDet.html#Enum_StateSetVariableValue" TARGET="MAIN"><code>Enum_StateSetVariableValue()</code></a>
+<dd> Sets the value of a variable.
+
+<dt> <a href="enumAllDet.html#Enum_StateTableAlloc" TARGET="MAIN"><code>Enum_StateTableAlloc()</code></a>
+<dd> Allocates a state table structure.
+
+<dt> <a href="enumAllDet.html#Enum_StateTableEntryAlloc" TARGET="MAIN"><code>Enum_StateTableEntryAlloc()</code></a>
+<dd> Allocates a state table entry data structure.
+
+<dt> <a href="enumAllDet.html#Enum_StateTableEntryFree" TARGET="MAIN"><code>Enum_StateTableEntryFree()</code></a>
+<dd> Frees a state table entry.
+
+<dt> <a href="enumAllDet.html#Enum_StateTableFree" TARGET="MAIN"><code>Enum_StateTableFree()</code></a>
+<dd> Frees a state table.
+
+<dt> <a href="enumAllDet.html#Enum_VarInfoAlloc" TARGET="MAIN"><code>Enum_VarInfoAlloc()</code></a>
+<dd> Allocates the varInfo data structure of a module.
+
+<dt> <a href="enumAllDet.html#Enum_VarInfoFree" TARGET="MAIN"><code>Enum_VarInfoFree()</code></a>
+<dd> Frees a varInfo data structure.
+
+<dt> <a href="enumAllDet.html#Enum_VarInfoReadEventVars" TARGET="MAIN"><code>Enum_VarInfoReadEventVars()</code></a>
+<dd> Returns the event variables.
+
+<dt> <a href="enumAllDet.html#Enum_VarInfoReadHistDependVars" TARGET="MAIN"><code>Enum_VarInfoReadHistDependVars()</code></a>
+<dd> Returns the history dependent variables.
+
+<dt> <a href="enumAllDet.html#Enum_VarInfoReadHistFreeVars" TARGET="MAIN"><code>Enum_VarInfoReadHistFreeVars()</code></a>
+<dd> Returns the history free variables.
+
+<dt> <a href="enumAllDet.html#Enum_VarInfoReadNumEventVars" TARGET="MAIN"><code>Enum_VarInfoReadNumEventVars()</code></a>
+<dd> Returns the number of event variables.
+
+<dt> <a href="enumAllDet.html#Enum_VarInfoReadNumHistDependVars" TARGET="MAIN"><code>Enum_VarInfoReadNumHistDependVars()</code></a>
+<dd> Returns the number of history dependent variables.
+
+<dt> <a href="enumAllDet.html#Enum_VarInfoReadNumHistFreeVars" TARGET="MAIN"><code>Enum_VarInfoReadNumHistFreeVars()</code></a>
+<dd> Returns the number of history free variables.
+
+</dl>
+
+<hr>
+
+Last updated on 1031104 18h39
+</body></html>

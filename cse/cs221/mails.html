@@ -1,0 +1,516 @@
+<html>
+<title> Correspondence </title>
+<body>
+<ul>
+<hr>
+<li>
+<li><a href=#scott> Scott</a>
+<li><a href=#Frankee> Frankee </a>
+<li><a href=#Rhine> Rhine </a>
+<li><a href=#Pras> Prashanti </a>
+<hr>
+<li><a name=scott>Scott</a>
+<pre>
+Try the Linux Trace Toolkit:
+http://www.opersys.com/LTT
+
+It will provide you with exact accounting of the system's behavior.
+And if the info provided isn't sufficient, you can actually
+modify the tool or create a script to extract your own stats
+from the kernel traces. It's all GPL anyway ...
+
+Have fun,
+
+Karim@opersys
+
+Dear Scott,
+
+I'm working with Caixue on Linux Scheduler Project.
+
+I would like to know what criteria are characteristic in a  scheduler
+benchmark.
+I have following in mind.
+1. Total cpu time/Total Run Queue Time
+2. Total cpu time/total time in system
+3. Performance in various load conditions
+4. Performance for IO bound, CPU Bound and real-time processes.
+5. Performance in case of more processors.
+
+I know to implement 1&2, Is there anything available for 3/4/5?
+
+regards,
+vaibhav
+</pre>
+<hr>
+<li><a name=Frankee>Frankee</a>
+<pre>
+Sure, welcome to the club ..
+
+I answer to my now limited state of mind. Mike might be able to kick in
+more to fill some of the
+holes..
+
+for most of the stuff you will see references on our website
+(lse.sourceforge.net/scheduling).
+
+1) Benchmark: there are several benchmarks accepted right now
+      (a) chat: which creates lots of threads
+      (b) lmbench: which more targets context switching time
+      (c) mkbench:  (that what we called it). parallel kernel builds.
+      (c) the usual suspects of higher level benchmarks
+            AIM is now available
+
+2) HP did something along the line, though they basically just 
+intercepting
+the goodness function.
+      for all practical matters, the old scheduler is dead and Ingo 
+Molnars
+O(1) MQ scheduler
+      is what's going to happen anytime soon.
+
+3) don't know. Experts for RT are the Montavista folks. The O(1) deals 
+with
+RT in a funny way
+    as far as I can tell it only guarantees RT semantics on a single 
+CPU.
+
+4) see above
+5) there is already a kernel preemption patch available. Our assesment 
+at
+some time ago was
+    that the kernel is already preemptable due to the spin_locks etc. 
+Try
+hunting down the preemptable
+   patch and study it.
+
+More question? Shoot.
+Dinner time at this end of the continent so I've been brief.
+
+Hubertus Franke
+Enterprise Linux Group (Mgr),  Linux Technology Center (Member 
+Scalability)
+, OS-PIC (Chair)
+email: frankeh@us.ibm.com
+(w) 914-945-2003    (fax) 914-945-4425   TL: 862-2003
+
+
+
+Vaibhav Bhandari <vaibhav@cse.ucsc.edu> on 02/21/2002 06:49:13 PM
+
+To:    mkravetz@sequent.com, Hubertus Franke/Watson/IBM@IBMUS
+cc:    vbzpanacea@yahoo.com
+Subject:    Performance Evaluation of Linux Scheduler
+
+
+
+hi,
+
+I'm doing a project titled "Performance evaluation of Linux Scheduler"
+with specific aim to look in to:
+1. Developing a benchmark for performance evaluation of a scheduler.
+2. Loadable Scheduler Modules
+3. Real-time capability evaluation of a scheduler through multiqueue
+scheduling.
+4. A real-time scheduler for Linux
+5. The issues involved in making linux-kernel pre-emptive
+
+Would you please lemme know about the state of art in any of above 
+areas,
+so that i start developing and thinking in the right direction.
+
+Especially, i would like to know about the Mulit-Queue Scheduler whats
+done and what needs to be done. Did you benchmark it?
+
+thanks in advance,
+vaibhav
+</pre>
+<hr>
+<li><a name=Rhine>Rhine</a>
+<pre>
+> hi,
+> 
+> I'm doing a project titled "Performance evaluation of Linux 
+Scheduler"
+> with specific aim to look in to:
+> 1. Developing a benchmark for performance evaluation of a scheduler.
+
+Download the psets utility bundle and you can get my raw horsepower
+sched_bench as well as sched_rr.
+
+Start at 
+http://resourcemanagement.unixsolutions.hp.com/WaRM/schedpolicy.html
+
+The Linux Scalability Folks folks on sorceforge.net have a large number 
+of
+tests they use and a lot of performance data available.  Networking,
+Java threads, and other issues figure prominently.  Often source for
+published benchmarks is not made available.  In these cases, I usually
+ignore the paper as fiction.
+
+> 2. Loadable Scheduler Modules
+
+This concept is dead.  We're checking into Linux as a compile time 
+selector
+for Psets or Fair Share for Enterprise computing customers.
+However, I give sched_bench data on our web page under Documents.
+
+> 3. Real-time capability evaluation of a scheduler
+> 4. A real-time scheduler for Linux
+
+people make businesses out of 3+4. Just run a google search.
+
+> 5. The issues involved in making linux-kernel pre-emptive
+> 
+> Would you please lemme know about the state of art in any of above 
+areas,
+> so that i start developing and thinking in the right direction.
+> 
+> thanks in advance,
+> vaibhav
+</pre>
+<hr>
+<li><a name=Pras>Prashanti's code</a>
+<pre>
+hai,
+
+i am attaching the code.
+
+Prashanthi
+
+
+--------------------------------------------------------------------------------
+
+#include <linux/init.h>
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/sched.h>
+#include <asm/semaphore.h>
+#include <linux/slab.h>
+#include <stdio.h>
+
+MODULE_DESCRIPTION("Kernel Module");
+  
+extern void *sys_call_table[];
+extern int accum2(int);
+
+int i;
+
+struct semaphore sem;
+
+struct node
+{
+	int ppid;
+	int sum;
+	struct node *next;
+};
+
+struct node *first;
+
+/* The glob_accum calls the accum2() function from accum2.c and 
+ * returns the new value of the accumulator, the critical section 
+consists 
+ * calling the accum2() function and also keeping track of the values 
+ * passed on a per process basis
+ */
+
+asmlinkage int glob_accum(int i)
+{
+        int accum_total;  
+	struct node *temp;
+/*  Process entering critical section by executing a down */
+	
+	down(&sem);
+	temp=first;
+// List is empty , so has to create the first node.
+	if (temp==NULL)
+	{
+		first=kmalloc(sizeof(struct node),GFP_KERNEL);
+		first->ppid=current->pid;
+		first->sum=i;
+		first->next=NULL;
+	}
+	else
+	{
+	while(1)
+	{
+		if(temp->ppid==current->pid)
+		{
+			temp->sum=temp->sum+i;
+			break;
+		}
+		if(temp->next==NULL)
+		{
+			temp->next=kmalloc(sizeof(struct 
+node),GFP_KERNEL);
+			temp->next->ppid=current->pid;
+			temp->next->sum=i;
+			temp->next->next=NULL;
+			break;
+		}
+		else
+			temp=temp->next;
+	}
+        }
+        accum_total = accum2(i);
+	
+	up(&sem);
+
+	return accum_total;
+    
+}
+
+/*
+ * This takes process id as argument and returns the sum of all the 
+values 
+ * it has passed to glob_accum
+ */
+
+
+asmlinkage int proc_accum(int pid)
+{
+	struct node *temp;
+	temp=first;
+	while(temp != NULL)
+	{
+		if (pid==temp->ppid)
+		{
+			return(temp->sum);
+		}
+		else
+		{
+			temp=temp->next; 
+		}
+	}
+	return 0;
+}
+
+/*
+ * This function is called at module initialization.
+ * sys_call_table[250], sys_call_table[251] are unused system calls, 
+ * unused system calls have their value set to sys_ni_syscall 
+ * System call[250] is assigned a pointer to the function
+ * glob_accum and sys_call_table[251] is assigned a pointer to the 
+ * function proc_accum
+ */
+
+static int proj1_init(void)
+{ 
+	sema_init( &sem,1);
+	first=NULL;
+
+	if (sys_call_table[250]==sys_call_table[0])
+		sys_call_table[250]=glob_accum;
+
+	if (sys_call_table[251]==sys_call_table[0])
+		sys_call_table[251]=proc_accum;  
+        
+
+	return 0;        
+}
+
+/*
+ * This function is called as the module is being
+ * removed.Here we are setting the sys_call_table back to it's original 
+ * state
+*/
+
+static void proj1_exit(void)
+{
+	struct node *temp,*temp_next;
+	temp=first;
+	while(temp != NULL)
+	{
+		temp_next=temp->next;
+		kfree(temp);
+		temp=temp_next;
+	}
+	sys_call_table[250]=sys_call_table[0];
+	sys_call_table[251]=sys_call_table[0];
+}
+
+module_init(proj1_init);
+module_exit(proj1_exit);
+ 
+
+
+
+--------------------------------------------------------------------------------
+
+#include <linux/init.h>
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/sched.h>
+#include <linux/slab.h>
+
+MODULE_DESCRIPTION("Kernel Module");
+
+DECLARE_WAIT_QUEUE_HEAD(accum_wq);
+  
+extern void *sys_call_table[];
+extern int accum2(int);
+
+int *lock;
+
+int i;
+
+struct node
+{
+        int ppid;
+        int sum;
+        struct node *next;
+};
+
+struct node *first;
+
+
+/*
+ * The glob_accum calls the accum2() function from accum2.c, and 
+ * returns the new value of the accumulator.
+ * The critical section consists of calling accum2() function
+ * and also keeping track of the values passed on per process basis
+ */
+
+asmlinkage int glob_accum(int i)
+{
+        int accum_total;  
+	struct node *temp;
+	DECLARE_WAITQUEUE(wq,current);
+
+	add_wait_queue(&accum_wq,&wq);
+     	while(1)
+	{
+		current->state=TASK_UNINTERRUPTIBLE;
+		if (test_and_set_bit(0,&lock)==0)break;
+		schedule();
+	}
+	current->state=TASK_RUNNING;
+	remove_wait_queue(&accum_wq,&wq);
+
+/* Process entering critical section */
+
+	temp=first;
+// List is empty , so has to create the first node.
+        if (temp==NULL)
+        {
+                first=kmalloc(sizeof(struct node),GFP_KERNEL);
+                first->ppid=current->pid;
+                first->sum=i;
+                first->next=NULL;
+        }
+        else
+        {
+        while(1)
+        {
+                if(temp->ppid==current->pid)
+                {
+                        temp->sum=temp->sum+i;
+                        break;
+                }
+                if(temp->next==NULL)
+                {
+                        temp->next=kmalloc(sizeof(struct
+node),GFP_KERNEL);
+                        temp->next->ppid=current->pid;
+                        temp->next->sum=i;
+                        temp->next->next=NULL;
+                        break;
+                }
+                else
+                        temp=temp->next;
+        }
+        }
+
+        accum_total = accum2(i);
+/*
+ * Process sets lock to 0, and also wakes up wait_queue
+ */
+
+	test_and_clear_bit(0,&lock);
+	wake_up(&accum_wq);
+	
+	return accum_total;
+    
+}
+
+/*
+ * This takes a process id as argument and returns the sum of all 
+values 
+ * it has passed to glob_accum
+ */
+
+asmlinkage int proc_accum(int pid)
+{
+	struct node *temp;
+	temp=first;
+        while(temp != NULL)
+        {
+        	if (pid==temp->ppid)
+                {
+                        return(temp->sum);
+                }
+                else
+                {
+                        temp=temp->next;
+                }
+        }
+        return 0;
+
+
+}
+
+/*
+ * This function is called at module initialization.
+ * sys_call_table[250] and sys_call_table[251] are unused system calls, 
+ * unused system calls have their value set to sys_ni_syscall 
+ * System call[250] is assigned a pointer to the function
+ * glob_accum and sys_call_table[251] is assigned a pointer to the 
+ * function proc_accum
+ */
+
+static int proj1_init(void)
+{ 
+	first=NULL;
+	if(sys_call_table[250]==sys_call_table[0])
+		sys_call_table[250]=glob_accum;
+	
+	if(sys_call_table[251]==sys_call_table[0])
+		sys_call_table[251]=proc_accum;  
+
+        lock = kmalloc(sizeof(int),GFP_KERNEL);
+
+        return 0;        
+}
+
+/*
+ * This function is called as the module is being
+ * removed.Here we are setting the sys_call_table back to it's original 
+ * state
+ */
+
+static void proj1_exit(void)
+{
+	struct node *temp,*temp_next;
+	sys_call_table[250]=sys_call_table[0];
+	sys_call_table[251]=sys_call_table[0];
+        temp=first;
+        while(temp != NULL)
+        {
+                temp_next=temp->next;
+                kfree(temp);
+                temp=temp_next;
+        }
+
+	kfree(lock);
+
+}
+
+module_init(proj1_init);
+module_exit(proj1_exit);
+</pre> 
+<hr>
+<li>
+</ul>
+
+</body>
+</html>
+

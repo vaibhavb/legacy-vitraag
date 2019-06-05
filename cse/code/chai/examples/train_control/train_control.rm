@@ -1,0 +1,101 @@
+type ctrlType : {away, waiting, bridge}
+type signalType : {green, red}
+
+module Train 
+interface pc:ctrlType; arrive, leave:event
+external signal:signalType
+
+	lazy atom 
+	controls pc, arrive, leave
+	reads pc, arrive, leave, signal
+	
+	init
+	[] true -> pc' := away
+	update
+	[] pc = away -> arrive!; pc' := waiting
+	[] pc = waiting & signal = green -> pc' := bridge
+	[] pc = bridge -> leave!; pc' := away
+	
+	endatom
+
+endmodule
+
+module Controller1
+interface signalW, signalE:signalType
+external arriveW, arriveE, leaveW, leaveE:event
+
+	event atom 
+	controls signalW, signalE
+	reads signalW, signalE, arriveW, arriveE, leaveW, leaveE
+	awaits arriveW, arriveE, leaveW, leaveE
+
+	init
+	[] true -> signalW' := green; signalE' := green
+	update
+	[] arriveW? -> signalE' := red
+	[] arriveE? -> signalW' := red
+	[] leaveW? -> signalE' := green
+	[] leaveE? -> signalW' := green
+	
+	endatom
+
+endmodule
+
+module Controller2
+private nearW, nearE:bool
+interface signalW, signalE:signalType
+external arriveW, arriveE, leaveW, leaveE:event
+
+	event atom 
+	controls nearW
+	reads nearW, arriveW, leaveW
+	awaits arriveW, leaveW
+
+	init
+	[] true -> nearW' := false
+	update
+	[] arriveW? -> nearW' := true
+	[] leaveW? -> nearW' := false
+	
+	endatom
+
+	event atom 
+	controls nearE
+	reads nearE, arriveE, leaveE
+	awaits arriveE, leaveE
+
+	init
+	[] true -> nearE' := false
+	update
+	[] arriveE? -> nearE' := true
+	[] leaveE? -> nearE' := false
+	
+	endatom
+
+	lazy atom 
+	controls signalW, signalE
+	reads nearW, nearE, signalW, signalE
+
+	init
+	[] true -> signalW' := red; signalE' := red
+	update
+	[] nearW & signalE = red -> signalW' := green
+	[] nearE & signalW = red -> signalE' := green
+	[] ~nearW -> signalW' := red
+	[] ~nearE -> signalE' := red
+
+	endatom
+
+endmodule
+
+
+TrainW := Train[pc, arrive, signal, leave := pcW, arriveW, signalW, leaveW]
+TrainE := Train[pc, arrive, signal, leave := pcE, arriveE, signalE, leaveE]
+
+--System1 := hide arriveW, arriveE, leaveW, leaveE in (TrainW || TrainE || Controller1) endhide
+--System2 := hide arriveW, arriveE, leaveW, leaveE in (TrainW || TrainE || Controller2) endhide
+
+System1 := (TrainW || TrainE || Controller1)
+System2 := (TrainW || TrainE || Controller2)
+
+

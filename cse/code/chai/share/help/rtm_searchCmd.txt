@@ -1,0 +1,20 @@
+
+  rtm_search - Performs symbolic (mdd based) state space search on a timed
+  module
+     _________________________________________________________________
+   
+   rtm_search [-v] [-i] [-h] <module_name>
+   
+   The command performs MDD based symbolic search on the state space of a
+   timed module starting from its initial region. The rtm_trans command
+   must be executed prior to executing this command. Command Options:
+   
+   -v
+          verbose mode - prints MDDs associated with each intermediate
+          step
+          
+   -h
+          print usage
+     _________________________________________________________________
+   
+   Last updated on 980624 22h11

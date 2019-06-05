@@ -1,0 +1,27 @@
+\begin{minipage}[t]{4in} 
+\scriptsize
+\begin{verbatim}
+interface gate
+  input vars: y0: bool; y1: bool;
+  output vars:  x0: bool; x1: bool;
+output atom controls y0, y1 reads x0, x1, y0, y1
+  init
+      [] true -> y0' := false; y1' := nondet
+      [] true -> y1' := false; y0' := nondet
+  update
+      [] ~x0 & ~x1 -> y0' := true;  y1' := true
+      [] ~x0 &  x1 -> y0' := true;  y1' := false
+      []  x0 & ~x1 -> y0' := false; y1' := true
+      []  x0 &  x1 -> y0' := y0;    y1' := y1
+  endatom
+input atom controls x0, x1 reads x0, x1
+  init
+      [] true -> x0' := nondet; x1' := nondet
+  update
+      []  ~x0 & ~x1 -> x0' := false;  x1' := nondet
+      []  ~x0 & ~x1 -> x1' := false;  x0' := nondet
+      []   x0 |  x1 -> x0' := nondet; x1' := nondet
+  endatom
+endinterface
+\end{verbatim}
+\end{minipage}

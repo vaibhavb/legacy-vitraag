@@ -1,0 +1,799 @@
+This is TeX, Version 3.14159 (Web2C 7.3.1) (format=latex 2002.4.12)  23 MAY 2003 21:01
+**main
+(main.tex
+LaTeX2e <2000/06/01>
+Babel <v3.7h> and hyphenation patterns for american, french, german, ngerman, i
+talian, nohyphenation, loaded.
+(/usr/share/texmf/tex/latex/base/report.cls
+Document Class: report 2000/05/19 v1.4b Standard LaTeX document class
+(/usr/share/texmf/tex/latex/base/size11.clo
+File: size11.clo 2000/05/19 v1.4b Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@chapter=\count80
+\c@section=\count81
+\c@subsection=\count82
+\c@subsubsection=\count83
+\c@paragraph=\count84
+\c@subparagraph=\count85
+\c@figure=\count86
+\c@table=\count87
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+(/usr/share/texmf/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 1996/11/03 v2.2b
+
+(/usr/share/texmf/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 1997/09/17 v2.2e
+\@emptytoks=\toks14
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 133.
+))
+(/usr/share/texmf/tex/latex/graphics/epsfig.sty
+Package: epsfig 1999/02/16 v1.7a (e)psfig emulation (SPQR)
+
+(/usr/share/texmf/tex/latex/graphics/graphicx.sty
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texmf/tex/latex/graphics/keyval.sty
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+\KV@toks@=\toks15
+)
+(/usr/share/texmf/tex/latex/graphics/graphics.sty
+Package: graphics 1999/02/16 v1.0l Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texmf/tex/latex/graphics/trig.sty
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+(/usr/share/texmf/tex/latex/config/graphics.cfg)
+Package graphics Info: Driver file: dvips.def on input line 80.
+
+(/usr/share/texmf/tex/latex/graphics/dvips.def
+File: dvips.def 1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
+))
+\Gin@req@height=\dimen103
+\Gin@req@width=\dimen104
+)
+\epsfxsize=\dimen105
+\epsfysize=\dimen106
+)
+(/usr/share/texmf/tex/latex/base/latexsym.sty
+Package: latexsym 1998/08/17 v2.2e Standard LaTeX package (lasy symbols)
+\symlasy=\mathgroup6
+LaTeX Font Info:    Overwriting symbol font `lasy' in version `bold'
+(Font)                  U/lasy/m/n --> U/lasy/b/n on input line 42.
+)
+(/usr/share/texmf/tex/plain/dvips/epsf.tex
+This is `epsf.tex' v2.7k <10 July 1997>
+\epsffilein=\read1
+\epsfframemargin=\dimen107
+\epsfframethickness=\dimen108
+\epsfrsize=\dimen109
+\epsftmp=\dimen110
+\epsftsize=\dimen111
+\epsfxsize=\dimen112
+\epsfysize=\dimen113
+\pspoints=\dimen114
+\epsfnoopenhelp=\toks16
+) (/usr/share/texmf/tex/latex/tools/xspace.sty
+Package: xspace 1997/10/13 v1.06 Space after command names (DPC)
+)
+(/usr/share/texmf/tex/latex/misc/comment.sty
+\CommentStream=\write3
+ Excluding comment 'comment')
+(/usr/share/texmf/tex/latex/base/makeidx.sty
+Package: makeidx 2000/03/29 v1.0m Standard LaTeX package
+)
+\@indexfile=\write4
+\openout4 = `main.idx'.
+
+
+Writing index file main.idx
+\c@@theorem=\count88
+\c@@lemma=\count89
+\c@@fact=\count90
+\c@@corollary=\count91
+\c@@proposition=\count92
+\c@@definition=\count93
+\c@@example=\count94
+(main.aux)
+\openout1 = `main.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 661.
+LaTeX Font Info:    ... okay on input line 661.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 661.
+LaTeX Font Info:    ... okay on input line 661.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 661.
+LaTeX Font Info:    ... okay on input line 661.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 661.
+LaTeX Font Info:    ... okay on input line 661.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 661.
+LaTeX Font Info:    ... okay on input line 661.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 661.
+LaTeX Font Info:    ... okay on input line 661.
+LaTeX Font Info:    Try loading font information for U+msa on input line 662.
+ (/usr/share/texmf/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 1995/01/05 v2.2e AMS font definitions
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 662.
+
+(/usr/share/texmf/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 1995/01/05 v2.2e AMS font definitions
+)
+LaTeX Font Info:    Try loading font information for U+lasy on input line 662.
+
+(/usr/share/texmf/tex/latex/base/ulasy.fd
+File: ulasy.fd 1998/08/17 v2.2eLaTeX symbol font definitions
+)
+LaTeX Font Info:    Try loading font information for OMS+cmtt on input line 662
+.
+LaTeX Font Info:    No file OMScmtt.fd. on input line 662.
+
+
+LaTeX Font Warning: Font shape `OMS/cmtt/m/n' undefined
+(Font)              using `OMS/cmsy/m/n' instead
+(Font)              for symbol `textbraceleft' on input line 662.
+
+
+Overfull \hbox (27.03665pt too wide) in paragraph at lines 662--662
+ [][] 
+ []
+
+[1
+
+] (main.toc [1
+
+])
+\tf@toc=\write5
+\openout5 = `main.toc'.
+
+ [2] (main.lof)
+\tf@lof=\write6
+\openout6 = `main.lof'.
+
+ [3
+
+] (main.lot)
+\tf@lot=\write7
+\openout7 = `main.lot'.
+
+ (intro.tex [4
+
+]
+Chapter 1.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 8.
+(/usr/share/texmf/tex/latex/base/omscmr.fd
+File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 8.
+
+
+LaTeX Warning: Citation `AlurHenzinger96' on page 5 undefined on input line 10.
+
+
+
+LaTeX Warning: Citation `ChandyMisra88' on page 5 undefined on input line 11.
+
+
+LaTeX Warning: Citation `Lynch96' on page 5 undefined on input line 12.
+
+
+LaTeX Warning: Citation `BerryGonthier88' on page 5 undefined on input line 13.
+
+
+
+LaTeX Warning: Citation `Pnueli77' on page 5 undefined on input line 23.
+
+
+LaTeX Warning: Citation `ClarkeEmerson81' on page 5 undefined on input line 23.
+
+
+
+LaTeX Warning: Citation `AHK97' on page 5 undefined on input line 25.
+
+
+LaTeX Warning: Citation `HQR98' on page 5 undefined on input line 37.
+
+
+LaTeX Warning: Citation `AHR98' on page 5 undefined on input line 37.
+
+[5
+
+]
+
+LaTeX Warning: Citation `BHS96' on page 6 undefined on input line 87.
+
+
+LaTeX Warning: Citation `tix-http' on page 6 undefined on input line 89.
+
+) [6]
+Chapter 2.
+(tut.tex
+
+LaTeX Warning: File `figs/countercell.idraw' not found on input line 39.
+
+
+! LaTeX Error: File `figs/countercell.idraw' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.39 ...otalheight=3.0in]{figs/countercell.idraw}}
+                                                  
+? 
+
+! LaTeX Error: Cannot determine size of graphic in figs/countercell.idraw (no B
+oundingBox).
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.39 ...otalheight=3.0in]{figs/countercell.idraw}}
+                                                  
+? 
+File: figs/countercell.idraw Graphic file (type eps)
+<figs/countercell.idraw> [7
+
+]
+
+LaTeX Warning: File `figs/3bitcounter.idraw' not found on input line 67.
+
+
+! LaTeX Error: File `figs/3bitcounter.idraw' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.67 ...talheight=0.75in]{figs/3bitcounter.idraw}}
+                                                  
+? 
+
+! LaTeX Error: Cannot determine size of graphic in figs/3bitcounter.idraw (no B
+oundingBox).
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.67 ...talheight=0.75in]{figs/3bitcounter.idraw}}
+                                                  
+? 
+File: figs/3bitcounter.idraw Graphic file (type eps)
+<figs/3bitcounter.idraw> [8] [9] [10]
+Overfull \hbox (9.81825pt too wide) in paragraph at lines 215--215
+[]\OT1/cmtt/m/n/10.95 threebitcounter := hide out0, out1 in (cell0 || cell1 || 
+cell2) endhide[] 
+ []
+
+
+Overfull \hbox (9.81825pt too wide) in paragraph at lines 235--235
+[]\OT1/cmtt/m/n/10.95 threebitcounter := hide out0, out1 in (cell1 || cell0 || 
+cell2) endhide[] 
+ []
+
+[11]
+Overfull \hbox (4.49922pt too wide) in paragraph at lines 289--295
+\OT1/cmr/m/n/10.95 de-sign a mod-ule that will serve as the in-put to the three
+-bit-counter \OT1/cmtt/m/n/10.95 threebitcounter
+ []
+
+[12] [13] [14] [15] [16]
+
+LaTeX Warning: Citation `ChandyMisra88' on page 17 undefined on input line 594.
+
+
+
+LaTeX Warning: Citation `Dill96' on page 17 undefined on input line 594.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 610--615
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 616--619
+
+ []
+
+[17]
+Underfull \hbox (badness 10000) in paragraph at lines 620--624
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 625--628
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 629--631
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 632--635
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 636--638
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 639--642
+
+ []
+
+
+Overfull \hbox (1.08894pt too wide) in paragraph at lines 654--671
+[][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 654--671
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 654--671
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 672--693
+
+ []
+
+) [18] [19]
+Chapter 3.
+(rm.tex
+Overfull \hbox (0.74025pt too wide) in paragraph at lines 43--48
+ \OT1/cmr/bx/n/10.95 Split-ting a de-scrip-tion in mul-ti-ple files.[] \OT1/cmr
+/m/n/10.95 A long (or short) []
+ []
+
+[20
+
+] [21] [22] [23] [24] [25] [26] [27] [28] [29] [30] [31] [32] [33] [34]
+[35] [36] [37] [38] [39] [40] [41] [42] [43] (arrabit.tex [44] [45] [46])
+[47] [48] [49]
+Underfull \hbox (badness 10000) in paragraph at lines 1696--1752
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1696--1752
+
+ []
+
+[50] [51]
+Underfull \hbox (badness 10000) in paragraph at lines 1810--1872
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1810--1872
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1810--1872
+[] \OT1/cmtt/m/n/10 := [] [], [], [], [] [] [] || []
+ []
+
+
+LaTeX Warning: Float too large for page by 1.4396pt on input line 1874.
+
+(rmanager.pstex_t
+File: rmanager.pstex Graphic file (type eps)
+ <rmanager.pstex>) [52] [53] [54] [55] [56])
+(specification.tex [57]
+Chapter 4.
+
+LaTeX Warning: Citation `AHK97' on page 58 undefined on input line 55.
+
+
+LaTeX Warning: Citation `ClarkeEmerson81' on page 58 undefined on input line 75
+.
+
+
+LaTeX Warning: Citation `AHK97' on page 58 undefined on input line 83.
+
+[58
+
+] [59] [60] [61] [62] [63] [64] [65]) (usercommands.tex [66]
+Chapter 5.
+
+Underfull \hbox (badness 10000) in paragraph at lines 19--27
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 38--45
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 49--54
+
+ []
+
+[67
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 58--67
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 72--80
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 81--89
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 100--105
+
+ []
+
+[68]
+Underfull \hbox (badness 10000) in paragraph at lines 164--189
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 164--189
+
+ []
+
+[69]
+Underfull \hbox (badness 10000) in paragraph at lines 197--226
+
+ []
+
+[70]
+Underfull \hbox (badness 10000) in paragraph at lines 321--329
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 335--353
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 335--353
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 335--353
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 335--353
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 335--353
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 335--353
+
+ []
+
+[71] [72]
+Overfull \hbox (21.31569pt too wide) in paragraph at lines 421--450
+[][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 421--450
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 421--450
+
+ []
+
+
+Overfull \hbox (4.9044pt too wide) in paragraph at lines 452--464
+\OT1/cmr/m/n/10.95 avail-able in [] for check-ing re-fine-ment --- \OT1/cmtt/m/
+n/10.95 check[]refine[] \OT1/cmr/m/n/10.95 and \OT1/cmtt/m/n/10.95 check[]simul
+ation[]\OT1/cmr/m/n/10.95 .
+ []
+
+[73]
+Overfull \hbox (4.06956pt too wide) in paragraph at lines 499--499
+[]\OT1/cmtt/m/n/10.95 Yes: There is a simulation from Sync3BitCounter to Sync3B
+itCounterSpec[] 
+ []
+
+) (methodology.tex [74]
+Chapter 6.
+
+Underfull \hbox (badness 10000) in paragraph at lines 38--56
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 38--56
+
+ []
+
+
+Overfull \hbox (4.06958pt too wide) in paragraph at lines 96--102
+[][]\OT1/cmtt/m/n/10.95 [[],[],[],[]:= [],[],[],[]]  
+ []
+
+[75
+
+] [76]
+Overfull \hbox (4.06958pt too wide) in paragraph at lines 118--124
+[][]\OT1/cmtt/m/n/10.95 [[],[],[],[]:= [],[],[],[]]  
+ []
+
+[77]
+Underfull \hbox (badness 10000) in paragraph at lines 205--231
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 205--231
+
+ []
+
+[78]
+Underfull \hbox (badness 10000) in paragraph at lines 267--300
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 267--300
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 267--300
+
+ []
+
+[79]
+Underfull \hbox (badness 10000) in paragraph at lines 318--320
+
+ []
+
+
+Overfull \hbox (15.56696pt too wide) in paragraph at lines 330--358
+[][][] \OT1/cmtt/m/n/10.95 true -> []' := []'[0]; []' := []'[1]; []' := []'[2];
+ 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 330--358
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 330--358
+
+ []
+
+[80]
+
+LaTeX Warning: Citation `AlurHenzinger96' on page 81 undefined on input line 39
+2.
+
+[81]
+Overfull \hbox (1.70532pt too wide) in paragraph at lines 480--485
+\OT1/cmr/m/n/10.95 done cor-re-sponds to the atom that con-trols vari-able name
+d \OT1/cmtt/m/n/10.95 spec[]interface[]varname
+ []
+
+[82]
+Underfull \hbox (badness 10000) in paragraph at lines 544--547
+
+ []
+
+[83]
+Underfull \hbox (badness 10000) in paragraph at lines 601--609
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 615--650
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 615--650
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 615--650
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 615--650
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 615--650
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 615--650
+
+ []
+
+[84]
+Overfull \hbox (15.75241pt too wide) in paragraph at lines 652--656
+\OT1/cmr/m/n/10.95 Next, we check if the $[]$ atom in $[]$ is re-fined cor-rect
+ly by $[]$. 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 657--693
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 657--693
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 657--693
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 657--693
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 657--693
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 657--693
+
+ []
+
+[85]) (rtm.tex
+Underfull \hbox (badness 10000) in paragraph at lines 706--1
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 706--1
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 706--1
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 706--1
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 706--1
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 706--1
+
+ []
+
+[86] [87]
+Chapter 7.
+
+LaTeX Warning: Citation `AlurHenzinger97' on page 88 undefined on input line 9.
+
+
+
+LaTeX Warning: Citation `AlurHenzinger97' on page 88 undefined on input line 54
+.
+
+[88
+
+]
+
+LaTeX Warning: Citation `HMP92' on page 89 undefined on input line 149.
+
+[89]
+Underfull \hbox (badness 10000) in paragraph at lines 172--180
+
+ []
+
+[90]
+Underfull \hbox (badness 10000) in paragraph at lines 193--216
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 193--216
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 193--216
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 234--272
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 234--272
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 234--272
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 234--272
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 234--272
+
+ []
+
+[91])
+No file main.bbl.
+No file main.ind.
+[92] (main.aux)
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
+
+LaTeX Warning: There were undefined references.
+
+ )
+(\end occurred inside a group at level 1) 
+Here is how much of TeX's memory you used:
+ 1811 strings out of 20887
+ 18160 string characters out of 196274
+ 70376 words of memory out of 350001
+ 4706 multiletter control sequences out of 10000+15000
+ 24315 words of font info for 101 fonts, out of 400000 for 1000
+ 14 hyphenation exceptions out of 10000
+ 32i,12n,25p,220b,429s stack positions out of 3000i,100n,1500p,50000b,4000s
+
+Output written on main.dvi (93 pages, 280100 bytes).

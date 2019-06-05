@@ -1,0 +1,13 @@
+
+  atl_check - Model check ATL formula
+     _________________________________________________________________
+   
+   atl_check [-h] <module> <formula> [<formula> ...]
+   
+   Model check ATL formula. Command Options:
+   
+   -h
+          Prints the usage of the command.
+     _________________________________________________________________
+   
+   Last updated on 980624 22h10

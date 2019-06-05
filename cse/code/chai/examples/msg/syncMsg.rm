@@ -1,0 +1,86 @@
+
+type msgType : {a, b, c}
+type sendCtrlType : {produce, send}
+type recCtrlType : {receive, consume}
+type specCtrlType : {prod, cons, prodcons}
+
+
+module SyncSender
+	private pc:sendCtrlType; doneP:event
+	interface transmit:event; msgS, msgP:msgType
+	external ready:event
+	
+	event atom controls pc, transmit, msgS
+		reads pc, doneP, ready, transmit, msgP, msgS
+		awaits doneP, ready
+		init
+	 	[] true -> pc' := produce
+		update
+		[] pc = produce & doneP? -> pc' := send
+		[] pc = send & ready? -> transmit!; msgS' := msgP; pc' := produce
+	endatom
+	
+	lazy atom Aprod controls doneP, msgP 
+		reads pc, doneP, msgP
+		init
+		[] true -> msgP' := a
+		update
+		[] pc = produce -> doneP!; msgP' := a
+		[] pc = produce -> doneP!; msgP' := b
+		[] pc = produce -> doneP!; msgP' := c
+	endatom
+endmodule
+
+module Receiver
+	private pc:recCtrlType; msgR:msgType; doneC:event
+	interface ready:event; msgC:msgType
+	external transmit:event; msgS:msgType
+	
+	event atom controls pc, msgR
+		reads pc, transmit, doneC, msgR
+		awaits transmit, msgS, doneC
+		init
+		[] true -> pc' := receive
+		update
+		[] pc = receive & transmit? -> msgR' := msgS'; pc' := consume
+		[] pc = consume & doneC? -> pc' := receive
+	endatom
+
+	lazy atom controls ready 
+	     reads pc, ready
+		init
+		[] true -> ready!
+		update
+		[] pc = receive -> ready!
+	endatom
+
+	lazy atom ACons controls doneC, msgC 
+		reads pc, doneC, msgR, msgC
+		init
+		[] true -> msgC' := a
+		update 
+		[] pc = consume -> doneC!; msgC' := msgR
+	endatom
+endmodule
+
+SendRecImpl := hide ready, transmit, msgS in (SyncSender || Receiver) endhide	
+
+		
+module SendRecSpec
+	interface msgP,msgC:msgType
+	private pc:specCtrlType; msgO:msgType
+
+        lazy atom controls pc, msgP, msgC, msgO
+		reads pc, msgP, msgO, msgC
+                init
+		[] true -> pc' := prod
+		update
+		[] pc=prod -> msgP' := nondet; pc' := prodcons
+                [] pc=prodcons -> msgC' := msgP; msgP':=nondet; pc' := prodcons
+                [] pc=prodcons -> msgO' := msgP; msgP':=nondet; pc' := cons
+                [] pc=prodcons -> msgC' := msgP; pc' := prod
+                [] pc=cons -> msgC' := msgO; pc' := prodcons
+	endatom
+endmodule
+
+

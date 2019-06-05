@@ -1,0 +1,23 @@
+\section{Alternating-time Temporal Logic}
+In this section, we discuss model checking 
+Alternating Temporal Logic formulas in \mocha.  The reader is
+refered to \cite{ATL} for details. Here we only give a brief introduction
+to this logic.
+
+ATL is a temporal logic designed to write
+requirements of {\em open\/} systems \cite{ATL}. For instance, let
+$\Sigma$ be a set of agents corresponding to different components of
+the system and the external environment.  Then, the logic ATL admits
+formulas of the form $\ors{A}F p$, where $p$ is a state predicate and
+$A$ is a subset of agents.  The formula $\ors{A}F p$ means that the
+agents in the set $A$ can cooperate to reach a $p$-state no matter how
+the remaining agents resolve their choices.  This is formalized by
+defining games, and satisfaction of ATL formulas corresponds to
+existence of winning strategies in such games.
+
+The model checking problem for ATL is to determine whether a given module
+satisfies a given ATL formula. In Reactive Modules, each agent corresponds
+to an atom. For each external variable, there is an extra agent which
+controls it. 
+
+

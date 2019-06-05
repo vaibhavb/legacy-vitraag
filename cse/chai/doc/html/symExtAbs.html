@@ -1,0 +1,159 @@
+<html>
+<head><title>sym package abstract</title></head>
+<body>
+
+
+<!-- Function Abstracts -->
+
+<dl>
+<dt> <a href="symAllDet.html#Sym_AssignmentBuildMdd" TARGET="MAIN"><code>Sym_AssignmentBuildMdd()</code></a>
+<dd> build MDD for an assignment
+
+<dt> <a href="symAllDet.html#Sym_AtomBuildInitialRegion" TARGET="MAIN"><code>Sym_AtomBuildInitialRegion()</code></a>
+<dd> build initial region for an atom
+
+<dt> <a href="symAllDet.html#Sym_AtomBuildTransitionRelation" TARGET="MAIN"><code>Sym_AtomBuildTransitionRelation()</code></a>
+<dd> build transition relation for an atom
+
+<dt> <a href="symAllDet.html#Sym_AtomsBuildPartialInitialRegion" TARGET="MAIN"><code>Sym_AtomsBuildPartialInitialRegion()</code></a>
+<dd> build mdd for partial initial region
+
+<dt> <a href="symAllDet.html#Sym_AtomsComputePartialImage" TARGET="MAIN"><code>Sym_AtomsComputePartialImage()</code></a>
+<dd> Compute partial image with respect to a set of atoms
+
+<dt> <a href="symAllDet.html#Sym_DebugTracePrint" TARGET="MAIN"><code>Sym_DebugTracePrint()</code></a>
+<dd> print debug trace for an invariant
+
+<dt> <a href="symAllDet.html#Sym_End" TARGET="MAIN"><code>Sym_End()</code></a>
+<dd> Termination function for sym package
+
+<dt> <a href="symAllDet.html#Sym_ExprBuildMdd" TARGET="MAIN"><code>Sym_ExprBuildMdd()</code></a>
+<dd> build MDD for an expression
+
+<dt> <a href="symAllDet.html#Sym_Init" TARGET="MAIN"><code>Sym_Init()</code></a>
+<dd> Initilization function for sym package
+
+<dt> <a href="symAllDet.html#Sym_MddPickMinterm" TARGET="MAIN"><code>Sym_MddPickMinterm()</code></a>
+<dd> utility to pick a minterm form a MDD
+
+<dt> <a href="symAllDet.html#Sym_MddPrintCubesImplSpec" TARGET="MAIN"><code>Sym_MddPrintCubesImplSpec()</code></a>
+<dd> Utility to dump mdds
+
+<dt> <a href="symAllDet.html#Sym_MddPrintCubes" TARGET="MAIN"><code>Sym_MddPrintCubes()</code></a>
+<dd> Utility to dump mdds
+
+<dt> <a href="symAllDet.html#Sym_MddPrintRawCubes" TARGET="MAIN"><code>Sym_MddPrintRawCubes()</code></a>
+<dd> Utility to dump mdds - in terms of raw mdd ids
+
+<dt> <a href="symAllDet.html#Sym_MddPrintStateForErrorTrace" TARGET="MAIN"><code>Sym_MddPrintStateForErrorTrace()</code></a>
+<dd> Utility to generate a state string for Tcl error
+                      trace display
+
+<dt> <a href="symAllDet.html#Sym_ModuleBuildInitialRegion" TARGET="MAIN"><code>Sym_ModuleBuildInitialRegion()</code></a>
+<dd> build mdd for initial region of module
+
+<dt> <a href="symAllDet.html#Sym_ModuleBuildTransitionRelation" TARGET="MAIN"><code>Sym_ModuleBuildTransitionRelation()</code></a>
+<dd> build symbolic transtion relation for a module
+
+<dt> <a href="symAllDet.html#Sym_ModuleMatchMddIds" TARGET="MAIN"><code>Sym_ModuleMatchMddIds()</code></a>
+<dd> match mdd ids of two modules
+
+<dt> <a href="symAllDet.html#Sym_ModulePerformBFS" TARGET="MAIN"><code>Sym_ModulePerformBFS()</code></a>
+<dd> do invariant checking
+
+<dt> <a href="symAllDet.html#Sym_RegionAlloc" TARGET="MAIN"><code>Sym_RegionAlloc()</code></a>
+<dd> Allocate a region struct
+
+<dt> <a href="symAllDet.html#Sym_RegionFree" TARGET="MAIN"><code>Sym_RegionFree()</code></a>
+<dd> required
+
+<dt> <a href="symAllDet.html#Sym_RegionManagerAddModuleToSymInfo" TARGET="MAIN"><code>Sym_RegionManagerAddModuleToSymInfo()</code></a>
+<dd> Add a module and symInfo pair to the moduleToSymInfo table
+
+<dt> <a href="symAllDet.html#Sym_RegionManagerAlloc" TARGET="MAIN"><code>Sym_RegionManagerAlloc()</code></a>
+<dd> Allocate a region manager
+
+<dt> <a href="symAllDet.html#Sym_RegionManagerDeleteModuleToSymInfo" TARGET="MAIN"><code>Sym_RegionManagerDeleteModuleToSymInfo()</code></a>
+<dd> Delete a module-syminfo pair from moduleToSymInfo table
+
+<dt> <a href="symAllDet.html#Sym_RegionManagerFree" TARGET="MAIN"><code>Sym_RegionManagerFree()</code></a>
+<dd> required
+
+<dt> <a href="symAllDet.html#Sym_RegionManagerIncrementCounter" TARGET="MAIN"><code>Sym_RegionManagerIncrementCounter()</code></a>
+<dd> Increment region manager's region counter
+
+<dt> <a href="symAllDet.html#Sym_RegionManagerReadCounter" TARGET="MAIN"><code>Sym_RegionManagerReadCounter()</code></a>
+<dd> Read region manager's region counter
+
+<dt> <a href="symAllDet.html#Sym_RegionManagerReadRegionTable" TARGET="MAIN"><code>Sym_RegionManagerReadRegionTable()</code></a>
+<dd> Read region manager's region table
+
+<dt> <a href="symAllDet.html#Sym_RegionManagerReadSymInfo" TARGET="MAIN"><code>Sym_RegionManagerReadSymInfo()</code></a>
+<dd> Find the symInfo for the given module
+
+<dt> <a href="symAllDet.html#Sym_Reinit" TARGET="MAIN"><code>Sym_Reinit()</code></a>
+<dd> Re-initialization function for sym package
+
+<dt> <a href="symAllDet.html#Sym_StateInMddWithResidueMdd" TARGET="MAIN"><code>Sym_StateInMddWithResidueMdd()</code></a>
+<dd> Check if a state is in the mdd.
+
+<dt> <a href="symAllDet.html#Sym_StateInMdd" TARGET="MAIN"><code>Sym_StateInMdd()</code></a>
+<dd> Check if a state is in the mdd.
+
+<dt> <a href="symAllDet.html#Sym_SymInfoAlloc" TARGET="MAIN"><code>Sym_SymInfoAlloc()</code></a>
+<dd> Allocate and return a symInfo struct
+
+<dt> <a href="symAllDet.html#Sym_SymInfoBuildFlatTrans" TARGET="MAIN"><code>Sym_SymInfoBuildFlatTrans()</code></a>
+<dd> Utility to build a flat transition relation
+
+<dt> <a href="symAllDet.html#Sym_SymInfoFree" TARGET="MAIN"><code>Sym_SymInfoFree()</code></a>
+<dd> Utility to free symInfo
+
+<dt> <a href="symAllDet.html#Sym_SymInfoLookupPrimedVariableId" TARGET="MAIN"><code>Sym_SymInfoLookupPrimedVariableId()</code></a>
+<dd> lookup primed mdd id for a variable
+
+<dt> <a href="symAllDet.html#Sym_SymInfoLookupUnprimedVariableId" TARGET="MAIN"><code>Sym_SymInfoLookupUnprimedVariableId()</code></a>
+<dd> lookup unprimed mdd id for a variable
+
+<dt> <a href="symAllDet.html#Sym_SymInfoReadConjunctForAtom" TARGET="MAIN"><code>Sym_SymInfoReadConjunctForAtom()</code></a>
+<dd> read the conjunct  (transtion relation) for the given atom
+
+<dt> <a href="symAllDet.html#Sym_SymInfoReadConjuncts" TARGET="MAIN"><code>Sym_SymInfoReadConjuncts()</code></a>
+<dd> read the conjuncts from symInfo
+
+<dt> <a href="symAllDet.html#Sym_SymInfoReadIdToVar" TARGET="MAIN"><code>Sym_SymInfoReadIdToVar()</code></a>
+<dd> read the idToVar table from symInfo
+
+<dt> <a href="symAllDet.html#Sym_SymInfoReadImgInfo" TARGET="MAIN"><code>Sym_SymInfoReadImgInfo()</code></a>
+<dd> read the image info from symInfo
+
+<dt> <a href="symAllDet.html#Sym_SymInfoReadManager" TARGET="MAIN"><code>Sym_SymInfoReadManager()</code></a>
+<dd> read the mdd manager from symInfo
+
+<dt> <a href="symAllDet.html#Sym_SymInfoReadPrimedIdArray" TARGET="MAIN"><code>Sym_SymInfoReadPrimedIdArray()</code></a>
+<dd> read the primedIdArray array
+
+<dt> <a href="symAllDet.html#Sym_SymInfoReadQuantifyIdArray" TARGET="MAIN"><code>Sym_SymInfoReadQuantifyIdArray()</code></a>
+<dd> read the quantifyIdArray array
+
+<dt> <a href="symAllDet.html#Sym_SymInfoReadUnprimedIdArray" TARGET="MAIN"><code>Sym_SymInfoReadUnprimedIdArray()</code></a>
+<dd> read the unprimedIdArray array
+
+<dt> <a href="symAllDet.html#Sym_SymInfoReadVarToPrimedId" TARGET="MAIN"><code>Sym_SymInfoReadVarToPrimedId()</code></a>
+<dd> read the varToPrimedId st_table
+
+<dt> <a href="symAllDet.html#Sym_SymInfoReadVarToUnprimedId" TARGET="MAIN"><code>Sym_SymInfoReadVarToUnprimedId()</code></a>
+<dd> read the varToUnprimedId st_table
+
+<dt> <a href="symAllDet.html#Sym_SymInfoSetConjunctForAtom" TARGET="MAIN"><code>Sym_SymInfoSetConjunctForAtom()</code></a>
+<dd> set the conjunct  (transtion relation) for the given atom
+
+<dt> <a href="symAllDet.html#Sym_SymInfoSetImgInfo" TARGET="MAIN"><code>Sym_SymInfoSetImgInfo()</code></a>
+<dd> read the image info from symInfo
+
+</dl>
+
+<hr>
+
+Last updated on 1031104 18h39
+</body></html>

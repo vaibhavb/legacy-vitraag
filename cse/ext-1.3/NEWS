@@ -1,0 +1,62 @@
+extdoc NEWS -- history of user-visible changes.
+
+Version 1.3 960228
+
+* Added parameter and return type comments to macros as comments that
+  appear before arguments and the macro name respectively.
+
+  New Syntax:
+
+  /*Macro****
+  ***********/
+  #define /* int */ max( /* int */ i /* comment for i */,
+			 /* int */ j /* comment for j */ ) 
+
+  Old Syntax:
+
+  /*Macro****
+  ***********/
+  #define max( i, /* comment for i */
+	       j  /* comment for j */ )
+
+* Header files are now listed in the "Maintainer by file" list
+
+Version 1.2 960114
+
+* Restructured extdoc and extindex HTML output to support framesets --
+  a new Netscape feature that allows multiple windows within a single
+  browser window.
+
+* Added a file-centric display of all functions, called "maintainer
+  information sorted by file." 
+
+* Changed the "main" entry points to the HTML documentation.  They are
+  now packages.html and command.html.
+
+* Removed distinction between internal and static functions.  They now
+  appear along with other internal functions.
+
+* Modified -h -t --html and --text command-line options to allow
+  destination directories to be specified, e.g.,
+
+  extdoc --html=/projects/vis/html
+
+* Made pathnames (as opposed to filename) work for extdoc and
+  extproto.  Both now accept full pathnames as arguments and read and
+  write files in the "right" subdirectories.
+
+* Fixed bug where extproto would add an extra newline to the end of
+  automatically-generated header files.
+
+Version 1.1 951101
+
+* Added HTML documentation, htmltoman converter for generating
+  nroff-style man pages.
+
+Version 1.0 951002
+
+Initial release
+
+Local Variables:
+mode: indented-text
+End:

@@ -1,0 +1,5 @@
+read_module syncMsg.rm
+check_simulation  SendRecImpl SendRecSpec
+reinit
+read_module msgRef.rm
+check_refine UnhideSendRecImpl UnhideSendRecSpec

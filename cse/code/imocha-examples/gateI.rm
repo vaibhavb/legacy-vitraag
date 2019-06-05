@@ -1,0 +1,14 @@
+module gateI
+  interface x0: bool; x1: bool;
+  external  y0: bool; y1: bool;
+
+atom controls x0, x1 reads x0, x1
+  init
+      [] true -> x0' := nondet; x1' := nondet
+  update
+      []  ~x0 & ~x1 -> x0' := false;  x1' := nondet 
+      []  ~x0 & ~x1 -> x1' := false;  x0' := nondet 
+      []   x0 |  x1 -> x0' := nondet; x1' := nondet 
+  endatom
+endmodule
+

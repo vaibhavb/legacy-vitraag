@@ -1,0 +1,299 @@
+<HTML>
+<HEAD><TITLE>The img package</TITLE></HEAD>
+<BODY>
+
+<DL>
+<dt><pre>
+<A NAME="Img_End"></A>
+int <I></I>
+<B>Img_End</B>(
+   <b></b> <i></i>
+)
+</pre>
+<dd> End the image package.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Img_Init">Img_Init</a>
+<a href="#Img_Reinit">Img_Reinit</a>
+</code>
+
+<dt><pre>
+<A NAME="Img_ImageInfoComputeBwdWithDomainVars"></A>
+mdd_t * <I></I>
+<B>Img_ImageInfoComputeBwdWithDomainVars</B>(
+  Img_ImageInfo_t * <b>imageInfo</b>, <i></i>
+  mdd_t * <b>fromLowerBound</b>, <i></i>
+  mdd_t * <b>fromUpperBound</b>, <i></i>
+  mdd_t * <b>toCareSet</b> <i></i>
+)
+</pre>
+<dd> Computes the backward image of a set expressed in terms of
+  domain variables. FromLowerBound, fromUpperBound, and toCareSet are
+  expressed in terms of domain variables. See Img_ImageInfoComputeBwd for more
+  information.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Img_ImageInfoComputeBwd">Img_ImageInfoComputeBwd</a>
+</code>
+
+<dt><pre>
+<A NAME="Img_ImageInfoComputeBwd"></A>
+mdd_t * <I></I>
+<B>Img_ImageInfoComputeBwd</B>(
+  Img_ImageInfo_t * <b>imageInfo</b>, <i></i>
+  mdd_t * <b>fromLowerBound</b>, <i></i>
+  mdd_t * <b>fromUpperBound</b>, <i></i>
+  mdd_t * <b>toCareSet</b> <i></i>
+)
+</pre>
+<dd> Computes the backward image of a set, under the function vector
+  in imageInfo, using the image computation method specified in imageInfo.  The
+  set for which the backward image is computed is some set containing
+  fromLowerBound and contained in fromUpperBound.  The exact set used is chosen
+  to simplify the computation.  ToCareSet specifies those backward image points
+  of interest; any points not in this set may or may not belong to the returned
+  set.  The MDDs fromLowerBound and fromUpperBound are defined over the range
+  variables.  The MDD toCareSet and the returned MDD are defined over the
+  domain variables. If fromLowerBound is zero, then zero will be returned.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Img_ImageInfoInitialize">Img_ImageInfoInitialize</a>
+<a href="#Img_ImageInfoComputeFwd">Img_ImageInfoComputeFwd</a>
+<a href="#Img_ImageInfoFree">Img_ImageInfoFree</a>
+<a href="#Img_ImageInfoComputeBwdWithDomainVars">Img_ImageInfoComputeBwdWithDomainVars</a>
+</code>
+
+<dt><pre>
+<A NAME="Img_ImageInfoComputeFwdWithDomainVars"></A>
+mdd_t * <I></I>
+<B>Img_ImageInfoComputeFwdWithDomainVars</B>(
+  Img_ImageInfo_t * <b>imageInfo</b>, <i></i>
+  mdd_t * <b>fromLowerBound</b>, <i></i>
+  mdd_t * <b>fromUpperBound</b>, <i></i>
+  mdd_t * <b>toCareSet</b> <i></i>
+)
+</pre>
+<dd> Computes the forward image of a set and expresses it in terms
+  of domain variables. FromLowerBound, fromUpperBound, and toCareSet are
+  expressed in terms of domain variables. See Img_ImageInfoComputeFwd for more
+  information.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Img_ImageInfoComputeFwd">Img_ImageInfoComputeFwd</a>
+</code>
+
+<dt><pre>
+<A NAME="Img_ImageInfoComputeFwd"></A>
+mdd_t * <I></I>
+<B>Img_ImageInfoComputeFwd</B>(
+  Img_ImageInfo_t * <b>imageInfo</b>, <i></i>
+  mdd_t * <b>fromLowerBound</b>, <i></i>
+  mdd_t * <b>fromUpperBound</b>, <i></i>
+  mdd_t * <b>toCareSet</b> <i></i>
+)
+</pre>
+<dd> Computes the forward image of a set, under the function vector
+  in imageInfo, using the image computation method specified in imageInfo.  The
+  set for which the forward image is computed is some set containing
+  fromLowerBound and contained in fromUpperBound. The exact set used is chosen
+  to simplify the computation.  ToCareSet specifies those forward image points
+  of interest; any points not in this set may or may not belong to the returned
+  set.  The MDDs fromLowerBound and fromUpperBound are defined over the domain
+  variables.  The MDD toCareSet and the returned MDD are defined over the range
+  variables. If fromLowerBound is zero, then zero will be returned.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Img_ImageInfoInitialize">Img_ImageInfoInitialize</a>
+<a href="#Img_ImageInfoComputeBwd">Img_ImageInfoComputeBwd</a>
+<a href="#Img_ImageInfoFree">Img_ImageInfoFree</a>
+<a href="#Img_ImageInfoComputeFwdWithDomainVars">Img_ImageInfoComputeFwdWithDomainVars</a>
+</code>
+
+<dt><pre>
+<A NAME="Img_ImageInfoFree"></A>
+void <I></I>
+<B>Img_ImageInfoFree</B>(
+  Img_ImageInfo_t * <b>imageInfo</b> <i></i>
+)
+</pre>
+<dd> Frees the memory associated with imageInfo.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Img_ImageInfoInitialize">Img_ImageInfoInitialize</a>
+<a href="#Img_ImageInfoComputeFwd">Img_ImageInfoComputeFwd</a>
+<a href="#Img_ImageInfoComputeBwd">Img_ImageInfoComputeBwd</a>
+</code>
+
+<dt><pre>
+<A NAME="Img_ImageInfoInitializeMocha"></A>
+Img_ImageInfo_t * <I></I>
+<B>Img_ImageInfoInitializeMocha</B>(
+  mdd_manager * <b>mddManager</b>, <i></i>
+  array_t * <b>domainVars</b>, <i></i>
+  array_t * <b>rangeVars</b>, <i></i>
+  array_t * <b>quantifyVars</b>, <i></i>
+  unsigned int  <b>methodType</b>, <i></i>
+  Img_DirectionType  <b>directionType</b>, <i></i>
+  void * <b>methodInfo</b> <i></i>
+)
+</pre>
+<dd> The function initializes the image info data structure for use
+               in Mocha. Note that domainVars and rangeVars are arrays of mddIds
+	       of present state variables and next state variables
+	       respectively.
+<p>
+
+<dd> <b>Side Effects</b> None.
+<p>
+
+<dt><pre>
+<A NAME="Img_ImageInfoInitialize"></A>
+Img_ImageInfo_t * <I></I>
+<B>Img_ImageInfoInitialize</B>(
+  Img_ImageInfo_t * <b>imageInfo</b>, <i></i>
+  mdd_manager * <b>mddManager</b>, <i></i>
+  array_t * <b>domainVars</b>, <i></i>
+  array_t * <b>rangeVars</b>, <i></i>
+  array_t * <b>quantifyVars</b>, <i></i>
+  Img_MethodType  <b>methodType</b>, <i></i>
+  void * <b>methodInfo</b>, <i></i>
+  Img_DirectionType  <b>directionType</b> <i></i>
+)
+</pre>
+<dd> Initializes an imageInfo structure.  MethodType specifies which
+  image computation method to use.  If methodType is Img_Default_c, then if
+  the user-settable flag "image_method" has been set, then this method is
+  used, otherwise some default is used. DirectionType specifies which types of
+  image computations will be performed (forward, backward, or both).
+  Method-specific initialization takes into account the value of relevant
+  parameters in the global flag table.<p>
+
+  MddNetwork is a graph representing the functions to be used.  Each vertex of
+  the graph contains a multi-valued function (MVF) and an MDD id.  The MVF
+  gives the function of the vertex in terms of the MDD ids of the immediate
+  fanins of the vertex.<p>
+
+  Roots is an array of char* specifying the vertices of the graph which
+  represent those functions for which we want to compute the image (it must
+  not be empty); for example, for an FSM, roots represent the next state
+  functions.  DomainVars is an array of mddIds; for an FSM, these are the
+  present state variables.  Subsets of the domain are defined over these
+  variables. RangeVars is an array of mddIds over which the range is
+  expressed; for an FSM, these are the next state variables.  This array must
+  be in one-to-one correspondence with the array of roots.  QuantifyVars is an
+  array of mddIds, representing variables to be quantified from results of
+  backward images; for an FSM, these are the input variables.  This array may
+  be empty. No copies are made of any of the input parameters, and thus it is
+  the application's responsibility to free this data *after* the returned
+  Img_ImageInfo_t is freed.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Img_ImageInfoComputeFwd">Img_ImageInfoComputeFwd</a>
+<a href="#Img_ImageInfoComputeBwd">Img_ImageInfoComputeBwd</a>
+<a href="#Img_ImageInfoFree">Img_ImageInfoFree</a>
+</code>
+
+<dt><pre>
+<A NAME="Img_ImageInfoObtainMethodTypeAsString"></A>
+char * <I></I>
+<B>Img_ImageInfoObtainMethodTypeAsString</B>(
+  Img_ImageInfo_t * <b>imageInfo</b> <i></i>
+)
+</pre>
+<dd> Returns a string giving the method type of an imageInfo. It is
+  the user's responsibility to free this string.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Img_ImageInfoInitialize">Img_ImageInfoInitialize</a>
+</code>
+
+<dt><pre>
+<A NAME="Img_ImageInfoPrintMethodParams"></A>
+void <I></I>
+<B>Img_ImageInfoPrintMethodParams</B>(
+  Img_ImageInfo_t * <b>imageInfo</b>, <i></i>
+  FILE * <b>fp</b> <i></i>
+)
+</pre>
+<dd> Prints information about the image technique currently used.
+<p>
+
+<dd> <b>Side Effects</b> None.
+<p>
+
+<dt><pre>
+<A NAME="Img_ImageInfoReadMddManager"></A>
+mdd_manager * <I></I>
+<B>Img_ImageInfoReadMddManager</B>(
+  Img_ImageInfo_t * <b>imageInfo</b> <i></i>
+)
+</pre>
+<dd> Returns the mdd manager.
+<p>
+
+<dd> <b>Side Effects</b> None.
+<p>
+
+<dt><pre>
+<A NAME="Img_Init"></A>
+int <I></I>
+<B>Img_Init</B>(
+  Tcl_Interp * <b>interp</b>, <i></i>
+  Main_Manager_t * <b>manager</b> <i></i>
+)
+</pre>
+<dd> Initialize the image package.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Img_Reinit">Img_Reinit</a>
+<a href="#Img_End">Img_End</a>
+</code>
+
+<dt><pre>
+<A NAME="Img_MultiwayLinearAndSmooth"></A>
+mdd_t* <I></I>
+<B>Img_MultiwayLinearAndSmooth</B>(
+  mdd_manager * <b>mddManager</b>, <i></i>
+  array_t * <b>relationArray</b>, <i></i>
+  array_t * <b>smoothVarMddIdArray</b>, <i></i>
+  array_t * <b>introducedVarMddIdArray</b> <i></i>
+)
+</pre>
+<dd> "relationArray" is an array of mdd's which need to be
+  multiplied and the variables in the "smoothVarMddIdArray" need to
+  be quantified out from the product. "introducedVarMddIdArray" is the
+  array of mddIds of the variables (other than the variables to be
+  quantified out) in the support of the relations. This array is used
+  to compute the product order such that the number of new variables
+  introduced in the product is minimized. However passing an empty
+  array or an array of mddIds of partial support will not result in any
+  error (some optimality will be lost though). The computation consists of 2
+  phases. In phase 1, an ordering of the relations and a schedule of
+  quantifying variables is found (based on IWLS95) heuristic. In phase
+  2, the relations are multiplied in order and the quantifying
+  variables are quantified according to the schedule.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dt><pre>
+<A NAME="Img_Reinit"></A>
+int <I></I>
+<B>Img_Reinit</B>(
+  Tcl_Interp * <b>interp</b>, <i></i>
+  Main_Manager_t * <b>manager</b> <i></i>
+)
+</pre>
+<dd> Reinitializes the img package.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Img_Init">Img_Init</a>
+<a href="#Img_End">Img_End</a>
+</code>
+
+
+</DL>
+<HR>
+Last updated on 1031104 18h39
+</BODY></HTML>

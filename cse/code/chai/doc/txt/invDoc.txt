@@ -1,0 +1,163 @@
+The inv package
+
+Routines for parsing, writing and accessing invariants.
+
+Freddy Mang and Shaz Qadeer
+
+**********************************************************************
+
+Inv_End()                      required
+
+Inv_FileParseFormula()         Parses a file containing a set of ATL formulas.
+
+Inv_Init()                     Init function for tcl.
+
+Inv_InvariantArrayFree()       Frees an array of invariants.
+
+Inv_InvariantReadName()        Returns the name of the invariant.
+
+Inv_InvariantReadTypedExpr()   Returns the typed expression of an invariant.
+
+Inv_ManagerAlloc()             Allocate a Inv manager.
+
+Inv_ManagerFree()              Frees a Inv manager
+
+Inv_ManagerReadInvariantFromName()
+                               Returns a pointer to the formula, given name.
+
+Inv_ManagerReadInvariantNames()
+                               Returns a list of Atl formula Names
+
+Inv_ManagerReadInvariants()    Returns an array of Atl Formula from the ATL
+                               Manager
+
+Inv_ReadInvManager()           Export the Inv Global Manager
+
+Inv_Reinit()                   required
+
+**********************************************************************
+
+This package implements invariant checking. It provides routines
+for parsing invariants and for interfacing with the symbolic
+and enumerative reachability engines.
+
+int
+Inv_End(
+  Tcl_Interp *      interp,
+  Main_Manager_t *  manager
+)
+  optional
+
+  Side Effects: required
+
+lsList
+Inv_FileParseFormula(
+  Inv_Manager_t *   manager,
+  FILE *            fp
+)
+  Parses a file containing a set of semicolon-ending ATL formulas, and returns
+  an array of Inv_Invariant_t representing those formulas. If an error is
+  detected while parsing the file, the routine frees any allocated memory and
+  returns NULL.
+
+
+int
+Inv_Init(
+  Tcl_Interp *      interp,
+  Main_Manager_t *  manager
+)
+  It creates all the new tcl commands defined in this package.
+
+  Side Effects: None
+
+void
+Inv_InvariantArrayFree(
+  array_t *         formulaArray
+)
+  Calls InvInvariantFree on each formula in formulaArray, and then frees the
+  array itself.
+
+
+char *
+Inv_InvariantReadName(
+  Inv_Invariant_t * invariant
+)
+  This function returns a string containing the name of the invariant. The
+  caller is not supposed to free the string.
+
+  Side Effects: None
+
+Atm_Expr_t *
+Inv_InvariantReadTypedExpr(
+  Inv_Invariant_t * invariant
+)
+  This function returns the typed Atm_Expr_t of an invariant.
+
+  Side Effects: None
+
+Inv_Manager_t *
+Inv_ManagerAlloc(
+
+)
+  This function allocates the a new Inv_Manager_t, and initialize the hash
+  table in the manager.
+
+  Side Effects: required
+
+void
+Inv_ManagerFree(
+  Inv_Manager_t *   manager
+)
+  This function frees a Inv_Manager_t, frees the names of the atl formula, and
+  decrements the ref count of the formula. If the reference count of the
+  formula comes to zero, the formula is freed.
+
+  Side Effects: required
+
+Inv_Invariant_t *
+Inv_ManagerReadInvariantFromName(
+  Inv_Manager_t *   manager,
+  char *            name
+)
+  This function returns a pointer to the formula with the given name. If the
+  formula is not found, a NIL pointer is returned.
+
+  Side Effects: required
+
+array_t *
+Inv_ManagerReadInvariantNames(
+  Inv_Manager_t *   manager
+)
+  Given an ATL Manager, this function returns an array of all the formula
+  names.
+
+  Side Effects: User should free the array after use. Note the content should
+  not be freed.
+
+array_t *
+Inv_ManagerReadInvariants(
+  Inv_Manager_t *   manager
+)
+  Given an ATL Manager this function returns a list of all the ATL formula
+  from the manager.
+
+  Side Effects: This creates an array, which should be freed after use. Beware
+  that the formula should not be freed.
+
+Inv_Manager_t *
+Inv_ReadInvManager(
+
+)
+  This function exports the Inv Global Manager to the calling function.
+
+  Side Effects: required
+
+int
+Inv_Reinit(
+  Tcl_Interp *      interp,
+  Main_Manager_t *  manager
+)
+  optional
+
+  Side Effects: required
+

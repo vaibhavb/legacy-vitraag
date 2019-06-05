@@ -1,0 +1,112 @@
+
+type msgType : {a, b, c}
+type sendCtrlType : {produce, send}
+type recCtrlType : {receive, consume}
+type specCtrlType : {prod, cons, prodcons}
+
+
+module UnhideSyncSender
+	interface transmit:event; msgS, msgP:msgType; pcS:sendCtrlType; doneP:event
+	external ready:event
+	
+	event atom controls pcS, transmit, msgS
+		reads pcS, doneP, ready, transmit, msgP, msgS
+		awaits doneP, ready
+		init
+	 	[] true -> pcS' := produce
+		update
+		[] pcS = produce & doneP? -> pcS' := send
+		[] pcS = send & ready? -> transmit!; msgS' := msgP; pcS' := produce
+	endatom
+	
+	lazy atom Aprod controls doneP, msgP 
+		reads pcS, doneP, msgP
+		init
+		[] true -> msgP' := a
+		update
+		[] pcS = produce -> doneP!; msgP' := a
+		[] pcS = produce -> doneP!; msgP' := b
+		[] pcS = produce -> doneP!; msgP' := c
+	endatom
+endmodule
+
+module UnhideReceiver
+	interface ready:event; msgC:msgType; pcR:recCtrlType; msgR:msgType; doneC:event
+	external transmit:event; msgS:msgType
+	
+	event atom controls pcR, msgR
+		reads pcR, transmit, doneC, msgR
+		awaits transmit, msgS, doneC
+		init
+		[] true -> pcR' := receive
+		update
+		[] pcR = receive & transmit? -> msgR' := msgS'; pcR' := consume
+		[] pcR = consume & doneC? -> pcR' := receive
+	endatom
+
+	lazy atom controls ready 
+	     reads pcR, ready
+		init
+		[] true -> ready!
+		update
+		[] pcR = receive -> ready!
+	endatom
+
+	lazy atom ACons controls doneC, msgC 
+		reads pcR, doneC, msgR, msgC
+		init
+		[] true -> msgC' := a
+		update 
+		[] pcR = consume -> doneC!; msgC' := msgR
+	endatom
+endmodule
+
+module WitnessMsgO
+	interface msgO:msgType
+	external pcR:recCtrlType; doneP,doneC:event; msgP:msgType
+
+	atom controls msgO 
+		reads msgO, pcR, doneP, doneC, msgP
+		awaits pcR, doneP, doneC
+		update
+		[] pcR'=consume & doneP? & ~doneC? -> msgO' := msgP
+	endatom
+endmodule
+
+module WitnessSpecCtrl
+	interface pc:specCtrlType
+	external pcS:sendCtrlType; pcR:recCtrlType
+
+	atom controls pc
+		awaits pcS, pcR
+		init update
+		[] pcS'=produce & pcR'=receive -> pc' := prod
+		[] pcS'=send & pcR'=consume -> pc' := cons
+		[] pcS'=send & pcR'=receive -> pc' := prodcons
+		[] pcS'=produce & pcR'=consume -> pc' := prodcons
+	endatom
+endmodule
+
+
+
+UnhideSendRecImpl := UnhideSyncSender || UnhideReceiver || WitnessMsgO || WitnessSpecCtrl	
+
+
+module UnhideSendRecSpec
+	interface msgP,msgC,msgO:msgType; pc:specCtrlType
+
+        lazy atom controls pc, msgP, msgC, msgO
+		reads pc, msgP, msgO, msgC
+                init
+		[] true -> pc' := prod
+		update
+		[] pc=prod -> msgP' := nondet; pc' := prodcons
+                [] pc=prodcons -> msgC' := msgP; msgP':=nondet; pc' := prodcons
+                [] pc=prodcons -> msgO' := msgP; msgP':=nondet; pc' := cons
+                [] pc=prodcons -> msgC' := msgP; pc' := prod
+                [] pc=cons -> msgC' := msgO; pc' := prodcons
+	endatom
+endmodule
+
+
+

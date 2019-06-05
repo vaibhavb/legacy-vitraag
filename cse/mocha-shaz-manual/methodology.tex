@@ -1,0 +1,671 @@
+\section {Methodology}
+
+\subsection{Monitors}
+
+Invariants can distinguish between two trajectories only if one of the 
+trajectories contains a state that does not occur on the other trajectory.
+Hence there are requirements on the behavior of a reactive module $\ro$ that 
+cannot be phrased as invariants of~$\ro$.
+However, many such requirements can be phrased as invariants of the compound 
+module $\ro\|\mon$, for a monitor $\mon$ of~$\ro$.
+The module $\mon$ is a {\em monitor\/} of $\ro$ if $\mon$ is compatible with 
+$\ro$ and $\intf{\mon}\cap\extl{\ro}=\emptyset$.
+If $\mon$ is a monitor of~$\ro$, then in each round, $\mon$ may record the 
+values of the observable variables of~$\ro$, but $\mon$ must not modify any 
+external variables of~$\ro$.
+Thus the monitor $\mon$ can observe but not interfere with the behavior 
+of~$\ro$.
+In particular, the monitor $\mon$ may check if $\ro$ meets a requirement, and 
+it may signal every violation of the requirement by sounding an observable 
+alarm.
+The module $\ro$ then meets the given requirement iff the compound module 
+$\ro\|\mon$ has the invariant that no alarm is sounded by the monitor~$\mon$.
+
+\begin{figure}
+\begin{mtab}{l}
+  \MODULE\ \EqOppMonitor\\
+  \qu \INTF\ \level\:\set{0,1,2,3}\\
+  \qu \EXTL\ \pc\:\set{\away,\wait,\bridge}\;
+    \signal_1,\signal_2\:\set{\green,\red}\\
+  \qu \EVENT\ \ATOM\ \level\ \READS\ \level,\pc,\signal_1,\signal_2\\
+  \qqu \INIT\\
+  \qqu \begin{chtab}
+    \true &\level':=0
+  \end{chtab}\\
+  \qqu \UPDATE\\
+  \qqu \begin{chtab}
+    \level=0\land\pc=\wait\land\signal_1=\red\land\signal_2=\green 
+      &\level':=1\\
+    \level=1\land\signal_1=\green &\level':=0\\
+    \level=1\land\signal_1=\red\land\signal_2=\red &\level':=2\\
+    \level=2\land\signal_1=\green &\level':=0\\
+    \level=2\land\signal_1=\red\land\signal_2=\green &\level':=3
+  \end{chtab}
+\end{mtab}
+\caption{Monitoring equal opportunity}
+\label{fig:monitor3}
+\end{figure}
+
+\begin{figure}
+\begin{cmtab}{|@{\ }c@{\ }|@{\ }c@{\ }|@{\ }c@{\ }|@{\ }c@{\ }|
+    @{\ }c@{\ }|@{\ }c@{\ }|}
+  \hline
+  \pc_W &\pc_E &\signal_W &\signal_E &\level_W &\level_E\\
+  \hline
+  \away &\away &\red &\red &0 &0\\
+  \wait &\away &\red &\red &0 &0\\
+  \wait &\wait &\red &\red &0 &0\\
+  \wait &\wait &\red &\green &0 &0\\
+  \wait &\bridge &\red &\green &1 &0\\
+  \wait &\away &\red &\red &1 &0\\
+  \wait &\wait &\red &\red &2 &0\\
+  \wait &\wait &\red &\green &2 &0\\
+  \wait &\bridge &\red &\green &3 &0\\
+  \hline
+\end{cmtab}
+\caption{Error trajectory that violates equal opportunity}
+\label{fig:error2}
+\end{figure}
+
+  Figure~\ref{fig:rail} presents an asynchronous railroad controller that 
+  enforces the train-safety requirement.
+  Yet the module \Controller\ is not a satisfactory railroad controller, 
+  because it may keep a train waiting at a red signal while the other train 
+  is allowed to cross the bridge repeatedly.
+  In particular, the resulting railroad system does not meet the 
+  {\em equal-opportunity requirement\/} that, while a train is waiting at a 
+  red signal, it is not possible that the signal at the opposite entrance to 
+  the bridge turns from green to red and back to green.
+  Since the equal-opportunity requirement is violated by trajectories, and 
+  not by individual states, we need to employ monitors.
+  The module 
+  \begin{mtab}{l}
+    \EqOppMonitor_W\ =\ \\
+    \qu \EqOppMonitor[\level,\pc,\signal_1,\signal_2:=
+      \level_W,\pc_W,\signal_W,\signal_E]
+  \end{mtab}
+  monitors the equal-opportunity requirement for the train that travels 
+  clockwise, where \EqOppMonitor\ is shown in Figure~\ref{fig:monitor3}.
+  The monitor has four levels of alertness.
+  The alertness level is 0 as long as the train is not waiting at a red 
+  signal while the other signal is green, in which case the alertness level 
+  rises to~1.
+  The alertness level rises to 2 when the other signal turns red, and to 3
+  when the other signal turns green again, while the train is still waiting 
+  at a red signal.
+  An alertness level of 3 sounds an alarm that indicates a violation of the 
+  equal-opportunity requirement for the train that travels clockwise.
+  The equal-opportunity requirement for the train that travels 
+  counterclockwise is monitored by the module 
+  \begin{mtab}{l}
+    \EqOppMonitor_E\ =\ \\
+    \qu \EqOppMonitor[\level,\pc,\signal_1,\signal_2:=
+      \level_E,\pc_E,\signal_E,\signal_W]
+  \end{mtab}
+  in the same manner.
+  The module \Controller\ then meets the equal-opportunity requirement iff 
+  the observation predicate
+    \[\neg(\level_W=3\lor\level_E=3)\]
+  is an invariant of the compound module
+    \[\TrainSystem\ppar\EqOppMonitor_W\ppar\EqOppMonitor_E.\]
+  The error trajectory of Figure~\ref{fig:error2} shows that this is not the 
+  case.
+
+
+\subsection{Witness Modules for Refinement Checking}
+{\bf Witness modules.}
+The problem of checking if $\ro\refines\aro$ is PSPACE-hard in the state
+space of~$\aro$.  However, the refinement check is simpler in the special
+case in which all variables of $\aro$ are observable.  The module $\aro$ is
+{\em projection refinable\/} by the module $\ro$ if (1)~$\aro$ is refinable
+by $\ro$, and (2)~$\aro$ has no private variables.  If $\aro$ is projection
+refinable by~$\ro$, then every variable of $\aro$ is observable in both $\ro$
+and~$\aro$.  Therefore, checking if $\ro\refines\aro$ reduces to checking if
+for every trajectory $\stateseq$ of~$\ro$, the projection $[\stateseq]_\aro$
+is a {\em trajectory\/} of~$\aro$.  According to the following proposition,
+this can be done by a transition-invariant check, whose complexity is
+linear in the state spaces of both $\ro$ and~$\aro$.
+
+\begin {proposition}{projection}
+  [Projection refinement]
+  Consider two modules $\ro$ and $\aro$, where $\aro$ is projection refinable 
+  by~$\ro$.
+  Then $\ro \refines \aro$ iff 
+  (1)~if $s$ is an initial state of~$\ro$, then $[s]_\aro$
+        is an initial state of $\aro$, and
+  (2)~if $s$ is a reachable state of $\ro$ and $s\, {\trans}_\ro\, t$,
+	then $[s]_\aro \trans_\aro [t]_\aro$.
+\end {proposition}
+
+\mypar
+\noindent
+We make use of this proposition as follows.  Suppose that $\aro$ is refinable
+by~$\ro$, but not projection refinable.  This means that there are some
+private variables in $\aro$.  Define $\aro^u$ to be the module obtained by
+making every private variable of $\aro$ an interface variable.  If we compose
+$\ro$ with a module $\wit$ whose interface variables include the private
+variables of~$\aro$, then $\aro^u$ is projection refinable by the
+composition $\ro\|\wit$.  Moreover, if $\wit$ does not constrain any external
+variables of~$\ro$, then $\ro\|\wit\refines\aro^u$ implies
+$\ro\refines\aro$ (in fact, $\ro$ is simulated by $\aro$). 
+Such a module $\wit$ is called a {\em witness\/} to the
+refinement $\ro\refines\aro$.  The following proposition states that in order
+to check refinement, it is sufficient to first find a witness module and then
+check projection refinement.
+
+\begin {proposition}{witness}
+  [Witness modules]
+  Consider two modules $\ro$ and $\aro$ such that $\aro$ is refinable 
+  by~$\ro$.
+  Let $\wit$ be a module such that (1)~$\wit$ is compatible with
+  $\ro$, and (2)~the interface 
+  variables of $\wit$ include the private variables of~$\aro$, and are disjoint
+  from the external variables of $\ro$.
+  Then (1)~$\aro^u$ is projection refinable by $\ro \| \wit$, and 
+  (2)~$\ro\|\wit\refines \aro^u$ implies $\ro\refines\aro$.
+\end{proposition}
+
+\mypar
+\noindent
+Furthermore, it can be shown that if $\ro$ does not have any private 
+variables, and $\ro$ is simulated by $\aro$, then a witness to the 
+refinement $\ro \refines \aro$ does exist.
+In summary, the creativity required from the human verification expert is the
+construction of a suitable witness module, which makes explicit how the
+private state of the specification $Q$ depends on the state of the
+implementation~$P$.
+
+\subsection{Abstraction Modules}
+Consider two modules $P_1$ and $P_2$. Suppose, we want to show that
+$P_1 \| P_2 \refines Q$. Sometimes it is possible to construct modules
+$A_1$ and $A_2$ such that $A_1$ and $A_2$ are more abstract that $P_1$
+and $P_2$ respectively. Then the following proof rule is correct. 
+
+\[
+\begin{array}{rcl}
+P_1 & \refines & A_1 \\
+P_2 & \refines & A_2 \\
+A_1 \| A_2 & \refines & Q \\
+\hline \\
+P_1 \| P_2 & \refines & Q
+\end{array}
+\]
+
+{\bf Example.} \\
+\[
+\begin{array}{rcl}
+P_1 & = & \SCountThree[\done := z] \\
+P_2 & = & \SCountThree[\inc, \oouta,\ooutb, \ooutc := z, \ooutd, \ooute, \ooutf] 
+\end{array}
+\]
+
+The specification $Q$ for $P_1 \| P_2$ is the following module.
+\begin{mtab}{l}
+  \MODULE\ \SCountSixSpec \\
+  \qu \EXTL\ \start, \inc: \bool \\
+  \qu \INTF\ \oouta, \ooutb, \ooutc, \ooutd, \ooute, \ooutf, \done: \bool \\
+  \qu \PRIV\ \cnt: \BITVECTOR 6 \\
+  \qu \ATOM \CONTROLS\ \cnt\ \READS\ \cnt\ \start \AWAITS \inc \\
+  \qu \UPDATE \\
+  \qqu \begin{chtab}
+    \start \AND \NOT \inc' & \cnt' := 0 \\
+    \start \AND \inc' & \cnt' := 1 \\
+    \NOT \start \AND \inc' & \cnt' := \cnt + 1
+   \end{chtab} \\
+  \qu \ENDA \\
+  \qu \ATOM \CONTROLS \oouta, \ooutb, \ooutc \AWAITS \cnt \\
+  \qqu \INIT\ \UPDATE \\
+  \qqu \begin{chtab}
+    \true & \oouta' := \cnt'[0]; \ooutb' := \cnt'[1]; \ooutc' :=
+  \cnt'[2]; \ooutd' := \cnt'[3]; \ooute' := \cnt'[4]; \ooutf' := \cnt'[5]  
+  \end{chtab} \\
+  \qu \ENDA \\
+  \qu \ATOM \CONTROLS \done\ \READS\ \cnt, \start\ \AWAITS\ \cnt \\
+  \qqu \UPDATE \\
+  \qqu \begin{chtab}
+    \NOT \start \AND \cnt'=\cnt+1 \AND \cnt'=0 & \done' := \true \\
+    \DEFAULT & \done' := \false
+  \end{chtab} \\
+  \qu \ENDA \\
+  \qu \ENDM \\\\
+\end{mtab}
+
+Then, we have the following abstraction modules.
+\[
+\begin{array}{rcl}
+A_1 & = & \SCountThreeSpec[\done := z] \\
+A_2 & = & \SCountThreeSpec[\inc, \oouta,\ooutb, \ooutc := z, \ooutd, \ooute, \ooutf] 
+\end{array}
+\]
+
+Here, $A_1$ and $A_2$ are more abstract descriptions of $P_1$ and
+$P_2$. By inspection, we can see that the proof rule described above
+is applicable.
+We can show using {\tt check\_simulation} that $P_1 \refines A_1$ and
+$P_2 \refines A_2$. Hence, $P_1 \| P_2 \refines A_1
+\| A_2$. Therefore, we have that 
+\begin{displaymath}
+\HIDE\ z\ \IN\ (P_1 \| P_2) \ENDHIDE\ \refines \HIDE\ z\ \IN\ (A_1 \| A_2) \ENDHIDE 
+\end{displaymath}
+Now, we can use {\tt check\_simulation} to show that 
+\begin{displaymath}
+\HIDE\ z\ \IN\ (A_1 \| A_2) \ENDHIDE\ \refines \SCountSixSpec
+\end{displaymath}
+ 
+
+\subsection{Assume-guarantee reasoning}
+The state space of a module may be exponential in the size of the module
+description.  Consequently, even checking projection refinement may not be
+feasible.  However, typically both the implementation $\ro$ and the
+specification $\aro$ consist of the parallel composition of several modules,
+in which case it may be possible to reduce the problem of checking if
+$\ro\refines\aro$ to several subproblems that involve smaller state spaces.
+The assume-guarantee rule for reactive modules \cite{AlurHenzinger96} allows us to
+conclude $\ro\refines\aro$ as long as each component of the specification
+$\aro$ is refined by the corresponding components of the implementation $\ro$
+within a suitable environment.  The following proposition gives a slightly 
+generalized account of the assume-guarantee rule.
+ 
+\begin {proposition}{ag} 
+ [Assume-guarantee rule]
+ Consider two composite modules $P = P_1 \| \cdots \| P_m$ and 
+ $Q = Q_1 \| \cdots \| Q_n$, where $Q$ is refinable by~$P$.
+ For $i\in\set{1,\ldots,n}$, let $\Gamma_i$ be the composition of 
+ arbitrary compatible components from $P$ and $Q$ with the exception 
+ of~$Q_i$. 
+ If $\Gamma_i \refines Q_i$  for every $i \in \{ 1, \ldots, n\}$,
+ then $P \refines Q$. 
+\end {proposition}
+
+\mypar
+\noindent
+We make use of this proposition as follows.  First we decompose the
+specification $Q$ into its components $Q_1 \| \cdots \| Q_n$.  Then we find for
+each component $Q_i$ of the specification a suitable module $\Gamma_i$
+(called an {\em obligation module}) and check that $\Gamma_i\refines Q_i$.
+This is beneficial if the state space of $\Gamma_i$ is smaller than the state
+space of~$P$.  The module $\Gamma_i$ is the parallel composition of two kinds
+of modules---{\em essential modules\/} and {\em constraining modules}.  The
+essential modules are chosen from the implementation $P$ so that every
+interface variable of $Q_i$ is an interface variable of some essential
+module.  There may, however, be some external variables of $Q_i$ that are not
+observable for the essential modules.  In this case, to ensure that $Q_i$ is
+refinable by $\Gamma_i$, we need to choose constraining modules from either
+from the implementation $P$ or from the specification~$Q$ (other than~$Q_i$).
+Once $Q_i$ is refinable by $\Gamma_i$, if the refinement check
+$\Gamma_i\refines Q_i$ goes through, then we are done.  Typically, however,
+the external variables of $\Gamma_i$ need to be constrained in order for the
+refinement check to go through.  Until this is achieved, we must add further
+constraining modules to~$\Gamma_i$.
+
+\mypar
+It is preferable to choose constraining modules from the specification, which
+is less detailed than the implementation and therefore gives rise to smaller
+state spaces (in the undesirable limit, if we choose $\Gamma_i=P$, then the
+proof obligation $\Gamma_i\refines Q_i$ involves the state space of $P$ and
+is no simpler than the original proof obligation $P\refines Q$).
+Unfortunately, due to lack of detail, the specification often does not supply
+a suitable choice of constraining modules.  According to the following simple
+property of the refinement relation, however, we can arbitrarily ``enrich''
+the specification by composing it with new modules.
+
+\begin{proposition}{abs}
+  [Abstraction modules]
+  For all modules $\ro$, $\aro$, and~$A$,
+  if $\ro\refines\aro\|A$ and $\aro$ is refinable by $\ro$, then
+  $\ro\refines\aro$. 
+\end{proposition}
+
+\mypar
+\noindent
+So, before applying the assume-guarantee rule, we may add modules to the
+specification and prove $P\refines Q\|A_1\|\cdots\|A_k$ instead of $P\refines
+Q$.  The new modules $A_1,\ldots,A_k$ are called {\em abstraction modules},
+as they usually give high-level descriptions for some implementation
+components, in order to provide a sufficient supply of constraining modules.
+In summary, the creativity required from the human verification expert is the
+construction of suitable abstraction modules, which on one hand, need to be
+as detailed as required to serve as constraining modules in assume-guarantee
+reasoning, and on the other hand, should be as abstract as possible to
+minimize their state spaces.
+
+\mypar
+\noindent
+\mocha~provides support for assume-guarantee reasoning. 
+To be able to do operate at a finer granularity,
+\mocha~decomposes a refinement proof at the
+level of atoms (i.e, we treat $P$ and $Q$ as single modules and use
+the atoms of $P$ and $Q$ as $P_i$'s and $Q_i$'s in the above proof
+rule). The command used to carry out one step in the assume-guarantee
+proof is {\tt check\_refine\_atom}.
+The following is extracted from the command documention for 
+{\tt check\_refine\_atom}:
+
+
+\mypar
+\noindent
+{\tt
+check\_refine\_atom [-e] [-f <size or varlist> ] [-h] [-i <varlist> ] [-k] [-o <fname>] [-r] [-v] <impl> <spec>
+<spec\_interface\_varname>  \\
+\\
+Do one step in the compositional refinement proof of "implementation refines
+specification". The step done corresponds to the atom that controls variable
+named spec\_interface\_varname in the specification (let us call this atom
+atom1). The command does the following:   \\
+\\
+Given an implementation, specification modules and and an interface variable
+in the specification that controls and atom (say atom1), construct new modules
+"new specification" and "new implementation" such that 1. new specification
+contains atom1 only. 2. new implementation contains heuristically chosen
+atoms from specification and implementation that control variables controlled
+by atom1, but do not include atom1 itsel\\
+\\
+A refinement check between the new specification and the new
+implementation is performed First, new specification and implementation
+modules are created. The new specification contains just atom1. The new
+implementation contains chosen atoms from specification and implementation
+that control variables controlled by atom1, but do not include atom1 itself. At
+this point the new implementation contains only "essential atoms" to do a
+refinement check. \\
+\\
+Further atoms may need to be added to the new implementaion to constrain
+its environment. There are two ways to do this:\\
+\\
+1. AUTOMATIC: If the "-f 0" (size) option is chosen, then the implementation
+module is not grown any further. For the "-f 1" and "-f 2" options,
+progressively larger "constraining" environments are chosen for the new
+implementation module. (The default if no explicit "-f" option is used is "-f 2") \\
+\\
+2. MANUAL: The user can also FORCE specific variables to be controlled in
+the new implementation by using simply supplying a list of variables in the -f
+option (example -f \{var1 var2\}). \\
+\\
+Preference is always given to choose atoms from the specification for the new
+implementation whenever possible. However, the "-i" option can be used to
+choose specific atoms from the implelementation.  \\
+\\
+NOTE 1 : Since atom names are mangled by MOCHA (to uniquify atom
+names during parallel composition), we identify an atom by any variable that is
+controlled by the atom. \\
+\\
+NOTE 2 : List of variables are specified by enclosing them in curly braces
+Example \{var1 var2\} \\
+\\
+NOTE 3: You also have to use curly braces if your variable name has array
+indices Example \{foo2[0][1]\} \\
+\\
+EXAMPLES: \\
+Suppose the specification module is "Spec" and implementation module is
+"Impl". To do the sub-proof corresponding to a specific atom in the Spec that
+controls variable "myVar": check\_refine\_atom Impl Spec myVar \\
+\\
+To force variables foo1 and foo2[0] to be controlled use: check\_refine\_atom
+-f \{foo1 foo2[0]\} Impl Spec myVar \\
+\\
+In addition, to force foo2[0] to be constrained by an atom from Impl, use:
+check\_refine\_atom -f \{foo1 foo2[0]\} -i \{foo2[0]\} Impl Spec myVar  \\
+\\
+Command Options: \\
+\\
+-e : do transition invariant check only at the end (after completing
+     reachability) \\
+\\
+-f 0|1|2|var\_name\_list :\\
+     0 --> only the "essential atoms" are chosen \\
+     1 --> chooses a bigger set of atoms than size=0. Guaranteed to be
+     comparable with the new specification \\
+     2 --> heuristically chooses a bigger set of atoms than size=1 \\
+     var\_name\_list -> forces atoms controlling variables in var\_name\_list to
+     be chosen in the new implementation \\
+\\
+-h  :  print usage \\
+\\
+-i var\_name\_list : 
+     if the atom controlling variable in var\_name\_list is chosen, choose it
+     from the implementation \\
+\\
+-k : keep the new modules (for debugging purposes: default behavior if you
+     do not use this option is to delete them) \\
+\\
+-o fname :
+     write out the mdd variable ordering in file specified by \\
+\\
+-r : 
+     Do not do refinement check on the new modules (for debugging
+     purposes) \\
+\\
+-v :
+     verbose mode \\
+}
+
+
+
+\mypar
+\noindent
+We will use the resource manager example from Figure~\ref{fig:rmanager}
+and Figure~\ref{fig:rmanagerImpl}
+to illustrate the use of {\tt check\_refine\_atom}.
+We use {\tt rmanager.rm} from  {\tt common/examples/rmanger}
+First, the module is read in as usual
+
+\mypar
+\noindent
+{\tt 
+mocha: read\_module rmanager.rm \\
+Module Spec is composed and checked in. \\
+Module Impl is composed and checked in. \\
+parse successful. \\
+}
+
+\mypar
+\noindent
+First, we check if the \ALLOC atom in \Rmanager is
+refined correctly by the corresponding atom in \RmanagerImpl.
+
+\mypar
+\noindent
+{\tt
+mocha: check\_refine\_atom  Impl Spec alloc \\
+\\
+New specification module @M1 created \\
+\\
+Adding IMPLEMENTATION atom Impl/ALLOC\_0 \\
+Adding SPECIFICATION  atom Spec/GRANT\_INDEX\_0 \\
+Adding SPECIFICATION  atom Spec/GRANT\_0 \\
+Adding SPECIFICATION  atom Spec/HALF\_EMPTY\_0\\
+New Implementation module @M9 created \\
+\\
+Building transition relation for module @M9 \\
+Ordering variables using sym\_static\_order \\
+Transiton relation computed : 4 conjuncts \\
+Calling Dynamic Reordering with sift \\
+Done initializing image info... \\
+Writing order into imporder.dat \\
+Building transition relation for module @M1 \\
+Ordering variables using sym\_static\_order \\
+Transiton relation computed : 1 conjuncts \\
+Calling Dynamic Reordering with sift \\
+Done initializing image info... \\
+Dynamic variable ordering is enabled with method sift. \\
+Implementation latch : 1 : alloc[0] \\
+Implementation latch : 2 : alloc[1] \\
+Implementation latch : 3 : alloc[2] \\
+Implementation latch : 4 : alloc[3] \\
+Number of implementation latches = 4 \\
+Initial Region Computed For @M9 \\
+Initial Region Computed For @M1 \\
+Doing transition invariant check.. \\
+Done.. \\
+Step 1: image mdd size =         28	 |states| =      128	 \\
+reached set mdd size =          7	 |states| =        5 \\
+Doing transition invariant check.. \\
+Done.. \\
+Step 2: image mdd size =        128	 |states| =      584	 \\
+reached set mdd size =          7	 |states| =       11 \\
+Doing transition invariant check.. \\
+Done.. \\
+Step 3: image mdd size =        139	 |states| =     1184	 \\
+reached set mdd size =          5	 |states| =       15 \\
+Doing transition invariant check.. \\
+Done.. \\
+Step 4: image mdd size =        255	 |states| =     1696	 \\
+reached set mdd size =          1	 |states| =       16 \\
+Doing transition invariant check.. \\
+Done.. \\
+Step 5: image mdd size =        242	 |states| =     1764	 \\
+Done reached set computation... \\
+reached set mdd size =          1	 number of states =       16 \\
+@M9 refines @M1 \\
+Freeing syminfo for both specification and implementation \\
+Deleting intermediate specification and implementation \\
+Compositional refinement step successful \\
+}
+
+
+\mypar
+\noindent
+Next, we check if the $\HALFEMPTY$ atom in $\Rmanager$ is
+refined correctly by $\RmanagerImpl$.
+
+\mypar
+\noindent
+{\tt
+mocha: check\_refine\_atom  Impl Spec half\_empty  \\
+\\
+New specification module @M11 created \\
+\\
+Adding IMPLEMENTATION atom Impl/HALF\_EMPTY\_0 \\
+Adding SPECIFICATION  atom Spec/ALLOC\_0 \\
+Adding IMPLEMENTATION atom Impl/SUM\_0 \\
+Adding SPECIFICATION  atom Spec/GRANT\_0 \\
+Adding SPECIFICATION  atom Spec/GRANT\_INDEX\_0 \\
+New Implementation module @M21 created \\
+\\
+Building transition relation for module @M21 \\
+Ordering variables using sym\_static\_order \\
+Transiton relation computed : 5 conjuncts \\
+Calling Dynamic Reordering with sift \\
+Done initializing image info... \\
+Writing order into imporder.dat \\
+Building transition relation for module @M11 \\
+Ordering variables using sym\_static\_order \\
+Transiton relation computed : 1 conjuncts \\
+Calling Dynamic Reordering with sift \\
+Done initializing image info... \\
+Dynamic variable ordering is enabled with method sift. \\
+Implementation latch : 1 : \$sum\_0 \\
+Implementation latch : 2 : alloc[0] \\
+Implementation latch : 3 : alloc[1] \\
+Implementation latch : 4 : alloc[2] \\
+Implementation latch : 5 : alloc[3] \\
+Number of implementation latches = 5 \\
+Initial Region Computed For @M21 \\
+Initial Region Computed For @M11 \\
+Doing transition invariant check.. \\
+Done.. \\
+Step 1: image mdd size =         43	 |states| =      128	 \\
+reached set mdd size =         11	 |states| =        5 \\
+Doing transition invariant check.. \\
+Done.. \\
+Step 2: image mdd size =        205	 |states| =      584	 \\
+reached set mdd size =         15	 |states| =       11 \\
+Doing transition invariant check.. \\
+Done.. \\
+Step 3: image mdd size =        270	 |states| =     1184	 \\
+reached set mdd size =         17	 |states| =       15 \\
+Doing transition invariant check.. \\
+Done.. \\
+Step 4: image mdd size =        413	 |states| =     1696	 \\
+reached set mdd size =         18	 |states| =       16 \\
+Doing transition invariant check.. \\
+Done.. \\
+Step 5: image mdd size =        405	 |states| =     1764	 \\
+Done reached set computation... \\
+reached set mdd size =         18	 number of states =       16 \\
+@M21 refines @M11 \\
+Freeing syminfo for both specification and implementation \\
+Deleting intermediate specification and implementation \\
+Compositional refinement step successful \\
+}
+
+\mypar
+\noindent
+The $\GRANTINDEX$ atom in  $\Rmanager$ is trivially refined by any
+implementation, since it places no constraints. Finally, we
+are left to verifying if the $\GRANT$ atom in $\Rmanager$ is correctly
+refined in $\RmanagerImpl$. For all the above proofs, \mocha
+was able to choose the constraining environments automatically.
+In this proof, however, it is necessary to manually force 
+{\tt grant\_index} to be chosen from the implementation. 
+We encourage the reader to try the following command
+without the {\tt -i} option and interpret the resulting error
+trace.
+
+\mypar
+\noindent
+{\tt
+mocha: check\_refine\_atom  -i {grant\_index} Impl Spec grant \\
+\\
+New specification module @M33 created \\
+\\
+Adding IMPLEMENTATION atom Impl/GRANT\_0 \\
+Adding SPECIFICATION  atom Spec/ALLOC\_0 \\
+Adding IMPLEMENTATION atom Impl/GRANT\_INDEX\_0 \\
+Adding SPECIFICATION  atom Spec/HALF\_EMPTY\_0 \\
+Adding IMPLEMENTATION atom Impl/SUM\_0 \\
+New Implementation module @M43 created \\
+\\
+Building transition relation for module @M43 \\
+Ordering variables using sym\_static\_order \\
+Transiton relation computed : 5 conjuncts \\
+Calling Dynamic Reordering with sift \\
+Done initializing image info... \\
+Writing order into imporder.dat \\
+Building transition relation for module @M33 \\
+Ordering variables using sym\_static\_order \\
+Transiton relation computed : 1 conjuncts \\
+Calling Dynamic Reordering with sift \\
+Done initializing image info... \\
+Dynamic variable ordering is enabled with method sift. \\
+Implementation latch : 1 : \$sum\_0 \\
+Implementation latch : 2 : alloc[0] \\
+Implementation latch : 3 : alloc[1] \\
+Implementation latch : 4 : alloc[2] \\
+Implementation latch : 5 : alloc[3] \\
+Number of implementation latches = 5 \\
+Initial Region Computed For @M43 \\
+Initial Region Computed For @M33 \\
+Doing transition invariant check.. \\
+Done.. \\
+Step 1: image mdd size =         21	 |states| =       32	 \\
+reached set mdd size =          9	 |states| =        2 \\
+Doing transition invariant check.. \\
+Done.. \\
+Step 2: image mdd size =         43	 |states| =       64	 \\
+reached set mdd size =         12	 |states| =        4 \\
+Doing transition invariant check.. \\
+Done.. \\
+Step 3: image mdd size =         80	 |states| =      124	 \\
+reached set mdd size =         16	 |states| =        7 \\
+Doing transition invariant check.. \\
+Done.. \\
+Step 4: image mdd size =        159	 |states| =      212	 \\
+reached set mdd size =         20	 |states| =       12 \\
+Doing transition invariant check.. \\
+Done.. \\
+Step 5: image mdd size =        212	 |states| =      361	 \\
+reached set mdd size =         20	 |states| =       15 \\
+Doing transition invariant check.. \\
+Done.. \\
+Step 6: image mdd size =        251	 |states| =      445	 \\
+reached set mdd size =         18	 |states| =       16 \\
+Doing transition invariant check.. \\
+Done.. \\
+Step 7: image mdd size =        255	 |states| =      465	 \\
+Done reached set computation... \\
+reached set mdd size =         18	 number of states =       16 \\
+@M43 refines @M33 \\
+Freeing syminfo for both specification and implementation \\
+Deleting intermediate specification and implementation \\
+Compositional refinement step successful \\
+}

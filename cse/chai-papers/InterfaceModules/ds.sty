@@ -1,0 +1,116 @@
+% states s,t,r, S, T
+% modules: A, B, C, or M, N
+% transition relation: R, but also, E. 
+
+% Truth values
+\def\true{\mbox{\sc t}}
+\def\false{\mbox{\sc f}}
+
+% modules
+\def\mp{M}
+\def\mq{N}
+\def\mr{P}
+\def\ms{L}
+\def\env{E}
+
+% module operations
+\def\closure{{\text{\textit{Close}}}}
+\def\lang{\call} 
+
+% transition relations
+\def\trans{\tau}
+\def\itrans{\tau^i}
+\def\otrans{\tau^o}
+\def\tr{R}
+
+% initial states
+\def\init{\theta}
+\def\iinit{\theta^i}
+\def\oinit{\theta^o}
+\def\sinit{I}
+
+% variables
+\def\allvars{\calw} 
+\def\vars{\calv}
+\def\avars{\calu}
+\def\ovars{\calv^o}
+\def\ivars{\calv^i}
+
+% \def\rvars{\calv^r}
+
+% states
+\def\domain{\cald}
+\def\states{\cals}
+
+% logic
+\def\loglang{{\text{\textit{Lang}}}}
+\def\Preds{{\text{\textit{Preds}}}}
+\def\pred{\varphi}
+
+% primed, unprimed
+\def\nx#1{\next #1}
+\def\pr#1{\prev #1}
+
+% reachable states
+\def\reach{{\text{\textit{Reach}}}}
+
+% pre and post
+\def\pre{{\text{\textit{pre}}}}
+\def\post{{\text{\textit{post}}}}
+\def\Pre{{\text{\textit{Pre}}}}
+\def\Post{{\text{\textit{Post}}}}
+\def\CPre{{\text{\textit{CPre}}}}
+
+% regions
+\def\reg{\sigma}
+\def\areg{\eta} 
+
+% actions
+\def\aa{a}
+\def\bb{b}
+
+% refinement
+\def\refi{\preceq}
+
+% adaptations
+\def\adapt#1#2#3{#1{\scriptstyle [#2 \setm #3]}}
+\def\adapro#1#2{#1{\scriptstyle [#2]}}
+\def\restr{\psi}
+\def\wh{\widehat}
+
+% for example
+\def\adder{{\text{\textit{Adder}}}}
+\def\strongadder{{\text{\textit{AdderOnly}}}}
+\def\counter{{\text{\textit{Counter}}}}
+\def\od{o}
+\def\oq{q}
+\def\id{i}
+\def\iadd{\oq_0}
+\def\isub{\oq_1}
+\def\itoone{{\text{\textit{cl}}}}
+\def\mod{\;{\text{\textrm{mod}}}\;}
+
+% traces
+\def\traces{{\text{\textit{Traces}}}}
+
+% controllability 
+\def\ctrl{C}
+\def\htau{\widetilde{\tau}}
+
+% Refinement
+\def\rrel{\rho}
+\def\rrp{R}
+\def\bddc{C}
+\def\abddc{D}
+
+% AG
+\def\trel{\rho} 
+\def\oprod{\otimes}
+\def\ivarsf{v^i}
+\def\ovarsf{v^o}
+
+% compatible
+\def\compat{{\wr}{\wr}}
+
+% compositional
+\def\reach{{\text{\textit{Reach}}}}

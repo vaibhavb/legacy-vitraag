@@ -1,0 +1,128 @@
+<html>
+<head><title>mvf package abstract</title></head>
+<body>
+
+
+<!-- Function Abstracts -->
+
+<dl>
+<dt> <a href="mvfAllDet.html#Mvf_End" TARGET="MAIN"><code>Mvf_End()</code></a>
+<dd> Ends the mvf package.
+
+<dt> <a href="mvfAllDet.html#Mvf_FunctionAddMintermsToComponent" TARGET="MAIN"><code>Mvf_FunctionAddMintermsToComponent()</code></a>
+<dd> Adds a set of minterms to the ith component of a function.
+
+<dt> <a href="mvfAllDet.html#Mvf_FunctionAlloc" TARGET="MAIN"><code>Mvf_FunctionAlloc()</code></a>
+<dd> Allocates a multi-valued function of n components.
+
+<dt> <a href="mvfAllDet.html#Mvf_FunctionArrayComputeNumBddNodes" TARGET="MAIN"><code>Mvf_FunctionArrayComputeNumBddNodes()</code></a>
+<dd> Returns the number of BDD nodes of an array of multi-valued
+  functions.
+
+<dt> <a href="mvfAllDet.html#Mvf_FunctionArrayFree" TARGET="MAIN"><code>Mvf_FunctionArrayFree()</code></a>
+<dd> Frees an array of multi-valued output functions.
+
+<dt> <a href="mvfAllDet.html#Mvf_FunctionBuildRelationWithVariable" TARGET="MAIN"><code>Mvf_FunctionBuildRelationWithVariable()</code></a>
+<dd> Returns the MDD representation of the relation (var == function).
+
+<dt> <a href="mvfAllDet.html#Mvf_FunctionCofactor" TARGET="MAIN"><code>Mvf_FunctionCofactor()</code></a>
+<dd> Calls bdd_cofactor on each component of a multi-valued function.
+
+<dt> <a href="mvfAllDet.html#Mvf_FunctionComposeWithFunctionArray" TARGET="MAIN"><code>Mvf_FunctionComposeWithFunctionArray()</code></a>
+<dd> Substitutes a set of variables by a set of functions in a function.
+
+<dt> <a href="mvfAllDet.html#Mvf_FunctionComposeWithFunction" TARGET="MAIN"><code>Mvf_FunctionComposeWithFunction()</code></a>
+<dd> Substitutes a variable by a function in a function.
+
+<dt> <a href="mvfAllDet.html#Mvf_FunctionComputeAddition" TARGET="MAIN"><code>Mvf_FunctionComputeAddition()</code></a>
+<dd> Returns the mvf for the modulo addition of the two
+  multi-valued functions.
+
+<dt> <a href="mvfAllDet.html#Mvf_FunctionComputeDomain" TARGET="MAIN"><code>Mvf_FunctionComputeDomain()</code></a>
+<dd> Computes the domain of a multi-valued function.
+
+<dt> <a href="mvfAllDet.html#Mvf_FunctionComputeHashValue" TARGET="MAIN"><code>Mvf_FunctionComputeHashValue()</code></a>
+<dd> Hashes A multi-valued function.
+
+<dt> <a href="mvfAllDet.html#Mvf_FunctionComputeITE" TARGET="MAIN"><code>Mvf_FunctionComputeITE()</code></a>
+<dd> Returns the if then else of two mvfs.
+
+<dt> <a href="mvfAllDet.html#Mvf_FunctionComputeNumBddNodes" TARGET="MAIN"><code>Mvf_FunctionComputeNumBddNodes()</code></a>
+<dd> Returns the number of BDD nodes of a multi-valued function.
+
+<dt> <a href="mvfAllDet.html#Mvf_FunctionComputeSubtraction" TARGET="MAIN"><code>Mvf_FunctionComputeSubtraction()</code></a>
+<dd> Returns the mvf for the modulo subtraction of the two
+  multi-valued functions.
+
+<dt> <a href="mvfAllDet.html#Mvf_FunctionComputeSupport" TARGET="MAIN"><code>Mvf_FunctionComputeSupport()</code></a>
+<dd> Computes the variables in the true support of a function.
+
+<dt> <a href="mvfAllDet.html#Mvf_FunctionCreateFromVariable" TARGET="MAIN"><code>Mvf_FunctionCreateFromVariable()</code></a>
+<dd> Creates the multi-output function for a variable.
+
+<dt> <a href="mvfAllDet.html#Mvf_FunctionDuplicate" TARGET="MAIN"><code>Mvf_FunctionDuplicate()</code></a>
+<dd> Duplicates a multi-valued output function.
+
+<dt> <a href="mvfAllDet.html#Mvf_FunctionFindFirstTrueComponent" TARGET="MAIN"><code>Mvf_FunctionFindFirstTrueComponent()</code></a>
+<dd> Returns the index of the first component of a multi-valued
+  function that is equal to the tautology.
+
+<dt> <a href="mvfAllDet.html#Mvf_FunctionFree" TARGET="MAIN"><code>Mvf_FunctionFree()</code></a>
+<dd> Frees a multi-valued output function.
+
+<dt> <a href="mvfAllDet.html#Mvf_FunctionMinimize" TARGET="MAIN"><code>Mvf_FunctionMinimize()</code></a>
+<dd> Calls bdd_minimize on each component of a multi-valued function.
+
+<dt> <a href="mvfAllDet.html#Mvf_FunctionObtainComponent" TARGET="MAIN"><code>Mvf_FunctionObtainComponent()</code></a>
+<dd> Returns a copy of the MDD giving the minterms for which a
+  multi-valued function evaluates to its ith value.
+
+<dt> <a href="mvfAllDet.html#Mvf_FunctionReadComponent" TARGET="MAIN"><code>Mvf_FunctionReadComponent()</code></a>
+<dd> Returns the MDD giving the minterms for which a
+  multi-valued function evaluates to its ith value. The user should not free
+  this MDD.
+
+<dt> <a href="mvfAllDet.html#Mvf_FunctionReadMddManager" TARGET="MAIN"><code>Mvf_FunctionReadMddManager()</code></a>
+<dd> Returns the MDD manager of a multi-valued function.
+
+<dt> <a href="mvfAllDet.html#Mvf_FunctionReadNumComponents" TARGET="MAIN"><code>Mvf_FunctionReadNumComponents()</code></a>
+<dd> Returns the number of components of a multi-valued function.
+
+<dt> <a href="mvfAllDet.html#Mvf_FunctionTestIsCompletelySpecified" TARGET="MAIN"><code>Mvf_FunctionTestIsCompletelySpecified()</code></a>
+<dd> Returns true if a multi-valued function is completely specified, else
+  false.
+
+<dt> <a href="mvfAllDet.html#Mvf_FunctionTestIsConstant" TARGET="MAIN"><code>Mvf_FunctionTestIsConstant()</code></a>
+<dd> Returns true if a multi-valued function is constant, else
+  false.
+
+<dt> <a href="mvfAllDet.html#Mvf_FunctionTestIsDeterministic" TARGET="MAIN"><code>Mvf_FunctionTestIsDeterministic()</code></a>
+<dd> Returns true if a multi-valued function is deterministic, else
+  false.
+
+<dt> <a href="mvfAllDet.html#Mvf_FunctionTestIsEqualToFunction" TARGET="MAIN"><code>Mvf_FunctionTestIsEqualToFunction()</code></a>
+<dd> Returns true if two multi-valued functions are equal, else false.
+
+<dt> <a href="mvfAllDet.html#Mvf_FunctionTestIsNonDeterministicConstant" TARGET="MAIN"><code>Mvf_FunctionTestIsNonDeterministicConstant()</code></a>
+<dd> Returns true if a multi-valued function is a non-deterministic
+  constant, else false.
+
+<dt> <a href="mvfAllDet.html#Mvf_FunctionTestIsWellFormed" TARGET="MAIN"><code>Mvf_FunctionTestIsWellFormed()</code></a>
+<dd> Returns true if a function is deterministic and completely
+  specified, else false.
+
+<dt> <a href="mvfAllDet.html#Mvf_FunctionsComputeEquivalentSet" TARGET="MAIN"><code>Mvf_FunctionsComputeEquivalentSet()</code></a>
+<dd> Returns the set of minterms on which two functions agree.
+
+<dt> <a href="mvfAllDet.html#Mvf_Init" TARGET="MAIN"><code>Mvf_Init()</code></a>
+<dd> Initializes the mvf package.
+
+<dt> <a href="mvfAllDet.html#Mvf_MddComposeWithFunction" TARGET="MAIN"><code>Mvf_MddComposeWithFunction()</code></a>
+<dd> Substitutes a variable by a function in an mdd_t *.
+
+</dl>
+
+<hr>
+
+Last updated on 1031104 18h39
+</body></html>

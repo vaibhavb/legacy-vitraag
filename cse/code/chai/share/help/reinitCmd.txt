@@ -1,0 +1,11 @@
+
+  reinit - Reinitializes mocha.
+     _________________________________________________________________
+   
+   reinit
+   
+   The command reinitializes mocha to the state in which it starts
+   operation when mocha is typed at the shell.
+     _________________________________________________________________
+   
+   Last updated on 980624 22h10

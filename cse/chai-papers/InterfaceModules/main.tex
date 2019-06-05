@@ -1,0 +1,65 @@
+\documentclass{llncs}
+\usepackage{latexsym}
+\usepackage{amstext}
+%\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{color}               % arindam: added this for figs
+\usepackage[dvips]{graphicx}     % arindam: added this for figs
+\usepackage[noend]{algorithmic}
+\usepackage{algorithm}
+\usepackage{amsbsy}
+%\usepackage{fullpage}
+\usepackage{epic} 
+\usepackage{eepic} 
+\usepackage{luca} % this contains some of Luca's standard defs
+\usepackage{ds}   % this contains some macros for interface modules. 
+		  % put here other paper-specific macros. 
+\usepackage{subfigure} 
+
+\sloppy 
+
+\begin{document}
+
+% \pagestyle{plain}
+
+\title{Synchronous and Bidirectional Component Interfaces\thanks{
+  This research was supported in part by 
+  the AFOSR grant F49620-00-1-0327, 
+  the DARPA grant F33615-00-C-1693, 
+  the MARCO grant 98-DT-660, 
+  the NSF grant CCR-9988172,
+  the SRC grant 99-TJ-683.003, and 
+  the NSF CAREER award CCR-0132780. % luca career
+}}
+\author{
+Arindam Chakrabarti\inst{1} \and Luca de Alfaro\inst{2} \and 
+Thomas A. Henzinger\inst{1} \and \mbox{Freddy Y.C. Mang}\inst{3}
+}
+\date{}
+\institute{Department of Electrical Engineering and Computer Sciences, 
+  University of California, Berkeley, CA 94720-1770, USA.
+  \email{\{arindam,tah\}@eecs.berkeley.edu}
+  \and 
+  Department of Computer Engineering, 
+  University of California, Santa Cruz, CA 95064, USA. 
+  \email{luca@soe.ucsc.edu}
+  \and
+  Advanced Technology Group, Synopsys Inc.
+  \email{fmang@synopsys.com}}
+\maketitle 
+
+\input{abstract}
+
+\input{intro}
+\input{moore} 
+\input{ag}
+\input{refinement}
+% \input{compositional}
+
+% \newpage
+\bibliographystyle{plain}
+\bibliography{luca}
+
+\end{document}
+
+

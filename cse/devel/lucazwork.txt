@@ -1,0 +1,13 @@
+Luca Work
+1. Software package in terms interfaces. Which implies if you have word there will a interface say word.intf and ie you have iexplorer.intf. So if want combine there software components then it is feasible if the interfaces match or gel.
+
+2. Matching and geling of interfaces is done based on Game Theory. Which implies that the sub-parts of interfaces are heuristically (some game strategy) played together.
+
+3. Interface automata. 
+   Computer => Turing machine => Finite Automata. 
+Formalization in terms of FA is full and simple. But it leads to too many states. And most of them redundant. There way of simplification is by introducing variables in FA => there is not only 0/1 for transition logic but a whole set of values a variable can take. This tends to decrease the number of FA states exponentially.
+
+4. Reactive modules whose formalization based on above. There have a very strong application in embedded systems specifically  nuclear, space, cars, airlines and other traditional industries like them! Other interesting application is hardware -software codesign.
+
+5. Large amount of Formalization of Probabilistic Systems'.
+

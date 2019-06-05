@@ -1,0 +1,34 @@
+<html>
+<head><title>compose</title></head>
+<body>
+
+<h3>compose - parallel composition of two modules.</h3>
+<hr>
+<code>compose [-h] lt;module_namegt; lt;module_namegt;</code><p>
+This function creates a new module which is the
+  parallel composition of the given modules. It returns the name
+  of the newly composed module.
+
+  <p>
+  The name of the new module is generated internally. To designate
+  a name, use let.  For example, the command
+
+  <p>
+  let P be [compose P1 P2]
+
+  <p>
+  creates a module P which is the parallel composition of P1 and P2.
+
+  <p>
+  Command Options:<p>
+
+  <dl>
+
+  <dt> -h
+  <dd> Prints usage.
+
+  </dl>
+
+<HR>
+Last updated on 1031103 12h03
+</body></html>

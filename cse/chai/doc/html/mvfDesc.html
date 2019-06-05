@@ -1,0 +1,43 @@
+<HTML>
+<HEAD><TITLE>The mvf package: Overview</TITLE></HEAD>
+<BODY>
+
+<H1>The mvf package</H1>
+<H2>Creation and manipulation of MDD-based multi-valued functions.</H2>
+<H3>By Tom Shiple</H3>
+
+<UL>
+ <LI> <A HREF="mvfExt.html" TARGET="_top">
+    Information for programmers</A>
+ <LI> <A HREF="mvfAllByFunc.html" TARGET="_top">
+    Information for developers sorted by function</A>
+ <LI> <A HREF="mvfAllByFile.html" TARGET="_top">
+    Information for developers sorted by file</A>
+</UL>
+
+<HR>
+
+This package is used to create and manipulate single output
+  functions that take multiple values, and are defined over multi-valued
+  variables.  Mathematically, such a function is described as, f: Y1 x Y2 x
+  ... x Yn --> Yn+1.  Each Yi is a finite, ordered set; if Yi is of
+  cardinality k, then the elements of Yi are {0, 1, ..., k-1}. We use yi do
+  denote a variable over Yi. If<p>
+
+  A single MDD over variables y1,...,yn cannot be used to represent f, because
+  an MDD can only represent binary-valued functions, not multi-valued
+  functions.  Instead, to represent f, we use an array of MDDs, of length
+  equal to the cardinality of Yn+1.  Each MDD of this array is defined over
+  y1,...,yn.  Furthermore, the minterms for which the ith MDD, fi, evaluates
+  to one, are exactly those minterms for which f evaluates to the ith member
+  of Yn+1.  If f is deterministic, then the intersection of fi and fj, for i
+  not equal to j, is empty.  If f is completely specified, then the union of
+  the fi's is the tautology.  The union of the fi's is referred to as the
+  "domain" of the function.
+
+<HR>
+
+Last updated on 1031104 18h39
+
+</BODY>
+</HTML>

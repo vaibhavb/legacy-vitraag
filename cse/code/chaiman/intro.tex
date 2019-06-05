@@ -1,0 +1,135 @@
+\chapter{Introduction}
+We describe a new interactive verification environment called \mocha\
+for the modular verification of heterogeneous systems.
+\mocha\ differs from many existing model checkers in three significant ways:
+
+\begin{itemize}
+\vitem 
+  For modeling, we replace unstructured state-transition graphs with
+  the heterogeneous modeling framework of {\it reactive modules}
+  \cite{AlurHenzinger96}.  The definition of reactive modules is inspired by
+  formalisms such as Unity \cite{ChandyMisra88}, 
+  I/O automata \cite{Lynch96}, and Esterel
+  \cite{BerryGonthier88}, and allows complex forms of interaction
+  between components within a single transition.  Reactive modules provide a
+  semantic glue that allows the formal embedding and interaction of
+  components with different characteristics.  Some modules may be
+  synchronous, others asynchronous, some may represent hardware,
+  others software, some may be speed-independent, others
+  time-critical.
+
+\vitem
+  For requirement specification, we replace the system-level specification 
+  languages of linear and branching temporal logics \cite{Pnueli77,ClarkeEmerson81}
+  with the module-level specification language of 
+  {\it Alternating Temporal Logic} (ATL) \cite{AHK97}.
+  In ATL, both cooperative and adversarial relationships between modules 
+  can be expressed.
+  For example, it is possible to specify that a module can attain a 
+  goal regardless of how the environment of the module behaves.
+%  Unlike system requirements, module requirements can be modified and 
+%  reverified individually whenever the corresponding modules are changed.  
+
+\vitem 
+   For the verification of complex systems, \mocha\ supports a range of
+   {\em compositional and hierarchical verification methodologies}.
+   For this purpose, reactive modules provide assume-guarantee rules 
+   \cite{HQR98} and abstraction operators \cite{AHR98};
+   \mocha\ provides algorithms for automatic refinement checking, and 
+   will provide a proof editor that manages the decomposition of 
+   verification tasks into subtasks.
+
+% we complement model checking with
+%  automated refinement checking for Reactive Modules.  Reactive
+%  Modules is designed to capture the modularity of system designs in
+%  such a way that the systems can be verified compositionally and
+%  hierarchically. It has been proved that many {\em assume-guarantee}
+%  rules are sound under this framework.
+
+%  The refinement checking problem can be simplified
+%  using the compositional and assume-guarantee rules.
+%  To support hierarchical design at different levels
+%  of abstraction and to aid the decomposition of verification tasks,
+\end{itemize}
+
+%\mypar
+
+
+%The input language of \mocha\ is a readable variant of Reactive
+%Modules. The following functionalities are currently being supported:
+
+\noindent
+In this report, we describe the toolkit \mocha\ in which the
+proposed approach is being implemented.  The input language of \mocha\
+is a machine readable variant of reactive modules.
+The following functionalities are currently being supported:
+
+\begin{itemize}
+\vitem
+Execution, including games between the user and \mocha\
+
+\vitem
+Enumerative and symbolic invariant checking and error-trace generation
+
+\vitem
+Compositional refinement checking
+
+\vitem
+ATL model checking 
+
+\vitem
+Reachability analysis of real-time systems
+\end{itemize}
+
+\noindent
+\mocha\ is intended as a vehicle for the development of new
+verification algorithms and approaches.  It adopts a software
+architecture similar to \vis \cite{BHS96}, a symbolic model-checking
+tool from UC Berkeley.  Written in C with Tcl/Tk and Tix
+\cite{tix-http}, \mocha\ can be easily extended in two ways: designers
+and application developers can customize their application or design
+their own graphical user interface by writing Tcl scripts; algorithm
+developers and researchers can develop new verification algorithms by
+writing C code, or assembling any verification packages through C
+interfaces.  For instance, \mocha\ incorporates the \vis packages
+for image computation and multi-valued function manipulation, as well
+as various BDD packages, to provide state-of-the-art verification
+techniques.
+
+%\begin{figure}[t]
+%%\begin{center}
+%%\centerline{\psfig{figure=mocha-sd1.ps,height=3in}}
+%\centerline{\epsfysize250pt\epsfbox{mocha-sd.ps}}
+%%\end{center}
+%\end{figure}
+
+
+\section{Organization of this manual}
+Chapter \ref{chap:tut} is a tutorial introduction to \mocha. Chapter
+\ref{chap:rem} goes into the syntax and semantics of \rem\ in great
+depth, and is replete with examples, both simple and moderately
+complex.  Chapter
+\ref{chap:specs} discusses the specification
+formalism for specifying requirements of modules accepted by
+\mocha. The commands available at the \mocha\ shell prompt are covered
+in Chapter \ref{chap:commands}. The support in \mocha\ for modular
+verification by assume-guarantee reasoning, and other means to
+circumvent the intractability of monolithic verification is dealt with
+in Chapter \ref{sec:methodology}. Real-time modules and verification
+is the subject of Chapter \ref{chap:real_time}. 
+
+
+\section{How to read this manual}
+The best way to learn to use \mocha\ is to taste it quickly
+and let it stimulate you, and then let the high take care of the
+rest. Start with the tutorial in Chapter \ref{chap:tut} in front of a
+terminal. Then perhaps read Chapter \ref{chap:commands} (again in
+front of a terminal). 
+
+Thereafter, continue having fun, and read the other parts of the
+manual as and when needed. The tables in Chapter \ref{chap:rem}, a
+listing of which can be found on Page \pageref{page:tables}, should
+suffice for the grammar of \rem. An index can be found at the end of
+this manual. If you have any problems, please do not
+hesitate to send email to {\tt mocha@eecs.berkeley.edu}.
+

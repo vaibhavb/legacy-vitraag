@@ -1,0 +1,8 @@
+Welcome to MOCHA 1.0
+Please report any problems to mocha@eecs.berkeley.edu
+Module RealTimeGate is composed and checked in.
+Module RealTimeTrain is composed and checked in.
+Module System is composed and checked in.
+parse successful.
+Ordering variables using rtm_static_order
+default encountered in Atm_NumConstExprConvertToBitvectorConstExpr

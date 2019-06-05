@@ -1,0 +1,640 @@
+<html>
+<head><title>The mvf package: all functions </title></head>
+<body>
+
+
+<HR>
+<DL>
+<dt><pre>
+<A NAME="Mvf_End"></A>
+void <I></I>
+<B>Mvf_End</B>(
+   <b></b> <i></i>
+)
+</pre>
+<dd> Ends the mvf package.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Mvf_Init">Mvf_Init</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mvfAllFile.html#mvfMvf.c"TARGET="ABSTRACT"><CODE>mvfMvf.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mvf_FunctionAddMintermsToComponent"></A>
+void <I></I>
+<B>Mvf_FunctionAddMintermsToComponent</B>(
+  Mvf_Function_t * <b>function</b>, <i></i>
+  int  <b>i</b>, <i></i>
+  mdd_t * <b>g</b> <i></i>
+)
+</pre>
+<dd> Adds a set of minterms, represented by the onset of an MDD g,
+  to the onset of the ith component of a function.  The MDD g is not freed.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Mvf_FunctionAlloc">Mvf_FunctionAlloc</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mvfAllFile.html#mvfMvf.c"TARGET="ABSTRACT"><CODE>mvfMvf.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mvf_FunctionAlloc"></A>
+Mvf_Function_t * <I></I>
+<B>Mvf_FunctionAlloc</B>(
+  mdd_manager * <b>mddManager</b>, <i></i>
+  int  <b>n</b> <i></i>
+)
+</pre>
+<dd> Allocates a multi-valued function of n components.  Each
+  component is initialized to the zero MDD.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Mvf_FunctionAddMintermsToComponent">Mvf_FunctionAddMintermsToComponent</a>
+<a href="#Mvf_FunctionCreateFromVariable">Mvf_FunctionCreateFromVariable</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mvfAllFile.html#mvfMvf.c"TARGET="ABSTRACT"><CODE>mvfMvf.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mvf_FunctionArrayComputeNumBddNodes"></A>
+long <I></I>
+<B>Mvf_FunctionArrayComputeNumBddNodes</B>(
+  array_t * <b>functionArray</b> <i></i>
+)
+</pre>
+<dd> Returns the number of BDD nodes of an array of multi-valued
+  functions. A node shared by several functions is counted only once.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="mvfAllFile.html#mvfMvf.c"TARGET="ABSTRACT"><CODE>mvfMvf.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mvf_FunctionArrayFree"></A>
+void <I></I>
+<B>Mvf_FunctionArrayFree</B>(
+  array_t * <b>functionArray</b> <i></i>
+)
+</pre>
+<dd> Frees an array of multi-valued output functions.  Does nothing
+  if functionArray is NULL.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Mvf_FunctionFree">Mvf_FunctionFree</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mvfAllFile.html#mvfMvf.c"TARGET="ABSTRACT"><CODE>mvfMvf.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mvf_FunctionBuildRelationWithVariable"></A>
+mdd_t * <I></I>
+<B>Mvf_FunctionBuildRelationWithVariable</B>(
+  Mvf_Function_t * <b>function</b>, <i></i>
+  int  <b>mddId</b> <i></i>
+)
+</pre>
+<dd> Given a variable x, represented by MDD var "mddId", and a
+  function f:y->z, represented by "function", where x and z take the same
+  number of values, returns the MDD for a (binary) function F(x,y) such that
+  F(x,y) = 1 iff x = f(y).  In the binary case it reduces to F(x,y) = x XNOR
+  f(y).  Intuitively it describes a function of multi-valued variables by the
+  characteristic function of its input-output relation.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="mvfAllFile.html#mvfMvf.c"TARGET="ABSTRACT"><CODE>mvfMvf.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mvf_FunctionCofactor"></A>
+Mvf_Function_t * <I></I>
+<B>Mvf_FunctionCofactor</B>(
+  Mvf_Function_t * <b>function</b>, <i></i>
+  mdd_t * <b>wrtMdd</b> <i></i>
+)
+</pre>
+<dd> Calls bdd_cofactor on each component of a multi-valued
+  function, cofactoring with respect to wrtMDD. Returns the cofactored
+  function. It is an error to call this function with a multi-valued
+  function that contains null MDDs or with a null wrtMdd.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="mvfAllFile.html#mvfMvf.c"TARGET="ABSTRACT"><CODE>mvfMvf.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mvf_FunctionComposeWithFunctionArray"></A>
+Mvf_Function_t * <I></I>
+<B>Mvf_FunctionComposeWithFunctionArray</B>(
+  Mvf_Function_t * <b>f</b>, <i></i>
+  array_t * <b>mddIdArray</b>, <i>of int</i>
+  array_t * <b>functionArray</b> <i>of Mvf_Function_t*</i>
+)
+</pre>
+<dd> Given a multi-valued function f, an array of variables
+  x1,...,xk, and an array of multi-valued functions g1,...,gk, iteratively
+  calls Mvf_MddComposeWithFunction to substitute each xi by gi.  The
+  parameters of the ith call to Mvf_MddComposeWithFunction are the result of
+  composing the first i-1 variables, xi, and gi.  The multi-valued function gi
+  must not depend on xi.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Mvf_MddComposeWithFunction">Mvf_MddComposeWithFunction</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mvfAllFile.html#mvfMvf.c"TARGET="ABSTRACT"><CODE>mvfMvf.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mvf_FunctionComposeWithFunction"></A>
+Mvf_Function_t * <I></I>
+<B>Mvf_FunctionComposeWithFunction</B>(
+  Mvf_Function_t * <b>f</b>, <i></i>
+  int  <b>mddId</b>, <i></i>
+  Mvf_Function_t * <b>g</b> <i></i>
+)
+</pre>
+<dd> Given a multi-valued function f, a variable x (mddId), and a
+  multi-valued function g, the procedure replaces every appearance of x in f
+  by function g.  That is, if the function f is f(..., x, ...), then the
+  result is f(..., g(), ...).  The number of values that x can take and the
+  number of components of g must be equal. The algorithm first computes the
+  sum of factors (x==i)*gi for every value i in the domain of x, where gi is
+  the ith component of g.  Then, for each component fi of f, the sum of
+  factors is conjuncted with fi, and x is existentially quantified. The
+  function g must not depend on x.  The result depends on all the variables of
+  g and all the variables of f, except for x.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Mvf_MddComposeWithFunction">Mvf_MddComposeWithFunction</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mvfAllFile.html#mvfMvf.c"TARGET="ABSTRACT"><CODE>mvfMvf.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mvf_FunctionComputeAddition"></A>
+Mvf_Function_t * <I></I>
+<B>Mvf_FunctionComputeAddition</B>(
+  Mvf_Function_t * <b>mvf1</b>, <i></i>
+  Mvf_Function_t * <b>mvf2</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mvfAllFile.html#mvfMvf.c"TARGET="ABSTRACT"><CODE>mvfMvf.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mvf_FunctionComputeDomain"></A>
+mdd_t * <I></I>
+<B>Mvf_FunctionComputeDomain</B>(
+  Mvf_Function_t * <b>function</b> <i></i>
+)
+</pre>
+<dd> Returns an MDD representing the set of minterms which turn on
+  some component of a function.  In other words, returns the union of the
+  onsets of the components.  The domain is the tautology if and only if the
+  function is completely specified.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Mvf_FunctionTestIsCompletelySpecified">Mvf_FunctionTestIsCompletelySpecified</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mvfAllFile.html#mvfMvf.c"TARGET="ABSTRACT"><CODE>mvfMvf.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mvf_FunctionComputeHashValue"></A>
+int <I></I>
+<B>Mvf_FunctionComputeHashValue</B>(
+  Mvf_Function_t * <b>function</b> <i></i>
+)
+</pre>
+<dd> Hashes A multi-valued function. Each component's top variable id
+  is multiplied by the index of component (+ 1). Returns the sum of this computation
+  on every component. It is an error to call this function with a null
+  multi-valued function.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="mvfAllFile.html#mvfMvf.c"TARGET="ABSTRACT"><CODE>mvfMvf.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mvf_FunctionComputeITE"></A>
+Mvf_Function_t * <I></I>
+<B>Mvf_FunctionComputeITE</B>(
+  mdd_t * <b>ifMdd</b>, <i></i>
+  Mvf_Function_t * <b>thenMvf</b>, <i></i>
+  Mvf_Function_t * <b>elseMvf</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mvfAllFile.html#mvfMvf.c"TARGET="ABSTRACT"><CODE>mvfMvf.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mvf_FunctionComputeNumBddNodes"></A>
+long <I></I>
+<B>Mvf_FunctionComputeNumBddNodes</B>(
+  Mvf_Function_t * <b>function</b> <i></i>
+)
+</pre>
+<dd> Returns the number of BDD nodes of a multi-valued function.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="mvfAllFile.html#mvfMvf.c"TARGET="ABSTRACT"><CODE>mvfMvf.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mvf_FunctionComputeSubtraction"></A>
+Mvf_Function_t * <I></I>
+<B>Mvf_FunctionComputeSubtraction</B>(
+  Mvf_Function_t * <b>mvf1</b>, <i></i>
+  Mvf_Function_t * <b>mvf2</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mvfAllFile.html#mvfMvf.c"TARGET="ABSTRACT"><CODE>mvfMvf.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mvf_FunctionComputeSupport"></A>
+array_t * <I></I>
+<B>Mvf_FunctionComputeSupport</B>(
+  Mvf_Function_t * <b>function</b>, <i></i>
+  mdd_manager * <b>mddMgr</b>, <i></i>
+  int * <b>value</b> <i></i>
+)
+</pre>
+<dd> Computes the variables in the true support of a function.  Does
+  this by taking the union of the result of mdd_get_support on each component
+  of the function.  Returns the support as an (ascending) ordered array of MDD
+  ids. If the function is a constant, then a NULL array is returned, and the
+  constant value of the function is written in the "value" variable.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Mvf_FunctionTestIsConstant">Mvf_FunctionTestIsConstant</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mvfAllFile.html#mvfMvf.c"TARGET="ABSTRACT"><CODE>mvfMvf.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mvf_FunctionCreateFromVariable"></A>
+Mvf_Function_t * <I></I>
+<B>Mvf_FunctionCreateFromVariable</B>(
+  mdd_manager * <b>mddManager</b>, <i></i>
+  int  <b>mddId</b> <i></i>
+)
+</pre>
+<dd> Given a variable, creates a function with as many components as
+  values of the variable.  The ith component of the function is true exactly
+  when the variable is equal to the ith value (i.e. fi(x) = (x==i), where x is
+  the variable specified by mddId).  For the case where x is binary valued,
+  the result is [!x, x]. Assumes that mddId is non-negative.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Mvf_FunctionAlloc">Mvf_FunctionAlloc</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mvfAllFile.html#mvfMvf.c"TARGET="ABSTRACT"><CODE>mvfMvf.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mvf_FunctionDuplicate"></A>
+Mvf_Function_t * <I></I>
+<B>Mvf_FunctionDuplicate</B>(
+  Mvf_Function_t * <b>function</b> <i></i>
+)
+</pre>
+<dd> Returns a new multi-valued output function, whose constituent
+  MDDs have been duplicated. Assumes that function is not NULL.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Mvf_FunctionFree">Mvf_FunctionFree</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mvfAllFile.html#mvfMvf.c"TARGET="ABSTRACT"><CODE>mvfMvf.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mvf_FunctionFindFirstTrueComponent"></A>
+int <I></I>
+<B>Mvf_FunctionFindFirstTrueComponent</B>(
+  Mvf_Function_t * <b>function</b> <i></i>
+)
+</pre>
+<dd> Returns the index of the first component of a multi-valued
+  function that is equal to the tautology. If the multi-valued function is
+  deterministic, this component is unique. Returns -1 if such a component is
+  not found. It is an error to call this function with a multi-valued function
+  that contains null MDDs.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="mvfAllFile.html#mvfMvf.c"TARGET="ABSTRACT"><CODE>mvfMvf.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mvf_FunctionFree"></A>
+void <I></I>
+<B>Mvf_FunctionFree</B>(
+  Mvf_Function_t * <b>function</b> <i></i>
+)
+</pre>
+<dd> Frees a multi-valued output function. Does nothing if
+  function is NULL.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Mvf_FunctionAlloc">Mvf_FunctionAlloc</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mvfAllFile.html#mvfMvf.c"TARGET="ABSTRACT"><CODE>mvfMvf.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mvf_FunctionMinimize"></A>
+Mvf_Function_t * <I></I>
+<B>Mvf_FunctionMinimize</B>(
+  Mvf_Function_t * <b>f</b>, <i></i>
+  mdd_t * <b>c</b> <i></i>
+)
+</pre>
+<dd> Calls bdd_minimize on each component of a multi-valued function
+  f, minimizing with respect to the care function c.  The returned function
+  agrees with f wherever c is true, and may or may not agree with f wherever c
+  is false. It is an error to call this function with a multi-valued function
+  that contains null MDDs or with a null care.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="mvfAllFile.html#mvfMvf.c"TARGET="ABSTRACT"><CODE>mvfMvf.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mvf_FunctionObtainComponent"></A>
+mdd_t * <I></I>
+<B>Mvf_FunctionObtainComponent</B>(
+  Mvf_Function_t * <b>function</b>, <i></i>
+  int  <b>i</b> <i></i>
+)
+</pre>
+<dd> Returns a copy of the MDD giving the minterms for which a
+  multi-valued function evaluates to its ith value.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Mvf_FunctionAlloc">Mvf_FunctionAlloc</a>
+<a href="#Mvf_FunctionCreateFromVariable">Mvf_FunctionCreateFromVariable</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mvfAllFile.html#mvfMvf.c"TARGET="ABSTRACT"><CODE>mvfMvf.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mvf_FunctionReadComponent"></A>
+mdd_t * <I></I>
+<B>Mvf_FunctionReadComponent</B>(
+  Mvf_Function_t * <b>function</b>, <i></i>
+  int  <b>i</b> <i></i>
+)
+</pre>
+<dd> Returns the MDD giving the minterms for which a
+  multi-valued function evaluates to its ith value. The user should not free
+  this MDD.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Mvf_FunctionObtainComponent">Mvf_FunctionObtainComponent</a>
+<a href="#Mvf_FunctionAlloc">Mvf_FunctionAlloc</a>
+<a href="#Mvf_FunctionCreateFromVariable">Mvf_FunctionCreateFromVariable</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mvfAllFile.html#mvfMvf.c"TARGET="ABSTRACT"><CODE>mvfMvf.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mvf_FunctionReadMddManager"></A>
+mdd_manager * <I></I>
+<B>Mvf_FunctionReadMddManager</B>(
+  Mvf_Function_t * <b>function</b> <i></i>
+)
+</pre>
+<dd> Returns the MDD manager of a multi-valued function.  This
+  procedure assumes that the function has at least one component.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Mvf_FunctionAlloc">Mvf_FunctionAlloc</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mvfAllFile.html#mvfMvf.c"TARGET="ABSTRACT"><CODE>mvfMvf.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mvf_FunctionReadNumComponents"></A>
+int <I></I>
+<B>Mvf_FunctionReadNumComponents</B>(
+  Mvf_Function_t * <b>function</b> <i></i>
+)
+</pre>
+<dd> Returns the number of components of a multi-valued function.
+  This is the same number as the value of the parameter passed to
+  Mvf_FunctionAlloc.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Mvf_FunctionAlloc">Mvf_FunctionAlloc</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mvfAllFile.html#mvfMvf.c"TARGET="ABSTRACT"><CODE>mvfMvf.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mvf_FunctionTestIsCompletelySpecified"></A>
+boolean <I></I>
+<B>Mvf_FunctionTestIsCompletelySpecified</B>(
+  Mvf_Function_t * <b>function</b> <i></i>
+)
+</pre>
+<dd> Returns true if a multi-valued function is completely
+  specified, else false.  A function is completely specified if, for every
+  minterm over the input space of the function, the function takes at least
+  one value. The complexity of this procedure is linear in the number of
+  values the function can take.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Mvf_FunctionTestIsDeterministic">Mvf_FunctionTestIsDeterministic</a>
+<a href="#Mvf_FunctionTestIsWellFormed">Mvf_FunctionTestIsWellFormed</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mvfAllFile.html#mvfMvf.c"TARGET="ABSTRACT"><CODE>mvfMvf.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mvf_FunctionTestIsConstant"></A>
+boolean <I></I>
+<B>Mvf_FunctionTestIsConstant</B>(
+  Mvf_Function_t * <b>function</b>, <i></i>
+  int * <b>constantValue</b> <i>return value</i>
+)
+</pre>
+<dd> Returns true if a multi-valued function is constant, else
+  false.  A function is constant if exactly one component is the tautology,
+  and the remaining components are zero.  If the function is a constant, then
+  "value" is set to the constant value of the function. The complexity of this
+  procedure is linear in the number of values the function can take.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Mvf_FunctionTestIsNonDeterministicConstant">Mvf_FunctionTestIsNonDeterministicConstant</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mvfAllFile.html#mvfMvf.c"TARGET="ABSTRACT"><CODE>mvfMvf.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mvf_FunctionTestIsDeterministic"></A>
+boolean <I></I>
+<B>Mvf_FunctionTestIsDeterministic</B>(
+  Mvf_Function_t * <b>function</b> <i></i>
+)
+</pre>
+<dd> Returns true if a multi-valued function is deterministic, else
+  false.  A function is deterministic if, for every minterm over the input
+  space of the function, the function takes at most one value. The complexity
+  of this procedure is linear in the number of values the function can
+  take.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Mvf_FunctionTestIsCompletelySpecified">Mvf_FunctionTestIsCompletelySpecified</a>
+<a href="#Mvf_FunctionTestIsWellFormed">Mvf_FunctionTestIsWellFormed</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mvfAllFile.html#mvfMvf.c"TARGET="ABSTRACT"><CODE>mvfMvf.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mvf_FunctionTestIsEqualToFunction"></A>
+boolean <I></I>
+<B>Mvf_FunctionTestIsEqualToFunction</B>(
+  Mvf_Function_t * <b>function1</b>, <i></i>
+  Mvf_Function_t * <b>function2</b> <i></i>
+)
+</pre>
+<dd> Returns true if two multi-valued functions are equal, else
+  false.  Two functions are equal if they have the same number of components,
+  and the ith component of one is equal to the ith component of the other.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="mvfAllFile.html#mvfMvf.c"TARGET="ABSTRACT"><CODE>mvfMvf.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mvf_FunctionTestIsNonDeterministicConstant"></A>
+boolean <I></I>
+<B>Mvf_FunctionTestIsNonDeterministicConstant</B>(
+  Mvf_Function_t * <b>function</b> <i></i>
+)
+</pre>
+<dd> Returns true if a multi-valued function is a non-deterministic
+  constant, else false.  A function is a non-deterministic constant if more
+  than one component is the tautology, and the remaining components are zero.
+  The complexity of this procedure is linear in the number of values the
+  function can take.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Mvf_FunctionTestIsConstant">Mvf_FunctionTestIsConstant</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mvfAllFile.html#mvfMvf.c"TARGET="ABSTRACT"><CODE>mvfMvf.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mvf_FunctionTestIsWellFormed"></A>
+boolean <I></I>
+<B>Mvf_FunctionTestIsWellFormed</B>(
+  Mvf_Function_t * <b>function</b> <i></i>
+)
+</pre>
+<dd> Returns true if a function is deterministic and completely
+  specified, else false.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Mvf_FunctionTestIsDeterministic">Mvf_FunctionTestIsDeterministic</a>
+<a href="#Mvf_FunctionTestIsCompletelySpecified">Mvf_FunctionTestIsCompletelySpecified</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mvfAllFile.html#mvfMvf.c"TARGET="ABSTRACT"><CODE>mvfMvf.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mvf_FunctionsComputeEquivalentSet"></A>
+mdd_t * <I></I>
+<B>Mvf_FunctionsComputeEquivalentSet</B>(
+  Mvf_Function_t * <b>function1</b>, <i></i>
+  Mvf_Function_t * <b>function2</b> <i></i>
+)
+</pre>
+<dd> Returns the set of minterms on which two functions agree.  For
+  f = [f1, f2, ..., fn] and g = [g1, g2, ..., gn], the returned set is:
+  AND(i = 1, ..., n) (fi XNOR gi).  For the special case where f and g are
+  binary valued, this function computes (f XNOR g).  It is an error if the two
+  functions have a different number of components.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="mvfAllFile.html#mvfMvf.c"TARGET="ABSTRACT"><CODE>mvfMvf.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mvf_Init"></A>
+void <I></I>
+<B>Mvf_Init</B>(
+   <b></b> <i></i>
+)
+</pre>
+<dd> Initializes the mvf package.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Mvf_End">Mvf_End</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mvfAllFile.html#mvfMvf.c"TARGET="ABSTRACT"><CODE>mvfMvf.c</CODE></A>
+
+<dt><pre>
+<A NAME="Mvf_MddComposeWithFunction"></A>
+mdd_t * <I></I>
+<B>Mvf_MddComposeWithFunction</B>(
+  mdd_t * <b>f</b>, <i></i>
+  int  <b>mddId</b>, <i></i>
+  Mvf_Function_t * <b>g</b> <i></i>
+)
+</pre>
+<dd> Given a binary-valued function f, a variable x, and a
+  multi-valued function g, the procedure replaces every appearance of x in f
+  by function g.  That is, if the function f is f(..., x, ...), then the
+  result is f(..., g(), ...). The number of values that x can take and the
+  number of components of g must be equal. The algorithm first computes the
+  sum of factors (x==i)*gi for every value i in the domain of x, where gi is
+  the ith component of g, then conjuncts this with f, and finally
+  existentially quantifies x.  The function g must not depend on x.  The
+  result depends on all the variables of g and all the variables of f, except
+  for x.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="mvfAllFile.html#mvfMvf.c"TARGET="ABSTRACT"><CODE>mvfMvf.c</CODE></A>
+
+<dt><pre>
+<A NAME=""></A>
+ <I></I>
+<B></B>(
+   <b></b> <i></i>
+)
+</pre>
+<dd> This macro iterates over the components of a multi-valued
+  function.
+<p>
+
+<dd> <b>Side Effects</b> This macro instantiates macros from the array package.  Hence
+  it is advisable not to nest this macro within array macros.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Mvf_FunctionAlloc">Mvf_FunctionAlloc</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="mvfAllFile.html#mvf.h"TARGET="ABSTRACT"><CODE>mvf.h</CODE></A>
+
+
+</DL>
+<HR>
+Last updated on 1031103 12h03
+</BODY></HTML>

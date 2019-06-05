@@ -1,0 +1,422 @@
+The rtm package
+
+Timing verification
+
+Serdar Tasiran
+
+**********************************************************************
+
+Rtm_AllocateRegionStruct()     required
+
+Rtm_AssignmentsBuildMdd()      builds the mdd for the assignments of a command
+
+Rtm_AtomBuildInitCmdListMdds() updates mdds by processing the init commands of
+                               the atom
+
+Rtm_AtomBuildInitialRegion()   build initial region for an atom in a timed
+                               module
+
+Rtm_AtomBuildTransitionRelation()
+                               build transition relation for an atom
+
+Rtm_AtomBuildUpdateCmdListMdds()
+                               updates mdds by processing the update commands
+                               of the atom
+
+Rtm_AtomBuildWaitCmdListMdds() updates mdds by processing the wait(delay)
+                               commands of the atom
+
+Rtm_AtomProcessDefaultInitCommand()
+                               updates mdds by processing the default init
+                               command of the atom
+
+Rtm_AtomProcessDefaultUpdateCommand()
+                               updates mdds by processing the default update
+                               command of the atom
+
+Rtm_AtomProcessImplicitUpdateCommand()
+                               Process the implicit command for the update
+                               command list of an atom
+
+Rtm_BuildOneWaitAssignmentMdd()
+                               builds the mdd for a single assignment of a
+                               wait command
+
+Rtm_BuildUnconstrainedTimerIncMdd()
+                               Builds the mdd for timers not constrained by a
+                               wait command
+
+Rtm_DebugTracePrint()          print debug trace for an invariant for timed
+                               modules
+
+Rtm_End()                      Closes the rtm package
+
+Rtm_GuardBuildMdd()            builds the mdd for the guard of a command
+
+Rtm_InitAssignmentsBuildMdd()  builds the mdd for the assignments of an init
+                               command
+
+Rtm_Init()                     Initializes the rtm package
+
+Rtm_MddPickMinterm()           required
+
+Rtm_MddPrintCubes()            required
+
+Rtm_ModuleBuildInitialRegion() build mdd for initial region of module
+
+Rtm_ModuleBuildTransitionRelation()
+                               build transition relation (as an MDD) for a
+                               timed module
+
+Rtm_ModulePerformBFS()         do invariant checking on a timed module
+
+Rtm_RegionManagerAddModuleToRtmInfo()
+                               required
+
+Rtm_RegionManagerAlloc()       required
+
+Rtm_RegionManagerObtainRtmInfoFromModule()
+                               required
+
+Rtm_RegionManagerReadRegionTable()
+                               required
+
+Rtm_Reinit()                   Re-initializes the rtm package
+
+Rtm_RtmRegionManagerIncrementCounter()
+                               required
+
+Rtm_RtmRegionManagerReadCounter()
+                               required
+
+Rtm_WaitAssignmentsBuildMdd()  builds the mdd for all of the assignments of a
+                               wait command
+
+**********************************************************************
+
+
+
+Rtm_Region_t *
+Rtm_AllocateRegionStruct(
+  Mdl_Module_t *    module,
+  mdd_t *           regionSet
+)
+  optional
+
+  Side Effects: required
+
+mdd_t *
+Rtm_AssignmentsBuildMdd(
+  Atm_Atom_t *      atom,
+  Rtm_Info_t *      rtmInfo,
+  Atm_Cmd_t *       cmd
+)
+  builds the mdd for the assignments of a command
+
+  Side Effects: none
+
+void
+Rtm_AtomBuildInitCmdListMdds(
+  Atm_Atom_t *      atom,
+  Rtm_Info_t *      rtmInfo,
+  mdd_t **          atomMddPtr,
+  mdd_t **          guardOrMddPtr
+)
+  updates mdds by processing the init commands of the atom guardOrMdd and
+  atomMdd are affected.
+
+  Side Effects: guardOrMdd and atomMdd are changed
+
+mdd_t *
+Rtm_AtomBuildInitialRegion(
+  Atm_Atom_t *      atom,
+  Rtm_Info_t *      rtmInfo
+)
+  build initial region for an atom in a timed module
+
+  Side Effects: none
+
+mdd_t *
+Rtm_AtomBuildTransitionRelation(
+  Atm_Atom_t *      atom,
+  Rtm_Info_t *      rtmInfo
+)
+  build transition relation for an atom One timed and one untimed conjunct is
+  created for each atom The timed conjunct for the atom represents the
+  transitions where one time unit elapses (all timers incremented by 1) The
+  untimed conjunct for the atom represents control transitions where no time
+  elapses. The first entry in the array returned is the timed conjunct, the
+  second one is the untimed one.
+
+  Side Effects: none
+
+void
+Rtm_AtomBuildUpdateCmdListMdds(
+  Atm_Atom_t *      atom,
+  Rtm_Info_t *      rtmInfo,
+  mdd_t **          atomMddPtr,
+  mdd_t **          guardOrMddPtr
+)
+  updates mdds by processing the update commands of the atom guardOrMdd and
+  atomMdd are affected.
+
+  Side Effects: guardOrMdd and atomMdd are changed
+
+void
+Rtm_AtomBuildWaitCmdListMdds(
+  Atm_Atom_t *      atom,
+  Rtm_Info_t *      rtmInfo,
+  mdd_t **          atomMddPtr,
+  mdd_t **          timedGuardOrMddP
+)
+  updates mdds by processing the wait(delay) commands of the atom guardOrMdd
+  and atomMdd are affected.
+
+  Side Effects: guardOrMdd and atomMdd are changed
+
+void
+Rtm_AtomProcessDefaultInitCommand(
+  Atm_Atom_t *      atom,
+  Rtm_Info_t *      rtmInfo,
+  mdd_t **          atomMddPtr,
+  mdd_t **          guardOrMddPtr
+)
+  updates mdds by processing the default init command of the atom guardOrMdd
+  and atomMdd are affected.
+
+  Side Effects: guardOrMdd and atomMdd are changed
+
+void
+Rtm_AtomProcessDefaultUpdateCommand(
+  Atm_Atom_t *      atom,
+  Rtm_Info_t *      rtmInfo,
+  mdd_t **          atomMddPtr,
+  mdd_t **          guardOrMddPtr
+)
+  updates mdds by processing the default update command of the atom guardOrMdd
+  and atomMdd are affected.
+
+  Side Effects: guardOrMdd and atomMdd are changed
+
+void
+Rtm_AtomProcessImplicitUpdateCommand(
+  Atm_Atom_t *      atom,
+  Rtm_Info_t *      rtmInfo,
+  mdd_t **          atomMddPtr,
+  mdd_t **          guardOrMddPtr
+)
+  Process the implicit command for the update command list of an atom
+
+  Side Effects: none
+
+mdd_t *
+Rtm_BuildOneWaitAssignmentMdd(
+  Atm_Expr_t *      expr,
+  Rtm_Info_t *      rtmInfo,
+  int               pid,
+  int               uid
+)
+  builds the mdd for a single assignment of a wait command
+
+  Side Effects: none
+
+mdd_t *
+Rtm_BuildUnconstrainedTimerIncMdd(
+  int               pid,
+  int               uid,
+  Var_Variable_t *  var,
+  Rtm_Info_t *      rtmInfo
+)
+  Timers not constrained by a wait command all increase by the amount "inc" as
+  represented by the rtmInfo->timeIncId variable
+
+  Side Effects: required
+
+void
+Rtm_DebugTracePrint(
+  Rtm_Info_t *      rtmInfo,
+  array_t *         savedOnions,
+  int               step,
+  mdd_t *           notInv,
+  array_t *         eventIdArray,
+  array_t *         histDependIdArra
+  char *            invName,
+  char *            moduleName,
+  Tcl_Interp *      interp
+)
+  Given an array of MDDs (representing the onion ring), the step at which the
+  error occured, the negation of the invariant that got violated, arrays of
+  event and history free ids of the module, name of the invariant and module,
+  this function prints the debug trace. It starts with the onion ring at the
+  specified step and intersects it with the negation of the invariant. Then it
+  successivey does pre-image computations and finds a path to an initial
+  state. Then it reverses the path and and prints an error trace.
+
+  Side Effects: none
+
+int
+Rtm_End(
+  Tcl_Interp *      interp,
+  Main_Manager_t *  manager
+)
+  Currently this function does nothing. During a subsequent cleanup this
+  should be made to free all memory allocated by the Rtm package.
+
+  Side Effects: None
+
+mdd_t *
+Rtm_GuardBuildMdd(
+  Rtm_Info_t *      rtmInfo,
+  Atm_Expr_t *      guard
+)
+  builds the mdd for the guard of a command
+
+  Side Effects: none
+
+mdd_t *
+Rtm_InitAssignmentsBuildMdd(
+  Atm_Atom_t *      atom,
+  Rtm_Info_t *      rtmInfo,
+  Atm_Cmd_t *       cmd
+)
+  builds the mdd for the assignments of an init command
+
+  Side Effects: none
+
+int
+Rtm_Init(
+  Tcl_Interp *      interp,
+  Main_Manager_t *  manager
+)
+  Registers the rtm package commands with tcl Allocates memory for
+  RtmRegionManager and deposit it in the main manager.
+
+  Side Effects: None
+
+mdd_t  *
+Rtm_MddPickMinterm(
+  mdd_t *           mdd,
+  Rtm_Info_t *      rtmInfo
+)
+  optional
+
+  Side Effects: required
+
+void
+Rtm_MddPrintCubes(
+  mdd_t *           mdd,
+  Rtm_Info_t *      rtmInfo,
+  int               level
+)
+  optional
+
+  Side Effects: required
+
+mdd_t *
+Rtm_ModuleBuildInitialRegion(
+  Rtm_Info_t *      rtmInfo,
+  Mdl_Module_t *    module
+)
+  build mdd for initial region of module
+
+  Side Effects: none
+
+void
+Rtm_ModuleBuildTransitionRelation(
+  Rtm_Info_t *      rtmInfo,
+  Mdl_Module_t *    module
+)
+  build symbolic transition relation for a module. One timed and one untimed
+  conjunct is created for each atom and timed and untimed conjuncts are stored
+  in separate arrays The timed conjunct for the atom represents the
+  transitions where one time unit elapses (all timers incremented by 1) The
+  untimed conjunct for the atom represents control transitions where no time
+  elapses.
+
+  Side Effects: transition relation is built and stored in rtmInfo
+
+void
+Rtm_ModulePerformBFS(
+  Tcl_Interp *      interp,
+  Main_Manager_t *  mainManager,
+  Mdl_Module_t *    module,
+  array_t *         invNameArray,
+  array_t *         typedExprArray
+)
+  Do invariant checking. This is the entry point for the rtm invariant engine
+  to be called from the inv package
+
+  Side Effects: none
+
+void
+Rtm_RegionManagerAddModuleToRtmInfo(
+  Rtm_RegionManager rtmRegionManager
+  Mdl_Module_t *    module,
+  Rtm_Info_t *      rtmInfo
+)
+  optional
+
+  Side Effects: required
+
+Rtm_RegionManager_t *
+Rtm_RegionManagerAlloc(
+
+)
+  optional
+
+  Side Effects: required
+
+Rtm_Info_t *
+Rtm_RegionManagerObtainRtmInfoFromModule(
+  Rtm_RegionManager rtmRegionManager
+  Mdl_Module_t *    module
+)
+  optional
+
+  Side Effects: required
+
+Tcl_HashTable *
+Rtm_RegionManagerReadRegionTable(
+  Rtm_RegionManager rtmRegionManager
+)
+  optional
+
+  Side Effects: required
+
+int
+Rtm_Reinit(
+  Tcl_Interp *      interp,
+  Main_Manager_t *  manager
+)
+  This function is called when the user types a re-init command. Re-
+  initialization is not yet supported by Rtm. Currently, this function does
+  nothing
+
+  Side Effects: None
+
+unsigned long
+Rtm_RtmRegionManagerIncrementCounter(
+  Rtm_RegionManager rtmRegionManager
+)
+  optional
+
+  Side Effects: required
+
+unsigned long
+Rtm_RtmRegionManagerReadCounter(
+  Rtm_RegionManager rtmRegionManager
+)
+  optional
+
+  Side Effects: required
+
+mdd_t *
+Rtm_WaitAssignmentsBuildMdd(
+  Atm_Atom_t *      atom,
+  Rtm_Info_t *      rtmInfo,
+  Atm_Cmd_t *       cmd
+)
+  builds the mdd for all of the assignments of a wait command
+
+  Side Effects: none
+

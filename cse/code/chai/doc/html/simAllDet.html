@@ -1,0 +1,1058 @@
+<html>
+<head><title>The sim package: all functions </title></head>
+<body>
+
+optional
+<HR>
+<DL>
+<dt><pre>
+<A NAME="FreeStringArray"></A>
+static void <I></I>
+<B>FreeStringArray</B>(
+  array_t* <b>array</b> <i></i>
+)
+</pre>
+<dd> Frees an array of strings.
+<p>
+
+<dd> <b>Side Effects</b> none
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="simAllFile.html#simMain.c"TARGET="ABSTRACT"><CODE>simMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="SimAtomAlloc"></A>
+Sim_Atom_t * <I></I>
+<B>SimAtomAlloc</B>(
+  Atm_Atom_t * <b>atom</b> <i></i>
+)
+</pre>
+<dd> It allocates a SimAtom and setting its fields.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code><a href="#SimAtomFree">SimAtomFree</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="simAllFile.html#sim.c"TARGET="ABSTRACT"><CODE>sim.c</CODE></A>
+
+<dt><pre>
+<A NAME="SimAtomControlVariablesConvertToString"></A>
+static char * <I></I>
+<B>SimAtomControlVariablesConvertToString</B>(
+  Sim_Atom_t * <b>simAtom</b> <i></i>
+)
+</pre>
+<dd> This routine returns a string of variables controlled by
+  the atom represented by the simAtom. If the simAtom represents an external
+  variable, then (a copy) of the variable name is returned.
+<p>
+
+<dd> <b>Side Effects</b> User should free the returned string after use.
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="simAllFile.html#simMain.c"TARGET="ABSTRACT"><CODE>simMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="SimAtomDecrementNumAwaitingAtoms"></A>
+static void <I></I>
+<B>SimAtomDecrementNumAwaitingAtoms</B>(
+  array_t * <b>successorAtomList</b>, <i></i>
+  lsList  <b>queue</b> <i></i>
+)
+</pre>
+<dd> This function decrements the numAwaitingAtom field in
+  the array of SimAtoms.  If the field reaches zero, then the SimAtom will be
+  added to the queue.  If the simAtom is an agent, it will be added to the
+  front of the queue.  If it is not an agent, then it will be added to
+  the end of the queue.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="simAllFile.html#simDependency.c"TARGET="ABSTRACT"><CODE>simDependency.c</CODE></A>
+
+<dt><pre>
+<A NAME="SimAtomDependencyInfoReadName"></A>
+char * <I></I>
+<B>SimAtomDependencyInfoReadName</B>(
+  SimAtomDependencyInfo_t * <b>simAtmInfo</b> <i></i>
+)
+</pre>
+<dd> This returns the name of the module whose atom dependeny
+  info is stored.
+<p>
+
+<dd> <b>Side Effects</b> It is an error to call this function with a NULL
+  dependency info.
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="simAllFile.html#simDependency.c"TARGET="ABSTRACT"><CODE>simDependency.c</CODE></A>
+
+<dt><pre>
+<A NAME="SimAtomDependencyInfoUpdate"></A>
+void <I></I>
+<B>SimAtomDependencyInfoUpdate</B>(
+  Mdl_Module_t * <b>module</b>, <i></i>
+  SimAtomDependencyInfo_t * <b>simAtomDependencyInfo</b> <i></i>
+)
+</pre>
+<dd> This function updates the current Atom Dependency Info
+  to reflect the await dependency of atoms in the module. For each external
+  variables, it creates an "external atom" that controls it.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="simAllFile.html#simDependency.c"TARGET="ABSTRACT"><CODE>simDependency.c</CODE></A>
+
+<dt><pre>
+<A NAME="SimAtomDup"></A>
+Sim_Atom_t * <I></I>
+<B>SimAtomDup</B>(
+  Sim_Atom_t * <b>simAtom</b> <i></i>
+)
+</pre>
+<dd> It duplicates a simAtom. It doesn't duplicate all
+  the fields because of lack of information.  For example, the successorAtom
+  field is not duplicated, because very likely the successorAtoms will also
+  be duplicated.
+<p>
+
+<dd> <b>Side Effects</b> The atom should be freed.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#SimAtomFree">SimAtomFree</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="simAllFile.html#sim.c"TARGET="ABSTRACT"><CODE>sim.c</CODE></A>
+
+<dt><pre>
+<A NAME="SimAtomFree"></A>
+void <I></I>
+<B>SimAtomFree</B>(
+  Sim_Atom_t * <b>simAtom</b> <i></i>
+)
+</pre>
+<dd> Frees an SimAtom.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code><a href="#SimAtomAlloc">SimAtomAlloc</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="simAllFile.html#sim.c"TARGET="ABSTRACT"><CODE>sim.c</CODE></A>
+
+<dt><pre>
+<A NAME="SimChoiceCmd"></A>
+static int <I></I>
+<B>SimChoiceCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> Command for sim_choice
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<DD> <B>Defined in </B> <A HREF="simAllFile.html#simMain.c"TARGET="ABSTRACT"><CODE>simMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="SimComputeChoice"></A>
+void <I></I>
+<B>SimComputeChoice</B>(
+  Sim_Info_t * <b>simInfo</b> <i></i>
+)
+</pre>
+<dd> This computes the choice from the partialState and
+  prevState in the simInfo. The choice is a list of (partial) Enum_States, and
+  it is then stored in the Choice field of the simInfo.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="simAllFile.html#sim.c"TARGET="ABSTRACT"><CODE>sim.c</CODE></A>
+
+<dt><pre>
+<A NAME="SimDependencyInfoSetIsUserAtom"></A>
+void <I></I>
+<B>SimDependencyInfoSetIsUserAtom</B>(
+  SimAtomDependencyInfo_t * <b>simAtomDependencyInfo</b>, <i></i>
+  array_t * <b>atomArray</b>, <i></i>
+  boolean  <b>isUserAtom</b> <i></i>
+)
+</pre>
+<dd> This function clears all the isUsrAtom flag in the
+  atom table of the supplied SimAtomDependencyInfo.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="simAllFile.html#simDependency.c"TARGET="ABSTRACT"><CODE>simDependency.c</CODE></A>
+
+<dt><pre>
+<A NAME="SimEndCmd"></A>
+static int <I></I>
+<B>SimEndCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> Command for sim_end
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<DD> <B>Defined in </B> <A HREF="simAllFile.html#simMain.c"TARGET="ABSTRACT"><CODE>simMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="SimInfoCmd"></A>
+static int <I></I>
+<B>SimInfoCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> Implements the sim_info command
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<DD> <B>Defined in </B> <A HREF="simAllFile.html#simMain.c"TARGET="ABSTRACT"><CODE>simMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="SimIsInitialRound"></A>
+static boolean <I></I>
+<B>SimIsInitialRound</B>(
+  Sim_Info_t * <b>simInfo</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="simAllFile.html#simMain.c"TARGET="ABSTRACT"><CODE>simMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="SimIsStartOfRound"></A>
+static boolean <I></I>
+<B>SimIsStartOfRound</B>(
+  Sim_Info_t * <b>simInfo</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="simAllFile.html#simMain.c"TARGET="ABSTRACT"><CODE>simMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="SimIsUserTurn"></A>
+static boolean <I></I>
+<B>SimIsUserTurn</B>(
+  Sim_Info_t * <b>simInfo</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="simAllFile.html#simMain.c"TARGET="ABSTRACT"><CODE>simMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="SimListConcatenate"></A>
+static void <I></I>
+<B>SimListConcatenate</B>(
+  lsList  <b>list1</b>, <i></i>
+  lsList  <b>list2</b> <i></i>
+)
+</pre>
+<dd> Appends the elements of list2 to the end of list1. The
+   elements themselves are not copied. If list2 is not needed anymore, then it
+   should be freed (do not free the content).
+<p>
+
+<dd> <b>Side Effects</b> list1 is modified.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="simAllFile.html#sim.c"TARGET="ABSTRACT"><CODE>sim.c</CODE></A>
+
+<dt><pre>
+<A NAME="SimManagerDeleteSimInfo"></A>
+Sim_Info_t* <I></I>
+<B>SimManagerDeleteSimInfo</B>(
+  char* <b>moduleName</b> <i></i>
+)
+</pre>
+<dd> This routine deletes the simInfo of the module from the
+  simulation manager. It returns a pointer to the simInfo if it is present,
+  and NIL otherwise.
+<p>
+
+<dd> <b>Side Effects</b> The user should free the returned pointer after use.
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="simAllFile.html#sim.c"TARGET="ABSTRACT"><CODE>sim.c</CODE></A>
+
+<dt><pre>
+<A NAME="SimManagerInit"></A>
+void <I></I>
+<B>SimManagerInit</B>(
+   <b></b> <i></i>
+)
+</pre>
+<dd> This routine initializes the global simulation
+  manager. One point to note is that the simulation manager is only visible
+  within the sim package.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="simAllFile.html#sim.c"TARGET="ABSTRACT"><CODE>sim.c</CODE></A>
+
+<dt><pre>
+<A NAME="SimManagerReadSimInfo"></A>
+Sim_Info_t* <I></I>
+<B>SimManagerReadSimInfo</B>(
+  char* <b>moduleName</b> <i></i>
+)
+</pre>
+<dd> This routine returns the simInfo of the given module. If
+  the module has no simInfo, ie. not simulated before, this routine returns
+  NIL.
+<p>
+
+<dd> <b>Side Effects</b> Should not free the pointer.
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="simAllFile.html#sim.c"TARGET="ABSTRACT"><CODE>sim.c</CODE></A>
+
+<dt><pre>
+<A NAME="SimModeCmd"></A>
+static int <I></I>
+<B>SimModeCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> required
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<DD> <B>Defined in </B> <A HREF="simAllFile.html#simMain.c"TARGET="ABSTRACT"><CODE>simMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="SimModeOfSimulation"></A>
+static char * <I></I>
+<B>SimModeOfSimulation</B>(
+  Sim_Info_t * <b>simInfo</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="simAllFile.html#simMain.c"TARGET="ABSTRACT"><CODE>simMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="SimModuleIsInfinite"></A>
+static boolean <I></I>
+<B>SimModuleIsInfinite</B>(
+  Mdl_Module_t * <b>module</b> <i></i>
+)
+</pre>
+<dd> This routine checks if the module contains any variables
+  that are of infinite domain, namely variables that are of type int
+  or nat. If so, return TRUE, else return FALSE. This is a conservative test
+  since modules that contain these variables may not be infinite.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="simAllFile.html#simMain.c"TARGET="ABSTRACT"><CODE>simMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="SimObtainAtomArrayFromAtomNames"></A>
+static array_t * <I></I>
+<B>SimObtainAtomArrayFromAtomNames</B>(
+  Mdl_Module_t * <b>module</b>, <i></i>
+  array_t * <b>nameArray</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="simAllFile.html#simMain.c"TARGET="ABSTRACT"><CODE>simMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="SimPrevStatePrintCmd"></A>
+static int <I></I>
+<B>SimPrevStatePrintCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> sim_prev_state_print
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<DD> <B>Defined in </B> <A HREF="simAllFile.html#simMain.c"TARGET="ABSTRACT"><CODE>simMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="SimReadAtomDependencyInfo"></A>
+SimAtomDependencyInfo_t * <I></I>
+<B>SimReadAtomDependencyInfo</B>(
+  Sim_Manager_t * <b>simManager</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="simAllFile.html#sim.c"TARGET="ABSTRACT"><CODE>sim.c</CODE></A>
+
+<dt><pre>
+<A NAME="SimSelectCmd"></A>
+static int <I></I>
+<B>SimSelectCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> Picks the choice during simulation.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<DD> <B>Defined in </B> <A HREF="simAllFile.html#simMain.c"TARGET="ABSTRACT"><CODE>simMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="SimSimAtomIsExternalVariable"></A>
+boolean <I></I>
+<B>SimSimAtomIsExternalVariable</B>(
+  Sim_Atom_t * <b>simAtom</b> <i></i>
+)
+</pre>
+<dd> Checks if the given simAtom is an external
+  variable. Returns TRUE if so, FALSE otherwise.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="simAllFile.html#sim.c"TARGET="ABSTRACT"><CODE>sim.c</CODE></A>
+
+<dt><pre>
+<A NAME="SimSimInfoAddToManager"></A>
+void <I></I>
+<B>SimSimInfoAddToManager</B>(
+  Sim_Info_t* <b>simInfo</b> <i></i>
+)
+</pre>
+<dd> It adds the simInfo to the simulation manager.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code><a href="#SimManagerDeleteSimInfo">SimManagerDeleteSimInfo</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="simAllFile.html#sim.c"TARGET="ABSTRACT"><CODE>sim.c</CODE></A>
+
+<dt><pre>
+<A NAME="SimSimInfoAlloc"></A>
+Sim_Info_t* <I></I>
+<B>SimSimInfoAlloc</B>(
+  Mdl_Module_t * <b>module</b> <i></i>
+)
+</pre>
+<dd> Allocates and initialize the simInfo for the given
+  module.
+<p>
+
+<dd> <b>Side Effects</b> Should free the returned pointer after use.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#SimSimInfoFree">SimSimInfoFree</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="simAllFile.html#sim.c"TARGET="ABSTRACT"><CODE>sim.c</CODE></A>
+
+<dt><pre>
+<A NAME="SimSimInfoFree"></A>
+void <I></I>
+<B>SimSimInfoFree</B>(
+  Sim_Info_t* <b>simInfo</b> <i></i>
+)
+</pre>
+<dd> It frees up the simInfo.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="simAllFile.html#sim.c"TARGET="ABSTRACT"><CODE>sim.c</CODE></A>
+
+<dt><pre>
+<A NAME="SimSimInfoReadChoice"></A>
+lsList <I></I>
+<B>SimSimInfoReadChoice</B>(
+  Sim_Info_t * <b>simInfo</b> <i></i>
+)
+</pre>
+<dd> returns the list of choices.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="simAllFile.html#sim.c"TARGET="ABSTRACT"><CODE>sim.c</CODE></A>
+
+<dt><pre>
+<A NAME="SimSimInfoReadIndex"></A>
+int <I></I>
+<B>SimSimInfoReadIndex</B>(
+  Sim_Info_t * <b>simInfo</b> <i></i>
+)
+</pre>
+<dd> Returns the index in the simInfo.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code><a href="#SimSimInfoIndexSet">SimSimInfoIndexSet</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="simAllFile.html#sim.c"TARGET="ABSTRACT"><CODE>sim.c</CODE></A>
+
+<dt><pre>
+<A NAME="SimSimInfoReadName"></A>
+char * <I></I>
+<B>SimSimInfoReadName</B>(
+  Sim_Info_t * <b>simInfo</b> <i></i>
+)
+</pre>
+<dd> This returns the name of the module which is simulated
+  by the simInfo.
+<p>
+
+<dd> <b>Side Effects</b> Should not free the returned string.
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="simAllFile.html#sim.c"TARGET="ABSTRACT"><CODE>sim.c</CODE></A>
+
+<dt><pre>
+<A NAME="SimSimInfoReadPartialState"></A>
+Enum_State_t * <I></I>
+<B>SimSimInfoReadPartialState</B>(
+  Sim_Info_t * <b>simInfo</b> <i></i>
+)
+</pre>
+<dd> Returns the partialState.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="simAllFile.html#sim.c"TARGET="ABSTRACT"><CODE>sim.c</CODE></A>
+
+<dt><pre>
+<A NAME="SimSimInfoReadPrevState"></A>
+Enum_State_t * <I></I>
+<B>SimSimInfoReadPrevState</B>(
+  Sim_Info_t * <b>simInfo</b> <i></i>
+)
+</pre>
+<dd> Returns the prevState from the simInfo.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="simAllFile.html#sim.c"TARGET="ABSTRACT"><CODE>sim.c</CODE></A>
+
+<dt><pre>
+<A NAME="SimSimInfoReadSimAtomOrder"></A>
+array_t * <I></I>
+<B>SimSimInfoReadSimAtomOrder</B>(
+  Sim_Info_t * <b>simInfo</b> <i></i>
+)
+</pre>
+<dd> Returns the array of simAtomOrder in the simInfo.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="simAllFile.html#sim.c"TARGET="ABSTRACT"><CODE>sim.c</CODE></A>
+
+<dt><pre>
+<A NAME="SimSimInfoReadVarInfo"></A>
+Enum_VarInfo_t * <I></I>
+<B>SimSimInfoReadVarInfo</B>(
+  Sim_Info_t * <b>simInfo</b> <i></i>
+)
+</pre>
+<dd> returns the varInfo.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="simAllFile.html#sim.c"TARGET="ABSTRACT"><CODE>sim.c</CODE></A>
+
+<dt><pre>
+<A NAME="SimSimInfoSetChoice"></A>
+void <I></I>
+<B>SimSimInfoSetChoice</B>(
+  Sim_Info_t * <b>simInfo</b>, <i></i>
+  lsList  <b>choice</b> <i></i>
+)
+</pre>
+<dd> Sets the Choice field in the simInfo. The choice field
+  is a lsList of Enum_States, which are the possible extension of the current
+  partial state. Partial state is stored in the partialState field of the
+  SimInfo.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="simAllFile.html#sim.c"TARGET="ABSTRACT"><CODE>sim.c</CODE></A>
+
+<dt><pre>
+<A NAME="SimSimInfoSetIndex"></A>
+void <I></I>
+<B>SimSimInfoSetIndex</B>(
+  Sim_Info_t * <b>simInfo</b>, <i></i>
+  int  <b>index</b> <i></i>
+)
+</pre>
+<dd> Sets the Index field in the simInfo. The index field
+  indicates which atom to execute next. If the module is empty, the index
+  field has value -1
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="simAllFile.html#sim.c"TARGET="ABSTRACT"><CODE>sim.c</CODE></A>
+
+<dt><pre>
+<A NAME="SimSimInfoSetPartialState"></A>
+void <I></I>
+<B>SimSimInfoSetPartialState</B>(
+  Sim_Info_t * <b>simInfo</b>, <i></i>
+  Enum_State_t * <b>partialState</b> <i></i>
+)
+</pre>
+<dd> The PartialState is a Enum_State that stores the
+  partialState.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="simAllFile.html#sim.c"TARGET="ABSTRACT"><CODE>sim.c</CODE></A>
+
+<dt><pre>
+<A NAME="SimSimInfoSetPrevState"></A>
+void <I></I>
+<B>SimSimInfoSetPrevState</B>(
+  Sim_Info_t* <b>simInfo</b>, <i></i>
+  Enum_State_t* <b>prevState</b> <i></i>
+)
+</pre>
+<dd> The PrevState field is a Enum_State that stores the
+  previous state.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="simAllFile.html#sim.c"TARGET="ABSTRACT"><CODE>sim.c</CODE></A>
+
+<dt><pre>
+<A NAME="SimSimInfoSetSimAtomOrder"></A>
+void <I></I>
+<B>SimSimInfoSetSimAtomOrder</B>(
+  Sim_Info_t * <b>simInfo</b>, <i></i>
+  array_t* <b>simAtomOrder</b> <i></i>
+)
+</pre>
+<dd> The SimAtomOrder is an array of Sim_Atoms, which are
+  ordered according to the sequence of execution of the atoms.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="simAllFile.html#sim.c"TARGET="ABSTRACT"><CODE>sim.c</CODE></A>
+
+<dt><pre>
+<A NAME="SimSimInfoSetVarInfo"></A>
+void <I></I>
+<B>SimSimInfoSetVarInfo</B>(
+  Sim_Info_t * <b>simInfo</b>, <i></i>
+  Enum_VarInfo_t * <b>varInfo</b> <i></i>
+)
+</pre>
+<dd> The varInfo is a Enum_VarInfo which stores the
+  module infomation needed by the enum package for executing the module.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="simAllFile.html#sim.c"TARGET="ABSTRACT"><CODE>sim.c</CODE></A>
+
+<dt><pre>
+<A NAME="SimSimulationStart"></A>
+boolean <I></I>
+<B>SimSimulationStart</B>(
+  Mdl_Module_t * <b>module</b>, <i></i>
+  array_t * <b>atomArray</b>, <i></i>
+  boolean  <b>isUserAtom</b> <i></i>
+)
+</pre>
+<dd> This function starts the simulation for a given module.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="simAllFile.html#sim.c"TARGET="ABSTRACT"><CODE>sim.c</CODE></A>
+
+<dt><pre>
+<A NAME="SimStartCmd"></A>
+static int <I></I>
+<B>SimStartCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> Command for sim_start
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<DD> <B>Defined in </B> <A HREF="simAllFile.html#simMain.c"TARGET="ABSTRACT"><CODE>simMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="SimStateUpdateWithChoice"></A>
+char * <I></I>
+<B>SimStateUpdateWithChoice</B>(
+  Enum_StateManager_t * <b>stateManager</b>, <i></i>
+  Sim_Info_t * <b>simInfo</b>, <i></i>
+  int  <b>index</b> <i>which choice?</i>
+)
+</pre>
+<dd> This routine takes an array of variable pointers, as
+  well as an array of values (in long), and update the partial states. It then
+  calls the SimComputeChoice to update the choices available.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="simAllFile.html#sim.c"TARGET="ABSTRACT"><CODE>sim.c</CODE></A>
+
+<dt><pre>
+<A NAME="SimTopologicalSort"></A>
+array_t * <I></I>
+<B>SimTopologicalSort</B>(
+  SimAtomDependencyInfo_t * <b>simAtmInfo</b> <i></i>
+)
+</pre>
+<dd> This function employs the non-depth-first-search version
+  of topological sort.  It returns an array of the simAtoms.  Any atom that
+  awaits another atom will come later in the list.  Any atom that is not
+  specified as agent in the formula will come as late as possible, while
+  respecting the await dependency.
+<p>
+
+<dd> <b>Side Effects</b> Users should free the array, but not the simAtoms
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="simAllFile.html#simDependency.c"TARGET="ABSTRACT"><CODE>simDependency.c</CODE></A>
+
+<dt><pre>
+<A NAME="Sim_Init"></A>
+int <I></I>
+<B>Sim_Init</B>(
+  Tcl_Interp * <b>interp</b>, <i></i>
+  Main_Manager_t * <b>manager</b> <i></i>
+)
+</pre>
+<dd> This function is needed by tcl/tk to initialize this
+  package. Initialization includes registering of commands and initialization
+  of internal data structures used by this package.
+<p>
+
+<dd> <b>Side Effects</b> SimManagerInit() is called and a "global" data
+  structure, namely the simulation manager is created.
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="simAllFile.html#simMain.c"TARGET="ABSTRACT"><CODE>simMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="Sim_SimAtomArrayFree"></A>
+void <I></I>
+<B>Sim_SimAtomArrayFree</B>(
+  array_t * <b>simAtomArray</b> <i></i>
+)
+</pre>
+<dd> This routine frees an array of simAtoms. This is
+  useful to free the array returned by Sim_SimAtomReturnSortedArray.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="simAllFile.html#sim.c"TARGET="ABSTRACT"><CODE>sim.c</CODE></A>
+
+<dt><pre>
+<A NAME="Sim_SimAtomReadAtom"></A>
+Atm_Atom_t* <I></I>
+<B>Sim_SimAtomReadAtom</B>(
+  Sim_Atom_t* <b>simAtom</b> <i></i>
+)
+</pre>
+<dd> This function returns a pointer to the atom that is
+  represented by this simAtom.
+<p>
+
+<dd> <b>Side Effects</b> User should not free the returned pointer.
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="simAllFile.html#sim.c"TARGET="ABSTRACT"><CODE>sim.c</CODE></A>
+
+<dt><pre>
+<A NAME="Sim_SimAtomReadIsUserAtom"></A>
+boolean <I></I>
+<B>Sim_SimAtomReadIsUserAtom</B>(
+  Sim_Atom_t* <b>simAtom</b> <i></i>
+)
+</pre>
+<dd> This function returns true if the simAtom is an user
+  atom, i.e. atom controlled by the user.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="simAllFile.html#sim.c"TARGET="ABSTRACT"><CODE>sim.c</CODE></A>
+
+<dt><pre>
+<A NAME="Sim_SimAtomReadName"></A>
+char* <I></I>
+<B>Sim_SimAtomReadName</B>(
+  Sim_Atom_t* <b>simAtom</b> <i></i>
+)
+</pre>
+<dd> This function returns the name of the simAtom.
+<p>
+
+<dd> <b>Side Effects</b> User should not free the returned string.
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="simAllFile.html#sim.c"TARGET="ABSTRACT"><CODE>sim.c</CODE></A>
+
+<dt><pre>
+<A NAME="Sim_SimAtomReturnSortedArray"></A>
+array_t * <I></I>
+<B>Sim_SimAtomReturnSortedArray</B>(
+  Mdl_Module_t * <b>module</b>, <i></i>
+  array_t * <b>atomArray</b>, <i></i>
+  int  <b>isUserAtom</b> <i></i>
+)
+</pre>
+<dd> Given a module, an array of users atoms (Atm_Atom_t
+  *), and the type of the atoms (are they userAtoms?), this routine creates
+  the simAtoms for the module and returns an array of topologically sorted
+  simAtoms. Note that the non-user atoms will come as late as possible in the
+  linearization so that the user will have the least knowledge of how the
+  non-user atom behaves.
+<p>
+
+<dd> <b>Side Effects</b> The atomDependencyInfo will be updated. The sorted array
+  will be returned. User should free the array (Sim_SimAtomArrayFree) after
+  use.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Sim_SimAtomArrayFree">Sim_SimAtomArrayFree</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="simAllFile.html#sim.c"TARGET="ABSTRACT"><CODE>sim.c</CODE></A>
+
+
+</DL>
+<HR>
+Last updated on 1031103 12h03
+</BODY></HTML>

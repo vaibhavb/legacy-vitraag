@@ -1,0 +1,922 @@
+This is TeX, Version 3.14159 (C version 6.1) (format=latex 97.11.26)  12 JUN 1998 12:51
+**manual
+(manual.tex
+LaTeX2e <1996/12/01> patch level 1
+Babel <v3.6h> and hyphenation patterns for american, german, loaded.
+(/users/mehrotra/LaTeX/texmf/tex/latex/base/article.cls
+Document Class: article 1996/10/31 v1.3u Standard LaTeX document class
+(/users/mehrotra/LaTeX/texmf/tex/latex/base/size11.clo
+File: size11.clo 1996/10/31 v1.3u Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+(/usr/sww/lib/tex/inputs/amssymbols.sty
+\msxfam=\mathgroup4
+\msyfam=\mathgroup5
+)
+(/users/mehrotra/LaTeX/texmf/tex/latex/graphics/epsfig.sty
+Package: epsfig 1996/10/04 v1.7 (e)psfig emulation (SPQR)
+
+(/users/mehrotra/LaTeX/texmf/tex/latex/graphics/graphicx.sty
+Package: graphicx 1996/10/31 v1.0c Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/users/mehrotra/LaTeX/texmf/tex/latex/graphics/keyval.sty
+Package: keyval 1995/09/21 v1.09 key=value parser (DPC)
+)
+(/users/mehrotra/LaTeX/texmf/tex/latex/graphics/graphics.sty
+Package: graphics 1996/10/31 v1.0c Standard LaTeX Graphics (DPC,SPQR)
+
+(/users/mehrotra/LaTeX/texmf/tex/latex/graphics/trig.sty
+Package: trig 1994/10/16 v1.08 sin cos tan (DPC)
+)
+(/users/mehrotra/LaTeX/texmf/tex/latex/config/graphics.cfg)
+Package graphics Info: Driver file: dvips.def on input line 82.
+
+(/users/mehrotra/LaTeX/texmf/tex/latex/graphics/dvips.def
+File: dvips.def 1996/12/12 v3.0d Driver-dependant file (DPC,SPQR)
+))
+\Gin@req@height=\dimen103
+\Gin@req@width=\dimen104
+)
+\epsfxsize=\dimen105
+\epsfysize=\dimen106
+)
+(/users/mehrotra/LaTeX/texmf/tex/latex/base/latexsym.sty
+Package: latexsym 1996/11/20 v2.2d Standard LaTeX package (lasy symbols)
+\symlasy=\mathgroup6
+LaTeX Font Info:    Overwriting symbol font `lasy' in version `bold'
+(Font)                  U/lasy/m/n --> U/lasy/b/n on input line 85.
+)
+(/users/mehrotra/LaTeX/texmf/tex/generic/dvips/epsf.sty
+(/users/mehrotra/LaTeX/texmf/tex/generic/dvips/epsf.tex
+\epsffilein=\read1
+\epsfxsize=\dimen107
+\epsfysize=\dimen108
+\epsftsize=\dimen109
+\epsfrsize=\dimen110
+\epsftmp=\dimen111
+\pspoints=\dimen112
+))
+\c@@theorem=\count87
+\c@@lemma=\count88
+\c@@fact=\count89
+\c@@corollary=\count90
+\c@@proposition=\count91
+\c@@definition=\count92
+\c@@example=\count93
+ (manual.aux
+
+LaTeX Warning: Label `prop:ag' multiply defined.
+
+)
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 570.
+LaTeX Font Info:    ... okay on input line 570.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 570.
+LaTeX Font Info:    ... okay on input line 570.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 570.
+LaTeX Font Info:    ... okay on input line 570.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 570.
+LaTeX Font Info:    ... okay on input line 570.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 570.
+LaTeX Font Info:    ... okay on input line 570.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 570.
+LaTeX Font Info:    ... okay on input line 570.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 571.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 571.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 571.
+LaTeX Font Info:    Try loading font information for U+lasy on input line 571.
+ (/users/mehrotra/LaTeX/texmf/tex/latex/base/ulasy.fd
+File: ulasy.fd 1996/11/20 v2.2dLaTeX symbol font definitions
+) (intro.tex
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 8.
+
+(/users/mehrotra/LaTeX/texmf/tex/latex/base/omscmr.fd
+File: omscmr.fd 1997/01/14 v2.5a Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 8.
+
+
+LaTeX Warning: Citation `Modules' on page 1 undefined on input line 10.
+
+
+LaTeX Warning: Citation `ChandyMisra88' on page 1 undefined on input line 11.
+
+
+LaTeX Warning: Citation `Lynch' on page 1 undefined on input line 12.
+
+
+LaTeX Warning: Citation `BerryGonthier88' on page 1 undefined on input line 13.
+
+
+
+LaTeX Warning: Citation `Pnueli77' on page 1 undefined on input line 23.
+
+
+LaTeX Warning: Citation `CE81' on page 1 undefined on input line 23.
+
+
+LaTeX Warning: Citation `ATL' on page 1 undefined on input line 25.
+
+
+LaTeX Warning: Citation `HQR98' on page 1 undefined on input line 37.
+
+
+LaTeX Warning: Citation `TACAS98' on page 1 undefined on input line 37.
+
+
+LaTeX Warning: Citation `VIS96' on page 1 undefined on input line 87.
+
+
+LaTeX Warning: Citation `tix-http' on page 1 undefined on input line 89.
+
+[1
+
+]) (modules.tex
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <10.95> on input line 11.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <9> on input line 18.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 18.
+
+
+LaTeX Warning: Citation `Lynch96' on page 2 undefined on input line 45.
+
+
+LaTeX Warning: Citation `BerryGonthier88' on page 2 undefined on input line 69.
+
+
+
+LaTeX Warning: Citation `BRS93' on page 2 undefined on input line 69.
+
+
+LaTeX Warning: Citation `Halbwachs93:book' on page 2 undefined on input line 69
+.
+
+[2] [3] [4] [5]
+
+LaTeX Warning: Citation `Kurshan94' on page 6 undefined on input line 339.
+
+[6] [7]
+
+LaTeX Warning: Citation `ChandyMisra88' on page 8 undefined on input line 435.
+
+
+Overfull \hbox (88.3732pt too wide) detected at line 519
+[]
+ []
+
+[8] [9]
+Overfull \hbox (6.42781pt too wide) detected at line 666
+[]
+ []
+
+
+LaTeX Warning: Float too large for page by 20.9855pt on input line 670.
+
+[10] [11] (rmanager.pstex_t
+File: rmanager.pstex Graphic file (type eps)
+ <rmanager.pstex>
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <20.74> on input line 28.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <14.4> on input line 28.
+)
+Overfull \hbox (47.89183pt too wide) detected at line 800
+[]
+ []
+
+
+LaTeX Warning: Float too large for page by 8.01137pt on input line 925.
+
+[12] [13] [14] [15] [16] [17] [18] [19] [20]
+
+LaTeX Warning: Citation `Stark' on page 21 undefined on input line 1435.
+
+
+LaTeX Warning: Citation `AbadiLamport' on page 21 undefined on input line 1435.
+
+
+
+LaTeX Warning: Citation `GrumbergLong94' on page 21 undefined on input line 143
+5.
+
+
+LaTeX Warning: Citation `Reactive95' on page 21 undefined on input line 1435.
+
+[21] [22] [23]
+
+LaTeX Warning: Reference `fig:synccount' on page 24 undefined on input line 161
+5.
+
+
+Overfull \hbox (37.5231pt too wide) detected at line 1684
+[]
+ []
+
+) (ATL.tex
+
+LaTeX Warning: Citation `ATL' on page 24 undefined on input line 4.
+
+
+Overfull \hbox (0.782pt too wide) in paragraph at lines 2--6
+\OT1/cmr/m/n/10.95 In this sec-tion, we dis-cuss model check-ing Al-ter-nat-ing
+ Tem-po-ral Logic for-mu-las in [] .
+ []
+
+
+LaTeX Warning: Citation `ATL' on page 24 undefined on input line 8.
+
+[24]) (usercommands.tex
+Underfull \hbox (badness 10000) in paragraph at lines 17--25
+
+ []
+
+[25]
+Underfull \hbox (badness 10000) in paragraph at lines 35--42
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 45--50
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 53--62
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 66--74
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 75--83
+
+ []
+
+LaTeX Font Info:    Try loading font information for OMS+cmtt on input line 89.
+
+LaTeX Font Info:    No file OMScmtt.fd. on input line 89.
+
+LaTeX Font Warning: Font shape `OMS/cmtt/m/n' undefined
+(Font)              using `OMS/cmsy/m/n' instead
+(Font)              for symbol `textbraceleft' on input line 89.
+
+[26]
+Underfull \hbox (badness 10000) in paragraph at lines 93--98
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 134--136
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 142--167
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 142--167
+
+ []
+
+[27]
+Overfull \hbox (88.57654pt too wide) in paragraph at lines 168--174
+\OT1/cmr/m/n/10.95 delet-ing a nega-tion in line 12 of \OT1/cmtt/m/n/10.95 pete
+.rm\OT1/cmr/m/n/10.95 . The buggy ver-sion is found in \OT1/cmtt/m/n/10.95 comm
+on/examples/pete/petebug.rm\OT1/cmr/m/n/10.95 .
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 175--204
+
+ []
+
+Missing character: There is no b in font lasy10!
+Missing character: There is no i in font lasy10!
+Missing character: There is no t in font lasy10!
+Missing character: There is no v in font lasy10!
+Missing character: There is no e in font lasy10!
+Missing character: There is no c in font lasy10!
+Missing character: There is no t in font lasy10!
+Missing character: There is no o in font lasy10!
+Missing character: There is no r in font lasy10!
+[28]
+Underfull \hbox (badness 10000) in paragraph at lines 248--273
+
+ []
+
+[29]
+Underfull \hbox (badness 10000) in paragraph at lines 274--280
+
+ []
+
+[30]
+
+LaTeX Warning: Reference `sec:simulation' on page 31 undefined on input line 38
+8.
+
+) (methodology.tex [31]
+Missing character: There is no e in font lasy10!
+Missing character: There is no v in font lasy10!
+Missing character: There is no e in font lasy10!
+Missing character: There is no n in font lasy10!
+Missing character: There is no t in font lasy10!
+ [32] [33]
+Underfull \hbox (badness 10000) in paragraph at lines 194--195
+
+ []
+
+Missing character: There is no b in font lasy10!
+Missing character: There is no i in font lasy10!
+Missing character: There is no t in font lasy10!
+Missing character: There is no v in font lasy10!
+Missing character: There is no e in font lasy10!
+Missing character: There is no c in font lasy10!
+Missing character: There is no t in font lasy10!
+Missing character: There is no o in font lasy10!
+Missing character: There is no r in font lasy10!
+
+Overfull \hbox (193.85822pt too wide) detected at line 231
+[]
+ []
+
+[34]
+Missing character: There is no e in font lasy10!
+Missing character: There is no n in font lasy10!
+Missing character: There is no d in font lasy10!
+Missing character: There is no h in font lasy10!
+Missing character: There is no i in font lasy10!
+Missing character: There is no d in font lasy10!
+Missing character: There is no e in font lasy10!
+Missing character: There is no e in font lasy10!
+Missing character: There is no n in font lasy10!
+Missing character: There is no d in font lasy10!
+Missing character: There is no h in font lasy10!
+Missing character: There is no i in font lasy10!
+Missing character: There is no d in font lasy10!
+Missing character: There is no e in font lasy10!
+Missing character: There is no e in font lasy10!
+Missing character: There is no n in font lasy10!
+Missing character: There is no d in font lasy10!
+Missing character: There is no h in font lasy10!
+Missing character: There is no i in font lasy10!
+Missing character: There is no d in font lasy10!
+Missing character: There is no e in font lasy10!
+
+
+LaTeX Warning: Citation `AlurHenzinger96' on page 35 undefined on input line 26
+3.
+
+
+Overfull \hbox (11.53043pt too wide) in paragraph at lines 270--278
+[]\OT1/cmr/m/it/10.95 [Assume-guarantee rule] Con-sider two com-pos-ite mod-ule
+s $\OML/cmm/m/it/10.95 P \OT1/cmr/m/n/10.95 = \OML/cmm/m/it/10.95 P[]\OMS/cmtt/
+m/n/10.95 k [] k\OML/cmm/m/it/10.95 P[]$
+ []
+
+[35]
+Overfull \hbox (6.88966pt too wide) in paragraph at lines 345--440
+\OT1/cmtt/m/n/10.95 check[]refine[]atom [-e] [-f <size or varlist> ] [-h] [-i <
+varlist> ] [-k] [-o
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 345--440
+
+ []
+
+
+Overfull \hbox (10.10893pt too wide) in paragraph at lines 345--440
+\OT1/cmtt/m/n/10.95 Do one step in the compositional refinement proof of "imple
+mentation refines
+ []
+
+
+Overfull \hbox (15.85762pt too wide) in paragraph at lines 345--440
+\OT1/cmtt/m/n/10.95 specification". The step done corresponds to the atom that 
+controls variable
+ []
+
+
+Overfull \hbox (29.88441pt too wide) in paragraph at lines 345--440
+\OT1/cmtt/m/n/10.95 named spec[]interface[]varname in the specification (let us
+ call this atom atom1).
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 345--440
+
+ []
+
+
+Overfull \hbox (10.10893pt too wide) in paragraph at lines 345--440
+\OT1/cmtt/m/n/10.95 Given an implementation, specification modules and and an i
+nterface variable
+ []
+
+
+Overfull \hbox (21.60631pt too wide) in paragraph at lines 345--440
+\OT1/cmtt/m/n/10.95 in the specification that controls and atom (say atom1), co
+nstruct new modules
+ []
+
+
+Overfull \hbox (10.10893pt too wide) in paragraph at lines 345--440
+\OT1/cmtt/m/n/10.95 "new specification" and "new implementation" such that 1. n
+ew specification
+ []
+
+
+Overfull \hbox (33.10368pt too wide) in paragraph at lines 345--440
+\OT1/cmtt/m/n/10.95 contains atom1 only. 2. new implementation contains heurist
+ically chosen atoms
+ []
+
+
+Overfull \hbox (38.85237pt too wide) in paragraph at lines 345--440
+\OT1/cmtt/m/n/10.95 from specification and implementation that control variable
+s controlled by atom1,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 345--440
+
+ []
+
+
+Overfull \hbox (4.36024pt too wide) in paragraph at lines 345--440
+\OT1/cmtt/m/n/10.95 A refinement check between the new specification and the ne
+w implementation
+ []
+
+
+Overfull \hbox (15.85762pt too wide) in paragraph at lines 345--440
+\OT1/cmtt/m/n/10.95 is performed First, new specification and implementation mo
+dules are created.
+ []
+
+
+Overfull \hbox (4.36024pt too wide) in paragraph at lines 345--440
+\OT1/cmtt/m/n/10.95 The new specification contains just atom1. The new implemen
+tation contains
+ []
+
+
+Overfull \hbox (56.09843pt too wide) in paragraph at lines 345--440
+\OT1/cmtt/m/n/10.95 chosen atoms from specification and implementation that con
+trol variables controlled
+ []
+
+
+Overfull \hbox (33.10368pt too wide) in paragraph at lines 345--440
+\OT1/cmtt/m/n/10.95 by atom1, but do not include atom1 itself. At this point th
+e new implementation
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 345--440
+
+ []
+
+
+Overfull \hbox (10.10893pt too wide) in paragraph at lines 345--440
+\OT1/cmtt/m/n/10.95 Further atoms may need to be added to the new implementaion
+ to constrain its
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 345--440
+
+ []
+
+
+Overfull \hbox (15.85762pt too wide) in paragraph at lines 345--440
+\OT1/cmtt/m/n/10.95 1. AUTOMATIC: If the "-f 0" (size) option is chosen, then t
+he implementation
+ []
+
+
+Overfull \hbox (44.60106pt too wide) in paragraph at lines 345--440
+\OT1/cmtt/m/n/10.95 module is not grown any further. For the "-f 1" and "-f 2" 
+options, progressively
+ []
+
+
+Overfull \hbox (33.10368pt too wide) in paragraph at lines 345--440
+\OT1/cmtt/m/n/10.95 larger "constraining" environments are chosen for the new i
+mplementation module.
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 345--440
+
+ []
+
+
+Overfull \hbox (21.60631pt too wide) in paragraph at lines 345--440
+\OT1/cmtt/m/n/10.95 2. MANUAL: The user can also FORCE specific variables to be
+ controlled in the
+ []
+
+
+Overfull \hbox (38.85237pt too wide) in paragraph at lines 345--440
+\OT1/cmtt/m/n/10.95 new implementation by using simply supplying a list of vari
+ables in the -f option
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 345--440
+
+ []
+
+
+Overfull \hbox (15.85762pt too wide) in paragraph at lines 345--440
+\OT1/cmtt/m/n/10.95 Preference is always given to choose atoms from the specifi
+cation for the new
+ []
+
+
+Overfull \hbox (38.85237pt too wide) in paragraph at lines 345--440
+\OT1/cmtt/m/n/10.95 implementation whenever possible. However, the "-i" option 
+can be used to choose
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 345--440
+
+ []
+
+
+Overfull \hbox (21.60631pt too wide) in paragraph at lines 345--440
+\OT1/cmtt/m/n/10.95 NOTE 1 : Since atom names are mangled by MOCHA (to uniquify
+ atom names during
+ []
+
+
+Overfull \hbox (15.85762pt too wide) in paragraph at lines 345--440
+\OT1/cmtt/m/n/10.95 parallel composition), we identify an atom by any variable 
+that is controlled
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 345--440
+
+ []
+
+
+Overfull \hbox (4.36024pt too wide) in paragraph at lines 345--440
+\OT1/cmtt/m/n/10.95 NOTE 2 : List of variables are specified by enclosing them 
+in curly braces
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 345--440
+
+ []
+
+
+Overfull \hbox (44.60106pt too wide) in paragraph at lines 345--440
+\OT1/cmtt/m/n/10.95 NOTE 3: You also have to use curly braces if your variable 
+name has array indices
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 345--440
+
+ []
+
+
+Overfull \hbox (27.355pt too wide) in paragraph at lines 345--440
+\OT1/cmtt/m/n/10.95 Suppose the specification module is "Spec" and implementati
+on module is "Impl".
+ []
+
+
+Overfull \hbox (21.60631pt too wide) in paragraph at lines 345--440
+\OT1/cmtt/m/n/10.95 To do the sub-proof corresponding to a specific atom in the
+ Spec that controls
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 345--440
+
+ []
+
+
+Overfull \hbox (6.88966pt too wide) in paragraph at lines 345--440
+\OT1/cmtt/m/n/10.95 To force variables foo1 and foo2[0] to be controlled use: c
+heck[]refine[]atom
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 345--440
+
+ []
+
+
+Overfull \hbox (104.61736pt too wide) in paragraph at lines 345--440
+\OT1/cmtt/m/n/10.95 In addition, to force foo2[0] to be constrained by an atom 
+from Impl, use: check[]refine[]atom
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 345--440
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 345--440
+
+ []
+
+
+Overfull \hbox (50.34975pt too wide) in paragraph at lines 345--440
+\OT1/cmtt/m/n/10.95 -e : do transition invariant check only at the end (after c
+ompleting reachability) 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 345--440
+
+ []
+
+
+Overfull \hbox (15.85762pt too wide) in paragraph at lines 345--440
+\OT1/cmtt/m/n/10.95 1 --> chooses a bigger set of atoms than size=0. Guaranteed
+ to be comparable
+ []
+
+
+Overfull \hbox (32.41383pt too wide) in paragraph at lines 345--440
+\OT1/cmtt/m/n/10.95 var[]name[]list -> forces atoms controlling variables in va
+r[]name[]list to be chosen
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 345--440
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 345--440
+
+ []
+
+
+Overfull \hbox (26.66515pt too wide) in paragraph at lines 345--440
+\OT1/cmtt/m/n/10.95 -i var[]name[]list : if the atom controlling variable in va
+r[]name[]list is chosen,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 345--440
+
+ []
+
+
+Overfull \hbox (10.10893pt too wide) in paragraph at lines 345--440
+\OT1/cmtt/m/n/10.95 -k : keep the new modules (for debugging purposes: default 
+behavior if you
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 345--440
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 345--440
+
+ []
+
+
+Overfull \hbox (10.10893pt too wide) in paragraph at lines 345--440
+\OT1/cmtt/m/n/10.95 -r : Do not do refinement check on the new modules (for deb
+ugging purposes) 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 345--440
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 345--440
+
+ []
+
+[36] [37]
+
+LaTeX Warning: Reference `fig:rmanagerImpl' on page 38 undefined on input line 
+446.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 451--459
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 465--523
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 465--523
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 465--523
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 465--523
+
+ []
+
+[38] [39]
+Overfull \hbox (17.22801pt too wide) in paragraph at lines 525--529
+\OT1/cmr/m/n/10.95 Next, we check if the $[]$ atom in $[]$ is re-fined cor-rect
+ly by $[]$. 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 530--590
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 530--590
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 530--590
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 530--590
+
+ []
+
+[40]) (rtm.tex
+Underfull \hbox (badness 10000) in paragraph at lines 604--1
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 604--1
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 604--1
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 604--1
+
+ []
+
+[41]
+
+LaTeX Warning: Citation `timed-modules' on page 42 undefined on input line 7.
+
+[42]
+Missing character: There is no w in font lasy10!
+Missing character: There is no a in font lasy10!
+Missing character: There is no i in font lasy10!
+Missing character: There is no t in font lasy10!
+Missing character: There is no w in font lasy10!
+Missing character: There is no a in font lasy10!
+Missing character: There is no i in font lasy10!
+Missing character: There is no t in font lasy10!
+Missing character: There is no w in font lasy10!
+Missing character: There is no a in font lasy10!
+Missing character: There is no i in font lasy10!
+Missing character: There is no t in font lasy10!
+
+Overfull \hbox (22.02557pt too wide) detected at line 29
+[]  \OMS/cmtt/m/n/10.95 ^  \OML/cmm/m/it/10.95 x[] \OMS/cmtt/m/n/10.95 ^^T \OML
+/cmm/m/it/10.95 C[]  \OMS/cmtt/m/n/10.95 ^  \OML/cmm/m/it/10.95 x[] \OMS/cmtt/m
+/n/10.95 ^^T \OML/cmm/m/it/10.95 C[]  \OMS/cmtt/m/n/10.95 ^  \OML/cmm/m/it/10.9
+5 :::  \OMS/cmtt/m/n/10.95 ^  \OML/cmm/m/it/10.95 x[] \OMS/cmtt/m/n/10.95 ^^T \
+OML/cmm/m/it/10.95 C[]   \OMS/cmtt/m/n/10.95 !   \OML/cmm/m/it/10.95 x[] \OT1/c
+mr/m/n/10.95 :\OMS/cmtt/m/n/10.95 ^^T \OML/cmm/m/it/10.95 C[]\OT1/cmr/m/n/10.95
+ ;   \OML/cmm/m/it/10.95 x[] \OT1/cmr/m/n/10.95 :\OMS/cmtt/m/n/10.95 ^^T \OML/c
+mm/m/it/10.95 C[]\OT1/cmr/m/n/10.95 ;   \OML/cmm/m/it/10.95 :::\OT1/cmr/m/n/10.
+95 ;   \OML/cmm/m/it/10.95 x[] \OT1/cmr/m/n/10.95 :\OMS/cmtt/m/n/10.95 ^^T \OML
+/cmm/m/it/10.95 C[]
+ []
+
+Missing character: There is no w in font lasy10!
+Missing character: There is no a in font lasy10!
+Missing character: There is no i in font lasy10!
+Missing character: There is no t in font lasy10!
+Missing character: There is no w in font lasy10!
+Missing character: There is no a in font lasy10!
+Missing character: There is no i in font lasy10!
+Missing character: There is no t in font lasy10!
+Missing character: There is no w in font lasy10!
+Missing character: There is no a in font lasy10!
+Missing character: There is no i in font lasy10!
+Missing character: There is no t in font lasy10!
+Missing character: There is no w in font lasy10!
+Missing character: There is no a in font lasy10!
+Missing character: There is no i in font lasy10!
+Missing character: There is no t in font lasy10!
+Missing character: There is no w in font lasy10!
+Missing character: There is no a in font lasy10!
+Missing character: There is no i in font lasy10!
+Missing character: There is no t in font lasy10!
+
+LaTeX Warning: Citation `AlurHenzinger97' on page 43 undefined on input line 48
+.
+
+Missing character: There is no w in font lasy10!
+Missing character: There is no a in font lasy10!
+Missing character: There is no i in font lasy10!
+Missing character: There is no t in font lasy10!
+Missing character: There is no w in font lasy10!
+Missing character: There is no a in font lasy10!
+Missing character: There is no i in font lasy10!
+Missing character: There is no t in font lasy10!
+Missing character: There is no w in font lasy10!
+Missing character: There is no a in font lasy10!
+Missing character: There is no i in font lasy10!
+Missing character: There is no t in font lasy10!
+Missing character: There is no w in font lasy10!
+Missing character: There is no a in font lasy10!
+Missing character: There is no i in font lasy10!
+Missing character: There is no t in font lasy10!
+[43]
+Missing character: There is no w in font lasy10!
+Missing character: There is no a in font lasy10!
+Missing character: There is no i in font lasy10!
+Missing character: There is no t in font lasy10!
+
+
+LaTeX Warning: Reference `fig:ctrl' on page 44 undefined on input line 123.
+
+
+LaTeX Warning: Citation `serdar-cav-submit' on page 44 undefined on input line 
+146.
+
+
+LaTeX Warning: Citation `digital-clocks' on page 44 undefined on input line 147
+.
+
+[44]) (grammar.tex
+Overfull \hbox (2.89253pt too wide) in paragraph at lines 2--15
+\OT1/cmr/m/n/10.95 bols in-clud-ing \OT1/cmr/m/it/10.95 integer-constant, event
+-identifier, enum-type-identifier, range-type-identifier,
+ []
+
+LaTeX Font Info:    Font shape `OMS/cmr/bx/n' in size <10.95> not available
+(Font)              Font shape `OMS/cmsy/b/n' tried instead on input line 45.
+[45] [46] [47] [48] [49])
+No file manual.bbl.
+[50] (manual.aux)
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: There were multiply-defined labels.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 1534 strings out of 10906
+ 14040 string characters out of 72039
+ 74524 words of memory out of 262141
+ 4351 multiletter control sequences out of 9500
+ 19060 words of font info for 73 fonts, out of 150000 for 255
+ 14 hyphenation exceptions out of 607
+ 32i,14n,25p,215b,398s stack positions out of 300i,40n,60p,3000b,4000s
+
+Output written on manual.dvi (50 pages, 181700 bytes).

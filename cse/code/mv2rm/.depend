@@ -1,0 +1,10 @@
+ass.cmo: ast.cmo 
+ass.cmx: ast.cmx 
+codegen.cmo: ass.cmo ast.cmo 
+codegen.cmx: ass.cmx ast.cmx 
+lexer.cmo: parser.cmi 
+lexer.cmx: parser.cmx 
+main.cmo: ass.cmo lexer.cmo parser.cmi 
+main.cmx: ass.cmx lexer.cmx parser.cmx 
+parser.cmo: ass.cmo ast.cmo codegen.cmo parser.cmi 
+parser.cmx: ass.cmx ast.cmx codegen.cmx parser.cmi 

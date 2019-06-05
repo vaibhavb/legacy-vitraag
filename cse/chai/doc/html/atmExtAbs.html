@@ -1,0 +1,199 @@
+<html>
+<head><title>atm package abstract</title></head>
+<body>
+
+
+<!-- Function Abstracts -->
+
+<dl>
+<dt> <a href="atmAllDet.html#Atm_AssignEventAlloc" TARGET="MAIN"><code>Atm_AssignEventAlloc()</code></a>
+<dd> Allocates an event assignment.
+
+<dt> <a href="atmAllDet.html#Atm_AssignForallAlloc" TARGET="MAIN"><code>Atm_AssignForallAlloc()</code></a>
+<dd> Allocates a forall assignment.
+
+<dt> <a href="atmAllDet.html#Atm_AssignFree" TARGET="MAIN"><code>Atm_AssignFree()</code></a>
+<dd> Frees an assignment.
+
+<dt> <a href="atmAllDet.html#Atm_AssignIndexAlloc" TARGET="MAIN"><code>Atm_AssignIndexAlloc()</code></a>
+<dd> Allocates an index assignment.
+
+<dt> <a href="atmAllDet.html#Atm_AssignReadExprAddress" TARGET="MAIN"><code>Atm_AssignReadExprAddress()</code></a>
+<dd> Returns the address of expr on the right hand side of assignment.
+
+<dt> <a href="atmAllDet.html#Atm_AssignReadExpr" TARGET="MAIN"><code>Atm_AssignReadExpr()</code></a>
+<dd> Returns the expr on the right hand side of assignment.
+
+<dt> <a href="atmAllDet.html#Atm_AssignReadIndexExpr" TARGET="MAIN"><code>Atm_AssignReadIndexExpr()</code></a>
+<dd> Returns the index expr of an index assignment.
+
+<dt> <a href="atmAllDet.html#Atm_AssignReadIndexVar" TARGET="MAIN"><code>Atm_AssignReadIndexVar()</code></a>
+<dd> Returns the index variable of a forall assignment.
+
+<dt> <a href="atmAllDet.html#Atm_AssignReadType" TARGET="MAIN"><code>Atm_AssignReadType()</code></a>
+<dd> Returns the type of an assignment.
+
+<dt> <a href="atmAllDet.html#Atm_AssignReadVariable" TARGET="MAIN"><code>Atm_AssignReadVariable()</code></a>
+<dd> Returns the variable on the left hand side of the
+                      assignment.
+
+<dt> <a href="atmAllDet.html#Atm_AssignStdAlloc" TARGET="MAIN"><code>Atm_AssignStdAlloc()</code></a>
+<dd> Allocates a standard assignment.
+
+<dt> <a href="atmAllDet.html#Atm_AtomAddAwaitVar" TARGET="MAIN"><code>Atm_AtomAddAwaitVar()</code></a>
+<dd> Add the given variable to the await variable list
+
+<dt> <a href="atmAllDet.html#Atm_AtomAddControlVar" TARGET="MAIN"><code>Atm_AtomAddControlVar()</code></a>
+<dd> Add the given variable to the controlled variable list
+
+<dt> <a href="atmAllDet.html#Atm_AtomAddInitCommandList" TARGET="MAIN"><code>Atm_AtomAddInitCommandList()</code></a>
+<dd> Add the given init command to the atom
+
+<dt> <a href="atmAllDet.html#Atm_AtomAddReadVar" TARGET="MAIN"><code>Atm_AtomAddReadVar()</code></a>
+<dd> Add the given variable to the read variable list
+
+<dt> <a href="atmAllDet.html#Atm_AtomAddUpdateCommandList" TARGET="MAIN"><code>Atm_AtomAddUpdateCommandList()</code></a>
+<dd> Add the given update command list to the atom
+
+<dt> <a href="atmAllDet.html#Atm_AtomAddWaitCommandList" TARGET="MAIN"><code>Atm_AtomAddWaitCommandList()</code></a>
+<dd> Add the given wait command list to the atom
+
+<dt> <a href="atmAllDet.html#Atm_AtomAlloc" TARGET="MAIN"><code>Atm_AtomAlloc()</code></a>
+<dd> Allocates an atom.
+
+<dt> <a href="atmAllDet.html#Atm_AtomChangeName" TARGET="MAIN"><code>Atm_AtomChangeName()</code></a>
+<dd> Changes the name of an atom.
+
+<dt> <a href="atmAllDet.html#Atm_AtomCounterReset" TARGET="MAIN"><code>Atm_AtomCounterReset()</code></a>
+<dd> Reset the global atom counter.
+
+<dt> <a href="atmAllDet.html#Atm_AtomDup" TARGET="MAIN"><code>Atm_AtomDup()</code></a>
+<dd> Duplicate an atom.
+
+<dt> <a href="atmAllDet.html#Atm_AtomFree" TARGET="MAIN"><code>Atm_AtomFree()</code></a>
+<dd> Frees an atom.
+
+<dt> <a href="atmAllDet.html#Atm_AtomNewName" TARGET="MAIN"><code>Atm_AtomNewName()</code></a>
+<dd> Generates a new atom name.
+
+<dt> <a href="atmAllDet.html#Atm_AtomObtainReadAwaitVarList" TARGET="MAIN"><code>Atm_AtomObtainReadAwaitVarList()</code></a>
+<dd> Computes the set of variables that are both read and
+                      awaited by an atom.
+
+<dt> <a href="atmAllDet.html#Atm_AtomObtainReadOrAwaitVarList" TARGET="MAIN"><code>Atm_AtomObtainReadOrAwaitVarList()</code></a>
+<dd> Computes the set of variables that are either read or
+                      awaited by an atom.
+
+<dt> <a href="atmAllDet.html#Atm_AtomReadAtomType" TARGET="MAIN"><code>Atm_AtomReadAtomType()</code></a>
+<dd> Returns the atom type.
+
+<dt> <a href="atmAllDet.html#Atm_AtomReadAwaitVarList" TARGET="MAIN"><code>Atm_AtomReadAwaitVarList()</code></a>
+<dd> Returns the list of await variables for the atom
+
+<dt> <a href="atmAllDet.html#Atm_AtomReadControlVarList" TARGET="MAIN"><code>Atm_AtomReadControlVarList()</code></a>
+<dd> Returns the list of control variables for the atom
+
+<dt> <a href="atmAllDet.html#Atm_AtomReadDefaultInitCommand" TARGET="MAIN"><code>Atm_AtomReadDefaultInitCommand()</code></a>
+<dd> Returns the default init guarded command of the atom.
+
+<dt> <a href="atmAllDet.html#Atm_AtomReadDefaultUpdateCommand" TARGET="MAIN"><code>Atm_AtomReadDefaultUpdateCommand()</code></a>
+<dd> Returns the default update guarded command of the atom.
+
+<dt> <a href="atmAllDet.html#Atm_AtomReadInitCommandList" TARGET="MAIN"><code>Atm_AtomReadInitCommandList()</code></a>
+<dd> Returns the list of init commands for the atom
+
+<dt> <a href="atmAllDet.html#Atm_AtomReadName" TARGET="MAIN"><code>Atm_AtomReadName()</code></a>
+<dd> Returns the name of the atom.
+
+<dt> <a href="atmAllDet.html#Atm_AtomReadPostorder" TARGET="MAIN"><code>Atm_AtomReadPostorder()</code></a>
+<dd> Read the postorder of the given atom.
+
+<dt> <a href="atmAllDet.html#Atm_AtomReadPreorder" TARGET="MAIN"><code>Atm_AtomReadPreorder()</code></a>
+<dd> Read the preorder of the given atom.
+
+<dt> <a href="atmAllDet.html#Atm_AtomReadReadVarList" TARGET="MAIN"><code>Atm_AtomReadReadVarList()</code></a>
+<dd> Returns the list of read variables for the atom
+
+<dt> <a href="atmAllDet.html#Atm_AtomReadUpdateCommandList" TARGET="MAIN"><code>Atm_AtomReadUpdateCommandList()</code></a>
+<dd> Returns the list of update commands for the atom
+
+<dt> <a href="atmAllDet.html#Atm_AtomReadWaitCommandList" TARGET="MAIN"><code>Atm_AtomReadWaitCommandList()</code></a>
+<dd> Returns the list of wait commands for the atom
+
+<dt> <a href="atmAllDet.html#Atm_AtomSetAtomType" TARGET="MAIN"><code>Atm_AtomSetAtomType()</code></a>
+<dd> Set the atom type.
+
+<dt> <a href="atmAllDet.html#Atm_AtomSetDefaultInitCommand" TARGET="MAIN"><code>Atm_AtomSetDefaultInitCommand()</code></a>
+<dd> Sets the default init command of atom.
+
+<dt> <a href="atmAllDet.html#Atm_AtomSetDefaultUpdateCommand" TARGET="MAIN"><code>Atm_AtomSetDefaultUpdateCommand()</code></a>
+<dd> Sets the default update command of atom.
+
+<dt> <a href="atmAllDet.html#Atm_AtomSetPostorder" TARGET="MAIN"><code>Atm_AtomSetPostorder()</code></a>
+<dd> Set the postorder of the given atom.
+
+<dt> <a href="atmAllDet.html#Atm_AtomSetPreorder" TARGET="MAIN"><code>Atm_AtomSetPreorder()</code></a>
+<dd> Set the preorder of the given atom.
+
+<dt> <a href="atmAllDet.html#Atm_CmdAlloc" TARGET="MAIN"><code>Atm_CmdAlloc()</code></a>
+<dd> Allocates a guarded command.
+
+<dt> <a href="atmAllDet.html#Atm_CmdFree" TARGET="MAIN"><code>Atm_CmdFree()</code></a>
+<dd> Frees a guarded command.
+
+<dt> <a href="atmAllDet.html#Atm_CmdReadAssignList" TARGET="MAIN"><code>Atm_CmdReadAssignList()</code></a>
+<dd> Returns the list of assignments of a guarded command.
+
+<dt> <a href="atmAllDet.html#Atm_CmdReadGuard" TARGET="MAIN"><code>Atm_CmdReadGuard()</code></a>
+<dd> Returns the guard expression of a guarded command.
+
+<dt> <a href="atmAllDet.html#Atm_End" TARGET="MAIN"><code>Atm_End()</code></a>
+<dd> Ends the atm package.
+
+<dt> <a href="atmAllDet.html#Atm_ExprAlloc" TARGET="MAIN"><code>Atm_ExprAlloc()</code></a>
+<dd> Build an expression from two expression and an operator.
+
+<dt> <a href="atmAllDet.html#Atm_ExprFreeExpression" TARGET="MAIN"><code>Atm_ExprFreeExpression()</code></a>
+<dd> Frees an expression recursively.
+
+<dt> <a href="atmAllDet.html#Atm_ExprPrintExpression" TARGET="MAIN"><code>Atm_ExprPrintExpression()</code></a>
+<dd> Prints the expression.
+
+<dt> <a href="atmAllDet.html#Atm_ExprReadLeftChild" TARGET="MAIN"><code>Atm_ExprReadLeftChild()</code></a>
+<dd> Reads the left child of an expression.
+
+<dt> <a href="atmAllDet.html#Atm_ExprReadRightChild" TARGET="MAIN"><code>Atm_ExprReadRightChild()</code></a>
+<dd> Reads the right child of an expression.
+
+<dt> <a href="atmAllDet.html#Atm_ExprReadType" TARGET="MAIN"><code>Atm_ExprReadType()</code></a>
+<dd> Returns the type of an expression.
+
+<dt> <a href="atmAllDet.html#Atm_ExprSubstituteConstantForDummyVar" TARGET="MAIN"><code>Atm_ExprSubstituteConstantForDummyVar()</code></a>
+<dd> Substitute a constant for the dummy variable everywhere
+  in an expression.
+
+<dt> <a href="atmAllDet.html#Atm_ExprTypeConvertToString" TARGET="MAIN"><code>Atm_ExprTypeConvertToString()</code></a>
+<dd> Returns the symbolic character for an expression type.
+
+<dt> <a href="atmAllDet.html#Atm_Init" TARGET="MAIN"><code>Atm_Init()</code></a>
+<dd> Initializes the atm package.
+
+<dt> <a href="atmAllDet.html#Atm_NumConstExprConvertToBitvectorConstExpr" TARGET="MAIN"><code>Atm_NumConstExprConvertToBitvectorConstExpr()</code></a>
+<dd> Converts leaves of type Atm_NumConst_c of the expr to
+                      Atm_BitwiseNumConst_c.
+
+<dt> <a href="atmAllDet.html#Atm_ReinitTypeCheck" TARGET="MAIN"><code>Atm_ReinitTypeCheck()</code></a>
+<dd> required
+
+<dt> <a href="atmAllDet.html#Atm_Reinit" TARGET="MAIN"><code>Atm_Reinit()</code></a>
+<dd> Reinitializes the atm package.
+
+<dt> <a href="atmAllDet.html#Atm_TypeCheckNew" TARGET="MAIN"><code>Atm_TypeCheckNew()</code></a>
+<dd> Typecheck an expression.
+
+</dl>
+
+<hr>
+
+Last updated on 1031104 18h39
+</body></html>

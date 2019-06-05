@@ -1,0 +1,15 @@
+
+  sim_mode - Changes the mode of simulation.
+     _________________________________________________________________
+   
+   sim_mode [-hsun] <module> [<component> ...] CommandDescription [This
+   routine changes the mode of simulation. Note that the mode of
+   simulation can only be changed at the begining of a round. Thus if the
+   user wants to change the mode, say from game simulation to random
+   simulation, the user has to complete the current round before making
+   the change.
+   
+   For command options, see the command documentation for sim_start.
+     _________________________________________________________________
+   
+   Last updated on 980624 22h11

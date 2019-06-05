@@ -1,0 +1,24 @@
+
+  check_refine - Performs symbolic (mdd based) refinement check. Assumes that
+  all history dependent variables of specModule are present in implModule
+     _________________________________________________________________
+   
+   check_refine [-e] [-h] [-o <fname>] [-v] <module_name1> <module_name2>
+   
+   Command Options:
+   
+   -e
+   do transition invariant check only at the end (after completing
+   reachability)
+   
+   -h
+   print usage
+   
+   -o
+   write out the mdd variable ordering in file specified by
+   
+   -v
+   verbose mode - prints MDDs associated with each intermediate step
+     _________________________________________________________________
+   
+   Last updated on 980624 22h11

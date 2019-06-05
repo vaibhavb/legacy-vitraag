@@ -1,0 +1,156 @@
+This is release 1.3 of GLU, a set of BDD packages and low-level utilities.
+
+If you downloaded this to compile it with VIS, stop here -- see the README
+file in the VIS distribution for build and installation instructions.
+
+---------------------------------------------------------------------------
+To build GLU, you will need
+
+	* An ANSI C compiler (gcc will do, as will several versions of cc)
+	* GNU's make utility
+	* GNU's gzip utility
+	* Approximately 20 MB of free disk for the build
+	* Approximately 10 MB of free disk space for the installation
+
+---------------------------------------------------------------------------
+* Useful Addresses
+
+For the most recent version of GLU:
+	ftp://ic.eecs.berkeley.edu/pub/Vis/
+
+The VIS home page:
+	http://www.eecs.berkeley.edu/~vis/
+
+For the most recent version of the GNU tools:
+	ftp://prep.ai.mit.edu/pub/gnu/
+
+---------------------------------------------------------------------------
+This is the list of architecture/operating system/compiler
+combinations we have tested. (For installation with compilers marked
+with (*) please refer to the Platform Specific Instructions.)
+
+        * DEC Mips / Ultrix V4.5 / gcc, cc
+        * DEC Alpha / Digital UNIX V3.2F, V4.0 / gcc, cc(*)
+	* HP9000/715 / HP-UX B.10.10 / gcc, cc
+	* IBM RISC System/6000 / AIX Version 3 / gcc
+        * Intel Pentium, PentiumPro, Pentium II / Linux 2.0.27, 2.0.35 / gcc(*)
+	* Intel Pentium 120 / Windows95 with Cygwin32 b18, b19.1 / gcc(*)
+        * Sun / SunOS 4.1.3 / gcc (*)
+        * Sun / Solaris 5.5.1 / gcc, cc (*)
+	* SGI / IRIX 5.3 / gcc, cc
+
+The following instructions are for the generic build process. Before
+building the tool please refer to the section "* Platform Specific
+Instructions".
+
+---------------------------------------------------------------------------
+To build GLU for a single operating system:
+
+* Download the most recent versions of GLU from the address above
+
+* Move to where you would like the GLU source to reside and unpack
+  the distribution:
+
+	% cd /home/vis					# for example
+	% gzip -dc /tmp/glu-1.3.tar.gz | tar xf -
+
+* Move into the glu-1.3 directory and run configure, which will determine
+  some system-specific parameters and create the Makefile:
+
+	% cd glu-1.3
+	% ./configure
+
+  By default, this will use your system's native compiler.  To use gcc,
+  
+        % ./configure --enable-gcc
+
+  (You may wish to do this because you don't have the native compiler
+  installed or because it is not ANSI.)
+
+  Note; For platforms where VIS is not supported for the native compiler,
+  the default compiler is set to gcc.
+
+  Note: The Makefile by default uses the "-g" option for
+  compilation. It has been observed on different platforms that the
+  resultant "vis" executable with this option is twice the size of the
+  executable generated without using the "-g" option. Using "-g" option
+  however, provides debugging capabilities. If disk space is a premium and
+  debugging capability is not required, the "-g" option can be removed
+  from the CFLAGS variable.
+
+* Build the GLU system by running GNU's gmake utility:
+
+	% gmake
+
+  You may not have gmake installed on your system -- try make.  If this
+  fails, you probably need the latest version of GNU's make program -- download
+  it from the address above.
+
+* (Optional) Test the build by invoking
+
+	% gmake check
+
+  This make take some time on slower machines.
+
+* Install the GLU library and its headers:
+
+	% gmake install					# optional
+
+  By default, this will put binaries, libraries, headers, and help files
+  in /usr/local/bin, /usr/local/lib, /usr/local/include, and /usr/local/share
+  respectively.  To choose a different location, provide a default prefix
+  when you invoke configure, e.g., to install in /projects/glu/bin, etc.,
+  use
+
+	% ./configure --prefix=/projects/glu
+
+  when configuring GLU.
+
+---------------------------------------------------------------------------
+To install GLU on multiple operating systems off the same source tree,
+see the file "INSTALL" in this directory.
+---------------------------------------------------------------------------
+
+* Platform Specific Instructions
+
+** DEC Alpha:
+
+  Warnings about min and max are harmless. 
+  Warnings in the cuBdd packaage related to floating point is
+  also harmless.
+
+  The cc compiler will use 32-bit pointers by default.  To use 64-bit
+  pointers, invoke configure as follows: 
+
+	% ./configure --enable-64
+
+  The gcc compiler will always use 64-bit pointers.
+
+** SunOS:
+
+  The C compiler supplied with SunOS 4.1.x does not support ANSI C, so
+  the configuration script automatically selects gcc.
+
+** Solaris:
+
+  If Sun's C compiler is not installed on your system, use gcc
+  (./configure --enable-gcc).
+
+  The target check-cmu (which is executed as part of "make check")
+  fails with Solaris's native compiler unless -dalign is removed from
+  CFLAGS. Although vis-cmu executes correctly even if compiled with
+  -dalign, if you plan to extensively use vis-cmu (especially develop
+  new code that uses MTBDDs) you should not compile with -dalign.
+
+** Windows 95 with Gnu-Win32:
+
+  You need Cygnus's Gnu-Win32 environment (freely available from
+  http://www.cygnus.com/misc/gnu-win32/) to build GLU. The CPU time
+  measurement functions do not work under Windows 95. (They
+  are reported to work under Windows NT.)
+
+  With cygwin32 the configuration script automatically selects gcc.
+
+** AIX:
+
+  The configuration script automatically select gcc.

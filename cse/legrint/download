@@ -1,0 +1,6 @@
+LEGOS_ROOT="/projects/bubble/code/lego/legOS-0.2.4/legOS"
+DLL="$LEGOS_ROOT/util/dll"
+echo "Downloading.. $DLL"
+$DLL $1
+
+

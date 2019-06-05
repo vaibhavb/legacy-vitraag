@@ -1,0 +1,23 @@
+
+  show_spec - show the specifications
+     _________________________________________________________________
+   
+   show_spec [-hl] [<specification name> <specification name> ... ]
+   
+   This command returns all the formulas of the specified specification.
+   If the specification name is not specified, all the formulas are
+   listed. Command options:
+   
+   -l
+          Long listing. Prints the names as well as the formulae.
+          
+   -h
+          Print usage.
+          
+   <specification name> <specification name> ...
+          Specify the listing of formulae of the particular logic. For
+          example, if "inv" is specified, only the invariant formulae are
+          listed.
+     _________________________________________________________________
+   
+   Last updated on 980624 22h10

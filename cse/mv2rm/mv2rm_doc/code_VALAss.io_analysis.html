@@ -1,0 +1,44 @@
+<html><head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="Start" href="index.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of exceptions" rel=Appendix href="index_exceptions.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="Ass" rel="Chapter" href="Ass.html">
+<link title="Ast" rel="Chapter" href="Ast.html">
+<link title="Check" rel="Chapter" href="Check.html">
+<link title="Codegen" rel="Chapter" href="Codegen.html">
+<link title="Lexer" rel="Chapter" href="Lexer.html">
+<link title="Main" rel="Chapter" href="Main.html">
+<link title="Parser" rel="Chapter" href="Parser.html"><title>Ass.io_analysis</title>
+</head>
+<body>
+<code class="code"><span class="keyword">let</span>&nbsp;io_analysis&nbsp;subcktFormal&nbsp;subcktActual&nbsp;varPairList&nbsp;=<br>
+&nbsp;&nbsp;<span class="comment">(*print_string&nbsp;("^&nbsp;!moduleName&nbsp;^&nbsp;");*)</span><br>
+&nbsp;&nbsp;<span class="keyword">try</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;model&nbsp;=&nbsp;<span class="constructor">Hashtbl</span>.find&nbsp;modelTab&nbsp;subcktFormal&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">try</span>&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;instantiatedSlist&nbsp;=&nbsp;<span class="constructor">Hashtbl</span>.find&nbsp;subcktTab&nbsp;!moduleName&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">List</span>.iter&nbsp;(<span class="keyword">fun</span>&nbsp;pair&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span>(&nbsp;<span class="constructor">List</span>.mem&nbsp;(fst(pair))&nbsp;model.outlist)&nbsp;<span class="keyword">then</span>&nbsp;<span class="keyword">begin</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;if&nbsp;formal&nbsp;parameter&nbsp;is&nbsp;an&nbsp;output&nbsp;of&nbsp;subckt,&nbsp;make<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;actual&nbsp;par.&nbsp;&nbsp;an&nbsp;input&nbsp;of&nbsp;the&nbsp;module&nbsp;*)</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;add_to_refiList_and_symTab&nbsp;(snd(pair));<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">end</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">else</span>&nbsp;<span class="keyword">if</span>&nbsp;(<span class="constructor">List</span>.mem&nbsp;(fst(pair))&nbsp;model.inlist&nbsp;)&nbsp;<span class="keyword">then</span>&nbsp;<span class="keyword">begin</span>&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;the&nbsp;formal&nbsp;parameter&nbsp;is&nbsp;an&nbsp;input&nbsp;of&nbsp;subckt&nbsp;*)</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;find&nbsp;if&nbsp;the&nbsp;formal&nbsp;parameter&nbsp;is&nbsp;an&nbsp;output&nbsp;of&nbsp;another<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subckt&nbsp;of&nbsp;the&nbsp;model&nbsp;*)</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span>&nbsp;(&nbsp;not_found_instantiation&nbsp;(snd(pair))&nbsp;instantiatedSlist&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subcktActual&nbsp;)&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">then</span>&nbsp;<span class="keyword">begin</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;Not&nbsp;an&nbsp;output&nbsp;var&nbsp;of&nbsp;another&nbsp;subckt&nbsp;*)</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;add_to_refoList_and_symTab&nbsp;(snd(pair));<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">end</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">end</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;varPairList;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">with</span>&nbsp;<span class="constructor">Not_found</span>&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;raise&nbsp;(<span class="constructor">Failure</span>(<span class="string">"Not&nbsp;a&nbsp;valid&nbsp;module&nbsp;"</span>^&nbsp;!moduleName))<br>
+&nbsp;&nbsp;<span class="keyword">with</span>&nbsp;<span class="constructor">Not_found</span>&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;raise&nbsp;(<span class="constructor">Failure</span>(<span class="string">"Not&nbsp;a&nbsp;valid&nbsp;subckt&nbsp;"</span>^subcktFormal))</code></body></html>

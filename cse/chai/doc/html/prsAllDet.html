@@ -1,0 +1,366 @@
+<html>
+<head><title>The prs package: all functions </title></head>
+<body>
+
+optional
+<HR>
+<DL>
+<dt><pre>
+<A NAME="FileTail"></A>
+static char * <I></I>
+<B>FileTail</B>(
+  char * <b>name</b> <i></i>
+)
+</pre>
+<dd> This command returns all the characters after the last
+  /.This is used for, for instance, getting the filename without the path name
+  from an absolute filename.
+<p>
+
+<dd> <b>Side Effects</b> The user should free the string after use.
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="prsAllFile.html#prsMain.c"TARGET="ABSTRACT"><CODE>prsMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="PrsIsInList"></A>
+boolean <I></I>
+<B>PrsIsInList</B>(
+  lsList  <b>list</b>, <i></i>
+  lsGeneric  <b>item</b> <i></i>
+)
+</pre>
+<dd> return TRUE if found, FALSE else.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="prsAllFile.html#prsTree.c"TARGET="ABSTRACT"><CODE>prsTree.c</CODE></A>
+
+<dt><pre>
+<A NAME="PrsNodeAlloc"></A>
+PrsNode_t * <I></I>
+<B>PrsNodeAlloc</B>(
+  int  <b>id</b>, <i></i>
+  char* <b>field1</b>, <i></i>
+  char* <b>field2</b> <i></i>
+)
+</pre>
+<dd> Allocates a new PrsNode_t
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="prsAllFile.html#prsTree.c"TARGET="ABSTRACT"><CODE>prsTree.c</CODE></A>
+
+<dt><pre>
+<A NAME="PrsNodeFree"></A>
+void <I></I>
+<B>PrsNodeFree</B>(
+  PrsNode_t * <b>node</b> <i></i>
+)
+</pre>
+<dd> Frees a PrsNode_t. It is the programmers responsibility
+  to free field1 and field2.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="prsAllFile.html#prsTree.c"TARGET="ABSTRACT"><CODE>prsTree.c</CODE></A>
+
+<dt><pre>
+<A NAME="PrsNodeReadField1"></A>
+char * <I></I>
+<B>PrsNodeReadField1</B>(
+  PrsNode_t* <b>node</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="prsAllFile.html#prsTree.c"TARGET="ABSTRACT"><CODE>prsTree.c</CODE></A>
+
+<dt><pre>
+<A NAME="PrsNodeReadField2"></A>
+char * <I></I>
+<B>PrsNodeReadField2</B>(
+  PrsNode_t* <b>node</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="prsAllFile.html#prsTree.c"TARGET="ABSTRACT"><CODE>prsTree.c</CODE></A>
+
+<dt><pre>
+<A NAME="PrsNodeReadId"></A>
+int <I></I>
+<B>PrsNodeReadId</B>(
+  PrsNode_t* <b>node</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="prsAllFile.html#prsTree.c"TARGET="ABSTRACT"><CODE>prsTree.c</CODE></A>
+
+<dt><pre>
+<A NAME="PrsReadIntfCmd"></A>
+static int <I></I>
+<B>PrsReadIntfCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="prsAllFile.html#prsMain.c"TARGET="ABSTRACT"><CODE>prsMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="PrsReadModuleCmd"></A>
+static int <I></I>
+<B>PrsReadModuleCmd</B>(
+  ClientData  <b>clientData</b>, <i></i>
+  Tcl_Interp * <b>interp</b>, <i></i>
+  int  <b>argc</b>, <i></i>
+  char** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="prsAllFile.html#prsMain.c"TARGET="ABSTRACT"><CODE>prsMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="PrsTypeArrayAlloc"></A>
+Var_Type_t* <I></I>
+<B>PrsTypeArrayAlloc</B>(
+  char* <b>name</b>, <i></i>
+  Var_Type_t * <b>indexType</b>, <i></i>
+  Var_Type_t * <b>entryType</b>, <i></i>
+  Var_TypeManager_t* <b>typeManager</b> <i></i>
+)
+</pre>
+<dd> This function creates new data types.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="prsAllFile.html#prsTree.c"TARGET="ABSTRACT"><CODE>prsTree.c</CODE></A>
+
+<dt><pre>
+<A NAME="PrsTypeBitvectorAlloc"></A>
+Var_Type_t* <I></I>
+<B>PrsTypeBitvectorAlloc</B>(
+  char* <b>name</b>, <i></i>
+  int  <b>size</b>, <i></i>
+  Var_TypeManager_t* <b>typeManager</b> <i></i>
+)
+</pre>
+<dd> This function creates new data types.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="prsAllFile.html#prsTree.c"TARGET="ABSTRACT"><CODE>prsTree.c</CODE></A>
+
+<dt><pre>
+<A NAME="PrsTypeBitvectorNAlloc"></A>
+Var_Type_t* <I></I>
+<B>PrsTypeBitvectorNAlloc</B>(
+  char* <b>name</b>, <i></i>
+  int  <b>size</b>, <i></i>
+  Var_TypeManager_t* <b>typeManager</b> <i></i>
+)
+</pre>
+<dd> This function creates new data types.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="prsAllFile.html#prsTree.c"TARGET="ABSTRACT"><CODE>prsTree.c</CODE></A>
+
+<dt><pre>
+<A NAME="PrsTypeCheckName"></A>
+static Var_Type_t* <I></I>
+<B>PrsTypeCheckName</B>(
+  char * <b>typeName</b>, <i></i>
+  Var_TypeManager_t* <b>typeManager</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="prsAllFile.html#prsTree.c"TARGET="ABSTRACT"><CODE>prsTree.c</CODE></A>
+
+<dt><pre>
+<A NAME="PrsTypeEnumAlloc"></A>
+Var_Type_t * <I></I>
+<B>PrsTypeEnumAlloc</B>(
+  char* <b>name</b>, <i></i>
+  lsList  <b>enumConstList</b>, <i></i>
+  Var_TypeManager_t* <b>typeManager</b> <i></i>
+)
+</pre>
+<dd> This function creates new data types.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="prsAllFile.html#prsTree.c"TARGET="ABSTRACT"><CODE>prsTree.c</CODE></A>
+
+<dt><pre>
+<A NAME="PrsTypeRangeAlloc"></A>
+Var_Type_t* <I></I>
+<B>PrsTypeRangeAlloc</B>(
+  char* <b>name</b>, <i></i>
+  int  <b>range</b>, <i></i>
+  Var_TypeManager_t* <b>typeManager</b> <i></i>
+)
+</pre>
+<dd> This function creates new data types.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="prsAllFile.html#prsTree.c"TARGET="ABSTRACT"><CODE>prsTree.c</CODE></A>
+
+<dt><pre>
+<A NAME="PrsVariableCheckPrimed"></A>
+int <I></I>
+<B>PrsVariableCheckPrimed</B>(
+  char * <b>name</b> <i></i>
+)
+</pre>
+<dd> Check whether the variable is primed, and strip the prime if so.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="prsAllFile.html#prsTree.c"TARGET="ABSTRACT"><CODE>prsTree.c</CODE></A>
+
+<dt><pre>
+<A NAME="Prs_End"></A>
+int <I></I>
+<B>Prs_End</B>(
+  Tcl_Interp * <b>interp</b>, <i></i>
+  Main_Manager_t * <b>manager</b> <i></i>
+)
+</pre>
+<dd> Ends the prs package.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<DD> <B>Defined in </B> <A HREF="prsAllFile.html#prsMain.c"TARGET="ABSTRACT"><CODE>prsMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="Prs_Init"></A>
+int <I></I>
+<B>Prs_Init</B>(
+  Tcl_Interp * <b>interp</b>, <i></i>
+  Main_Manager_t * <b>manager</b> <i></i>
+)
+</pre>
+<dd> Initializes the prs package.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<DD> <B>Defined in </B> <A HREF="prsAllFile.html#prsMain.c"TARGET="ABSTRACT"><CODE>prsMain.c</CODE></A>
+
+<dt><pre>
+<A NAME="Prs_Reinit"></A>
+int <I></I>
+<B>Prs_Reinit</B>(
+  Tcl_Interp * <b>interp</b>, <i></i>
+  Main_Manager_t * <b>manager</b> <i></i>
+)
+</pre>
+<dd> Reinitializes the prs package.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<DD> <B>Defined in </B> <A HREF="prsAllFile.html#prsMain.c"TARGET="ABSTRACT"><CODE>prsMain.c</CODE></A>
+
+
+</DL>
+<HR>
+Last updated on 1031104 18h39
+</BODY></HTML>

@@ -1,0 +1,3 @@
+#!/bin/csh
+#
+time_log $1 > {$1}.time

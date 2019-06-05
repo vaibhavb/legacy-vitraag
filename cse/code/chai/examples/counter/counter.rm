@@ -1,0 +1,108 @@
+module And 
+  external in1, in2: bool
+  interface out: bool
+  
+  atom Out controls out awaits in1, in2
+  init update
+  [] ~in1' -> out' := false
+  [] ~in2' -> out' := false
+  [] in1' & in2' -> out' := true
+  endatom
+endmodule
+
+module Or
+  external in1, in2: bool
+  interface out: bool
+  
+  atom Out controls out awaits in1, in2
+  init update
+  [] in1' -> out' := true
+  [] in2' -> out' := true
+  [] ~in1' & ~in2' -> out' := false
+  endatom
+endmodule
+
+module Not
+  external in: bool
+  interface out: bool
+
+  atom Out controls out awaits in
+  init update 
+  [] in' -> out' := false
+  [] ~in' -> out' := true
+  endatom
+endmodule
+
+Xor := hide z1, z2, z3, z4 in 
+   Not[in, out := in1, z1]
+|| Not[in, out := in2, z2]
+|| And[in2, out := z2, z3]
+|| And[in1, out := z1, z4]
+|| Or[in1, in2 := z3, z4] 
+endhide
+
+module Latch 
+  external in, reset: bool
+  interface out: bool
+  private state: bool
+
+  atom Out controls out reads state
+  update
+  [] true -> out' := state
+  endatom
+
+  atom State controls state awaits in, reset
+  init update
+  [] reset' -> state' := false
+  [] ~reset' -> state' := in'
+  endatom
+endmodule
+
+Sync1BitCounter := hide z1 in
+   Latch[reset, in, out := start, out, z1]
+|| And[in1, in2, out := inc, z1, carry]
+|| Xor[in1, in2 := inc, z1] 
+endhide
+
+Sync3BitCounter := hide carry0, carry1 in
+   Sync1BitCounter[out, carry := out0, carry0]
+|| Sync1BitCounter[inc, out, carry := carry0, out1, carry1]
+|| Sync1BitCounter[inc, out, carry := carry1, out2, done]
+endhide
+
+module Witness 
+interface count: bitvector 3
+external out0, out1, out2: bool
+ 
+  atom Out controls count awaits out0, out1, out2 
+  init update
+  [] true -> count'[0] := out0'; count'[1] := out1'; count'[2] := out2'
+  endatom
+endmodule
+
+Foo := Sync3BitCounter || Witness
+
+module Sync3BitCounterSpec 
+  external start, inc: bool
+  interface out0, out1, out2, done: bool
+  private count: bitvector 3
+
+  atom Count controls count reads count, start awaits inc
+  update 
+  [] start & ~inc' -> count' := 0
+  [] start & inc' -> count' := 1
+  [] ~start & inc' -> count' := count + 1
+  endatom
+
+  atom Out controls out0, out1, out2 awaits count
+  init update
+  [] true -> out0' := count'[0]; out1' := count'[1]; out2' := count'[2]
+  endatom  
+
+  atom Done controls done reads count, start awaits count
+  update 
+  [] ~start & count' = count + 1 & count' = 0 -> done' := true
+  [] default -> done' := false
+  endatom
+endmodule
+

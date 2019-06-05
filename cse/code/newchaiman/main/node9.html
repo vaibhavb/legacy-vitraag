@@ -1,0 +1,142 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with jLaTeX2HTML 2002 (1.62) JA patch-1.4
+patched version by:  Kenshi Muto, Debian Project.
+LaTeX2HTML 2002 (1.62),
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Non-determinism</TITLE>
+<META NAME="description" CONTENT="Non-determinism">
+<META NAME="keywords" CONTENT="main">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<META NAME="Generator" CONTENT="jLaTeX2HTML v2002 JA patch-1.4">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="main.css">
+
+<LINK REL="next" HREF="node10.html">
+<LINK REL="previous" HREF="node8.html">
+<LINK REL="up" HREF="node7.html">
+<LINK REL="next" HREF="node10.html">
+</HEAD>
+
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html149"
+  HREF="node10.html">[Next]</A> 
+<A NAME="tex2html145"
+  HREF="node7.html">[Up]</A> 
+<A NAME="tex2html139"
+  HREF="node8.html">[Previous]</A>  
+<A NAME="tex2html147"
+  HREF="node17.html">[Index]</A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html150"
+  HREF="node10.html">Simple exercises</A>
+<B> Up:</B> <A NAME="tex2html146"
+  HREF="node7.html">Other issues in modeling</A>
+<B> Previous:</B> <A NAME="tex2html140"
+  HREF="node8.html">Connecting a latch output</A>
+ &nbsp <B>  <A NAME="tex2html148"
+  HREF="node17.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00242000000000000000">
+Non-determinism</A>
+</H2>
+Non-determinism is useful in modeling systems at an abstract
+level. There are two ways to model non-determinism in R<SMALL>EACTIVE</SMALL>M<SMALL>ODULES</SMALL>:
+
+<OL>
+<LI>With a non-deterministic assignment. 
+</LI>
+<LI>By having multiple guarded commands with the same guard. 
+</LI>
+</OL>
+
+<P>
+We illustrate both ways of having non-determinism with a simple
+example. We design a module that will serve as the input to the
+three-bit-counter <TT>threebitcounter</TT> to result in a closed system,
+i.e., one with no inputs (no external variables), and will
+non-deterministically output a&nbsp;<A NAME="tex2html_wrap_inline2111"
+ HREF="img2.png">[IMAGE png]</A> or&nbsp;<A NAME="tex2html_wrap_inline2163"
+ HREF="img10.png">[IMAGE png]</A>. The first way of modeling
+this is shown below:
+
+<P>
+<PRE>
+module nondetinput
+  interface output : bool
+
+atom controls output
+init update
+  [] true -&gt; output' := nondet
+endatom 
+endmodule
+</PRE>
+
+<P>
+The variable <TT>output</TT> is assigned a value non-deterministically from the
+range of values it can assume. 
+The keyword <TT>nondet</TT> is used to assign to a variable a
+nondeterministic element of the variable domain.
+
+<P>
+The second equivalent way of modeling the module <TT>nondetinput</TT> is by using multiple
+guarded commands with the same guard is:
+
+<P>
+<PRE>
+module nondetinput
+  interface output : bool
+
+atom controls output
+init update
+  [] true -&gt; output' := false
+  [] true -&gt; output' := true
+endatom 
+endmodule
+</PRE>
+
+<P>
+This second method is useful (and the only way) currently to model a
+non-deterministic assignment to a variable from a <EM>subset</EM> of the
+possible values it may assume. 
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html149"
+  HREF="node10.html">[Next]</A> 
+<A NAME="tex2html145"
+  HREF="node7.html">[Up]</A> 
+<A NAME="tex2html139"
+  HREF="node8.html">[Previous]</A>  
+<A NAME="tex2html147"
+  HREF="node17.html">[Index]</A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html150"
+  HREF="node10.html">Simple exercises</A>
+<B> Up:</B> <A NAME="tex2html146"
+  HREF="node7.html">Other issues in modeling</A>
+<B> Previous:</B> <A NAME="tex2html140"
+  HREF="node8.html">Connecting a latch output</A>
+ &nbsp <B>  <A NAME="tex2html148"
+  HREF="node17.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+Vaibhav Bhandari
+2003-06-17
+</ADDRESS>
+</BODY>
+</HTML>

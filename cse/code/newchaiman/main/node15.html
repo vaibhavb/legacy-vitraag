@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with jLaTeX2HTML 2002 (1.62) JA patch-1.4
+patched version by:  Kenshi Muto, Debian Project.
+LaTeX2HTML 2002 (1.62),
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Verification</TITLE>
+<META NAME="description" CONTENT="Verification">
+<META NAME="keywords" CONTENT="main">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<META NAME="Generator" CONTENT="jLaTeX2HTML v2002 JA patch-1.4">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="main.css">
+
+<LINK REL="next" HREF="node16.html">
+<LINK REL="previous" HREF="node14.html">
+<LINK REL="up" HREF="node2.html">
+<LINK REL="next" HREF="node16.html">
+</HEAD>
+
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html218"
+  HREF="node16.html">[Next]</A> 
+<A NAME="tex2html214"
+  HREF="node2.html">[Up]</A> 
+<A NAME="tex2html208"
+  HREF="node14.html">[Previous]</A>  
+<A NAME="tex2html216"
+  HREF="node17.html">[Index]</A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html219"
+  HREF="node16.html">Where to find the</A>
+<B> Up:</B> <A NAME="tex2html215"
+  HREF="node2.html">Tutorial introduction to CHAI</A>
+<B> Previous:</B> <A NAME="tex2html209"
+  HREF="node14.html">Peterson's mutual exclusion protocol</A>
+ &nbsp <B>  <A NAME="tex2html217"
+  HREF="node17.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00280000000000000000">
+Verification</A>
+</H1>
+The two modules <TT>P1</TT> and <TT>P2</TT> are composed to give module <TT>Pete</TT>. 
+We verify that the version of Peterson's mutual exclusion
+protocol in Figure&nbsp;<A HREF="node16.html#fig:pete">2.3</A> does implement mutual exclusion. 
+The following invariant says that both processes are not simultaneously in their
+critical sections:
+<BR>
+<P>
+<TT>inv "mutex" <A NAME="tex2html_wrap_inline2229"
+ HREF="img32.png">[IMAGE png]</A> (pc1 = inCS <TT>&amp;</TT> pc2 = inCS);
+</TT>
+<BR>
+<P>
+The invariant can be entered into a file (say) <TT>pete.spec</TT>.
+The name of the invariant is <TT>mutex</TT>.
+Start up C<SMALL>HAI</SMALL>, and first read in the
+module definitions of Figure&nbsp;<A HREF="node16.html#fig:pete">2.3</A> by typing:
+<BR>
+<P>
+<TT>chai: read_module pete.rm
+</TT>
+<BR>
+<P>
+The specification is read in with the <TT>read_spec</TT> command:
+<BR>
+<P>
+<TT>chai: read_spec pete.spec
+</TT>
+<BR>
+<P>
+The mutual-exclusion is tested with the command:
+<BR>
+<P>
+<TT>chai:  inv_check Pete mutex
+</TT>
+<BR>
+<P>
+which says check if the module <TT>Pete</TT> satisfies the invariant <TT>mutex</TT>. <TT>Pete</TT> should satisfy the invariant. 
+
+<P>
+<BR><HR>
+<ADDRESS>
+Vaibhav Bhandari
+2003-06-17
+</ADDRESS>
+</BODY>
+</HTML>

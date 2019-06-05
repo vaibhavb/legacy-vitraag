@@ -1,0 +1,58 @@
+<html>
+<title>Embedded Software</title>
+<link rel="stylesheet" href="style/style.css">
+<body bgcolor="white">
+<h1>Embedded Software</h1>
+<hr>
+
+<h2>Project Mocha</h2>
+<ul>
+<li>Port the intial C code to TCL.
+</ul><hr>
+
+<h2>Notes </h2>
+<ul>
+<li>Lecture one: Its difficult to integrate an embedded systems and achieve concurrency. An embedded system should have facility for repeatable events, resource accounting and concurrency. Component based approach doesn't work in such an scenario.
+<li>Lecture Two: The Predicability of a system is degraded by presence of: DMA, Cache, Pipeline, Interrrupts, Resource interaction, Memory management and Programming Languages (garbage collection, recursive calls, dynamic data structures) and interrupts.
+<li>Lecture Three: Non-periodic scheduling:EDD and EDF. For taking care of precendence one can use LDF (based on precedence graph when all processes arrive at same time) and the EDF with precedence constraints(with preemption). The release time is modified as max{rt, max(rt + Ct)of predecessors} starting with roor and the deadline is modified as min{d,min(d-ct) of successors} starting with the sinks. 
+<li>Lecture Four: Periodic Scheduling: No deadlines: RM, EDF and with deadlines:DM, EDF. Note for RM check if worst response Ri(=Li+Ci) < Ti. For DM replace it by Di. For EDF check processor utilization factor and Ci(0, L) < L.
+</ul>
+<hr>
+
+<h2>Questions</h2>
+<ul><li>The fixed point analysis of RM.
+<li>Its not clear why in case of periodic EDF the criteria is based on Ci(0,L) rather than processor utilization.
+</ul>
+
+<h2>Links</h2>
+<ul><li><a href="http://www.linuxdevices.com/articles/AT8073314981.html">RTOS 
+Market</a>
+<li><a href="http://www.linuxdevices.com/articles/AT9837719278.html">What </a> is Real Time?
+</ul>
+<hr>
+<address>Vaibhav</address>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

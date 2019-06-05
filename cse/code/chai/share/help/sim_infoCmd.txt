@@ -1,0 +1,54 @@
+
+  sim_info - Provides miscellaneous information about the current simulation.
+     _________________________________________________________________
+   
+   sim_info [-h] <module> <option>
+   
+   This command returns miscellaneous information about current
+   simulation of the specified module, depending on the option supplied.
+   
+   Command options:
+   
+   -h
+          Prints usage.
+          
+   <option>
+          option can be one of the following keyword:
+          
+        isStartOfRound
+                Returns 1 if the simulation is at the start of a round,
+                and 0 otherwise.
+                
+        isEndOfRound
+                Returns 1 if the current round has just finished, and 0
+                otherwise. Usually if the simulation is at the end of a
+                round, it is also at the start of the round and vice
+                versa. But there is a subtlety: at the start of the
+                initial round, isStartOfRound will return 1, but
+                isEndOfRound will return 0.
+                
+        atomOrdering
+                Returns a linear order of the atoms. The sub-rounds of
+                execution are carried according to this order.
+                
+        variableOrdering
+                Returns a linear order of the variables. Variables
+                controlled by the same atoms are grouped together.
+                
+        isUserTurn
+                Returns 1 if it is the user's turn during the simulation,
+                and 0 otherwise.
+                
+        isInitialRound
+                Returns 1 if the current round is the initial round, and
+                0 otherwise.
+                
+        mode
+                Returns the mode of the current simulation. The result is
+                "random", "manual" or "game".
+                
+        isSimulated
+                Returns 1 if the module is being simulated, 0 otherwise.
+     _________________________________________________________________
+   
+   Last updated on 980624 22h11

@@ -1,0 +1,381 @@
+<pre>
+This is release 1.0.1 of MOCHA, a system for the modular verification of
+heterogeneous reactive systems. MOCHA is a very minor revision of the
+earlier 1.0 release (CAV 98 release). MOCHA builds on GLU, a collection of
+low-level utilities, as well as Tcl, Tk, Tix, and Expectk.
+
+To build MOCHA and GLU, you will need
+
+	* An ANSI C compiler (gcc will do, as will several versions of cc)
+	* GNU Flex version 2.5 or greater
+	* GNU Bison version 1.22 or greater
+	* GNU's make utility
+	* GNU's gzip utility
+	* Tcl 7.6 
+	* Tk 4.2
+	* Tix 4.1.0 
+	* Approximately 26 MB of free disk space for the build
+
+---------------------------------------------------------------------------
+* Useful Addresses
+
+The most recent versions of MOCHA and GLU:
+
+	ftp://ic.eecs.berkeley.edu/pub/Mocha/{glu-1.3.tar.gz,mocha-1.0.1.tar.gz}
+
+The MOCHA home page, which includes additional documentation:
+
+	http://www.eecs.berkeley.edu/Respep/Research/mocha/index.html
+
+The most recent version of the GNU tools:
+
+	ftp://prep.ai.mit.edu/pub/gnu/
+
+The most recent version of Tix:
+	ftp://ftp.xpi.com/pub/Tix4.1.0.006.tar.gz
+
+Tk4.2:
+	ftp://ftp.scriptics.com/pub/tcl/tcl7_6/tk4.2p2.tar.gz
+
+tcl7.6:
+	ftp://ftp.scriptics.com/pub/tcl/tcl7_6/tcl7.6p2.tar.gz
+
+---------------------------------------------------------------------------
+This is the list of architecture/operating system/compiler
+combinations we have tested. (For installation with compilers marked
+with (*) please refer to the Platform Specific Instructions.)
+
+        * DEC Mips / Ultrix V4.5 / gcc, cc(*)
+        * DEC Alpha / Digital UNIX V3.2F, V4.0 / gcc, cc(*)
+	* HP9000/715 / HP-UX B.10.10 / gcc
+	* IBM RISC System/6000 / AIX Version 3 / gcc
+        * Intel Pentium 120, PentiumPro 200 / Linux 1.3.99, 2.0.27 / gcc(*)
+        * Sun / SunOS 4.1.3 / gcc
+        * Sun / Solaris 5.5.1 / gcc, cc(*)
+
+The following instructions are for the generic build process. Before
+building the tool please refer to the section "Platform Specific
+Instructions".
+
+---------------------------------------------------------------------------
+To build a MOCHA executable for a single operating system:
+
+0. It is assumed that you have set up (i.e. configured and made)
+Tcl, Tk, and Tix.
+
+1. Download the most recent versions of MOCHA and GLU from the address
+   above into a convenient directory, (e.g., /tmp).
+
+2. Move to where you would like to build MOCHA and GLU and unpack the
+   distributions:
+
+	% cd /home/mochauser				# for example
+	% gzip -dc /home/mochauser/glu-1.3.tar.gz | tar xf -
+	% gzip -dc /home/mochauser/mocha-1.0.1.tar.gz | tar xf -
+
+3. Move into the glu-1.3 directory and run configure, which will
+   determine some system-specific parameters and create the Makefile:
+
+	% cd glu-1.3
+	% ./configure
+
+   Note: Not all checks will return "yes."  This is normal and should
+   not affect compilation.
+
+   Note: Occasionally, configure will make a bad guess or will choose
+   a default you do not want.  In this case, simply edit the Makefile
+   at this point.
+
+   Note: You may want to specify parameters to configure -- see the
+   "Installing" sections below.
+
+   Note: To parallelize the installation procedure, you can begin steps 
+   5 and 6 at this point, as long as step 4 completes before step 6
+   (since MOCHA must link against the GLU library).
+
+4. Build the GLU system by running GNU's gmake utility:
+
+	% gmake
+
+   You may not have gmake installed on your system -- try make.  If
+   this fails, you probably need the latest version of GNU's make
+   program -- download it from the address above.
+
+   If your platform is Linux and the version of gcc is 2.7.0 or earlier,
+   a special procedure needs to be called. Refer to README file of the 
+   GLU package for details.
+
+5. Configuring mocha for compile: 
+   Mocha depends on GLU, Tcl/Tk, and Tix. The program configure in 
+   the mocha-1.0.1 directory will try to look for the include files and library 
+   archive files for these programs in some standard places. The configure program 
+   will try to find the find the right locations for these include
+   and library archive files. If you however set up
+   these programs yourself (for instance, by following the links on our web
+   page), and did not install these in some standard place such as /usr/local,
+   the configure program needs to be told about the location of 
+   these program (their include and library files). This is achieved as follows: 
+   
+
+   In the share directory in mocha-1.0.1 (i.e., if you untarred mocha in 
+   /home/mochauser you will have a directory called /home/mochauser/mocha-1.0.1 )
+   is a file called config.SITE (for instance, in our scenario, the file is  
+   (full path): /home/mochauser/mocha-1.0.1/share/config.SITE ). Setting the 
+   environment variable CONFIG_SITE, will get the configure program in mocha
+   to look at this file for site specific configuration information. 
+
+   If you are using the c-shell or tcsh you would do this by:
+
+   setenv CONFIG_SITE /home/mochauser/mocha-1.0.1/share/config.SITE
+
+   The following variables will need to be set in the config file. Here is
+   a sample file (assuming all programs were untarred to /home/mochauser:
+   
+   *******************config.SITE file***************************************
+
+   #/bin/sh
+   tcl_header_path=/home/mochauser/tcl7.6/generic
+   tk_header_path=/home/mochauser/tk4.2/generic
+   tix_header_path=/home/mochauser/Tix4.1.0/generic
+   tcl_library_path=/home/mochauser/tcl7.6/unix
+   tk_library_path=/home/mochauser/tk4.2/unix
+   tix_library_path=/home/mochauser/Tix4.1.0/unix/tk4.2
+
+   *******************end of config.SITE*****************************************
+
+You are now ready to configure. 
+Move into the mocha-1.0.1 directory and run configure:
+
+	% cd /home/mochauser/mocha-1.0.1
+	% ./configure
+
+   Note: Not all checks will return "yes."  This is normal and should
+   not affect compilation.  However, do be concerned with any warnings
+   "configure" produces.
+
+   Note: Occasionally, configure will make a bad guess or will choose
+   a default you do not want.  In this case, simply edit the Makefile
+   at this point.
+
+   Note: You may want to specify parameters to configure -- see the
+   "Installing" sections below.
+
+6. Build the mocha system by running GNU's gmake utility:
+
+	% gmake
+
+   This builds an executable "mocha" in the current directory.  
+
+   WARNING: If you are not successful in building a MOCHA executable, 
+   double check that you are using Flex version 2.5 or greater (check 
+   using "flex -V") and GNU Bison version 1.22 or greater (check with 
+   "bison -V").  Having out-of-date versions of these programs can 
+   lead to obscure compilation and linking errors.  You can download
+   the new versions from the GNU FTP address above.
+
+
+7. Testing the installation setup.  Verify MOCHA works by running it 
+   on some of the examples included in the distribution. You will need
+   to set up the environment variables MOCHASRCDIR, MOCHAHELPDIR, and
+   MOCHADIR. If you are using csh and tcsh, you would do this as follows:
+  
+   setenv MOCHASRCDIR /home/mochauser/mocha-1.0.1/src
+   setenv MOCHAHELPDIR /home/mochauser/mocha-1.0.1/share/help 
+   setenv MOCHADIR /home/mochauser/mocha-1.0.1
+
+   Now type the following from the mocha-1.0.1 directory. Do this by:
+
+	% cd /home/mochauser/mocha-1.0.1/
+	% gmake check
+
+   This step requires runs in less than five minutes on most machines
+   and requires approximately 24MB or RAM.
+
+   NOTE: gmake check uses perl (in fact perl5). On some systems perl5 is 
+   called perl. If you get a message such as perl not found, edit the Makefile 
+   to use perl5. 
+
+---------------------------------------------------------------------------
+Installing GLU:
+
+Developers will want to install the GLU library and its associated header
+files in a central area:
+
+* To install the GLU library and its header files, type, while in the
+  glu-1.3 directory,
+
+	% gmake install	
+
+  By default, this will put libraries and headers in /usr/local/lib
+  and /usr/local/include respectively.  To choose a different
+  location, provide a default prefix when you invoke configure, e.g.,
+  to install in /projects/glu/bin, etc., use
+
+	% ./configure --prefix=/projects/glu
+
+  when configuring GLU. Note that "tilde expansion" doesn't work for the 
+  prefix (i.e., don't specify --prefix=~smith/glu).
+
+---------------------------------------------------------------------------
+Installing MOCHA:
+
+Administrators and people who want to discard the source after building
+MOCHA will want to install MOCHA in a central area:
+
+* To install the MOCHA executable, library, headers, and help files, type,
+  while in the mocha-1.0.1 directory,
+
+	% gmake install
+
+  By default, this will put binaries, libraries, headers, and help files
+  in /usr/local/bin, /usr/local/lib, /usr/local/include, and /usr/local/share
+  respectively.  To choose a different location, provide a default prefix
+  when you invoke configure, e.g., to install in /projects/MOCHA/bin, etc.,
+  use
+
+	% ./configure --prefix=/projects/mocha
+
+  when configuring MOCHA.
+
+  "gmake clean" removes all the files generated during "gmake."  This is
+  useful when you want to rebuild MOCHA with a different prefix, when you
+  want to rebuild with different compiler options, etc.
+
+  The path "/usr/local/share" (or whatever is set via the --prefix option)
+  is hard-coded into MOCHA.  In this directory, MOCHA expects to find the 
+  help/ directory.  This may be overridden by setting the environment
+  variable "MOCHA_LIBRARY_PATH" to the name of an alternate directory,
+  e.g.,
+
+	% setenv MOCHA_LIBRARY_PATH /projects/mocha/common
+
+---------------------------------------------------------------------------
+To install MOCHA on multiple operating systems off the same source tree,
+see the file "INSTALL" included in the distribution.
+
+In this case, when the build directory is different from the source
+directory, it's necessary to configure MOCHA to look elsewhere for the GLU
+libraries and headers, e.g.,
+
+	% ./configure --with-glu-libdir=/home/mochauser/glu-1.3/alpha \
+		--with-glu-incdir=/home/mochauser/glu-1.3/include
+
+Also, make sure that there is an obj/ directory in the directory in
+which you are compiling.  See ./configure --help for more information.
+
+---------------------------------------------------------------------------
+To create MOCHA with a different BDD library (say cal) than the default one
+(cu), use the following command:
+
+	%./configure --with-bdd=cal
+
+The same can be achieved by a simple change in Makefile in the "LIBS" 
+variable by changing "-lcu" to "-lcal".
+At this point MOCHA has been successfully used with 3 BDD packages (cmu, cal,
+cu). The glu-1.3 package contains all 3 of them.
+The command "res_verify" relies on functions that are only available
+with the cu BDD package. The command is disabled when another BDD
+package is linked.
+
+---------------------------------------------------------------------------
+To create three versions of MOCHA with different BDD libraries, run ./configure
+without any option and then type 'gmake allprods'. This will create
+MOCHA-cal, MOCHA-cu and MOCHA-cmu. To verify whether all these executables
+are compiled correctly, use 'gmake check_all' at the end.
+
+---------------------------------------------------------------------------
+
+Files in the MOCHA distribution:
+
+README		This file
+
+INSTALL		Generic installation instructions for use with configure, 
+                including instructions for simultaneous multiple-platform 
+                builds.  These are not specific to MOCHA nor GLU, so don't 
+                follow them word for word.
+
+configure	An executable shell script that creates "Makefile" from
+		Makefile.in after determining system-specific parameters.
+
+configure.in	Autoconf source for generating the configure file.
+		Only useful if you want to modify the configure script.
+
+Makefile.in	The template Makefile.
+
+install-sh	Shell scripts used by "gmake install."
+mkinstalldirs
+
+doc/manual.ps
+		A user's manual for the MOCHA system, describing the formalism
+		used and the verification algorithms and commands supported. 
+
+
+examples/*/	A collection of small systems and properties to be verified.
+		Used by "gmake check."
+
+
+share/help/	ASCII documentation for each MOCHA command, accessible through
+		the "help" command within MOCHA.
+
+src/*/		Source code and headers for the MOCHA system.
+
+obj/		Where .o files and generated .c files are placed during
+		a build.
+
+---------------------------------------------------------------------------
+* Platform Specific Instructions
+
+** DEC Mips
+
+  The native DEC compiler on Ultrix needs specific configuration. To
+  compile GLU with the DEC 'cc' compiler, ./configure must be run in the
+  following way.
+
+  env CC=cc ./configure
+
+  Omit "env" if you are using a bourne-compatible shell.
+
+  The GLU library must be built also with the native compiler. Please refer
+  to the README file in the GLU directory for specific instructions about how
+  to obtain the GLU library.
+
+** DEC Alpha:
+
+  Warnings about min and max are harmless.
+  Warnings about Olimit are harmless. They can be gotten rid of by
+  increasing the number following Olimit under CFLAGS.
+  To build the optimized executable, the DEC 'cc' compiler is needed.
+
+  64-bit pointers
+  _______________
+  The DEC OSF/1 C compiler can also generate code that uses 64-bit
+  pointers.  To compile MOCHA with the DEC 'cc' compiler and 64-bit 
+  pointers, ./configure must be run in the following way.
+
+  ./configure --enable-64
+
+
+  Unless configured as above, 32-bit pointers are used. 
+  _______________
+
+** Solaris:
+
+  Multiple warnings about redefined symbols during the compilation of the
+  cmd package in MOCHA are harmless.
+
+  The native SUN compiler on Solaris requires ./configure to be run thus:
+
+  env CC=cc ./configure
+
+  Omit "env" if you are using a bourne-compatible shell.
+
+** Linux:
+
+  If the version of your gcc is 2.7.0, run the script called
+  makeGluOnLinuxWithGcc_2_7_0 instead of "gmake" after "./configure"
+  when you build GLU.
+  This script invokes "gmake" in a way that works around a bug of gcc.
+
+</pre>
+
+

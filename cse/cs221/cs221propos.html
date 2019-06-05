@@ -1,0 +1,170 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1252">
+<META NAME="Generator" CONTENT="Microsoft Word 97">
+<TITLE>Linux Scheduling Algorithm</TITLE>
+<META NAME="Template" CONTENT="C:\Program Files\Microsoft
+Office\Office\html.dot">
+</HEAD>
+<BODY LINK="#0000ff" VLINK="#800080">
+
+<B><FONT SIZE=5><P ALIGN="CENTER">AOS CS221</P>
+</FONT><FONT SIZE=4><P ALIGN="CENTER">Project Proposal<br>
+</FONT><FONT SIZE=5><P ALIGN="CENTER">Linux Scheduling Algorithm </br>
+</B></FONT><P ALIGN="CENTER">By</br>
+<P ALIGN="CENTER">Caixue Lin and Vaibhav Bhandari </br>
+<P ALIGN="CENTER">{lcx,vaibhav}@cse</br>
+<B><I><P ALIGN="JUSTIFY">&nbsp;</br>
+
+</I><P>Problem Statement:<I> </B></I>Experiment with kernel-level tasks
+scheduling, including replacing the current Linux task scheduler and
+improving it.</P>
+<B><I><P ALIGN="JUSTIFY">&nbsp;</P>
+</I><P ALIGN="JUSTIFY">Proposal:</P>
+<I><P ALIGN="JUSTIFY">Introduction:</B></I> Linux uses a simple priority
+based scheduling algorithm to choose between the current processes in the
+system.<I> </I>Linux distinguishes three classes of processes for
+scheduling purposes, which are [1]: </P>
+<P ALIGN="JUSTIFY">1) Real-time FIFO processes are the highest priority
+and not preemptable. </P>
+<P ALIGN="JUSTIFY">2) Real-time round robin processes are the same as
+Real-time FIFO thread except for its preemptibility; </P>
+<P ALIGN="JUSTIFY">3) Normal Timesharing processes have lower priority
+than the previous two. </P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+<P>The processes of the first and second classes belong to
+Real-Time processes, and the third kinds of processes belong to Normal
+processes. Actually, Real time processes will always run before normal
+processes and they may have either of two types of policy: round robin or
+first in first out. As Linux uses preemptive scheduling (but it's not
+fully preemptive???), every process is given a fixed time slice of 200ms
+to run<I>.</P>
+</I><P ALIGN="JUSTIFY">&nbsp;</P>
+<P>Each process has scheduling priority and a quantum
+associated with it. Linux schedules processes via a GOODNESS algorithm,
+which chooses to run the process with highest goodness and the process's
+quantum is decremented by one as it runs. </P>
+<B><I><P ALIGN="JUSTIFY">&nbsp;</P>
+<P>Problems: </B></I>The scheduling algorithm of Linux is
+both self-contained and relatively easy to follow. For that reason, many
+kernel hackers love to try to make improvements. However, the scheduler is
+a rather mysterious component of the kernel. While you can change its
+performance significantly by modifying just a few key parameters, there is
+usually no theoretical support to justify the results obtained.
+Furthermore, you can't be sure that the positive (or negative) results
+obtained will continue to hold when the mix of requests submitted by the
+users (real-time, interactive, I/O-bound, background, etc.) varies
+significantly. Actually, for almost every proposed scheduling strategy, it
+is possible to derive an artificial mix of requests that yields poor
+system performances.</P>
+<P>Let us try to outline some pitfalls of the Linux
+scheduler, e.g. Linux is not a fully pre-emptable design.. As it will turn
+out, some of these limitations become significant on large systems with
+many users. On a single workstation that is running a few tens of
+processes at a time, the Linux scheduler is quite efficient. Since Linux
+was born on an Intel 80386 and continues to be most popular in the PC
+world, we consider the current Linux scheduler quite appropriate.</P>
+<B><P>1). The algorithm does not scale well</P>
+</B><P>If the number of existing processes is very large,
+it is inefficient to recompute all dynamic priorities at once.</P>
+<P ALIGN="JUSTIFY">In old traditional Unix kernels, the dynamic priorities
+were recomputed every second, thus the problem was even worse. Linux tries
+instead to minimize the overhead of the scheduler. Priorities are
+recomputed only when all runnable processes have exhausted their time
+quantum. Therefore, when the number of processes is large, the
+recomputation phase is more expensive but is executed less frequently.</P>
+<P>This simple approach has the disadvantage that when the
+number of runnable processes is very large, I/O-bound processes are seldom
+boosted, and therefore interactive applications have a longer response
+time.</P>
+<B><P>2). The predefined quantum is too large for high system loads</P>
+</B><P ALIGN="JUSTIFY">The system responsiveness experienced by users
+depends heavily on the <EM>system load</EM>, which is the average number
+of processes that are runnable, and hence waiting for CPU time.<A
+HREF="#footnote-5">[1]</A></P>
+<P>As mentioned before, system responsiveness depends also
+on the average time-quantum duration of the runnable processes. In Linux,
+the predefined time quantum appears to be too large for high-end machines
+having a very high expected system load.</P>
+<B><P>3). I/O-bound process boosting strategy is not optimal</P>
+</B><P>The preference for I/O-bound processes is a good
+strategy to ensure a short response time for interactive programs, but it
+is not perfect. Indeed, some batch programs with almost no user
+interaction are I/O-bound. For instance, consider a database search engine
+that must typically read lots of data from the hard disk or a network
+application that must collect data from a remote host on a slow link. Even
+if these kinds of processes do not need a short response time, they are
+boosted by the scheduling algorithm.</P>
+<P>On the other hand, interactive programs that are also
+CPU-bound may appear unresponsive to the users, since the increment of
+dynamic priority due to I/O blocking operations may not compensate for the
+decrement due to CPU usage.</P>
+<B><P>4). Support for real-time applications is weak</P>
+</B><P ALIGN="JUSTIFY">Nonpreemptive kernels are not well suited for
+real-time applications, since processes may spend several milliseconds in
+Kernel Mode while handling an interrupt or exception. During this time, a
+real-time process that becomes runnable cannot be resumed. This is
+unacceptable for real-time applications, which require predictable and low
+response times.<A HREF="#footnote-6">[2]</A></P>
+<B><I><P>&nbsp;</P>
+<P>Plausible Solutions</B></I>:</P>
+<P>Future versions of Linux will likely address Linux weak
+Real-Time problem, either by implementing SVR4's "fixed preemption points"
+or by making the kernel fully preemptive.</P>
+<P>However, kernel preemption is just one of several
+necessary conditions for implementing an effective real-time scheduler.
+Several other issues must be considered. For instance, real-time processes
+often must use resources also needed by conventional processes. A
+real-time process may thus end up waiting until lower-priority process
+releases some resource. This phenomenon is called <EM>priority
+inversion</EM>. Moreover, a real-time process could require a kernel
+service that is granted on behalf of another lower-priority process (for
+example, a kernel thread). This phenomenon is called <EM>hidden
+scheduling</EM>. An effective real-time scheduler should address and
+resolve such problems.</P>
+<P>1) One idea is to create a RTOS kernel and running
+Linux as an unscheduled thread under the RTOS. In this duel structure
+Linux, high-priority thread that need true RTOS performance would run
+under the host operating environment at a higher priority than would the
+Linux thread. This kind of Linux kernel provides a nominally generalized
+RTOS API and threading model, while relegating the main Linux kernel to
+the status of a low priority (idle) thread under their control. <A
+HREF="http://www.oreilly.com/catalog/linuxkernel/chapter/ch10.html/oFootnote#footnote-6">[6]</A></P>
+<P>&nbsp;</P>
+<P>2) The second effort is to replace the current Linux
+kernel scheduling algorithm with a new scheduling algorithm and tune Linux
+device drivers, and hence to make Linux more responsive and deterministic.
+</P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+<B><P ALIGN="JUSTIFY">Our approach </B>will evolve as we experiment with
+present Kernel (2.4) and research through the relevant material.</P>
+<B><P>The plan of approach:<BR>
+1. Find out the relevant experiments and simulations<BR>
+2. Compare various plausible solutions in performance, over available
+data.</P>
+</B><P><BR>
+<B>References:<BR>
+</B>1. Catherine Lingxia Wang, Bo Yao, Yang Yang, Zhengyong Zhu. <A
+HREF="http://www.cs.ucsd.edu/classes/fa01/cse221/projects/group2.pdf"><B><I>A
+Survey of Embedded Operating System</B></I></A>, Department of Computer
+Science, UCSD, 2001.</P>
+<P>2. Daniel P. Bovet &amp; Marco Cesati. Understanding the Linux Kernel,
+<A
+HREF="http://www.oreilly.com/catalog/linuxkernel/chapter/ch10.html"><FONT
+FACE="Arial">Chapter 10, Processing Scheduling</FONT></A><FONT
+FACE="Arial">, </FONT>October 2000.</P>
+<B><I><P>Footnotes:</P>
+</B></I><P><A NAME="footnote_5">1</A>. The <FONT FACE="Courier New"
+SIZE=2>uptime </FONT>program returns the system load for the past 1, 5,
+and 15 minutes. The same information can be obtained by reading the
+<EM>/proc/loadavg</EM><FONT FACE="Courier New" SIZE=2> </FONT>file.</P>
+<P><A NAME="footnote_6">2</A>. The Linux kernel has been modified in
+several ways so it can handle a few hard real-time jobs if they remain
+short. Basically, hardware interrupts are trapped and kernel execution is
+monitored by a kind of "superkernel." These changes do not make Linux a
+true real-time system, though.</P>
+<P ALIGN="JUSTIFY">&nbsp;</P></BODY>
+<hr>
+</address>Vaibhav </address>
+</HTML>
+

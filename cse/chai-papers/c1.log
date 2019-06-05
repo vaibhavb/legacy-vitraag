@@ -1,0 +1,294 @@
+This is TeX, Version 3.141592 (MiKTeX 2.3) (preloaded format=latex 2000.11.28)  17 OCT 2003 22:03
+**c1.tex
+(c1.tex
+LaTeX2e <2001/06/01>
+Babel <v3.7h> and hyphenation patterns for english, loaded.
+(C:\Program Files\texmf\tex\latex\base\report.cls
+Document Class: report 2001/04/21 v1.4e Standard LaTeX document class
+(C:\Program Files\texmf\tex\latex\base\size11.clo
+File: size11.clo 2001/04/21 v1.4e Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@chapter=\count80
+\c@section=\count81
+\c@subsection=\count82
+\c@subsubsection=\count83
+\c@paragraph=\count84
+\c@subparagraph=\count85
+\c@figure=\count86
+\c@table=\count87
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+(C:\Program Files\texmf\tex\latex\base\latexsym.sty
+Package: latexsym 1998/08/17 v2.2e Standard LaTeX package (lasy symbols)
+\symlasy=\mathgroup4
+LaTeX Font Info:    Overwriting symbol font `lasy' in version `bold'
+(Font)                  U/lasy/m/n --> U/lasy/b/n on input line 42.
+)
+(C:\Program Files\texmf\tex\latex\amsmath\amstext.sty
+Package: amstext 2000/06/29 v2.01
+
+(C:\Program Files\texmf\tex\latex\amsmath\amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0
+\@emptytoks=\toks14
+\ex@=\dimen103
+))
+(C:\Program Files\texmf\tex\latex\amsmath\amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d
+\pmbraise@=\dimen104
+)
+
+! LaTeX Error: File `fullpage.sty' not found.
+
+Type X to quit or <RETURN> to proceed,
+or enter new name. (Default extension: sty)
+
+Enter file name: 
+
+! LaTeX Error: File `epic.sty' not found.
+
+Type X to quit or <RETURN> to proceed,
+or enter new name. (Default extension: sty)
+
+Enter file name: 
+
+! LaTeX Error: File `eepic.sty' not found.
+
+Type X to quit or <RETURN> to proceed,
+or enter new name. (Default extension: sty)
+
+Enter file name: 
+(luca.sty
+\@stequation=\toks15
+\c@@protheo=\count88
+\c@@prodefi=\count89
+\c@@proconstr=\count90
+\c@@proalgo=\count91
+\c@@procon=\count92
+\c@@prorestr=\count93
+\c@@prolem=\count94
+\c@@procor=\count95
+\c@@proprop=\count96
+\c@@proassu=\count97
+\c@@proprob=\count98
+\c@@prolprob=\count99
+\c@@proexe=\count100
+\c@@proexa=\count101
+\c@@pronota=\count102
+\c@@prorego=\count103
+\c@@proassert=\count104
+
+
+! LaTeX Error: Environment proof undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.318 \renewenvironment{proof}
+                              {\@proofbugbegin {\bf Proof.}\@envspa}{
+? 
+) (ds.sty) (c1.aux)
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+
+Chapter 1.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 27.
+(C:\Program Files\texmf\tex\latex\base\omscmr.fd
+File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 27.
+ [1
+
+
+]
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <10.95> on input line 101.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 101.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 101.
+LaTeX Font Info:    Try loading font information for U+lasy on input line 101.
+
+(C:\Program Files\texmf\tex\latex\base\ulasy.fd
+File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
+) [2] [3]
+! Undefined control sequence.
+<argument> \ivars _\mp , \ovars _\mp , \rvars 
+                                              _\mp , \iinit _\mp , \oinit _\...
+l.207 ...mp, \oinit_\mp, \itrans_\mp, \otrans_\mp}
+                                                  $
+? 
+
+Overfull \hbox (6.6707pt too wide) in paragraph at lines 205--210
+[][] \OT1/cmr/bx/n/10.95 (mod-ule)  \OT1/cmr/m/n/10.95 A \OT1/cmr/m/it/10.95 mo
+d-ule \OT1/cmr/m/n/10.95 (TM) $\OML/cmm/m/it/10.95 M \OT1/cmr/m/n/10.95 = \OMS/
+cmsy/m/n/10.95 hV[]\OML/cmm/m/it/10.95 ; \OMS/cmsy/m/n/10.95 V[]\OML/cmm/m/it/1
+0.95 ;[] ; []; []; []; []\OMS/cmsy/m/n/10.95 i$
+ []
+
+! Undefined control sequence.
+<recently read> \rvars 
+                       
+l.219 \item A set $\rvars
+                         _\mp$ of {\em reserved variables,}
+? 
+! Undefined control sequence.
+l.220 ...\ivars_\mp \union \ovars_\mp \subs \rvars
+                                                  _\mp$.
+? 
+! Undefined control sequence.
+<recently read> \rvars 
+                       
+l.221 The set $\rvars
+                     _\mp$ contains variables that are reserved for use by
+? 
+[4]
+! Undefined control sequence.
+<argument> \ivars _\mp , \ovars _\mp , \rvars 
+                                              _\mp , \iinit _\mp , \oinit _\...
+l.263 ...mp, \oinit_\mp, \itrans_\mp, \otrans_\mp}
+                                                  $.
+? 
+! Undefined control sequence.
+<argument> \ivars _\mp , \ovars _\mp , \rvars 
+                                              _\mp , \iinit _\mp , \oinit _\...
+l.323 ...mp, \oinit_\mp, \itrans_\mp, \otrans_\mp}
+                                                  $ is {\em closed\/} if
+? 
+! Undefined control sequence.
+l.331 \ask
+          {why?}
+? 
+! Undefined control sequence.
+<argument> \ovars _\mp , \rvars 
+                                _\mp , \init _\mp , \trans _\mp 
+l.333 ...s_\mp, \rvars_\mp, \init_\mp, \trans_\mp}
+                                                  $, where
+? 
+[5]
+! Undefined control sequence.
+<argument> \ivars _\mp , \ovars _\mp , \rvars 
+                                              _\mp , \iinit _\mp , \oinit _\...
+l.344 ...mp, \oinit_\mp, \itrans_\mp, \otrans_\mp}
+                                                  $, its
+? 
+! Undefined control sequence.
+<argument> ...rs _\mp \union \ovars _\mp , \rvars 
+                                                  _\mp , \iinit _\mp \und \o...
+l.347 ...\oinit_\mp, \itrans_\mp \und \otrans_\mp}
+                                                  $.
+? 
+
+Overfull \hbox (38.67027pt too wide) in paragraph at lines 342--349
+[][] \OT1/cmr/bx/n/10.95 (clo-sure)  \OT1/cmr/m/n/10.95 Given an open mod-ule $
+\OML/cmm/m/it/10.95 M \OT1/cmr/m/n/10.95 = \OMS/cmsy/m/n/10.95 hV[]\OML/cmm/m/i
+t/10.95 ; \OMS/cmsy/m/n/10.95 V[]\OML/cmm/m/it/10.95 ;[] ; []; []; []; []\O
+MS/cmsy/m/n/10.95 i$\OT1/cmr/m/n/10.95 ,
+ []
+
+
+Overfull \hbox (1.57735pt too wide) in paragraph at lines 342--349
+\OT1/cmr/m/n/10.95 its \OT1/cmr/m/it/10.95 clo-sure $[]\OT1/cmr/m/n/10.95 (\OML
+/cmm/m/it/10.95 M\OT1/cmr/m/n/10.95 )$ is the mod-ule de-fined by $[](\OML/cmm/
+m/it/10.95 M\OT1/cmr/m/n/10.95 ) = \OMS/cmsy/m/n/10.95 hV[] [ V[]\OML/cmm/m/it/
+10.95 ;[] ; [] \OMS/cmsy/m/n/10.95 ^
+ []
+
+! Undefined control sequence.
+<argument> \ivars _\mp , \ovars _\mp , \rvars 
+                                              _\mp , \iinit _\mp , \oinit _\...
+l.358 ...mp, \oinit_\mp, \itrans_\mp, \otrans_\mp}
+                                                  $ is
+? 
+
+Overfull \hbox (30.76027pt too wide) in paragraph at lines 356--361
+[][] \OT1/cmr/bx/n/10.95 (uni-ver-sal mod-ule)  \OT1/cmr/m/n/10.95 A mod-ule $\
+OML/cmm/m/it/10.95 M \OT1/cmr/m/n/10.95 = \OMS/cmsy/m/n/10.95 hV[]\OML/cmm/m/it
+/10.95 ; \OMS/cmsy/m/n/10.95 V[]\OML/cmm/m/it/10.95 ;[] ; []; []; []; []\OM
+S/cmsy/m/n/10.95 i$
+ []
+
+
+LaTeX Warning: Citation `DillThesis' on page 6 undefined on input line 370.
+
+
+LaTeX Warning: Citation `luca-ia-01' on page 6 undefined on input line 372.
+
+
+LaTeX Warning: Citation `luca-it-01' on page 6 undefined on input line 372.
+
+
+LaTeX Warning: Citation `luca-it-01' on page 6 undefined on input line 375.
+
+
+LaTeX Warning: Citation `SMV96' on page 6 undefined on input line 378.
+
+
+LaTeX Warning: Citation `VIS96' on page 6 undefined on input line 378.
+
+
+LaTeX Warning: Citation `RM96journal' on page 6 undefined on input line 378.
+
+
+LaTeX Warning: Citation `Unity' on page 6 undefined on input line 383.
+
+
+LaTeX Warning: Citation `MilnerCCS' on page 6 undefined on input line 387.
+
+
+LaTeX Warning: Citation `Hoare85' on page 6 undefined on input line 387.
+
+
+LaTeX Warning: Citation `Hennessy88' on page 6 undefined on input line 387.
+
+
+LaTeX Warning: Citation `Milner90' on page 6 undefined on input line 387.
+
+
+LaTeX Warning: Citation `LT87' on page 6 undefined on input line 388.
+
+
+LaTeX Warning: Citation `Lynch96' on page 6 undefined on input line 388.
+
+
+LaTeX Warning: Citation `RM96journal' on page 6 undefined on input line 398.
+
+
+LaTeX Warning: Citation `synchronous_control_00' on page 6 undefined on input l
+ine 398.
+
+
+LaTeX Warning: Citation `synchronous_control_01' on page 6 undefined on input l
+ine 398.
+
+[6]
+No file c1.bbl.
+[7] (c1.aux)
+
+LaTeX Warning: There were undefined references.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 783 strings out of 96071
+ 6878 string characters out of 1197129
+ 55200 words of memory out of 1054900
+ 3716 multiletter control sequences out of 35000
+ 10476 words of font info for 38 fonts, out of 500000 for 1000
+ 14 hyphenation exceptions out of 607
+ 21i,5n,22p,213b,228s stack positions out of 1500i,500n,5000p,200000b,32768s
+
+Output written on c1.dvi (7 pages, 24624 bytes).

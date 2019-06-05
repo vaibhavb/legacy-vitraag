@@ -1,0 +1,22 @@
+Chaiman update
+---------------
+1. figs/countercell.idraw and other figures missing. This makes latex unhappy. Luca can u excavate these too ?
+2. made:
+     * Makefile : with clean
+     * main.tex : the top level-file
+     * chaitut.tex : An interactive session with chai via examples.
+           ++ EXAMPLES: counter, gate in CVS as imocha-examples. ++
+               * How-to-model
+               * Interface language
+               * Simple Exercises
+               * Running chai
+     * chaiusercommands.tex : The chaiuser commands to be discussed n finalized.
+               * See file chaiusercommands.tex
+               * Can be organized as:
+                       + Interface Parsing
+                       + Interface Execution
+                       + Interface checks
+     * interfaces.tex:
+		* To explain the theory and methodology of interfaces.
+     * An scratch dir. Where this update will be.
+y

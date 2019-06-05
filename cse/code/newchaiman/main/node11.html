@@ -1,0 +1,152 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with jLaTeX2HTML 2002 (1.62) JA patch-1.4
+patched version by:  Kenshi Muto, Debian Project.
+LaTeX2HTML 2002 (1.62),
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Running CHAI</TITLE>
+<META NAME="description" CONTENT="Running CHAI">
+<META NAME="keywords" CONTENT="main">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<META NAME="Generator" CONTENT="jLaTeX2HTML v2002 JA patch-1.4">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="main.css">
+
+<LINK REL="next" HREF="node13.html">
+<LINK REL="previous" HREF="node7.html">
+<LINK REL="up" HREF="node2.html">
+<LINK REL="next" HREF="node12.html">
+</HEAD>
+
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html171"
+  HREF="node12.html">[Next]</A> 
+<A NAME="tex2html167"
+  HREF="node2.html">[Up]</A> 
+<A NAME="tex2html161"
+  HREF="node10.html">[Previous]</A>  
+<A NAME="tex2html169"
+  HREF="node17.html">[Index]</A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html172"
+  HREF="node12.html">Executing modules</A>
+<B> Up:</B> <A NAME="tex2html168"
+  HREF="node2.html">Tutorial introduction to CHAI</A>
+<B> Previous:</B> <A NAME="tex2html162"
+  HREF="node10.html">Simple exercises</A>
+ &nbsp <B>  <A NAME="tex2html170"
+  HREF="node17.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00250000000000000000">
+Running C<SMALL>HAI</SMALL></A>
+</H1>
+All the module definitions have to be entered into a single file named
+typically with the suffix .rm; in our case, (say) this file is
+counter.rm (Figure&nbsp;<A HREF="node11.html#fig:finalfile">2.2</A>). C<SMALL>HAI</SMALL> is invoked by typing <TT>chai</TT> at the shell
+prompt. If you do not want to bring up C<SMALL>HAI</SMALL> with its GUI, start
+C<SMALL>HAI</SMALL> in the text mode typing <TT>chai -t</TT>.
+
+<P>
+
+<DIV ALIGN="CENTER"><A NAME="fig:finalfile">&#160;</A><A NAME="1821">&#160;</A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 2.2:</STRONG>
+Input file: counter.rm</CAPTION>
+<TR><TD><A NAME="figure1818"
+ HREF="img12.png">[IMAGE png]</A></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+The module  is read and parsed with the <TT>read_module</TT> command.
+C<SMALL>HAI</SMALL> displays the names of the modules that were successfully
+parsed. In the case of a parse error, an appropriate message is
+displayed. 
+
+<P>
+<PRE>
+chai:   read_module counter.rm
+Module counterCell is composed and checked in.
+Module cell0 is composed and checked in.
+Module cell1 is composed and checked in.
+Module cell2 is composed and checked in.
+Module threebitcounter is composed and checked in.
+Module nondetinput is composed and checked in.
+Module InputModule is composed and checked in.
+Module closedthreebitcounter is composed and checked in.
+parse successful.
+</PRE>
+
+<P>
+The command <TT>show_mdls</TT> lists the modules that have been read
+in. 
+
+<P>
+<PRE>
+chai: show_mdls
+closedthreebitcounter
+InputModule         
+cell0               
+cell1               
+cell2               
+counterCell         
+threebitcounter
+</PRE>
+
+<P>
+C<SMALL>HAI</SMALL> provides many methods of verifying the correctness of a design:
+execution (i.e., simulation), invariant checking, refinement checking,
+and ATL model checking. We highlight execution and ATL model checking
+in this tutorial, being the distinguishing features of C<SMALL>HAI</SMALL>, and
+treat refinement checking and assume-guarantee reasoning in subsequent
+chapters. 
+
+<P>
+<BR><HR>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html173"
+  HREF="node12.html">Executing modules</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html171"
+  HREF="node12.html">[Next]</A> 
+<A NAME="tex2html167"
+  HREF="node2.html">[Up]</A> 
+<A NAME="tex2html161"
+  HREF="node10.html">[Previous]</A>  
+<A NAME="tex2html169"
+  HREF="node17.html">[Index]</A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html172"
+  HREF="node12.html">Executing modules</A>
+<B> Up:</B> <A NAME="tex2html168"
+  HREF="node2.html">Tutorial introduction to CHAI</A>
+<B> Previous:</B> <A NAME="tex2html162"
+  HREF="node10.html">Simple exercises</A>
+ &nbsp <B>  <A NAME="tex2html170"
+  HREF="node17.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+Vaibhav Bhandari
+2003-06-17
+</ADDRESS>
+</BODY>
+</HTML>

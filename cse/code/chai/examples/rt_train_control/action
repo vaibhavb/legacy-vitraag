@@ -1,0 +1,120 @@
+#!/usr/sww/bin/perl5
+
+#--------------------------------------------------------------------------
+#action
+# This is the script that will be executed by the manager.
+# In general, it will have:
+#	1. a mocha execution, followed by
+#	2. checking for patterns in the output file.
+#
+#
+# The execution sequence "inside" mocha is described by the script (look for
+# a file named "script" in the current directory )
+#---------------------------------------------------------------------------
+
+#--absolute truths in the universe-----------------------------------------
+$TRUE = 1;
+$FALSE = 0;
+$MOCHA = $ARGV[0];
+printf ("Executing action with MOCHA=%s for rt_train_control\n", $MOCHA);
+#-------------STAGE - 1 * Execute mocha *-------------------------------------
+unlink 'success', 'failure', 'out', 'out.filter', 'out.diff', 'action.log';
+
+#record path
+#add host name to this ,once you find out how
+#open(LOG, ">action.log") || die "Cant open action.log" ;
+#printf LOG "MOCHA path : %s \n", $mocha_path;
+#close(LOG);
+#&setmode("action.log");
+
+# reachability for blif_mv examples
+
+$mocha_retcode = system ("$MOCHA  -t script  1>out 2>&1");
+&setmode("out");
+
+#----------STAGE - 2 * Filter output * -------------------------------------
+# the output is in out 
+#
+# At this point we can filter the output from out into filtered.out
+# The filtering can be of three types:
+#    1. select all lines that contain the given pattern
+#    2. delete all lines that contain the given pattern
+#    3. Just retain the entire output without filtering.
+#    
+# You are welcome to add more filtering options
+
+# replace the following with your favorite pattern you want to filter
+# The pattern should conform to egrep regular expression syntax
+# do "man egrep" to get more information on egrep regular expression syntax
+$pattern =  '((states)|(Invariant)|(parse)|(arrive)|(reached)|(passed)|(failed)|(image))' ;
+
+# uncomment one of the following options
+# I have chosen to keep these lines alone
+#option1 - select the lines with the pattern
+system ( "egrep  -e \"$pattern\"  out > out.filter");
+
+#option2 - delete the lines with the pattern
+#system ( "egrep -v -e \"$pattern\"  out > out.filter");
+
+#option3 - do not filter anything. Just move  to out.filter
+#system ("/bin/cp out out.filter");
+
+&setmode("out.filter");
+
+# STAGE 3 - choose either 3(a) or 3(b)
+#
+#
+#------------STAGE - 3 (a) * presence/absence of pattern -------------------
+#
+# Checking options
+#
+#$error_code = $FALSE;
+# Option 1. Check if the filtered output is NULL.
+# Use this option if your error condtion is "absence of the pattern"
+#
+#$error_code = $TRUE if (-z "out.filter");
+
+# Option 2. Negation of option 1
+# Use this option if your error condition is "presence of the pattern"
+#
+#$error_code = $TRUE if !(-z "out.filter");
+
+#
+#------------STAGE - 3 (b) Check with a golden file ------------------------
+#
+$error_code = system ("diff out.filter gold > out.diff");
+
+if(!$error_code)
+{
+	$error_code = $TRUE if !(-z "out.diff");
+	setmode("out.diff");
+}
+#
+#-----------END OF ALL STAGES-----------------------------------------------
+#
+#Just record the result and quit!
+if( !$error_code )
+{ 
+   &touch ('success');
+}
+else
+{
+   &touch ('failure');
+}
+
+
+#---- Utility subroutines --------------------------------------------------
+
+
+sub touch {
+  local($file_name) = @_;
+
+  open(TEMP, ">$file_name");
+  close(TEMP);
+  &setmode($file_name);
+}
+
+sub setmode{
+   local ($file_name) = @_;
+   chmod 0775, $file_name;
+}

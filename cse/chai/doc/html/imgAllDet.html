@@ -1,0 +1,1475 @@
+<html>
+<head><title>The img package: all functions </title></head>
+<body>
+
+To add a new method, called "foo", follow these steps. 1)
+  describe the foo method in the Description field at the top of img.h. 2) Add
+  Img_Foo_c to the Img_MethodType enumerated type. 3) Create a file, imgFoo.c,
+  and define the following functions: ImgImageInfoInitializeFoo,
+  ImgImageInfoComputeFwdFoo, ImgImageInfoComputeBwdFoo,
+  ImgImageInfoFreeFoo. 4) In the function Img_ImageInfoInitialize, add the
+  case "foo" for the "image_method" flag, and add the case Img_Foo_c to the
+  switch for initialization.
+<HR>
+<DL>
+<dt><pre>
+<A NAME="ArrayBddArrayFree"></A>
+static void <I></I>
+<B>ArrayBddArrayFree</B>(
+  array_t * <b>arrayBddArray</b> <i></i>
+)
+</pre>
+<dd> Frees an array of array of BDDs.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="imgAllFile.html#imgIwls95.c"TARGET="ABSTRACT"><CODE>imgIwls95.c</CODE></A>
+
+<dt><pre>
+<A NAME="BddArrayDup"></A>
+static array_t * <I></I>
+<B>BddArrayDup</B>(
+  array_t * <b>bddArray</b> <i></i>
+)
+</pre>
+<dd> Duplicates an array of BDDs.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="imgAllFile.html#imgIwls95.c"TARGET="ABSTRACT"><CODE>imgIwls95.c</CODE></A>
+
+<dt><pre>
+<A NAME="BddArrayFree"></A>
+static void <I></I>
+<B>BddArrayFree</B>(
+  array_t * <b>bddArray</b> <i></i>
+)
+</pre>
+<dd> Frees an array of BDDs.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="imgAllFile.html#imgIwls95.c"TARGET="ABSTRACT"><CODE>imgIwls95.c</CODE></A>
+
+<dt><pre>
+<A NAME="BddLinearAndSmooth"></A>
+static bdd_t * <I></I>
+<B>BddLinearAndSmooth</B>(
+  bdd_manager * <b>mddManager</b>, <i></i>
+  bdd_t * <b>fromSet</b>, <i></i>
+  array_t * <b>relationArray</b>, <i></i>
+  array_t * <b>arraySmoothVarBddArray</b>, <i></i>
+  int  <b>verbosity</b> <i></i>
+)
+</pre>
+<dd> The product is taken from the left, i.e., fromSet is multiplied
+  with relationArray[0
+<p>
+
+<DD> <B>Defined in </B> <A HREF="imgAllFile.html#imgIwls95.c"TARGET="ABSTRACT"><CODE>imgIwls95.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalculateBenefit"></A>
+static float <I></I>
+<B>CalculateBenefit</B>(
+  CtrInfo_t * <b>ctrInfo</b>, <i></i>
+  int  <b>maxNumLocalSmoothVars</b>, <i></i>
+  int  <b>maxNumSmoothVars</b>, <i></i>
+  int  <b>maxIndex</b>, <i></i>
+  int  <b>maxNumIntroducedVars</b>, <i></i>
+  Iwls95Option_t * <b>option</b> <i></i>
+)
+</pre>
+<dd> The strategy
+       Choose the cost function:
+       The objective function attached with each Ti is
+       Ci =  W1 C1i + W2 C2i + W3 C3i - W4C4i
+       where:
+       W1 = weight attached with variable getting smoothed
+       W2 = weight attached with the support count of the Ti
+       W3 = weight attached with the max id of the Ti
+       W4 = weight attached with variable getting introduced
+       C1i = Ui/Vi
+       C2i = Vi/Wi
+       C3i = Mi/Max
+       C4i = Xi/Yi
+       Ui = number of variables getting smoothed
+       Vi = number of ps support variables of Ti
+       Wi = total number of ps variables remaining which have not been
+            smoothed out
+       Mi = value of Max id of Ti
+       Max = value of Max id across all the Ti's remaining to be multiplied
+       Xi = number of ns variables introduced
+       Yi = total number of ns variables which have not been introduced so
+            far.
+       Get the weights from the global option
+<p>
+
+<DD> <B>Defined in </B> <A HREF="imgAllFile.html#imgIwls95.c"TARGET="ABSTRACT"><CODE>imgIwls95.c</CODE></A>
+
+<dt><pre>
+<A NAME="CheckCtrInfoArray"></A>
+static int <I></I>
+<B>CheckCtrInfoArray</B>(
+  array_t * <b>ctrInfoArray</b>, <i></i>
+  int  <b>numDomainVars</b>, <i></i>
+  int  <b>numQuantifyVars</b>, <i></i>
+  int  <b>numRangeVars</b> <i></i>
+)
+</pre>
+<dd> Checks the validity of an array of CtrInfoStructs.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="imgAllFile.html#imgIwls95.c"TARGET="ABSTRACT"><CODE>imgIwls95.c</CODE></A>
+
+<dt><pre>
+<A NAME="CheckCtrInfo"></A>
+static int <I></I>
+<B>CheckCtrInfo</B>(
+  CtrInfo_t * <b>ctrInfo</b>, <i></i>
+  int  <b>numDomainVars</b>, <i></i>
+  int  <b>numQuantifyVars</b>, <i></i>
+  int  <b>numRangeVars</b> <i></i>
+)
+</pre>
+<dd> Checks the validity of a CtrInfoStruct.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="imgAllFile.html#imgIwls95.c"TARGET="ABSTRACT"><CODE>imgIwls95.c</CODE></A>
+
+<dt><pre>
+<A NAME="CheckImageValidity"></A>
+static int <I></I>
+<B>CheckImageValidity</B>(
+  mdd_manager * <b>mddManager</b>, <i></i>
+  mdd_t * <b>image</b>, <i></i>
+  array_t * <b>domainVarMddIdArray</b>, <i></i>
+  array_t * <b>quantifyVarMddIdArray</b> <i></i>
+)
+</pre>
+<dd> In a properly formed image, there should not be any
+  domain or quantify variables in its support. This function checks
+  for that fact.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="imgAllFile.html#imgUtil.c"TARGET="ABSTRACT"><CODE>imgUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="CheckQuantificationSchedule"></A>
+static int <I></I>
+<B>CheckQuantificationSchedule</B>(
+  array_t * <b>relationArray</b>, <i></i>
+  array_t * <b>arraySmoothVarBddArray</b> <i></i>
+)
+</pre>
+<dd> Assume Ci represents the ith cube in the array and the Ti
+  represents the ith relation. The correction of the schedule is defined as
+  follows: 
+      a. For all Tj: j > i, SUP(Tj) and SUP(Ci) do not intersect, i.e., the
+      variables which are quantified in Ci should not appear in the Tj for j>i.
+      b. For any i, j, SUP(Ci) and SUP(Cj) do not intersect. However this is
+      not true for the last cube (Cn-1). This is because the last cube contains
+      all the smooth variables.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="imgAllFile.html#imgIwls95.c"TARGET="ABSTRACT"><CODE>imgIwls95.c</CODE></A>
+
+<dt><pre>
+<A NAME="CheckVarInfoArray"></A>
+static int <I></I>
+<B>CheckVarInfoArray</B>(
+  array_t * <b>varInfoArray</b>, <i></i>
+  int  <b>numRelation</b> <i></i>
+)
+</pre>
+<dd> Checks the validity of an array of VarInfoStruct.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="imgAllFile.html#imgIwls95.c"TARGET="ABSTRACT"><CODE>imgIwls95.c</CODE></A>
+
+<dt><pre>
+<A NAME="CreateClusters"></A>
+static array_t * <I></I>
+<B>CreateClusters</B>(
+  bdd_manager * <b>bddManager</b>, <i></i>
+  array_t * <b>relationArray</b>, <i></i>
+  Iwls95Option_t * <b>option</b> <i></i>
+)
+</pre>
+<dd> The clusters are formed by taking the product in order. Once the
+               BDD size of the cluster reaches a threshold, a new cluster is
+               started.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="imgAllFile.html#imgIwls95.c"TARGET="ABSTRACT"><CODE>imgIwls95.c</CODE></A>
+
+<dt><pre>
+<A NAME="CtrInfoMaxIndexCompare"></A>
+static int <I></I>
+<B>CtrInfoMaxIndexCompare</B>(
+  CtrInfo_t** <b>infoCtr1</b>, <i></i>
+  CtrInfo_t ** <b>infoCtr2</b> <i></i>
+)
+</pre>
+<dd> This function is used to sort the array of clusters based on the
+  maximum index of the support variable.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="imgAllFile.html#imgIwls95.c"TARGET="ABSTRACT"><CODE>imgIwls95.c</CODE></A>
+
+<dt><pre>
+<A NAME="CtrInfoStructAlloc"></A>
+static CtrInfo_t * <I></I>
+<B>CtrInfoStructAlloc</B>(
+   <b></b> <i></i>
+)
+</pre>
+<dd> Allocates and initializes memory for ctrInfoStruct.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="imgAllFile.html#imgIwls95.c"TARGET="ABSTRACT"><CODE>imgIwls95.c</CODE></A>
+
+<dt><pre>
+<A NAME="CtrInfoStructFree"></A>
+static void <I></I>
+<B>CtrInfoStructFree</B>(
+  CtrInfo_t * <b>ctrInfo</b> <i></i>
+)
+</pre>
+<dd> Frees the memory associated with ctrInfoStruct.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="imgAllFile.html#imgIwls95.c"TARGET="ABSTRACT"><CODE>imgIwls95.c</CODE></A>
+
+<dt><pre>
+<A NAME="CtrItemStructFree"></A>
+static void <I></I>
+<B>CtrItemStructFree</B>(
+  CtrItem_t * <b>ctrItem</b> <i></i>
+)
+</pre>
+<dd> Frees the memory associated with CtrItemStruct
+<p>
+
+<DD> <B>Defined in </B> <A HREF="imgAllFile.html#imgIwls95.c"TARGET="ABSTRACT"><CODE>imgIwls95.c</CODE></A>
+
+<dt><pre>
+<A NAME="HashIdToBddTable"></A>
+static void <I></I>
+<B>HashIdToBddTable</B>(
+  st_table * <b>table</b>, <i></i>
+  array_t * <b>idArray</b>, <i></i>
+  array_t * <b>bddArray</b> <i></i>
+)
+</pre>
+<dd> The elements of the input array should be in one to one 
+  correpondence, i.e., idArray[i
+<p>
+
+<DD> <B>Defined in </B> <A HREF="imgAllFile.html#imgIwls95.c"TARGET="ABSTRACT"><CODE>imgIwls95.c</CODE></A>
+
+<dt><pre>
+<A NAME="ImageComputeMonolithic"></A>
+mdd_t * <I></I>
+<B>ImageComputeMonolithic</B>(
+  mdd_t * <b>methodData</b>, <i></i>
+  mdd_t * <b>fromLowerBound</b>, <i></i>
+  mdd_t * <b>fromUpperBound</b>, <i></i>
+  mdd_t * <b>toCareSet</b>, <i></i>
+  array_t * <b>smoothVars</b> <i></i>
+)
+</pre>
+<dd> This is a routine for image computation which is called
+  by both forward image and backward image computation. The frontier
+  set (the set of states for which the image is computed) is obtained
+  by finding a small size BDD between lower and upper bounds.
+  The transition relation is simplified by cofactoring
+  it with the domainSubset (frontier set) and with the toCareSet. The
+  order in which this simplification is unimportant from functionality
+  point of view, but the order might effect the BDD size of the
+  optimizedRelation.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="imgAllFile.html#imgMonolithic.c"TARGET="ABSTRACT"><CODE>imgMonolithic.c</CODE></A>
+
+<dt><pre>
+<A NAME="ImageInfoPrint"></A>
+void <I></I>
+<B>ImageInfoPrint</B>(
+  Img_ImageInfo_t * <b>imageInfo</b> <i></i>
+)
+</pre>
+<dd> Print information about the image package
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Img_Init">Img_Init</a>
+<a href="#Img_Reinit">Img_Reinit</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="imgAllFile.html#imgUtil.c"TARGET="ABSTRACT"><CODE>imgUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="ImgArrayBddArrayCheckValidity"></A>
+int <I></I>
+<B>ImgArrayBddArrayCheckValidity</B>(
+  array_t * <b>arrayBddArray</b> <i></i>
+)
+</pre>
+<dd> This function checks the validity of an array of array
+  of BDD nodes.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#ImgBddCheckValidity">ImgBddCheckValidity</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="imgAllFile.html#imgUtil.c"TARGET="ABSTRACT"><CODE>imgUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="ImgBddArrayCheckValidity"></A>
+int <I></I>
+<B>ImgBddArrayCheckValidity</B>(
+  array_t * <b>bddArray</b> <i></i>
+)
+</pre>
+<dd> This function checks the validity of array of BDD nodes.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#ImgBddCheckValidity">ImgBddCheckValidity</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="imgAllFile.html#imgUtil.c"TARGET="ABSTRACT"><CODE>imgUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="ImgBddCheckValidity"></A>
+int <I></I>
+<B>ImgBddCheckValidity</B>(
+  bdd_t * <b>bdd</b> <i></i>
+)
+</pre>
+<dd> [This function checks the validity of a BDD. Three checks are done:
+  1. The BDD should not be freed. "free" field should be 0.
+  2. The node pointer of the BDD should be a valid pointer.
+  3. The manager pointer of the BDD should be a valid pointer.
+  The assumption for 2 and 3 is that, the value of a valid pointer
+  should be > 0xf.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="imgAllFile.html#imgUtil.c"TARGET="ABSTRACT"><CODE>imgUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="ImgBddGetSupportIdTable"></A>
+st_table * <I></I>
+<B>ImgBddGetSupportIdTable</B>(
+  bdd_t * <b>function</b> <i></i>
+)
+</pre>
+<dd> Returns the st_table containing the bdd id of the support
+  variables of the function.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="imgAllFile.html#imgIwls95.c"TARGET="ABSTRACT"><CODE>imgIwls95.c</CODE></A>
+
+<dt><pre>
+<A NAME="ImgImageInfoComputeBwdDisjunctive"></A>
+mdd_t * <I></I>
+<B>ImgImageInfoComputeBwdDisjunctive</B>(
+  ImgFunctionData_t * <b>functionData</b>, <i></i>
+  void * <b>methodData</b>, <i></i>
+  mdd_t * <b>fromLowerBound</b>, <i></i>
+  mdd_t * <b>fromUpperBound</b>, <i></i>
+  mdd_t * <b>toCareSet</b> <i></i>
+)
+</pre>
+<dd> Computes the backward image of a set of states between
+  fromLowerBound and fromUpperBound.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="imgAllFile.html#imgDisjunctive.c"TARGET="ABSTRACT"><CODE>imgDisjunctive.c</CODE></A>
+
+<dt><pre>
+<A NAME="ImgImageInfoComputeBwdIwls95"></A>
+mdd_t * <I></I>
+<B>ImgImageInfoComputeBwdIwls95</B>(
+  ImgFunctionData_t * <b>functionData</b>, <i></i>
+  void * <b>methodData</b>, <i></i>
+  mdd_t * <b>fromLowerBound</b>, <i></i>
+  mdd_t * <b>fromUpperBound</b>, <i></i>
+  mdd_t * <b>toCareSet</b> <i></i>
+)
+</pre>
+<dd> First bdd_cofactor is used to compute the simplified set of
+  states to compute the image of. Next, this simplified set is multiplied with
+  the relation arrays given in the bwdClusteredRelationArray in order and the
+  variables are quantified according to the schedule in
+  bwdArraySmoothVarBddArray.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#ImgImageInfoComputeBwdWithDomainVarsIwls95">ImgImageInfoComputeBwdWithDomainVarsIwls95</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="imgAllFile.html#imgIwls95.c"TARGET="ABSTRACT"><CODE>imgIwls95.c</CODE></A>
+
+<dt><pre>
+<A NAME="ImgImageInfoComputeBwdMono"></A>
+mdd_t * <I></I>
+<B>ImgImageInfoComputeBwdMono</B>(
+  ImgFunctionData_t * <b>functionData</b>, <i></i>
+  void * <b>methodData</b>, <i></i>
+  mdd_t * <b>fromLowerBound</b>, <i></i>
+  mdd_t * <b>fromUpperBound</b>, <i></i>
+  mdd_t * <b>toCareSet</b> <i></i>
+)
+</pre>
+<dd> Computes the backward image of a set of states between
+  fromLowerBound and fromUpperBound.  First a set of states between
+  fromLowerBound and fromUpperBound is computed.  Then, the transition
+  relation is simplified by cofactoring it wrt to the set of states found in
+  the first step, and wrt the toCareSet.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#ImgImageInfoComputeFwdMono">ImgImageInfoComputeFwdMono</a>
+<a href="#ImgImageInfoComputeBwdWithDomainVarsMono">ImgImageInfoComputeBwdWithDomainVarsMono</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="imgAllFile.html#imgMonolithic.c"TARGET="ABSTRACT"><CODE>imgMonolithic.c</CODE></A>
+
+<dt><pre>
+<A NAME="ImgImageInfoComputeBwdWithDomainVarsDisjunctive"></A>
+mdd_t * <I></I>
+<B>ImgImageInfoComputeBwdWithDomainVarsDisjunctive</B>(
+  ImgFunctionData_t * <b>functionData</b>, <i></i>
+  void * <b>methodData</b>, <i></i>
+  mdd_t * <b>fromLowerBound</b>, <i></i>
+  mdd_t * <b>fromUpperBound</b>, <i></i>
+  mdd_t * <b>toCareSet</b> <i></i>
+)
+</pre>
+<dd> Identical to ImgImageInfoComputeBwdDisjunctive except that
+  fromLowerBound and fromUpperBound and given in terms of domain
+  variables, hence we need to substitute the range variables first.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#ImgImageInfoComputeDisjunctive">ImgImageInfoComputeDisjunctive</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="imgAllFile.html#imgDisjunctive.c"TARGET="ABSTRACT"><CODE>imgDisjunctive.c</CODE></A>
+
+<dt><pre>
+<A NAME="ImgImageInfoComputeBwdWithDomainVarsIwls95"></A>
+mdd_t * <I></I>
+<B>ImgImageInfoComputeBwdWithDomainVarsIwls95</B>(
+  ImgFunctionData_t * <b>functionData</b>, <i></i>
+  void * <b>methodData</b>, <i></i>
+  mdd_t * <b>fromLowerBound</b>, <i></i>
+  mdd_t * <b>fromUpperBound</b>, <i></i>
+  mdd_t * <b>toCareSet</b> <i></i>
+)
+</pre>
+<dd> Identical to ImgImageInfoComputeBwdIwls95 except in the
+  fromLowerBound and fromUpperBound, domainVars are substituted by
+  rangeVars.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#ImgImageInfoComputeBwdIwls95">ImgImageInfoComputeBwdIwls95</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="imgAllFile.html#imgIwls95.c"TARGET="ABSTRACT"><CODE>imgIwls95.c</CODE></A>
+
+<dt><pre>
+<A NAME="ImgImageInfoComputeBwdWithDomainVarsMono"></A>
+mdd_t * <I></I>
+<B>ImgImageInfoComputeBwdWithDomainVarsMono</B>(
+  ImgFunctionData_t * <b>functionData</b>, <i></i>
+  void * <b>methodData</b>, <i></i>
+  mdd_t * <b>fromLowerBound</b>, <i></i>
+  mdd_t * <b>fromUpperBound</b>, <i></i>
+  mdd_t * <b>toCareSet</b> <i></i>
+)
+</pre>
+<dd> Identical to ImgImageInfoComputeBwdMono except that
+  fromLowerBound and fromUpperBound and given in terms of domain
+  variables, hence we need to substitute the range variables first.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#ImgImageInfoComputeBwdMono">ImgImageInfoComputeBwdMono</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="imgAllFile.html#imgMonolithic.c"TARGET="ABSTRACT"><CODE>imgMonolithic.c</CODE></A>
+
+<dt><pre>
+<A NAME="ImgImageInfoComputeFwdDisjunctive"></A>
+mdd_t * <I></I>
+<B>ImgImageInfoComputeFwdDisjunctive</B>(
+  ImgFunctionData_t * <b>functionData</b>, <i></i>
+  void * <b>methodData</b>, <i></i>
+  mdd_t * <b>fromLowerBound</b>, <i></i>
+  mdd_t * <b>fromUpperBound</b>, <i></i>
+  mdd_t * <b>toCareSet</b> <i></i>
+)
+</pre>
+<dd> Computes the forward image of a set of states between
+  fromLowerBound and fromUpperBound.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="imgAllFile.html#imgDisjunctive.c"TARGET="ABSTRACT"><CODE>imgDisjunctive.c</CODE></A>
+
+<dt><pre>
+<A NAME="ImgImageInfoComputeFwdIwls95"></A>
+mdd_t * <I></I>
+<B>ImgImageInfoComputeFwdIwls95</B>(
+  ImgFunctionData_t * <b>functionData</b>, <i></i>
+  void * <b>methodData</b>, <i></i>
+  mdd_t * <b>fromLowerBound</b>, <i></i>
+  mdd_t * <b>fromUpperBound</b>, <i></i>
+  mdd_t * <b>toCareSet</b> <i></i>
+)
+</pre>
+<dd> First bdd_cofactor is used to compute the simplified set of
+  states to compute the image of. Next, this simplified set is multiplied with
+  the relation arrays given in the fwdClusteredRelationArray in order and the
+  variables are quantified according to the schedule in
+  fwdArraySmoothVarBddArray.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#ImgImageInfoComputeFwdWithDomainVarsIwls95">ImgImageInfoComputeFwdWithDomainVarsIwls95</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="imgAllFile.html#imgIwls95.c"TARGET="ABSTRACT"><CODE>imgIwls95.c</CODE></A>
+
+<dt><pre>
+<A NAME="ImgImageInfoComputeFwdMono"></A>
+mdd_t * <I></I>
+<B>ImgImageInfoComputeFwdMono</B>(
+  ImgFunctionData_t * <b>functionData</b>, <i></i>
+  void * <b>methodData</b>, <i></i>
+  mdd_t * <b>fromLowerBound</b>, <i></i>
+  mdd_t * <b>fromUpperBound</b>, <i></i>
+  mdd_t * <b>toCareSet</b> <i></i>
+)
+</pre>
+<dd> Computes the forward image of a set of states between
+  fromLowerBound and fromUpperBound.  First a set of states between
+  fromLowerBound and fromUpperBound is computed.  Then, the transition
+  relation is simplified by cofactoring it wrt to the set of states found in
+  the first step, and wrt the toCareSet.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#ImgImageInfoComputeBwdMono">ImgImageInfoComputeBwdMono</a>
+<a href="#ImgImageInfoComputeFwdWithDomainVarsMono">ImgImageInfoComputeFwdWithDomainVarsMono</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="imgAllFile.html#imgMonolithic.c"TARGET="ABSTRACT"><CODE>imgMonolithic.c</CODE></A>
+
+<dt><pre>
+<A NAME="ImgImageInfoComputeFwdWithDomainVarsDisjunctive"></A>
+mdd_t * <I></I>
+<B>ImgImageInfoComputeFwdWithDomainVarsDisjunctive</B>(
+  ImgFunctionData_t * <b>functionData</b>, <i></i>
+  void * <b>methodData</b>, <i></i>
+  mdd_t * <b>fromLowerBound</b>, <i></i>
+  mdd_t * <b>fromUpperBound</b>, <i></i>
+  mdd_t * <b>toCareSet</b> <i></i>
+)
+</pre>
+<dd> Identical to ImgImageInfoComputeFwdDisjunctive except
+  1. toCareSet is in terms of domain vars and hence range vars are
+  substituted first. 2. Before returning the image, range vars are
+  substituted with domain vars.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#ImgImageInfoComputeFwdDisjunctive">ImgImageInfoComputeFwdDisjunctive</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="imgAllFile.html#imgDisjunctive.c"TARGET="ABSTRACT"><CODE>imgDisjunctive.c</CODE></A>
+
+<dt><pre>
+<A NAME="ImgImageInfoComputeFwdWithDomainVarsIwls95"></A>
+mdd_t * <I></I>
+<B>ImgImageInfoComputeFwdWithDomainVarsIwls95</B>(
+  ImgFunctionData_t * <b>functionData</b>, <i></i>
+  void * <b>methodData</b>, <i></i>
+  mdd_t * <b>fromLowerBound</b>, <i></i>
+  mdd_t * <b>fromUpperBound</b>, <i></i>
+  mdd_t * <b>toCareSet</b> <i></i>
+)
+</pre>
+<dd> First the forward image computation function is called
+  which returns an image on range vars. Later, variable substitution
+  is used to obtain image on domain vars.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#ImgImageInfoComputeFwdIwls95">ImgImageInfoComputeFwdIwls95</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="imgAllFile.html#imgIwls95.c"TARGET="ABSTRACT"><CODE>imgIwls95.c</CODE></A>
+
+<dt><pre>
+<A NAME="ImgImageInfoComputeFwdWithDomainVarsMono"></A>
+mdd_t * <I></I>
+<B>ImgImageInfoComputeFwdWithDomainVarsMono</B>(
+  ImgFunctionData_t * <b>functionData</b>, <i></i>
+  void * <b>methodData</b>, <i></i>
+  mdd_t * <b>fromLowerBound</b>, <i></i>
+  mdd_t * <b>fromUpperBound</b>, <i></i>
+  mdd_t * <b>toCareSet</b> <i></i>
+)
+</pre>
+<dd> Identical to ImgImageInfoComputeFwdMono except
+  1. toCareSet is in terms of domain vars and hence range vars are
+  substituted first. 2. Before returning the image, range vars are
+  substituted with domain vars.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#ImgImageInfoComputeFwdMono">ImgImageInfoComputeFwdMono</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="imgAllFile.html#imgMonolithic.c"TARGET="ABSTRACT"><CODE>imgMonolithic.c</CODE></A>
+
+<dt><pre>
+<A NAME="ImgImageInfoFreeDisjunctive"></A>
+void <I></I>
+<B>ImgImageInfoFreeDisjunctive</B>(
+  void * <b>methodData</b> <i></i>
+)
+</pre>
+<dd> Frees the method data associated with the disjunctive method.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="imgAllFile.html#imgDisjunctive.c"TARGET="ABSTRACT"><CODE>imgDisjunctive.c</CODE></A>
+
+<dt><pre>
+<A NAME="ImgImageInfoFreeIwls95"></A>
+void <I></I>
+<B>ImgImageInfoFreeIwls95</B>(
+  void * <b>methodData</b> <i></i>
+)
+</pre>
+<dd> Frees the memory associated with imageInfo.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="imgAllFile.html#imgIwls95.c"TARGET="ABSTRACT"><CODE>imgIwls95.c</CODE></A>
+
+<dt><pre>
+<A NAME="ImgImageInfoFreeMono"></A>
+void <I></I>
+<B>ImgImageInfoFreeMono</B>(
+  void * <b>methodData</b> <i></i>
+)
+</pre>
+<dd> Frees the method data associated with the monolithic method.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="imgAllFile.html#imgMonolithic.c"TARGET="ABSTRACT"><CODE>imgMonolithic.c</CODE></A>
+
+<dt><pre>
+<A NAME="ImgImageInfoInitializeDisjunctive"></A>
+void * <I></I>
+<B>ImgImageInfoInitializeDisjunctive</B>(
+  void * <b>methodData</b>, <i></i>
+  array_t * <b>disjunctionArray</b>, <i></i>
+  ImgFunctionData_t * <b>functionData</b> <i></i>
+)
+</pre>
+<dd> Initializes an image structure for image computation
+  using a disjunctively partitioned transition relation.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="imgAllFile.html#imgDisjunctive.c"TARGET="ABSTRACT"><CODE>imgDisjunctive.c</CODE></A>
+
+<dt><pre>
+<A NAME="ImgImageInfoInitializeIwls95"></A>
+void * <I></I>
+<B>ImgImageInfoInitializeIwls95</B>(
+  void * <b>methodData</b>, <i></i>
+  array_t * <b>bddRelationArray</b>, <i></i>
+  ImgFunctionData_t * <b>functionData</b>, <i></i>
+  Img_DirectionType  <b>directionType</b> <i></i>
+)
+</pre>
+<dd> This process consists of following steps.
+  1. The transition functions are built.
+  2. An array of bit level relations are built using the function
+  MddFnArrayToBddRelArray.
+  3. The relations are clustered using the threshold value.
+  4. The clustered relations are ordered.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="imgAllFile.html#imgIwls95.c"TARGET="ABSTRACT"><CODE>imgIwls95.c</CODE></A>
+
+<dt><pre>
+<A NAME="ImgImageInfoInitializeMono"></A>
+void * <I></I>
+<B>ImgImageInfoInitializeMono</B>(
+  void * <b>methodData</b>, <i></i>
+  mdd_t * <b>transRelation</b>, <i></i>
+  ImgFunctionData_t * <b>functionData</b> <i></i>
+)
+</pre>
+<dd> This function computes the monolithic transition relation
+  characterizing the behavior of the system from the individual functions.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Img_MultiwayLinearAndSmooth">Img_MultiwayLinearAndSmooth</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="imgAllFile.html#imgMonolithic.c"TARGET="ABSTRACT"><CODE>imgMonolithic.c</CODE></A>
+
+<dt><pre>
+<A NAME="ImgImageInfoPrintMethodParamsDisjunctive"></A>
+void <I></I>
+<B>ImgImageInfoPrintMethodParamsDisjunctive</B>(
+  void * <b>methodData</b>, <i></i>
+  FILE * <b>fp</b> <i></i>
+)
+</pre>
+<dd> This function is used to obtain the information about
+  the parameters used to initialize the imageInfo.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="imgAllFile.html#imgDisjunctive.c"TARGET="ABSTRACT"><CODE>imgDisjunctive.c</CODE></A>
+
+<dt><pre>
+<A NAME="ImgImageInfoPrintMethodParamsIwls95"></A>
+void <I></I>
+<B>ImgImageInfoPrintMethodParamsIwls95</B>(
+  void * <b>methodData</b>, <i></i>
+  FILE * <b>fp</b> <i></i>
+)
+</pre>
+<dd> This function is used to obtain the information about
+  the parameters used to initialize the imageInfo.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="imgAllFile.html#imgIwls95.c"TARGET="ABSTRACT"><CODE>imgIwls95.c</CODE></A>
+
+<dt><pre>
+<A NAME="ImgImageInfoPrintMethodParamsMono"></A>
+void <I></I>
+<B>ImgImageInfoPrintMethodParamsMono</B>(
+  void * <b>methodData</b>, <i></i>
+  FILE * <b>fp</b> <i></i>
+)
+</pre>
+<dd> This function is used to obtain the information about
+  the parameters used to initialize the imageInfo.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="imgAllFile.html#imgMonolithic.c"TARGET="ABSTRACT"><CODE>imgMonolithic.c</CODE></A>
+
+<dt><pre>
+<A NAME="Img_End"></A>
+int <I></I>
+<B>Img_End</B>(
+   <b></b> <i></i>
+)
+</pre>
+<dd> End the image package.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Img_Init">Img_Init</a>
+<a href="#Img_Reinit">Img_Reinit</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="imgAllFile.html#imgUtil.c"TARGET="ABSTRACT"><CODE>imgUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="Img_ImageInfoComputeBwdWithDomainVars"></A>
+mdd_t * <I></I>
+<B>Img_ImageInfoComputeBwdWithDomainVars</B>(
+  Img_ImageInfo_t * <b>imageInfo</b>, <i></i>
+  mdd_t * <b>fromLowerBound</b>, <i></i>
+  mdd_t * <b>fromUpperBound</b>, <i></i>
+  mdd_t * <b>toCareSet</b> <i></i>
+)
+</pre>
+<dd> Computes the backward image of a set expressed in terms of
+  domain variables. FromLowerBound, fromUpperBound, and toCareSet are
+  expressed in terms of domain variables. See Img_ImageInfoComputeBwd for more
+  information.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Img_ImageInfoComputeBwd">Img_ImageInfoComputeBwd</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="imgAllFile.html#imgUtil.c"TARGET="ABSTRACT"><CODE>imgUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="Img_ImageInfoComputeBwd"></A>
+mdd_t * <I></I>
+<B>Img_ImageInfoComputeBwd</B>(
+  Img_ImageInfo_t * <b>imageInfo</b>, <i></i>
+  mdd_t * <b>fromLowerBound</b>, <i></i>
+  mdd_t * <b>fromUpperBound</b>, <i></i>
+  mdd_t * <b>toCareSet</b> <i></i>
+)
+</pre>
+<dd> Computes the backward image of a set, under the function vector
+  in imageInfo, using the image computation method specified in imageInfo.  The
+  set for which the backward image is computed is some set containing
+  fromLowerBound and contained in fromUpperBound.  The exact set used is chosen
+  to simplify the computation.  ToCareSet specifies those backward image points
+  of interest; any points not in this set may or may not belong to the returned
+  set.  The MDDs fromLowerBound and fromUpperBound are defined over the range
+  variables.  The MDD toCareSet and the returned MDD are defined over the
+  domain variables. If fromLowerBound is zero, then zero will be returned.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Img_ImageInfoInitialize">Img_ImageInfoInitialize</a>
+<a href="#Img_ImageInfoComputeFwd">Img_ImageInfoComputeFwd</a>
+<a href="#Img_ImageInfoFree">Img_ImageInfoFree</a>
+<a href="#Img_ImageInfoComputeBwdWithDomainVars">Img_ImageInfoComputeBwdWithDomainVars</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="imgAllFile.html#imgUtil.c"TARGET="ABSTRACT"><CODE>imgUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="Img_ImageInfoComputeFwdWithDomainVars"></A>
+mdd_t * <I></I>
+<B>Img_ImageInfoComputeFwdWithDomainVars</B>(
+  Img_ImageInfo_t * <b>imageInfo</b>, <i></i>
+  mdd_t * <b>fromLowerBound</b>, <i></i>
+  mdd_t * <b>fromUpperBound</b>, <i></i>
+  mdd_t * <b>toCareSet</b> <i></i>
+)
+</pre>
+<dd> Computes the forward image of a set and expresses it in terms
+  of domain variables. FromLowerBound, fromUpperBound, and toCareSet are
+  expressed in terms of domain variables. See Img_ImageInfoComputeFwd for more
+  information.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Img_ImageInfoComputeFwd">Img_ImageInfoComputeFwd</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="imgAllFile.html#imgUtil.c"TARGET="ABSTRACT"><CODE>imgUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="Img_ImageInfoComputeFwd"></A>
+mdd_t * <I></I>
+<B>Img_ImageInfoComputeFwd</B>(
+  Img_ImageInfo_t * <b>imageInfo</b>, <i></i>
+  mdd_t * <b>fromLowerBound</b>, <i></i>
+  mdd_t * <b>fromUpperBound</b>, <i></i>
+  mdd_t * <b>toCareSet</b> <i></i>
+)
+</pre>
+<dd> Computes the forward image of a set, under the function vector
+  in imageInfo, using the image computation method specified in imageInfo.  The
+  set for which the forward image is computed is some set containing
+  fromLowerBound and contained in fromUpperBound. The exact set used is chosen
+  to simplify the computation.  ToCareSet specifies those forward image points
+  of interest; any points not in this set may or may not belong to the returned
+  set.  The MDDs fromLowerBound and fromUpperBound are defined over the domain
+  variables.  The MDD toCareSet and the returned MDD are defined over the range
+  variables. If fromLowerBound is zero, then zero will be returned.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Img_ImageInfoInitialize">Img_ImageInfoInitialize</a>
+<a href="#Img_ImageInfoComputeBwd">Img_ImageInfoComputeBwd</a>
+<a href="#Img_ImageInfoFree">Img_ImageInfoFree</a>
+<a href="#Img_ImageInfoComputeFwdWithDomainVars">Img_ImageInfoComputeFwdWithDomainVars</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="imgAllFile.html#imgUtil.c"TARGET="ABSTRACT"><CODE>imgUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="Img_ImageInfoFree"></A>
+void <I></I>
+<B>Img_ImageInfoFree</B>(
+  Img_ImageInfo_t * <b>imageInfo</b> <i></i>
+)
+</pre>
+<dd> Frees the memory associated with imageInfo.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Img_ImageInfoInitialize">Img_ImageInfoInitialize</a>
+<a href="#Img_ImageInfoComputeFwd">Img_ImageInfoComputeFwd</a>
+<a href="#Img_ImageInfoComputeBwd">Img_ImageInfoComputeBwd</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="imgAllFile.html#imgUtil.c"TARGET="ABSTRACT"><CODE>imgUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="Img_ImageInfoInitializeMocha"></A>
+Img_ImageInfo_t * <I></I>
+<B>Img_ImageInfoInitializeMocha</B>(
+  mdd_manager * <b>mddManager</b>, <i></i>
+  array_t * <b>domainVars</b>, <i></i>
+  array_t * <b>rangeVars</b>, <i></i>
+  array_t * <b>quantifyVars</b>, <i></i>
+  unsigned int  <b>methodType</b>, <i></i>
+  Img_DirectionType  <b>directionType</b>, <i></i>
+  void * <b>methodInfo</b> <i></i>
+)
+</pre>
+<dd> The function initializes the image info data structure for use
+               in Mocha. Note that domainVars and rangeVars are arrays of mddIds
+	       of present state variables and next state variables
+	       respectively.
+<p>
+
+<dd> <b>Side Effects</b> None.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="imgAllFile.html#imgUtil.c"TARGET="ABSTRACT"><CODE>imgUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="Img_ImageInfoInitialize"></A>
+Img_ImageInfo_t * <I></I>
+<B>Img_ImageInfoInitialize</B>(
+  Img_ImageInfo_t * <b>imageInfo</b>, <i></i>
+  mdd_manager * <b>mddManager</b>, <i></i>
+  array_t * <b>domainVars</b>, <i></i>
+  array_t * <b>rangeVars</b>, <i></i>
+  array_t * <b>quantifyVars</b>, <i></i>
+  Img_MethodType  <b>methodType</b>, <i></i>
+  void * <b>methodInfo</b>, <i></i>
+  Img_DirectionType  <b>directionType</b> <i></i>
+)
+</pre>
+<dd> Initializes an imageInfo structure.  MethodType specifies which
+  image computation method to use.  If methodType is Img_Default_c, then if
+  the user-settable flag "image_method" has been set, then this method is
+  used, otherwise some default is used. DirectionType specifies which types of
+  image computations will be performed (forward, backward, or both).
+  Method-specific initialization takes into account the value of relevant
+  parameters in the global flag table.<p>
+
+  MddNetwork is a graph representing the functions to be used.  Each vertex of
+  the graph contains a multi-valued function (MVF) and an MDD id.  The MVF
+  gives the function of the vertex in terms of the MDD ids of the immediate
+  fanins of the vertex.<p>
+
+  Roots is an array of char* specifying the vertices of the graph which
+  represent those functions for which we want to compute the image (it must
+  not be empty); for example, for an FSM, roots represent the next state
+  functions.  DomainVars is an array of mddIds; for an FSM, these are the
+  present state variables.  Subsets of the domain are defined over these
+  variables. RangeVars is an array of mddIds over which the range is
+  expressed; for an FSM, these are the next state variables.  This array must
+  be in one-to-one correspondence with the array of roots.  QuantifyVars is an
+  array of mddIds, representing variables to be quantified from results of
+  backward images; for an FSM, these are the input variables.  This array may
+  be empty. No copies are made of any of the input parameters, and thus it is
+  the application's responsibility to free this data *after* the returned
+  Img_ImageInfo_t is freed.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Img_ImageInfoComputeFwd">Img_ImageInfoComputeFwd</a>
+<a href="#Img_ImageInfoComputeBwd">Img_ImageInfoComputeBwd</a>
+<a href="#Img_ImageInfoFree">Img_ImageInfoFree</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="imgAllFile.html#imgUtil.c"TARGET="ABSTRACT"><CODE>imgUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="Img_ImageInfoObtainMethodTypeAsString"></A>
+char * <I></I>
+<B>Img_ImageInfoObtainMethodTypeAsString</B>(
+  Img_ImageInfo_t * <b>imageInfo</b> <i></i>
+)
+</pre>
+<dd> Returns a string giving the method type of an imageInfo. It is
+  the user's responsibility to free this string.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Img_ImageInfoInitialize">Img_ImageInfoInitialize</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="imgAllFile.html#imgUtil.c"TARGET="ABSTRACT"><CODE>imgUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="Img_ImageInfoPrintMethodParams"></A>
+void <I></I>
+<B>Img_ImageInfoPrintMethodParams</B>(
+  Img_ImageInfo_t * <b>imageInfo</b>, <i></i>
+  FILE * <b>fp</b> <i></i>
+)
+</pre>
+<dd> Prints information about the image technique currently used.
+<p>
+
+<dd> <b>Side Effects</b> None.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="imgAllFile.html#imgUtil.c"TARGET="ABSTRACT"><CODE>imgUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="Img_ImageInfoReadMddManager"></A>
+mdd_manager * <I></I>
+<B>Img_ImageInfoReadMddManager</B>(
+  Img_ImageInfo_t * <b>imageInfo</b> <i></i>
+)
+</pre>
+<dd> Returns the mdd manager.
+<p>
+
+<dd> <b>Side Effects</b> None.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="imgAllFile.html#imgUtil.c"TARGET="ABSTRACT"><CODE>imgUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="Img_Init"></A>
+int <I></I>
+<B>Img_Init</B>(
+  Tcl_Interp * <b>interp</b>, <i></i>
+  Main_Manager_t * <b>manager</b> <i></i>
+)
+</pre>
+<dd> Initialize the image package.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Img_Reinit">Img_Reinit</a>
+<a href="#Img_End">Img_End</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="imgAllFile.html#imgUtil.c"TARGET="ABSTRACT"><CODE>imgUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="Img_MultiwayLinearAndSmooth"></A>
+mdd_t* <I></I>
+<B>Img_MultiwayLinearAndSmooth</B>(
+  mdd_manager * <b>mddManager</b>, <i></i>
+  array_t * <b>relationArray</b>, <i></i>
+  array_t * <b>smoothVarMddIdArray</b>, <i></i>
+  array_t * <b>introducedVarMddIdArray</b> <i></i>
+)
+</pre>
+<dd> "relationArray" is an array of mdd's which need to be
+  multiplied and the variables in the "smoothVarMddIdArray" need to
+  be quantified out from the product. "introducedVarMddIdArray" is the
+  array of mddIds of the variables (other than the variables to be
+  quantified out) in the support of the relations. This array is used
+  to compute the product order such that the number of new variables
+  introduced in the product is minimized. However passing an empty
+  array or an array of mddIds of partial support will not result in any
+  error (some optimality will be lost though). The computation consists of 2
+  phases. In phase 1, an ordering of the relations and a schedule of
+  quantifying variables is found (based on IWLS95) heuristic. In phase
+  2, the relations are multiplied in order and the quantifying
+  variables are quantified according to the schedule.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<DD> <B>Defined in </B> <A HREF="imgAllFile.html#imgIwls95.c"TARGET="ABSTRACT"><CODE>imgIwls95.c</CODE></A>
+
+<dt><pre>
+<A NAME="Img_Reinit"></A>
+int <I></I>
+<B>Img_Reinit</B>(
+  Tcl_Interp * <b>interp</b>, <i></i>
+  Main_Manager_t * <b>manager</b> <i></i>
+)
+</pre>
+<dd> Reinitializes the img package.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Img_Init">Img_Init</a>
+<a href="#Img_End">Img_End</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="imgAllFile.html#imgUtil.c"TARGET="ABSTRACT"><CODE>imgUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="Iwls95GetOptions"></A>
+static Iwls95Option_t * <I></I>
+<B>Iwls95GetOptions</B>(
+   <b></b> <i></i>
+)
+</pre>
+<dd> Gets the necessary options for computing the image and returns
+               in the option structure.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="imgAllFile.html#imgIwls95.c"TARGET="ABSTRACT"><CODE>imgIwls95.c</CODE></A>
+
+<dt><pre>
+<A NAME="Iwls95InfoStructAlloc"></A>
+static Iwls95Info_t * <I></I>
+<B>Iwls95InfoStructAlloc</B>(
+   <b></b> <i></i>
+)
+</pre>
+<dd> Allocates and initializes the info structure for IWLS95
+  technique.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="imgAllFile.html#imgIwls95.c"TARGET="ABSTRACT"><CODE>imgIwls95.c</CODE></A>
+
+<dt><pre>
+<A NAME="MddArrayFree"></A>
+static void <I></I>
+<B>MddArrayFree</B>(
+  array_t * <b>mddArray</b> <i></i>
+)
+</pre>
+<dd> Frees an array of MDDs.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="imgAllFile.html#imgIwls95.c"TARGET="ABSTRACT"><CODE>imgIwls95.c</CODE></A>
+
+<dt><pre>
+<A NAME="MddFnArrayToBddRelArray"></A>
+static array_t * <I></I>
+<B>MddFnArrayToBddRelArray</B>(
+  mdd_manager * <b>mddManager</b>, <i></i>
+  int  <b>mddId</b>, <i></i>
+  array_t * <b>mddFnArray</b> <i></i>
+)
+</pre>
+<dd> Suppose y is a k-valued variable and takes values
+              0,1,..,k-1. Then the input to this function is an array with k
+              Mdds each representing the onset of the respective value of the
+              variable (the ith Mdd representing the onset when y takes the
+              value (i-1). Suppose m bits are needed to encode the k values of
+              y. Then internally y is represented as y_0, y_1, ...,
+              y_(m-1). Now the functionality of each bit of y can be computed
+              by proper boolean operation on the functions representing the
+              onsets of various values of y. For instance if y is a 4-valued
+              variable. To achieve that we do the following:
+              For each bit b{
+                relation = 0;
+                For each value j of the variable{
+                  Ej = Encoding function of the jth value
+                  Fj = Onset function of the jth value
+                  If (b appears in the positive phase in Ej) then
+                     relation += b * Fj 
+                  else if (b appears in the negative phase in Ej) then
+                     relation += b'* Fj
+                  else if (b does not appear in Ej) then
+                     relation += Ej
+                }
+              }
+              Note that the above algorithm does not handle the case when a
+              bit appears in both phases in the encoding of any value of the
+              variable. Hence the assumption behind the above algorithm is that
+              the values are encoded as cubes.
+              The case when the encoding are functions can be handled by more
+              complex algorithm. In that case, we will not be able to build the
+              relation for each bit separately. Something to be dealt with in
+              the later work.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="imgAllFile.html#imgIwls95.c"TARGET="ABSTRACT"><CODE>imgIwls95.c</CODE></A>
+
+<dt><pre>
+<A NAME="MddIdArrayToBddArray"></A>
+static array_t * <I></I>
+<B>MddIdArrayToBddArray</B>(
+  mdd_manager * <b>mddManager</b>, <i></i>
+  array_t * <b>mddIdArray</b> <i></i>
+)
+</pre>
+<dd> This function takes an array of MddId's. For each MddId it
+  returns an array of bdd_t's corresponding to the bits. These arrays of bdd_ts
+  are concatenated together and returned.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="imgAllFile.html#imgIwls95.c"TARGET="ABSTRACT"><CODE>imgIwls95.c</CODE></A>
+
+<dt><pre>
+<A NAME="MddIdToBddArray"></A>
+static array_t * <I></I>
+<B>MddIdToBddArray</B>(
+  mdd_manager * <b>mddManager</b>, <i></i>
+  int  <b>mddId</b> <i></i>
+)
+</pre>
+<dd> This function takes an MddId. It returns an array of bdd_t's
+  corresponding to the bits.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="imgAllFile.html#imgIwls95.c"TARGET="ABSTRACT"><CODE>imgIwls95.c</CODE></A>
+
+<dt><pre>
+<A NAME="MddIdToBddIdArray"></A>
+static array_t * <I></I>
+<B>MddIdToBddIdArray</B>(
+  mdd_manager * <b>mddManager</b>, <i></i>
+  int  <b>mddId</b> <i></i>
+)
+</pre>
+<dd> This function takes an MddId. It returns an array of BDD ids
+  corresponding to the bits.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="imgAllFile.html#imgIwls95.c"TARGET="ABSTRACT"><CODE>imgIwls95.c</CODE></A>
+
+<dt><pre>
+<A NAME="OrderRelationArrayAux"></A>
+static void <I></I>
+<B>OrderRelationArrayAux</B>(
+  array_t * <b>relationArray</b>, <i></i>
+  lsList  <b>remainingCtrInfoList</b>, <i></i>
+  array_t * <b>ctrInfoArray</b>, <i></i>
+  array_t * <b>varInfoArray</b>, <i></i>
+  int * <b>sortedMaxIndexVector</b>, <i></i>
+  int  <b>numSmoothVarsRemaining</b>, <i></i>
+  int  <b>numIntroducedVarsRemaining</b>, <i></i>
+  st_table * <b>bddIdToBddTable</b>, <i></i>
+  Iwls95Option_t * <b>option</b>, <i></i>
+  array_t * <b>domainAndQuantifyVarBddArray</b>, <i></i>
+  array_t ** <b>orderedRelationArrayPtr</b>, <i></i>
+  array_t ** <b>arraySmoothVarBddArrayPtr</b> <i></i>
+)
+</pre>
+<dd> This routine is called by orderRelationArray after the
+  initialization is complete and the cluster relations are simplified wrt to
+  the quantify variable local to the cluster. The algorithm is:
+      While (there exists a cluster to be ordered){
+         Calculate benefit for each unordered cluster.
+         Choose the cluster with the maximum benefit.
+         Update the cost function parameters.
+      }
+<p>
+
+<dd> <b>Side Effects</b> ctrInfo and varInfo structures are modified.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="imgAllFile.html#imgIwls95.c"TARGET="ABSTRACT"><CODE>imgIwls95.c</CODE></A>
+
+<dt><pre>
+<A NAME="OrderRelationArray"></A>
+static void <I></I>
+<B>OrderRelationArray</B>(
+  mdd_manager * <b>mddManager</b>, <i></i>
+  array_t * <b>relationArray</b>, <i></i>
+  array_t * <b>domainVarBddArray</b>, <i></i>
+  array_t * <b>quantifyVarBddArray</b>, <i></i>
+  array_t * <b>rangeVarBddArray</b>, <i></i>
+  Iwls95Option_t * <b>option</b>, <i></i>
+  array_t ** <b>orderedRelationArrayPtr</b>, <i></i>
+  array_t ** <b>arraySmoothVarBddArrayPtr</b> <i></i>
+)
+</pre>
+<dd> This function returns an array of ordered relations and an array
+               of BDD cubes (array of BDDs).  
+               This consists of following steps:
+               a. Initialize the array of ctrInfoStructs and varInfoStructs.
+               b. Fill in the list of varItemStruct's of ctrInfo's and
+                  ctrItemStruct's of varInfo's.
+               c. Simplify the relations by quantifying out the quantify
+                  variables local to a particular relation.
+               d. Order the relations according to the cost function described
+                  in "CalculateRelationBenefit".
+<p>
+
+<DD> <B>Defined in </B> <A HREF="imgAllFile.html#imgIwls95.c"TARGET="ABSTRACT"><CODE>imgIwls95.c</CODE></A>
+
+<dt><pre>
+<A NAME="PrintBddIdFromBddArray"></A>
+static void <I></I>
+<B>PrintBddIdFromBddArray</B>(
+  array_t * <b>bddArray</b> <i></i>
+)
+</pre>
+<dd> Prints Ids of an array of BDDs.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="imgAllFile.html#imgIwls95.c"TARGET="ABSTRACT"><CODE>imgIwls95.c</CODE></A>
+
+<dt><pre>
+<A NAME="PrintBddIdTable"></A>
+static void <I></I>
+<B>PrintBddIdTable</B>(
+  st_table * <b>idTable</b> <i></i>
+)
+</pre>
+<dd> Prints the integers from a symbol table.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="imgAllFile.html#imgIwls95.c"TARGET="ABSTRACT"><CODE>imgIwls95.c</CODE></A>
+
+<dt><pre>
+<A NAME="PrintCtrInfoStruct"></A>
+static void <I></I>
+<B>PrintCtrInfoStruct</B>(
+  CtrInfo_t * <b>ctrInfo</b> <i></i>
+)
+</pre>
+<dd> Prints the CtrInfo_t data structure.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="imgAllFile.html#imgIwls95.c"TARGET="ABSTRACT"><CODE>imgIwls95.c</CODE></A>
+
+<dt><pre>
+<A NAME="PrintIntegerArray"></A>
+static void <I></I>
+<B>PrintIntegerArray</B>(
+  array_t * <b>idArray</b> <i></i>
+)
+</pre>
+<dd> Prints integers from an array.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="imgAllFile.html#imgIwls95.c"TARGET="ABSTRACT"><CODE>imgIwls95.c</CODE></A>
+
+<dt><pre>
+<A NAME="PrintOption"></A>
+static void <I></I>
+<B>PrintOption</B>(
+  Iwls95Option_t * <b>option</b>, <i></i>
+  FILE * <b>fp</b> <i></i>
+)
+</pre>
+<dd> Prints the option values used in IWLS95 techinique for
+  image computation.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="imgAllFile.html#imgIwls95.c"TARGET="ABSTRACT"><CODE>imgIwls95.c</CODE></A>
+
+<dt><pre>
+<A NAME="PrintSmoothIntroducedCount"></A>
+static void <I></I>
+<B>PrintSmoothIntroducedCount</B>(
+  array_t * <b>clusterArray</b>, <i></i>
+  array_t ** <b>arraySmoothVarBddArrayPtr</b>, <i></i>
+  array_t * <b>psBddIdArray</b>, <i></i>
+  array_t * <b>nsBddIdArray</b> <i></i>
+)
+</pre>
+<dd> This function is used to print information about the
+  cluster sequence and the sequence of smooth cubes. For each cluster
+  in sequence, it prints the number of variables quantified and the
+  number of variables introduced.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="imgAllFile.html#imgIwls95.c"TARGET="ABSTRACT"><CODE>imgIwls95.c</CODE></A>
+
+<dt><pre>
+<A NAME="PrintVarIdTable"></A>
+static void <I></I>
+<B>PrintVarIdTable</B>(
+  st_table * <b>table</b> <i></i>
+)
+</pre>
+<dd> Prints the content of a table containing integers.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="imgAllFile.html#imgUtil.c"TARGET="ABSTRACT"><CODE>imgUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="PrintVarInfoStruct"></A>
+static void <I></I>
+<B>PrintVarInfoStruct</B>(
+  VarInfo_t * <b>varInfo</b> <i></i>
+)
+</pre>
+<dd> Prints the VarInfo_t structure.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="imgAllFile.html#imgIwls95.c"TARGET="ABSTRACT"><CODE>imgIwls95.c</CODE></A>
+
+<dt><pre>
+<A NAME="RelationArraySmoothLocalVars"></A>
+static array_t * <I></I>
+<B>RelationArraySmoothLocalVars</B>(
+  array_t * <b>relationArray</b>, <i></i>
+  array_t * <b>ctrInfoArray</b>, <i></i>
+  array_t * <b>varInfoArray</b>, <i></i>
+  st_table * <b>bddIdToBddTable</b> <i></i>
+)
+</pre>
+<dd> This function takes an array of relations and quantifies out the
+               quantify variables which are local to a particular relation.
+<p>
+
+<dd> <b>Side Effects</b> This function fills in the "numSmoothVars",
+               "numLocalSmoothVars", "numIntroducedVars", "maxSmoothVarIndex"
+               fields of ctrInfoStruct corresponding to each relation. It also
+               alters the "numCtr" and "ctrItemList" field of those quantify
+               variables which are quantified out in this function.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="imgAllFile.html#imgIwls95.c"TARGET="ABSTRACT"><CODE>imgIwls95.c</CODE></A>
+
+<dt><pre>
+<A NAME="UpdateInfoArrays"></A>
+static array_t * <I></I>
+<B>UpdateInfoArrays</B>(
+  CtrInfo_t * <b>ctrInfo</b>, <i></i>
+  st_table * <b>bddIdToBddTable</b>, <i></i>
+  int * <b>numSmoothVarsRemainingPtr</b>, <i></i>
+  int * <b>numIntroducedVarsRemainingPtr</b> <i></i>
+)
+</pre>
+<dd> The support variable list (varItemList) of the cluster (ctrInfo)
+  is traversed and depending upon the type of the variable and the number of
+  unordered clustered relations which depend on that variable following actions
+  are taken:
+
+  a. If the variable is of range type:
+     This implies that this variable is appearing for the first time in the
+     product. Since it is already introduced in the product, the cost function
+     of any other unordered relation which depends on this variable will get
+     modified. The numIntroducedVariables field of each of the cluster which
+     depends on this variable is decreased by 1. Also this varItemStruct
+     corresponding to this variable is removed from the varItemList field of
+     the cluster.
+     
+  b. If the variable is of domain or quantify type:
+    b1. If number of clusters which depend on this variable is 1 (numCtr == 1):
+           In this case, this variable can be quantified out once the chosen
+           cluster is multiplied in the product. Hence the variable is put in
+           the smoothVarBddArray.
+    b2. If  (numCtr == 2)
+           In this case, there is one more unordered cluster which depends on
+           this variable. But once the current cluster is multiplied in the
+           product, the "numLocalSmoothVars" field of ctrInfo corresponding to
+           the other dependent cluster needs to be increased by 1.
+     b3. If (numCtr > 2)
+           In this case, we just need to decrease the numCtr of the variable by
+           1.
+
+  In any case, for each varInfo in the support variable list (varItemList) of
+  the cluster (ctrInfo) the following invariant is maintained:
+  varInfo->numCtr == lsLength(varInfo->ctrItemList)
+<p>
+
+<dd> <b>Side Effects</b> The fields of ctrInfo and varInfo are changed as mentioned
+  above.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="imgAllFile.html#imgIwls95.c"TARGET="ABSTRACT"><CODE>imgIwls95.c</CODE></A>
+
+<dt><pre>
+<A NAME="VarInfoStructAlloc"></A>
+static VarInfo_t * <I></I>
+<B>VarInfoStructAlloc</B>(
+   <b></b> <i></i>
+)
+</pre>
+<dd> Allocates and initializes memory for varInfoStruct.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="imgAllFile.html#imgIwls95.c"TARGET="ABSTRACT"><CODE>imgIwls95.c</CODE></A>
+
+<dt><pre>
+<A NAME="VarInfoStructFree"></A>
+static void <I></I>
+<B>VarInfoStructFree</B>(
+  VarInfo_t * <b>varInfo</b> <i></i>
+)
+</pre>
+<dd> Frees the memory associated with varInfoStruct.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="imgAllFile.html#imgIwls95.c"TARGET="ABSTRACT"><CODE>imgIwls95.c</CODE></A>
+
+<dt><pre>
+<A NAME="VarItemStructFree"></A>
+static void <I></I>
+<B>VarItemStructFree</B>(
+  VarItem_t * <b>varItem</b> <i></i>
+)
+</pre>
+<dd> Frees the memory associated with VarItemStruct
+<p>
+
+<DD> <B>Defined in </B> <A HREF="imgAllFile.html#imgIwls95.c"TARGET="ABSTRACT"><CODE>imgIwls95.c</CODE></A>
+
+
+</DL>
+<HR>
+Last updated on 1031104 18h39
+</BODY></HTML>

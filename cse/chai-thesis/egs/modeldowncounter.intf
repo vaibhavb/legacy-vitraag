@@ -1,0 +1,23 @@
+\begin{verbatim}
+interface downcounter
+  input vars:  reset: bool;
+  output vars: b0:    bool; b1: bool;
+
+output atom controls b0, b1 reads b0, b1, reset
+  init
+       [] true -> b0' := true; b1' := true;
+  update
+       []  reset             -> b1' := true;  b0' := true
+       [] ~reset &  b1 &  b0 -> b1' := true;  b0' := false
+       [] ~reset &  b1 & ~b0 -> b1' := false; b0' := true
+       [] ~reset & ~b1 &  b0 -> b1' := false; b0' := false
+       [] ~reset & ~b1 & ~b0 -> b1' := true;  b0' := true
+  endatom
+input atom controls reset 
+  init
+       [] true -> reset' := nondet
+  update
+       [] true -> reset' := nondet
+  endatom
+endinterface
+\end{verbatim}

@@ -1,0 +1,52 @@
+.\"
+.\" Generated automatically by htmltoman.pl
+.\"
+.TH  extindex  1
+.SH NAME
+extindex \- Extract indices from extdoc\-generated documentation
+.SH SYNOPSIS
+.B extindex
+.I  directory 
+[ 
+.I  directory 
+... ]
+.SH DESCRIPTION
+.I Extindex
+generates simple indices from 
+.I extdoc
+\-generated
+HTML documentation.  It searches each of the given directories for
+command and package documentation and generates
+.B cmdIndex.html
+, which lists the commands and their synopses,
+and 
+.B pkgIndex.html
+, which lists the packages and their synopses.
+.SH EXAMPLES
+Scan the files in the 
+.B /projects/vis/doc
+directory, and write
+.B /projects/vis/doc/cmdIndex.html
+and
+.B /projects/vis/doc/pkgIndex.html
+:
+.RS
+.sp .5
+.nf
+.B  example% extindex /projects/vis/doc 
+.fi
+.RE
+.SH FILES
+See the list with the extdoc page.
+.SH SEE ALSO
+extdoc,
+extproto,
+Documentation on Packages and File Structure,
+Documentation on Naming Conventions,
+The Ext System
+.SH AUTHOR
+Stephen Edwards 
+.br
+University of California, Berkeley 
+.br
+.B sedwards@eecs.berkeley.edu

@@ -1,0 +1,899 @@
+<HTML>
+<HEAD><TITLE>sl package abstract</TITLE></HEAD>
+<BODY>
+
+
+<!-- Function Abstracts -->
+
+<dl>
+<DT> <A HREF="slAllDet.html#BuildInvMdd" TARGET="MAIN"><CODE>BuildInvMdd()</CODE></A>
+<DD> 
+
+<DT> <A HREF="slAllDet.html#DFS_dependency" TARGET="MAIN"><CODE>DFS_dependency()</CODE></A>
+<DD> Does DFS search of the dependency graph to check 
+                      for cycles. Returns 1 if the dependency relation 
+		      has cycles, and 0 otherwise. 
+		      The flag is positive while the exploration is 
+		      going on, and negative when it is closed. See 
+		      Intro to Algo, Cormen et al, Ch. 23, for colors.
+
+<DT> <A HREF="slAllDet.html#DetermineControlledIdToRemove" TARGET="MAIN"><CODE>DetermineControlledIdToRemove()</CODE></A>
+<DD> Return the pointer to the controlled id to be removed.
+
+<DT> <A HREF="slAllDet.html#IdIsExternal" TARGET="MAIN"><CODE>IdIsExternal()</CODE></A>
+<DD> Return 1 if id in fsm is external
+
+<DT> <A HREF="slAllDet.html#IntegersCompare" TARGET="MAIN"><CODE>IntegersCompare()</CODE></A>
+<DD> Used to sort an array of integers in ascending order.
+
+<DT> <A HREF="slAllDet.html#MddGroupVariables" TARGET="MAIN"><CODE>MddGroupVariables()</CODE></A>
+<DD> Group all bdd vars corresponding to mdd vars initMddId to
+  initMddId + (blockSize-1) in a block which will not be split in reordering.
+
+<DT> <A HREF="slAllDet.html#Mocha_SlGetBDDArray" TARGET="MAIN"><CODE>Mocha_SlGetBDDArray()</CODE></A>
+<DD> required
+
+<DT> <A HREF="slAllDet.html#Mocha_SlGetIdArray" TARGET="MAIN"><CODE>Mocha_SlGetIdArray()</CODE></A>
+<DD> required
+
+<DT> <A HREF="slAllDet.html#Mocha_SlGetIntArray" TARGET="MAIN"><CODE>Mocha_SlGetIntArray()</CODE></A>
+<DD> required
+
+<DT> <A HREF="slAllDet.html#Mocha_SlGetObjectByName" TARGET="MAIN"><CODE>Mocha_SlGetObjectByName()</CODE></A>
+<DD> required
+
+<DT> <A HREF="slAllDet.html#Mocha_SlGetStringArray" TARGET="MAIN"><CODE>Mocha_SlGetStringArray()</CODE></A>
+<DD> required
+
+<DT> <A HREF="slAllDet.html#Mocha_StateInMdd" TARGET="MAIN"><CODE>Mocha_StateInMdd()</CODE></A>
+<DD> required
+
+<DT> <A HREF="slAllDet.html#ObtainListOfSuccessors" TARGET="MAIN"><CODE>ObtainListOfSuccessors()</CODE></A>
+<DD> Given an id, give a list of immediate successors.
+
+<DT> <A HREF="slAllDet.html#ObtainNonAwaitingElementsList" TARGET="MAIN"><CODE>ObtainNonAwaitingElementsList()</CODE></A>
+<DD> return a list of ids which do not await anything.
+
+<DT> <A HREF="slAllDet.html#ObtainUnPrimedVarName" TARGET="MAIN"><CODE>ObtainUnPrimedVarName()</CODE></A>
+<DD> required
+
+<DT> <A HREF="slAllDet.html#PairIsInArray" TARGET="MAIN"><CODE>PairIsInArray()</CODE></A>
+<DD> check if a variable is in a varOrderArray
+
+<DT> <A HREF="slAllDet.html#PrintTransitiveAwaitVarsRecursively" TARGET="MAIN"><CODE>PrintTransitiveAwaitVarsRecursively()</CODE></A>
+<DD> required
+
+<DT> <A HREF="slAllDet.html#PrintsBddIds" TARGET="MAIN"><CODE>PrintsBddIds()</CODE></A>
+<DD> required
+
+<DT> <A HREF="slAllDet.html#ReadDomainSize" TARGET="MAIN"><CODE>ReadDomainSize()</CODE></A>
+<DD> Computes a domain size of a variable
+
+<DT> <A HREF="slAllDet.html#SlAddAwaitDependencyToFSM" TARGET="MAIN"><CODE>SlAddAwaitDependencyToFSM()</CODE></A>
+<DD> Add await dependency info
+
+<DT> <A HREF="slAllDet.html#SlAddIdPair" TARGET="MAIN"><CODE>SlAddIdPair()</CODE></A>
+<DD> required
+
+<DT> <A HREF="slAllDet.html#SlAddToArrayCmd" TARGET="MAIN"><CODE>SlAddToArrayCmd()</CODE></A>
+<DD> required
+
+<DT> <A HREF="slAllDet.html#SlAndCmd" TARGET="MAIN"><CODE>SlAndCmd()</CODE></A>
+<DD> Function implementing command sl_and.
+
+<DT> <A HREF="slAllDet.html#SlAreArrayEqual" TARGET="MAIN"><CODE>SlAreArrayEqual()</CODE></A>
+<DD> Returns 1 if the arrays are equal, 0 otherwise.
+
+<DT> <A HREF="slAllDet.html#SlArrayDifference" TARGET="MAIN"><CODE>SlArrayDifference()</CODE></A>
+<DD> Computes the set difference between two arrays of ints, 
+                      eliminating duplicates.
+
+<DT> <A HREF="slAllDet.html#SlArrayIntersection" TARGET="MAIN"><CODE>SlArrayIntersection()</CODE></A>
+<DD> Computes the intersection between two arrays of ints, 
+                      eliminating duplicates.
+
+<DT> <A HREF="slAllDet.html#SlArrayUnion" TARGET="MAIN"><CODE>SlArrayUnion()</CODE></A>
+<DD> Computes the union between two arrays, 
+                      eliminating duplicates.
+
+<DT> <A HREF="slAllDet.html#SlAssignMddIdsForEachModule" TARGET="MAIN"><CODE>SlAssignMddIdsForEachModule()</CODE></A>
+<DD> required
+
+<DT> <A HREF="slAllDet.html#SlAssignMddIdsForVariable" TARGET="MAIN"><CODE>SlAssignMddIdsForVariable()</CODE></A>
+<DD> required
+
+<DT> <A HREF="slAllDet.html#SlAssignMddIds" TARGET="MAIN"><CODE>SlAssignMddIds()</CODE></A>
+<DD> required
+
+<DT> <A HREF="slAllDet.html#SlAtomSimulateCmd" TARGET="MAIN"><CODE>SlAtomSimulateCmd()</CODE></A>
+<DD> Function implementing the function sl_atom_simulate
+
+<DT> <A HREF="slAllDet.html#SlBDDCmd" TARGET="MAIN"><CODE>SlBDDCmd()</CODE></A>
+<DD> required
+
+<DT> <A HREF="slAllDet.html#SlBddArrayDupe" TARGET="MAIN"><CODE>SlBddArrayDupe()</CODE></A>
+<DD> Duplicating an array of bdds.
+
+<DT> <A HREF="slAllDet.html#SlBddSizeCmd" TARGET="MAIN"><CODE>SlBddSizeCmd()</CODE></A>
+<DD> Function implementing command sl_bddsize.
+
+<DT> <A HREF="slAllDet.html#SlBetterUPreComb" TARGET="MAIN"><CODE>SlBetterUPreComb()</CODE></A>
+<DD> implements the sl_better_upre_comb  command.
+
+<DT> <A HREF="slAllDet.html#SlBetterUPre" TARGET="MAIN"><CODE>SlBetterUPre()</CODE></A>
+<DD> implements the sl_better_Upre command.
+
+<DT> <A HREF="slAllDet.html#SlCheckImplCmd" TARGET="MAIN"><CODE>SlCheckImplCmd()</CODE></A>
+<DD> Function implementing command sl_checkimpl.
+
+<DT> <A HREF="slAllDet.html#SlCheckIntfRefCmd" TARGET="MAIN"><CODE>SlCheckIntfRefCmd()</CODE></A>
+<DD> Function implementing command sl_check_intf_ref
+                      This function, given two interfaces intf1 and intf2, 
+		      checks whether intf2 is a refinement of intf1.
+
+<DT> <A HREF="slAllDet.html#SlCheckInvCmd" TARGET="MAIN"><CODE>SlCheckInvCmd()</CODE></A>
+<DD> Function implementing command sl_checkinv.
+
+<DT> <A HREF="slAllDet.html#SlCheckRandInvCmd" TARGET="MAIN"><CODE>SlCheckRandInvCmd()</CODE></A>
+<DD> Function implementing command sl_checkrandinv.
+
+<DT> <A HREF="slAllDet.html#SlCheckSimCmd" TARGET="MAIN"><CODE>SlCheckSimCmd()</CODE></A>
+<DD> Function implementing command sl_checksim.
+
+<DT> <A HREF="slAllDet.html#SlCheckSupportSubset" TARGET="MAIN"><CODE>SlCheckSupportSubset()</CODE></A>
+<DD> Checks that the support of a given MDD is within a 
+                      specified set of variables.  Returns 0 if ok, 1 if not.
+
+<DT> <A HREF="slAllDet.html#SlCheckTrInvCmd" TARGET="MAIN"><CODE>SlCheckTrInvCmd()</CODE></A>
+<DD> Function implementing command sl_checktrinv.
+
+<DT> <A HREF="slAllDet.html#SlCompareInt" TARGET="MAIN"><CODE>SlCompareInt()</CODE></A>
+<DD> required
+
+<DT> <A HREF="slAllDet.html#SlComposeCmd" TARGET="MAIN"><CODE>SlComposeCmd()</CODE></A>
+<DD> Function implementing command sl_compose.
+                      Note that this function on purpose composes two 
+		      FSMs even if they share controlled variables.
+		      This can lead to misuse, but is also more general.
+
+		      Dec 20, 2002: changed to take into account the 
+		      list of history-free variables. -Luca
+		      Feb 25, 2003: removed the histroy free vars from
+		      the erasedvarL list, as they are constructed on the
+		      fly in SlComputeReach. -Ashwini
+
+<DT> <A HREF="slAllDet.html#SlComposeIntfCmd" TARGET="MAIN"><CODE>SlComposeIntfCmd()</CODE></A>
+<DD> Function implementing command sl_compose_intf.
+                      This function, given two interfaces, composes them and 
+		      checks if they are compatible. 
+		      If they are not compatible, says so. 
+		      If they are compatible, says so, and returns the composition.
+
+<DT> <A HREF="slAllDet.html#SlComputeReach" TARGET="MAIN"><CODE>SlComputeReach()</CODE></A>
+<DD> Computes the set of reachable states, and checks during the 
+                      computation that one of these three conditions holds, 
+		      depending on the value of the input variable task: 
+		      task=0: does not check anything. 
+		      task=1: checks that the reachable states imply a formula
+		      task=2: checks that a given transition invariant holds. 
+		      task=3: does not check anything. 
+		      If task = 0, returns the reachable states. 
+		      If task = 3, returns the set of reachable states projected
+		      on the history-ful variables. 
+		      Otherwise, returns NULL. 
+		      Inputs: 
+		      task:      see above. 
+		      inFsm:     the FSM that has to be thus checked. 
+		      invariant: the (transition?) invariant to be checked. 
+		      mode:  0 = silent (only max data), 1 = verbose 
+
+		      Revision: Dec 18, 2000, improved frontier computation -lda
+
+		      Revision: Dec 20, 2002, erased variables in
+                      erasedvarlist for reachability. -lda
+
+		      Revision: Dec 21, 2002. Restored backward compatibility 
+		      by adding task 3.  Also now it figures out alone what 
+		      are the history-free variables.
+
+<DT> <A HREF="slAllDet.html#SlConjoinAndCopyCmd" TARGET="MAIN"><CODE>SlConjoinAndCopyCmd()</CODE></A>
+<DD> Function implementing command sl_cojoin_and_copy.
+
+<DT> <A HREF="slAllDet.html#SlConjoin" TARGET="MAIN"><CODE>SlConjoin()</CODE></A>
+<DD> Input: an array of MDDs. Output: an MDD obtained by
+                      conjoining them.
+
+<DT> <A HREF="slAllDet.html#SlContrReachFsmCmd" TARGET="MAIN"><CODE>SlContrReachFsmCmd()</CODE></A>
+<DD> Function implementing command sl_contrreachfsm.
+
+<DT> <A HREF="slAllDet.html#SlContrReachSpecCmd" TARGET="MAIN"><CODE>SlContrReachSpecCmd()</CODE></A>
+<DD> Function implementing command sl_contrreachspec.
+
+<DT> <A HREF="slAllDet.html#SlControlCmd" TARGET="MAIN"><CODE>SlControlCmd()</CODE></A>
+<DD> Function implementing command sl_control. 
+                      This is general controllability for Mealy 
+		      modules.  The input arguments are: 
+		      outBDD: the output BDD
+		      specBDD: the specification BDD.
+		      FSM: the FSM that is being controlled.
+		      VarOrd: the variable ordering being used. 
+		      ErasedVars: list of erased variables. 
+		      And of course, a silent/verbose flag.
+
+<DT> <A HREF="slAllDet.html#SlCopyCmd" TARGET="MAIN"><CODE>SlCopyCmd()</CODE></A>
+<DD> Function implementing command sl_copy.
+
+<DT> <A HREF="slAllDet.html#SlCreateCommandFreddy" TARGET="MAIN"><CODE>SlCreateCommandFreddy()</CODE></A>
+<DD> Register Commands defined in this file.
+
+<DT> <A HREF="slAllDet.html#SlCreateIntArrayCmd" TARGET="MAIN"><CODE>SlCreateIntArrayCmd()</CODE></A>
+<DD> required
+
+<DT> <A HREF="slAllDet.html#SlDeleteGstEntry" TARGET="MAIN"><CODE>SlDeleteGstEntry()</CODE></A>
+<DD> required
+
+<DT> <A HREF="slAllDet.html#SlDependencyMerge" TARGET="MAIN"><CODE>SlDependencyMerge()</CODE></A>
+<DD> Merge two await dependency tables for two FSMs.
+
+<DT> <A HREF="slAllDet.html#SlDetectCycles" TARGET="MAIN"><CODE>SlDetectCycles()</CODE></A>
+<DD> Returns 1 if the dependency relation has cycles, 
+                      and 0 otherwise.
+
+<DT> <A HREF="slAllDet.html#SlDetermineControllabilityOfVariables" TARGET="MAIN"><CODE>SlDetermineControllabilityOfVariables()</CODE></A>
+<DD> required
+
+<DT> <A HREF="slAllDet.html#SlDumpBddCmd" TARGET="MAIN"><CODE>SlDumpBddCmd()</CODE></A>
+<DD> Dumping a BDD into a file.
+
+<DT> <A HREF="slAllDet.html#SlEArrayQuantify" TARGET="MAIN"><CODE>SlEArrayQuantify()</CODE></A>
+<DD> Existentially quantifies an array of conjuncts. 
+                      It uses the classical image computation routine, 
+		      but is robust to the variables being empty.
+		      It returns AN ARRAY, so that if the variables 
+		      are empty, the same array is returned.
+
+<DT> <A HREF="slAllDet.html#SlEMddQuantify" TARGET="MAIN"><CODE>SlEMddQuantify()</CODE></A>
+<DD> Existentially quantifies an array of conjuncts. 
+                      It uses the classical image computation routine, 
+		      but is robust to the variables being empty.
+		      It returns AN MDD.
+
+<DT> <A HREF="slAllDet.html#SlEQuantifyIdsCmd" TARGET="MAIN"><CODE>SlEQuantifyIdsCmd()</CODE></A>
+<DD> required
+
+<DT> <A HREF="slAllDet.html#SlEraseCmd" TARGET="MAIN"><CODE>SlEraseCmd()</CODE></A>
+<DD> function implementing sl_erase
+
+<DT> <A HREF="slAllDet.html#SlFSMCmd" TARGET="MAIN"><CODE>SlFSMCmd()</CODE></A>
+<DD> Function implementing command sl_fsm.
+
+<DT> <A HREF="slAllDet.html#SlFreeArrayOfBdd" TARGET="MAIN"><CODE>SlFreeArrayOfBdd()</CODE></A>
+<DD> required
+
+<DT> <A HREF="slAllDet.html#SlFreeBddCmd" TARGET="MAIN"><CODE>SlFreeBddCmd()</CODE></A>
+<DD> required
+
+<DT> <A HREF="slAllDet.html#SlFreeDependency" TARGET="MAIN"><CODE>SlFreeDependency()</CODE></A>
+<DD> Frees a dependency list, following also the list of pairs.
+
+<DT> <A HREF="slAllDet.html#SlFreeLevels" TARGET="MAIN"><CODE>SlFreeLevels()</CODE></A>
+<DD> Frees a level list, including the MDDs.
+
+<DT> <A HREF="slAllDet.html#SlFreeMddList" TARGET="MAIN"><CODE>SlFreeMddList()</CODE></A>
+<DD> Frees a list of MDDs, freeing both the MDDs and the list.
+
+<DT> <A HREF="slAllDet.html#SlFreeObjCmd" TARGET="MAIN"><CODE>SlFreeObjCmd()</CODE></A>
+<DD> required
+
+<DT> <A HREF="slAllDet.html#SlGSTInit" TARGET="MAIN"><CODE>SlGSTInit()</CODE></A>
+<DD> required
+
+<DT> <A HREF="slAllDet.html#SlGetArrayOfCubes" TARGET="MAIN"><CODE>SlGetArrayOfCubes()</CODE></A>
+<DD> required
+
+<DT> <A HREF="slAllDet.html#SlGetCtrlVarIdsCmd" TARGET="MAIN"><CODE>SlGetCtrlVarIdsCmd()</CODE></A>
+<DD> required
+
+<DT> <A HREF="slAllDet.html#SlGetFsmVarsCmd" TARGET="MAIN"><CODE>SlGetFsmVarsCmd()</CODE></A>
+<DD> Prints a list of variables of an fsm.
+
+<DT> <A HREF="slAllDet.html#SlGetIdFromVarNameCmd" TARGET="MAIN"><CODE>SlGetIdFromVarNameCmd()</CODE></A>
+<DD> required
+
+<DT> <A HREF="slAllDet.html#SlGetIdPairArray" TARGET="MAIN"><CODE>SlGetIdPairArray()</CODE></A>
+<DD> required
+
+<DT> <A HREF="slAllDet.html#SlGetInitCmd" TARGET="MAIN"><CODE>SlGetInitCmd()</CODE></A>
+<DD> Function implementing command sl_getinit.
+
+<DT> <A HREF="slAllDet.html#SlGetInit" TARGET="MAIN"><CODE>SlGetInit()</CODE></A>
+<DD> gets the initial condition of an FSM in unprimed form.
+
+<DT> <A HREF="slAllDet.html#SlGetLiteral" TARGET="MAIN"><CODE>SlGetLiteral()</CODE></A>
+<DD> required
+
+<DT> <A HREF="slAllDet.html#SlGetMddManager" TARGET="MAIN"><CODE>SlGetMddManager()</CODE></A>
+<DD> required
+
+<DT> <A HREF="slAllDet.html#SlGetMddSupportCmd" TARGET="MAIN"><CODE>SlGetMddSupportCmd()</CODE></A>
+<DD> required
+
+<DT> <A HREF="slAllDet.html#SlGetModuleManager" TARGET="MAIN"><CODE>SlGetModuleManager()</CODE></A>
+<DD> required
+
+<DT> <A HREF="slAllDet.html#SlGetNameToIdTable" TARGET="MAIN"><CODE>SlGetNameToIdTable()</CODE></A>
+<DD> required
+
+<DT> <A HREF="slAllDet.html#SlGetPartitionedTRCmd" TARGET="MAIN"><CODE>SlGetPartitionedTRCmd()</CODE></A>
+<DD> Function implementing command sl_gettr.
+
+<DT> <A HREF="slAllDet.html#SlGetPrimedIdFromIdCmd" TARGET="MAIN"><CODE>SlGetPrimedIdFromIdCmd()</CODE></A>
+<DD> required
+
+<DT> <A HREF="slAllDet.html#SlGetPrimedIdFromVarNameCmd" TARGET="MAIN"><CODE>SlGetPrimedIdFromVarNameCmd()</CODE></A>
+<DD> required
+
+<DT> <A HREF="slAllDet.html#SlGetRandomCubeInMdd" TARGET="MAIN"><CODE>SlGetRandomCubeInMdd()</CODE></A>
+<DD> Wrapper function for getRandomCubeInMdd
+
+<DT> <A HREF="slAllDet.html#SlGetRegionManager" TARGET="MAIN"><CODE>SlGetRegionManager()</CODE></A>
+<DD> required
+
+<DT> <A HREF="slAllDet.html#SlGetTRCmd" TARGET="MAIN"><CODE>SlGetTRCmd()</CODE></A>
+<DD> Function implementing command sl_gettr.
+
+<DT> <A HREF="slAllDet.html#SlGetTclInterp" TARGET="MAIN"><CODE>SlGetTclInterp()</CODE></A>
+<DD> required
+
+<DT> <A HREF="slAllDet.html#SlGetTopMddId" TARGET="MAIN"><CODE>SlGetTopMddId()</CODE></A>
+<DD> required
+
+<DT> <A HREF="slAllDet.html#SlGetUnprimedIdFromIdCmd" TARGET="MAIN"><CODE>SlGetUnprimedIdFromIdCmd()</CODE></A>
+<DD> required
+
+<DT> <A HREF="slAllDet.html#SlGetVarNameFromIdCmd" TARGET="MAIN"><CODE>SlGetVarNameFromIdCmd()</CODE></A>
+<DD> required
+
+<DT> <A HREF="slAllDet.html#SlGetVarNamesFromIdsCmd" TARGET="MAIN"><CODE>SlGetVarNamesFromIdsCmd()</CODE></A>
+<DD> required
+
+<DT> <A HREF="slAllDet.html#SlGstEntryFree" TARGET="MAIN"><CODE>SlGstEntryFree()</CODE></A>
+<DD> required
+
+<DT> <A HREF="slAllDet.html#SlGstGetEntry" TARGET="MAIN"><CODE>SlGstGetEntry()</CODE></A>
+<DD> required
+
+<DT> <A HREF="slAllDet.html#SlIVarsOfAllLevels" TARGET="MAIN"><CODE>SlIVarsOfAllLevels()</CODE></A>
+<DD> Returns the union of all the input variables 
+                      of an interface, given a pointer to the levels array.
+
+<DT> <A HREF="slAllDet.html#SlImplicationCheck" TARGET="MAIN"><CODE>SlImplicationCheck()</CODE></A>
+<DD> Checks whether implication holds between two bdd arrays.
+                      Returns a boolean, depending on whether it does, or not.
+
+<DT> <A HREF="slAllDet.html#SlInitRandCmd" TARGET="MAIN"><CODE>SlInitRandCmd()</CODE></A>
+<DD> Function implementing command sl_initrand.
+
+<DT> <A HREF="slAllDet.html#SlInsertGstEntry" TARGET="MAIN"><CODE>SlInsertGstEntry()</CODE></A>
+<DD> required
+
+<DT> <A HREF="slAllDet.html#SlIntArrayDupe" TARGET="MAIN"><CODE>SlIntArrayDupe()</CODE></A>
+<DD> Duplicating an array of ints.
+
+<DT> <A HREF="slAllDet.html#SlInvBuildMdd" TARGET="MAIN"><CODE>SlInvBuildMdd()</CODE></A>
+<DD> Function implementing the function sl_inv_buildMdd
+
+<DT> <A HREF="slAllDet.html#SlIsArraySubset" TARGET="MAIN"><CODE>SlIsArraySubset()</CODE></A>
+<DD> Checks if lhs is a subset of rhs.
+
+<DT> <A HREF="slAllDet.html#SlIsStateInMddCmd" TARGET="MAIN"><CODE>SlIsStateInMddCmd()</CODE></A>
+<DD> required
+
+<DT> <A HREF="slAllDet.html#SlIsVVStateInMddCmd" TARGET="MAIN"><CODE>SlIsVVStateInMddCmd()</CODE></A>
+<DD> required
+
+<DT> <A HREF="slAllDet.html#SlLcontrCmd" TARGET="MAIN"><CODE>SlLcontrCmd()</CODE></A>
+<DD> Function implementing command sl_lcontr.
+
+<DT> <A HREF="slAllDet.html#SlLcontrNCmd" TARGET="MAIN"><CODE>SlLcontrNCmd()</CODE></A>
+<DD> Function implementing command sl_lcontr_n.
+
+<DT> <A HREF="slAllDet.html#SlLevelAlloc" TARGET="MAIN"><CODE>SlLevelAlloc()</CODE></A>
+<DD> Allocates a new level.
+
+<DT> <A HREF="slAllDet.html#SlMakeIdArrayCmd" TARGET="MAIN"><CODE>SlMakeIdArrayCmd()</CODE></A>
+<DD> required
+
+<DT> <A HREF="slAllDet.html#SlMakeIntArrayCmd" TARGET="MAIN"><CODE>SlMakeIntArrayCmd()</CODE></A>
+<DD> required
+
+<DT> <A HREF="slAllDet.html#SlMakeIntfCmd" TARGET="MAIN"><CODE>SlMakeIntfCmd()</CODE></A>
+<DD> Function implementing command sl_make_intf.
+                      This function, given two modules, one describing the 
+		      input evolution, the other describing the output evolution, 
+		      creates a single new interface module that combines the two.
+
+<DT> <A HREF="slAllDet.html#SlMakeIntfOutCmd" TARGET="MAIN"><CODE>SlMakeIntfOutCmd()</CODE></A>
+<DD> Function implementing command sl_make_intf_out.
+                      This function creates an interface having only an output 
+		      portion (with no input assumptions). 
+
+  Description        [optional
+
+<DT> <A HREF="slAllDet.html#SlMakeStringArrayCmd" TARGET="MAIN"><CODE>SlMakeStringArrayCmd()</CODE></A>
+<DD> required
+
+<DT> <A HREF="slAllDet.html#SlMakeTrInvCmd" TARGET="MAIN"><CODE>SlMakeTrInvCmd()</CODE></A>
+<DD> Function implementing command sl_maketrinv.
+
+<DT> <A HREF="slAllDet.html#SlMakeVarListCmd" TARGET="MAIN"><CODE>SlMakeVarListCmd()</CODE></A>
+<DD> Make an array_t out of the names of variables.
+
+<DT> <A HREF="slAllDet.html#SlMddArrayAppend" TARGET="MAIN"><CODE>SlMddArrayAppend()</CODE></A>
+<DD> Appends an array of MDDs to another, duping the MDDs.
+
+<DT> <A HREF="slAllDet.html#SlMddEqual" TARGET="MAIN"><CODE>SlMddEqual()</CODE></A>
+<DD> Function implementing the function sl_mdd_equal
+
+<DT> <A HREF="slAllDet.html#SlMddPrintCubes" TARGET="MAIN"><CODE>SlMddPrintCubes()</CODE></A>
+<DD> required
+
+<DT> <A HREF="slAllDet.html#SlMddSubstitute" TARGET="MAIN"><CODE>SlMddSubstitute()</CODE></A>
+<DD> Function implementing the function sl_mdd_substitute
+
+<DT> <A HREF="slAllDet.html#SlModWcontrCmd" TARGET="MAIN"><CODE>SlModWcontrCmd()</CODE></A>
+<DD> Function implementing command sl_modwcontr.
+
+<DT> <A HREF="slAllDet.html#SlNotCmd" TARGET="MAIN"><CODE>SlNotCmd()</CODE></A>
+<DD> Function implementing command sl_not.
+
+<DT> <A HREF="slAllDet.html#SlOVarsOfAllLevels" TARGET="MAIN"><CODE>SlOVarsOfAllLevels()</CODE></A>
+<DD> Returns the union of all the output variables 
+                      of an interface, given a pointer to the levels array.
+
+<DT> <A HREF="slAllDet.html#SlObtainBddId" TARGET="MAIN"><CODE>SlObtainBddId()</CODE></A>
+<DD> required
+
+<DT> <A HREF="slAllDet.html#SlObtainPrimedBddId" TARGET="MAIN"><CODE>SlObtainPrimedBddId()</CODE></A>
+<DD> required
+
+<DT> <A HREF="slAllDet.html#SlObtainUnprimedBddId" TARGET="MAIN"><CODE>SlObtainUnprimedBddId()</CODE></A>
+<DD> required
+
+<DT> <A HREF="slAllDet.html#SlOrCmd" TARGET="MAIN"><CODE>SlOrCmd()</CODE></A>
+<DD> Function implementing command sl_or.
+
+<DT> <A HREF="slAllDet.html#SlPairAlloc" TARGET="MAIN"><CODE>SlPairAlloc()</CODE></A>
+<DD> required
+
+<DT> <A HREF="slAllDet.html#SlPickMddMinterm" TARGET="MAIN"><CODE>SlPickMddMinterm()</CODE></A>
+<DD> utility to pick a minterm form a MDD
+
+<DT> <A HREF="slAllDet.html#SlPickMintermCmd" TARGET="MAIN"><CODE>SlPickMintermCmd()</CODE></A>
+<DD> required
+
+<DT> <A HREF="slAllDet.html#SlPreNCmd" TARGET="MAIN"><CODE>SlPreNCmd()</CODE></A>
+<DD> required
+
+<DT> <A HREF="slAllDet.html#SlPredSizeCmd" TARGET="MAIN"><CODE>SlPredSizeCmd()</CODE></A>
+<DD> Function implementing command sl_predsize.
+
+<DT> <A HREF="slAllDet.html#SlPrimeCmd" TARGET="MAIN"><CODE>SlPrimeCmd()</CODE></A>
+<DD> required
+
+<DT> <A HREF="slAllDet.html#SlPrimeIdArrayCmd" TARGET="MAIN"><CODE>SlPrimeIdArrayCmd()</CODE></A>
+<DD> required
+
+<DT> <A HREF="slAllDet.html#SlPrimeMdd" TARGET="MAIN"><CODE>SlPrimeMdd()</CODE></A>
+<DD> Dummy placeholder.
+
+<DT> <A HREF="slAllDet.html#SlPrimeVars" TARGET="MAIN"><CODE>SlPrimeVars()</CODE></A>
+<DD> Dummy placeholder.
+
+<DT> <A HREF="slAllDet.html#SlPrintAwaitDepCmd" TARGET="MAIN"><CODE>SlPrintAwaitDepCmd()</CODE></A>
+<DD> print variable dependency relation.
+
+<DT> <A HREF="slAllDet.html#SlPrintAwaitVarCmd" TARGET="MAIN"><CODE>SlPrintAwaitVarCmd()</CODE></A>
+<DD> print variables awaiting the given variable in the fsm
+
+<DT> <A HREF="slAllDet.html#SlPrintBddCmd" TARGET="MAIN"><CODE>SlPrintBddCmd()</CODE></A>
+<DD> required
+
+<DT> <A HREF="slAllDet.html#SlPrintBddStats" TARGET="MAIN"><CODE>SlPrintBddStats()</CODE></A>
+<DD> Given an mdd and a set of variables, prints statistics
+                      for the mdd: size of support set and n. of nodes.
+
+<DT> <A HREF="slAllDet.html#SlPrintIntfCmd" TARGET="MAIN"><CODE>SlPrintIntfCmd()</CODE></A>
+<DD> Implements the command sl_print_intf.
+
+<DT> <A HREF="slAllDet.html#SlPrintIntfSupportCmd" TARGET="MAIN"><CODE>SlPrintIntfSupportCmd()</CODE></A>
+<DD> Implements the command sl_print_intf_support.
+
+<DT> <A HREF="slAllDet.html#SlPrintLevelsCmd" TARGET="MAIN"><CODE>SlPrintLevelsCmd()</CODE></A>
+<DD> Prints the list of levels of an interface.
+
+<DT> <A HREF="slAllDet.html#SlPrintMddArray" TARGET="MAIN"><CODE>SlPrintMddArray()</CODE></A>
+<DD> This function prints an array of BDDs. 
+                      Useful for debugging.
+
+<DT> <A HREF="slAllDet.html#SlPrintObjCmd" TARGET="MAIN"><CODE>SlPrintObjCmd()</CODE></A>
+<DD> required
+
+<DT> <A HREF="slAllDet.html#SlPrintSupportCmd" TARGET="MAIN"><CODE>SlPrintSupportCmd()</CODE></A>
+<DD> required
+
+<DT> <A HREF="slAllDet.html#SlPrintTCAwaitDepCmd" TARGET="MAIN"><CODE>SlPrintTCAwaitDepCmd()</CODE></A>
+<DD> print the irreflexive transitive closure of dependency relation.
+
+<DT> <A HREF="slAllDet.html#SlPrintVarArray" TARGET="MAIN"><CODE>SlPrintVarArray()</CODE></A>
+<DD> Prints an array of vars, for debug.
+
+<DT> <A HREF="slAllDet.html#SlPrintVarCmd" TARGET="MAIN"><CODE>SlPrintVarCmd()</CODE></A>
+<DD> required
+
+<DT> <A HREF="slAllDet.html#SlPrintVarNames" TARGET="MAIN"><CODE>SlPrintVarNames()</CODE></A>
+<DD> required
+
+<DT> <A HREF="slAllDet.html#SlRandomSliceBdd" TARGET="MAIN"><CODE>SlRandomSliceBdd()</CODE></A>
+<DD> required
+
+<DT> <A HREF="slAllDet.html#SlRandomcubeInvChkCmd" TARGET="MAIN"><CODE>SlRandomcubeInvChkCmd()</CODE></A>
+<DD> Function implementing the function sl_ran_invchk
+
+<DT> <A HREF="slAllDet.html#SlRandomcubeInvChk" TARGET="MAIN"><CODE>SlRandomcubeInvChk()</CODE></A>
+<DD> This function picks one cube at random from all the 
+                      states that satisfy the transition invariant at a given
+		      image and checks whether the given cube satisfies
+		      the input invariant (the invariant checked depends on the task 
+		      input variable). If the given cube satisfies the invariant
+		      all reachable states from that cube are computed to
+		      get the next image from which a random cube
+		      is again picked. The function terminates when the invariant
+		      at an image is not satisfied, or n_steps iterations are
+		      done.
+
+<DT> <A HREF="slAllDet.html#SlReachCmd" TARGET="MAIN"><CODE>SlReachCmd()</CODE></A>
+<DD> Function implementing command sl_reach.
+
+<DT> <A HREF="slAllDet.html#SlReachHistoryCmd" TARGET="MAIN"><CODE>SlReachHistoryCmd()</CODE></A>
+<DD> Function implementing command sl_reach_histonly.
+                      Computes the set of reachable states, projected onto the 
+		      history variables only.
+
+<DT> <A HREF="slAllDet.html#SlReadOrder" TARGET="MAIN"><CODE>SlReadOrder()</CODE></A>
+<DD> Read variable order from a file
+
+<DT> <A HREF="slAllDet.html#SlRestrictCmd" TARGET="MAIN"><CODE>SlRestrictCmd()</CODE></A>
+<DD> Function implementing command sl_restrict.
+
+<DT> <A HREF="slAllDet.html#SlReturnPrimedId" TARGET="MAIN"><CODE>SlReturnPrimedId()</CODE></A>
+<DD> required
+
+<DT> <A HREF="slAllDet.html#SlReturnRandomValue" TARGET="MAIN"><CODE>SlReturnRandomValue()</CODE></A>
+<DD> 
+
+<DT> <A HREF="slAllDet.html#SlReturnSortedIds" TARGET="MAIN"><CODE>SlReturnSortedIds()</CODE></A>
+<DD> returns a sorted array of (unprimed) bdd ids from fsm
+
+<DT> <A HREF="slAllDet.html#SlReturnUnprimedId" TARGET="MAIN"><CODE>SlReturnUnprimedId()</CODE></A>
+<DD> required
+
+<DT> <A HREF="slAllDet.html#SlReturnVariableFromId" TARGET="MAIN"><CODE>SlReturnVariableFromId()</CODE></A>
+<DD> required
+
+<DT> <A HREF="slAllDet.html#SlSingleMddArray" TARGET="MAIN"><CODE>SlSingleMddArray()</CODE></A>
+<DD> Given an mdd, produces a singleton array containing the mdd.
+
+<DT> <A HREF="slAllDet.html#SlSmoothConjoin" TARGET="MAIN"><CODE>SlSmoothConjoin()</CODE></A>
+<DD> Input: An array of MDDs, and an array of smoothing 
+                      variables. 
+		      Output: the MDD obtained by smoothly conjoining the 
+		      variables.
+
+<DT> <A HREF="slAllDet.html#SlSortAndConjoinTau" TARGET="MAIN"><CODE>SlSortAndConjoinTau()</CODE></A>
+<DD> Function implementing sl_sort_and_conjoin_tau
+
+<DT> <A HREF="slAllDet.html#SlStackAlloc" TARGET="MAIN"><CODE>SlStackAlloc()</CODE></A>
+<DD> Functions implementing a stack of integers.
+
+<DT> <A HREF="slAllDet.html#SlStrengthenIntfCmd" TARGET="MAIN"><CODE>SlStrengthenIntfCmd()</CODE></A>
+<DD> Function implementing command sl_strengthen_intf_inv
+                      This function, given a predicate phi and an 
+		      interface intf, strengthens the input assumption of 
+		      intf to ensure that the invariant inv holds.
+
+<DT> <A HREF="slAllDet.html#SlTauPlusMinus" TARGET="MAIN"><CODE>SlTauPlusMinus()</CODE></A>
+<DD> implements the sl_tau_plus_and_tau_minus command.
+
+<DT> <A HREF="slAllDet.html#SlTclPrintVarNames" TARGET="MAIN"><CODE>SlTclPrintVarNames()</CODE></A>
+<DD> required
+
+<DT> <A HREF="slAllDet.html#SlToTclCmd" TARGET="MAIN"><CODE>SlToTclCmd()</CODE></A>
+<DD> required
+
+<DT> <A HREF="slAllDet.html#SlTrInvCmd" TARGET="MAIN"><CODE>SlTrInvCmd()</CODE></A>
+<DD> Function implementing command sl_trinv.
+
+<DT> <A HREF="slAllDet.html#SlTrueCmd" TARGET="MAIN"><CODE>SlTrueCmd()</CODE></A>
+<DD> Function implementing command sl_true.
+
+<DT> <A HREF="slAllDet.html#SlUnprimeIdArrayCmd" TARGET="MAIN"><CODE>SlUnprimeIdArrayCmd()</CODE></A>
+<DD> required
+
+<DT> <A HREF="slAllDet.html#SlUnprimeMdd" TARGET="MAIN"><CODE>SlUnprimeMdd()</CODE></A>
+<DD> Dummy placeholder.
+
+<DT> <A HREF="slAllDet.html#SlUnprimeVars" TARGET="MAIN"><CODE>SlUnprimeVars()</CODE></A>
+<DD> Dummy placeholder.
+
+<DT> <A HREF="slAllDet.html#SlVarsOfAllLevels" TARGET="MAIN"><CODE>SlVarsOfAllLevels()</CODE></A>
+<DD> Returns the union of all the variables of an interface, 
+                      given a pointer to the levels array.
+
+<DT> <A HREF="slAllDet.html#SlWcontrCmd" TARGET="MAIN"><CODE>SlWcontrCmd()</CODE></A>
+<DD> Function implementing command sl_wcontr.
+
+<DT> <A HREF="slAllDet.html#SlWriteOrderCmd" TARGET="MAIN"><CODE>SlWriteOrderCmd()</CODE></A>
+<DD> print variables awaiting the given variable in the fsm
+
+<DT> <A HREF="slAllDet.html#SlWriteOrder" TARGET="MAIN"><CODE>SlWriteOrder()</CODE></A>
+<DD> Write variable order for slMddManager into a file
+
+<DT> <A HREF="slAllDet.html#Sl_Init" TARGET="MAIN"><CODE>Sl_Init()</CODE></A>
+<DD> Initializes the var package.
+
+<DT> <A HREF="slAllDet.html#SlfindPair" TARGET="MAIN"><CODE>SlfindPair()</CODE></A>
+<DD> find pair, given id.
+
+<DT> <A HREF="slAllDet.html#VarBuildBddIdArray" TARGET="MAIN"><CODE>VarBuildBddIdArray()</CODE></A>
+<DD> Gets the levels of the BDD variables corresponding to the MDD
+  variable of a node.
+
+<DT> <A HREF="slAllDet.html#VarOrdersCompareBddIdArray" TARGET="MAIN"><CODE>VarOrdersCompareBddIdArray()</CODE></A>
+<DD> Used to sort an array of nodes in ascending order of lowest BDD
+  level.
+
+<DT> <A HREF="slAllDet.html#VarOrdersCompareVariable" TARGET="MAIN"><CODE>VarOrdersCompareVariable()</CODE></A>
+<DD> Used to sort an array of nodes in ascending order of lowest BDD
+  level.
+
+<DT> <A HREF="slAllDet.html#assign_levels" TARGET="MAIN"><CODE>assign_levels()</CODE></A>
+<DD> Assigns each BDD to the right level, for the initial condition
+                      and transition relation.  Duplicates the MDDs, so that 
+		      free can be used later.
+
+<DT> <A HREF="slAllDet.html#check_interface_refinement" TARGET="MAIN"><CODE>check_interface_refinement()</CODE></A>
+<DD> Checks whether intf2 refines intf1.
+                      Returns: 
+		      0: yes. 
+		      1: if their variables do not match. 
+		      2: no refinement relation.
+
+<DT> <A HREF="slAllDet.html#compareInt" TARGET="MAIN"><CODE>compareInt()</CODE></A>
+<DD> Comparing two integers! (to sort an array)
+
+<DT> <A HREF="slAllDet.html#comparePair" TARGET="MAIN"><CODE>comparePair()</CODE></A>
+<DD> Comparing two integers! (to sort an array)
+
+<DT> <A HREF="slAllDet.html#compose_interfaces" TARGET="MAIN"><CODE>compose_interfaces()</CODE></A>
+<DD> Composes two interfaces.
+                      Returns:
+		      0: and fill in out_levels, if they are composable. 
+		      1: if their variables are not composable (shared 
+		         outputs, or non-composable levels)
+		      2: not composable (no environment can avoid illegal states)
+
+<DT> <A HREF="slAllDet.html#computeControlReach" TARGET="MAIN"><CODE>computeControlReach()</CODE></A>
+<DD> Computes the controllable and reachable states of 
+                      a module. Gets parameters P C S I M, where P is an fsmEntry 
+		      to the symbol table containing the module, C is an 
+		      array containing the controllable states predicate, 
+		      S is an array containing the specification 
+		      (can be either an invariant, or a transition invariant), 
+		      I is an array containing an initial condition, 
+		      and M is a mode. 
+		      The array I is used if the goal is to check controllability
+		      with respect to an implementation relation, and it is used
+		      to construct the transition relation.  
+		      The mode M can be 0 for silent, and 1 for verbose.
+
+<DT> <A HREF="slAllDet.html#computeMaxInvariantSize" TARGET="MAIN"><CODE>computeMaxInvariantSize()</CODE></A>
+<DD> required
+
+<DT> <A HREF="slAllDet.html#computeMaxTotalSize" TARGET="MAIN"><CODE>computeMaxTotalSize()</CODE></A>
+<DD> required
+
+<DT> <A HREF="slAllDet.html#computeRandReach" TARGET="MAIN"><CODE>computeRandReach()</CODE></A>
+<DD> Computes in a randomized fashion the set of reachable 
+                      states, and checks during the 
+                      computation that one of these conditions holds, 
+		      depending on the value of the input variable task: 
+		      task=1: checks that the reachable states imply a formula
+		      task=2: checks that a given transition invariant holds. 
+		      Does not return anything. 
+		      Inputs: 
+		      task:      see above. 
+		      inFsm:     the FSM that has to be thus checked. 
+		      invariant: the (transition?) invariant to be checked. 
+		      sizeLimit: the size limit (in n. of BDD nodes) of the 
+		                 reachability predicate. 
+		      iterLimit: the maximum n. of iterations that will be 
+                                 tried; -1 means no limit. 
+		      shrinkAlgo: algorithm used for shrinking the mdd. 
+		      mode:  0 = silent (only max data), 1 = verbose
+
+<DT> <A HREF="slAllDet.html#computeRandSim" TARGET="MAIN"><CODE>computeRandSim()</CODE></A>
+<DD> Does a BDD-based simulation, checking whether any state
+                      violating the invariant is reached.  This function differs
+		      from the above one because we do not re-inject the initial
+		      states at each iteration.  Hence, this function needs to be
+		      restarted, if a complete search is to be performed.  On the 
+		      other hand, this function may guarantee better depth than the 
+		      previous one. 
+		      Does not return anything. 
+		      Inputs: 
+		      task: 
+		        task=1: checks that the reachable states imply a formula
+		        task=2: checks that a given transition invariant holds. 
+		      inFsm:     the FSM that has to be thus checked. 
+		      invariant: the (transition?) invariant to be checked. 
+		      sizeLimit: the size limit (in n. of BDD nodes) of the 
+		                 reachability predicate. 
+		      iterLimit: the maximum n. of iterations that will be 
+                                 tried; -1 means no limit. 
+		      shrinkAlgo: algorithm to be used for shrinking. 
+		      mode:  0 = silent (only max data), 1 = verbose
+
+<DT> <A HREF="slAllDet.html#conjoin" TARGET="MAIN"><CODE>conjoin()</CODE></A>
+<DD> Input: an array of MDDs. Output: an MDD obtained by
+                      conjoining them.
+
+<DT> <A HREF="slAllDet.html#copy_single_level_composition" TARGET="MAIN"><CODE>copy_single_level_composition()</CODE></A>
+<DD> Copies a single level... called by zip_levels.
+                      mode is as in zip_levels. 
+		      Version for composition.
+
+<DT> <A HREF="slAllDet.html#copy_single_level_refinement" TARGET="MAIN"><CODE>copy_single_level_refinement()</CODE></A>
+<DD> Copies a single level... called by zip_levels.
+                      mode is as in zip_levels. 
+		      intf_n is used to denote whether the source is 
+		      intf1 or intf2.
+		      Version for refinement.
+
+<DT> <A HREF="slAllDet.html#filter_primed_and_unprime" TARGET="MAIN"><CODE>filter_primed_and_unprime()</CODE></A>
+<DD> Filters the primed variables out of an array, and 
+                      unprimes them.
+
+<DT> <A HREF="slAllDet.html#game_compose_interfaces" TARGET="MAIN"><CODE>game_compose_interfaces()</CODE></A>
+<DD> Composes two interfaces, computing the controllability.
+
+<DT> <A HREF="slAllDet.html#getMddFromLeftAndRightAtmExpr" TARGET="MAIN"><CODE>getMddFromLeftAndRightAtmExpr()</CODE></A>
+<DD> 
+
+<DT> <A HREF="slAllDet.html#getNVals" TARGET="MAIN"><CODE>getNVals()</CODE></A>
+<DD> required
+
+<DT> <A HREF="slAllDet.html#getRandomCubeInMdd" TARGET="MAIN"><CODE>getRandomCubeInMdd()</CODE></A>
+<DD> Computes a random cube from the input mdd
+
+<DT> <A HREF="slAllDet.html#get_polarity" TARGET="MAIN"><CODE>get_polarity()</CODE></A>
+<DD> Decides the polarity of a variable.
+
+<DT> <A HREF="slAllDet.html#make_levels" TARGET="MAIN"><CODE>make_levels()</CODE></A>
+<DD> Creates the level list of variables from the merged 
+                      dependency list.
+
+<DT> <A HREF="slAllDet.html#mddShrink" TARGET="MAIN"><CODE>mddShrink()</CODE></A>
+<DD> Dispacting procedure, that shrinks a given mdd to a given 
+                      size, using one of several algorithms. 
+
+		      INPUT: 
+		      algo: algorithm to be used. 
+		        0 = random cube complement pick 
+			1 = cube pick in proportion to n. of states
+		      R: address of the mdd to shink
+		      sizeR: size of above mdd
+		      suppportVars: support variables of above MDD
+		      sizeLimit: max size of returned MDD
+		      mode: TRUE = verbose, FALSE = silent
+
+<DT> <A HREF="slAllDet.html#mergeAwaitList" TARGET="MAIN"><CODE>mergeAwaitList()</CODE></A>
+<DD> Merge two await dependency lists, for the same
+                      variable id, in two different FSMs.
+		      I guess it simply computes the union.
+
+<DT> <A HREF="slAllDet.html#merge_single_levels_composition" TARGET="MAIN"><CODE>merge_single_levels_composition()</CODE></A>
+<DD> Merges two single levels, taking the union of the input
+                       and output variables, and bdds... called by zip_levels.
+		       Version for composition.
+
+<DT> <A HREF="slAllDet.html#merge_single_levels_refinement" TARGET="MAIN"><CODE>merge_single_levels_refinement()</CODE></A>
+<DD> Merges two single levels, taking the union of the input
+                       and output variables, and bdds... called by zip_levels.
+		       Version used for refinement.
+
+<DT> <A HREF="slAllDet.html#parseNameEqValue" TARGET="MAIN"><CODE>parseNameEqValue()</CODE></A>
+<DD> required
+
+<DT> <A HREF="slAllDet.html#print_levels_array" TARGET="MAIN"><CODE>print_levels_array()</CODE></A>
+<DD> Prints a level array, useful for debugging.
+
+<DT> <A HREF="slAllDet.html#randomMddCubeShrink" TARGET="MAIN"><CODE>randomMddCubeShrink()</CODE></A>
+<DD> Given an mdd, a set of its support variables, and a size 
+                      limit, randomly computes an mdd representing a subset of 
+		      the states, and having no more than the specified size
+		      limit.  It does so by repeatedly selecting a variable, 
+		      selecting a cube, and -if the cube intersects the mdd-
+		      taking the conjunction of the cube and the mdd. 
+
+		      INPUT: 
+		      R: address of the mdd to shink
+		      sizeR: size of above mdd
+		      suppportVars: support variables of above MDD
+		      sizeLimit: max size of returned MDD
+		      mode: TRUE = verbose, FALSE = silent
+
+<DT> <A HREF="slAllDet.html#randomMddStateShrink" TARGET="MAIN"><CODE>randomMddStateShrink()</CODE></A>
+<DD> Given an mdd, a set of its support variables, and a size 
+                      limit, randomly computes an mdd representing a subset of 
+		      the states, and having no more than the specified size
+		      limit.  It does so by repeatedly selecting a variable, 
+		      computing all cubes for that variable, and selecting each 
+		      cube with a probability proportional to the n. of states 
+		      in the intersection between the cube and the mdd. 
+		      
+		      INPUT: 
+		      R: address of the mdd to shink
+		      sizeR: size of above mdd
+		      suppportVars: support variables of above MDD
+		      sizeLimit: max size of returned MDD
+		      mode: TRUE = verbose, FALSE = silent
+
+<DT> <A HREF="slAllDet.html#refinement_check" TARGET="MAIN"><CODE>refinement_check()</CODE></A>
+<DD> Checks refinement between two interfaces, using 
+                      the simple refinement check algorithm based on 
+		      shared variables.
+
+<DT> <A HREF="slAllDet.html#strengthen_interface" TARGET="MAIN"><CODE>strengthen_interface()</CODE></A>
+<DD> Strengthens the input assumptions of an interface, 
+                      ensuring that it satisfies a given invariant.
+		      Returns the levels array of the stronger interfaces.
+
+<DT> <A HREF="slAllDet.html#traverse1" TARGET="MAIN"><CODE>traverse1()</CODE></A>
+<DD> 
+
+<DT> <A HREF="slAllDet.html#traverse" TARGET="MAIN"><CODE>traverse()</CODE></A>
+<DD> 
+
+<DT> <A HREF="slAllDet.html#zip_variable_levels" TARGET="MAIN"><CODE>zip_variable_levels()</CODE></A>
+<DD> Zips together variable levels into levels, and also appends 
+                      the lists of conjuncts of input relations into 
+		      pseudo_levels, and of output relations into levels.
+		      Version useful for both refinement and composition. 
+		      In composition, copies the variables in levels_p, 
+		      the output conjuncts (merged from interfaces 1 and 2) 
+		      in levels_p, and the input conjuncts (again merged)
+		      in pseudo_levels_p. 
+		      In refinement, copies all the variables in levels_p
+		      (as in composition), but keeps the i/o conjuncts
+		      of interface1 into levels_p, and those of interface2
+		      into pseudo_levels_p. 
+		      Additionally, in refinement it is tolerant of 
+		      non-linearizable orders, since there's no direct game.
+		      The variable mode indicates what to do: 
+		      1 = composition
+		      0 = refinement.
+
+<DT> <A HREF="slAllDet.html#" TARGET="MAIN"><CODE>()</CODE></A>
+<DD> This function computes the history-free variables of a
+                      module.
+		      Input:  the list of all variables of a module, and the 
+		              transition relation.
+		      Output: the list of history-free variables.
+
+</DL>
+
+<HR>
+
+Last updated on 1031103 12h03
+</BODY></HTML>

@@ -1,0 +1,73 @@
+%\documentclass[11pt]{report}
+\documentclass[11pt]{ucscthesis}
+\usepackage{amssymb}
+\usepackage{epsfig}
+\usepackage{latexsym}
+\usepackage{epsf}
+\usepackage{xspace}
+\usepackage{comment}
+\usepackage{makeidx}
+\usepackage{multicol}
+%\usepackage{longtable}
+%%%%%%%Luca's packages%%%%%
+
+%\usepackage{epic}
+%\usepackage{eepic}
+\usepackage{luca}
+\usepackage{vaibhav}
+\usepackage{ds}
+\usepackage{mocha}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%These we need as we would probably change the margins...
+%\setlength{\textwidth}{14truecm}  %original is 12.2
+%\setlength{\textheight}{21.5truecm}  %original is 19.3
+%\setlength{\topmargin}{1.25in}
+\setlength{\leftmargin}{-1.25in}
+
+\makeindex
+
+\title{ \chai - A Tool For Synchronous Interfaces}
+\author{Vaibhav Bhandari}
+%Computer Science and Engineering Department \\
+%University of California, Santa Cruz \\
+%{\tt vaibhav@cse.ucsc.edu} \\
+%{\tt http://www.cse.ucsc.edu/\(\sim\)vaibhav}\\
+%}
+
+\degreeyear{2003}
+\degreemonth{December}
+\degree{Master of Science}
+\numberofmembers{3}
+\chair{Professor Luca de Alfaro}
+\committeememberone{Professor Jim Whitehead}
+\committeemembertwo{Professor Scott Brandt}
+\field{Computer Science}
+\campus{Santa Cruz}
+
+\begin{document}
+\pagenumbering{roman}
+\maketitle
+\copyrightpage
+%\newpage
+\tableofcontents
+\listoffigures
+\listoftables
+
+\begin{acknowledgements}
+\input{ack}
+\end{acknowledgements}
+\clearpage
+\pagenumbering{arabic}
+\input{intro}
+\input{interfaces}
+\input{chai}
+\input{mv2rm}
+\input{conclusion}
+
+\appendix
+\input{mvbnf}
+\input{intfbnf}
+\bibliographystyle{alpha}
+\bibliography{thesis}
+\end{document}

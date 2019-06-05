@@ -1,0 +1,34 @@
+\begin{minipage}[t]{2in}
+\scriptsize
+\begin{verbatim}
+subckt:
+      TokSubckt TokVar TokVar
+        param_passing TokEOL
+;
+param_passing:
+    formal_actual param_passing
+    |
+;
+formal_actual:
+      TokVar ASSIGN TokVar
+; latch:
+      TokLatch TokVar TokVar
+                    TokEOL
+;
+tabvars:
+      inList ARROW outList
+  |   TokTabVar inList
+
+  | TokTabVar
+;
+inList:
+    TokTabVar inList
+  | TokTabVar
+  | {[]}
+;
+outList:
+    TokTabVar outList
+  | TokTabVar
+;
+\end{verbatim}
+\end{minipage}

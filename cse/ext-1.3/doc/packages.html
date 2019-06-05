@@ -1,0 +1,708 @@
+<html>
+<head><title>Packages and File Structure</title></head>
+<body>
+
+<h1> Packages and File Structure </h1>
+
+<UL>
+<LI> <a href="#packages">Packages</a>
+<LI> <a href="#CHeaderFiles">C Header Files</a>
+<LI> <a href="#CSourceFiles">C Source Files</a>
+<LI> <a href="#structuredComments">Structured Comments</a>
+   <UL>
+   <LI> <a href="#CHeaderFileComment"><tt>CHeaderFile</tt></a>
+   <LI> <a href="#CFileComment"><tt>CFile</tt></a>
+   <LI> <a href="#functionComment"><tt>Function</tt></a>
+   <LI> <a href="#macroComment"><tt>Macro</tt></a>
+   <LI> <a href="#structVariableComment"><tt>Struct</tt> and <tt>Variable</tt></a>
+   </UL>
+<LI> <a href="#lowLevelCodingConventions">Low-Level Coding Conventions</a>
+</UL>
+
+<hr>
+
+<a name="packages">
+<h2>Packages</h2>
+</a>
+
+Code in the <tt>ext</tt> environment is divided into packages.  A
+package is a group of source (<tt>.c</tt>) and header files
+(<tt>.h</tt>) in a subdirectory centered around either a function
+(e.g., the BDD variable ordering package ``<tt>ord</tt>''), or a data
+structure (e.g., the network package ``<tt>ntk</tt>'').  Each package
+has a short two- to five-letter name, called the short package name,
+placed in front of all filenames and external identifiers related to
+the package.  This name may appear in all lowercase, or with its first
+letter capitalized, written as <i>package</i> and <i>Package</i>
+respectively Each package should contain two header files.  The
+external header file, named <i>package</i><tt>.h</tt>, defines
+features visible from outside the package.  The internal header file,
+named <i>package</i><tt>Int.h</tt>, defines features used in multiple
+files inside the package, but not outside.  If necessary, a third
+header file, named <i>package</i><tt>Port.h</tt>, can be included.
+This should contain definitions for the package that hide differences
+between systems.  No additional header files should be used --
+everything should go into the two main headers. <p>
+
+The names of C source files begin with the short package name followed
+by a series of English words (or abbreviations) with their first
+letters capitalized.  No filename can be longer than fifteen
+characters. (This is a limitation imposed by the library archive
+program <tt>ar</tt>.) <p>
+
+Listed below are the names of files in an example package called <tt>
+rng</tt>.  It has an external header file, an internal header file, a
+header file for portability, and two <tt>.c</tt> files.  Other
+packages may have more <tt>.c</tt> files, but should not have more
+<tt>.h</tt> files. <p>
+
+<TABLE BORDER=2>
+<TR>
+  <TH> Name </TH>  <TH> Contains </TH>
+</TR>
+<TR>
+  <TD> <tt>rng.h</tt> </TD>
+  <TD> Externally-visible functions, etc. </TD>
+</TR>
+<TR>
+    <TD> <tt>rngInt.h</tt> </TD>
+    <TD> Functions, etc., internal to the package </TD>
+</TR>
+<TR>
+    <TD> <tt>rngPort.h</tt> </TD>
+    <TD> <tt>#define</tt>s, etc., that hide system differences </TD>
+</TR>
+<TR>
+    <TD> <tt>rngUtil.c</tt> </TD>
+    <TD> Utility functions </TD>
+</TR>
+<TR>
+    <TD> <tt>rngIntUtil.c</tt> </TD>
+    <TD> Internal utility functions </TD>
+</TR>
+</TABLE><P>
+
+<a name="CHeaderFiles">
+<h2>C Header Files </h2>
+</a>
+
+Both the internal and external headers follow the same structure: <p>
+
+<OL>
+
+<LI> <a href="#CHeaderFileComment">A <tt>CHeaderFile</tt> structured
+     comment</a> describing the contents of the file.  The external
+     header file's comment should be directed toward programmers who
+     will use the package; the internal header file's comment should
+     be directed toward maintainers.  Both should be self-contained.
+     <p>
+
+<LI> <tt>#ifdef</tt> and <tt>#define</tt> statements that prevent this
+     from being <tt>#include</tt>d twice.  In the external header
+     file, the name should be an underscore followed by the short name
+     of the package in all caps, e.g., <tt>_NTK</tt>.  In the internal
+     header file, the name should be an underscore followed by the
+     short name of the package followed by ``<tt>INT</tt>'', e.g.,
+     <tt>_NTKINT</tt>.  <p>
+
+<LI> In the internal header file, <tt>#include &quot;vm.h&quot;</tt>,
+     which will include the headers for all other packages.  In the
+     external header file, <tt>#include</tt> system header files only
+     (i.e., those defined by ANSI C, e.g., <tt>#include
+     &lt;stdio.h&gt;</tt>). <p>
+
+<LI> Declarations of non-functions, each type in a separate section
+     with a leading comment. <P>
+
+<LI> An automatically-generated section surrounded by
+     <tt>AutomaticStart</tt> and <tt>AutomaticEnd</tt> comments.
+     Anything between these comments is removed by the automatic
+     prototype extractor, so the programmer should put nothing
+     here. <P>
+
+<LI> The <tt>#endif</tt> directive for the leading <tt>#ifdef</tt>. <P>
+
+</OL>
+
+A template C header file that includes all the required sections and
+comments is shown below.
+
+<PRE>
+/**CHeaderFile*****************************************************************
+
+  FileName    [ required ]
+
+  PackageName [ required ]
+
+  Synopsis    [ required ]
+
+  Description [ optional ]
+
+  SeeAlso     [ optional ]
+
+  Author      [ optional ]
+
+  Copyright   [ required ]
+
+  Revision    [ $Id: packages.html,v 1.2 1996/02/28 22:50:48 sedwards Exp $ ]
+
+******************************************************************************/
+#ifndef _
+#define _
+
+/*---------------------------------------------------------------------------*/
+/* Constant declarations                                                     */
+/*---------------------------------------------------------------------------*/
+
+/*---------------------------------------------------------------------------*/
+/* Type declarations                                                         */
+/*---------------------------------------------------------------------------*/
+
+/*---------------------------------------------------------------------------*/
+/* Stucture declarations                                                     */
+/*---------------------------------------------------------------------------*/
+
+/*---------------------------------------------------------------------------*/
+/* Variable declarations                                                     */
+/*---------------------------------------------------------------------------*/
+
+/*---------------------------------------------------------------------------*/
+/* Macro declarations                                                        */
+/*---------------------------------------------------------------------------*/
+
+/**AutomaticStart*************************************************************/
+
+/*---------------------------------------------------------------------------*/
+/* Function prototypes                                                       */
+/*---------------------------------------------------------------------------*/
+
+/**AutomaticEnd***************************************************************/
+
+#endif /* _ */
+</PRE>
+
+<a name="CSourceFiles">
+<h2> C Source Files </h2>
+</a>
+
+A C source file contains the following: <P>
+
+<OL>
+
+<LI> <a href="#CFileComment">A <tt>CFile</tt> structured comment</a>
+     describing the contents of the file. <p>
+
+<LI> <tt>#include &quot;</tt><i>package</i><tt>Int.h&quot;</tt>. <p>
+
+<LI> An RCS string, used by the revision control system. <P>
+
+<LI> Declarations and definitions of non-functions, each type in a
+     separate section with a leading comment. <P>
+
+<LI> An automatically-generated section surrounded by
+     <tt>AutomaticStart</tt> and <tt>AutomaticEnd</tt> comments.
+     Anything between these comments is removed by the automatic
+     prototype extractor, so the programmer should put nothing
+     here. <P>
+
+<LI> Three sections, each with a leading comment, separated into
+  definitions for <P>
+
+  <OL>
+  <LI> Functions visible outside the package
+  <LI> Functions visible to all files within the package only
+  <LI> Functions visible to the file only
+  </OL>
+
+</OL>
+
+A template C source file that includes all the required sections and
+comments is shown below.<P>
+
+<PRE>
+/**CFile***********************************************************************
+
+  FileName    [ required ]
+
+  PackageName [ required ]
+
+  Synopsis    [ required ]
+
+  Description [ optional ]
+
+  SeeAlso     [ optional ]
+
+  Author      [ optional ]
+
+  Copyright   [ required ]
+
+******************************************************************************/
+
+#include &quot;Int.h&quot;
+
+static char rcsid[] = &quot;$Id: packages.html,v 1.2 1996/02/28 22:50:48 sedwards Exp $&quot;;
+USE(rcsid);
+
+/*---------------------------------------------------------------------------*/
+/* Stucture declarations                                                     */
+/*---------------------------------------------------------------------------*/
+
+/*---------------------------------------------------------------------------*/
+/* Type declarations                                                         */
+/*---------------------------------------------------------------------------*/
+
+/*---------------------------------------------------------------------------*/
+/* Variable declarations                                                     */
+/*---------------------------------------------------------------------------*/
+
+/*---------------------------------------------------------------------------*/
+/* Macro declarations                                                        */
+/*---------------------------------------------------------------------------*/
+
+/**AutomaticStart*************************************************************/
+
+/**AutomaticEnd***************************************************************/
+
+/*---------------------------------------------------------------------------*/
+/* Definition of exported functions                                          */
+/*---------------------------------------------------------------------------*/
+
+/*---------------------------------------------------------------------------*/
+/* Definition of internal functions                                          */
+/*---------------------------------------------------------------------------*/
+
+/*---------------------------------------------------------------------------*/
+/* Definition of static functions                                            */
+/*---------------------------------------------------------------------------*/
+</PRE>
+
+<a name="structuredComments">
+<h2> Structured Comments </h2>
+</a>
+
+Documentation for packages, functions, macros etc. is embedded within
+C source and header files in ``structured comments,'' which can be
+understood by programs in the <tt>ext</tt> system. <p>
+
+Any definition (e.g., functions, macros, structures) must be preceded
+by a structured comment that indicates information about its
+functionality, use, etc.  We suggest you write this documentation for
+your package before you write its code.  This ensures the
+documentation gets written and allows you to see the package's
+complete interface.  <P>
+
+A structured comment begins with a line beginning with ``<tt>/**</tt>''
+(i.e., with no leading whitespace).  The type of the comment (e.g.,
+<tt>CFile</tt>, <tt>Function</tt>) is an alphanumeric string on the first
+line that may be embedded in asterisks or whitespace.  A structured
+comment ends with a line containing ``<tt>*/</tt>''. <P>
+
+Between the start and end lines are field-value pairs separated by
+whitespace.  A field is an alphanumeric string and a value is a square
+bracket-enclosed string that may include newlines.  A value may not
+include a close-bracket unless it is escaped with a backslash, i.e.,
+<tt>&quot;5C]</tt>.  The order of field-value pairs in a structured
+comment is irrelevant, but they must appear in pairs.  A field-value
+pair named <tt>Comment</tt> is ignored by all automatic extraction tools,
+allowing comments within structured comments. <P>
+
+Certain values, such as the <tt>Synopsis</tt> and <tt>Description</tt>
+fields, may include <a
+href="http://www.ncsa.uiuc.edu/General/Internet/WWW/HTMLPrimer.html">HTML</a>
+directives.  These include <tt>&lt;pre&gt;</tt> and
+<tt>&lt;/pre&gt;</tt>, which begin and end a section of preformatted
+text, i.e., that will be displayed with spaces and newlines intact,
+and <tt>&lt;p&gt;</tt>, which indicates a paragraph break. <P>
+
+<a name="CHeaderFileComment">
+<h3><tt>CHeaderFile</tt></h3>
+</a>
+
+The <tt>CHeaderFile</tt> structured comment at the beginning of a header file
+contains the following fields, some of which are optional: <p>
+
+<TABLE BORDER>
+<TR>
+  <TD><TT> FileName </TT></TD>
+  <TD> required </TD>
+  <TD> The name of the header file </TD>
+</TR>
+<TR>
+  <TD><TT> Package </TT></TD>
+  <TD> required </TD>
+  <TD> The short name of the package, all lowercase </TD>
+</TR>
+  <TD><TT> Synopsis </TT></TD>
+  <TD> required </TD>
+  <TD> A one-line summary of the package </TD>
+</TR>
+<TR>
+  <TD><TT> Description </TT></TD>
+  <TD> optional </TD>
+  <TD> A more detailed description of
+  the package, possibly multiple paragraphs.  In the external header
+  file, this should be directed toward users of the package.  In the
+  internal header file, this should be for maintainers of the package.
+  This should be self-contained in both cases. </TD>
+</TR>
+<TR>
+  <TD><TT> SeeAlso </TT></TD>
+  <TD> optional </TD>
+  <TD> A space-separated list of names of
+       things that may be of interest (e.g., packages, files, etc.) </TD>
+</TR>
+<TR>
+  <TD><TT> Author </TT> </TD>
+  <TD> optional </TD>
+  <TD> The author or authors of the package </TD>
+</TR>
+<TR>
+  <TD><TT> Copyright </TT></TD>
+  <TD> required </TD>
+  <TD> A copyright notice for the file </TD>
+</TR>
+<TR>
+  <TD><TT> Revision </TT></TD>
+  <TD> required </TD>
+  <TD> The string <TT>$ Id: $</TT>, used by the
+   revision control system. </TD>
+</TR>
+</TABLE> <P>
+
+An example <tt>CHeaderFile</tt> comment is shown below. <P>
+
+<PRE>
+/**CHeaderFile***************************************************************
+  FileName    [ rng.h ]
+  PackageName [ rng ]
+  Synopsis    [ Manipulation of integer ranges, e.g., 5-7. ]
+  Description [ Routines for creating, adding to, querying, and
+                deleting ranges. ]
+  SeeAlso     [ rngInt.h ]
+  Author      [ Gitanjali Swamy ]
+  Copyright   [ Copyright (c) 1994-1996 The Regents of the Univ. of California.
+                All rights reserved. ]
+  Revision    [$Id: packages.html,v 1.2 1996/02/28 22:50:48 sedwards Exp $]
+******************************************************************************/</PRE>
+
+<a name="CFileComment">
+<h3><tt> CFile </tt></h3>
+</a>
+
+The <tt>CFile</tt> structured comment at the beginning of a source file
+contains the following fields, some of which are optional: <P>
+
+<TABLE BORDER>
+  <TD><TT> FileName </TD>
+  <TD> required </TD>
+  <TD> The name of the source file </TD>
+</TR>
+<TR>
+  <TD><TT> Package </TT></TD>
+  <TD> required </TD>
+  <TD> The short name of the package, all lowercase </TD>
+</TR>
+<TR>
+  <TD><TT> Synopsis </TT></TD>
+  <TD> required </TD>
+  <TD> A one-line summary of the file's contents </TD>
+</TR>
+<TR>
+  <TD><TT> Description </TT></TD>
+  <TD> optional </TD>
+  <TD> A more detailed description of
+  the file, possibly multiple paragraphs.  It should be
+  self-contained.  </TD>
+</TR>
+<TR>
+  <TD><TT> SeeAlso </TT></TD>
+  <TD> optional </TD>
+  <TD> A space-separated list of names of
+  things that may be of interest (e.g., packages, files, etc.)  </TD>
+</TR>
+<TR>
+  <TD><TT> Author </TT></TD>
+  <TD> optional </TD>
+  <TD> The author or authors of the file </TD>
+</TR>
+<TR>
+  <TD><TT> Copyright </TT></TD>
+  <TD> required </TD>
+  <TD> A copyright notice for the file </TD>
+</TR>
+</TABLE> <p>
+
+An example <tt>CFile</tt> comment is shown below.
+
+<P>
+<PRE>
+/**CFile*********************************************************************
+  FileName    [ rngUtil.c ]
+  PackageName [ rng ]
+  Synopsis    [ Memory and read/write utilities for the Range package ]
+  Description [ Contains routines for creating and deleting ranges,
+                and asking questions of them ]
+  SeeAlso     [ rngUtilInt.c ]
+  Author      [ Gitanjali Swamy ]
+  Copyright   [ Copyright (c) 1994-1996 The Regents of the Univ. of California.
+                All rights reserved. ]
+******************************************************************************/
+</PRE>
+
+<a name="functionComment">
+<h3><tt> Function </tt></h3>
+</a>
+
+The fields in the <tt>Function</tt> structured comment are <P>
+<TABLE BORDER>
+  <TD><TT> Synopsis </TT></TD>
+  <TD> required </TD>
+  <TD> A one-line synopsis of the function </TD>
+</TR>
+<TR>
+  <TD><TT> Description </TT></TD>
+  <TD> optional </TD>
+  <TD> A longer description of the
+  function: its parameters, its return type, and how it is computed.
+  This should be self-contained. </TD>
+</TR>
+<TR>
+  <TD><TT> SideEffects </TT></TD>
+  <TD> required </TD>
+  <TD> A description of any side effects
+  (e.g., modification of global variables).  If there are none, include
+  an empty string: ``<TT> []}''. </TD>
+</TR>
+<TR>
+  <TD><TT> SeeAlso </TT></TD>
+  <TD> optional </TD>
+  <TD> A space-separated list of the names
+  of related functions, files, packages, etc. </TD>
+</TR>
+<TR>
+  <TD><TT> CommandName </TT></TD>
+  <TD> optional </TD>
+  <TD> The name of the command that invokes this
+  function.  Omit when the function is not a command. </TD>
+</TR>
+<TR>
+  <TD><TT> CommandSynopsis </TT></TD>
+  <TD> optional </TD>
+  <TD> A one-sentence synopsis of the command. </TD>
+</TR>
+<TR>
+  <TD><TT> CommandArguments </TT></TD>
+  <TD> optional </TD>
+  <TD> The command-line arguments recognized
+  or required by the command. </TD>
+</TR>
+<TR>
+  <TD><TT> CommandDescription </TT></TD>
+  <TD> optional </TD>
+  <TD> A full description of the command. </TD>
+</TR>
+</TABLE> <P>
+
+To document a function's parameters and return type, insert standard
+<tt>/*</tt> <tt>*/</tt>-enclosed C comments after each parameter and after
+the return type.  Parameter comments should follow the parameter name,
+before the comma or close-parenthesis.  A return type comment should
+be between the return type and the function name.  All of these
+comments are optional. <P>
+
+If the function can be invoked directly from the command line, it
+should include the <tt>Command</tt> fields.  The sentence in the
+<tt>CommandSynopsis</tt> field should be an imperative command, e.g.,
+``read a network'' instead of ``reads a network.''  Omit a trailing
+period.  The <tt>CommandArguments</tt> field should have symbolic
+names enclosed in angle brackets (e.g., <tt>&lt;list&gt;</tt>), and
+optional arguments enclosed in escaped square brackets (e.g., <tt>\[
+-v \]</tt>).  The <tt>CommandDescription</tt> field should fully
+document the command, and may use arbitrary HTML constructs. <P>
+
+An example <tt>Function</tt> comment with partial definition is shown
+below. <P>
+
+<PRE>
+/**Function*******************************************************************
+  Synopsis    [ Check if two ranges overlap ]
+  Description [ If any integer is common to both of the given ranges,
+                return TRUE, otherwise return FALSE. ]
+  SideEffects []
+  SeeAlso     [ Rng_RangeOrWithRange ]
+******************************************************************************/
+static boolean /* TRUE if the ranges overlap */
+RangeOverlap(
+  Rng_Range_t * range1 /* first range */,
+  Rng_Range_t * range2 /* second range */)
+{ /* ... */ }
+</PRE>
+
+<a name="macroComment">
+<h3><tt> Macro </tt></h3>
+</a>
+
+The <tt>Macro</tt> fields in a structured comment are identical to
+those for <tt>Function</tt>, except the <tt>Command</tt> fields are
+never present -- a macro may not define a command.  It is intended
+that macros are indistinguishable from functions. <P>
+
+To document the return type of a macro, insert a C comment with the
+type before the macro name.  To document the type of each argument,
+insert a C comment before each argument.  To document each argument,
+insert a C comment after each argument name, before a comma or
+close-parenthesis.  All these comments are optional. <P>
+
+An example <tt>Macro</tt> comment with a partial definition is shown
+below. <P>
+
+<PRE>
+/**Macro**********************************************************************
+  Synopsis    [ Return the lower number in a range ]
+  SideEffects []
+  SeeAlso     [ Rng_RangeSetEnd ]
+******************************************************************************/
+#define /* int */ Rng_RangeReadEnd( /* Rng_Range_t * */ range /* the Range */)\
+(((range-&gt;begin) =&lt; RNG_MAX)? (range-&gt;begin): RNG_MAX)
+</PRE>
+
+<a name="structVariableComment">
+<h3><tt>Struct</tt> and <tt>Variable</tt></h3>
+</a>
+
+<tt>Struct</tt> and <tt>Variable</tt> structured comments have identical
+fields: <P>
+
+<TABLE BORDER>
+<TR>
+  <TD><TT> Synopsis </TT></TD>
+  <TD> required </TD>
+  <TD> A one-line synopsis </TD>
+</TR>
+<TR>
+  <TD><TT> Description </TT></TD>
+  <TD> optional </TD>
+  <TD> A longer description.  This should be
+  self-contained. </TD>
+</TR>
+<TR>
+  <TD><TT> SeeAlso </TT></TD>
+  <TD> optional </TD>
+  <TD> A space-separated list of the names
+  of related functions, files, packages, etc. </TD>
+</TR>
+</TABLE> <P>
+
+To comment the fields in a structure definition, place a C comment
+after each field definition, after the semicolon.  These comments are
+optional. <P>
+
+Example <tt>Struct</tt> and <tt>Variable</tt> comments are shown below. <P>
+
+<PRE>
+/**Struct*************************************************************
+  Synopsis      [ Represents an integer range ]
+  Description   [ Uses two integers to represent the range.
+                  Under normal circumstances, begin &lt;= end. ]
+  SeeAlso       [ Rng_RangeAlloc Rng_RangeFree ]
+**********************************************************************/
+typedef struct RngRangeStruct {
+    int begin; /* The lower limit */
+    int end;   /* The upper limit */
+} Rng_Range_t;
+</PRE> <P>
+
+<PRE>
+/**Variable***********************************************************
+  Synopsis      [ The number of ranges current in existence ]
+  Description   [ Whenever Rng_RangeAlloc is called, this is incremented.
+                  Whenever Rng_RangeFree is called, this is
+                  decremented.  This should always be positive
+
+  SeeAlso       [ Rng_RangeAlloc Rng_RangeFree ]
+**********************************************************************/
+int Rng_numRanges;
+</PRE>
+
+<a name="lowLevelCodingConventions">
+<h2>Low-Level Coding Conventions</h2>
+</a>
+
+To make code in the <tt>ext</tt> environment look consistent, we have the
+following conventions about its appearance: <P>
+
+<UL>
+
+<LI> <b>Lines are eighty characters wide.</b> Anything wider is
+     difficult to read and print.  Insert line breaks as necessary to
+     ensure this. <P>
+
+<LI> <b>Indents are two spaces.</b> This is smaller than other
+     systems, but reduces the chance of nested instructions marching
+     off the right side of the page. <P>
+
+<LI> <b>Comments within code occupy full lines.</b> Comments tacked on
+     to the right of statements can be hard to see and make it
+     difficult to modify the code.  Comments to the right of variable
+     declarations, structure members, and arguments in function
+     definitions are fine. <P>
+
+<LI> <b>Open-braces go at the end of lines.</b> Close-braces should
+     come at the beginning of a following line.  The braces enclosing
+     a function definition are the one exception to this rule. <P>
+
+     Always use curly braces in compound statements, even if they
+     enclose only one statement.  This makes it easier to correctly
+     add statements to the block, and simplifies setting breakpoints
+     in a debugger.  <P>
+
+</UL> <P>
+
+The following fragment illustrates these
+conventions.  <P>
+
+<PRE>
+void
+Ntk_NodeDeclareAsCombinational(
+  Ntk_Node_t * node,
+  Tbl_Table_t * table,
+  array_t * inputNames /* array of char */,
+  int  outputIndex)
+{
+
+  /*
+   * If the output column of a table can take only
+   * a single value, set the constant flag. 
+   */
+
+  if ( Tbl_TableTestIsConstant(table, outputIndex) ) {
+    node-&gt;constant = 1;
+  }
+
+  /*
+   * Print the node's name, MDD id, type, and attributes.
+   */
+
+  (void)
+    fprintf(fp, &quot;%s: mdd=%d, %s;%s%s%s%s%s%s\n&quot;,
+            Ntk_NodeReadName(node),
+            Ntk_NodeReadMddId(node),
+            typeString,
+            (Ntk_NodeTestIsPrimaryOutput(node) ? &quot; output&quot; : &quot;&quot;),
+            (Ntk_NodeTestIsConstant(node) ? &quot; constant&quot; : &quot;&quot;),
+            (Ntk_NodeTestIsLatchDataInput(node) ?
+             &quot; data-input&quot; : &quot;&quot;),
+            (Ntk_NodeTestIsLatchInitialInput(node) ?
+             &quot; initial-input&quot; : &quot;&quot;),             ,
+            (Ntk_NodeTestIsCombInput(node) ? &quot; comb-input&quot; : &quot;&quot;),
+            (Ntk_NodeTestIsCombOutput(node) ? &quot; comb-output&quot; : &quot;&quot;)
+            );
+}
+</PRE>
+
+<HR>
+
+<a href="index.html>The <tt>ext</tt> system</a>
+
+</BODY>
+</HTML>

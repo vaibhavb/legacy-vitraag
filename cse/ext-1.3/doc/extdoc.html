@@ -1,0 +1,199 @@
+<html>
+<head><title> extdoc </title></head>
+
+<body>
+
+<h2>NAME</h2>
+extdoc - Extract documentation from specially-commented C files
+
+<h2>SYNOPSIS</h2>
+
+<tt>extdoc</tt>	[ <tt> -v </tt> ] [ <tt> --version </tt> ] [ <tt> -d </tt> ] [ <tt> --debug </tt> ] [ <tt>-h</tt>[<tt>=&lt;dir&gt;</tt>] ] [ <tt>--html</tt>[<tt>=&lt;dir&gt;</tt> ] ] [ <tt> -t</tt>[<tt>=&lt;dir&gt; </tt> ] ] [ <tt> --text</tt>[<tt>=&lt;dir&gt; </tt> ] ] [ <tt> -a </tt> ] [ <tt> --ANSI </tt> ] [ <tt> -k </tt> ] [ <tt> --KR </tt> ] [ <tt> --polis </tt> ] <i> package </i> [ <i> package </i> ...]
+
+<h2>DESCRIPTION</h2>
+
+<i>Extdoc</i> is a document-extraction tool for C source files.  It
+examines a collection of C source and header files, collectively
+referred to as a <i>package</i> extracts ``structured'' comments
+embedded in the code, function prototypes, structures, etc. and
+generates documentation files.
+
+<h2>OPTIONS</h2>
+
+<dl>
+<dt> <tt>-v</tt>
+<dt> <tt>--version</tt>
+<dd> Print version information and exit. <p>
+
+<dt> <tt>-d</tt>
+<dt> <tt>--debug</tt>
+<dd> Enable debugging mode.  This prints an enormous amount of cryptic
+     information about what <i>extdoc</i> is doing. <p>
+
+<dt> <tt>-t[=&lt;dir&gt;]</tt>
+<dt> <tt>--text[=&lt;dir&gt;]</tt>
+<dd> Write documentation in text format.  This writes a file
+     <i>pkg</i>Doc.txt in the current directory or in the directory
+     specified by the optional &lt;dir&gt; attribute.  This option may
+     be used in conjunction with the <tt>--html</tt> option. <p>
+
+<dt> <tt>-h[=&lt;dir&gt;]</tt>
+<dt> <tt>--html[=&lt;dir&gt;]</tt>
+<dd> Write documentation in HTML format.  This writes many files (see
+     the list of files below) into the current directory or in the
+     directory specified by the optional &lt;dir&gt; attribute. This
+     option may be used in conjunction with the <tt>--text</tt>
+     option. <p>
+
+<dt> <tt>-a</tt>
+<dt> <tt>--ANSI</tt>
+<dd> Look for ANSI-style function declarations.  This is the default.
+     This should not be used with the <tt>--KR</tt> option. <p>
+
+<dt> <tt>-k</tt>
+<dt> <tt>--KR</tt>
+<dd> Look for K&R-style function declarations.  This should not be
+     used with the <tt>--ANSI</tt> option. <p>
+
+<dt> <tt>--polis</tt>
+<dd> Use the polis file/function naming rules. <p>
+
+</dl>
+
+<h2>EXAMPLES</h2>
+
+Extract the documentation in the <tt>tbl</tt> package, writing it to
+<tt>tblDoc.txt</tt>:
+
+<blockquote>
+<tt> example% extdoc --text tbl </tt>
+</blockquote>
+
+Extract text and HTML documentation from the <tt>ntk</tt> packages and
+look for K&R-style function definitions:
+
+<blockquote>
+<tt> example% extdoc --text --html --KR ntk </tt>
+</blockquote>
+
+Extract HTML documentation from the <tt>tbl</tt> and <tt>ntk</tt>
+packages, placing the resulting HTML files in
+<tt>/projects/vis/vis-devel/common/doc/html</tt>:
+
+<blockquote>
+<tt> example% extdoc</tt>
+<tt> --html=/projects/vis/vis-devel/common/doc/html</tt>
+<tt>/projects/vis/vis-devel/common/src/tbl/tbl</tt>
+<tt>/projects/vis/vis-devel/common/src/ntk/ntk</tt>
+</blockquote>
+
+<h2>FILES</h2>
+
+A program name in parenthesis indicates the creator of the file.
+
+<table>
+<tr>
+  <td> <i>packageFile</i><tt>.c</tt> </td>
+  <td> C source file </td>
+</tr>
+<tr>
+  <td> <i>package</i><tt>.h</tt> </td>
+  <td> Externally-visible header file </td>
+</tr>
+<tr>
+  <td> <i>package</i><tt>Int.h</tt> </td>
+  <td> Internal header file </td>
+</tr>
+<tr>
+  <td> <i>package</i><tt>Doc.txt</tt> </td>
+  <td> documentation file, ASCII format (extdoc) </td>
+</tr>
+<tr>
+  <td> <tt>commands.html</tt> </td>
+  <td> documentation, an HTML frame for the commands (extindex) </td>
+</tr>
+<tr>
+  <td> <tt>packages.html</tt> </td>
+  <td> documentation, an HTML frame for the packages (extindex) </td>
+</tr>
+<tr>
+  <td> <tt>cmdIndex.html</tt> </td>
+  <td> documentation, an HTML list of all the commands with synopses (extindex) </td>
+</tr>
+<tr>
+  <td> <tt>pkgIndex.html</tt> </td>
+  <td> documentation, an HTML list of all the packages with synopses (extindex) </td>
+</tr>
+<tr>
+  <td> <tt>credit.html</tt> </td>
+  <td> documentation, the source of ext system (extindex) </td>
+</tr>
+<tr>
+  <td> <i>package</i><tt>Desc.html</tt> </td>
+  <td> documentation, description of the package in HTML format (extdoc)</td>
+</tr>
+<tr>
+  <td> <i>package</i><tt>Title.html</tt> </td>
+  <td> documentation, navigation through the three views (external, by
+  function, and by file) in HTML format (extdoc)</td>
+</tr>
+<tr>
+  <td> <i>package</i><tt>Ext.html</tt> </td>
+  <td> documentation, an HTML frame set for the externally-visible functions (extdoc)</td>
+</tr>
+<tr>
+  <td> <i>package</i><tt>AllByFunc.html</tt> </td>
+  <td> documentation, an HTML frame set for the internal functions,
+  sorted by function (extdoc)</td>
+</tr>
+<tr>
+  <td> <i>package</i><tt>AllByFile.html</tt> </td>
+  <td> documentation, an HTML frame set for the internal functions,
+  sorted by file (extdoc)</td>
+</tr>
+<tr>
+  <td> <i>package</i><tt>ExtAbs.html</tt> </td>
+  <td> documentation, abstracts of externally-visible functions,
+       HTML format (extdoc) </td>
+</tr>
+<tr>
+  <td> <i>package</i><tt>ExtDet.html</tt> </td>
+  <td> documentation, details of externally-visible functions,
+       HTML format (extdoc) </td>
+</tr>
+<tr>
+  <td> <i>package</i><tt>AllAbs.html</tt> </td>
+  <td> documentation, abstracts of all functions, sorted by function name,
+  HTML format (extdoc) </td>
+</tr>
+<tr>
+  <td> <i>package</i><tt>AllFile.html</tt> </td>
+  <td> documentation, abstracts of all functions, sorted by file,
+  HTML format (extdoc) </td>
+</tr>
+<tr>
+  <td> <i>package</i><tt>AllDet.html</tt> </td>
+  <td> documentation, details of all functions, HTML format (extdoc) </td>
+</tr>
+<tr>
+  <td> <i>commandName</i><tt>Cmd.html</tt> </td>
+  <td> documentation on a command, HTML format (extdoc) </td>
+</tr>
+</table>
+
+<h2>SEE ALSO</h2>
+
+<a href="extproto.html">extproto</a>,
+<a href="extindex.html">extindex</a>,
+<a href="packages.html">Documentation on Packages and File Structure</a>,
+<a href="naming.html">Documentation on Naming Conventions</a>,
+<a href="index.html">The Ext System</a>
+
+<h2>AUTHOR</h2>
+
+<a href="http://www.eecs.berkeley.edu/~sedwards/">Stephen Edwards</a> <br>
+<a href="http://www.berkeley.edu/">University of California, Berkeley</a> <br>
+<a href="mailto:sedwards@eecs.berkeley.edu"><tt>sedwards@eecs.berkeley.edu</tt></a>
+
+</body>
+</html>

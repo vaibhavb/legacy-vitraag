@@ -1,0 +1,15 @@
+
+  enum_init - Computes the set of initial states of a module.
+     _________________________________________________________________
+   
+   enum_init [-h] <module_name>
+   
+   The command computes the set of initial states of a module. It takes
+   as input a module name and returns a string of names of states. These
+   state names can be used as arguments to future enum_post commands.
+   
+   -h
+          Print usage.
+     _________________________________________________________________
+   
+   Last updated on 980624 22h10

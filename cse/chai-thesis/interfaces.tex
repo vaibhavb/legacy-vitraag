@@ -1,0 +1,546 @@
+\chapter{Interfaces}
+\section{Interface Modules}
+No component is designed in isolation: a component must interact
+with an {\em environment\/} (either the user, or other design
+components), and produce some useful output or behavior. {\im }
+provide a way of modelling both aspects of component development:
+the input (or design) assumptions, and the output guarantees (or
+output behavior).
+
+%How interfaces are better
+% I cut this - as I told you, it doesn't really make sense. Luca
+%% In traditional formalisms for component based designs, the
+%% designer has to specify the behavior of the system for all
+%% possible inputs even if he knows some input values in the given
+%% environments are infeasible \cite{cav-paper}. Interfaces provide a
+%% way of describing the input assumptions of a component by
+%% expressing them as input relations.
+%% Consider an environment where more than one component can generate
+%% the same output. In such a setting passive modelling is
+%% in-applicable. A partial solution is provided by formalisms like
+%% process algebras \cite{cav-paper} where a co-operative solution is
+%% achieved by making components agree on the output action. Such a
+%% co-operation is input based. However there is no-way to express
+%% the environment assumptions of a this design other than expressing
+%% it hard-coded in the components. Interfaces present an elegant
+%% solution by allowing the designer to express such assumptions.
+
+To give a taste of interface modules,
+Figure~\ref{fig-counter} illustrates a simple synchronous
+interface of a 8-bit $\pm 1$ adder controlled by a binary counter.
+The interface formalism is described as an interface module with
+state variables partitioned as inputs and outputs. The acceptable
+state variable changes are described by transition relations of
+input atoms, and possible output state variable changes are
+described as transition relations of output atoms. We will
+consider parts of this example in coming sections to explain
+various aspects of interfaces.
+
+%A gate-counter example
+%\begin{comment}
+\begin{figure}
+\centering
+\input{egs/counter.intf}
+\hspace{3em}
+\input{egs/adder.intf}
+\caption{A counter and a $\pm 1$ adder, modelled as a synchronous
+interface.} \label{fig-counter}
+\end{figure}
+%\end{comment}
+
+%Background definitions
+\section{Basics}
+This section is modelled after \cite{daLect}. In order to formally
+define \im \ we present a few relevant terms.
+
+%We present here a few relevant definitions before we formally
+%define interface modules.
+
+\paragraph{Variables.}
+Consider an infinite global set $\allvars$ of {\em typed
+variables,} from which the variables of the modules will be drawn.
+Each variable $x \in \allvars$ has an associated {\em domain,} or
+set of possible values, which we denote $\domain(x)$. We treat
+$\domain(x)$ as a finite set, restricting our attention to
+finite-state systems.
+
+\paragraph{States.}
+Given a finite set $\vars\subs\allvars$ of variables, a {\em
+state\/} $s$ over $\vars$ is a function that associates with each
+variable $x \in \vars$ a value $s(x) \in \domain(x)$; we denote by
+$\states[\vars]$ the set of all possible states over the variables
+$\vars$. Note that, formally, the type of $s \in \states[\vars]$
+is $\prod_{x\in\vars} (x \mapsto \domain(x))$. Given a state $s
+\in \states[\vars]$ and a subset $\avars \subs \vars$ of
+variables, we denote by $s[\avars] \in \states[\avars]$ the
+restriction of $s$ to the variables in $\avars$: precisely,
+$s[\avars]$ is defined by $s[\avars](x) = s(x)$ for all $x \in
+\avars$. For any two sets $\vars,\avars$ of variables, and states
+$s \in \states[\vars]$ and $t \in \states[\avars]$, we write $s
+\simeq t$ if $s(x) = t(x)$ for all shared variables $x \in \vars
+\inters \avars$.
+
+\paragraph{State predicates.}
+We assume a logical language $\loglang$ in which assertions about
+the values of the variables in $\allvars$ can be written. For
+example, if all variables are boolean, then $\loglang$ can be
+taken to be predicate logic with the addition of the quantifiers
+$\forall$ and $\exists$ over the booleans. We say that a formula
+$\phi\in\loglang$ is {\em over\/} a set $\vars$ of variables if it
+only involves variables of $\vars$; such a formula is also called
+a {\em predicate\/} over $\vars$. We denote by $\Preds[\vars]$ the
+set of all formulas over the set of variable $\vars$. Given a
+formula $\phi$ over $\vars$ and a state $s \in \states[\vars]$, we
+write $s \sat \phi$ to denote the fact that $\phi$ is true under
+the interpretation that assigns to every variable $x \in \vars$
+the value $s(x)$. In particular, a formula $\phi$ over $\vars$
+defines the set of states $\semb{\phi}_\vars = \set{s \in
+\states[\vars] \mid s \sat \phi}$.
+
+\begin{examp}{}
+Consider the set of boolean variables $\vars = \set{x,y,z}$. The
+set $\states[\vars]$ consists of $2^3 = 8$ elements. If we take
+$\loglang$ to be propositional logic, then the formula $x \und \no
+y$ is satisfied by the two states $(x=\true,y=\false,z=\false),
+(x=\true,y=\false,z=\true) \in \states[\vars]$. If we take
+$\loglang$ to be quantified boolean formulas, then the formula $
+  \exists w \qdot (w \equiv x \und w \equiv \no y \und w \equiv z)
+$ is satisfied by the two states $(x=\true,y=\false,z=\true),
+(x=\false,y=\true,z=\false) \in \states[\vars]$. \qed
+\end{examp}
+
+\paragraph{Transition predicates.}
+In order to be able to define {\em relations,} in addition to sets
+of states, we introduce the following notation used widely in
+model checking research community. For each state variable $x$, we
+introduce a new variable $\nx{x}$ (read: ``next $x$''), with
+$\domain(x) = \domain(\nx{x})$, that denotes the value of the
+state variable $x$ in the successor state. Given a set $\vars
+\subs \allvars$ of variables, we let $\nx{\vars} = \set{\nx{x}
+\mid x \in \vars}$ be the corresponding set of next variables. We
+denote the converse of $\nx{}$ by $\pr{}$ (read: ``previous''):
+precisely, we let $\pr{\nx{x}} = x$ for all variables $x$. Given a
+predicate $\phi$, we denote by $\nx{\phi}$ the result of replacing
+every variable $x$ in $\phi$ with $\nx{x}$, and by $\pr{\phi}$ the
+result of replacing every $\nx{x}$ in $\phi$ with $x$; thus,
+$\pr{\nx{\phi}} = \phi$.
+
+In a transition predicate the standard variables refer to the
+current state, and the next variables refer to the successor
+state. Given a predicate $\rho$ over $\vars \union \nx{\avars}$,
+and states $s \in \states[\vars]$ and $t \in \states[\avars]$, we
+write $(s,t) \sat \rho$ to denote the fact that $\rho$ is true
+when every $x \in \vars$ has value $s(x)$, and every $\nx{y} \in
+\nx{\avars}$ has value $t(y)$. A transition predicate $\rho \in
+\Preds[\vars,\nx \avars]$ defines a relation
+\[
+  \semb{\rho}_{\vars,\nx{\avars}}
+  = \set{(s,t) \in \states[\vars] \times \states[\avars] \mid
+         (s,t) \sat \rho}.
+\]
+
+\begin{examp}{}
+Consider the set of boolean variables $\vars = \set{x,y}$. The
+transition predicate $(\nx{x} \equiv y) \und \no \nx{y}$ defines
+the transition that copies the value of $y$ into $x$, and sets $y$
+to $\false$. \qed
+\end{examp}
+
+%TODO: Formally - Formal definition of moore interfaces
+\section{Synchronous Interfaces, Formally}
+Interfaces as implemented in \chai \ do not depend on next values
+of inputs, and hence are termed Synchronous Interfaces. We
+formally define them as follows.
+
+\begin{defi}{(Interface Modules)}
+An {\em Interface Module\/} $\mp = \tuple{\ivars_\mp, \ovars_\mp,
+\rvars_\mp, \iinit_\mp, \oinit_\mp, \itrans_\mp, \otrans_\mp}$
+consists of the following elements:
+
+\begin{itemize}
+
+\item A set $\ivars_\mp$ of {\em input variables,} and a set
+$\ovars_\mp$ of {\em output variables.} The two sets must be
+disjoint: $\ivars_\mp \inters \ovars_\mp = \emptyset$. We indicate
+by $\vars_\mp = \ivars_\mp \union \ovars_\mp$ the set of all state
+variables of $\mp$.
+
+\item A set $\rvars_\mp$ of {\em reserved variables,} such that
+$\ivars_\mp \union \ovars_\mp \subs \rvars_\mp$. The set
+$\rvars_\mp$ contains variables that are reserved for use by the
+module, and constitute the module {\em name space.}
+
+\item A predicate $\iinit_\mp \in \Preds[\ivars_\mp]$ defining the
+legal initial values for the input variables.
+
+\item A predicate $\oinit_\mp \in \Preds[\ovars_\mp]$ defining the
+initial values of the output variables.
+
+\item An {\em input transition predicate\/} $\itrans_\mp \in
+\Preds[\vars_\mp \union \nx{\ivars_\mp}]$, such that for all $s
+\in \states[\vars_\mp]$, there is some $t \in \states[\ivars_\mp]$
+such that $(s,t) \sat \itrans_\mp$. The predicate $\itrans_\mp$
+specifies what are the legal value changes for the input
+variables.
+
+\item An {\em output transition predicate\/} $\otrans_\mp \in
+\Preds[\vars_\mp \union \nx{\ovars_\mp}]$, such that for all $s
+\in \states[\vars_\mp]$, there is some $t \in \states[\ovars_\mp]$
+such that $(s,t) \sat \otrans_\mp$. The predicate $\otrans_\mp$
+specifies how the module can update the values of the output
+variables. \qed
+\end{itemize}
+\end{defi}
+
+\noindent Thus, associated with a module is a set of initial
+states, a transition relation, and a language. The set of initial
+states consists of the states that correspond to both possible
+initial values for the output variables, and legal initial values
+for the input variables. The transition relation consists of the
+state transitions that are both possible for the output variables,
+and legal for the input variables. The language of a module
+consists of all the possible infinite sequences of states that
+satisfy the initial conditions and the transition relations.
+
+%Definition of Trace.
+
+\begin{defi}{(Set of [initial] states, transition relation, trace, and language)}
+Consider a module $\mp = \tuple{\ivars_\mp, \ovars_\mp,
+\rvars_\mp, \iinit_\mp, \oinit_\mp, \itrans_\mp, \otrans_\mp}$.
+%
+\begin{itemize}
+
+\item The set of {\em states\/} of $\mp$ is $S_\mp =
+\states[\vars_\mp]$.
+
+\item The set of {\em initial states\/} of $\mp$ is $\sinit_\mp =
+\set{s \in S_\mp \mid s \sat \iinit_\mp \und \oinit_\mp}$.
+
+\item The {\em transition relation\/} of $\mp$ is $\tr_\mp =
+\set{(s,t) \in S_\mp \times S_\mp \mid (s,t) \sat \itrans_\mp \und
+\otrans_\mp}$.
+
+\item A {\em path\/} of $\mp$ from $s \in S_\mp$ is an infinite
+sequence $s=s_0, s_1, s_2, \ldots$ of $S_\mp$ such that
+$(s_k,s_{k+1}) \in \tr_\mp$ for all $k > 0$.
+
+\item A {\em trace\/} of $\mp$ is a path $s_0, s_1, s_2, \ldots$
+such that $s_0 \in \sinit_\mp$.
+
+\item The {\em language\/} of $\mp$ is the set $\lang{(\mp)}$
+consisting of all traces of $\mp$. \qed
+\end{itemize}
+\end{defi}
+
+The requirement on $\itrans_\mp$ and $\otrans_\mp$ ensures that
+every state in $S_\mp$ has a successor that satisfies both the
+input and output transition relations, ensuring that from every
+state, there is a transition that is both possible for the module,
+and legal for the environment. Note that if $\iinit_\mp \und
+\oinit_\mp$ is unsatisfiable, then $\lang{(\mp)} = \emptyset$.
+
+Synchronous interface modules as defined above are an example of
+{\em Moore\/} modules, in which the next value of the output and
+internal variables can depend on the current state, but not on the
+next value of the input variables. For instance, if the state
+variables of a module $\mp$ are $x$ (input) and $y$ (output), then
+in a transition from $s \in S_\mp$ to $t \in S_\mp$ the next value
+$t(y)$ of $y$ can depend on the old values $s(x)$ and $s(y)$, but
+not on the new value $t(x)$ of the input variable.
+
+\section{Composition}
+Two interface modules are compatible if there is an environment in
+which they can work together. Compatible interfaces on composing
+lead to a new satisfiable input assumption that ensures that no
+local error state is reachable.
+
+Consider the example in Figure \ref{fig-counter}. The $\adder$ has
+two control inputs $\iadd$ and $\isub$, data inputs $\id_7
+\cdots\id_0$; and data outputs $\od_7 \cdots \od_0$.
+\begin{itemize}
+
+\item When $\iadd = \isub = 1$, the adder leaves the input
+unchanged: the next value of $\od_7 \cdots \od_0$ is equal to
+$\id_7 \cdots\id_0$.
+
+\item When $\iadd = 0$ and $\isub = 1$, the next outputs are given
+by $[\nx{o}_7 \cdots \nx{o}_0] = [\id_7 \cdots\id_0] + 1 \mod
+2^8$, and $[\nx{o}_7 \cdots \nx{o}_0]$ is the integer encoded in
+binary by $\nx{o}_7 \cdots \nx{o}_0$.
+
+\item When $\isub = 0$ and $\iadd = 1$, we have  $[\nx{o}_7 \cdots
+\nx{o}_0] = [\id_7 \cdots\id_0] - 1 \mod 2^8$.
+
+\item The adder is designed with the assumption that $\isub$ and
+$\iadd$ are not both~$0$: hence, the input transition relation of
+$\adder$ states that $\nx{q}_1 \nx{q}_0 \neq 00$.
+\end{itemize}
+
+In order to cycle between adding $0, +1, -1$, the control inputs
+$\iadd$ and $\isub$ are connected to the outputs $\oq_1$ and
+$\oq_0$ of a two-bit count-to-zero counter $\counter$. The counter
+has only one input, $\itoone$: when $\itoone = 0$, then $\nx{q}_1
+\nx{q}_0 = 11$; otherwise, $[\nx{q}_1 \nx{q}_0] = [\oq_1 \oq_0] -
+1 \mod 4$.
+
+When the counter is connected to the adder, the joint system can
+take a transition to a state where $\oq_1 \oq_0 = 00$, violating
+the adder's input assumptions. In spite of this, the counter and
+the adder are compatible, since there is a way to use them
+together: to avoid the incompatible transition, it suffices to
+assert $\itoone = 0$ early enough in the count-to-zero cycle of
+the counter. To reflect this, when we compose $\counter$ and
+$\adder$, we synthesize for their composition $\counter \| \adder$
+a new input assumption, that ensures that the input assumptions of
+both $\counter$ and $\adder$ are satisfied.
+
+To determine the new input assumption, we \textbf{solve a game}
+between Input, which chooses the next values of $\itoone$ and
+$\id_7\cdots\id_0$, and Output, which chooses the next values of
+$\oq_0,\oq_1$, and $\od_7 \cdots \od_0$. The goal of Input is to
+avoid a transition to $\oq_1 \oq_0 = 00$. At the states where
+$\oq_1 \oq_0 = 01$, Input can win if $\itoone = 0$, since
+% at the next clock cycle
+we will have $\nx{q}_1 \nx{q}_0 = 11$; but Input cannot win if
+$\itoone = 1$. By choosing $\nx{\itoone} = 0$, Input can also win
+from the states where $\oq_1 \oq_0 = 10$. Finally, Input can
+always win from
+% the states where
+$\oq_1 \oq_0 = 11$, for all $\nx{\itoone}$. Thus, we associate
+with $\counter \| \adder$ a new input assumption encoded by the
+transition relation requiring that whenever $\oq_1 \oq_0 = 10$,
+then $\nx{\itoone} = 0$. The input requirement $\oq_1 \oq_0 \neq
+00$ of the adder gives rise, in the composite system, to the
+requirement that the reset-to-1 occurs early in the count-to-zero
+cycle of the counter. \qed
+
+\subsection{Composition and Compatibility, Formally}
+Two Synchronous interfaces $\mp$ and $\mq$ are {\em composable\/}
+if $\ovars_\mp \inters \ovars_\mq = \emptyset$. If $\mp$ and $\mq$
+are composable, we merge them into a single interface $\mr$ as
+follows. We let $\ovars_\mr = \ovars_\mp \union \ovars_\mq$ and
+$\ivars_\mr = (\ivars_\mp \union \ivars_\mq) \setm \ovars_\mr$.
+The output behavior of $\mr$ is simply the joint output behavior
+of $\mp$ and $\mq$, since each interface is free to choose how to
+update its output variables: hence, $\oinit_\mr = \oinit_\mp \und
+\oinit_\mq$ and $\otrans_\mr = \otrans_\mp \und \otrans_\mq$. On
+the other hand, we cannot simply adopt the symmetrical definition
+for the input assumptions. A syntactic reason is that $\iinit_\mp
+\und \iinit_\mq$ and $\itrans_\mp \und \itrans_\mq$ may contain
+variables in $(\ovars_\mr)'$. But a deeper reason is that we may
+need to strengthen the input assumptions of $\mr$ further, in
+order to ensure that the input assumptions of $\mp$ and $\mq$
+hold. If we can find such a further strengthening $\iinit$ and
+$\itrans$, then $\mp$ and $\mq$ are said to be {\em compatible,}
+and $\mr = \mp \| \mq$ with $\iinit_\mr$ and $\itrans_\mr$ being
+the weakest such strengthening; otherwise, we say that $\mp$ and
+$\mq$ are incompatible, and $\mp\|\mq$ is undefined. Hence,
+informally, $\mp$ and $\mq$ are compatible if they can be used
+together under some assumptions.
+
+\begin{defi}{(Compatibility and composition of synchronous interfaces)}
+\label{def-moore-compatible} For any two synchronous interfaces
+$\mp$ and $\mq$, we say that $\mp$ and $\mq$ are {\em
+composable\/} if $\ovars_\mp \inters \ovars_\mq = \emptyset$. If
+$\mp$ and $\mq$ are composable, let $\ovars_\mr = \ovars_\mp
+\union \ovars_\mq$, $\ivars_\mr = (\ivars_\mp \union \ivars_\mq)
+\setm \ovars_\mr$, $\vars_\mr = \ovars_\mr \union \ivars_\mr$,
+$\oinit_\mr = \oinit_\mp \und \oinit_\mq$, and $\otrans_\mr =
+\otrans_\mp \und \otrans_\mq$.
+
+The interfaces $\mp$ and $\mq$ are {\em compatible\/} (written
+$\mp\compat\mq$) if they are composable, and if there are
+predicates $\iinit$ on $\ivars_\mr$ and $\itrans$ on $\vars_\mr
+\union (\ivars_\mr)'$ such that (i)~$\iinit$ is satisfiable;
+(ii)~$\forall \vars_\mr . \exists (\ivars_\mr)' . \itrans$ holds;
+(iii)~ for all $s_0, s_1, s_2, \ldots \in \traces(\ivars_\mr,
+\ovars_\mr, \iinit, \oinit_\mr, \itrans, \otrans_\mr)$ we have
+$s_0 \sat \iinit_\mp \und \iinit_\mq$ and, for all $k \geq 0$,
+$(s_k, s_{k+1}) \sat \itrans_\mp \und \itrans_\mq$.
+
+The {\em composition\/} $\mr = \mp \| \mq$ is defined if and only
+if $\mp\compat\mq$, in which case $\mr$ is obtained by taking for
+the input predicate $\iinit_\mr$ and for the input transition
+relation $\itrans_\mr$ the weakest predicates such that the above
+condition holds. \qed
+\end{defi}
+
+\section{Composition Algorithm}
+\label{sec:algo}
+% The definition illustrates how composition composes not only the output
+% behavior, but also the input assumptions.
+% The algorithm for computing the predicates $\iinit_\mr$ and
+% $\itrans_\mr$ is based on the following idea.
+% Two Moore interfaces $\mp$ and $\mq$ are compatible if the choice for
+% the next values of $\ivars_\mr$ can be restricted to ensure that the
+% input assumptions of $\mp$ and $\mq$ are satisfied.
+To compute $\mp \| \mq$, we consider a game between Input and
+Output \cite{cav-paper}. At each round of the game, Output chooses
+new values for the output variables $\ovars_\mr$ according to
+% the output transition relation
+$\otrans_\mr$; simultaneously and independently, Input chooses
+(unconstrained) new values for the input variables $\ivars_\mr$.
+The goal of Input is to ensure that the resulting behavior
+satisfies $\iinit_\mp \und \iinit_\mr$ at the initial state, and
+$\itrans_\mp \und \itrans_\mq$ at all state transitions. If Input
+can win the game, then $\mp$ and $\mq$ are compatible, and the
+most general strategy for Input will give rise to $\iinit_\mr$ and
+$\itrans_\mr$; otherwise, $\mp$ and $\mq$ are incompatible.
+%
+% Possible place for example
+%
+The algorithm for computing $\iinit_\mr$ and $\itrans_\mr$
+proceeds by computing iterative approximations to $\itrans_\mr$,
+and to the set $\ctrl$ of states from which Input can win the
+game. We let $\ctrl_0 = \true$ and, for $k \geq 0$:
+%
+\begin{equation}
+  \label{eq-comp}
+  \htau_{k+1} = \forall (\ovars_\mr)' .
+        \bigl(\otrans_\mr \imply (\itrans_\mp \und \itrans_\mq \und \ctrl'_k)\bigr)
+  \eqspa
+  \ctrl_{k+1} = \ctrl_k \und \exists (\ivars_\mr)' . \htau_{k+1} .
+\end{equation}
+%
+Note that $\htau_{k+1}$ is a predicate on $\ovars_\mr \union
+\ivars_\mr \union (\ivars_\mr)'$. Hence, $\htau_{k+1}$ ensures
+that, regardless of how $\ovars_\mr$ are chosen, from
+$\ctrl_{k+1}$ we have that (i)~for one step, $\itrans_\mp$ and
+$\itrans_\mq$ are satisfied; and (ii)~the step leads to $\ctrl_k$.
+% \mynote{cut?}
+% Another way of understanding (\ref{eq-compa})
+% is to note that the computation of $\ctrl_{k+1}$ can be rewritten as:
+% $
+% \exists (\ivars_\mr)' .
+% \forall (\ovars_\mr)' .
+% (\otrans_\mr \imply (\itrans_\mp \und \itrans_\mq \und \ctrl'_k)),
+% $
+% which is the classical controllability fixpoint.
+Thus, indicating by $\ctrl_* = \lim_{k \go \infty} \ctrl_k$ and
+$\htau_* = \lim_{k \go \infty} \htau_k$ the fixpoints of
+(\ref{eq-comp}) we have that $\ctrl_*$ represents the set of
+states from which Input can win the game, and $\htau_*$ represents
+the most liberal Input
+strategy % (i.e., the most liberal transition relation for $\ivars_\mr$)
+for winning the game. This suggests us to take $\itrans_\mr =
+\htau_*$. However, this is not always the weakest choice, as
+required by Definition~\ref{def-moore-compatible}: a weaker choice
+is $\itrans_\mr = \no \ctrl_* \oder \htau_*$, or equivalently
+$\itrans_\mr = \ctrl_* \imply \htau_*$. Contrary to $\itrans_\mr =
+\htau_*$, this weaker choice ensures that the interface $\mr$ is
+non-blocking. We remark that the choices $\itrans_\mr = \htau_*$
+and $\itrans_\mr = \ctrl_* \imply \htau_*$ differ only at
+non-reachable states. Since the state-space of $\mr$ is finite, by
+monotonicity of (\ref{eq-comp}) we can compute the fixpoint
+$\ctrl_*$ and $\htau_*$ in a finite number of iterations.
+% and since for all $k \geq 0$
+% we have $\ctrl_{k+1} \imply \ctrl_k$ and $\htau_{k+1} \imply \htau_k$, by
+% iterating (\ref{eq-comp}) we eventually reach
+% $k$ for which $\ctrl_{k+1} \equiv \ctrl_k$ and $\htau_{k+1} \equiv
+% \htau_k$, so that the fixpoints can be computed in a finite number of
+% iterations.
+Finally, we define the input initial condition of $\mr$ by $
+  \iinit_\mr = \forall \ovars .
+  ( \oinit_\mr \imply (\iinit_\mp \und \iinit_\mq \und \ctrl_*) )
+$. The following algorithm summarizes these results.
+
+\begin{algo}{}
+Given two composable Synchronous interfaces $\mp$ and $\mq$, let
+$\ctrl_0 = \true$, and for $k > 0$, let the predicates $\ctrl_k$
+and $\htau_k$ be as defined by (\ref{eq-comp}). Let $\htau_* =
+\lim_{k \go \infty} \htau_k$ and $\ctrl_* = \lim_{k \go \infty}
+\ctrl_k$; the limits can be computed with a finite number of
+iterations, and let $\iinit_* = \forall \ovars . \bigl( \oinit_\mr
+\imply (\iinit_\mp \und \iinit_\mq \und \ctrl_*) \bigr)$. Then the
+interfaces $\mp$ and $\mq$ are {\em compatible} iff $\iinit_*$ is
+satisfiable; in this case their composition $\mr = \mp \| \mq$ is
+given by
+\[
+\begin{array}{rlcrlcrl}
+\ovars_\mr  & = \ovars_\mp \union \ovars_\mq & \hspace*{2em} &
+\otrans_\mr & = \otrans_\mp \und \otrans_\mq & \hspace*{2em} &
+\oinit_\mr  & = \oinit_\mp \und \oinit_\mq \\
+%
+\ivars_\mr  & = (\ivars_\mp \union \ivars_\mq) \setm \ovars &
+\hspace*{2em} & \itrans_\mr & = \ctrl_* \imply \htau_* &
+\hspace*{2em} & \iinit_\mr  & = \iinit_*. \hspace{4em} \qed
+\end{array}
+\]
+\end{algo}
+
+
+\noindent
+\paragraph{Implementation Technique.}
+\begin{comment}
+To obtain an efficient implementation, it is important to use a
+conjunctively decomposed representation for the Binary Decision
+Diagrams (BDDs) representing the transition relations, and to
+derive the new input transition relation for a composed interface
+again in conjunctively decomposed form. In fact, the (output)
+transition relation $\otrans$ of a module is best represented not
+as a single BDD (Binary Decision Diagram), but as a list of BDDs
+$\otrans_1, \otrans_2, \ldots, \otrans_n$, such that $\otrans =
+\bigwedge_{i=1}^n \otrans_i$: the BDDs $\otrans_1, \otrans_2,
+\ldots, \otrans_n$ are often small, and can be constructed
+efficiently while parsing the input. For example, in {\em reactive
+modules\/} \cite{RM96journal} each $\otrans_i$, for $1 \leq i \leq
+n$, can be obtained by parsing a single {\em atom,} which
+describes the updates of only a handful of variables;
+%: hence, even as the number $|\vars|$ of total variables
+%grows, $\max_i |\vars_i|$ is likely to stay constant.
+a similar consideration holds for the input language of e.g.\ SMV
+\cite{SMV96}. Furthermore, highly efficient {\em image computation
+techniques\/} have been implemented for computing formulas of the
+form $\exists \vars . \bigwedge_{i=1}^n \otrans_i$; such
+techniques are at the heart of symbolic reachability algorithms
+\cite{ranjan97}. The input and output transition relations of
+Synchronous interfaces in conjunctively decomposed form are
+represented as lists of BDDs.
+\end{comment}
+%
+To obtain an efficient implementation, both the input and the
+output transition relations should be represented
+% of Moore interfaces
+using a conjunctively decomposed representation, where a relation
+$\trans$ is represented by a list of BDDs $\trans_1, \trans_2,
+\ldots, \trans_n$ such that $\trans = \wedge_{i=1}^n \trans_i$.
+% Often, such conjunctive representations can be much smaller than
+% representing $\trans$ by a single BDD.
+% Furthermore, highly efficient {\em image computation techniques\/}
+% have been implemented for computing formulas of the form
+% $\exists \vars . \bigwedge_{i=1}^n \otrans_i$, that are at
+% the heart of symbolic reachability.
+When computing $\mr = \mp \| \mq$, the list for $\otrans_\mr$ can
+be readily obtained by concatenating the lists for $\otrans_\mp$
+and $\otrans_\mq$. Moreover,
+% by rearranging the computation of (\ref{eq-comp}),
+% we can obtain a conjunctively decomposed representation of
+% $\itrans_\mr$ from the conjunctive decompositions for $\mp$ and $\mq$.
+assume that $\otrans_\mr$ is represented as $\bigwedge_{i=1}^n
+\otrans_i$, and that $\itrans_\mp \und \itrans_\mq$ is represented
+as $\bigwedge_{j=1}^m \otrans_j$. Given $\ctrl_k$, from
+(\ref{eq-comp}) the conjunctive decomposition is
+$\bigwedge_{j=1}^{m+1} \htau_{k+1,j}$ for $\htau_{k+1}$ by taking
+$  \htau_{k+1,m+1} = \no \exists (\ovars_\mr)' .
+  (\otrans_\mr \und \no \ctrl'_{k})$
+and, for $1 \leq j \leq m$, by taking $   \htau_{k+1,j}  = \no
+\exists (\ovars_\mr)' .
+    (\otrans_\mr \und \no \itrans_j)$.
+% \[
+%   \htau_{k+1,j}  = \no \exists (\ovars_\mr)' .
+%   ((\bigwedge_{i=1}^n \otrans_i) \und \no \itrans_j)
+%   \eqspa
+%   \htau_{k+1,m+1} = \no \exists (\ovars_\mr)' .
+%   ((\bigwedge_{i=1}^n \otrans_i) \und \no \ctrl'_{k}).
+% \]
+% The existential quantification in these expressions can be
+% performed using image computation techniques.
+Also $\ctrl_{k+1} = \exists (\ivars_\mr)' . \bigwedge_{j=1}^{m+1}
+\htau_{k+1,j}$. All these operations can be performed using image
+computation techniques. On reaching $k$ such that $\ctrl_k \equiv
+\ctrl_{k+1}$, the BDDs $\htau_{k,1}, \ldots, \htau_{k,m+1}$ form a
+conjunctive decomposition for $\htau_*$. Since the two transition
+relations $\htau_*$ and $\ctrl_* \imply \htau_*$ differ only for
+the behavior at non-reachable states, we can take directly
+$\itrans_\mr = \htau_*$, obtaining again a conjunctive
+decomposition.

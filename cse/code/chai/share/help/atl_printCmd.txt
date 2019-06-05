@@ -1,0 +1,19 @@
+
+  atl_print - Prints an ATL formula.
+     _________________________________________________________________
+   
+   atl_print [-lh] []
+   
+   This command prints the names of all the ATL formulas that have been
+   read. Command Options:
+   
+   -l
+          Prints the name as well as the formula itself.
+          
+   -h
+          Prints Usage.
+          
+   Prints only the specified formula.
+     _________________________________________________________________
+   
+   Last updated on 980624 22h10

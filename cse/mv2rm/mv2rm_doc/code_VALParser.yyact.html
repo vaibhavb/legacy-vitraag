@@ -1,0 +1,683 @@
+<html><head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="Start" href="index.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of exceptions" rel=Appendix href="index_exceptions.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="Ass" rel="Chapter" href="Ass.html">
+<link title="Ast" rel="Chapter" href="Ast.html">
+<link title="Check" rel="Chapter" href="Check.html">
+<link title="Codegen" rel="Chapter" href="Codegen.html">
+<link title="Lexer" rel="Chapter" href="Lexer.html">
+<link title="Main" rel="Chapter" href="Main.html">
+<link title="Parser" rel="Chapter" href="Parser.html"><title>Parser.yyact</title>
+</head>
+<body>
+<code class="code"><span class="keyword">let</span>&nbsp;yyact&nbsp;=&nbsp;[|<br>
+&nbsp;&nbsp;(<span class="keyword">fun</span>&nbsp;_&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;failwith&nbsp;<span class="string">"parser"</span>)<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_1&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;1&nbsp;:&nbsp;<span class="keywordsign">'</span>models1)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;37&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*print_string(");&nbsp;&nbsp;print_all_models();*)</span>)&nbsp;:&nbsp;unit))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_1&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;1&nbsp;:&nbsp;<span class="keywordsign">'</span>model1)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_2&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;0&nbsp;:&nbsp;<span class="keywordsign">'</span>models1)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;41&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>models1))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;42&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>models1))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_1&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;4&nbsp;:&nbsp;<span class="keywordsign">'</span>head1)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_2&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;3&nbsp;:&nbsp;<span class="keywordsign">'</span>decl1)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_3&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;2&nbsp;:&nbsp;<span class="keywordsign">'</span>body1)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;47&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;add_model_to_modelTab&nbsp;();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;add_subcktTab&nbsp;();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;clear_all_list&nbsp;();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>model1))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_2&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;1&nbsp;:&nbsp;string)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;55&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;set_module_name&nbsp;(_2);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>head1))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_1&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;0&nbsp;:&nbsp;<span class="keywordsign">'</span>vdecl1)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;60&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>decl1))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;61&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>decl1))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_1&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;1&nbsp;:&nbsp;<span class="keywordsign">'</span>vdecl1)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_2&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;0&nbsp;:&nbsp;<span class="keywordsign">'</span>input1)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;65&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>vdecl1))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_1&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;0&nbsp;:&nbsp;<span class="keywordsign">'</span>input1)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;66&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>vdecl1))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_1&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;1&nbsp;:&nbsp;<span class="keywordsign">'</span>vdecl1)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_2&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;0&nbsp;:&nbsp;<span class="keywordsign">'</span>output1)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;67&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>vdecl1))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_1&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;0&nbsp;:&nbsp;<span class="keywordsign">'</span>output1)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;68&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>vdecl1))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_2&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;1&nbsp;:&nbsp;<span class="keywordsign">'</span>iovals1)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;73&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;add_i_list&nbsp;(_2);&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>input1))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_2&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;1&nbsp;:&nbsp;<span class="keywordsign">'</span>iovals1)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;78&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;add_o_list&nbsp;(_2);&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>output1))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_1&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;1&nbsp;:&nbsp;string)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_2&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;0&nbsp;:&nbsp;<span class="keywordsign">'</span>iovals1)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;82&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">List</span>.append&nbsp;[_1]&nbsp;(_2))&nbsp;:&nbsp;<span class="keywordsign">'</span>iovals1))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_1&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;0&nbsp;:&nbsp;string)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;83&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[_1])&nbsp;:&nbsp;<span class="keywordsign">'</span>iovals1))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_1&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;1&nbsp;:&nbsp;<span class="keywordsign">'</span>table1)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_2&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;0&nbsp;:&nbsp;<span class="keywordsign">'</span>body1)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;88&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>body1))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_1&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;1&nbsp;:&nbsp;<span class="keywordsign">'</span>subckt1)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_2&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;0&nbsp;:&nbsp;<span class="keywordsign">'</span>body1)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;89&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>body1))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_1&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;1&nbsp;:&nbsp;<span class="keywordsign">'</span>mv1)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_2&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;0&nbsp;:&nbsp;<span class="keywordsign">'</span>body1)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;90&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>body1))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_1&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;1&nbsp;:&nbsp;<span class="keywordsign">'</span>reset1)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_2&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;0&nbsp;:&nbsp;<span class="keywordsign">'</span>body1)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;91&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>body1))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_1&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;1&nbsp;:&nbsp;<span class="keywordsign">'</span>latch1)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_2&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;0&nbsp;:&nbsp;<span class="keywordsign">'</span>body1)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;92&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>body1))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;93&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>body1))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_2&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;2&nbsp;:&nbsp;<span class="keywordsign">'</span>tabvars1)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_4&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;0&nbsp;:&nbsp;<span class="keywordsign">'</span>relations1)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;98&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>table1))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_2&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;3&nbsp;:&nbsp;<span class="keywordsign">'</span>mvvars1)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_3&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;2&nbsp;:&nbsp;string)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_4&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;1&nbsp;:&nbsp;<span class="keywordsign">'</span>values1)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;104&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>mv1))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_1&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;2&nbsp;:&nbsp;string)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_3&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;0&nbsp;:&nbsp;<span class="keywordsign">'</span>mvvars1)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;108&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>mvvars1))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_1&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;0&nbsp;:&nbsp;string)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;109&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>mvvars1))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_1&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;1&nbsp;:&nbsp;string)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_2&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;0&nbsp;:&nbsp;<span class="keywordsign">'</span>values1)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;112&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>values1))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;113&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>values1))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_2&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;2&nbsp;:&nbsp;<span class="keywordsign">'</span>tabvars1)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_4&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;0&nbsp;:&nbsp;<span class="keywordsign">'</span>relations1)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;118&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>reset1))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_2&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;3&nbsp;:&nbsp;string)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_3&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;2&nbsp;:&nbsp;string)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_4&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;1&nbsp;:&nbsp;<span class="keywordsign">'</span>param_passing1)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;124&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;make_subckt&nbsp;(_2)&nbsp;(_3)&nbsp;(_4);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;add_sckt_list&nbsp;(_2);)&nbsp;:&nbsp;<span class="keywordsign">'</span>subckt1))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_1&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;1&nbsp;:&nbsp;<span class="keywordsign">'</span>formal_actual1)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_2&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;0&nbsp;:&nbsp;<span class="keywordsign">'</span>param_passing1)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;129&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;make_pair_list&nbsp;(_1)&nbsp;(_2))&nbsp;:&nbsp;<span class="keywordsign">'</span>param_passing1))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;130&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="constructor">List</span>.combine&nbsp;[]&nbsp;[]))&nbsp;:&nbsp;<span class="keywordsign">'</span>param_passing1))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_1&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;2&nbsp;:&nbsp;string)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_3&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;0&nbsp;:&nbsp;string)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;134&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="constructor">List</span>.combine&nbsp;[_1]&nbsp;[_3]))&nbsp;:&nbsp;<span class="keywordsign">'</span>formal_actual1))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_2&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;2&nbsp;:&nbsp;string)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_3&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;1&nbsp;:&nbsp;string)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;139&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>latch1))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_1&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;2&nbsp;:&nbsp;<span class="keywordsign">'</span>inList1)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_3&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;0&nbsp;:&nbsp;<span class="keywordsign">'</span>outList1)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;144&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>tabvars1))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_1&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;1&nbsp;:&nbsp;string)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_2&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;0&nbsp;:&nbsp;<span class="keywordsign">'</span>inList1)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;145&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>tabvars1))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_1&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;0&nbsp;:&nbsp;string)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;146&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>tabvars1))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_1&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;1&nbsp;:&nbsp;string)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_2&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;0&nbsp;:&nbsp;<span class="keywordsign">'</span>inList1)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;150&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>inList1))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_1&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;0&nbsp;:&nbsp;string)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;151&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>inList1))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;152&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>inList1))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_1&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;1&nbsp;:&nbsp;string)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_2&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;0&nbsp;:&nbsp;<span class="keywordsign">'</span>outList1)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;156&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>outList1))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_1&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;0&nbsp;:&nbsp;string)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;157&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>outList1))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_1&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;1&nbsp;:&nbsp;<span class="keywordsign">'</span>vdefault)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_2&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;0&nbsp;:&nbsp;<span class="keywordsign">'</span>relations1)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;161&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>relations1))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_1&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;1&nbsp;:&nbsp;<span class="keywordsign">'</span>relation1)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_2&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;0&nbsp;:&nbsp;<span class="keywordsign">'</span>relations1)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;162&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>relations1))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;163&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>relations1))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_2&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;1&nbsp;:&nbsp;<span class="keywordsign">'</span>valList1)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;167&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>vdefault1))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_1&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;1&nbsp;:&nbsp;<span class="keywordsign">'</span>valList1)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;171&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>relation1))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_1&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;1&nbsp;:&nbsp;<span class="keywordsign">'</span>valb1)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_2&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;0&nbsp;:&nbsp;<span class="keywordsign">'</span>valList1)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;175&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>valList1))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_1&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;0&nbsp;:&nbsp;<span class="keywordsign">'</span>valb1)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;176&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>valList1))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_1&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;0&nbsp;:&nbsp;string)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;180&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>valb1))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_1&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;0&nbsp;:&nbsp;string)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;181&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>valb1))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_2&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;0&nbsp;:&nbsp;string)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;182&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>valb1))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;183&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>valb1))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_2&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;3&nbsp;:&nbsp;string)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_4&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;1&nbsp;:&nbsp;string)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;184&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>valb1))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_2&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;1&nbsp;:&nbsp;<span class="keywordsign">'</span>vals1)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;185&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>valb1))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_2&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;0&nbsp;:&nbsp;<span class="keywordsign">'</span>valb1)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;186&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>valb1))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_1&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;2&nbsp;:&nbsp;string)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_3&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;0&nbsp;:&nbsp;<span class="keywordsign">'</span>vals1)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;190&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>vals1))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_1&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;0&nbsp;:&nbsp;string)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;191&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>vals1))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_1&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;1&nbsp;:&nbsp;<span class="keywordsign">'</span>models)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;199&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print_string(<span class="string">"parse2\n"</span>);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;emit_license();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;emit_all_subckts();&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exit&nbsp;0<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;:&nbsp;unit))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_1&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;1&nbsp;:&nbsp;<span class="keywordsign">'</span>model)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_2&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;0&nbsp;:&nbsp;<span class="keywordsign">'</span>models)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;207&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>models))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;208&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>models))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_1&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;4&nbsp;:&nbsp;<span class="keywordsign">'</span>head)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_2&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;3&nbsp;:&nbsp;<span class="keywordsign">'</span>decl)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_3&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;2&nbsp;:&nbsp;<span class="keywordsign">'</span>body)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;213&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;add_hidelist();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;emit_module_name&nbsp;();&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;emit_io_stmts&nbsp;();&nbsp;clear_io_list&nbsp;();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;emit_private_vars();&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;emit_atoms();&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;emit_module_end&nbsp;();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*add_subcktTab&nbsp;();*)</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;clear_subckt();&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>model))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_2&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;1&nbsp;:&nbsp;string)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;226&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;clear_all_list&nbsp;();&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;set_module_name&nbsp;(_2);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*to&nbsp;take&nbsp;care&nbsp;of&nbsp;type&nbsp;gadbad*)</span>&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>head))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_1&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;0&nbsp;:&nbsp;<span class="keywordsign">'</span>vdecl)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;232&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>decl))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;233&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>decl))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_1&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;1&nbsp;:&nbsp;<span class="keywordsign">'</span>vdecl)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_2&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;0&nbsp;:&nbsp;<span class="keywordsign">'</span>input)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;237&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>vdecl))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_1&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;0&nbsp;:&nbsp;<span class="keywordsign">'</span>input)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;238&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>vdecl))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_1&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;1&nbsp;:&nbsp;<span class="keywordsign">'</span>vdecl)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_2&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;0&nbsp;:&nbsp;<span class="keywordsign">'</span>output)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;239&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>vdecl))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_1&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;0&nbsp;:&nbsp;<span class="keywordsign">'</span>output)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;240&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>vdecl))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_2&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;1&nbsp;:&nbsp;<span class="keywordsign">'</span>iovals)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;245&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;add_i_list&nbsp;(_2);&nbsp;<span class="constructor">List</span>.iter&nbsp;add_i_sym_tab&nbsp;(_2)&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>input))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_2&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;1&nbsp;:&nbsp;<span class="keywordsign">'</span>iovals)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;250&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;add_o_list&nbsp;(_2);&nbsp;<span class="constructor">List</span>.iter&nbsp;add_o_sym_tab&nbsp;(_2)&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>output))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_1&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;1&nbsp;:&nbsp;string)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_2&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;0&nbsp;:&nbsp;<span class="keywordsign">'</span>iovals)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;254&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">List</span>.append&nbsp;[_1]&nbsp;(_2))&nbsp;:&nbsp;<span class="keywordsign">'</span>iovals))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_1&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;0&nbsp;:&nbsp;string)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;255&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[_1])&nbsp;:&nbsp;<span class="keywordsign">'</span>iovals))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_1&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;1&nbsp;:&nbsp;<span class="keywordsign">'</span>table)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_2&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;0&nbsp;:&nbsp;<span class="keywordsign">'</span>body)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;260&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>body))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_1&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;1&nbsp;:&nbsp;<span class="keywordsign">'</span>subckt)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_2&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;0&nbsp;:&nbsp;<span class="keywordsign">'</span>body)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;261&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>body))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_1&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;1&nbsp;:&nbsp;<span class="keywordsign">'</span>mv)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_2&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;0&nbsp;:&nbsp;<span class="keywordsign">'</span>body)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;262&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>body))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_1&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;1&nbsp;:&nbsp;<span class="keywordsign">'</span>reset)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_2&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;0&nbsp;:&nbsp;<span class="keywordsign">'</span>body)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;263&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>body))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_1&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;1&nbsp;:&nbsp;<span class="keywordsign">'</span>latch)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_2&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;0&nbsp;:&nbsp;<span class="keywordsign">'</span>body)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;264&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>body))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;265&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>body))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_2&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;2&nbsp;:&nbsp;<span class="keywordsign">'</span>tabvars)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_4&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;0&nbsp;:&nbsp;<span class="keywordsign">'</span>relations)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;271&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;add_tableatom_to_symTab&nbsp;();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;clear_relations&nbsp;();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;clear_inout_list&nbsp;();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>table))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_2&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;3&nbsp;:&nbsp;<span class="keywordsign">'</span>mvvars)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_3&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;2&nbsp;:&nbsp;string)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_4&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;1&nbsp;:&nbsp;<span class="keywordsign">'</span>values)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;281&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;add_in&nbsp;a&nbsp;=&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">match</span>&nbsp;(_4)&nbsp;<span class="keyword">with</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[]<span class="keywordsign">-&gt;</span>&nbsp;add_sym_tab&nbsp;a&nbsp;(<span class="constructor">MvRange</span>(int_of_string(_3)))<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;_&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span>&nbsp;(<span class="constructor">List</span>.length&nbsp;(_4)&nbsp;==&nbsp;int_of_string(_3))&nbsp;<span class="keyword">then</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;add_sym_tab&nbsp;a&nbsp;(<span class="constructor">Mv</span>([_3]@(_4)))<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">else</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;raise&nbsp;(<span class="constructor">Failure</span>&nbsp;(a&nbsp;^<span class="string">"&nbsp;has&nbsp;unmatched&nbsp;number&nbsp;of&nbsp;values"</span>));<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">List</span>.iter&nbsp;add_in&nbsp;(_2)&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>mv))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_1&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;2&nbsp;:&nbsp;string)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_3&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;0&nbsp;:&nbsp;<span class="keywordsign">'</span>mvvars)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;296&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">List</span>.append&nbsp;[_1]&nbsp;(_3))&nbsp;:&nbsp;<span class="keywordsign">'</span>mvvars))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_1&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;0&nbsp;:&nbsp;string)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;297&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[_1])&nbsp;:&nbsp;<span class="keywordsign">'</span>mvvars))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_1&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;1&nbsp;:&nbsp;string)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_2&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;0&nbsp;:&nbsp;<span class="keywordsign">'</span>values)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;300&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">List</span>.append&nbsp;[_1]&nbsp;(_2))&nbsp;:&nbsp;<span class="keywordsign">'</span>values))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;301&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[])&nbsp;:&nbsp;<span class="keywordsign">'</span>values))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_2&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;2&nbsp;:&nbsp;<span class="keywordsign">'</span>tabvars)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_4&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;0&nbsp;:&nbsp;<span class="keywordsign">'</span>relations)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;307&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;add_resetatom_to_symTab&nbsp;();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;clear_relations&nbsp;();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;clear_inout_list&nbsp;();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>reset))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_2&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;3&nbsp;:&nbsp;string)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_3&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;2&nbsp;:&nbsp;string)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_4&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;1&nbsp;:&nbsp;<span class="keywordsign">'</span>param_passing)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;316&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;io_analysis&nbsp;(_2)&nbsp;(_3)&nbsp;(_4);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;make_subckt&nbsp;(_2)&nbsp;(_3)&nbsp;(_4)&nbsp;;)&nbsp;:&nbsp;<span class="keywordsign">'</span>subckt))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_1&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;1&nbsp;:&nbsp;<span class="keywordsign">'</span>formal_actual)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_2&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;0&nbsp;:&nbsp;<span class="keywordsign">'</span>param_passing)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;321&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;make_pair_list&nbsp;(_1)&nbsp;(_2))&nbsp;:&nbsp;<span class="keywordsign">'</span>param_passing))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;322&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="constructor">List</span>.combine&nbsp;[]&nbsp;[]))&nbsp;:&nbsp;<span class="keywordsign">'</span>param_passing))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_1&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;2&nbsp;:&nbsp;string)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_3&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;0&nbsp;:&nbsp;string)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;326&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*interface_analysis&nbsp;($3);*)</span>&nbsp;(<span class="constructor">List</span>.combine&nbsp;[_1]&nbsp;[_3]);)&nbsp;:&nbsp;<span class="keywordsign">'</span>formal_actual))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_2&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;2&nbsp;:&nbsp;string)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_3&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;1&nbsp;:&nbsp;string)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;333&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;add_sym_tab&nbsp;(_2)&nbsp;(<span class="constructor">Bool</span>);add_sym_tab&nbsp;(_3)&nbsp;(<span class="constructor">Bool</span>);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;add_latchatom_to_symTab&nbsp;(_2)&nbsp;(_3);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>latch))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_1&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;2&nbsp;:&nbsp;<span class="keywordsign">'</span>inList)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_3&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;0&nbsp;:&nbsp;<span class="keywordsign">'</span>outList)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;340&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;add_in_list&nbsp;(_1);&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;add_out_list&nbsp;(_3))&nbsp;:&nbsp;<span class="keywordsign">'</span>tabvars))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_1&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;1&nbsp;:&nbsp;string)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_2&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;0&nbsp;:&nbsp;<span class="keywordsign">'</span>inList)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;343&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;add_sym_tab&nbsp;(_1)&nbsp;(<span class="constructor">Bool</span>);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;add_in_list&nbsp;&nbsp;([_1]@(&nbsp;<span class="constructor">List</span>.rev&nbsp;(<span class="constructor">List</span>.tl&nbsp;(<span class="constructor">List</span>.rev&nbsp;_2))));&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;add_out_list&nbsp;([(<span class="constructor">List</span>.hd&nbsp;(<span class="constructor">List</span>.rev&nbsp;(_2))&nbsp;)])<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>tabvars))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_1&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;0&nbsp;:&nbsp;string)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;347&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;add_sym_tab&nbsp;(_1)&nbsp;(<span class="constructor">Bool</span>);&nbsp;add_out_list&nbsp;([_1]);&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>tabvars))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_1&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;1&nbsp;:&nbsp;string)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_2&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;0&nbsp;:&nbsp;<span class="keywordsign">'</span>inList)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;351&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;add_sym_tab&nbsp;(_1)&nbsp;(<span class="constructor">Bool</span>);&nbsp;<span class="constructor">List</span>.append&nbsp;[_1]&nbsp;(_2))&nbsp;:&nbsp;<span class="keywordsign">'</span>inList))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_1&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;0&nbsp;:&nbsp;string)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;352&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;add_sym_tab&nbsp;(_1)&nbsp;(<span class="constructor">Bool</span>);&nbsp;[_1])&nbsp;:&nbsp;<span class="keywordsign">'</span>inList))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;353&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[])&nbsp;:&nbsp;<span class="keywordsign">'</span>inList))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_1&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;1&nbsp;:&nbsp;string)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_2&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;0&nbsp;:&nbsp;<span class="keywordsign">'</span>outList)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;357&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;add_sym_tab&nbsp;(_1)&nbsp;(<span class="constructor">Bool</span>);&nbsp;<span class="constructor">List</span>.append&nbsp;[_1]&nbsp;(_2)&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>outList))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_1&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;0&nbsp;:&nbsp;string)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;358&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;add_sym_tab&nbsp;(_1)&nbsp;(<span class="constructor">Bool</span>);&nbsp;[_1])&nbsp;:&nbsp;<span class="keywordsign">'</span>outList))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_1&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;1&nbsp;:&nbsp;<span class="keywordsign">'</span>vdefault)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_2&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;0&nbsp;:&nbsp;<span class="keywordsign">'</span>relations)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;362&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;add_def_relation&nbsp;();&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>relations))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_1&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;1&nbsp;:&nbsp;<span class="keywordsign">'</span>relation)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_2&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;0&nbsp;:&nbsp;<span class="keywordsign">'</span>relations)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;363&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;add_relation&nbsp;(_1);&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>relations))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;364&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>relations))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_2&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;1&nbsp;:&nbsp;<span class="keywordsign">'</span>valList)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;368&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;make_def_relation&nbsp;(_2)&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>vdefault))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_1&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;1&nbsp;:&nbsp;<span class="keywordsign">'</span>valList)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;372&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(_1)&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>relation))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_1&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;1&nbsp;:&nbsp;<span class="keywordsign">'</span>valb)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_2&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;0&nbsp;:&nbsp;<span class="keywordsign">'</span>valList)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;376&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;([_1]@(_2))&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>valList))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_1&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;0&nbsp;:&nbsp;<span class="keywordsign">'</span>valb)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;377&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[_1]&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>valList))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_1&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;0&nbsp;:&nbsp;string)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;381&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(_1)&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>valb))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_1&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;0&nbsp;:&nbsp;string)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;382&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(_1)&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>valb))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_2&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;0&nbsp;:&nbsp;string)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;383&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*check&nbsp;it&nbsp;in&nbsp;io*)</span>&nbsp;((_2)^<span class="string">"'"</span>)&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>valb))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;384&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="string">"hyp"</span>)&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>valb))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_2&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;3&nbsp;:&nbsp;string)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_4&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;1&nbsp;:&nbsp;string)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;385&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="string">"("</span>^(_2)^<span class="string">".."</span>^(_4)^<span class="string">")"</span>)&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>valb))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_2&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;1&nbsp;:&nbsp;<span class="keywordsign">'</span>vals)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;386&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="string">"("</span>^(_2)^<span class="string">")"</span>))&nbsp;:&nbsp;<span class="keywordsign">'</span>valb))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_2&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;0&nbsp;:&nbsp;<span class="keywordsign">'</span>valb)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;387&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="string">"not&nbsp;"</span>^(_2))&nbsp;)&nbsp;:&nbsp;<span class="keywordsign">'</span>valb))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_1&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;2&nbsp;:&nbsp;string)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_3&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;0&nbsp;:&nbsp;<span class="keywordsign">'</span>vals)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;391&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(_1^<span class="string">",&nbsp;"</span>^_3))&nbsp;:&nbsp;<span class="keywordsign">'</span>vals))<br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_1&nbsp;=&nbsp;(peek_val&nbsp;parser_env&nbsp;0&nbsp;:&nbsp;string)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Obj</span>.repr((<br>
+#&nbsp;392&nbsp;"parser.mly"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_1)&nbsp;:&nbsp;<span class="keywordsign">'</span>vals))<br>
+<span class="comment">(*&nbsp;Entry&nbsp;start1&nbsp;*)</span><br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;raise&nbsp;(<span class="constructor">YYexit</span>&nbsp;(peek_val&nbsp;parser_env&nbsp;0)))<br>
+<span class="comment">(*&nbsp;Entry&nbsp;main&nbsp;*)</span><br>
+;&nbsp;(<span class="keyword">fun</span>&nbsp;parser_env&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;raise&nbsp;(<span class="constructor">YYexit</span>&nbsp;(peek_val&nbsp;parser_env&nbsp;0)))<br>
+|]</code></body></html>

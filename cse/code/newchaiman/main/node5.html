@@ -1,0 +1,225 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with jLaTeX2HTML 2002 (1.62) JA patch-1.4
+patched version by:  Kenshi Muto, Debian Project.
+LaTeX2HTML 2002 (1.62),
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Modeling the -bit counter in REACTIVEMODULES</TITLE>
+<META NAME="description" CONTENT="Modeling the -bit counter in REACTIVEMODULES">
+<META NAME="keywords" CONTENT="main">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<META NAME="Generator" CONTENT="jLaTeX2HTML v2002 JA patch-1.4">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="main.css">
+
+<LINK REL="next" HREF="node7.html">
+<LINK REL="previous" HREF="node4.html">
+<LINK REL="up" HREF="node2.html">
+<LINK REL="next" HREF="node6.html">
+</HEAD>
+
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html99"
+  HREF="node6.html">[Next]</A> 
+<A NAME="tex2html95"
+  HREF="node2.html">[Up]</A> 
+<A NAME="tex2html89"
+  HREF="node4.html">[Previous]</A>  
+<A NAME="tex2html97"
+  HREF="node17.html">[Index]</A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html100"
+  HREF="node6.html">Module instantiation and composition</A>
+<B> Up:</B> <A NAME="tex2html96"
+  HREF="node2.html">Tutorial introduction to CHAI</A>
+<B> Previous:</B> <A NAME="tex2html90"
+  HREF="node4.html">-bit counter</A>
+ &nbsp <B>  <A NAME="tex2html98"
+  HREF="node17.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00230000000000000000">
+Modeling the <A NAME="tex2html_wrap_inline3006"
+ HREF="img1.png">[IMAGE png]</A>-bit counter in R<SMALL>EACTIVE</SMALL>M<SMALL>ODULES</SMALL></A>
+</H1>
+A R<SMALL>EACTIVE</SMALL>M<SMALL>ODULES</SMALL> specification consists of one or more <EM>modules</EM>. A module
+roughly corresponds to a module in a HDL or a function in a
+programming language. A module consists of set of variables and a set
+of rules to define the evolution in time of the subset of variables it
+controls. The input variables are called the <EM>external</EM> variables and
+the output variables are called the <EM>interface</EM> variables.
+The other variables of the module that are not exchanged with
+its environment are called <EM>private</EM> variables. The private and
+interface variables of a module are controlled by it. 
+
+<P>
+For the <TT>counterCell</TT>, <TT>sumBit</TT> is a private variable, <TT>carryIn</TT> is an
+external variable, and <TT>carryOut</TT> is an interface variable, as in Figure&nbsp;<A HREF="node5.html#fig:counter_cell_rm">2.1</A>. 
+
+<P>
+In synchronous digital hardware, in each cycle, the primary inputs
+(PIs) and the present state values of latches propagate to determine
+the next state values of latches and the outputs (including the
+primary outputs). Then, all the latches simultaneously assume their
+next state values, and the process repeats in this manner every clock cycle. 
+
+<P>
+Similarly, with R<SMALL>EACTIVE</SMALL>M<SMALL>ODULES</SMALL>, in every <EM>round</EM> (like cycle) the variables
+are updated. No apriori distinction is made between variables for
+latches and variables for combinational gates. Instead, the semantic
+distinction between these is captured in their update rules specified
+by <EM>atoms</EM>. 
+
+<P>
+If the value of a variable <A NAME="tex2html_wrap_inline2115"
+ HREF="img4.png">[IMAGE png]</A>--the present value--at the beginning
+of a round is denoted by <A NAME="tex2html_wrap_inline2115"
+ HREF="img4.png">[IMAGE png]</A>, the update round computes the next or
+primed value <A NAME="tex2html_wrap_inline2119"
+ HREF="img5.png">[IMAGE png]</A>. The initial value computation that happens in the
+init round is specified by the init section of the atom, and the
+subsequent updates in the update rounds are specified by the update
+sections of the atoms.
+
+<P>
+An atom specifies the next state function as a set of guarded
+commands: when the guard is satisfied the action is taken.  The
+next-state function of the variable an atom controls may be a function
+of the present value of variables (i.e., unprimed version) it <EM>reads</EM> and primed value of variables it <EM>awaits</EM>. In particular,
+both the guards and the commands may only involve expressions over the
+unprimed variables that are read and the primed variables that are
+awaited.  For instance, the next value of <TT>carryOut</TT> (i.e. <TT>carryOut'</TT>),
+is a function of the present value of <TT>sumBit</TT> (being a latch) and the
+next value of <TT>carryIn</TT> (being a primary input): its atom, in
+Figure&nbsp;<A HREF="node5.html#fig:counter_cell_rm">2.1</A>, reads <TT>sumBit</TT> and awaits <TT>carryIn</TT>. 
+
+<P>
+Also, this means that the next value of a variable will be computed
+after the next values of the variables it awaits are computed.
+Note that cyclic await dependencies are disallowed.
+In fact, the partial order induced by the await dependencies among all atoms
+must be completable to a linear order.
+
+<P>
+Figure&nbsp;<A HREF="node5.html#fig:counter_cell_rm">2.1</A> shows the R<SMALL>EACTIVE</SMALL>M<SMALL>ODULES</SMALL> description of the
+counter-cell. In each round, the next value of carryIn is first
+computed, and then sumBit and carryOut may be computed in each order. 
+A sample execution of the module is given in the table below:
+
+<P>
+<DIV ALIGN="CENTER">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="RIGHT">Round:</TD>
+<TD ALIGN="RIGHT">0 (initial)</TD>
+<TD ALIGN="RIGHT">1</TD>
+<TD ALIGN="RIGHT">2</TD>
+<TD ALIGN="RIGHT">3</TD>
+<TD ALIGN="RIGHT">4</TD>
+<TD ALIGN="CENTER"><A NAME="tex2html_wrap_inline2121"
+ HREF="img6.png">[IMAGE png]</A></TD>
+</TR>
+<TR><TD ALIGN="RIGHT"><TT>carryIn</TT>:</TD>
+<TD ALIGN="RIGHT"><SMALL>T</SMALL></TD>
+<TD ALIGN="RIGHT"><SMALL>T</SMALL></TD>
+<TD ALIGN="RIGHT"><SMALL>T</SMALL></TD>
+<TD ALIGN="RIGHT"><SMALL>F</SMALL></TD>
+<TD ALIGN="RIGHT"><SMALL>T</SMALL></TD>
+<TD ALIGN="CENTER"><A NAME="tex2html_wrap_inline2121"
+ HREF="img6.png">[IMAGE png]</A></TD>
+</TR>
+<TR><TD ALIGN="RIGHT"><TT>sumBit</TT>:</TD>
+<TD ALIGN="RIGHT"><SMALL>F</SMALL></TD>
+<TD ALIGN="RIGHT"><SMALL>T</SMALL></TD>
+<TD ALIGN="RIGHT"><SMALL>F</SMALL></TD>
+<TD ALIGN="RIGHT"><SMALL>F</SMALL></TD>
+<TD ALIGN="RIGHT"><SMALL>T</SMALL></TD>
+<TD ALIGN="CENTER"><A NAME="tex2html_wrap_inline2121"
+ HREF="img6.png">[IMAGE png]</A></TD>
+</TR>
+<TR><TD ALIGN="RIGHT"><TT>carryOut</TT>:</TD>
+<TD ALIGN="RIGHT"><SMALL>F</SMALL></TD>
+<TD ALIGN="RIGHT"><SMALL>F</SMALL></TD>
+<TD ALIGN="RIGHT"><SMALL>T</SMALL></TD>
+<TD ALIGN="RIGHT"><SMALL>F</SMALL></TD>
+<TD ALIGN="RIGHT"><SMALL>F</SMALL></TD>
+<TD ALIGN="CENTER"><A NAME="tex2html_wrap_inline2121"
+ HREF="img6.png">[IMAGE png]</A></TD>
+</TR>
+</TABLE>
+</DIV>
+
+<P>
+
+<DIV ALIGN="CENTER"><A NAME="fig:counter_cell_rm">&#160;</A><A NAME="1750">&#160;</A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 2.1:</STRONG>
+1-bit counter-cell</CAPTION>
+<TR><TD><A NAME="figure1747"
+ HREF="img7.png">[IMAGE png]</A></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+From the exercise of modeling the counter-cell in R<SMALL>EACTIVE</SMALL>M<SMALL>ODULES</SMALL>, we can derive
+the rules in Table&nbsp;<A HREF="node5.html#tab:recipe_mealy_fsm_rm">2.1</A> to translate a
+Mealy FSM module to R<SMALL>EACTIVE</SMALL>M<SMALL>ODULES</SMALL>. 
+
+<P>
+<BR><P></P>
+<DIV ALIGN="CENTER"><A NAME="item:latch">&#160;</A><A NAME="item:pi">&#160;</A><A NAME="tab:recipe_mealy_fsm_rm">&#160;</A><A NAME="1759">&#160;</A>
+<TABLE>
+<CAPTION><STRONG>Table 2.1:</STRONG>
+Recipe for variable assignment in translating a Mealy FSM
+module to R<SMALL>EACTIVE</SMALL>M<SMALL>ODULES</SMALL></CAPTION>
+<TR><TD><A NAME="table1754"
+ HREF="img8.png">[IMAGE png]</A></TD></TR>
+</TABLE>
+</DIV><P></P>
+<BR>
+<BR><HR>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html101"
+  HREF="node6.html">Module instantiation and composition</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html99"
+  HREF="node6.html">[Next]</A> 
+<A NAME="tex2html95"
+  HREF="node2.html">[Up]</A> 
+<A NAME="tex2html89"
+  HREF="node4.html">[Previous]</A>  
+<A NAME="tex2html97"
+  HREF="node17.html">[Index]</A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html100"
+  HREF="node6.html">Module instantiation and composition</A>
+<B> Up:</B> <A NAME="tex2html96"
+  HREF="node2.html">Tutorial introduction to CHAI</A>
+<B> Previous:</B> <A NAME="tex2html90"
+  HREF="node4.html">-bit counter</A>
+ &nbsp <B>  <A NAME="tex2html98"
+  HREF="node17.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+Vaibhav Bhandari
+2003-06-17
+</ADDRESS>
+</BODY>
+</HTML>

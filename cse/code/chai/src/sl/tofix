@@ -1,0 +1,25 @@
+/**Function********************************************************************
+
+  Synopsis           [Function implementing command sl_fsm.]
+
+  Description        [This command generates fsm's for the modules. These
+  fsm's will have the same set of mdd ids. It is assumed that the variables
+  which have the same name will have the same mdd id. For now, there is no
+  check that variables having the same names have the same type. Hence, it is
+  the user's responsibility to make sure that the variables are consistent.]
+  ===========================
+
+  SideEffects        [required]
+
+  SeeAlso            [optional]
+
+******************************************************************************/
+
+sl_compose does not check for cycles in the dependency relation, nor
+does it check whether the set of controlled variables are disjoint. 
+Add the check?  At some point, we need it in any case. 
+
+****************************************************************
+
+sl_lcontr and sl_lcontr break if the specification contains variables
+that do not appear in the FSM. 

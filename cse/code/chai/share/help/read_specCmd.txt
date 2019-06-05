@@ -1,0 +1,10 @@
+
+  read_spec - Read the specification file.
+     _________________________________________________________________
+   
+   read_spec
+   
+   This command reads a file containing all the specifications.
+     _________________________________________________________________
+   
+   Last updated on 980624 22h10

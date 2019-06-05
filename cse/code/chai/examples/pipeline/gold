@@ -1,0 +1,19 @@
+parse successful.
+Transition relation computed : 11 conjuncts
+Transition relation computed : 7 conjuncts
+Number of implementation latches = 17
+Step 1: image mdd size =        141	 |states| =    36864	
+reached set mdd size =         80	 |states| =     1024
+Step 2: image mdd size =       2060	 |states| =   117760	
+reached set mdd size =        621	 |states| =     3152
+Step 3: image mdd size =       6167	 |states| =   804352	
+reached set mdd size =       2045	 |states| =    42024
+Step 4: image mdd size =      10301	 |states| = 2.06029e+06	
+reached set mdd size =       2255	 |states| =   103760
+Step 5: image mdd size =       7590	 |states| = 3.38125e+06	
+reached set mdd size =       2115	 |states| =   157000
+Step 6: image mdd size =       8502	 |states| = 3.67514e+06	
+reached set mdd size =       2489	 |states| =   160800
+Step 7: image mdd size =       3948	 |states| =   804352	
+reached set mdd size =       2489	 number of states =   160800
+pipeline refines ISA

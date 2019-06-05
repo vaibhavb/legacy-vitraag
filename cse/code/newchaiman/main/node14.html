@@ -1,0 +1,163 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with jLaTeX2HTML 2002 (1.62) JA patch-1.4
+patched version by:  Kenshi Muto, Debian Project.
+LaTeX2HTML 2002 (1.62),
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Peterson's mutual exclusion protocol</TITLE>
+<META NAME="description" CONTENT="Peterson's mutual exclusion protocol">
+<META NAME="keywords" CONTENT="main">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<META NAME="Generator" CONTENT="jLaTeX2HTML v2002 JA patch-1.4">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="main.css">
+
+<LINK REL="next" HREF="node15.html">
+<LINK REL="previous" HREF="node13.html">
+<LINK REL="up" HREF="node2.html">
+<LINK REL="next" HREF="node15.html">
+</HEAD>
+
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html206"
+  HREF="node15.html">[Next]</A> 
+<A NAME="tex2html202"
+  HREF="node2.html">[Up]</A> 
+<A NAME="tex2html196"
+  HREF="node13.html">[Previous]</A>  
+<A NAME="tex2html204"
+  HREF="node17.html">[Index]</A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html207"
+  HREF="node15.html">Verification</A>
+<B> Up:</B> <A NAME="tex2html203"
+  HREF="node2.html">Tutorial introduction to CHAI</A>
+<B> Previous:</B> <A NAME="tex2html197"
+  HREF="node13.html">ATL model checking</A>
+ &nbsp <B>  <A NAME="tex2html205"
+  HREF="node17.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00270000000000000000">
+Peterson's mutual exclusion protocol</A>
+</H1>
+
+<P>
+As an example of a concurrent program consisting of processes that
+communicate through read-shared variables, we consider a mutual-exclusion
+protocol, which ensures that no two processes simultaneously access a common
+resource.
+The modules <A NAME="tex2html_wrap_inline2199"
+ HREF="img21.png">[IMAGE png]</A> and <A NAME="tex2html_wrap_inline2201"
+ HREF="img22.png">[IMAGE png]</A> of Figure&nbsp;<A HREF="node16.html#fig:pete">2.3</A> model the two processes
+of Peterson's solution to the mutual-exclusion problem for shared variables.
+Each process  has a program counter (<!-- MATH
+ $\mbox{\tt pc1},~\mbox{\tt pc2}$
+ -->
+<A NAME="tex2html_wrap_inline2203"
+ HREF="img23.png">[IMAGE png]</A>) and a flag (<A NAME="tex2html_wrap_inline2205"
+ HREF="img24.png">[IMAGE png]</A>), both
+of which can be observed by the other process.
+The program counter indicates whether a process is outside its critical
+section (<!-- MATH
+ $\mbox{\tt outCS}$
+ -->
+<A NAME="tex2html_wrap_inline2207"
+ HREF="img25.png">[IMAGE png]</A>), requesting the critical section
+(<!-- MATH
+ $\mbox{\tt reqCS}$
+ -->
+<A NAME="tex2html_wrap_inline2209"
+ HREF="img26.png">[IMAGE png]</A>), or occupying the critical section (<!-- MATH
+ $\mbox{\tt inCS}$
+ -->
+<A NAME="tex2html_wrap_inline2211"
+ HREF="img27.png">[IMAGE png]</A>).
+In each update round, a process looks at the latched values of all
+variables (reads them) and, nondeterministically, either updates its controlled variables or sleeps
+(i.e., leaves the controlled variables unchanged: achieved by the last
+guarded command with a true guard and no actions), without waiting to see
+what the other process does.
+Note that each process may sleep for arbitrarily many rounds:
+nondeterminism is used to ensure that there is no relationship between the
+execution speeds of the two processes.
+
+<P>
+
+<B>Interleaving.</B>
+Unlike in interleaving models, both processes may modify their variables in
+the same round.
+While Peterson's protocol ensures mutual exclusion even under these weaker
+conditions, if one were to insist on the interleaving assumption, one would
+add a third module that, in each update round, nondeterministically schedules
+either or none of the two processes.
+Alternatively, one could describe the complete protocol as a single module
+containing a single atom whose update action is the union of the update
+actions of the atoms of Figure&nbsp;<A HREF="node16.html#fig:pete">2.3</A>.
+The guarded command that specifies a union of actions consists simply of the
+union of all guarded assignments of the individual actions.
+This style of describing asynchronous programs as an unstructured collection
+of guarded assignments is pursued in formalisms such as
+U<SMALL>NITY</SMALL>&nbsp;[#!ChandyMisra88!#] and M<SMALL>UR</SMALL><A NAME="tex2html_wrap_inline2213"
+ HREF="img28.png">[IMAGE png]</A>&nbsp;[#!Dill96!#].
+
+<P>
+
+<B>Write-shared variables.</B>
+The original formulation of Peterson's protocol uses a single write-shared
+boolean variable&nbsp;<A NAME="tex2html_wrap_inline2115"
+ HREF="img4.png">[IMAGE png]</A>, whose value always corresponds to the value of the
+predicate <A NAME="tex2html_wrap_inline2217"
+ HREF="img29.png">[IMAGE png]</A> in our formulation.
+If one were to insist on modeling <A NAME="tex2html_wrap_inline2115"
+ HREF="img4.png">[IMAGE png]</A> as a write-shared variable, one would
+add a third module with the interface variable <A NAME="tex2html_wrap_inline2115"
+ HREF="img4.png">[IMAGE png]</A> and awaited external
+variables such as <EM>P<A NAME="tex2html_wrap_inline2223"
+ HREF="img30.png">[IMAGE png]</A>_sets_x_to_</EM>0, which is a boolean interface
+variable of the <A NAME="tex2html_wrap_inline2225"
+ HREF="img31.png">[IMAGE png]</A>-th process that indicates when the process wants to set
+<A NAME="tex2html_wrap_inline2115"
+ HREF="img4.png">[IMAGE png]</A> to&nbsp;0.
+This style of describing write-shared memory makes explicit what happens when
+several processes write simultaneously to the same location.
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html206"
+  HREF="node15.html">[Next]</A> 
+<A NAME="tex2html202"
+  HREF="node2.html">[Up]</A> 
+<A NAME="tex2html196"
+  HREF="node13.html">[Previous]</A>  
+<A NAME="tex2html204"
+  HREF="node17.html">[Index]</A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html207"
+  HREF="node15.html">Verification</A>
+<B> Up:</B> <A NAME="tex2html203"
+  HREF="node2.html">Tutorial introduction to CHAI</A>
+<B> Previous:</B> <A NAME="tex2html197"
+  HREF="node13.html">ATL model checking</A>
+ &nbsp <B>  <A NAME="tex2html205"
+  HREF="node17.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+Vaibhav Bhandari
+2003-06-17
+</ADDRESS>
+</BODY>
+</HTML>

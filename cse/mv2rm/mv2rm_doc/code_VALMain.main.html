@@ -1,0 +1,47 @@
+<html><head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="Start" href="index.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of exceptions" rel=Appendix href="index_exceptions.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="Ass" rel="Chapter" href="Ass.html">
+<link title="Ast" rel="Chapter" href="Ast.html">
+<link title="Check" rel="Chapter" href="Check.html">
+<link title="Codegen" rel="Chapter" href="Codegen.html">
+<link title="Lexer" rel="Chapter" href="Lexer.html">
+<link title="Main" rel="Chapter" href="Main.html">
+<link title="Parser" rel="Chapter" href="Parser.html"><title>Main.main</title>
+</head>
+<body>
+<code class="code"><span class="keyword">let</span>&nbsp;main&nbsp;=<br>
+&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;input&nbsp;=&nbsp;ref&nbsp;<span class="string">""</span>&nbsp;&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;output&nbsp;=&nbsp;ref&nbsp;<span class="string">""</span>&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;inpus&nbsp;s&nbsp;=&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span>&nbsp;(output&nbsp;=&nbsp;ref&nbsp;<span class="string">""</span>)&nbsp;<span class="keyword">then</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Ass</span>.set_output_file_stream&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="constructor">Str</span>.global_replace&nbsp;(<span class="constructor">Str</span>.regexp_string&nbsp;<span class="string">".mv"</span>)&nbsp;<span class="string">".rm"</span>&nbsp;s);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(input&nbsp;:=&nbsp;s)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;outpus&nbsp;s&nbsp;=<br>
+&nbsp;&nbsp;&nbsp;&nbsp;output&nbsp;:=&nbsp;s;&nbsp;<span class="constructor">Ass</span>.set_output_file_stream&nbsp;s&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;<span class="constructor">Arg</span>.parse&nbsp;[(<span class="string">"-o"</span>,&nbsp;<span class="constructor">Arg</span>.<span class="constructor">String</span>(outpus),&nbsp;<span class="string">"Output&nbsp;file"</span>);]&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(inpus)&nbsp;<span class="string">"mv2rm&nbsp;[-o&nbsp;outfile]&nbsp;infile"</span>;<br>
+&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;lex1buf&nbsp;=&nbsp;<span class="constructor">Lexing</span>.from_channel&nbsp;(open_in&nbsp;!input)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;lexbuf&nbsp;=&nbsp;<span class="constructor">Lexing</span>.from_channel&nbsp;(open_in&nbsp;!input)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;<span class="comment">(*Lexer.make_key_table&nbsp;()&nbsp;;*)</span><br>
+&nbsp;&nbsp;<span class="keyword">try</span>&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">while</span>&nbsp;<span class="keyword">true</span>&nbsp;<span class="keyword">do</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Parser</span>.start1&nbsp;<span class="constructor">Lexer</span>.token&nbsp;lex1buf;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Parser</span>.main&nbsp;<span class="constructor">Lexer</span>.token&nbsp;lexbuf;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">done</span><br>
+&nbsp;&nbsp;<span class="keyword">with</span>&nbsp;<span class="constructor">Lexer</span>.<span class="constructor">Eof</span>&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;exit&nbsp;0<br>
+&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Parsing</span>.<span class="constructor">Parse_error</span>&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="keyword">begin</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print_string&nbsp;(<span class="string">"Line&nbsp;"</span>&nbsp;^&nbsp;string_of_int(!<span class="constructor">Lexer</span>.lineno)^<span class="string">":&nbsp;"</span>^<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="constructor">Lexing</span>.lexeme&nbsp;lex1buf)&nbsp;^&nbsp;<span class="string">":&nbsp;Parsing&nbsp;Error\n"</span>);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exit&nbsp;0;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">end</span><br>
+&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Failure</span>&nbsp;s&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="keyword">begin</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print_string&nbsp;(<span class="string">"Line&nbsp;"</span>&nbsp;^&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string_of_int(!<span class="constructor">Lexer</span>.lineno)&nbsp;^<span class="string">":&nbsp;"</span>&nbsp;^&nbsp;s&nbsp;^<span class="string">"\n"</span>);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exit&nbsp;0;<br>
+&nbsp;&nbsp;<span class="keyword">end</span></code></body></html>

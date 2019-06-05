@@ -1,0 +1,22 @@
+
+  inv_read - Reads in a file containing the invariants.
+     _________________________________________________________________
+   
+   inv_read [-h] <file_name>
+   
+   This command reads in a file containing invariants. The syntax of the
+   invariants inside the file is as follows.
+   
+   "spec_name1" formula1;
+   
+   "spec_name2" formula2;
+   
+   ......
+   
+   Command Options:
+   
+   -h
+          Print usage.
+     _________________________________________________________________
+   
+   Last updated on 980624 22h10

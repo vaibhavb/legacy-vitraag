@@ -1,0 +1,4 @@
+#!/bin/csh
+#
+mocha -t < {$1}.sl > {$1}.out
+

@@ -1,0 +1,668 @@
+\documentclass[10pt,twocolumn]{article}
+\usepackage{latexsym,times}
+\usepackage[final]{graphicx,epsfig}
+\usepackage{icse2001}
+
+\newcommand{\Mocha}{\mbox{\sc Mocha}}
+\def\jmocha{{\small\sc jMocha}}
+\def\cmocha{{\small\sc cMocha}}
+\def\slang{{\small\sc Slang}}
+\def\mocha{{\small\sc Mocha}} 
+\def\md{P}
+\def\expr{\phi}
+\def\mdd{{\sc mdd}}
+\def\bdd{\Phi}
+\def\mod{P}
+\def\amod{Q}
+\def\refines{\preceq}
+\newcommand{\rem}{\mbox{\small\sc Reactive Modules}}
+
+\begin{document}
+
+\title{{\sc jMocha}: A Model Checking Tool that Exploits Design Structure
+}
+\author{
+  \hspace*{-6ex}
+  \parbox{5in} 
+  {\begin{center}
+  {\authornamefont\normalsize 
+   R. Alur$^\dag$\quad
+   L. de Alfaro$^*$\quad
+   R. Grosu$^\ddag$ \quad T.A. Henzinger$^*$
+\quad M. Kang$^\dag$ \quad C.M. Kirsch$^*$ 
+\quad R. Majumdar$^*$ \quad F. Mang$^*$ 
+\quad B.Y. Wang$^\dag$}\\[1ex]
+ {\small
+  $^*$ Department of Electrical Engineering and Computer Science, University of California, Berkeley\\[1mm]
+  $^\dag$Department of Computer and Information Science, University of Pennsylvania\\
+  $^\ddag$Department of Computer Science, State University of New York, Stony
+Brook}
+ \end{center}}
+}
+
+\maketitle
+
+%\section*{ABSTRACT}
+
+%\subsection{Keywords}
+%Modeling, verification, model checking, reactive systems
+
+
+\section{Introduction}
+\label{sec:Introduction}
+
+Model checking is emerging as a practical tool for automated debugging
+of embedded software 
+%(see 
+\cite{COP99,spin,Bandera}.
+%for a survey, and
+%\cite{Mcmillan,spin}, 
+%for sample model checkers, and
+%\cite{Bandera}. 
+%for applications to software analysis). 
+In model checking, a high-level description of a 
+system is compared against a logical correctness requirement to 
+discover inconsistencies.
+Since model checking is based on exhaustive state-space exploration, and
+the size of the state space of a design grows exponentially with the
+size of the description,  scalability remains a challenge.
+The goal of our research is to  develop techniques for exploiting
+modular design structure during model checking, and
+the model checker \jmocha\ is based on this theme.
+% of exploiting modularity. 
+Instead of manipulating unstructured state-transition graphs,
+it supports the hierarchical modeling framework of {\em Reactive Modules}
+\cite{Modules}. 
+%
+%The hierarchy is exploited by the tool in three ways.
+%First, verification tasks such as refinement checking can be decomposed
+%into subgoals using assume-guarantee rules \cite{HQR98}.  Second,
+%instead of traditional temporal logics such as CTL, it uses 
+%{\em Alternating Temporal Logic\/} (ATL), a game-based temporal logic that is designed
+%to specify collaborative as well as adversarial interactions between
+%different components \cite{ATL}. Third, the \jmocha\ algorithms incorporate optimizations
+%based on the hierarchical reduction of sequences of internal transitions
+%\cite{AW99}.
+%
+\jmocha\ is a growing interactive software environment for specification,
+simulation, and verification, and is intended as a vehicle for the development 
+of new verification algorithms and approaches. It is written in Java and uses 
+native C-code BDD libraries from VIS \cite{VIS96}. \jmocha\ offers: 
+%\mocha\ is available in two versions, \cmocha\
+%(Version 1.0.1)  and \jmocha\ (Version 2.0).  This paper describes \jmocha\
+%(for an introduction to \cmocha, see \cite{Mocha98}). Like its 
+%predecessor, \jmocha\ offers the following:
+%
+%\begin{itemize} 
+%\vspace*{-.2in}\item
+%Support for {\em modular} specification and reasoning about {\em heterogeneous} systems
+%with both synchronous and asynchronous components.
+%\vspace*{-.1in}\item
+%System \emph{execution} by randomized or manual  trace  generation.
+%\vspace*{-.1in}\item
+%Requirement verification both by \emph{symbolic} and \emph{enumerative} model checking. 
+%%\jmocha\  supports both \emph{symbolic} and \emph{enumerative} search.  
+%\vspace*{-.1in}\item
+%Implementation verification by checking trace containment. 
+%%between implementation and specification modules. 
+%For decomposing proofs, \jmocha\  supports \emph{compositional}
+%and \emph{assume-guarantee} reasoning.
+%\end{itemize}
+%
+%\jmocha\ is written in Java and uses native C-code BDD libraries from VIS
+%\cite{VIS96}. Beside the symbolic checker it has:
+%%It provides the following improvements over \cmocha:
+%
+%\begin{itemize}
+%\vspace*{-.15in}\item
+(1) A \emph{ graphical user interface} that looks
+  familiar to Windows/Java users.
+%\vspace*{-.1in}\item 
+(2) A \emph{simulator} that displays
+traces in a message sequence chart fashion. 
+%Traces may be generated either manually or randomly.
+%\vspace*{-.1in}\item 
+(3) {\em Requirement verification} both by \emph{symbolic} and \emph{enumerative} 
+model checking. 
+%The latter one has various optimizations such as hierarchical 
+%reduction of unobservable steps \cite{AW99}.
+%%\jmocha\  supports both \emph{symbolic} and \emph{enumerative} search.  
+%\vspace*{-.1in}\item 
+(4) \emph{Implementation verification} by checking trace containment.
+(5) A \emph{proof manager} that aids \emph{compositional} and \emph{assume-guarantee}
+reasoning \cite{HQR98}.
+%\vspace*{-.1in}\item 
+%An \emph{enumerative checker} for invariant and refinement checking
+%with optimizations such as hierarchical reduction of unobservable steps.
+%\vspace*{-.1in}\item 
+(6) A \emph{scripting language} called \slang\ for the rapid and structured
+development of new verification algorithms.
+%\end{itemize} 
+%The architecture of \jmocha\ is shown in Figure
+%\ref{fig:jmochaArch} (the free bidirectional arrows denote user
+%interaction via the graphical user interface).
+%The remainder of the paper briefly describes the key components.
+%For more information and the tool itself, visit
+%\verb+www.eecs.berkeley.edu/~mocha+, 
+%\verb+www.cis.upenn.edu/~mocha+, or \verb+www.cs.sunysb.edu/~mocha+.
+%
+%\begin{figure}[htbp]
+%%\vspace*{-0.5cm}
+%\centerline{\psfig{file=jmochaArch.eps,width=0.45\textwidth}}
+%\caption{ \jmocha{} architecture}
+%\label{fig:jmochaArch}
+%\vspace*{-2ex}
+%\end{figure}
+jMocha is available publicly at http://www.eecs.berleley.edu/$\sim$mocha.
+%with mirror sites at UPenn and Stony Brook. 
+It is a successor and extension of the original Mocha tool \cite{Mocha98}, 
+that was entirely written in C. 
+
+\section{The Modeling Language}
+\label{sec:The Modeling Language}
+The language \rem{} \cite{Modules} is a \emph{modeling} and {\em
+  analysis} language for \emph{heterogeneous} \emph{concurrent} systems with
+synchronous and asynchronous components. As a modeling language it supports
+high-level, partial system descriptions, rapid prototyping, and simulation. 
+As a language for concurrent systems, it allows a modular
+description of the interactions among the components of a system.
+As an analysis language it allows the specification of requirements 
+either in temporal logic \cite{ATL} or as abstract modules.
+
+
+%The basic structuring units, or the molecules of a system, are {\em reactive
+%modules}. The modules have a well-defined interface given by a set of
+%\emph{external (or input)} variables and a set of {\em interface (or output)}
+%variables. A module may also have a set of {\em private} variables. 
+%All variables are typed, and \jmocha\ supports a standard set of finite and 
+%infinite types, such as booleans and integers.
+%A module is built from \emph{atoms}, each grouping together a set of
+%\emph{controlled} (interface or private) variables with exclusive updating
+%rights.  \emph{Updating} is defined by two nondeterministic guarded commands:
+%an \emph{initialization} command and an \emph{update} command.  In these
+%commands unprimed variables, such as $x$, refer to the old value of the
+%corresponding variable, and primed variables, such as $x'$, refer to the new
+%value of the corresponding variable.  An atom is said to \emph{await} another
+%atom if its initialization or update commands refer to primed variables that
+%are controlled by the other atom.
+%The variables change their values over time in a sequence of \emph{rounds}. The
+%first round consists of the execution of the initialization command of each
+%atom, and the subsequent rounds consist of the execution of the update command
+%of each atom,  in an order consistent with the await dependencies. 
+%A round of an atom is therefore a
+%\emph{subround} of the module. If no guard of the update command is enabled,
+%then the atom idles, i.e., the values of the variables do not change.  If the
+%update command of an atom has a branch with a true guard and no updating
+%action, then it may at any time either take a transition or idle. Such an atom
+%is called \emph{lazy}, and is useful for modeling asynchronous interaction.
+ 
+%For example, consider the specification of a village telephone system that
+%contains four telephones.
+%The specification consists of two modules: the first one models
+%the environment, i.e., the users, and the second one models the system.  
+%A phone is either on-hook or off-hook, and
+%the module {\tt UserSpec} nondeterministically
+%toggles at most one telephone between on-hook and off-hook.
+
+%\vspace*{-2ex}\begin{footnotesize}
+%\begin{verbatim}
+%type hookType is {on, off} 
+%module UserSpec is
+%  interface h1,h2,h3,h4: hookType;
+%lazy atom ToggleHook 
+%  controls h1,h2,h3,h4
+%  reads h1,h2,h3,h4
+%  init 
+%    [] true -> h1' := on; h2' := on; ...
+%  update
+%    [] h1 = on -> h1' := off;
+%    [] h1 = off -> h1' := on;
+%    ...
+%\end{verbatim}
+%\end{footnotesize}
+
+%Modules can be \emph{composed} 
+%if they have disjoint sets of interface variables,
+%and their union of atom sets does not contain a circular await dependency.  
+%Given a specification {\tt SystemSpec} of the telephone system,
+%specification module {\tt Spec} is defined as:
+%\vspace*{-2ex}
+%\begin{footnotesize}
+%\begin{verbatim}
+%module Spec is UserSpec || SystemSpec
+%\end{verbatim}
+%\end{footnotesize}
+%\vspace*{-2ex}
+%For encapsulation \rem{} allows the {\em hiding} of interface variables,
+%and for instantiation it allows the {\em renaming} of interface and external
+%variables.
+%Hiding and parallel composition permit hierarchical descriptions
+%of complex systems.
+
+
+\section{The Graphical User Interface}
+\label{sec:The Graphical User Interface}
+
+As in modern Windows or Java tools, the interaction between the user and
+\jmocha\  is controlled by a \emph{graphical user interface}. 
+%
+%The GUI consists
+%of five menus, three tool bars, a desktop, and a status text panel. The menus
+%are {\tt File, Edit, Simulate, Check}, and {\tt Options}. The tool bars are
+%associated with {\tt File Edit, Simulate}, and {\tt Check}.  The menu items and
+%the tool bar buttons are activated/deactivated in a way consistent with the
+%state of the proof manager.  
+%
+One may use \jmocha\ as a syntax-directed editor for the \rem\ 
+language.
+%One may open more than one file and the labels associated
+%to their windows allow to conveniently switch from one window to another.
+%One may edit the files by using the menu items in the {\tt Edit} menu or the
+%associated toolbar.  One can cut and paste from one editor window into another
+%editor window. The editor windows highlight the \rem\ keywords and
+%comments. One can enable/disable \emph{parsing on the fly}
+%and a \emph{pop-up window} prompting the user with the allowed next tokens.
+%
+Once one has edited and saved a tree of files, \jmocha\
+may generate a \emph{proof context (or state)} in a separate
+{\tt Project} window provided 
+%In this mode the proof manager 
+%%expands all import declarations that
+%%include modules from other files, and 
+%calls the parser 
+%and the type checker on the expanded code. 
+there are no syntactic errors. The context is shown 
+%that appears on the left-hand side of the desktop, as
+%shown in Figure \ref{fig:simulator}. 
+%The project window displays the \jmocha{} proof context 
+in a convenient tree notation. 
+%Each node in the tree may be expanded or collapsed by clicking
+%on it. 
+%The proof context consists of several subcontexts: \texttt{types, modules,
+%formulas}, and \texttt{judgments}. 
+A selected node in the tree (module or judgment) 
+may be then simulated and verified, respectively.
+
+\section{The Simulator}
+\label{sec:The Simulator}
+
+The behavior (executions) of a reactive system can be visualized in a
+\emph{message sequence charts (MSC)} like fashion by using the
+\emph{simulator}. 
+To run the simulator, the user selects a module
+%, the display parameters, 
+and the submodules/variables to be traced. 
+For each selected variable, 
+a vertical line shows its evolution in time. 
+%The vertical lines are
+%split into segments, each corresponding to a discrete time unit. 
+%or equivalently, to a round of the associated module.  
+The value of a variable is displayed only when it 
+changes. Clicking on a box, which displays a change, shows which other
+variables (and values) contributed to the change.
+The same format is used to display the counter-examples generated
+by the model checkers during failed verification attempts.
+%
+%\begin{figure}[htbp]
+%\psfig{file=simulator.ps,width=0.45\textwidth}
+%\caption{The simulator}
+%\label{fig:simulator}
+%\end{figure}
+%
+The simulator can be used either in \emph{random-simulation} 
+   or in \emph{manual-simulation} mode.
+%In automatic simulation, in each round, 
+%\jmocha\ 
+%chooses one state randomly out of all the possible
+%next states.  One can stop the simulation temporarily by clicking the
+%pause button, or permanently by clicking the stop button.  
+%In manual simulation, at each step, 
+%the user is requested to choose one state from the set of possible next states,
+%both for the module and for its environment.  
+
+
+\section{The Invariant Checkers}
+\label{sec:The Checkers}
+
+\jmocha\ allows the specification of requirements in a rich temporal logic 
+called \emph{alternating temporal logic (ATL)} \cite{ATL}. 
+By far the most common requirements are \emph{invariants}, and thus it is of 
+utmost importance to implement invariant checking efficiently.
+\jmocha\ provides both fine-tuned enumerative and symbolic 
+state search routines for invariant checking.
+The enumerative, state-based algorithms are often preferable for asynchronous
+systems;
+the symbolic, decision-diagram based algorithms, for synchronous systems.
+More general ATL formulas can be checked by defining algorithms using the 
+scripting \slang, as shown in Section \ref{sec:Slang}.
+These algorithms can call on both enumerative and symbolic search as
+subroutines.
+
+
+\subsection{Enumerative Invariant Checking}
+\label{sec:Enumerative Invariant Checking}
+
+The enumerative checker uses the standard on-the-fly algorithm
+for detecting violations of invariants starting from the initial states.
+We have implemented various features and optimizations in the \jmocha{}
+enumerative search engine. 
+For example, as in {\sc Spin}~\cite{spin}, each state (excluding combinational variables) 
+is stored as bit string to save space using compression.
+%Unlatched (combinational) variables 
+%that are only awaited, but not read by any atoms (e.g., the 
+%unlatched variables of combinational circuits) 
+%are not stored.
+For asynchronous modules
+%modules that consist of lazy atoms only, 
+\jmocha{} provides a 
+search heuristic called hierarchical reduction \cite{AGW00} that
+merges several internal steps into one, and this
+in a hierarchical manner. For well-structured architectures
+such as rings and trees, this leads to significant savings.
+
+\vspace*{-1mm}
+\subsection{Symbolic Invariant Checking}
+\label{sec:Symbolic Invariant Checking}
+
+While the enumerative checker works directly on the internal representation
+generated by the parser, the symbolic checker works on a \emph{multi-valued 
+decision diagram (MDD)} encoding 
+%of state sets 
+provided by the VIS C-package from Berkeley \cite{VIS96}.  
+%MDDs are a generalization of binary
+%decision diagrams (BDDs) to enumerated datatypes.  
+The checker consists of
+two components: a \emph{model generator} and an \emph{invariant checker}.  The
+model generator produces an MDD representation of the transition relation and
+of the set of initial states. The transition relation is partitioned
+in a conjunctive form. The invariant checker uses an
+image computation routine from VIS that has a very
+efficient early quantification heuristic. 
+While most of the symbolic model checker is written in Java, it calls the 
+VIS MDD routines, written in C, to construct and manipulate MDDs efficiently.
+A main objective of the symbolic model checker is to support
+bit vectors and arrays efficiently.
+
+%For example, if the default checker is the symbolic checker and the selected
+%judgment for the village telephone system example is {\tt J4}, then clicking
+%the check button starts the symbolic ckecker that produces the result shown in
+%Figure \ref{fig:symInvCheck}.
+%If the invariant is violated, then \jmocha{} produces an execution which
+%leads to the violation (along with the variable dependency information) 
+%in a simulation window.  The user can then
+%change the design by examining the counter-example.
+%
+%\begin{figure}[htbp]
+%\centerline{\psfig{file=symInvCheck.ps,width=0.45\textwidth}}
+%\caption{Symbolic invariant checking in \Mocha{}}
+%\label{fig:symInvCheck}
+%\end{figure}
+
+
+\section{The Refinement Checkers}
+\label{sec:The Refinement Checkers}
+
+Refinement checking gives users the possibility to verify if a module $\mod$ (the
+implementation) \emph{refines} another more abstract module $\mod'$ (the specification).  
+%Typically, the specification is a more abstract, nondeterministic version of 
+%the implementation.
+Formally, 
+%a module
+$\mod$ refines $\mod'$
+%, denoted by $\mod \refines \mod'$, 
+if the traces
+of $\mod$ are contained in the set of traces of $\mod'$.  
+Due to the high computational complexity of checking trace containment,
+the refinement checkers in \jmocha\ check if the specification module
+{\em simulates} the implementation module assuming that 
+(1)~the specification contains no private variables, and 
+(2)~all variables of the specification appear in the implementation as well. 
+In this case, simulation checking reduces to checking a transition invariant:
+first, each initial state of the implementation
+must be an initial state of the specification, and second, each reachable
+transition of the implementation must satisfy the transition relation of 
+the specification \cite{HQR98}. 
+This can be done efficiently using either enumerative or symbolic search.  
+
+%For example, for the telephone system, one can write a more refined
+%module {\tt UserImp} modeling the users, and the intended
+%refinement relation can be stated as
+%\begin{footnotesize}
+%\begin{verbatim}
+%judgment  J1 is UserImp < UserSpec 
+%\end{verbatim}
+%\end{footnotesize}
+%\vspace*{-2mm}
+%There are several ways to circumvent the restrictions (1) and (2) about the
+%specification variables.  For example, one can make all private specification
+%variables become interface variables.  If a specification variable is not
+%included in the implementation, a witness module can be constructed 
+%to assign values to the variable.  The witness is in turn composed with the 
+%implementation and checked against the specification~\cite{HQR98,AGW00}.
+
+
+\vspace*{-1mm}
+\subsection{Compositional and Assume-Guarantee Reasoning}
+\label{sec:Assume/Guarantee Reasoning}
+
+%\begin{footnotesize}
+%\begin{verbatim}
+%module Spec is UserSpec || SystemSpec
+%module Imp is UserImp || SystemImp
+%judgment J0 is SystemImp < SystemSpec
+%judgment J1 is UserImp < UserSpec 
+%judgment J2 is Imp < Spec
+%\end{verbatim}
+%\end{footnotesize}
+%\vspace*{-2mm}
+%The lines above define the specification module {\tt Spec} and the
+%implementation module {\tt Imp} as the parallel composition of {\tt UserSpec}
+%and {\tt SystemSpec} and respectively of {\tt UserImp} and {\tt SystemImp}. 
+%We wish to verify the judgment {\tt J2}. 
+%While this can be proved directly, it can also be reduced to simpler
+%proof obligations.  
+\jmocha\ supports {\em compositional rules} that allow to decompose the 
+proof of refinement between composite modules to the proof of refinement between  
+their submodules (in the most general context). For the more complex cases in that 
+a module refines another module only in a particular context (e.g. the specification
+context) \jmocha\ also provides {\em assume/guarantee rules} \cite{Modules,HQR98} .
+%It turns out that the implementation module {\tt SystemImp} is not a refinement
+%of {\tt SystemSpec} in an unconstrained environment (so {\tt J0} fails).
+%However, {\tt SystemImp} refines {\tt SystemSpec} in the more restrictive
+%context given by the abstract module {\tt UserSpec}.
+%Therefore one can use the assume-guarantee rule~\cite{Modules,HQR98}
+%which states that {\tt J2} holds provided (1) {\tt  UserImp || SystemSpec}
+%refines {\tt UserSpec} and (2) {\tt  UserSpec || SystemImp}
+%refines {\tt SystemSpec}. 
+%
+Given a refinement judgment, the \emph{proof manager (or prover)} of \jmocha\
+suggests all decompositions that are possible according to a built-in 
+database of proof rules, which includes the compositional and assume-guarantee rules.  
+Once a rule is selected, the premises are added to
+the proof manager as new proof goals, and they are displayed in the
+judgment browser.  The user can then apply either further decomposition rules
+or discharge each proof obligation by invoking the refinement checker.
+%
+%\begin{figure}[htbp]
+%\centerline{\psfig{file=assGuar2.ps,width=0.4\textwidth}}
+%\vspace*{-5.2cm}
+%\hspace*{0.8cm}
+%\centerline{\psfig{file=assGuar1.ps,width=0.4\textwidth}}
+%\vspace*{2.5cm}
+%\caption{Proof manager and assume/guarantee reasoning}
+%\label{fig:assumeGuar}
+%\vspace*{-4mm}
+%\end{figure}
+
+
+\section{The Scripting Language \slang}
+\label{sec:Slang}
+
+\slang\ is a Scripting LANGuage for the verification of \rem,
+designed with the goals of rapid prototyping of verification algorithms and
+automation of verification tasks.  
+%
+%\slang\ is a structured imperative language
+%with run-time type checking.  Upon request, \jmocha\ provides a window for the
+%interactive input and execution of \slang\ commands.  
+In addition to the usual
+datatypes, 
+%such as integers, strings, and arrays, 
+\slang\ provides access to
+the datatypes specific to \jmocha, including module expressions, logical
+expressions, 
+%(such as invariants), 
+{\mdd}s, and module variables.  
+%The set
+%of predefined operators of \slang\ includes the usual arithmetic, logical, and
+%string operators.  
+It also provides several predefined functions
+that implement various model-checking tasks (e.g.~pre, post, init).
+%For example, if $\md$ is a module 
+%expression and $\expr$ is a predicate on module variables, then the function 
+%{\tt create\_mdd($\md$,$\expr$)} returns the \mdd\ that defines the states
+%satisfying $\expr$ in the state space of $\md$.  For {\mdd}s $\bdd$, $\bdd_1$,
+%$\bdd_2$, and for a module $\md$, the available functions include 
+%{\tt and($\bdd_1,\bdd_2$)}, {\tt or($\bdd_1,\bdd_2$)}, 
+%{\tt not($\bdd$)}, {\tt equal($\bdd_1,\bdd_2$)},
+%{\tt init\_reg($\md$)} (which returns the \mdd\ representing the
+%initial states of $\md$), 
+%{\tt pre($\md$,$\bdd$)} and {\tt post($\md$,$\bdd$)} 
+%(which compute the {\mdd}s representing the successor and predecessor states 
+%of the set of states represented by $\bdd$). 
+%Other functions include functions for checking invariants and refinement
+%relations.  The usual control constructs are available in \slang, such as
+%if-then-else and while loops.  
+%New functions can be defined using the {\tt def}
+%construct. 
+%
+%As an example of the capabilities of \slang, the following function {\tt
+%backforth\_invcheck (M, phi)} checks whether the module {\tt M} implements
+%the invariant {\tt phi}, by using a mix of forward reachability from the
+%initial condition and backward reachability from the complement of the
+%invariant.
+This functionality of
+% functions provided by 
+\slang\ is
+%are 
+sufficient to model check all ATL and $\mu$-calculus requirements and 
+to compute state equivalences such as bisimilarity, over finite-state as 
+well as infinite-state systems (in the latter case, a \slang\ script may 
+not terminate) \cite{STACS00}.
+
+%\begin{footnotesize}
+%\begin{verbatim}
+%def backforth_invcheck (M, phi) {
+%  R_back  := zeroMdd;  R_forw  := zeroMdd;
+%  NR_back := not(phi); NR_forw := init_reg(M); 
+%  while ( !equal (R_back, NR_back) 
+%          && !equal (R_forw, NR_forw) 
+%          && empty (and (NR_forw, NR_back))) {
+%    R_forw  := NR_forw; 
+%    NR_forw := or (NR_forw, post (M, NR_forw)); 
+%    R_back  := NR_back; 
+%    NR_back := or (NR_back, pre  (M, NR_back)); 
+%  }
+%  return (empty (and (NR_forw, NR_back))); }
+%\end{verbatim}
+%\end{footnotesize}
+
+
+%\small
+\section*{Acknowledgements}
+We thank Himyanshu Anand, Ben Horowitz, Franjo Ivancic, Michael McDougall,
+Marius Minea, Oliver Moeller, Shaz Qadeer, Sriram Rajamani, and Jean-Francois
+Raskin for their assistance in the development of \jmocha. 
+The \mocha\ project is
+funded in part by the DARPA 
+grant NAG2-1214, the NSF CAREER awards
+CCR95-01708 and CCR97-34115, the NSF grant CCR99-70925, the NSF ITR grant
+CCR0085949,
+the MARCO grant 98-DT-660, and the SRC contracts 99-TJ-683.003 and 99-TJ-688. 
+
+\small
+\begin{thebibliography}{10}
+
+\vspace{-1mm}
+\bibitem{AGW00}
+R.~Alur, R.~Grosu, and B.-Y. Wang.
+\newblock Automated refinement checking for asynchronous processes.
+\newblock In {\em Proc. 3rd FMCAD}, LNCS. Springer-Verlag, 2000.
+
+\vspace{-1mm}
+\bibitem{Mocha98}
+R.~Alur, T.A.~Henzinger, F.~Mang, S.~Qadeer, S.~Rajamani, and S.~Tasiran.
+\newblock {MOCHA}: Modularity in model checking.
+\newblock In {\em Proc. 10th CAV}, LNCS 1427, pages 516--520, 1998.
+
+\vspace{-1mm}
+\bibitem{Modules}
+R.~Alur and T.A. Henzinger.
+\newblock Reactive modules.
+\newblock {\em Formal Methods in System Design}, 15(1):7--48, 1999.
+
+\vspace{-1mm}
+\bibitem{ATL}
+R.~Alur, T.A. Henzinger, and O.~Kupferman.
+\newblock Alternating-time temporal logic.
+\newblock In {\em Proc. 38th FOCS}, pages 100--109, 1997.
+
+%\vspace{-1mm}
+%\bibitem{AW99}
+%R.~Alur and B.-Y. Wang.
+%\newblock ``{N}ext'' heuristic for on-the-fly model checking.
+%\newblock In {\em Proc. 10th CONCUR}, 
+%  LNCS 1664, pages 98--113, 1999.
+
+%\bibitem{BGGJOZ98}
+%K.~Bhargavan, C.~Gunter, E.~Gunter,  M.~Jackson, D.~Obradovic, and P.~Zave.
+%\newblock The Village Telephone System: A case study in formal software
+%engineering.
+%\newblock In {\em Proc. 11th Int. Conf. Theorem Proving in Higher Order 
+%  Logics}, LNCS 1633, pages 49--66, 1998.
+
+\vspace{-1mm}
+\bibitem{VIS96}
+R.~Brayton et al.
+\newblock {VIS}: A system for verification and synthesis.
+\newblock In {\em Proc. 8th CAV}, LNCS 1102, pages 428--432, 
+  1996.
+
+\vspace{-1mm}
+\bibitem{COP99}
+E.M. Clarke and O. Grumberg and D.A. Peled.
+\newblock Model Checking.
+\newblock {\em The MIT Press}, 1999.
+
+\vspace{-1mm}
+\bibitem{Bandera}
+J.C. Corbett, M.B. Dwyer, J. Hatcliff, S. Laubach, C.S. Pasareanu, 
+Robby, and H. Zheng.
+\newblock Bandera: Extracting finite-state models from Java source code.
+\newblock In {\em Proc. 22nd ICSE}, pages 439--448, 2000.
+
+\vspace{-1mm}
+\bibitem{STACS00}
+T.A. Henzinger and R. Majumdar. 
+\newblock A classification of symbolic transition systems. 
+\newblock In {\em Proc. 17th TACS}, LNCS 1770, pages 13--34,  2000.
+
+\vspace{-1mm}
+\bibitem{HQR98}
+T.A. Henzinger, S.~Qadeer, and S.~Rajamani.
+\newblock You assume, we guarantee: Methodology and case studies.
+\newblock In {\em Proc. 10th CAV},
+  LNCS 1427, pages 521--525, 1998.
+
+\vspace{-1mm}
+\bibitem{spin}
+G.J. Holzmann.
+\newblock The model checker {SPIN}.
+\newblock {\em IEEE Trans. Software Engineering}, 23(5):279--295, 1997.
+
+\end{thebibliography}
+
+
+\end{document}
+
+

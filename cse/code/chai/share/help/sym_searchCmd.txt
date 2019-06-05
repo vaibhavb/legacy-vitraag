@@ -1,0 +1,22 @@
+
+  sym_search - Performs symbolic (mdd based) state space search on a module
+     _________________________________________________________________
+   
+   sym_search [-v] [-h] <module_name>
+   
+   The command performs MDD based symbolic search on the state space of a
+   module starting from its initial region. The build_trans command must
+   be executed prior to executing this command. Command Options:
+   
+   -v
+          verbose mode - prints MDDs associated with each intermediate
+          step
+          
+   -n
+          stop reachability after prescribed numbe of steps
+          
+   -h
+          print usage
+     _________________________________________________________________
+   
+   Last updated on 980624 22h11

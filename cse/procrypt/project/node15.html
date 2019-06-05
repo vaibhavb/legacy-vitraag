@@ -1,0 +1,233 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2K.1beta (1.47)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Protocol Issues</TITLE>
+<META NAME="description" CONTENT="Protocol Issues">
+<META NAME="keywords" CONTENT="project">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<META NAME="Generator" CONTENT="LaTeX2HTML v2K.1beta">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="project.css">
+
+<LINK REL="next" HREF="node16.html">
+<LINK REL="previous" HREF="node14.html">
+<LINK REL="up" HREF="node8.html">
+<LINK REL="next" HREF="node16.html">
+</HEAD>
+
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html180"
+  HREF="node16.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="file:/usr/share/latex2html/icons/next.png"></A> 
+<A NAME="tex2html178"
+  HREF="node8.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="file:/usr/share/latex2html/icons/up.png"></A> 
+<A NAME="tex2html172"
+  HREF="node14.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="file:/usr/share/latex2html/icons/prev.png"></A>   
+<BR>
+<B> Next:</B> <A NAME="tex2html181"
+  HREF="node16.html">Miscellaneous Issues</A>
+<B> Up:</B> <A NAME="tex2html179"
+  HREF="node8.html">Security Analysis</A>
+<B> Previous:</B> <A NAME="tex2html173"
+  HREF="node14.html">Smart Cards</A>
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00047000000000000000">
+Protocol Issues</A>
+</H2>
+Its very difficult to design protocols for security usage. Large research has been done in this but still designing in new scenario and for new systems  always comes with interesting vulnerabilities.
+
+<P>
+How does the simputer authenticate the smart card and vice-versa? As the device is nascent their has been no soluiton to my knowledge. Here I propose the following authentication of the smart-card(SC) and the device(D) based on GSM mobile phone system[<A
+ HREF="node19.html#ross01">And01c</A>]. Note that simputer support PGP-like public key cryptography security mechanism in general and it may have more than one users and corrresponding data areas. The key computations are done by Smart Card (as Crypto Processor).
+
+<P>
+
+<OL>
+<LI>For each user the smart has a separate data area one highly secure with users sensitive information and pin.
+</LI>
+<LI>The user presents its pin(PIN) to the device. The device gives it to smart card which authenticates the users.
+</LI>
+<LI>Once the user is authenticated(User Valid) the device must be authenticated to be able to read sensitive information from the smartcard.
+</LI>
+<LI>The device sends its name(serial number <IMG
+ WIDTH="46" HEIGHT="35" ALIGN="MIDDLE" BORDER="0"
+ SRC="img2.png"
+ ALT="$D_SN$">) encrypted in its public key(<IMG
+ WIDTH="47" HEIGHT="35" ALIGN="MIDDLE" BORDER="0"
+ SRC="img3.png"
+ ALT="$K_PD$">). The smart card sends this with a nonce(N), name of device and  users public key(<IMG
+ WIDTH="46" HEIGHT="35" ALIGN="MIDDLE" BORDER="0"
+ SRC="img4.png"
+ ALT="$K_PU$">) all encrypted in users private key(<IMG
+ WIDTH="45" HEIGHT="35" ALIGN="MIDDLE" BORDER="0"
+ SRC="img5.png"
+ ALT="$K_SU$">) to the certifying server(CA). Along with users plain text public key to the device which forwards it to the authenticating server. 
+</LI>
+<LI>The authenticating server sends the authentication (GoodD or the Nonce N) encrypted in users public key. Thus the smart card authenticates the device.
+</LI>
+<LI>To make the process faster the smart card also keeps a cache of authentic device key , serial number and expiration time stamp.
+</LI>
+</OL>
+
+<P>
+The protocol:
+
+<P>
+<DIV ALIGN="CENTER">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT">U</TD>
+<TD ALIGN="LEFT"><IMG
+ WIDTH="24" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img6.png"
+ ALT="$\Rightarrow $"></TD>
+<TD ALIGN="LEFT"><IMG
+ WIDTH="85" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img7.png"
+ ALT="$ SC: PIN $"></TD>
+</TR>
+<TR><TD ALIGN="LEFT">SC</TD>
+<TD ALIGN="LEFT"><IMG
+ WIDTH="24" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img6.png"
+ ALT="$\Rightarrow $"></TD>
+<TD ALIGN="LEFT"><IMG
+ WIDTH="118" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img8.png"
+ ALT="$ D: User Valid $"></TD>
+</TR>
+<TR><TD ALIGN="LEFT">D</TD>
+<TD ALIGN="LEFT"><IMG
+ WIDTH="24" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img6.png"
+ ALT="$\Rightarrow $"></TD>
+<TD ALIGN="LEFT"><!-- MATH
+ $SC: K_{PD}, D_{SN}$
+ -->
+<IMG
+ WIDTH="128" HEIGHT="35" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$ SC: K_{PD}, D_{SN}$"></TD>
+</TR>
+<TR><TD ALIGN="LEFT">SC</TD>
+<TD ALIGN="LEFT"><IMG
+ WIDTH="24" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img6.png"
+ ALT="$\Rightarrow $"></TD>
+<TD ALIGN="LEFT"><!-- MATH
+ $D: \{N, SC, K_{PD}, D_{SN}\}_{K_{SU}}, K_{PU}$
+ -->
+<IMG
+ WIDTH="264" HEIGHT="37" ALIGN="MIDDLE" BORDER="0"
+ SRC="img10.png"
+ ALT="$ D: \{N, SC, K_{PD}, D_{SN}\}_{K_{SU}}, K_{PU}$"></TD>
+</TR>
+<TR><TD ALIGN="LEFT">D</TD>
+<TD ALIGN="LEFT"><IMG
+ WIDTH="24" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img6.png"
+ ALT="$\Rightarrow $"></TD>
+<TD ALIGN="LEFT"><!-- MATH
+ $CA: \{N, SC, K_{PD}, D_{SN}\}_{K_{SU}}, K_{PU}$
+ -->
+<IMG
+ WIDTH="276" HEIGHT="37" ALIGN="MIDDLE" BORDER="0"
+ SRC="img11.png"
+ ALT="$ CA: \{N, SC, K_{PD}, D_{SN}\}_{K_{SU}}, K_{PU}$"></TD>
+</TR>
+<TR><TD ALIGN="LEFT">CA</TD>
+<TD ALIGN="LEFT"><IMG
+ WIDTH="24" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img6.png"
+ ALT="$\Rightarrow $"></TD>
+<TD ALIGN="LEFT"><!-- MATH
+ $D: \{Good D\}_{K_{PU}}$
+ -->
+<IMG
+ WIDTH="139" HEIGHT="37" ALIGN="MIDDLE" BORDER="0"
+ SRC="img12.png"
+ ALT="$ D: \{Good D\}_{K_{PU}}$"></TD>
+</TR>
+<TR><TD ALIGN="LEFT">D</TD>
+<TD ALIGN="LEFT"><IMG
+ WIDTH="24" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img6.png"
+ ALT="$\Rightarrow $"></TD>
+<TD ALIGN="LEFT"><!-- MATH
+ $SC: \{Good D\}_{K_{PU}}$
+ -->
+<IMG
+ WIDTH="149" HEIGHT="37" ALIGN="MIDDLE" BORDER="0"
+ SRC="img13.png"
+ ALT="$ SC: \{Good D\}_{K_{PU}}$"></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+</TR>
+</TABLE>
+</DIV>
+
+<P>
+In <B>BAN</B> [<A
+ HREF="node19.html#abadi">Bur92</A>] Logic:
+<DIV ALIGN="CENTER">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER">(SC believes good User) and (SC believes CA said good Device)</TD>
+</TR>
+<TR><TD ALIGN="CENTER">SC believes good Device</TD>
+</TR>
+</TABLE>
+</DIV>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html180"
+  HREF="node16.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="file:/usr/share/latex2html/icons/next.png"></A> 
+<A NAME="tex2html178"
+  HREF="node8.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="file:/usr/share/latex2html/icons/up.png"></A> 
+<A NAME="tex2html172"
+  HREF="node14.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="file:/usr/share/latex2html/icons/prev.png"></A>   
+<BR>
+<B> Next:</B> <A NAME="tex2html181"
+  HREF="node16.html">Miscellaneous Issues</A>
+<B> Up:</B> <A NAME="tex2html179"
+  HREF="node8.html">Security Analysis</A>
+<B> Previous:</B> <A NAME="tex2html173"
+  HREF="node14.html">Smart Cards</A>
+<!--End of Navigation Panel-->
+<ADDRESS>
+Vaibhav Bhandari
+2001-11-29
+</ADDRESS>
+</BODY>
+</HTML>

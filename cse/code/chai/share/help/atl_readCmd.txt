@@ -1,0 +1,17 @@
+
+  atl_read - Reads in a formula containing the ATL formulas
+     _________________________________________________________________
+   
+   atl_read [-h] <file_name>
+   
+   The command reads in a file of ATL specifications. The specifications
+   are type-checked and stored. Each specification is associated with an
+   identifier. For unnamed specification, an internally generated new
+   name is used to identify it. To view all read specifications, use
+   atl_print Command Options:
+   
+   -h
+          print usage
+     _________________________________________________________________
+   
+   Last updated on 980624 22h10

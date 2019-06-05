@@ -1,0 +1,135 @@
+<HTML>
+<HEAD><TITLE>The inv package: files</TITLE></HEAD>
+<BODY>
+
+<DL>
+ <DT> <A HREF="#inv.h"><CODE>inv.h</CODE></A>
+ <DD> External header file
+ <DT> <A HREF="#invInt.h"><CODE>invInt.h</CODE></A>
+ <DD> Internal header file
+ <DT> <A HREF="#invMain.c"><CODE>invMain.c</CODE></A>
+ <DD> Contains routines for implementing user level commands.
+ <DT> <A HREF="#invUtil.c"><CODE>invUtil.c</CODE></A>
+ <DD> Routines for manipulating invariants.
+</DL><HR>
+<A NAME="inv.h"><H1>inv.h</H1></A>
+External header file <P>
+<B>By: Freddy Mang and Shaz Qadeer</B><P>
+<DL>
+</DL>
+<HR>
+<A NAME="invInt.h"><H1>invInt.h</H1></A>
+Internal header file <P>
+<B>By: Freddy Mang and Shaz Qadeer</B><P>
+<DL>
+</DL>
+<HR>
+<A NAME="invMain.c"><H1>invMain.c</H1></A>
+Contains routines for implementing user level commands. <P>
+<B>By: Freddy Mang and Shaz Qadeer</B><P>
+<P><B>See Also</B><A HREF="#Inv.y"><CODE>Inv.y</CODE></A>
+<A HREF="#Inv.l"><CODE>Inv.l</CODE></A>
+<A HREF="#InvUtil.c"><CODE>InvUtil.c</CODE></A>
+<A HREF="#Inv.h"><CODE>Inv.h</CODE></A>
+<A HREF="#InvInt.h"><CODE>InvInt.h</CODE></A>
+<DL>
+ <DT> <A HREF="invAllDet.html#Inv_Init" TARGET="MAIN"><CODE>Inv_Init()</CODE></A>
+ <DD> Init function for tcl.
+
+ <DT> <A HREF="invAllDet.html#Inv_Reinit" TARGET="MAIN"><CODE>Inv_Reinit()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="invAllDet.html#Inv_End" TARGET="MAIN"><CODE>Inv_End()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="invAllDet.html#Inv_ReadInvManager" TARGET="MAIN"><CODE>Inv_ReadInvManager()</CODE></A>
+ <DD> Export the Inv Global Manager
+
+ <DT> <A HREF="invAllDet.html#InvInitialize" TARGET="MAIN"><CODE>InvInitialize()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="invAllDet.html#InvObtainNewFormulaName" TARGET="MAIN"><CODE>InvObtainNewFormulaName()</CODE></A>
+ <DD> Returns an internally generated new invariant name.
+
+ <DT> <A HREF="invAllDet.html#InvariantFileRead" TARGET="MAIN"><CODE>InvariantFileRead()</CODE></A>
+ <DD> Implements the command inv_read.
+
+ <DT> <A HREF="invAllDet.html#InvariantPrint" TARGET="MAIN"><CODE>InvariantPrint()</CODE></A>
+ <DD> Implements the command inv_print.
+
+ <DT> <A HREF="invAllDet.html#InvariantCheck" TARGET="MAIN"><CODE>InvariantCheck()</CODE></A>
+ <DD> Implements the command inv_check.
+
+</DL>
+<HR>
+<A NAME="invUtil.c"><H1>invUtil.c</H1></A>
+Routines for manipulating invariants. <P>
+<B>By: Freddy Mang and Shaz Qadeer</B><P>
+This file contains routines for accessing the fields of the 
+  invariant data structure, for printing invariants, and for reading invariants
+  from a file. <P>
+<DL>
+ <DT> <A HREF="invAllDet.html#Inv_ManagerAlloc" TARGET="MAIN"><CODE>Inv_ManagerAlloc()</CODE></A>
+ <DD> Allocate a Inv manager.
+
+ <DT> <A HREF="invAllDet.html#Inv_ManagerFree" TARGET="MAIN"><CODE>Inv_ManagerFree()</CODE></A>
+ <DD> Frees a Inv manager
+
+ <DT> <A HREF="invAllDet.html#Inv_FileParseFormula" TARGET="MAIN"><CODE>Inv_FileParseFormula()</CODE></A>
+ <DD> Parses a file containing a set of ATL formulas.
+
+ <DT> <A HREF="invAllDet.html#Inv_ManagerReadInvariants" TARGET="MAIN"><CODE>Inv_ManagerReadInvariants()</CODE></A>
+ <DD> Returns an array of Atl Formula from the ATL Manager
+
+ <DT> <A HREF="invAllDet.html#Inv_ManagerReadInvariantNames" TARGET="MAIN"><CODE>Inv_ManagerReadInvariantNames()</CODE></A>
+ <DD> Returns a list of Atl formula Names
+
+ <DT> <A HREF="invAllDet.html#Inv_ManagerReadInvariantFromName" TARGET="MAIN"><CODE>Inv_ManagerReadInvariantFromName()</CODE></A>
+ <DD> Returns a pointer to the formula, given name.
+
+ <DT> <A HREF="invAllDet.html#Inv_InvariantArrayFree" TARGET="MAIN"><CODE>Inv_InvariantArrayFree()</CODE></A>
+ <DD> Frees an array of invariants.
+
+ <DT> <A HREF="invAllDet.html#Inv_InvariantReadTypedExpr" TARGET="MAIN"><CODE>Inv_InvariantReadTypedExpr()</CODE></A>
+ <DD> Returns the typed expression of an invariant.
+
+ <DT> <A HREF="invAllDet.html#Inv_InvariantReadName" TARGET="MAIN"><CODE>Inv_InvariantReadName()</CODE></A>
+ <DD> Returns the name of the invariant.
+
+ <DT> <A HREF="invAllDet.html#InvInvariantAlloc" TARGET="MAIN"><CODE>InvInvariantAlloc()</CODE></A>
+ <DD> Allocate an invariant structure.
+
+ <DT> <A HREF="invAllDet.html#InvInvariantFree" TARGET="MAIN"><CODE>InvInvariantFree()</CODE></A>
+ <DD> Free an invariant structure.
+
+ <DT> <A HREF="invAllDet.html#InvExprAlloc" TARGET="MAIN"><CODE>InvExprAlloc()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="invAllDet.html#InvExprFree" TARGET="MAIN"><CODE>InvExprFree()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="invAllDet.html#InvFormulaAddToManager" TARGET="MAIN"><CODE>InvFormulaAddToManager()</CODE></A>
+ <DD> Adds formula to the Inv manager
+
+ <DT> <A HREF="invAllDet.html#InvExprIsWellFormed" TARGET="MAIN"><CODE>InvExprIsWellFormed()</CODE></A>
+ <DD> Check if the atl formula is well formed
+
+ <DT> <A HREF="invAllDet.html#InvExprConvertToString" TARGET="MAIN"><CODE>InvExprConvertToString()</CODE></A>
+ <DD> Returns formula as a character string.
+
+ <DT> <A HREF="invAllDet.html#InvInvariantCreateTypedExpr" TARGET="MAIN"><CODE>InvInvariantCreateTypedExpr()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="invAllDet.html#InvExprConvertToAtmExpr" TARGET="MAIN"><CODE>InvExprConvertToAtmExpr()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="invAllDet.html#SimpleDataTypeCompatible" TARGET="MAIN"><CODE>SimpleDataTypeCompatible()</CODE></A>
+ <DD> See if the simple type are compatible.
+
+ <DT> <A HREF="invAllDet.html#ExprReturnSimpleType" TARGET="MAIN"><CODE>ExprReturnSimpleType()</CODE></A>
+ <DD> Return the simple type of the formula
+
+</DL>
+<HR>
+Last updated on 1031104 18h39
+</BODY></HTML>

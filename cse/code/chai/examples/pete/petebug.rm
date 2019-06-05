@@ -1,0 +1,36 @@
+type ctype:{outCS, reqCS, inCS}
+
+module P1
+  interface x1:bool; pc1:ctype
+  external  x2:bool; pc2:ctype
+
+atom controls pc1,x1 reads pc1,pc2,x1,x2
+    init
+      [] true -> pc1':= outCS
+    update
+      [] pc1 = outCS  -> pc1':=reqCS; x1':= x2
+      [] pc1 = reqCS & (pc2 = outCS | (x1=x2)) -> pc1':=inCS
+      [] pc1 = inCS -> pc1':=outCS
+  endatom
+
+endmodule
+
+
+module P2
+  interface pc2:ctype; x2:bool
+  external  pc1:ctype; x1:bool
+
+atom controls pc2,x2 reads pc1,pc2,x1,x2
+    init
+      [] true -> pc2':= outCS
+    update
+      [] pc2 = outCS  -> pc2':=reqCS; x2':= ~x1
+      [] pc2 = reqCS & (pc1 = outCS | x1=x2) -> pc2':=inCS
+      [] pc2 = inCS -> pc2':=outCS
+  endatom
+
+endmodule
+ 
+Pete:= hide x1, x2 in (P1 || P2) endhide
+
+

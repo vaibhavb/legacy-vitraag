@@ -1,0 +1,18 @@
+
+  check_simulation - Performs symbolic (mdd based) simulation check
+     _________________________________________________________________
+   
+   check_simulation [-h] [-v] <implementation_module>
+   <specification_module>
+   
+   The command performs MDD based simulation check. Command Options:
+   
+   -h
+          print usage
+          
+   -v
+          verbose mode - prints MDDs associated with each intermediate
+          step
+     _________________________________________________________________
+   
+   Last updated on 980624 22h11

@@ -1,0 +1,197 @@
+This is pdfTeX, Version 3.14159-13d (Web2C 7.3.1) (format=pdflatex 2001.3.27)  29 NOV 2001 04:31
+**slides
+(slides.tex[/usr/share/texmf/pdftex/config/pdftex.cfg]
+LaTeX2e <1999/12/01> patch level 1
+Babel <v3.6Z> and hyphenation patterns for american, french, german, ngerman, i
+talian, portuges, russian, spanish, nohyphenation, loaded.
+(/usr/share/texmf/tex/latex/base/slides.cls
+Document Class: slides 1997/08/15 v2.3z Standard LaTeX document class
+(/usr/share/texmf/tex/latex/base/slides.def
+File: slides.def 1997/08/15 v2.3z SLiTeX definitions
+ hacks, slides,
+\c@page=\count79
+ picture, mods,
+\@smashboxa=\box26
+\@smashboxb=\box27
+\@smashboxc=\box28
+
+output, init) (/usr/share/texmf/tex/latex/base/sfonts.def
+File: sfonts.def 1998/06/12 v2.2e Standard LaTeX slide font definitions
+
+(/usr/share/texmf/tex/latex/base/ot1lcmss.fd
+File: ot1lcmss.fd 1998/06/12 v2.2e Standard LaTeX slide font definitions
+))
+\c@minutes=\count80
+\c@seconds=\count81
+\c@mv@invisible=\count82
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  OT1/cmr/m/n --> OT1/lcmss/m/n on input line 364.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `normal'
+(Font)                  OML/cmm/m/it --> OML/lcmm/m/it on input line 367.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `normal'
+(Font)                  OMS/cmsy/m/n --> OMS/lcmsy/m/n on input line 369.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
+(Font)                  OMX/cmex/m/n --> OMX/lcmex/m/n on input line 371.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `invisible'
+(Font)                  OT1/cmr/m/n --> OT1/lcmss/m/In on input line 374.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `invisible'
+(Font)                  OML/cmm/m/it --> OML/lcmm/m/Iit on input line 376.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `invisible'
+(Font)                  OMS/cmsy/m/n --> OMS/lcmsy/m/In on input line 378.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `invisibl
+e'
+(Font)                  OMX/cmex/m/n --> OMX/lcmex/m/In on input line 380.
+)
+(/usr/share/texmf/tex/latex/graphics/color.sty
+Package: color 1999/02/16 v1.0i Standard LaTeX Color (DPC)
+
+(/usr/share/texmf/tex/latex/config/color.cfg)
+Package color Info: Driver file: dvips.def on input line 125.
+
+(/usr/share/texmf/tex/latex/graphics/dvips.def
+File: dvips.def 1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
+)
+(/usr/share/texmf/tex/latex/graphics/dvipsnam.def
+File: dvipsnam.def 1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
+))
+(/usr/share/texmf/tex/latex/graphics/epsfig.sty
+Package: epsfig 1999/02/16 v1.7a (e)psfig emulation (SPQR)
+
+(/usr/share/texmf/tex/latex/graphics/graphicx.sty
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texmf/tex/latex/graphics/keyval.sty
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+\KV@toks@=\toks14
+)
+(/usr/share/texmf/tex/latex/graphics/graphics.sty
+Package: graphics 1999/02/16 v1.0l Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texmf/tex/latex/graphics/trig.sty
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+(/usr/share/texmf/tex/latex/config/graphics.cfg)
+Package graphics Info: Driver file: pdftex.def on input line 80.
+
+(/usr/share/texmf/tex/latex/graphics/pdftex.def
+File: pdftex.def 1999/10/13 v0.02r graphics/color for pdftex
+\Gread@gobject=\count83
+))
+\Gin@req@height=\dimen102
+\Gin@req@width=\dimen103
+)
+\epsfxsize=\dimen104
+\epsfysize=\dimen105
+) (slides.aux)
+\openout1 = `slides.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for OT1/lcmss/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+
+(/usr/share/texmf/tex/context/base/supp-pdf.tex
+(/usr/share/texmf/tex/context/base/supp-mis.tex
+loading : Context Support Macros / Missing
+\protectiondepth=\count84
+\scratchcounter=\count85
+\scratchdimen=\dimen106
+\scratchskip=\skip41
+\scratchmuskip=\muskip10
+\scratchbox=\box29
+\scratchread=\read1
+\scratchwrite=\write3
+\nextbox=\box30
+\nextdepth=\dimen107
+\everyline=\toks15
+\!!counta=\count86
+\!!countb=\count87
+\recursecounter=\count88
+)
+loading : Context Support Macros / PDF
+\nofMPsegments=\count89
+\nofMParguments=\count90
+) [0
+
+[/usr/share/texmf/dvips/config/pdftex.map]]
+LaTeX Font Info:    Try loading font information for OML+lcmm on input line 20.
+
+
+(/usr/share/texmf/tex/latex/base/omllcmm.fd
+File: omllcmm.fd 1998/06/12 v2.2e Standard LaTeX slide font definitions
+)
+LaTeX Font Info:    Try loading font information for OMS+lcmsy on input line 20
+.
+
+(/usr/share/texmf/tex/latex/base/omslcmsy.fd
+File: omslcmsy.fd 1998/06/12 v2.2e Standard LaTeX slide font definitions
+)
+LaTeX Font Info:    Try loading font information for OMX+lcmex on input line 20
+.
+
+(/usr/share/texmf/tex/latex/base/omxlcmex.fd
+File: omxlcmex.fd 1998/06/12 v2.2e Standard LaTeX slide font definitions
+)
+LaTeX Font Info:    External font `cmex10 at17.28pt' loaded for size
+(Font)              <19.907> on input line 20.
+LaTeX Font Info:    External font `cmex10 at17.28pt' loaded for size
+(Font)              <16.59> on input line 20.
+LaTeX Font Info:    External font `cmex10 at17.28pt' loaded for size
+(Font)              <13.82> on input line 20.
+ [1] [2]
+Overfull \hbox (7.6441pt too wide) in paragraph at lines 45--46
+[]\OT1/lcmss/m/n/19.907 Simputer: Mass mar-ket PC with full-fledged
+ []
+
+[3]
+Underfull \hbox (badness 10000) in paragraph at lines 55--57
+
+ []
+
+[4]
+LaTeX Font Info:    External font `cmex10 at17.28pt' loaded for size
+(Font)              <12> on input line 69.
+LaTeX Font Info:    External font `cmex10 at17.28pt' loaded for size
+(Font)              <7> on input line 69.
+ [5] [6] [7]
+LaTeX Font Info:    Try loading font information for OT1+lcmtt on input line 13
+0.
+ (/usr/share/texmf/tex/latex/base/ot1lcmtt.fd
+File: ot1lcmtt.fd 1998/06/12 v2.2e Standard LaTeX slide font definitions
+)
+Overfull \hbox (64.93187pt too wide) in paragraph at lines 128--140
+ [] 
+ []
+
+
+Class slides Warning: Slide 7 too long on input line 143.
+
+[7] [8]
+Overfull \hbox (63.27562pt too wide) in paragraph at lines 188--193
+ [] 
+ []
+
+[9]
+Overfull \hbox (11.44261pt too wide) in paragraph at lines 201--202
+\OT1/lcmss/m/n/19.907 Thanks ev-ery one, es-pe-cially Prof. Mar-tin Abadi
+ []
+
+[10] (slides.aux) ) 
+Here is how much of TeX's memory you used:
+ 1072 strings out of 50593
+ 14100 string characters out of 692055
+ 58531 words of memory out of 1500001
+ 4078 multiletter control sequences out of 10000+25000
+ 9519 words of font info for 34 fonts, out of 400000 for 1000
+ 26 hyphenation exceptions out of 10000
+ 32i,9n,21p,197b,424s stack positions out of 3000i,500n,3000p,50000b,5000s
+<cmmi8.pfb><cmtt8.pfb><lcmssb8.pfb><cmsy8.pfb><lcmss8.pfb>
+Output written on slides.pdf (12 pages, 51348 bytes).

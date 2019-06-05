@@ -1,0 +1,11 @@
+module counterI
+  external   x0:    bool; x1: bool;
+  interface  toone: bool;
+
+atom controls toone 
+  init
+       [] true -> toone' := nondet
+  update
+       [] true -> toone' := nondet
+  endatom
+endmodule

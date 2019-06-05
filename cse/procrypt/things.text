@@ -1,0 +1,121 @@
+The smartcards can be viewed as security processors. They can be subjected to API-level attacks. In which the valid commands are chained in such a way to get access to the cards key.This is the most dangerous attack as the other attacks on the smart-cards involve fairly complex tampering stategies.
+
+======================
+Memory Protection: The essential point is that each domain must have its own address space for enabling protection.{Lampson}.In absence of paging and segmentation each domain will have to have private memory.
+========================
+The Simputer is a low-cost, multi-lingual, mass access device, currently under development. The Information Markup Language is the primary format of the content accessed by the Simputer. Hence the  specification of IML is intimately tied to the system architecture of the Simputer and its application environment. Details of the Simputer's hardware and software architecture can be found on The
+Simputer website. 
+
+The Simputer is a handheld device with the following features:
+	(320x240) LCD panel which is touch enabled. 
+        speaker, microphone and a few keys. 
+        soft-keyboard. 
+        stylus as the pointing device. 
+
+The display resolution is much smaller than the usual desktop monitor, but much higher than the usual wireless devices (cell phones, pagers etc). 
+
+The OS for the Simputer is linux. It is designed so that linux is to be started up infrequently (at the time of battery change for example), but the Simputer is in a low-power mode during the times it is not in use. When the Simputer is 'powered on', the user is presented with a screen having several icons (similar to the Palm home screen). The following kinds of usage are available in the Simputer: 
+        Information access. 
+        Computation. 
+        Transaction processing. 
+        Internet access. 
+
+Simputer, IML and smartcard
+===
+The Simputer is meant ot be a shared device, shared between members of a family, or sahred in public places like STD booths, shops and banks and other establishments. For this reason, and for the reason that there is no harddisk or other longterm storage media on the simputer, the smartcard is conceived as the presonalizing agent. That is an individual's personal information will be securely carried in a smartcard, and then this information will be introduced into the simptuer during a user session. At the end of the session, all traces of the data from the smartcard will be deleted so that the personal information is secure. 
+
+Session database format: 
+
+The session database is simply a three-column table of variable number of rows (limited by the size of the smartcard and the size of the individaul entries). The three columns of the table are 
+
+Name or key: This holds the name of the varibale or key, an arbitrary string. 
+
+magic: This column handles the access security of the varibale and its value. The value of magic can be one of four possible types. 
+
+read (r): the variable can be read by anyone without a password, but to modify it requires a password
+exclusive (e): Password is required to read as well as write to this variable 
+
+secure (s): The varibale is readbale by anyone with out a password, but cannot be changed from within IML environment. 
+
+transient (t): variable requires password to read and write, but is not stored beyond the current session. 
+
+Each of the four types of magic, except type s is a string starting with the single letter that denotes the type followed by a password string, that should b supplied by the user to be allowed access. For secure variables, the magic is single character 's'. 
+
+Value: This holds another arbitrary string that willbe interpreetd as the value of the variable orkey named above. 
+
+     An example of a table is given below: 
+
+     Name     Magic        Value
+     name      s        Manohar
+     address   s        CSA Department, IISc, Bangalore 560012
+     DOB       s675arx  June 21 1960
+     Status    e567rty  Married
+     phone    ru87iii89 3092368
+     choice   t345tyu   pizza
+
+     The first three variables are publicly readable values. Status (married or single) being a sensitive information is accessible only through a password, in this case the string '567rty'. Since the status can
+     change quite quickly in modern times, it is possible to modify the value after the user provides the same password. The phone number is information that is readbale without a password, but needs a
+     password (87iii89) to be modified. The last variable is the choice of food this user has made during a particular session. This value is accessible (read/write) by the production of a password (345tyu), but
+     will not be saved beyond the current session. 
+
+Accesing the data from IML: 
+
+Any application that needs to use the data from the session database (or equivalently from a smartcard) can do so by the simple expedient of using the name/key of the data item preceded by an underscore. An example IML segment that uses the databsae varibales is given below. 
+    <card>
+     <tr><td> Name: </td><td><input type="text" width="15" height="1"
+     var="var0" value="_name" magic="s"/></td></tr>
+     <tr><td> Occupation: </td><td><input type="text" width="15" height="1"
+     var="var0" value="_occupation" magic="s"/></td></tr>
+    </card>		
+
+NOTE: this data can come from the smart card too!!!
+
+IML restricts access to session DB varibles to the input element. The value attribute of this element can be given a database key name (preceded by an underscore) as shown in the example above. When the browser renders the above form, the value of the name key is extracted from the database and filled in the form. 
+
+This restriction is to ensure complete user control of the session data. Reading or writing of session data has to be at the express approval (as indicated by the correct password) of the user. In addition, transfer of such data to an application (especially an application ona remote machine) can only be through a form (input) element. The user is shown the data that will be sent to the application, and has the ability to delete or modify some fields before submitting the data. 
+
+===============
+Handhelds typically have no security framework. Its not possible to have a secure application running on top of an insecure one.
+
+Palm has almost 80%[mudge} of the market. It runs on a insecure OS which doesn't support supervisor mode running. The analysis can be done on the basis of data security, malicious code, virus storage and propogation.
+
+In PDAs the added functionality of Infrared and Radio Frequency waves increases the risk.
+
+The palm provides data security as: individual records marked as private in the applications. These are available on correct password. Moreover the beaming of data can be prevented by using the Beam bit.
+
+However their is no secure storage.
+
+The Palm OS is Application, Operating sys and the hardware. The scene becomes all the more difficult becasuse the application can access the hardware very circumventing the OS. For eg to use the color LCD when the OS didn't support any.This Implies that no access control can be provided.
+
+The application are generally single threaded, event driven programs. They can use a launch code to request that another application perform an action or modify data.
+
+Palm run Motorola DragonBall MC68328 family of microprocessors which are based on the Motorola MC68EC000 core. They are low speed ranging from 16MHz to 33MHz.They have battery backed RAM to store application data and ROM for the OS.
+
+Password Retrieval: The users of portable devices have no keyboard and require character input with a pen, so many times the users have very shortpassowrds. the convenience give way to gulliblity.The obfuscation is week, giving way to XOR attack. It can be circumvented by: Challenge/Response mechanism on the network, Encrypt and Salt Credentials stored on the system, Implement POWERON passsword, and alternative password like signature.
+
+ACCESS CONTROL: In simputer its done by the IML access model.In case of Palm no access model. According to golden standard of authentication, authorization and audit[lamp01].The palm has no acccess control which implies the debugger gaining unauthorised system access. It can be relieved by logging all Palm debuggeractions especially with timestamping for audit purpose. 
+
+Mlignant code/appplication: Prevalent in palm owing to: HotSync operations, serial ports, infrared beaming and wireless radio. The malignancy can be acquired from the PC base.Can be prevented by asking the manufacturer to sign it. The cyptography implementable on these devices is elliptic curve.(paper)
+
+Wireless Communication: In palm the IR functionality (beaming) creates a viable conduit for propogation of malignant code. The RF functionality(wireless) in palm is by radio modem (connected to palm.net) and in simputer by a soft-modem (28.8Kbps) to a T1 line.Avoided by cyrptographic code signing of applications. The keys kept on Smart cards / secure digital external memory.
+
+Virus Trigger: In Palm OS can be reduced by secure storage of entry points in a cryptographic coprocessor.Similarly system critical info can be stored on the smart card for the simputer.
+
+Security processes must be placed at the operating system level that undetectable and inescapable in order to trap malicious code.
+
+Palm has no protection mechnanism against Flash Memory attack. 
+
+================
+why smartcards?Many applications with intermittent conncetivity will have to maintain much of their security state locally.
+
+Attacks on them?
+Invasive attack on Harware:As described in rossbook are possible for capable motivated opponents with proper financial support. However discoveries like scanning capacitance microscope can fuel low-cost attacks.
+
+Non-invasive hardware attacks:like analysis of power consumption will fade away due to ramdomised clocking.
+
+Protocol level attacks: How does the simputer authenticate the card and vice-versa. 
+
+===================
+RSA is very slow on Palm types hence use Elliptic curve. A normal transaction such as key exchange or signature verification can be done in less than 2.4s while signature generation can be done in less than 0.9s.
+
+==========

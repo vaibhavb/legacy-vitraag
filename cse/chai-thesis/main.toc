@@ -1,0 +1,49 @@
+\contentsline {chapter}{List of Figures}{v}
+\contentsline {chapter}{List of Tables}{vi}
+\contentsline {chapter}{Acknowledgements}{vii}
+\contentsline {chapter}{\numberline {1}Introduction}{1}
+\contentsline {section}{\numberline {1.1}Organization of this thesis}{3}
+\contentsline {chapter}{\numberline {2}Interfaces}{4}
+\contentsline {section}{\numberline {2.1}Interface Modules}{4}
+\contentsline {section}{\numberline {2.2}Basics}{5}
+\contentsline {paragraph}{Variables.}{6}
+\contentsline {paragraph}{States.}{6}
+\contentsline {paragraph}{State predicates.}{6}
+\contentsline {paragraph}{Transition predicates.}{7}
+\contentsline {section}{\numberline {2.3}Synchronous Interfaces, Formally}{8}
+\contentsline {section}{\numberline {2.4}Composition}{10}
+\contentsline {subsection}{\numberline {2.4.1}Composition and Compatibility, Formally}{12}
+\contentsline {section}{\numberline {2.5}Composition Algorithm}{13}
+\contentsline {paragraph}{Implementation Technique.}{15}
+\contentsline {chapter}{\numberline {3}\unhbox \voidb@x \hbox {\scshape Chai}}{16}
+\contentsline {section}{\numberline {3.1}The Starting Point- \unhbox \voidb@x \hbox {\scshape Mocha}}{16}
+\contentsline {section}{\numberline {3.2}Tutorial Introduction to \unhbox \voidb@x \hbox {\scshape Chai}}{19}
+\contentsline {subsection}{\numberline {3.2.1}Modelling with \unhbox \voidb@x \hbox {\scshape Chai}}{19}
+\contentsline {subsection}{\numberline {3.2.2}Running \unhbox \voidb@x \hbox {\scshape Chai}}{20}
+\contentsline {section}{\numberline {3.3}Interface Modules}{23}
+\contentsline {subsection}{\numberline {3.3.1}Variables}{23}
+\contentsline {subsection}{\numberline {3.3.2}Intialization and Transitions}{24}
+\contentsline {subsection}{\numberline {3.3.3}Syntax}{25}
+\contentsline {subsection}{\numberline {3.3.4}Semantics}{25}
+\contentsline {subsection}{\numberline {3.3.5}Implementation}{26}
+\contentsline {section}{\numberline {3.4}Chai Operations}{27}
+\contentsline {subsection}{\numberline {3.4.1} Interfaces}{27}
+\contentsline {subsection}{\numberline {3.4.2}Reactive Modules}{27}
+\contentsline {subsection}{\numberline {3.4.3}BDDs and FSMs}{28}
+\contentsline {subsection}{\numberline {3.4.4}Invariants}{28}
+\contentsline {subsection}{\numberline {3.4.5}Summary of Important Commands}{28}
+\contentsline {chapter}{\numberline {4}Interfaces for Hardware Design}{30}
+\contentsline {section}{\numberline {4.1}HDL to BLIF-MV}{31}
+\contentsline {section}{\numberline {4.2}{\unhbox \voidb@x \hbox {\scshape BLIF-MV}}}{31}
+\contentsline {subsection}{\numberline {4.2.1}MV2RM}{32}
+\contentsline {section}{\numberline {4.3}Translating {\unhbox \voidb@x \hbox {\scshape BLIF-MV}} to {\unhbox \voidb@x \hbox {\scshape Reactive Modules}}}{33}
+\contentsline {subsection}{\numberline {4.3.1}Multi-valued Variables}{35}
+\contentsline {subsection}{\numberline {4.3.2}Tables}{36}
+\contentsline {subsection}{\numberline {4.3.3}Latches and Reset Tables}{38}
+\contentsline {subsection}{\numberline {4.3.4}Models}{38}
+\contentsline {subsection}{\numberline {4.3.5}Subcircuits}{40}
+\contentsline {section}{\numberline {4.4}{\unhbox \voidb@x \hbox {\scshape Reactive Modules}} to Interfaces modules}{42}
+\contentsline {chapter}{\numberline {5}Conclusion and Future Work}{45}
+\contentsline {chapter}{\numberline {A}BLIF-MV BNF}{47}
+\contentsline {chapter}{\numberline {B}Grammar Of Interface Modules}{49}
+\contentsline {chapter}{Bibliography}{50}

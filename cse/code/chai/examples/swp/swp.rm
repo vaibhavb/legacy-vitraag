@@ -1,0 +1,419 @@
+#define WINDOW 1
+#define MSGSIZE 2
+#define SEQSIZE 2
+
+-- The messages that are being sent across are generated randomly from msgType
+type msgType : (0..$MSGSIZE-1)
+
+-- The maximum sequence number available to the protocol. Note that for the 
+-- protocol to perform correctly SEQSIZE > 2*WINDOW - 1.
+type seqType : (0..$SEQSIZE-1)
+
+type winType : (0..$WINDOW-1)
+type windowType : (0..$WINDOW)
+type msgSeqArray : array seqType of msgType
+type msgWinArray : array winType of msgType
+
+type boolSeqArray : array seqType of bool
+type boolWinArray : array winType of bool
+
+---------------------------------------------------------------------------
+--                             SPECIFICATION
+---------------------------------------------------------------------------
+module Spec
+	interface msgP, msgC, msgX: msgType; sendIndex, recIndex: winType; store, recStore: msgWinArray; window, specWindow:windowType; index, seq, ack, seqX, ackX: seqType; recvd, busy: boolWinArray; seqXWin: winType; msgValid, ackValid: bool; array1: msgWinArray; array2: boolWinArray; array3: boolWinArray
+
+
+lazy atom Producer 
+	controls msgP, sendIndex
+	reads msgP, specWindow, sendIndex
+init 
+[] true -> sendIndex' := 0
+update
+[] specWindow < $WINDOW -> msgP' := nondet; sendIndex' := sendIndex + 1
+endatom
+
+atom Store
+	controls store
+	reads sendIndex, store
+	awaits sendIndex, msgP
+init
+[] true -> forall i store'[i] := 0
+update
+[] sendIndex' = sendIndex + 1 -> forall i store'[i] := if (sendIndex = i) then msgP' else store[i] fi
+endatom
+
+
+lazy atom Consumer
+	controls msgC, recIndex
+	reads msgC, store, specWindow, recIndex
+init 
+[] true -> recIndex' := 0
+update
+[] specWindow > 0 -> msgC' := store[recIndex]; recIndex' := recIndex + 1
+endatom
+
+atom SpecWindow
+	controls specWindow
+	reads sendIndex, recIndex, specWindow
+	awaits sendIndex, recIndex
+init
+[] true -> specWindow' := 0
+update
+[] (sendIndex' = sendIndex + 1) & ~(recIndex' = recIndex + 1) -> specWindow' := specWindow + 1
+[] ~(sendIndex' = sendIndex + 1) & (recIndex' = recIndex + 1) -> specWindow' := specWindow - 1
+endatom
+
+
+-- REFINEMENTS
+atom MsgValid
+	controls msgValid
+init update
+[] true -> msgValid' := nondet
+endatom
+
+atom AckValid
+	controls ackValid
+init update
+[] true -> ackValid' := nondet
+
+endatom
+
+atom Seq
+	controls seq
+	reads seq, sendIndex, window
+	awaits sendIndex
+init
+[] true -> seq' := 0
+update
+[] sendIndex' = sendIndex + 1 -> seq' := seq + 1
+endatom
+
+atom Window
+	controls window
+ 	awaits specWindow
+init update
+#foreach j = (0..$WINDOW)
+[] specWindow' <= $j -> window' := $j
+#endforeach
+endatom
+
+
+atom Index 
+ 	controls index
+	awaits seq, window
+init update
+#foreach j = (0..$WINDOW)
+[] window' = $j -> index' := seq' - $j
+#endforeach
+endatom
+
+
+atom Ack
+	controls ack
+	reads ack, recIndex
+	awaits recIndex
+init 
+[] true -> ack' := 0
+update
+[] recIndex' = recIndex + 1 -> ack' := ack + 1
+endatom
+
+atom SeqX
+	controls seqX
+	awaits seq, msgValid
+init update
+#foreach j = (1..$WINDOW)
+[] msgValid' -> seqX' := seq' - $j
+[] ~(msgValid') -> seqX' := nondet 
+#endforeach
+endatom
+
+atom SeqXWin
+	controls seqXWin
+	awaits seqX
+init update
+#foreach j = (0..$SEQSIZE-1)
+[] seqX' = $j -> seqXWin' := $j -- % $WINDOW
+#endforeach
+endatom
+
+atom MsgX
+	controls msgX
+	awaits store, msgValid, seqXWin
+init update
+[] msgValid' -> msgX' := store'[seqXWin']
+[] ~(msgValid') -> msgX' := nondet 
+endatom
+
+atom AckX
+	controls ackX
+	awaits ack, ackValid
+init update
+#foreach j = (1..$WINDOW)
+[] ackValid' -> ackX' := (ack' - $j)
+[] ~(ackValid') -> ackX' := nondet
+#endforeach
+endatom
+
+atom NonDet
+	controls array1, array2, array3
+init update
+[] true -> forall i array1'[i] := nondet; forall i array2'[i] := nondet; forall i array3'[i] := nondet
+endatom
+
+atom RecStore
+	controls recStore
+	awaits recvd, store, array1
+init update
+[] true -> forall i recStore'[i] := if recvd'[i] then store'[i] else array1'[i] fi
+endatom
+
+atom Recvd
+	controls recvd
+	awaits specWindow, array2
+init update
+[] true -> forall i recvd'[i] := if (specWindow' = 0) then false else array2'[i] fi
+endatom
+
+atom Busy
+	controls busy
+	awaits window, array3
+init update
+[] true -> forall i busy'[i] := if (window' = 0) then false else array3'[i] fi
+endatom
+
+endmodule
+
+
+---------------------------------------------------------------------------
+--                             IMPLEMENTATION
+---------------------------------------------------------------------------
+-- The implementation is the parallel composition of modules Sender and Receiver.
+-- The channel connection between the two is modeled as one which can lose messages 
+-- and introduce arbitrary delay.
+
+module Impl
+	interface seqX, seq, ackX, ack: seqType; msgP, msgX, msgC: msgType; msgValid, ackValid: bool; recStore: msgWinArray; busy, recvd: boolWinArray; index: seqType; sendIndex, recIndex: winType; store: msgWinArray; seqWin, indexWin, ackWin, ackXWin, seqXWin: winType; window, specWindow: windowType; array1: msgWinArray; array2: boolWinArray; array3: boolWinArray
+
+
+-- SENDER ATOMS
+
+
+lazy atom Producer
+	controls msgP, seq
+	reads msgP, seq, window
+init
+[] true -> seq' := 0
+update
+[] window < $WINDOW -> msgP' := nondet; seq' := seq + 1
+endatom
+
+atom SeqWin
+	controls seqWin
+	awaits seq
+init update
+#foreach j = (0..$SEQSIZE-1)
+[] seq' = $j -> seqWin' := $j -- % $WINDOW
+#endforeach
+endatom
+
+atom Store 
+	controls store
+	reads seqWin, store
+	awaits seqWin, msgP
+init
+[] true -> forall i store'[i] := 0
+update
+[] seqWin' = seqWin + 1 -> forall i store'[i] := if (seqWin = i) then msgP' else store[i] fi
+endatom
+
+-- By making this atom lazy I am modeling a lossy channel with arbitrary delays. 
+-- For instance, if the atom chooses to be lazy when a new message is produced 
+-- it is as if the message was lost in the channel. I am not modelling timeout. 
+-- If a fresh message is not produced in any time instance, then the value in 
+-- store at the current value of index is put on msgX. Thus, the atom might 
+-- take arbitrary time to retransmit a message.
+
+atom MsgController
+	controls msgX, seqX, msgValid
+	reads index, seq, msgX, seqX, msgValid, seqWin, indexWin
+ 	awaits store, seq, busy, index, indexWin
+init 
+[] true -> msgValid' := false
+update
+[] seq' = seq + 1 -> msgX' := store'[seqWin]; msgValid' := true; seqX' := seq
+-- [] busy'[indexWin] -> msgX' := store'[indexWin]; msgValid' := true; seqX' := index
+-- *** hack ***
+[] busy'[indexWin] -> msgX' := store'[indexWin']; msgValid' := true; seqX' := index'
+[] true -> msgValid' := false; msgX' := nondet; seqX' := nondet
+endatom
+
+
+-- index always points to the next sequence number for which an acknowledgement is 
+-- being awaited.
+atom Index 
+ 	controls index
+ 	reads index, window, indexWin
+ 	awaits busy
+init
+[] true -> index' := 0
+update
+[] ~busy'[indexWin] & window > 0 -> index' := index + 1
+endatom
+
+atom IndexWin
+	controls indexWin
+	awaits index
+init update
+#foreach j = (0..$SEQSIZE-1)
+[] index' = $j -> indexWin' := $j -- % $WINDOW
+#endforeach
+endatom
+
+atom Window
+ 	controls window
+ 	reads window, index, seq
+ 	awaits index, seq
+init 
+[] true -> window' := 0
+update
+[] (seq' = seq + 1) & ~(index' = index + 1) -> window' := window + 1
+[] ~(seq' = seq + 1) & (index' = index + 1) -> window' := window - 1
+endatom
+
+atom AckXWin
+	controls ackXWin
+	awaits ackX
+init update
+#foreach j = (0..$SEQSIZE-1)
+[] ackX' = $j -> ackXWin' := $j -- % $WINDOW
+#endforeach
+endatom
+
+-- Two entries of the array busy may need to be updated simultaneously. Hence, 
+-- each element is controlled by a different atom.
+
+#foreach j = (0..$WINDOW-1)
+atom Busy_$j
+ 	controls busy[$j]
+ 	reads seq, ackX, ackValid, busy[$j], seqWin, ackXWin
+ 	awaits seq, array3
+init
+[] true -> busy'[$j] := false
+update
+[] seq' = seq + 1 & (seqWin = $j) -> busy'[$j] := true 
+[] ~(seq' = seq + 1) & ackValid & ackXWin = $j -> busy'[$j] := false
+endatom
+#endforeach
+
+-- Witnesses for store and sendIndex
+atom SendIndex
+	controls sendIndex
+ 	awaits seqWin
+init update
+[] true -> sendIndex' := seqWin' 
+endatom
+
+
+-- RECEIVER ATOMS
+
+-- I need the foreach construct because two entries in the array recvd need to be updated 
+-- each time. Hence, every entry needs to be controlled by a different atom.
+
+atom SeqXWin
+	controls seqXWin
+	awaits seqX
+init update
+#foreach j = (0..$SEQSIZE-1)
+[] seqX' = $j -> seqXWin' := $j -- % $WINDOW
+#endforeach
+endatom
+
+
+lazy atom Consumer
+	controls ack, msgC
+	reads ack, recvd, msgC, recStore, ackWin
+init
+[] true -> ack' := 0
+update
+[] recvd[ackWin] -> msgC' := recStore[ackWin]; ack' := ack + 1 
+endatom
+
+atom AckWin
+	controls ackWin
+	awaits ack
+init update
+#foreach j = (0..$SEQSIZE-1)
+[] ack' = $j -> ackWin' := $j -- % $WINDOW
+#endforeach
+endatom
+
+
+#foreach j = (0..$WINDOW-1)
+atom Recvd_$j
+	controls recvd[$j]
+	reads recvd[$j], ack, ackWin
+	awaits seqX, msgValid, ack, seqXWin, array2
+init 
+[] true -> recvd'[$j] := false
+update
+[] msgValid' & (seqX' - ack' < $WINDOW) & (seqXWin' = $j) -> recvd'[$j] := true
+[] ack' = ack + 1 & (ackWin = $j) -> recvd'[$j] := false
+endatom
+#endforeach
+
+atom NonDet
+	controls array1, array2, array3
+init update
+[] true -> forall i array1'[i] := nondet; forall i array2'[i] := nondet; forall i array3'[i] := nondet
+endatom
+
+atom RecStore
+	controls recStore
+	reads recvd, recStore
+	awaits msgX, msgValid, seqX, seqXWin, ack, array1
+init
+[] true -> forall i recStore'[i] := 0
+update
+[] msgValid' & (seqX' - ack' < $WINDOW) -> forall i recStore'[i] := if (seqXWin' = i) then msgX' else recStore[i] fi
+endatom
+
+
+atom AckController
+	controls ackX, ackValid
+	reads ack, ackX, ackValid
+	awaits ack, seqX, msgValid
+init
+[] true -> ackValid' := false
+update
+[] ack' = ack + 1 -> ackX' := ack; ackValid' := true
+[] msgValid' & (ack' - seqX' > 0) & (ack' - seqX' <= $WINDOW) -> ackX' := seqX'; ackValid' := true
+[] true -> ackValid' := false; ackX' := nondet
+endatom
+
+-- Witness for recIndex
+atom RecIndex
+ 	controls recIndex
+	awaits ackWin
+init update
+[] true -> recIndex' := ackWin'
+endatom
+
+
+-- Witness for specWindow is just a copy of the definition in the Spec
+atom SpecWindow
+	controls specWindow
+	reads sendIndex, recIndex, specWindow
+	awaits sendIndex, recIndex
+init
+[] true -> specWindow' := 0
+update
+[] (sendIndex' = sendIndex + 1) & ~(recIndex' = recIndex + 1) -> specWindow' := specWindow + 1
+[] ~(sendIndex' = sendIndex + 1) & (recIndex' = recIndex + 1) -> specWindow' := specWindow - 1
+endatom
+
+endmodule
+
+
+

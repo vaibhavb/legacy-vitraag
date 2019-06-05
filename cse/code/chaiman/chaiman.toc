@@ -1,0 +1,87 @@
+\contentsline {chapter}{\numberline {1}Introduction}{5}
+\contentsline {section}{\numberline {1.1}Organization of this manual}{6}
+\contentsline {section}{\numberline {1.2}How to read this manual}{6}
+\contentsline {chapter}{\numberline {2}Tutorial introduction to \unhbox \voidb@x \hbox {\sc Mocha}}{7}
+\contentsline {section}{\numberline {2.1}Introduction}{7}
+\contentsline {section}{\numberline {2.2}$3$-bit counter}{7}
+\contentsline {section}{\numberline {2.3}Modeling the $3$-bit counter in \unhbox \voidb@x \hbox {\sc ReactiveModules}}{8}
+\contentsline {subsection}{\numberline {2.3.1}Module instantiation and composition}{9}
+\contentsline {section}{\numberline {2.4}Other issues in modeling hardware}{11}
+\contentsline {subsection}{\numberline {2.4.1}Connecting a latch output to a primary input}{11}
+\contentsline {subsection}{\numberline {2.4.2}Non-determinism}{12}
+\contentsline {subsection}{\numberline {2.4.3}Simple exercises}{13}
+\contentsline {section}{\numberline {2.5}Running \unhbox \voidb@x \hbox {\sc Mocha}}{13}
+\contentsline {subsection}{\numberline {2.5.1}Executing modules}{15}
+\contentsline {section}{\numberline {2.6}ATL model checking}{15}
+\contentsline {section}{\numberline {2.7}Peterson's mutual exclusion protocol}{17}
+\contentsline {section}{\numberline {2.8}Verification}{17}
+\contentsline {section}{\numberline {2.9}Where to find the files for the examples in this chapter}{18}
+\contentsline {chapter}{\numberline {3}Reactive Modules}{20}
+\contentsline {section}{\numberline {3.1}The input file}{20}
+\contentsline {paragraph}{Structure of the file.}{20}
+\contentsline {paragraph}{Splitting a description in multiple files.}{20}
+\contentsline {paragraph}{Typographical conventions.}{21}
+\contentsline {section}{\numberline {3.2}Atoms}{21}
+\contentsline {subsection}{\numberline {3.2.1}Atoms}{21}
+\contentsline {paragraph}{Controlled variables.}{21}
+\contentsline {paragraph}{Read variables.}{22}
+\contentsline {paragraph}{Awaited variables.}{22}
+\contentsline {paragraph}{Guarded commands.}{22}
+\contentsline {subsection}{\numberline {3.2.2}Simple examples of atoms}{23}
+\contentsline {subsubsection}{Unit-delay vs.\ zero-delay}{24}
+\contentsline {subsubsection}{Rounds and sub-rounds}{28}
+\contentsline {subsubsection}{Omitting the \unhbox \voidb@x \hbox {\tt init}\ keyword}{28}
+\contentsline {subsection}{\numberline {3.2.3}Guards}{28}
+\contentsline {subsubsection}{Omitting guards}{29}
+\contentsline {subsubsection}{The \unhbox \voidb@x \hbox {\tt default}\ guard}{32}
+\contentsline {subsubsection}{Omitting variable updates}{32}
+\contentsline {subsubsection}{Lazy atoms}{33}
+\contentsline {section}{\numberline {3.3}Modules}{33}
+\contentsline {subsection}{\numberline {3.3.1}Simple Modules}{33}
+\contentsline {subsection}{\numberline {3.3.2}Composite Modules}{35}
+\contentsline {subsubsection}{Hiding Variables}{35}
+\contentsline {subsubsection}{Variable Renaming}{36}
+\contentsline {subsubsection}{Parallel composition}{36}
+\contentsline {subsubsection}{Summary of module declarations}{37}
+\contentsline {section}{\numberline {3.4}Types and Expressions}{38}
+\contentsline {subsection}{\numberline {3.4.1}Naturals and integers}{40}
+\contentsline {subsection}{\numberline {3.4.2}Events}{40}
+\contentsline {subsection}{\numberline {3.4.3}Range types}{40}
+\contentsline {subsection}{\numberline {3.4.4}Enumeration type}{42}
+\contentsline {subsection}{\numberline {3.4.5}Naming types}{42}
+\contentsline {subsection}{\numberline {3.4.6}Arrays}{44}
+\contentsline {subsection}{\numberline {3.4.7}Bitvectors}{45}
+\contentsline {subsection}{\numberline {3.4.8}Summary of type declarations}{47}
+\contentsline {subsection}{\numberline {3.4.9}Finite and infinite types in verification}{47}
+\contentsline {section}{\numberline {3.5}Macro expansion}{49}
+\contentsline {section}{\numberline {3.6}Efficiency Considerations}{49}
+\contentsline {subsection}{\numberline {3.6.1}Awaited, but not read, variables}{50}
+\contentsline {subsection}{\numberline {3.6.2}Event variables}{50}
+\contentsline {section}{\numberline {3.7}More examples}{50}
+\contentsline {subsection}{\numberline {3.7.1}Synchronous message-passing protocols}{50}
+\contentsline {subsection}{\numberline {3.7.2}A train controller}{52}
+\contentsline {subsection}{\numberline {3.7.3}A resource manager}{54}
+\contentsline {chapter}{\numberline {4}Specifications}{58}
+\contentsline {section}{\numberline {4.1}Invariants}{58}
+\contentsline {section}{\numberline {4.2}Alternating-time temporal logic}{58}
+\contentsline {section}{\numberline {4.3}Refinement}{62}
+\contentsline {section}{\numberline {4.4}The trace language of a module}{63}
+\contentsline {section}{\numberline {4.5}The implementation preorder between modules}{63}
+\contentsline {section}{\numberline {4.6}Referencing variables and atoms: the naming convention}{65}
+\contentsline {chapter}{\numberline {5}User Commands}{67}
+\contentsline {section}{\numberline {5.1}Parsing modules}{67}
+\contentsline {section}{\numberline {5.2}Executing modules}{68}
+\contentsline {section}{\numberline {5.3}Invariant Checking}{69}
+\contentsline {section}{\numberline {5.4}ATL model checking}{71}
+\contentsline {section}{\numberline {5.5}Refinement checking}{73}
+\contentsline {chapter}{\numberline {6}Verification Methodology}{75}
+\contentsline {section}{\numberline {6.1}Monitors}{75}
+\contentsline {section}{\numberline {6.2}Witness modules for refinement checking}{77}
+\contentsline {section}{\numberline {6.3}Abstraction modules}{80}
+\contentsline {section}{\numberline {6.4}Assume-guarantee reasoning}{81}
+\contentsline {chapter}{\numberline {7}Real-Time Modules}{88}
+\contentsline {section}{\numberline {7.1}Describing Systems with Real-Time Modules}{88}
+\contentsline {subsubsection}{Transition Relations of Real-Time Modules}{89}
+\contentsline {section}{\numberline {7.2}Verification with Real-Time Modules}{90}
+\contentsline {subsection}{\numberline {7.2.1}Parsing Real-Time Modules}{90}
+\contentsline {subsection}{\numberline {7.2.2}Invariant Checking}{91}

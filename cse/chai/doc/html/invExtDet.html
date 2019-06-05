@@ -1,0 +1,228 @@
+<HTML>
+<HEAD><TITLE>The inv package</TITLE></HEAD>
+<BODY>
+
+<DL>
+<dt><pre>
+<A NAME="Inv_End"></A>
+int <I></I>
+<B>Inv_End</B>(
+  Tcl_Interp * <b>interp</b>, <i></i>
+  Main_Manager_t * <b>manager</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<dt><pre>
+<A NAME="Inv_FileParseFormula"></A>
+lsList <I></I>
+<B>Inv_FileParseFormula</B>(
+  Inv_Manager_t * <b>manager</b>, <i></i>
+  FILE * <b>fp</b> <i></i>
+)
+</pre>
+<dd> Parses a file containing a set of semicolon-ending ATL
+  formulas, and returns an array of Inv_Invariant_t representing those
+  formulas.  If an error is detected while parsing the file, the routine frees
+  any allocated memory and returns NULL.
+<p>
+
+<dt><pre>
+<A NAME="Inv_Init"></A>
+int <I></I>
+<B>Inv_Init</B>(
+  Tcl_Interp * <b>interp</b>, <i></i>
+  Main_Manager_t * <b>manager</b> <i></i>
+)
+</pre>
+<dd> It creates all the new tcl commands defined in this
+  package.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dt><pre>
+<A NAME="Inv_InvariantArrayFree"></A>
+void <I></I>
+<B>Inv_InvariantArrayFree</B>(
+  array_t * <b>formulaArray</b> <i></i>
+)
+</pre>
+<dd> Calls InvInvariantFree on each formula in
+  formulaArray, and then frees the array itself.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#InvInvariantFree">InvInvariantFree</a>
+</code>
+
+<dt><pre>
+<A NAME="Inv_InvariantReadName"></A>
+char * <I></I>
+<B>Inv_InvariantReadName</B>(
+  Inv_Invariant_t * <b>invariant</b> <i></i>
+)
+</pre>
+<dd> This function returns a string containing the name of the
+  invariant. The caller is not supposed to free the string.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Inv_InvariantReadTypedExpr">Inv_InvariantReadTypedExpr</a>
+</code>
+
+<dt><pre>
+<A NAME="Inv_InvariantReadTypedExpr"></A>
+Atm_Expr_t * <I></I>
+<B>Inv_InvariantReadTypedExpr</B>(
+  Inv_Invariant_t * <b>invariant</b> <i></i>
+)
+</pre>
+<dd> This function returns the typed Atm_Expr_t of an
+  invariant.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Inv_InvariantReadName">Inv_InvariantReadName</a>
+</code>
+
+<dt><pre>
+<A NAME="Inv_ManagerAlloc"></A>
+Inv_Manager_t * <I></I>
+<B>Inv_ManagerAlloc</B>(
+   <b></b> <i></i>
+)
+</pre>
+<dd> This function allocates the a new Inv_Manager_t, and
+  initialize the hash table in the manager.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<dt><pre>
+<A NAME="Inv_ManagerFree"></A>
+void <I></I>
+<B>Inv_ManagerFree</B>(
+  Inv_Manager_t * <b>manager</b> <i></i>
+)
+</pre>
+<dd> This function frees a Inv_Manager_t, frees the names of the
+  atl formula, and decrements the ref count of the formula. If the reference
+  count of the formula comes to zero, the formula is freed.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<dt><pre>
+<A NAME="Inv_ManagerReadInvariantFromName"></A>
+Inv_Invariant_t * <I></I>
+<B>Inv_ManagerReadInvariantFromName</B>(
+  Inv_Manager_t * <b>manager</b>, <i></i>
+  char * <b>name</b> <i></i>
+)
+</pre>
+<dd> This function returns a pointer to the formula
+  with the given name.  If the formula is not found, a NIL pointer
+  is returned.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<dt><pre>
+<A NAME="Inv_ManagerReadInvariantNames"></A>
+array_t * <I></I>
+<B>Inv_ManagerReadInvariantNames</B>(
+  Inv_Manager_t * <b>manager</b> <i></i>
+)
+</pre>
+<dd> Given an ATL Manager, this function returns an array
+  of all the formula names.
+<p>
+
+<dd> <b>Side Effects</b> User should free the array after use.  Note the
+  content should not be freed.
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<dt><pre>
+<A NAME="Inv_ManagerReadInvariants"></A>
+array_t * <I></I>
+<B>Inv_ManagerReadInvariants</B>(
+  Inv_Manager_t * <b>manager</b> <i></i>
+)
+</pre>
+<dd> Given an ATL Manager this function returns a list of
+  all the ATL formula from the manager.
+<p>
+
+<dd> <b>Side Effects</b> This creates an array, which should be freed after use.
+  Beware that the formula should not be freed.
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<dt><pre>
+<A NAME="Inv_ReadInvManager"></A>
+Inv_Manager_t * <I></I>
+<B>Inv_ReadInvManager</B>(
+   <b></b> <i></i>
+)
+</pre>
+<dd> This function exports the Inv Global Manager to the
+  calling function.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<dt><pre>
+<A NAME="Inv_Reinit"></A>
+int <I></I>
+<B>Inv_Reinit</B>(
+  Tcl_Interp * <b>interp</b>, <i></i>
+  Main_Manager_t * <b>manager</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+
+</DL>
+<HR>
+Last updated on 1031104 18h39
+</BODY></HTML>

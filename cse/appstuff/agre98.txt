@@ -1,0 +1,568 @@
+       1998 agre paper  reassembled by the Ramana and myself
+             (a total of 70 questions in the paper)
+       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+1. If n is even, and assuming that all A[i] are distinct, what does the 
+   execution of the code below result in :
+   for (i = 0; i < n; i++)
+     A[i] =  A[n+1-i];
+
+     A. It results in 2 copies of each value data
+     B. The values remain unchanged.
+     C. The array reverses.
+     D. None of the above
+
+2. If L1 : {a^m . b^n , m <= n} and L2 : {a^m . b^n, n <= m} which of the 
+   following are true:
+
+    I. L1 U L2 is regular
+    II. L1 intersection L2 is regular
+    III. L1 and L2 both are regular.
+
+    A. I   B. III   C. I,III   D. I,II,III
+
+3. Which of the following does not help in writing programs for pipelined
+architectures: 
+   A. Unrolling short loops
+   B. Writing short code segments with lot of subroutines
+   C. Using registers as far as possible.
+   D. Using direct/immediate modes of access
+   E. Fixed-length integer instructions
+
+4. Which of the following are true:
+   I. Set Associative Cache is cheaper than a direct mapped cache.
+  II. Set Associative Cache has higher hit ratio than a Fully assoc. cache
+ III. Set Assoc. Cache has higher hit ratio than a direct mapped cache
+
+   A. I   B. I,III   C. III   D. I,II  E. I,II,III
+  
+5. Which of the following is FALSE about RISC architectures:
+   A. All arithmetic operations deal with registers
+   B. The only instructions accessing memory are load and store
+   C. The compiled code is shorter for RISC than for CISC
+   (JUNTA, supply the choices)   
+ 
+6. S -> AA
+   A -> 0A | 0
+
+   Find the number of different parse trees for the string 00000
+   a. 14 b. 24 c. 10 d. 2 e. 32
+
+7. If there is no data forwarding in a pipelined architecture, which
+    of the following hazards could occur.
+
+	a. WAW b. WAR. c. WAW
+
+8. floating point:
+	(-1)^s * 2^(E-127) (1.M)
+then which of these cannot be represented exactly in this system?
+a) 100
+b) 15.5
+c) 0.25
+d) 0.1
+e) 1.0625
+
+52. Also given one number in fp format and asked what its value was
+    Answer I remeber was -14.5 
+
+9. static type checking vs dynamic type checking
+I. code bigger for dynamic typing
+II. static takes more compilation time, dynamic takes more run time
+III. static type checking checks all expressions while dynamic checks
+only those expressions that are evaluated.
+
+10. suppose p and q are pointer variables and the system implements
+   reference counting, what actions are peformed after the assignment
+    p = q ?
+
+    1. *p's reference cound will be decremented, p = q, then *q's referemce
+       count will be incremented.
+    2. rest all crap.. similar
+
+11. Which of the following is true.
+a. if A is uncountable and A \subseteq B then B is uncountable: A is finite
+   and A \subseteq B B is finite
+b. if A is uncountable and B \subseteq A then B is uncountable: A is finite
+   and A \subseteq B B is finite
+c. if A is uncountable and A \subseteq B then B is uncountable: A is finite
+   and B \subseteq A B is finite
+d. if A is uncountable and B \subseteq A then B is uncountable: A is finite
+   and B \subseteq A B is finite
+the next crap.
+
+12. If L denots the number of leaves, s denotes the numbver of nodes with
+exactly two children and f denotes the number of nodes with 1 child and 
+n the total number of nodes.
+
+	which of the following represents the minimum value for n
+	a. L-1 b. 2L-1 c. L+1 d. 2^N e. 2^N+1	
+
+13. Which of the following are true..
+
+	a. 2L +s = n -1 
+    	b. 2L +f 
+	please fill the choices ... i dont remember.
+
+	(Inconsequential - was wrong anyway.. I think)
+	hurrr -> was correct. u seem to have got this qn wrong. anyway, the qn
+	was that if n is total no of nodes, s no of nodes with just 1 child, L
+	the no of leaves and f no of nodes with exactly 2 children, then .....
+	basically, u had to use that n = L + s + f (using sherlock holmes'
+			powers of deduction !)
+		and  L = f + 1
+	however, i don't remember the answer choices ....... somebody help
+
+14. In a RSA cryptography which of the following are true..
+I. The better the algorithm for integer factoring, the better the security
+    of the system
+2. Security depends on an unproven assumption about complexity.
+3. An eavesdropper with infinite computing power can break any code .
+
+a. 1 only b. 2 only c. 1 and 2 d. 2 and 3 e. 1, 2, 3
+
+15. For combinational circuits C and D assuming P notequal to NP.
+    a. There exists algorithm to prove equivalence of C and D.
+    b. There exists algorithm to prove that there exists another combinational
+       circuit with lesser number of variables.
+    d. There exists an assignment for the variables such that C becomes 1.
+
+16. For all x (Px V Qx) is identically equivalent to..
+
+	a. (Forall x Px) V (Forall x Qx)
+	b. Forall x For all y (Px V Qy)
+	c. negation of ( there exists x (not Px AND not Qx))
+
+17. The page tables are placed contiguously for a process in virtual space.
+	then which of the following are true.
+
+    a. There are no page faults.
+    b. There are atmost 2 page faults
+    c. There are atmost 3 page faults
+    d. There are atmost 4 page faults
+    e. There are unbound number of page faults.
+	
+18. Procedure main
+
+      You forgot . Given static scoping.... 
+     
+	Procedure P	
+	Var x:Integer;            %%% Please check this out
+
+       P calls R
+       R calls S which references the variable x in the scoping of P.
+       P calls Q
+       Q calls P recursively
+ 
+      Then which of the follwoign could function according to the properties.
+      Please fill the choices I dont remember.
+       
+      (i) Choice  1 had a program with block structure as follows
+         
+	    --
+	   |    
+       P   |  -
+           | |  R -> S
+	   | |
+	   |  -  
+           | 
+	   |  Q 
+	   |
+	    --
+
+       (ii) In 2 it was q inside s inside r inside p
+       (iii) In 3 it was some other way. 
+
+       Options were some combination of i ii and iii
+
+31. One thing left out here was that there was a program given in
+    which  s was inside r was inside p and it was asked how many
+    static links are traversed when s references a variable x defined
+    in p 
+    (1) 0 (2) 1 (3) 2 (4) 3 (5) 4
+
+19. Some question about Amdahl's law of speedening of a computer with added
+    floating point unit..
+
+    (i) The speedup is proportional to the fraction of the time the
+    faster component is used
+    (ii) The speedup is bounded by a limit
+    (iii) some other crap options which made no head or tail 
+
+20. A -> E * E
+		 E + E 
+         (E) 
+		 id
+
+	Which of the following situtations are not possible in the action table
+    of an LR Parser. Assume normal precedence rules and associativity.
+
+	Stack         Input                  Action
+
+a)	E + E           *                    shift
+b)	E + E           /                    shift
+c)	E * E           *                    reduce
+d)	E + E           +                    shift
+
+21. Which of the following cannot be done in linear time for a graph using 
+    depth first search ?
+a) finding a cycle in the graph.
+b) finding a forest cover in the graph.
+c) finding the shortest path from a single source.
+d) finding the strongly connected component in the graph..
+e) and another most important which i dont remember.
+
+22. The code for the first pass of the bubble sort algo for an array A[1..n] 
+is this:-
+
+	for(i=1; i <= N-1; i++)
+		if(A[i] < A[i+1]) then swap (A[i],A[1+1])
+
+What is the probability that a swap is not perfomred in the ith step of the
+above loop?
+	
+	a. 1/i    b. 1/(i+1)	c. i/(i+1)	d. 1/n	e.n/2
+
+23. The growth of which of the following functions is logarithmic in n.
+
+	1. t(N) = t(\lfloor N/2 \rfloor) + 1
+	2. t(N) = \sum_{i=1}^{N} i/i
+	3. t(N) = t(\lfloor N/2 \rfloor) + logN
+
+24. For which of the following choices is mutual exclusion used...
+    i. Speeding up operations for real time deadlines.
+    ii. Atomic access to shared resources
+    iii. Sharing access to printers. 
+
+    (a) i (b) ii  (c) iii (d) ii and iii (e) i and ii
+
+25. Question on C++
+    Given a virtual class with some definitions 
+    Which of the following is FALSE
+    
+    (1) The class cannot be instantiated because it has all virtual functions
+    (2) The function left cannot be used without a redefinition 
+    (some other shady choices .. cannot remember)
+
+26. Give the format of a fixed length instruction. 
+    
+    -----------------------------------
+    | opcode | Rs | Rd | something    |
+    -----------------------------------
+
+    Suppose u double the number of source and destination registers. 
+    Then how does the addressable memory get affected. 
+
+    (1) * 2
+    (2) * 4
+    (3) Unchanged 
+    (4) / 2
+    (5) / 4
+
+27. Given some simple logic circuit of 
+    X = (not A. B) + (A. not B) + (A. B) and asked what does it
+    represent. 
+    (1-4) Shady choices 
+    (5)   X = A + B
+
+28. The question about mapping 1..N to 1..N
+    x= 1
+    y= f(x)
+    while x!=y 
+    begin
+        x= f(x)
+	y= f(f(y))
+    end
+
+    (1) Always terminates
+    (2)      "      if there is a 1-1 mapping
+    (3) Never terminates
+    (4) Terminates if .. some other choices. 
+
+
+29. There was some question in which there were five statements and we
+    had to point out the wrong one. I only remember the wrong option
+
+    (4) Intersection of two CFLs is a CFL 
+
+30. Define doubling of a language L as the language Lprime  
+            Lprime = {ll | l in L}. 
+Which class of languages are closed under doubling.
+    (i) Regular languages
+    (ii) CFL's
+    (iii) Recursive enumerable
+choices are some combos of 1,2,3
+    
+	
+32. The reference counting question
+    Given a c like language in which reference counting is used for
+    garbage collection. What is the sequence of actions when p is
+    assigned to q in a C like language given that p and q represent
+    pointers. (rc = reference count)
+
+    (1) P = Q, *P's rc inc, *Q's rc dec
+    (2) *P's rc inc , P = Q, *Q's rc dec
+    (3) *P's rc dec, P = Q , *Q's rc inc
+    (4) *Q's rc inc, P = Q, *P's rc dec
+    (5) *Q's rc dec, P = Q, *P's rc inc
+    
+33. Which of the following do not represent a dtring belonging to the
+    following reg. exp       *    *
+                        a ( b  c )
+			
+    (1) abc (2) abcbcc (3) acbbccbc (4) abcbb (5) accbbcc
+
+34. With respect to pipelining when does an interrupt occur
+    
+    (i) Every clock cycle
+    (ii) When the pipeline is empty
+    (iii) Some shady option
+
+    (1) None (2) i only (3) ii only (4) iii only (5) i and ii
+
+35.  Given an automaton with five states A, B, C, D, E
+
+     description of the dfa
+           0       1
+     ----------------------
+      A    D       B    Start state
+      B    A       C 
+      C    B       D
+      D    E       E    Final state
+      E    E       E
+
+     All strings generated by this automata are of odd length. The
+     only strings of length less than 5 are 0, 100, and 111
+
+     How many strings of length =5 can be generated by this automata
+
+     (1) 3 (2) 4 (3) 5 (4) 6 (5) 7 
+
+36. What function of n  represents the number of expressions of length 
+	n that can be generated?
+
+    (Basically order ... linear, quad, exponential, whatever.)
+     
+37. Using newtons method to find square root of a number we get the
+    following equation
+    y(i+1) = ((y(i) + x/y(i))/2)
+
+    In each step how does the accuracy of the answer increase
+    (1) By 1 digits
+    (2) By 2 digits
+    (3) By 4 digits
+    (4) Squres
+    (5) Doubles
+
+38. The sidey question on node **
+    Given the folliowing C code and told that val is not present in the
+    list before calling the following routine (I am sure the routine
+    had more than one mistake) point out which change will make the
+    routine work correctly. 
+
+    typedef struct elem
+    { 
+       int data;
+       struct elem * lnk ; 
+    } node ; 
+
+1   void insert (node ** p, int val)
+2   { 
+3       if (*p && *p->data < val)
+4          insert(*p->lnk,val);
+5       else  {
+6          some shady  stuff
+11
+
+      Changes 
+      (1) On line 1 replace **ptr by *ptr
+      (2) On line 2 replace *p->lnk by &(*p->lnk)
+      (3) some shady options
+
+39. The following piece of code returns true if there is any subset of
+    numbers in Array A[0..N-1]  whose sum = Sum 
+
+    knapsack (int n, int Sum)
+    {
+        if ((n==1 && a[0]==Sum) || Sum==0) 
+	      return true; 
+        else 
+	   return ( knapsack(n-1,sum) or knapsack(n-1,sum-a[n]))
+ 
+        return false;
+    }
+
+    (1) Always terminates but takes linear time
+    (2) Does not terminate
+    (3) Terminates in polynomial time
+    (4) Terminates in exponential time
+    (5) Terminates but cannot be bounded
+
+40. Given pascal code for generation of Fibboncci numbers
+    where u want to find out f(n) and f and f1 represent f(n-1) and
+    f(n-2) respectively. 
+
+    fib(int n; var int f,f1)
+    { 
+       int temp;
+
+       if (n==1)
+       {   f=1; f1=0; }
+       else 
+       {  fib(n-1,f1,temp);
+          f=f1+temp; .....................(1)
+       }
+    }
+
+    How many times is the line marked (1) executed....
+    (1) O(n)
+    (2) O(n^2)
+    (3) O(log n)
+    (4) O(n ^ 3)
+    (5) O(e ^ n)
+
+41. Given a sequence of numbers which are being sorted. 
+    Also given an intermediate sequence. Which of the following sorts
+    will generate the given intermediate sequence.
+
+    78 12 34 67 73 89 21 32 56 41 34  9 32 65 14 44  Original seq...
+
+    12 34 67 78 21 32 73 89  9 34 41 56 14 32 44 65  Inter. seq...
+
+    (1) Bubble sort 
+    (2) Heap sort
+    (3) Merge sort
+    (4) Shell sort
+    (5) Quick sort
+
+42. Given the following peice of code pascal...
+
+    int j;
+    fn(int a,b)
+    {
+       a=a-1;
+       j=j+2;
+       b=b-3; 
+    }
+    main 
+    {
+       int a[3];
+       j=2;
+       a[1]=1;
+       a[2]=2;
+       a[3]=3;
+       fn(j,a[j]);
+       print(j,a[1],a[2],a[3]);
+    }
+
+
+    What is the output of call by value is used
+    (1) 4 1 2 3
+    (2) -3 1 2 3 
+    (3) 3 -1 1 3
+    (4) some shady options...
+
+43. What happens if call by refernece is used above 
+    
+    Same options as above...  
+
+44. Given seven processors and each one is assigned a number
+    Also all can perform the operation of compare and swap with its
+    neighbours. All have the same clock. What is the minimum bound on
+    the worst case time to sort the numbers using such a processor
+
+    (1) 2 (2) 3 (3) 6 (4) 49 (5) 19
+
+45.
+    The following seq. of operations are performed are performed on a
+    list.  N inserts into a list and then printlist. The insertion is
+    done to maintain order. 
+
+    Now suppose I perform m more inserts and again print the sorted
+    list. What is the time taken to do this if I use a singly linked
+    list.
+
+    (1) O(n)
+    (2) O(m+n)
+    (3) O(m(m+n))
+    (4) O(mlog m + n)
+    (5) O((m+n)log (m+n))
+
+46. Now suppose instead of inserting directly, I maintain two lists 
+    new and old. Old contains my sorted n elements. I keep inserting
+    elements in new ,(initially empty) and then I sort new using
+    merge sort and then merge the old and new. Time ???
+
+    Same options as above. 
+
+47. Which of the following grows the slowest as n goes to inf..
+
+    (1) n ^ (1 + 2 / sqrt(log N))
+    (2) n ^ (1 + 4 / log N)
+    (3) n ^ (5/4)
+    (4) some other options... 
+
+48. Which of the following have a logarithmic bound on their growth ?
+
+    (i) T[n] = T[n/2] + 1
+    (ii) T[n] = T[n/2] + log n
+    (iii) T[n] = 1/n
+
+    (1) i and ii (2) i (3) ii (4) iii (5) i and iii
+
+49. Given the following grammar
+
+    E -> T op1 E | something
+    T -> not T   | ( E ) | p | q
+
+    Which of the following are true 
+    (i) p and q can be adjecent in a string (this was false)
+    (ii) op1 is left associative
+    (iii) not has higher pref than op1
+
+    (1) i only (2) ii (3) iii (4) ii and iii (5) i and iii 
+
+50. Given an automaton with n>2 states and u r told that it rejects at
+    least one string. Let m be the shortest length string rejected by
+    this automaton. Size of m
+
+    (1) At most 1
+    (2) 1 < m < n 
+    (3) n < m < n^2
+    (4) n^2 < m < exp in n
+    (5) unbounded
+
+51. Given a huge question on RISC architecture talking about saving of
+    registers while calling functions. Gave some code in which one
+    register was being used after a function call. And they asked
+    which register should be restored during the function call. 
+
+52. Then told that there is one instruction 
+    sll rd,rs, immediate or rd1
+    which shifts left contents of rs by rd1/immediate bits and puts
+    into rd. 
+    Question asked was this . Given an array starting at 0x1000
+    Load A[i+1] into r4 given i in r2 (leave i in r2)
+
+    There were four options two of which were eliminated cos they
+    destroyed the contents of r2, two of which never involved r2 and
+    so it was the remaining option. 
+
+53. Which of the following operations on a,b,c (all real) gives the
+    largest relative error
+    (1) sqrt(A*B*C)
+    (2) A*A - (B*C)
+    (3) A*A + B*C
+    (4) A*A/(B*C)
+    (5) A*B*C
+
+54. Which of the following will set the zero flag ? (Given a is a
+     register containing a memory location). 
+
+     (1) sub --(a),(a)++
+     (2) sub --(a),(a)
+     (3) sub (a),(a)++
+     (4) all of the above
+     (5) none of the above
+     
+
+

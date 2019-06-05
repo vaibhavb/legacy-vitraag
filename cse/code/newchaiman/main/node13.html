@@ -1,0 +1,226 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with jLaTeX2HTML 2002 (1.62) JA patch-1.4
+patched version by:  Kenshi Muto, Debian Project.
+LaTeX2HTML 2002 (1.62),
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>ATL model checking</TITLE>
+<META NAME="description" CONTENT="ATL model checking">
+<META NAME="keywords" CONTENT="main">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<META NAME="Generator" CONTENT="jLaTeX2HTML v2002 JA patch-1.4">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="main.css">
+
+<LINK REL="next" HREF="node14.html">
+<LINK REL="previous" HREF="node11.html">
+<LINK REL="up" HREF="node2.html">
+<LINK REL="next" HREF="node14.html">
+</HEAD>
+
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html194"
+  HREF="node14.html">[Next]</A> 
+<A NAME="tex2html190"
+  HREF="node2.html">[Up]</A> 
+<A NAME="tex2html184"
+  HREF="node12.html">[Previous]</A>  
+<A NAME="tex2html192"
+  HREF="node17.html">[Index]</A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html195"
+  HREF="node14.html">Peterson's mutual exclusion protocol</A>
+<B> Up:</B> <A NAME="tex2html191"
+  HREF="node2.html">Tutorial introduction to CHAI</A>
+<B> Previous:</B> <A NAME="tex2html185"
+  HREF="node12.html">Executing modules</A>
+ &nbsp <B>  <A NAME="tex2html193"
+  HREF="node17.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00260000000000000000">
+ATL model checking</A>
+</H1>
+
+<P>
+ATL is a new temporal logic that subsumes CTL and is appropriate for
+reasoning about open systems. The difference between ATL and CTL is
+that the path quantifiers in ATL are parametrized by a set of atoms,
+and a formula is true along all paths that the parametrized atoms can
+take the system into, no matter how the other atoms behave. 
+
+<P>
+For instance, the CTL formula <A NAME="tex2html_wrap_inline2171"
+ HREF="img13.png">[IMAGE png]</A> is not true with respect to
+the module <TT>closedthreebitcounter</TT>.
+We obtain a counterexample to the formula if the input to the counter is set to&nbsp;<A NAME="tex2html_wrap_inline2111"
+ HREF="img2.png">[IMAGE png]</A>.
+In this case the sum is always&nbsp;<A NAME="tex2html_wrap_inline2111"
+ HREF="img2.png">[IMAGE png]</A> and the carry-out from the third (<TT>out2</TT>)
+counter-cell never becomes&nbsp;<A NAME="tex2html_wrap_inline2163"
+ HREF="img10.png">[IMAGE png]</A>.
+
+<P>
+The formula <A NAME="tex2html_wrap_inline2171"
+ HREF="img13.png">[IMAGE png]</A> stated in ATL is: <BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+<< >> F (out2)
+\end{displaymath}
+ -->
+
+<A NAME="displaymath2181"
+ HREF="img14.png">[IMAGE png]</A>
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+where the set
+of atoms parametrizing the path quantifier (within angle brackets) is
+empty. The formula is to be read as follows: no matter how the agents
+(i.e, atoms) behave it is the case that the system reaches a state
+where <TT>out2</TT> is true.
+
+<P>
+Similarly, the exists (<A NAME="tex2html_wrap_inline2183"
+ HREF="img15.png">[IMAGE png]</A>) path quantifier of CTL is the ATL path
+quantifier parametrized by all the atoms. For instance, the module
+<TT>closedthreebitcounter</TT> satisfies the CTL formula <A NAME="tex2html_wrap_inline2185"
+ HREF="img16.png">[IMAGE png]</A>.
+The equivalent ATL formula is <BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+<< U >> F (out2)
+\end{displaymath}
+ -->
+
+<A NAME="displaymath2187"
+ HREF="img17.png">[IMAGE png]</A>
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+where <A NAME="tex2html_wrap_inline2189"
+ HREF="img18.png">[IMAGE png]</A>
+stands for a list of all the atoms in the module <TT>closedthreebitcounter</TT>. 
+
+<P>
+ATL thus let us specify games where we can divide up the set of
+atoms into two teams; with some atoms in one team and the remainder in the
+other team, we can pose adversarial questions as to whether a team
+can enforce a condition no matter how the other team behaves.
+
+<P>
+For instance, we can pose the following ATL formula that is stronger than the CTL formula <A NAME="tex2html_wrap_inline2185"
+ HREF="img16.png">[IMAGE png]</A>:
+<BR>
+<DIV ALIGN="RIGHT">
+
+<!-- MATH
+ \begin{equation}
+<< InputModule >> F (out2)
+\end{equation}
+ -->
+<TABLE WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER" NOWRAP><A NAME="eqn:atl_formula">&#160;</A><A NAME="displaymath1841"
+ HREF="img19.png">[IMAGE png]</A></TD>
+<TD WIDTH=10 ALIGN="RIGHT">
+(2.2)</TD></TR>
+</TABLE>
+<BR CLEAR="ALL"></DIV><P></P>
+This formula asks: what are the states from which the module
+<TT>InputModule</TT>, i.e. the team comprised of atoms in the module <TT>InputModule</TT> has a strategy to make sure that <TT>closedthreebitcounter</TT> reaches  a state where <TT>out2</TT> is true no
+matter how the other modules (atoms) behave. Notice that in CTL the
+only two teams possible are where one is the empty set and the other
+all the atoms, whereas ATL let us partition the atoms into two teams
+any way we want. 
+
+<P>
+The ATL formula of (<A HREF="node13.html#eqn:atl_formula">2.2</A>) is also true of <TT>closedthreebitcounter</TT>, because again (for instance) a winning strategy
+for <TT>InputModule</TT> is to set the input to&nbsp;<A NAME="tex2html_wrap_inline2163"
+ HREF="img10.png">[IMAGE png]</A> sometime.
+The reader should be convinced that it is not
+difficult to come up with instances of modules that can be
+distinguished by ATL formulae but not by CTL formulae. 
+Note that in ATL formulae we may use the short hand <A NAME="tex2html_wrap_inline2195"
+ HREF="img20.png">[IMAGE png]</A> and <A NAME="tex2html_wrap_inline2183"
+ HREF="img15.png">[IMAGE png]</A> to stand for
+the parametrized path quantifier with the empty set of atoms and the set of all atoms, respectively.
+
+<P>
+The ATL formulae can be entered into a file whose name is suffixed
+by <TT>.spec</TT>, named say <TT>counter.spec</TT>:
+
+<P>
+<PRE>
+atl "atl1" A F (out2) ;
+atl "atl2" E F (out2) ;
+atl "atl3" &lt;&lt; InputModule &gt;&gt;  F (out2);
+</PRE>
+
+<P>
+Lines containing ATL formulae start with word <TT>atl</TT>, followed by
+the name of the formula, and then the formula, with a semi-colon
+terminating the line. The command <TT>show_spec</TT> prints out the names
+of ATL formulae read in (as well as invariants read in). Try it. 
+
+<P>
+The command for ATL model checking is <TT>atl_check</TT>. The following command:
+
+<P>
+<PRE>
+atl_check closedthreebitcounter atl1
+</PRE>
+
+<P>
+which says check if the module <TT>closedthreebitcounter</TT> satisfies
+the ATL formula <TT>atl1</TT>. When you run this, you will get a message
+reporting a failure. On the otherhand:
+
+<P>
+<PRE>
+atl_check closedthreebitcounter atl2
+</PRE>
+
+<P>
+should pass as should <TT>atl_check closedthreebitcounter atl3</TT>. 
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html194"
+  HREF="node14.html">[Next]</A> 
+<A NAME="tex2html190"
+  HREF="node2.html">[Up]</A> 
+<A NAME="tex2html184"
+  HREF="node12.html">[Previous]</A>  
+<A NAME="tex2html192"
+  HREF="node17.html">[Index]</A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html195"
+  HREF="node14.html">Peterson's mutual exclusion protocol</A>
+<B> Up:</B> <A NAME="tex2html191"
+  HREF="node2.html">Tutorial introduction to CHAI</A>
+<B> Previous:</B> <A NAME="tex2html185"
+  HREF="node12.html">Executing modules</A>
+ &nbsp <B>  <A NAME="tex2html193"
+  HREF="node17.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+Vaibhav Bhandari
+2003-06-17
+</ADDRESS>
+</BODY>
+</HTML>

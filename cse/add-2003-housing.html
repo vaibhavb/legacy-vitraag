@@ -1,0 +1,21 @@
+<html>
+<title>2003 Housing List</title>
+<link rel="stylesheet" href="style/style.css">
+<body>
+<h1>UCSC Housing Pool</h1>
+<form ACTION="cgi-bin/housing.pl" method="post">
+<INPUT TYPE=HIDDEN NAME="contact-file" VALUE="/cse/grads/vaibhav/.html/ucsc-housing-2003.html">
+<p>Name:<input name="contact-name" size="70">
+<p>Email: <input name="contact-email" size="70">
+<p>Housing Partner Preference (Name of already decided partners/ Preference like Veggie/ All-females):<input name="contact-type" size="100">
+<p>Room-preference (Want a single room (> $600), Single room in house of 4 (>$500), Share ($400) ):<input name="contact-home" size="100">
+<p>Course of Study (MS-CS/PhD CE/ PhD Econ..):<input name="contact-office" size="40">
+<p>Any other information you want to be known for housing setup (I go very well with a really quiet set of party animals):<br>
+<TEXTAREA ROWS=3 COLS=60 NAME="contact-bday"></TEXTAREA>
+<INPUT TYPE=HIDDEN NAME="contact-action" VALUE="add">
+<p><INPUT TYPE="SUBMIT" VALUE="Pool Me">
+<INPUT TYPE="RESET">
+</form>
+
+</body>
+</html>

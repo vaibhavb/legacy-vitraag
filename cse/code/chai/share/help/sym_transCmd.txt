@@ -1,0 +1,17 @@
+
+  sym_trans - compute transition realtion MDD for the module
+     _________________________________________________________________
+   
+   sym_trans [-v] [-h] <module_name>
+   
+   The command build the transtion relation MDD for a module. Command
+   Options:
+   
+   -v
+          verbose mode
+          
+   -h
+          print usage
+     _________________________________________________________________
+   
+   Last updated on 980624 22h11

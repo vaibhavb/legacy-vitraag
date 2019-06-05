@@ -1,0 +1,26 @@
+\begin{minipage}[t]{2in} 
+\scriptsize
+\begin{verbatim}
+interface Counter 
+  output q0, q1: bool;
+  input  cl:     bool;
+
+  input atom
+    init
+      [] true -> cl :=nondet
+    update
+      [] true -> cl':=nondet
+  endatom
+  output atom 
+    init
+      [] true -> q0:=1; q1:=1;
+    update
+      []  cl             -> q1':=1; q0':=1
+      [] ~cl &  q1 &  q0 -> q1':=1; q0':=0
+      [] ~cl &  q1 & ~q0 -> q1':=0; q0':=1
+      [] ~cl & ~q1 &  q0 -> q1':=0; q0':=0
+      [] ~cl & ~q1 & ~q0 -> q1':=1; q0':=1
+  endatom
+end interface
+\end{verbatim}
+\end{minipage}

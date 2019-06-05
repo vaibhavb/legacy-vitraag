@@ -1,0 +1,36 @@
+<html>
+<head><title>inv_check</title></head>
+<body>
+
+<h3>inv_check - Checks invariants on a module.</h3>
+<hr>
+<code>inv_check [-h] [-e search_method] &lt;module_name&gt; [inv_name] [inv_name] ...</code><p>
+This command checks the specified invariants on the
+  specified module. The invariants have to be read using the command inv_read
+  before this command is invoked. If no invariants are specified on the
+  command line, then all invariants that have been read are checked. If the -e
+  option has been used, use enumerative search else symbolic search. If the -r
+  option has been used, use symbolic breadth-first search on real-time modules.
+  The -r option should be used with real-time modules only, and takes precedence
+  over the -e option.<p>
+
+  Command Options:<p>
+
+  <dl>
+
+  <dt> -h
+  <dd> Print usage.<p>
+
+  <dt> -e search_method
+  <dd> Use the specified search method. search_method must be one of the
+  following. <p>
+
+  <code> 0 </code>: Use breadth-first search.<p>
+  <code> 1 </code>: Use depth-first search.<p>
+  
+  
+  </dl>
+
+<HR>
+Last updated on 1031103 12h03
+</body></html>

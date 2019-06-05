@@ -1,0 +1,2096 @@
+\label{chap:rem}
+% should be chapter. 
+
+The input language that \mocha\  uses for language description is that
+of {\em reactive modules.}  The language of reactive modules is
+vaguely similar to a programming language.  However, \rem\ have a
+different emphasis than most programming languages.  Programs written
+in ordinary programming languages are usually meant to describe
+procedures or processes in full detail, to enable their efficient
+execution. On the other hand, it may not be desirable (or indeed
+possible) to encode all the details of a system into a \rem\
+description.  Hence non-determinism plays in \rem\ a more important
+role than in ordinary programming languages, as it enables to abstract
+from such details. \rem\ also provides extensive facilities for
+the modular description of a system, and for modeling both synchronous
+and asynchronous types of behavior. 
+
+The structure of a \rem\ description resembles that of a conventional
+(imperative) programming language: to the statements of the language
+correspond {\em atoms,} and to the procedures correspond {\em reactive
+modules\/} (modules, for short).  A complete description consists of
+one or more modules.  
+
+%The structure of a \rem\ description is depicted
+%in Table~\ref{table-rem-structure}.
+
+
+
+\section{The input file}
+
+\paragraph{Structure of the file.}
+
+A file contanining a \rem\ description is usually given a name ending
+with the {\tt .rm} extension, which is what \mocha\  assumes by default.
+Keywords in \rem\ can be separated by any type of {\em
+whitespace,}\index{white space} where whitespace can be a space, a
+new-line, or a tab.  Comments\index{comments} in \rem\ are introduced
+with the character sequence {\tt --}: anything from {\tt --} to the
+end of the line is considered as comment, and disregarded by \mocha.
+
+\paragraph{Splitting a description in multiple files.}
+
+A long (or short) \rem\ description can be split into multiple
+files\index{files!multiple} for ease of handling.  Each module must be
+contained in a single file.  The complete description can be loaded
+into \mocha\ simply by loading the separate files one after the other,
+as if reading a single file in successive steps.
+
+\paragraph{Typographical conventions.}
+
+In this manual, we write in typewriter font the keywords, such as
+\ATOM, that have to be entered as specified, and we write in italics
+the items, such as {\it var,} $x$, for which you have to substitute
+the appropriate values.  We use also the following special symbols: 
+%
+\begin{itemize}
+  \item $\ldots$ denotes an arbitrary number of items in a list, as in
+  $x_1$\COMA\ \ldots \COMA$x_n$, where we assume that $n \geq 1$.  The separator
+  between list elements, when present (``,'' in this example)
+  indicates the separator that has to be used between list 
+  items.
+
+  \item $|$ denotes alternative: in \TRUE\ $|$ \FALSE, you can write
+  either \TRUE\ or \FALSE.
+
+  \item $[\cdot]$ denotes an option: in [ \atomname\ ], the input
+  \atomname\ can be provided or omitted.
+
+  \item round parentheses in roman typeface, as in $( \cdot )$, are
+  used for grouping. 
+\end{itemize}
+%
+%The complete grammar of \rem\ is provided in Chapter~\ref{chap:grammar}.
+
+
+\section{Atoms}
+
+The state of the system is described by a set of {\em state
+variables:\/} each system state corresponds to an assignment of values
+to the variables.  The behavior of the system consists in an {\em
+initial round,}\index{round!initial} which initializes
+the variables to their initial values, followed by an infinite
+sequence of {\em update rounds,}\index{round!update} which assign new
+values to the variables, thus describing the evolution of the system's
+state.  You can also think of the initial round and the update
+rounds as the two elements that describe a transition system: the
+possible outcomes of the initial round correspond to the
+initial states of the transition system, and the update rounds define
+the transition relation. Atoms and modules are used to specify the
+initial and update update rounds for all the variables.
+
+
+\subsection{Atoms}
+
+\begin{table}\boxed{
+\begin{tabbing}
+\atomid\ \gramdef\ \= [\LAZY] \ATOM\ [\atomname] \\
+\> \ind \CONTROLS\ $\varc_1$\COMA\ \ldots \COMA$\varc_i$ \\
+\> \ind [\READS\ $\varr_1$\COMA\ \ldots \COMA$\varr_j$] \\
+\> \ind [\AWAITS\ $\vara_1$\COMA\ \ldots \COMA$\vara_k$] \\
+\> \protect[\INIT \\
+\> \ind [$\gcommand_1$ \\
+\> \ind $\cdots$ \\
+\> \ind $\gcommand_m$]] \\
+\> \UPDATE \\
+\> \ind $\gcommand_1$ \\
+\> \ind $\cdots$ \\
+\> \ind $\gcommand_n$ \\
+\> \ENDATOM \\[3ex]
+$\varc$ \gramdef\ \ident[\adeclare] \qquad $\varr$ \gramdef\ $\varc$ \qquad $\vara$ \gramdef\ $\varc$ \\[3ex]
+\atomname\ \gramdef\ \ident
+\end{tabbing}}
+\caption{Atom syntax}
+\label{table-atom-syntax}
+\end{table}
+
+An {\em atom\/}\index{atom} is the basic unit used to describe the
+initial condition and transition relation of a group of related
+variables.  The syntax of an \emph{atom} is given in Table~\ref{table-atom-syntax}.
+%\footnote{Here, I
+%simply wrote vars, and postponed the discussion of bitfields. I would
+%like to write it later, for simplicity, and I also need help.}
+The keyword \LAZY\ is optional. Its meaning will be described in
+Section~\ref{sec-lazyatoms}.  The atom has an (optional) name
+\atomname\ \index{atom!name} which is used only as a reminder of the atom's purpose.
+The \ident\ is an alphanumerical string which begins with a letter.
+The \ident\ may also contain ``{\tt \_}'' (underscores) and ``{\tt .}'' (dots).
+
+An atom has three types of variables:
+the {\em controlled\/} variables $\varc_1, \ldots, \varc_i$,
+the {\em read\/} variables $\varr_1, \ldots, \varr_j$, and
+the {\em awaited\/} variables $\vara_1, \ldots, \vara_k$.
+An admissible identifier for a variable is an \ident\ followed
+by the optional expression \adeclare\ which restricts the declaration
+to particular elements of an array structure.
+The exact meaning will be described in Section~\ref{sec-arrays}.
+
+\paragraph{Controlled variables.}\index{variable!controlled}
+
+The controlled variables of the atom represent the
+variables for which the atom can establish the value at the next
+round.  Each variable is controlled by at most one atom: this insures
+that no conflict can arise between different atoms trying to update
+the same variable to different values. 
+
+
+\paragraph{Read variables.}\index{variable!read}
+
+The read variables of an atom are the variables whose current value
+can be read by an atom in order to decide the next values of the
+controlled variables.  Precisely, if a variable $x$ is not read, then
+the new values of the controlled variables do not depend on the
+current value of $x$. 
+
+
+\paragraph{Awaited variables.}\index{variable!awaited}
+
+The awaited variables of an atom are the variables whose {\em next
+value\/} can be read by an atom in order to decide the next value of
+the controlled variables.  A variable cannot be both awaited and
+controlled: otherwise, in order to determine the next value of the
+variable, you would have to already know this next value --- such a
+circularity can be often problematic.  In order to avoid all such
+circularity problems, \mocha\ keeps track of the {\em awaits
+relation\/}\index{awaits relation} $\awaits$: if an atom controls a
+variable $x$ and awaits a variable $y$, then $x \awaits y$ holds.
+\mocha\ then computes a global relation $\awaits_g$ by taking the
+union of the $\awaits$ relations for all the atoms.  To avoid await
+circularities, \mocha\ checks that the relation $\awaits_g$ is {\em
+acyclical.}
+
+
+\paragraph{Guarded commands.}\index{guarded command}\index{command!guarded}
+
+The $\gcommand$ statements following the \INIT\
+keyword\index{init@\INIT} specify the values of the controlled
+variables at the end of the initial round;\index{round!initial} the
+$\gcommand$ statements following the \UPDATE\
+keyword\index{update@\UPDATE} specify the values of the controlled
+variables at the end of an update round.\index{round!update} The
+syntax of guarded commands is presented in
+Table~\ref{table-gcommand-syntax}.  A guarded command statement
+consists of two parts: a {\em guard,}\index{guard} that is a boolean
+expression specifying when the guarded command can be executed, and a
+list of {\em commands,}\index{command} used to specify the next value
+of the controlled variables.  The special guard
+\DEFAULT\ will be discussed in Section~\ref{sec-default}.
+
+
+\begin{table}\boxed{\begin{tabbing}
+\gcommand\ \= \gramdef\ \choice\ \guard\ \GUARDARROW\ 
+        [$\command_1$\SEMICOLON\ \ldots \SEMICOLON$\command_m$] \\[3ex]
+\guard\ \gramdef\ \boolexpr\ $|$ \DEFAULT
+\end{tabbing}}
+\caption{Guarded command syntax\index{guarded command}\index{command!guarded}}
+\label{table-gcommand-syntax}
+\end{table}
+
+
+\subsection{Simple examples of atoms}
+
+
+The atom of Figure~\ref{fig-atomsimple} controls a variable {\tt x},
+which we assume to be of type integer (we will explain later how to
+specify types for variables).  The atom specifies that the variable
+{\tt x} has initially value $0$, and that the value of {\tt x} is
+either decremented or incremented by~1 at each round.  Thus, variable
+{\tt x} performs an (unbounded) random walk.  Note that {\tt x} must
+also be listed among the read variables: otherwise, the value of {\tt
+x} at the end of the round would not be able to depend on the current
+value of {\tt x}!
+
+\begin{figure}
+\begin{verbatim}
+atom incrdecr
+  controls x
+  reads x
+init
+  [] true -> x' := 0
+update 
+  [] true -> x' := x + 1
+  [] true -> x' := x - 1
+endatom
+\end{verbatim}
+\caption{Atom {\tt incrdecr}}
+\label{fig-atomsimple}
+\end{figure}
+
+In the atom, the guards of all the guarded commands are always true
+--- in fact, they are equal to the boolean constant \TRUE.  Given a
+variable $x$, you can access the current value of $x$ (i.e.\ the value
+of $x$ at the beginning of the round) by writing $x$; you can access
+the {\em next\/} value of $x$ (i.e.\ the value of $x$ at the end of
+the round) by writing $x'$.  The guarded commands for the initial
+round\index{round!initial} cannot access the current (unprimed) value
+of the variables, since such value has not been defined yet --- the
+purpose of the initial round is to define such initial value!
+
+The guards of guarded commands need not be mutually exclusive: the
+guarded command that is executed is selected non-deterministically
+among the ones whose guards are true.  Hence, according to the above
+atom each state has two successor states: one in which the value of
+{\tt x} is increased by~1, and one in which the value of {\tt x} is
+decreased by~1.
+
+You cannot feed the above atom as input to \mocha: the smallest unit of
+input to the \mocha\  parser is a module, not an atom.  To give the atom
+as input to \mocha, you can embed it into a minimal module as shown in
+Figure~\ref{fig-randomwalk}. 
+In this module declaration, variable {\tt x} is declared of type {\em
+int\/} (the \mocha\  shorthand for integer), and is listed as an {\em
+interface\/} variable of the module, indicating that the module can
+modify it, and it is visible from outside of the module as well (so
+other modules can look at its value). 
+
+\begin{figure}
+% parses ok 
+\begin{verbatim}
+module randomwalk
+  interface x : int 
+
+  atom incrdecr
+    controls x
+    reads x 
+  init
+    [] true -> x' := 0
+  update 
+    [] true -> x' := x + 1
+    [] true -> x' := x - 1
+  endatom
+endmodule 
+\end{verbatim}
+\caption{Module {\tt randomwalk}}
+\label{fig-randomwalk}
+\end{figure}
+
+\subsubsection{Unit-delay vs.\ zero-delay}
+\label{sec-unitdelay}
+
+\begin{figure}
+% parses ok 
+\begin{verbatim}
+module DelayedAnd
+  interface x1, x2, y : bool
+
+  atom randx
+    controls x1, x2
+  init
+    [] true -> x1' := nondet; x2' := nondet
+  update 
+    [] true -> x1' := nondet; x2' := nondet
+  endatom
+
+  atom delayedAnd
+    controls y
+    reads x1, x2
+  init
+    [] true -> y' := nondet
+  update 
+    [] true -> y' := x1 & x2
+  endatom
+endmodule 
+\end{verbatim}
+\caption{Module {\tt DelayedAnd}}
+\label{fig-delayedand}
+\end{figure}
+
+The module {\tt DelayedAnd} of Figure~\ref{fig-delayedand} has three
+interface variables {\tt x1}, {\tt x2}, and {\tt y}, of type \BOOL,
+which is the \mocha\ keyword for boolean.  Atom {\tt randx} updates
+{\tt x1} and {\tt x2} non-deterministically at each round: the keyword
+\NONDET\index{nondet@\NONDET} is used to assign to a variable a
+non-deterministic element of the variable domain (in this case, the
+domain of {\tt x1} and {\tt x2} is $\{\TRUE, \FALSE\}$).  This
+non-deterministic update simulates random inputs to our {\sc and} gate.
+Atom {\tt delayedAnd} assigns to the next value of {\tt y} the logical
+{\sc and} of {\tt x1} and {\tt x2}.  Abbreviating \TRUE\ and \FALSE\
+with {\sc t} and {\sc f}, we can represent one of the possible
+behaviors of module {\tt DelayedAnd} as follows: 
+
+\begin{center}
+\begin{tabular}{r|rrrrrrrrrrrc}
+Round: 
+ & 0 (initial) & 1 & 2 & 3 & 5 & 6 & 7 & 8 & 9 & 10 & $\cdots$ \\ \hline
+{\tt x1}:  & {\sc t} & {\sc t} & {\sc f} & {\sc t} & {\sc t} & {\sc f} & {\sc t} & {\sc f} & {\sc t} & {\sc t} & $\cdots$ \\
+{\tt x2}:  & {\sc t} & {\sc f} & {\sc t} & {\sc t} & {\sc t} & {\sc f} & {\sc f} & {\sc t} & {\sc t} & {\sc f} & $\cdots$ \\
+{\tt y}:   & {\sc f} & {\sc t} & {\sc f} & {\sc f} & {\sc t} & {\sc t} & {\sc f} & {\sc f} & {\sc f} & {\sc t} & $\cdots$ \\ \hline
+\end{tabular}
+\end{center}
+
+\noindent
+Under index $i$, for $i > 0$, we list the current values of the
+variables at round $i$. Thus, at round~6, the current value of {\tt
+x1} and {\tt x2} is~{\sc f}, and the current value of {\tt y} is~{\sc
+f}.  As you can see from this example, variable {\tt y} contains the
+logical {\sc and} of {\tt x1} and {\tt x2} with {\em one round of
+delay:\/} in fact, according to module {\tt DelayedAnd} the {\em
+next\/} value of {\tt y} is the {\sc and} of the {\em current\/}
+values of {\tt x1} and {\tt x2}.  To eliminate this delay, you can
+await the next values of {\tt x1} and {\tt x2}, and use their next
+(rather than the current) values to compute the next value of {\tt y}.
+This is what module {\tt SynchAnd} of Figure~\ref{fig-synchand} does.
+One of the many behaviors of module module {\tt SynchAnd} is as
+follows:  
+
+\begin{center}
+\begin{tabular}{r|rrrrrrrrrrrc}
+Round: 
+ & 0 (initial) & 1 & 2 & 3 & 5 & 6 & 7 & 8 & 9 & 10 & $\cdots$ \\ \hline
+{\tt x1}:  & {\sc t} & {\sc t} & {\sc f} & {\sc t} & {\sc t} & {\sc f} & {\sc t} & {\sc f} & {\sc t} & {\sc t} & $\cdots$ \\
+{\tt x2}:  & {\sc t} & {\sc f} & {\sc t} & {\sc t} & {\sc t} & {\sc f} & {\sc f} & {\sc t} & {\sc t} & {\sc f} & $\cdots$ \\
+{\tt y}:   & {\sc t} & {\sc f} & {\sc f} & {\sc t} & {\sc t} & {\sc f} & {\sc f} & {\sc f} & {\sc t} & {\sc f} & $\cdots$ \\ \hline
+\end{tabular}
+\end{center}
+
+\noindent 
+The syntax of boolean expressions is presented in Table~\ref{table-booleanexpr-syntax}.
+An admissible identifier for a boolean variable is an \ident\ with an optional \nextop\
+followed by the optional expression \arefer.
+The presence of an \arefer\ expression indicates the dereferencing of an array structure to a particular element.
+The exact meaning will be described in Section~\ref{sec-arrays}.
+The syntax of \intrangeexpr\ and \natexpr\ expressions will be explained in Section~\ref{sec-nat-int}.
+The construct \eventvar\QUESTIONMARK\ will be explained in Section~\ref{sec-eventvars}.
+The equivalence test between enumeration types will be explained in Section~\ref{sec-enum}.
+
+The meaning of the boolean operators, together with their precedence,
+are listed in Table~\ref{table-boolop-precedence}.
+Finally, the syntax of the commands is given in Table~\ref{table-command-syntax}.
+The \FORALL\ construct as well as the syntax of \aassign\ expressions will be described in Section~\ref{sec-arrays}.
+The syntax of \bitexpr\ expressions will be described in Section~\ref{sec-bitvector}.
+The \eventvar\EXCLAMATION\ construct will be described in Section~\ref{sec-eventvars}.
+
+\begin{figure}
+% parses ok 
+\begin{verbatim}
+module SynchAnd
+  interface x1, x2, y : bool
+
+  atom randx
+    controls x1, x2
+  init
+    [] true -> x1' := nondet; x2' := nondet
+  update 
+    [] true -> x1' := nondet; x2' := nondet
+  endatom
+
+  atom delayedAnd
+    controls y
+    awaits x1, x2
+  init
+  update 
+    [] true -> y' := x1' & x2'
+  endatom
+endmodule 
+\end{verbatim}
+\caption{Module {\tt SynchAnd}}
+\label{fig-synchand} 
+\end{figure}
+
+\begin{table}\boxed{\begin{tabbing}
+\boolexpr\ \gramdef\ \= \booleavar\ $|$ \eventvar \QUESTIONMARK\ $|$ \LPARA \boolexpr \RPARA\ $|$ \NOT \boolexpr \\[1ex]
+                     \> $|$ $\boolexpr_1$ \binbool\ $\boolexpr_2$ \\[1ex]
+                     \> $|$ \IF\ \boolexpr\ \= \THEN\ $\boolexpr_1$ \\[1ex]
+                     \>\> \ELSE\ $\boolexpr_2$ \\[1ex]
+                     \> $|$ \compare\ $|$ \TRUE\ $|$ \FALSE \\[3ex]
+\booleavar\ \gramdef\ \ident[\nextop][\arefer] \\[3ex]
+\eventvar\ \gramdef\ \ident \\[3ex]
+\numexpr\ \gramdef\ \intrangeexpr\ $|$ \natexpr \\[3ex]
+\compare \gramdef\ \= $\numexpr_1$ \compareOp\ $\numexpr_2$ \\[1ex]
+                   \> $|$ ($\element_1$ $|$ $\enumvar_1$) \EQ\ ($\element_2$ $|$ $\enumvar_2$) \\[3ex]
+\enumvar\ \gramdef\ \ident[\nextop][\arefer] \\[3ex]
+\binbool\ \gramdef\ \AND\ $|$ \OR\ $|$ \EQUIV\ $|$ \IMPLY \\[3ex]
+\compareOp\ \gramdef\ \LT\ $|$ \LE\ $|$ \EQ\ $|$ \GE\ $|$ \GT
+\end{tabbing}}
+\caption{Boolean expression syntax\index{expression!boolean}\index{operator!comparison}}  
+\label{table-booleanexpr-syntax}
+\end{table}
+
+\begin{table}\boxed{\begin{tabbing}
+Operator: \hspace*{4em} \= Meaning: \\[1ex]
+\NOT \> negation \\
+\AND \> conjunction \\
+\OR  \> disjunction \\
+\IMPLY \> implication \\
+\EQUIV \> equivalence \\[3ex]
+Precedence: \\[1ex]
+\NOT \> Highest \\
+\AND, \OR \> Medium \\
+\IMPLY, \EQUIV \> Lowest 
+\end{tabbing}}
+\caption{Meaning and precedence of boolean operators}\index{operator!boolean!precedence}
+\label{table-boolop-precedence}
+\end{table}
+
+\begin{table}\boxed{\begin{tabbing}
+\command\ \gramdef\ \= \FORALL\ $\vari$ $\var$\nextop\LSQBRAC$\vari$\RSQBRAC\ \ASSIGN\ \expr\\[1ex]
+                    \> $|$ $\var$\nextop[\aassign] \ASSIGN\ \expr\ $|$ \NONDET \\[1ex]
+                    \> $|$ \eventvar \EXCLAMATION\\[3ex]
+\expr\ \gramdef\ \boolexpr\ $|$ \numexpr\ $|$ \bitexpr \\[3ex]
+$\var$ \gramdef\ \ident\ \qquad $\vari$ \gramdef\ \ident
+\end{tabbing}}
+\caption{Command syntax\index{command}\index{assignment}}
+\label{table-command-syntax}
+\end{table}
+
+
+\subsubsection{Rounds and sub-rounds}
+
+To understand the semantics of module {\tt SynchAnd} of
+Figure~\ref{fig-synchand}, you can imagine each round as consisting of
+one or more {\em sub-rounds}.\index{round!sub-} During each subround,
+one of the atoms updates the variables it controls.  The order in
+which the atoms execute their subrounds is arbitrary, except that if
+an atom \atom\ awaits some variable that is controlled by another atom
+\aatom, then the sub-round of atom \atom\ must precede that of atom
+\aatom.  The order of execution of the sub-rounds does not change the
+set of possible successor states, provided the above constraint is
+respected (can you see why?).
+
+
+\subsubsection{Omitting the \INIT\
+keyword}\index{round!initial}\index{init@\INIT}
+
+Atom delayedAnd of Figure~\ref{fig-delayedand} shows that you can omit
+the guarded commands following the \INIT\ keyword: in this case, the
+initial round is equivalent to the update round, so that atom {\tt
+delayedAnd} can be equivalently written as follows: 
+
+\begin{verbatim}
+  atom delayedAnd
+    controls y
+    awaits x1, x2
+  init
+    [] true -> y' := x1' & x2'
+  update 
+    [] true -> y' := x1' & x2'
+  endatom
+\end{verbatim}
+
+You can also omit the \INIT\ keyword entirely.  In this case, the
+controlled variables of the atom are initialized non-deterministically,
+as if they were idle.  Table~\ref{table-initialconv} summarizes these
+conventions. 
+
+\begin{table}\boxed{
+\begin{itemize}
+
+\item {\em The keyword \INIT\ is missing.}  Then, the controlled
+variables of the atom are initialized non-deterministically. 
+
+\item {\em The keyword \INIT\ is present, but no initial guarded
+command is present.}  Then, the initial round is assumed to coincide
+with the update round. 
+
+\end{itemize}}
+\caption{Rules for omitting the \INIT\ keyword, or the initial guarded
+commands}
+\label{table-initialconv}
+\end{table}
+
+
+\subsection{Guards}
+
+Using guards, you can constrain the random walk of variable {\tt x} of
+module {\tt randomwalk} (Figure~\ref{fig-randomwalk}) to the interval
+$[0, 10]$ as shown in Figure~\ref{fig-randomwalk010}. 
+
+\begin{figure}
+% parses ok 
+\begin{verbatim}
+module randomwalk010
+  interface x : (0..10)
+
+  atom incrdecr010
+    controls x
+    reads x 
+  init
+    [] true -> x' := 0
+  update 
+    [] x < 10  -> x' := x + 1
+    [] x > 0 -> x' := x - 1
+  endatom
+endmodule 
+\end{verbatim}
+\caption{Module {\tt randomwalk010}}
+\label{fig-randomwalk010}
+\end{figure}
+
+The variable {\tt x} has a type that ranges over the integers from
+~0 to~10, included (type declarations will be discussed in
+Section{\ref{sec-types}).  The guards are used to specify when the
+corresponding command can be executed.  In the above example, when
+${\tt x} = 0$, only the first command 
+%
+\begin{quote}
+{\tt [] x < 10 -> x' := x + 1}
+\end{quote}
+%
+can be executed, so that {\tt x} can be incremented but not
+decremented.  Similarly, for ${\tt x} = 10$ only the second guarded
+command can be executed.  For $0 < {\tt x} < 10$, both guarded
+commands can be executed, and {\tt x} can be both incremented and
+decremented. 
+
+Guards can also depend on the {\em next\/} value of a variable.  The
+module {\tt CountUp} of Figure~\ref{fig-countup} contains two atoms:
+an atom {\tt toggle}, whose boolean output {\tt x} changes at
+arbitrary points in time, and the atom {\tt counter}, which counts
+with its output {\tt count} the number of ``positive fronts'' (changes
+from \FALSE\ to
+\TRUE) of {\tt x}. 
+
+\begin{figure}
+% parses ok 
+\begin{verbatim}
+module CountUp
+  interface x : bool; count : int
+
+  atom toggle 
+    controls x
+    reads x
+  update 
+    [] true -> x' := ~x 
+    [] true -> x' := x 
+  endatom
+
+  atom counter
+    controls count
+    reads x, count
+    awaits x
+  init
+    [] true -> count' := 0
+  update
+    [] ~(x <=> x') -> count' := count + 1
+    [] x <=> x' -> count' := count
+  endatom
+endmodule 
+\end{verbatim}
+\caption{Module {\tt CountUp}}
+\label{fig-countup}
+\end{figure}
+
+\subsubsection{Omitting guards}\index{guard!omitting}
+
+\begin{table}\boxed{
+A variable $x$ that is idle in the initial round is updated
+to a non-deterministic value in its domain.  A variable $x$ that is
+idle in an update round is updated as follows:
+
+\bigskip
+
+\begin{enumerate}
+
+\item if $x$ is both controlled and read, then the value of $x$ is
+left unchanged;
+
+\item \label{enum-sleep2} 
+if $x$ is controlled but not read, then the value of $x$ at the
+next round is chosen non-deterministically from the domain of $x$. 
+
+\end{enumerate}}
+\caption{Updating idle variables}\index{variable!idle}
+\label{table-sleeprules}
+\end{table}
+
+If no guard is true, then the atom {\em idles\/}\index{atom!idle} for
+one round: this means that all the variables controlled by the atom
+are idle,\index{variable!idle} and their value is updated according
+to Table~\ref{table-sleeprules}.  The reason for the seemingly strange
+Rule~\ref{enum-sleep2} is that if a variable is not read, its current
+value is not available to the atom.  Therefore, the atom is unable to
+insure that the updated value for the variable is equal to its current
+value.  To help prevent errors, \mocha\ issues a warning whenever a
+variable is controlled but not read.  Using this feature, you can
+rewrite the previous module {\tt CountUp} as shown in
+Figure~\ref{fig-countupprime}. 
+Note that atom {\tt counterPrime} is idle whenever variable {\tt x}
+does not change its value. 
+
+\begin{figure}
+% parses ok 
+\begin{verbatim}
+module CountUpPrime
+  interface x : bool; count : int
+
+  atom toggle 
+    controls x
+    reads x
+  update 
+    [] true -> x' := ~x 
+    [] true -> x' := x 
+  endatom
+
+  atom counterPrime
+    controls count
+    reads x, count
+    awaits x
+  init
+    [] true -> count' := 0
+  update
+    [] ~(x <=> x') -> count' := count + 1
+  endatom
+endmodule 
+\end{verbatim}
+\caption{Module {\tt CountUpPrime}}
+\label{fig-countupprime}
+\end{figure}
+
+
+
+\subsubsection{The \DEFAULT\ guard}\index{guard!default@\protect\DEFAULT}
+\label{sec-default}
+
+If you want a guarded command to be executed when the guards of all
+other commands are false, you can use the keyword \DEFAULT\ as
+guard. For example, suppose that you want to count the number of
+consecutive times (including the current one) in which the random walk
+of module {\sc randomwalk010} (Figure~\ref{fig-randomwalk010}) is
+greater than~5.  You can do this as shown in
+Figure~\ref{fig-randomwalkabove}. 
+
+\begin{figure}
+% parses ok 
+\begin{verbatim}
+module randomwalkabove
+  interface x : (0..10); count : int
+
+  atom incrdecr010
+    controls x
+    reads x 
+  init
+    [] true -> x' := 0
+  update 
+    [] x < 10  -> x' := x + 1
+    [] x > 0 -> x' := x - 1
+  endatom
+
+  atom countconsec 
+    controls count
+    reads count
+    awaits x
+  init
+    [] true -> count' := 0
+  update 
+    [] x' > 5  -> count' := count + 1
+    [] default -> count' := 0
+  endatom
+endmodule 
+\end{verbatim}
+\caption{Module {\tt randomwalkabove}}
+\label{fig-randomwalkabove}
+\end{figure}
+
+
+\subsubsection{Omitting variable updates}\index{variable!omitting}
+
+If an atom controls more than one variable, it is possible to omit
+some of the variable updates from the guarded commands.  If the
+guarded command is selected, the variables whose updates are omitted
+are idle,\index{variable!idle} and their value is updated according to
+Table~\ref{table-sleeprules}.  This convention often enables a
+considerable space saving.  Module {\tt GrayCode} of
+Figure~\ref{fig-modulepc} generates outputs {\tt x} and {\tt y}, that
+change cyclically following the Gray code sequence $00$, $01$, $11$,
+$10$.  The module uses a variable {\tt pc} that is {\em
+private\/}\index{variable!private} to the module: it is visible only
+from within the module itself.
+
+\begin{figure}
+% parses ok 
+\begin{verbatim}
+module GrayCode
+  interface x, y : (0..1)
+  private pc : (0..3)
+
+  atom gray
+    controls x, y, pc
+    reads    x, y, pc
+  init
+    [] true -> x' := 0; y' := 0; pc' := 0
+  update
+    [] pc = 0 -> pc' := 1; x' := 1
+    [] pc = 1 -> pc' := 2; y' := 1
+    [] pc = 2 -> pc' := 3; x' := 0
+    [] pc = 3 -> pc' := 0; y' := 0
+  endatom
+endmodule
+\end{verbatim}
+\caption{Module {\tt GrayCode}}
+\label{fig-modulepc}
+\end{figure}
+
+
+
+\subsubsection{Lazy atoms}\index{atom!lazy}\index{lazy@\LAZY}
+\label{sec-lazyatoms}
+A {\em lazy atom\/} is an atom whose controlled variables can remain
+unchanged during any update round.  Lazy atoms can be declared with
+the help of the keyword \LAZY\ (see Table~\ref{table-atom-syntax}).
+Precisely, using the keywork \LAZY\ is equivalent to adding the
+update guarded command with empty body: 
+%
+\begin{verbatim}
+[] true -> 
+\end{verbatim}
+%
+to the atom.  When the \LAZY\ keyword is used, the atom must
+read\index{variable!read} all the variables it controls.  Using
+keyword \LAZY, you can encode module {\tt CountUpPrime}
+(Fig~\ref{fig-countupprime}) in the alternative way of
+Figure~\ref{fig-countupsecond}. 
+Since atom {\tt toggleSecond} can sleep at any time, the guarded
+command 
+%
+\verb#[] true -> x' := x#
+%
+is no longer necessary.  However, to insure that variable {\tt x}
+retains its value when the atom sleeps, it is now necessary to declare
+it as read (see Table~\ref{table-sleeprules}).
+
+\begin{figure}
+% parses ok 
+\begin{verbatim}
+module CountUpSecond 
+  interface x : bool; count : int
+
+  lazy atom toggleSecond
+    controls x
+    reads x
+  update 
+    [] true -> x' := ~x 
+  endatom
+
+  atom counterPrime
+    controls count
+    reads x, count
+    awaits x
+  init
+    [] true -> count' := 0
+  update
+    [] ~(x <=> x') -> count' := count + 1
+  endatom
+endmodule 
+\end{verbatim}
+\caption{Module {\tt CountUpSecond}}
+\label{fig-countupsecond}
+\end{figure}
+
+
+\begin{comment}
+\subsubsection{Event atoms}\index{atom!event}\index{event@\EVENT}
+
+\begin{figure}
+% parses ok 
+\begin{verbatim}
+module ExampleEvent
+  interface y, z : int
+  external x : bool
+
+  event atom sometimesUp
+    controls y, z
+    reads x, y, z
+    awaits x
+  update 
+    [] ~(x = x') -> y' := y + 1 
+    [] true      -> z' := z - 1 
+  endatom 
+endmodule
+\end{verbatim}
+\caption{Module {\tt ExampleEvent}}
+\label{fig-exampleevent}
+\end{figure}
+
+An {\em event atom\/} is an atom whose controlled variables can remain
+unchanged at any update round in which the values of the variables
+that are both read and awaited by the atom do not change.  Event atoms
+are declared using the keyword \EVENT\ (see
+Table~\ref{table-atom-syntax}). If  $\var_1, \ldots, \var_m$ are
+the variables that are both read and awaited by the module, then using
+the keyword \EVENT\ is equivalent to adding the guarded command 
+%
+\begin{quote}
+$\var_1 {\tt =} \var'_1 {\tt \&} \cdots {\tt \&} \var_m {\tt =} \var'_m
+{\tt ->}$
+\end{quote}
+%
+to the update commands of a module.  When the keywork \EVENT\ is used,
+the atom must read\{index{variable!reading} all the variables it
+controls.  The example of Figure{fig-exampleevent} illustrates the use
+of the \EVENT\ keyword
+\mynote{I cannot really think of any good use for it; can you?}
+In the module {\tt ExampleEvent}, variable {\tt x} is declared
+to be {em external.}\index{variable!external}.  This indicates that
+the module can read (and await) the value of variable {\tt x}, but
+cannot modify it.  Atom {\tt sometimesUp} behaves as follows: 
+%
+\begin{itemize}
+\item if the value of {\tt x} is unchanged, then the atom can either
+sleep, or it can decrement {\tt z}; 
+
+\item if the value of {\tt x} is changed, then the atom can either
+increment {\tt y}, or it can decrement {\tt z}. 
+\end{itemize}
+%
+The above example illustrates a common pitfall when using the \EVENT\
+keyword: while the keyword allows an atom to sleep when the variables
+that are both read and awaited don't change, the keyword does not
+force the atom to take any particular action when these variables do
+change.
+\end{comment}
+
+\section{Modules}\index{module}
+
+A {\em module\/} is a collection of atoms, together with a declaration
+of the variables that occur in the module.  There are two types of
+modules: {\em simple modules,}\index{module!simple} obtained by
+specifying directly the atoms composing the module, and {\em composite
+modules,}\index{module!composite} obtained by combining or modifying
+existing modules.  
+
+\subsection{Simple Modules}
+
+\begin{table}
+\boxed{
+\begin{tabbing}
+\simplemodule\ \gramdef\ \= \MODULE\ \modulename \\[1ex]
+\> \ind $\interfacedecl_1$ \\
+\> \ind $\cdots$ \\
+\> \ind $\interfacedecl_m$ \\[1ex]
+\> \ind $\atomid_1$ \\
+\> \ind $\cdots$ \\
+\> \ind $\atomid_n$ \\[1ex]
+\> \ENDMODULE \\[3ex]
+\interfacedecl\ \gramdef\ \= (\PRIVATE\ $|$ \INTERFACE\ $|$ \EXTERNAL) \\[1ex]
+\> $\vardecl_1$\SEMICOLON\ \ldots \SEMICOLON$\vardecl_k$ \\[3ex]
+\vardecl\ \gramdef\ $\var_1$\COMA\ \ldots \COMA$\var_i$ \COLON\ $\typeid$ \\[3ex]
+\modulename\ \gramdef\ \ident
+\end{tabbing}}
+\caption{Simple module syntax}
+\label{table-simple-module-syntax}
+\end{table}
+
+The syntax of simple modules is given in
+Table~\ref{table-simple-module-syntax}.  After the keyword \MODULE, you must
+provide the module name \modulename.  The module name is followed by a
+list of variable declarations, which is followed in turn by the
+list of atoms composing the module.  The keyword \ENDMODULE\ concludes
+the module specification.
+
+Associated with each module are three sets of variables: the {\em
+private variables,} the {\em interface variables,} and the {\em
+external variables.}  These sets of variables have the following
+meaning: 
+%
+\begin{itemize}
+
+\item The private variables\index{variable!private} are the
+variables that are controlled by some atom of the module, and that
+cannot be read or awaited by other modules.  The value of a private
+variable is thus local to the module.
+
+\item The interface variables \index{variable!interface} are the
+variables that are controlled by some atom in the module, and that can
+be read or awaited by atoms in other modules.  These variables cannot
+however be controlled by atoms of other modules, according to the
+general rule stating that a variable can be controlled by at most one
+atom. 
+
+\item The external variables \index{variable!external} are the
+variables whose value can be read or awaited by the atoms in the
+module.  These variables cannot be controlled by any atom in the
+module.
+
+\end{itemize}
+%
+Each of the private and interface variables of the module must be
+controlled by some atom.  External variables, on the other hand, do
+not need to be read nor awaited by any atom.  Again, the awaits
+relation\index{awaits relation} $\awaits_g$ computed for the module
+must be acyclical.
+
+The three sets of private, interface and external variables, together
+with the type of each variable, are specified using the syntax given
+in Table~\ref{table-simple-module-syntax}.  The symbol \typeid\ in the table
+indicates a {\em type declaration:\/}\index{type!declaration} two
+possible declarations are {\tt int} (for integer type) and {\tt bool}
+(for boolean type).  Type declarations will be covered in
+Section~\ref{sec-types}.
+
+You have seen examples of module declarations in the previous section
+as well as the tutorial chapter;
+additional examples will be presented in Section~\ref{sec:more_examples}. 
+
+
+
+\subsection{Composite Modules}
+
+There are three operations defined on modules in \mocha: {\em variable
+hiding,}\index{variable!hiding}, {\em variable
+renaming,}\index{variable!renaming} and {\em parallel
+composition.}\index{parallel composition} 
+These operations create new {\em composite\/} modules, which can in
+turn be combined into other composite modules. 
+
+
+\subsubsection{Hiding Variables}\index{variable!hiding}  
+
+The hiding of interface variables allows you to construct module
+abstractions of varying degrees of detail.  For instance, after
+composing two modules, it may be appropriate to convert some interface
+variables to private variables, so that they are used only for the
+interaction of the component modules, and are no longer visible to the
+environment of the compound module.
+
+Given a module (simple or composite) with name $P$, denote with
+$\external(P)$, $\private(P)$, $\interface(P)$ the set of external,
+private, and interface variables of $P$, respectively.  Given any list
+of interface variables $\var_1, \ldots, \var_n \in \interface(P)$, you 
+can {\em hide\/} $\var_1, \ldots, \var_n$ using the construct:
+%
+\begin{quote}
+  $Q$ \ASSIGN\ \HIDE\  $\var_1$\COMA\ \ldots \COMA$\var_n$ \IN\
+      $P$ \ENDHIDE
+\end{quote}
+%
+The resulting module $Q$ is identical to $P$, except that: 
+%
+\begin{eqnarray*}
+  \private(Q) & = & \private(P) \cup \{ \var_1, \ldots, \var_n \} \\
+  \interface(Q) & = & \interface(P) \setminus \{ \var_1, \ldots, \var_n \} . 
+\end{eqnarray*}
+%
+In other words, the effect of hiding the interface variables $\var_1,
+\ldots, \var_n$ in $P$ is to make them private, so that other modules
+cannot access their content.
+
+
+\subsubsection{Variable Renaming}\index{variable!renaming}
+
+The renaming operation is useful for creating different instances of a 
+module, and for avoiding name conflicts. 
+Let $P$ be the name of a module, and let $\var$ be a variable
+(external, private, or interface) of a module. You can rename variable
+$\var$ to $\avar$ with the construct: 
+
+\begin{quote}
+$Q$ \ASSIGN\ $P$ \LSQBRAC\ $\var$ \ASSIGN\ $\avar$ \RSQBRAC 
+\end{quote}
+
+The resulting module $Q$ is identical to $P$, except that variable
+$\var$ has been renamed to $\avar$.  The new variable $\avar$ is of
+the same type of $\var$, and it does not need to be explicitly
+declared: \mocha\ infers its type and class (external, private, or
+interface) from the renaming operation.
+You can also rename several variables at once: the construct
+
+\begin{quote}
+$Q$ \ASSIGN\ $P$ \LSQBRAC\ $\var_1$\COMA\ \ldots \COMA$\var_m$ \ASSIGN\ $\avar_1$\COMA\ \ldots \COMA$\avar_m$ \RSQBRAC
+\end{quote}
+%
+{\em simultaneously\/} renames the variables $\var_1, \ldots, \var_m$
+to $\avar_1, \ldots, \avar_m$.  This simultaneous renaming is
+especially useful to exchange variables. Note that the variables $\avar_1,
+\ldots, \avar_m$ must be all distinct --- even if they are external
+variables of the module of the same type, in which case renaming them
+to the same name would make sense (it would correspond to drawing the
+various inputs from the same source).
+For instance, if a module $P$
+has two variables $x_1$ and $x_2$ and we want to exchange them, the following 
+\begin{quote}
+$Q$ \ASSIGN\ $P$ \LSQBRAC\ $\var_1$ \ASSIGN\ $\var_2$ \RSQBRAC
+\LSQBRAC\ $\var_2$ \ASSIGN\ $\var_1$ \RSQBRAC
+\end{quote}
+leaves $Q$ and $P$ being identical except that in $Q$ the variable $\var_2$ is mapped to $\var_1$.
+The correct way to exchange them is 
+\begin{quote}
+$Q$ \ASSIGN\ $P$ \LSQBRAC\ $\var_1$, $\var_2$ \ASSIGN\ $\var_2$, $\var_1$ \RSQBRAC
+\end{quote}
+%, as will be illustrated in Section~\ref{sec-ex-moduleops}.  
+
+\mocha\ propagates the variable renames to the awaits
+relation\index{awaits relation} $\awaits$ in the obvious way.
+
+\subsubsection{Parallel composition}\index{parallel composition}
+
+You can use parallel composition to combine two modules into a single
+module whose behavior captures the interaction between the two
+component modules.  Two modules with names $P$ and $Q$ are {\em
+compatible\/}\index{module!compatible} if the following conditions
+hold: 
+%
+\begin{itemize}
+\item the sets of interface variables of $P$ and $Q$ are
+disjoint, i.e.\ $\interface(P) \cap \interface(Q) = \emptyset$;
+
+\item the global awaits relation\index{awaits relation} $\awaits_g$
+for the two modules is acyclic. 
+
+\end{itemize}
+%
+If $P$ and $Q$ are compatible, you can form their parallel composition
+(and give it name $R$) with the construct:
+%
+\begin{quote}
+$R$ \ASSIGN\ $P$ \PAR\ $Q$
+\end{quote}
+%
+The external, private, and interface variables of $R$ are given by: 
+%
+\begin{eqnarray*}
+  \private(R) & = & \private(P) \cup \private(Q) \\
+  \interface(R) & = & \interface(P) \cup \interface(Q) \\
+  \external(R) & = & [\external(P) \cup \external(Q)] \setminus \interface(R)
+\end{eqnarray*}
+%
+Note that $\external(R)$ is equivalent to
+$[\external(P) \setminus \interface(Q)] \cup [\external(Q) \setminus \interface(P)]$
+since the sets of interface variables of $P$ and $Q$ are disjoint.
+
+\subsubsection{Summary of module declarations}\index{module!declaration}
+
+Table~\ref{table-composite-module-syntax} summarizes the possible module declarations.
+The non-terminal \program\ is the start symbol of the grammar for \rem.
+The expression \typedefinition\ will be described in Section~\ref{sec-types}.
+Note that while the name\index{atom!name} of an
+atom is used only for mnemonic purposes, the name\index{module!name}
+of a module is used by \mocha\ to construct more complex modules.  In
+fact, the names of modules will also be mentioned by verification
+commands, as you will see later. 
+
+\begin{table}
+\boxed{
+\begin{tabbing}
+\program\ \gramdef\ \moduledecl\ $|$ \typedefinition\ $|$ (\moduledecl\ $|$ \typedefinition) \program \\[3ex]
+\moduledecl\ \gramdef\ \simplemodule\ $|$ \modulename\ \ASSIGN\ \compositemodule \\[3ex]
+\compositemodule\ \gramdef\ \= \modulename \\[1ex]
+  \> $|$ \LPARA \compositemodule \RPARA \\[1ex]
+  \> $|$ \HIDE\ $\var_1$\COMA\ \ldots \COMA$\var_n$ \IN\
+         \compositemodule\ \ENDHIDE \\[1ex]
+  \> $|$ \compositemodule\ \LSQBRAC\ $\var_1$\COMA\ \ldots \COMA$\var_m$ \ASSIGN\ $\avar_1$\COMA\ \ldots \COMA$\avar_m$ \RSQBRAC \\[1ex]
+  \> $|$ $\compositemodule_1$ \PAR\ $\compositemodule_2$
+\end{tabbing}}
+\caption{Syntax of module declarations}
+\label{table-composite-module-syntax}
+\end{table}
+
+As an example, we give two different approaches to constructing an
+{\sc or} gate.  The first approach, sometimes called the {\em
+behavioral\/} approach, specifies the behavior of the {\sc or} gate
+directly: 
+
+% parses ok 
+\begin{verbatim}
+module BehavOr
+  external in1, in2: bool
+  interface out: bool
+
+  atom controls out awaits in1, in2
+  update
+      [] true -> out' := in1' | in2'
+  endatom
+endmodule
+\end{verbatim}
+
+\noindent
+In the second approach, shown in Figure~\ref{fig-structuralor}, we
+assume that all we have at our disposal is two-input {\sc nand} gates,
+and we create an {\sc or} gate by connecting these {\sc nand} gates in
+the appropriate way.  This approach is sometimes called the {\em
+structural\/} approach, because it describes a system by specifying
+its structure, rather than directly its behavior. Note that we cannot
+obtain a {\sc not} gate simply by renaming the two inputs {\tt in1}
+and {\tt in2} of the {\sc nand} gate to the same name {\sc norin}: we
+must introduce a splitter module {\sc split}, which makes two signals
+out of the same signal.
+
+\begin{figure}
+% parses ok 
+\begin{verbatim}
+module nand 
+  external in1, in2 : bool
+  interface out : bool
+
+  atom controls out awaits in1, in2
+  init update
+    [] true -> out' := ~ (in1' & in2')
+  endatom
+endmodule
+
+module split
+  external in : bool
+  interface out1, out2 : bool
+
+  atom controls out1, out2 awaits in 
+  init update
+    [] true -> out1' := in'; out2' := in' 
+  endatom 
+endmodule
+
+StructOr := hide in1a, in1b, in2a, in2b, cin1, cin2 in 
+     split [in, out1, out2 := in1, in1a, in1b]
+  || split [in, out1, out2 := in2, in2a, in2b]
+  || nand  [in1, in2, out  := in1a, in1b, cin1] 
+  || nand  [in1, in2, out  := in2a, in2b, cin2] 
+  || nand  [in1, in2, out  := cin1, cin2, out]
+  endhide
+\end{verbatim}
+\caption{Modules for structural {\sc or}}
+\label{fig-structuralor}
+\end{figure}
+
+%\mynote{someone with the source code please put here a correct version
+%of the three-bit binary counter}
+
+
+
+\section{Types and Expressions}
+\label{sec-types}
+
+
+The simplest types of \mocha\ are boolean, integer and natural.  Other
+types include events, ranges, enumerations, arrays, and bitfields.
+Boolean variables are declared with the help of the keyword \BOOL, and
+the syntax and semantics of boolean expressions has already been
+described in Tables \ref{table-booleanexpr-syntax}
+and~\ref{table-boolop-precedence}.
+
+
+\subsection{Naturals and integers}
+\label{sec-nat-int}
+
+\begin{table}\boxed{\begin{tabbing}
+\intrangeexpr\ \gramdef\ \= \intconst\ $|$ \somevar\ \\[1ex]
+  \> $|$ \LPARA \intrangeexpr \RPARA\ $|$ \MINUS \intrangeexpr\ \\[1ex]
+  \> $|$ $\intrangeexpr_1$ \PLUS\ $\intrangeexpr_2$ \\[1ex]
+  \> $|$ $\intrangeexpr_1$ \MINUS\ $\intrangeexpr_2$ \\[1ex]
+  \> $|$ \IF\ \boolexpr\ \= \THEN\ $\intrangeexpr_1$ \\[1ex]
+  \>\> \ELSE\ $\intrangeexpr_2$ \\[3ex]
+\intconst\ \gramdef\ \const \\[3ex]
+\somevar\ \gramdef\ \ident[\nextop][\arefer]
+\end{tabbing}}
+\caption{Syntax of integer and range expressions}\index{expression!integer}\index{expression!range}
+\label{table-intrange-expressions}
+\end{table}
+
+\begin{table}\boxed{\begin{tabbing}
+\natexpr\ \gramdef\ \= \intconst\ $|$ \somevar\ \\[1ex]
+  \> $|$ \LPARA \natexpr \RPARA\ $|$ $\natexpr_1$ \PLUS\ $\natexpr_2$ \\[1ex]
+  \> $|$ \IF\ \boolexpr\ \= \THEN\ $\natexpr_1$ \\[1ex]
+  \>\> \ELSE\ $\natexpr_2$
+\end{tabbing}}
+\caption{Syntax of natural expressions}\index{expression!natural}
+\label{table-nat-expressions}
+\end{table}
+
+Integer variables are declared using the keyword
+\INT;\index{type!integer}\index{int@\INT} their domain ranges over the
+integers.  Natural variables are declared using the keyword
+\NAT;\index{type!natural}\index{nat@\NAT} their domain ranges over the
+non-negative integers.  The syntax of integer (and range) expressions
+is given in Table~\ref{table-intrange-expressions}; the syntax of
+natural expressions is given in Table~\ref{table-nat-expressions}.
+A \const\ is a numerical string.
+Natural variables can be assigned to integer ones, and they can be
+used in integer expressions; the converse is not permitted. 
+
+
+\subsection{Events}
+\label{sec-eventvars}
+
+In \mocha, events are represented by toggling the value of boolean
+variables.  A variable that is used to represent events can be
+using the keyword \EVENT\index{type!event}\index{event@event}.
+This has two advantages.
+First, it makes it easier to toggle the variable, and detect the
+toggling.  Second, and more importantly, it notifies \mocha\ that the
+value of the variable is irrelevant: the only thing that matters is
+whether the value has been toggled or not.  Therefore, the presence of
+an additional event variable does not increase the size of the state
+space.  This will be explained more in detail in
+Section~\ref{sec-efficiency}. 
+
+If {\tt x} is an event variable, then we can toggle it with the
+command {\tt x!},\index{!@{\tt !}} and we can test whether it has been
+toggled with the boolean expression {\tt x?}\index{!@{\tt !}} (see
+Table~\ref{table-booleanexpr-syntax}).  Aside from these two
+operations, there are no expressions of event type, and events cannot
+be compared using the operators \LT, \GT, etc.  The simple module {\tt
+EventCount} of Figure~\ref{fig-eventcount} consists of two atoms: an
+atom {\tt generate} that generates events, and an atom {\tt counts}
+that counts them. Note that the atoms that refer to event variables
+must also read them, to be able to distinguish when they are toggled.
+
+\begin{figure}
+% parses ok 
+\begin{verbatim}
+module EventCount
+  external e : event
+  external c : nat
+
+  lazy atom generate
+    controls e
+    reads e
+  update
+    [] true -> e!
+  endatom
+
+  atom counts
+    controls c
+    reads c, e
+    awaits e
+  init
+    [] true -> c' := 0
+  update
+    [] e? -> c' := c + 1
+  endatom
+endmodule
+\end{verbatim}
+\caption{Module {\tt EventCount}}
+\label{fig-eventcount}
+\end{figure}
+
+
+\subsection{Range types}\index{type!range}
+
+A range declaration in \mocha\ has the form {\tt (0..\maxrange)},
+where \maxrange\ is a non-negative integer constant.  The expressions
+using range types share the same syntax of integer expressions, given
+in Table~\ref{table-intrange-expressions}.  In these expressions, you
+must follow the restrictions:
+%
+\begin{enumerate}
+
+\item You cannot mix different range types (or range types and \INT\
+or \NAT) in the same expression.
+
+\item You cannot assign an expression of a range type to a different
+range type, or to an \INT\ or \NAT.
+
+\end{enumerate}
+%
+Arithmetic operations are performed modulo \maxrange+1 on the range
+type, thus insuring that their value belongs to the same range type of
+the operands.  There is no type-casting operator in \mocha, making the
+translation between different range types cumbersome.  A module that
+translates a variable of type {\tt (0..3)} to integers is given in
+Figure~\ref{fig-rangetranslation}: you see that you don't want to be
+doing this all the time.
+
+\begin{figure}
+% parses ok 
+\begin{verbatim}
+module RangeTranslation
+  external x : (0..3)
+  interface y : int
+
+  atom translate
+    controls y
+    awaits x
+  init update
+    [] x' = 0 -> y' := 0
+    [] x' = 1 -> y' := 1
+    [] x' = 2 -> y' := 2
+    [] x' = 3 -> y' := 3
+  endatom
+endmodule
+\end{verbatim}
+\caption{Module {\tt RangeTranslation}}
+\label{fig-rangetranslation}
+\end{figure}
+
+\subsection{Enumeration type}\index{type!enumeration}
+\label{sec-enum}
+
+To declare a variable of enumeration type, you simply list between
+curly braces the possible values of the variable, separated by commas.
+The only operations you can perform on an enumeration type are
+checking for equality (using operator \EQ), and assignments.  The
+minimal module {\tt UpDownWalk} of Figure~\ref{fig-updownwalk}
+contains two atoms: one that generates an infinite sequence of ups and
+downs, and another that counts up or down, as dictated by the former
+atom.
+
+\begin{figure}
+% parses ok 
+\begin{verbatim}
+module UpDownWalk
+  private ud : { up, down }
+  interface c : int
+
+  atom generate
+    controls ud
+  update
+    [] true -> ud' := nondet
+  endatom
+
+  atom count
+    controls c
+    reads c
+    awaits ud
+  init
+    [] true -> c' := 0
+  update
+    [] ud' = up   -> c' := c + 1
+    [] ud' = down -> c' := c - 1
+  endatom
+endmodule
+\end{verbatim}
+\caption{Module {\tt UpDownWalk}}
+\label{fig-updownwalk}
+\end{figure}
+
+A value in an enumeration cannot be used in more than one distinct
+range type.  For example, in Figure~\ref{fig-recyclenames} it was
+necessary to capitalize the values {\tt Water} and {\tt Pasta} for the
+range of {\tt z} in order to avoid using twice the values for the
+range of {\tt x}.  On the other hand, note that it is possible to use
+the same enumeration value in {\em the same\/} range type multiple
+times, as illustrated in Figure~\ref{fig-enumassign}. 
+
+\begin{figure}
+% parses ok 
+\begin{verbatim}
+module RecycleNames
+  external x : { water, bread, pasta } 
+  interface z : { Water, Pasta, Bananas }
+
+  atom copy 
+    controls z
+    awaits x
+  init update 
+    [] x' = water -> z' := Water
+    [] x' = pasta -> z' := Pasta
+  endatom
+endmodule 
+\end{verbatim}
+\caption{Module {\tt RecycleNames}}
+\label{fig-recyclenames}
+\end{figure}
+
+\begin{figure}
+% parses ok 
+\begin{verbatim}
+module EnumAssign
+  external x : { water, bread, pasta } 
+  interface y : { water, bread, pasta }
+
+  atom copy 
+    controls y
+    awaits x
+  init update 
+    [] true -> y' := x'
+  endatom
+endmodule 
+\end{verbatim}
+\caption{Module {\tt EnumAssign}}
+\label{fig-enumassign}
+\end{figure}
+
+\subsection{Naming types}\index{type!equality}\index{type!name}
+
+Equality of types in \mocha\ is defined structurally (as opposed to
+being based on inheritance).  This means that two variables have the
+same type iff they are declared of structurally equivalent types, even
+though the type declarations may be distinct.  For example, the module
+{\tt EnumAssign} of Figure~\ref{fig-enumassign} is correct: {\tt y'}
+can be assigned {\tt x'}.  You can
+also associate a name with enumeration and range
+types\index{type!name} (but not with integer, natural, boolean, and
+event types).  To do so, you include the declaration
+%
+\begin{quote}
+\TYPEDEF\ \typename\ \COLON\ \complextype\index{type@\TYPEDEF}
+\end{quote}
+%
+in the input file, before the modules that use type \typename.  The
+type \complextype\ must be an enumeration, range, array, or bitvector
+type.  Using this declaration makes it easier to write structurally
+equal types, and also makes the code more readable.  Using this type
+declaration, you can rewrite the example of
+Figure~\ref{fig-enumassign} as shown in
+Figure~\ref{fig-enumassignbis}. 
+
+\begin{figure}
+% parses ok 
+\begin{verbatim}
+type menu : { water, bread, pasta } 
+
+module EnumAssignBis
+  external x : menu
+  interface y : menu
+
+  atom copy 
+    controls y
+    awaits x
+  init update 
+    [] true -> y' := x'
+  endatom
+endmodule 
+\end{verbatim}
+\caption{Module {\tt EnumAssignBis}}
+\label{fig-enumassignbis}
+\end{figure}
+
+
+\input{arrabit}
+
+
+\subsection{Summary of type declarations}\index{type}
+\label{sec-summary-type}
+
+Table~\ref{table-type-defs} provides a summary of the syntax of the
+types available in \mocha.  The \element\ symbol indicates an
+alphanumerical string (beginning with a letter) denoting an element of
+an enumeration type. The following restrictions apply:
+%
+\begin{itemize}
+
+\item 
+If the type \indextype\ of an array index is specified by a
+previously-defined type name \typename, then \typename\ cannot refer
+to another array type.  
+
+\item 
+If the type \elementtype\ of an array element is specified through a
+previously defined type name \typename, then \typename\ cannot refer
+to another array or bitvector type.  In particular, this rules out
+arrays of arrays\index{array!multidimensional} (and thus
+multidimensional arrays) and arrays of bitvectors. 
+
+\end{itemize}
+
+\begin{table}\boxed{
+\begin{tabbing}
+\typeid \gramdef\ 
+        \= \BOOL\ $|$ \INT\ $|$ \NAT\ $|$ \EVENT\ $|$ \typename \\[1ex]
+        \> $|$ \enumtype\ $|$ \rangetype \\[1ex]
+        \> $|$ \ARRAY\ \indextype\ \OF\ \elementtype \\[1ex]
+        \> $|$ \BITVECTOR\ \sizeconst \\[3ex]
+%
+\typename\ \gramdef\ \ident \\[3ex]
+%
+\enumtype\ \gramdef\ \LBRACE$\element_1$\COMA\ \ldots \COMA$\element_n$\RBRACE \\[3ex]
+%
+\element\ \gramdef\ \ident \\[3ex]
+%
+\rangetype\ \gramdef\ \LPARA\ZERO\ {\tt ..} \sizeconst\RPARA \\[3ex]
+%
+\typedefinition\ \gramdef\ 
+        \= \TYPEDEF\ \typename\ \COLON\ \enumtype \\[1ex]
+        \> $|$ \TYPEDEF\ \typename\ \COLON\ \rangetype \\[1ex]
+        \> $|$ \TYPEDEF\ \typename\ \COLON\ \ARRAY\ \indextype\ \OF\ \elementtype \\[1ex]
+        \> $|$ \TYPEDEF\ \typename\ \COLON\ \BITVECTOR\ \sizeconst \\[3ex]
+%
+\indextype\ \gramdef\ \= \enumtype\ $|$ \rangetype \\[3ex]
+%
+\elementtype\ \gramdef\ \= \BOOL\ $|$ \INT\ $|$ \NAT\ $|$ \typename \\[1ex]
+        \> $|$ \enumtype\ $|$ \rangetype \\[1ex]
+        \> $|$ \BITVECTOR\ \sizeconst \\[3ex]
+%
+\sizeconst\ \gramdef\ \= \intconst \\[1ex]
+        \> $|$ \LPARA \sizeconst\ \RPARA \\[1ex]
+        \> $|$ $\sizeconst_1$ \MINUS\ $\sizeconst_2$ \\[1ex]
+        \> $|$ $\sizeconst_1$ \PLUS\ $\sizeconst_2$ \\[1ex]
+        \> $|$ $\sizeconst_1$ \STAR\ $\sizeconst_2$ \\[1ex]
+        \> $|$ $\sizeconst_1$ \SLASH\ $\sizeconst_2$ \\[1ex]
+        \> $|$ $\sizeconst_1$ \PERCENT\ $\sizeconst_2$
+\end{tabbing}}
+\caption{Syntax of types and type definitions}
+\label{table-type-defs}
+\end{table}
+
+For arithmetic expressions on \sizeconst: $*$, $/$, and $\%$ have
+equal precedence, that is higher than $+$ and $-$ which have equal
+precedence. Equal precedence operations are left-associative. 
+        
+\subsection{Finite and infinite types in
+verification}\index{type!finite}\index{type!infinite} 
+
+A type is {\em finite\/} if it consists of finitely many possible
+values, and it is {\em infinite\/} otherwise.  Examples of finite
+types are boolean, enumeration, range, and event types.  
+The infinite types are integer and natural, as well as the composite
+types (arrays) built from integers or naturals. 
+\mocha\ can deal much better with finite types than with infinite
+ones.  In particular, if a \rem\ description consists of
+only finite types, then \mocha\ can use both
+enumerative\index{model-checking!enumerative} and symbolic
+model-checking\index{model-checking!symbolic} for the verification. 
+If also infinite types are used, then only enumerative
+model-checking\index{model-checking!enumerative} can be used.  This
+can prevent the use of some of the most efficient verification methods
+implemented in \mocha. 
+
+\section{Macro expansion}\index{macro expansion}
+The parser for \rem\ provides a limited macro-expansion facility. 
+
+\mypar
+The declaration:
+
+\mypar
+{\tt \#define name string} 
+
+\mypar
+defines a macro {\tt name} that refers to the string {\tt string}. Any
+expression that involves {\tt \$name} will be evaluated after first
+substituting {\tt string} for it. 
+
+\mypar
+For instance the code fragment:
+\begin{verbatim}
+#define BITWIDTH 4
+type valType      : bitvector  $BITWIDTH
+\end{verbatim}
+defines valType to be a bitvector of 4 bits. 
+
+\mypar
+The other macro allowed is the {\tt foreach} macro. 
+
+\mypar
+\begin{verbatim}
+#foreach i = (1 .. $BITWIDTH + 1)
+type valType_$i : bitvector $i
+#endforeach
+\end{verbatim}
+
+\mypar
+The above code fragment defines four types: {\tt valType\_1}, {\tt valType\_2},
+{\tt valType\_3}, and {\tt valType\_4}. The index string may be of
+index\_type (see Table \ref{table-type-defs}), but cannot be a
+type\_name; it has to be the type itself. That is, 
+
+\mypar
+\begin{verbatim}
+type food : {pasta, food, water}
+#foreach i = food
+#endforeach
+\end{verbatim}
+is not allowed, but {\tt foreach i = \{pasta, food, water\}} is fine. 
+
+\section{Efficiency Considerations}\index{model-checking!efficiency}
+\label{sec-efficiency}
+
+The efficiency of the symbolic model-checking
+methods\index{model-checking!symbolic}  of \mocha\ depends
+crucially on the size of the state space\index{state space}, i.e.\ on
+the total number of system states.  A {\em system
+state\/}\index{state!system} is simply an assignment of values to the
+variables (external, interface, and private) of the \rem\
+description.  Several factors affect the size of the state space.
+First, if the description includes variables of an infinite type, then
+the state space is infinite, and the symbolic model-checking cannot be
+performed.  
+
+If all the variables are finite, the size of the state space is
+proportional to the (product of) size constants used to dimension
+arrays and range types, and to the number of values for enumeration
+types.  While this, and similar facts, are well-known in
+model-checking, the distinction between read and awaited variables
+enables \mocha\ to limit the size of the state space.  In particular,
+variables that are awaited but not read, and event variables, do not
+contribute to the size of the state space. 
+
+
+\subsection{Awaited, but not read, variables}
+
+If a variable is never read, but only
+awaited,\index{variable!read}\index{variable!awaited} then the
+variable does not contribute to the size of the state space.  For
+example, the variables {\tt in1a}, {\tt in1b}, {\tt in2a}, {\tt in2b},
+{\tt cin1}, {\tt cin2} of Figure~\ref{fig-structuralor} do not
+contribute to the size of the state space: they are not read by any of
+the modules of the figure, and since they are hidden, we are sure that
+no other module can read them. Such variables are also called {\em
+history-free}\index{variable!history-free}.  The variables {\tt in1}, {\tt in2} and
+{\tt out} may or may not contribute to the size of the state space,
+depending on whether or not they are read by some other module. 
+
+Variables that are not read, but only awaited, are often used to model
+wires of hardware components.  The reason why these variables are not
+read is that these variables, like wires, have no memory, and thus
+their state needs not be remembered.  In fact, when computing the
+transition relation\index{transition relation} of the system, the
+values of these variables in the current state are not used to
+determine the successor state. 
+
+Variables that are read are also called {\em
+history-dependent}\index{variable!history-dependent} variables.
+%\mynote{what if the specification
+%refers to these variables? Does \mocha\ do the proper thing then?} 
+
+
+\subsection{Event variables}\index{variable!event}
+
+Event variables also do not contribute to the size of the state space,
+even though they must be both read and awaited by all atoms using
+them.  The reason is that they current value (which would contribute
+to the size of the state space) is not relevant: all that matters is
+whether they retain their value, or whether they are toggled, when
+going from one state to the next.  Hence, as in the previous case, the
+values of event variables at the current state are not used to
+determine the successor state, and hence they need not be remembered.
+
+
+
+% ================================================================ 
+% here's an aborted example 
+\begin{comment}
+module Memory
+  atom 
+    controls m, out
+    reads m, write1, write2, read1, read2, in1, in2 
+    awaits write1, write2, read1, read2
+  update
+    [] write1? -> m'   := in1
+    [] write2? -> m'   := in2
+    [] read1?  -> out' := m 
+    [] read2?  -> out' := m 
+  endatom     
+
+-- Arbiter for who has the permission to change xl
+
+  lazy atom
+
+    controls grant1, grant2, released1, released2, last, busy
+
+    reads    grant1, grant2, released1, released2, last, busy,
+             rel1, rel2, req1, req2
+
+  init
+    [] true                              -> busy' := 0; last' := 1
+  update
+    [] req1 & ~req2 & busy = 0           -> grant1!; busy' := 1; last' := 1
+    [] req2 & ~req1 & busy = 0           -> grant2!; busy' := 2; last' := 2
+    [] req1 & req2 & busy = 0 & last = 1 -> grant2!; busy' := 2; last' := 2
+    [] req1 & req2 & busy = 0 & last = 2 -> grant1!; busy' := 1; last' := 1
+    [] rel1 & busy = 1                   -> busy' := 0; released1!
+    [] rel2 & busy = 2                   -> busy' := 0; released2!
+  endatom
+
+module Process1 
+  atom 
+  init 
+    [] true -> ready' := false 
+  update 
+    [] pc = 0 
+\end{comment}
+
+\section{More examples}
+\label{sec:more_examples}
+
+\subsection{Synchronous message-passing protocols}
+
+\begin{figure}
+{\tt
+ \TYPE\ \msgType\ : \bool \\
+ \TYPE\ \sendCtrlType\ : \set{\produce, \send} \\
+ \TYPE\ \recCtrlType\ : \set{\receive, \consume} \\
+ \MODULE\ \SSender\\
+ \qu \EXTERNAL\ \ready\ : \EVENT\\
+ \qu \INTERFACE\ \transmit\ : \EVENT; \msgS, \msgP\ : \msgType\\
+ \qu \PRIVATE\ \status\ : \sendCtrlType; \doneP\ : \EVENT\\
+ \qu \ATOM\ \CONTROLS\ \status, \transmit, \msgS \\
+ \qqu \READS\ \status, \transmit, \msgS, \doneP, \msgP, \ready\ \AWAITS\ \doneP, \ready\\
+ \qu \INIT\\
+ \qu \begin{chtab}
+     \TRUE & \status' := \produce
+ \end{chtab}\\
+ \qu \UPDATE\\
+ \qu \begin{chtab}
+     \status=\produce \AND \doneP? &\status' := \send\\
+     \status=\send \AND \ready? & \transmit!; \msgS' := \msgP; \status' := \produce
+ \end{chtab}\\
+ \qu \ENDATOM \\
+ \qu \LAZY\ \ATOM\ \AProd\ \CONTROLS\ \doneP, \msgP\ \READS\ \status, \doneP, \msgP\\
+ \qu \UPDATE\\
+ \qu \begin{chtab}
+     \status=\produce & \doneP!; \msgP' := \NONDET
+ \end{chtab}\\
+ \qu \ENDATOM \\
+ \ENDMODULE \\\\
+ \MODULE\ \SReceiver\\
+ \qu \EXTERNAL\ \transmit\ : \EVENT; \msgS\ : \msgType\\
+ \qu \INTERFACE\ \ready\ : \EVENT; \msgC\ : \msgType\\
+ \qu \PRIVATE\ \status\ : \recCtrlType; \doneC\ : \EVENT; \msgR\ : \msgType\\
+ \qu \ATOM\ \CONTROLS\ \status, \msgR\ \\
+ \qqu \READS\ \status, \transmit, \doneC\ \AWAITS\ \transmit, \msgS, \doneC\\
+ \qu \INIT\\
+ \qu \begin{chtab}
+     \TRUE & \status' := \receive
+ \end{chtab}\\
+ \qu \UPDATE\\
+ \qu \begin{chtab}
+     \status=\receive\ \AND\ \transmit? & \msgR' := \msgS'; \status' := \consume\\
+     \status=\consume\ \AND\ \doneC? & \status' := \receive
+ \end{chtab}\\
+ \qu \ENDATOM \\
+ \qu \LAZY\ \ATOM\ \CONTROLS\ \ready\ \READS\ \status, \ready\\
+ \qu \UPDATE\\
+ \qu \begin{chtab}
+     \status=\receive & \ready!
+ \end{chtab}\\
+ \qu \ENDATOM \\
+ \qu \LAZY\ \ATOM\ \ACons\ \CONTROLS\ \doneC, \msgC\ \READS\ \status, \doneC, \msgR\\
+ \qu \UPDATE\\
+ \qu \begin{chtab}
+     \status=\consume & \doneC!; \msgC' := \msgR
+ \end{chtab}\\
+ \qu \ENDATOM \\
+ \ENDMODULE \\
+}
+\caption{Synchronous message-passing protocol}
+\label{fig:syncmsg}
+\end{figure}
+
+The modules $\SSender$ and $\SReceiver$ of Figure~\ref{fig:syncmsg}
+communicate via events in order to transmit a stream of messages.
+
+%We write $\var : \EVENT$ to declare $\var$ to be a boolean variable that is
+%used for modeling events.
+%To issue an event represented by~$\var$, we write $\var!$, which stands for
+%the assignment $\var':=\NOT\var$.
+%To check if an event represented by $\var$ is present, we write $\var?$,
+%which stands for the predicate $\var' = \NOT \var$.
+
+\mypar
+The private variable $\status$ of the sender indicates if it is producing a
+message ($\status=\produce$), or attempting to send a message
+($\status=\send$).
+The private variable $\status$ of the receiver indicates if it is waiting to
+receive a message ($\status=\receive$), or consuming a message
+($\status=\consume$).
+Messages are produced by the atom $\AProd$, which requires an unknown number
+of rounds to produce a message.
+Once a message is produced, the event $\doneP$ is issued, and the message is
+shown as~$\msgP$
+(the actual value of message is chosen non-deterministically from the finite
+type $\msgType$).
+Once a message has been produced, the sender is ready to send the message,
+and $\status$ is updated.
+When ready to send a message, the sender sleeps until the receiver becomes
+ready to receive, and when ready to receive a message, the receiver sleeps
+until the sender transmits a message.
+
+\mypar
+The synchronization of both agents is achieved by two-way handshaking in
+three subrounds within a single update round.
+The first subround belongs to the receiver.
+If the receiver is ready to receive a message, it issues the interface event
+$\ready$ to signal its readiness to the sender.
+The second subround belongs to the sender.
+If the sender sees the external event $\ready$ and is ready to send a
+message, it issues the interface event $\transmit$ to signal a transmission.
+The third subround belongs to the receiver.
+If the receiver sees the external event $\transmit$, it copies the message
+from the external variable $\msgS$ to the private variable~$\msgR$.
+The sender goes on to wait for the production of another message, and the
+receiver goes on to consume~$\msgR$.
+Messages are consumed by the atom $\ACons$, which requires an unknown number
+of rounds to consume a message.
+Once a message is consumed, the event $\doneC$ is issued, the consumed
+message is shown as~$\msgC$, and the receiver waits to receive another
+message.
+
+\subsection{A train controller}
+\label{subsec:train}
+
+\begin{figure}
+{\small\tt
+  \MODULE\ \Train\\
+  \qu \INTERFACE\ \pc\ : \set{\away, \wait, \bridge}; \arrive, \leave\ : \EVENT\\
+  \qu \EXTERNAL\ \signal\ : \set{\green, \red}\\
+  \qu \LAZY\ \ATOM\ \CONTROLS\ \pc, \arrive, \leave\ \READS\ \pc, \arrive, \leave, \signal\\
+  \qu \INIT\\
+  \qu \begin{chtab}
+      \TRUE & \pc' := \away
+  \end{chtab}\\
+  \qu \UPDATE\\
+  \qu \begin{chtab}
+      \pc=\away &\arrive!; \pc' := \wait\\
+      \pc=\wait\ \AND\ \signal=\green & \pc' := \bridge\\
+      \pc=\bridge & \leave!; \pc' := \away
+  \end{chtab} \\
+  \qu \ENDATOM\\
+  \ENDMODULE\\
+  \TrainW\ := \Train[\pc,\arrive,\signal,\leave\ := \pcW,\arriveW,\signalW,\leaveW]\\
+  \TrainE\ := \Train[\pc,\arrive,\signal,\leave\ := \pcE,\arriveE,\signalE,\leaveE]\\
+  \\
+  \MODULE\ \Controller\\
+  \qu \PRIVATE\ \nearW, \nearE\ : \bool\\
+  \qu \INTERFACE\ \signalW, \signalE\ : \set{\green, \red}\\
+  \qu \EXTERNAL\ \arriveW, \arriveE, \leaveW, \leaveE\ : \EVENT\\
+  \qu \ATOM\ \CONTROLS\ \nearW\ \READS\ \nearW, \arriveW, \leaveW\ \AWAITS\ \arriveW, \leaveW\\
+  \qu \INIT\\
+  \qu \begin{chtab}
+      \TRUE & \nearW' := \FALSE
+  \end{chtab}\\
+  \qu \UPDATE\\
+  \qu \begin{chtab}
+      \arriveW? & \nearW' := \TRUE\\
+      \leaveW? & \nearW' := \FALSE
+  \end{chtab}\\
+  \qu \ENDATOM\\
+  \qu \ATOM\ \CONTROLS\ \nearE\ \READS\ \nearE, \arriveE, \leaveE\ \AWAITS\ \arriveE, \leaveE\\
+  \qu \INIT\\
+  \qu \begin{chtab}
+      \TRUE & \nearE' := \FALSE
+  \end{chtab}\\
+  \qu \UPDATE\\
+  \qu \begin{chtab}
+      \arriveE? & \nearE' := \TRUE \\
+      \leaveE? & \nearE' := \FALSE
+  \end{chtab}\\
+  \qu \ENDATOM\\
+  \qu \LAZY\ \ATOM\ \CONTROLS\ \signalW, \signalE\ \READS\ \nearW, \nearE, \signalW, \signalE\\
+  \qu \INIT\\
+  \qu \begin{chtab}
+      \TRUE & \signalW' := \red; \signalE' := \red
+  \end{chtab}\\
+  \qu \UPDATE\\
+  \qu \begin{chtab}
+      \nearW\AND\signalE=\red & \signalW' := \green\\
+      \nearE\AND\signalW=\red & \signalE' := \green\\
+      \NOT\nearW & \signalW' := \red\\
+      \NOT\nearE & \signalE' := \red
+  \end{chtab}\\
+  \qu \ENDATOM\\
+  \ENDMODULE\\
+  \\
+  \TrainSystem\ := \HIDE\ \arriveW, \arriveE, \leaveW, \leaveE\ \IN\ \TrainW\ \pppar\ \TrainE\ \pppar\ \Controller\ \ENDHIDE
+}
+\caption{Railroad controller}
+\label{fig:rail}
+\end{figure}
+
+Consider a railway system with two circular railroad
+tracks, one for the train traveling clockwise, and the other for the
+train traveling counter-clockwise.  At one point of the circle, there
+is a bridge that is not wide enough to accommodate both tracks.  The
+two tracks merge on the bridge, and for controlling the access to the
+bridge, there is a signal at either entrance.  If the signal at the
+western entrance is green, then a train coming from the west may enter
+the bridge; if the signal is red, the train must wait.  The signal at
+the eastern entrance to the bridge controls trains coming from the
+east in the same fashion.
+
+\mypar
+Figure~\ref{fig:rail} shows the Reactive Modules description for the a
+generic train {\tt Train}. The module has three interface variables:
+{\tt arrive} and {\tt leave} of type event and
+{\tt pc} of enumerative type \{$\away, \wait, \bridge$\};
+and one external variable {\tt signal}.
+The module has only one atom which controls all the
+interface variables. By declaring the atom to be lazy, we are able to
+model the assumption regarding independence of the speeds of different
+modules.
+
+%The keyword {\bf lazy} indicates that the atom may choose
+%not to update the variables, in which case the variables retain
+%their old values. This is useful to model the assumption regarding
+%independence of the speeds of different modules.
+%The keyword {\bf reads} indicates the old values of the
+%read variables ({\tt pc, arrive, leave, signal}) are used for updating
+%the controlled variables.
+
+\mypar
+The module does the following: when the train approaches the bridge,
+it sends the event $\arrive$ to the railroad controller and checks the
+signal at the entrance to the bridge ($\pc=\wait$).  When the signal
+is red, the train stops and keeps checking the signal. When the
+signal is green, the train proceeds onto the bridge ($\pc=\bridge$).
+When the train exits from the bridge, it sends the event $\leave$ to
+the controller and travels around the circular track ($\pc=\away$).
+Multiple copies of the {\tt Train} are created by variable renaming.
+$\TrainW$, which represents the train traveling clockwise, is
+constructed by renaming variables $\pc$ to $\pcW$, $\arrive$ to
+$\arriveW$, $\signal$ to $\signalW$ and $\leave$ to $\leaveW$.
+$\TrainE$, which represents the train traveling
+counter-clockwise, is constructed in a similar fashion.
+
+\mypar
+Figure~\ref{fig:rail} also shows a controller controlling the signals to
+prevent collisions of the two trains. The complete railway system is represented by the module {\tt RailroadSystem},
+which is the composition of the trains with the controller, with
+variables $\arriveW, \arriveE, \leaveW$ and $\leaveE$ hidden.
+
+\subsection{A resource manager}
+
+\begin{figure}
+\label{fig:rmanager}
+\begin{center}
+\resizebox{!}{35ex}{\input{rmanager.pstex_t}}
+\caption{Resource Manager}
+\end{center}
+\end{figure}
+
+\begin{figure}
+\small
+\begin{verbatim}
+type indexType : (0..3)
+type sindexType : (0..4)
+type regType : array indexType of bool
+
+module Rmanager
+  external req : bool; free : bool; free_index : indexType;
+           high_priority : bool
+  interface grant : bool; grant_index : indexType; alloc : regType;
+            half_empty : bool
+  atom ALLOC controls alloc
+       reads alloc awaits req, grant, grant_index, free, free_index
+  init
+    [] true -> forall i alloc'[i] := false
+  update
+    [] true -> forall i alloc'[i] :=
+       if(grant' & grant_index'=i) then true else
+       if (free' & free_index'=i) then false else alloc[i] fi fi
+  endatom
+  atom HALF_EMPTY controls half_empty reads alloc
+  init
+    [] true -> half_empty' := true
+  update
+    [] ~alloc[0] -> half_empty' :=
+       if (~alloc[1] | ~alloc[2] | ~alloc[3]) then true else false fi
+    [] ~alloc[1] -> half_empty' :=
+       if (~alloc[0] | ~alloc[2] | ~alloc[3]) then true else false fi
+    [] ~alloc[2] -> half_empty' :=
+       if (~alloc[0] | ~alloc[1] | ~alloc[3]) then true else false fi
+    [] ~alloc[3] -> half_empty' :=
+       if (~alloc[0] | ~alloc[1] | ~alloc[2]) then true else false fi
+    [] default -> half_empty' := false
+  endatom
+  atom GRANT_INDEX controls grant_index
+  init update
+    [] true -> grant_index' := nondet
+  endatom
+  atom GRANT controls grant
+       reads alloc awaits req, high_priority, half_empty, grant_index
+  init
+    [] true -> grant' := false
+  update
+    [] req' & high_priority' & ~alloc[grant_index'] -> grant' := true
+    [] req' & half_empty' & ~alloc[grant_index'] -> grant' := true
+    [] default -> grant' := false
+  endatom
+endmodule
+\end{verbatim}
+\caption{Resource Manager (Specification)}
+\label{fig:rmanagerspec}
+\end{figure}
+
+Consider a resource manager used to resolve accesses to instances of a
+shared resource. A block diagram of a resource manager is given in
+Figure~\ref{fig:rmanager}. There are four instances of the resource
+available. The environment interacts with the resource manager to
+allocate and free resources. If a resource is available, the resource
+manager responds by granting an instance of the resource.
+
+
+\mypar
+Figure~\ref{fig:rmanagerspec} shows a reactive modules description of
+the resource manager. The module $\Rmanager$ receives allocate and free
+requests through the boolean external variables $\req$ and $\free$
+respectively. The environment also sets the external variable
+$\highpriority$ to $\TRUE$ in the case of a high-priority request.
+For a normal-prioroty request, $\highpriority$ is set to $\FALSE$.
+The manager may grant a high-priority request, even if only one
+instance of the resource is available. A normal-priority request, on
+the other hand may be granted only if at least two instances of the
+resource are available.
+The module $\Rmanager$ signals grants to the environment through the
+interface variable $\grant$ of type $\bool$. The interface variable
+$\grantindex$ is set to the index of the resource that is granted.
+While freeing the resource, the environment is expected to set
+the external variable $\freeindex$ to the appropriate index of the
+resouce that is being freed.
+
+\mypar
+Private variable \alloc (a boolean array) is used to maintain a bit
+for each resource to indicate if it is free or allocated. The
+history-free private variable $\halfempty$ of type $\bool$ is
+set to true if at least two instances of the resource are free.
+It is used in handling normal-priority requests.
+
+\begin{figure}
+\small
+\begin{verbatim}
+module RManagerImpl
+  external req : bool; free : bool; free_index : indexType;
+           high_priority : bool
+  interface grant : bool; grant_index : indexType; alloc : regType;
+           half_empty : bool
+  private sum : sindexType
+
+  atom ALLOC controls alloc reads alloc
+             awaits grant, grant_index, free, free_index
+  init
+    [] true -> forall i alloc'[i] := false
+  update
+    [] true -> forall i alloc'[i] :=
+       if (grant' & grant_index'=i) then true else
+       if (free' & free_index'=i) then false else alloc[i] fi fi
+  endatom
+  atom SUM controls sum reads sum, alloc awaits grant, free, free_index
+  init
+    [] true -> sum' := 0
+  update
+    [] grant' & ~(free' & alloc[free_index']) -> sum' := sum + 1
+    [] ~grant' & (free' & alloc[free_index']) -> sum' := sum - 1
+  endatom
+  atom HALF_EMPTY controls half_empty reads sum
+  init
+    [] true -> half_empty' := true
+  update
+    [] sum > 2 -> half_empty' := false
+    [] default -> half_empty' := true
+  endatom
+  atom GRANT_INDEX controls grant_index reads alloc
+  init
+    [] true -> grant_index' := 0
+  update
+    [] ~alloc[0] -> grant_index' := 0
+    [] alloc[0] & ~alloc[1] -> grant_index' := 1
+    [] alloc[0] & alloc[1] & ~alloc[2] -> grant_index' := 2
+    [] alloc[0] & alloc[1] & alloc[2] -> grant_index' := 3
+  endatom
+  atom GRANT controls grant reads alloc, sum awaits req, high_priority
+  init
+    [] true -> grant' := false
+  update
+    [] req' & high_priority' & sum <= 3 -> grant' := true
+    [] req' & sum <= 2 -> grant' := true
+    [] default -> grant' := false
+  endatom
+endmodule
+\end{verbatim}
+\caption{Resource Manager (Implementation)}
+\label{fig:rmanagerimpl}
+\end{figure}
+
+\mypar
+Module $\RmanagerImpl$ in Figure~\ref{fig:rmanagerimpl} is a
+``less-abstract'' lower-level description of the resource allocator,
+Note that the modules $\Rmanager$ and $\RmanagerImpl$ have same
+set of external and interface variables.
+However, some design decisions have been taken to implement the
+non-deterministic choices allowed in $\Rmanager$.
+The $\grantindex$ variable always points to the available resource
+with the least index, if one is available (as opposed to the
+non-deterministic choice in $\Rmanager$) and there is a new private
+variable $\total$ that keeps track of the number of resources that
+have been allocated. We will later use \mocha\ to show that
+$\RmanagerImpl$ is a valid implementation of the module $\Rmanager$.
+
+
+
+

@@ -1,0 +1,607 @@
+-------------------------------------------------------------------------------
+--
+-- constant definitons
+--
+-----------------------------------------------------------------------------
+
+#define BITWIDTH 1
+#define NUMREGS 4
+#define NUMSTATIONS 4
+------------------------------------------------------------------------------
+--
+-- simple type definitons : value, register address, station address, operation
+--
+-----------------------------------------------------------------------------
+
+type valType      : bitvector  $BITWIDTH
+type regAddrType  : (0..$NUMREGS-1)
+type stAddrType   : (0..$NUMSTATIONS-1)
+type operType : { AND_OP, OR_OP, WRITE_OP, READ_OP}
+
+
+
+------------------------------------------------------------------------------
+--
+-- type definitons for  register, reservation station components
+--
+-----------------------------------------------------------------------------
+
+type  regValidArrayType : array regAddrType of bool
+type  regValArrayType   : array regAddrType of valType
+type  regTagArrayType   : array regAddrType of stAddrType
+
+type  stValidArrayType  : array stAddrType  of bool
+type  stValArrayType    : array stAddrType  of valType
+type  stOpArrayType     : array stAddrType  of operType
+type  stTagArrayType    : array stAddrType  of stAddrType
+
+------------------------------------------------------------------------------
+--
+-- TOMASULO module
+--
+-----------------------------------------------------------------------------
+
+module TOMASULO
+
+  external opcode:operType; imop:valType; opa, opb, dst:regAddrType
+
+  interface stall:bool; dout:valType; isaRegs:regValArrayType;
+  	  impRegs.valid: regValidArrayType; impRegs.value: regValArrayType; impRegs.tag: regTagArrayType;
+          st.valid, st.aVal.valid, st.bVal.valid : stValidArrayType;
+          st.aVal.value, st.bVal.value : stValArrayType;
+          st.aVal.tag, st.bVal.tag     : stTagArrayType;
+          st.op                        : stOpArrayType;
+	  allocSt,opSt:stAddrType;
+	  bus.valid: bool; bus.value: valType; bus.tag: stAddrType;  
+	  histSt.aVal, histSt.bVal, histSt.result     : stValArrayType;
+	  histSt.andOr : stValidArrayType
+
+-----------------------------------------------------------------------------
+--
+--  declare a bunch of atoms one for each register
+--
+------------------------------------------------------------------------------
+#foreach i = (0 .. $NUMREGS-1)
+  atom REG_$i
+	controls impRegs.valid[$i], impRegs.value[$i], impRegs.tag[$i]
+	reads  impRegs.valid, impRegs.value, impRegs.tag, bus.value, bus.tag, bus.valid
+  	awaits opcode, imop, dst,
+		stall, allocSt
+  init
+    [] true -> impRegs.valid'[$i] := true; impRegs.value'[$i] := 0
+  update
+    [] ~stall' & (opcode' = WRITE_OP) & (dst' = $i) ->
+	 impRegs.valid'[$i] := true;
+	 impRegs.value'[$i] := imop'
+    [] ~stall' & ((opcode' = AND_OP) | (opcode' = OR_OP)) &  (dst' = $i) -> 
+	 impRegs.valid'[$i] := false;
+	 impRegs.tag'[$i]   := allocSt'
+    [] ~impRegs.valid[$i] & bus.valid & (impRegs.tag[$i] = bus.tag) ->
+         impRegs.valid'[$i] := true;
+	 impRegs.value'[$i] := bus.value
+  endatom
+#endforeach
+
+-----------------------------------------------------------------------------
+--
+--  declare a bunch of atoms one for each reservation station
+--
+------------------------------------------------------------------------------
+
+#foreach s = (0 .. $NUMSTATIONS-1)
+  atom STATION_VALID_$s
+  controls st.valid[$s]
+  reads    st.valid[$s]
+  awaits   stall, allocSt, bus.valid, bus.tag, opcode
+  init
+   [] true -> st.valid'[$s] := false
+  update
+   [] ~stall' & (allocSt'= $s) & ((opcode' = AND_OP) | (opcode' = OR_OP))  ->
+        	st.valid'[$s] := true
+   [] bus.valid' & st.valid[$s] & (bus.tag' = $s) ->
+		st.valid'[$s]  := false
+  endatom   
+
+   atom STATION_OP_$s
+   controls st.op[$s]
+   reads st.op[$s]
+   awaits stall,  opcode, allocSt
+   update
+   [] ~stall' & (allocSt'= $s) & ((opcode' = AND_OP) | (opcode' = OR_OP))  ->
+	         st.op'[$s] := opcode'
+   endatom
+
+   atom ST_AVAL_$s
+   controls st.aVal.valid[$s], st.aVal.value[$s], st.aVal.tag[$s]
+   reads  st.aVal.valid[$s], st.aVal.value[$s], st.aVal.tag[$s], impRegs.value, impRegs.tag, impRegs.valid,
+          bus.valid, bus.tag, bus.value, st.valid[$s]
+   awaits stall, opa, opcode, allocSt
+   init   
+   [] true -> st.aVal.valid'[$s] := false
+   update
+   [] ~stall' & (allocSt'= $s) & ((opcode' = AND_OP) | (opcode' = OR_OP))  ->
+		st.aVal.valid'[$s] := impRegs.valid[opa'];
+		st.aVal.value'[$s] := impRegs.value[opa'];
+		st.aVal.tag'[$s]   := impRegs.tag[opa']
+
+   [] bus.valid & st.valid[$s] &  ~st.aVal.valid[$s] & (bus.tag = st.aVal.tag[$s]) ->
+	        st.aVal.valid'[$s] := true;
+	        st.aVal.value'[$s] := bus.value
+   endatom
+  
+
+   atom ST_BVAL_$s
+   controls st.bVal.valid[$s], st.bVal.value[$s], st.bVal.tag[$s]
+   reads  st.bVal.valid[$s], st.bVal.value[$s], st.bVal.tag[$s], impRegs.value, impRegs.tag, impRegs.valid,
+          bus.valid, bus.tag, bus.value, st.valid[$s]
+   awaits stall, opb, opcode, allocSt
+   init   
+   [] true -> st.bVal.valid'[$s] := false
+   update
+   [] ~stall' & (allocSt'= $s) & ((opcode' = AND_OP) | (opcode' = OR_OP))  ->
+		st.bVal.valid'[$s] := impRegs.valid[opb'];
+		st.bVal.value'[$s] := impRegs.value[opb'];
+		st.bVal.tag'[$s]   := impRegs.tag[opb']
+
+   [] bus.valid & st.valid[$s] &  ~st.bVal.valid[$s] & (bus.tag = st.bVal.tag[$s]) ->
+	        st.bVal.valid'[$s] := true;
+	        st.bVal.value'[$s] := bus.value
+   endatom
+  
+#endforeach
+
+
+-----------------------------------------------------------------------------
+--
+-- atom that handles bus output
+--
+------------------------------------------------------------------------------    
+ atom BUSD 
+       controls bus.valid, bus.value, bus.tag
+       reads
+           st.valid, st.aVal.valid, st.bVal.valid,  st.aVal.value, st.bVal.value, st.op
+       awaits opSt
+
+ init
+   [] true -> bus.valid' := false
+
+ update
+   [] st.valid[opSt'] & st.aVal.valid[opSt'] & st.bVal.valid[opSt'] & st.op[opSt'] = AND_OP ->
+		bus.valid' := true;
+		bus.value' := st.aVal.value[opSt'] & st.bVal.value[opSt'];
+	 	bus.tag'   := opSt'
+   [] st.valid[opSt'] & st.aVal.valid[opSt'] & st.bVal.valid[opSt'] & st.op[opSt'] = OR_OP ->
+		bus.valid' := true;
+		bus.value' := st.aVal.value[opSt'] | st.bVal.value[opSt'];
+	 	bus.tag'   := opSt'
+   [] default     ->
+		bus.valid' := false
+
+ endatom
+
+   
+-----------------------------------------------------------------------------
+--
+-- atom that generates allocSt -- which stations is now being allocated?
+--
+------------------------------------------------------------------------------
+   
+  atom ALLOCST 
+     controls allocSt
+
+  init  update
+     [] true -> allocSt' := nondet
+  endatom
+
+
+-----------------------------------------------------------------------------
+--
+-- atom that generates opSt -- which station is now being operated?
+--
+------------------------------------------------------------------------------
+
+  atom OPST
+      controls  opSt
+
+  init  update
+     [] true -> opSt' := nondet
+  endatom
+
+-----------------------------------------------------------------------------
+--
+-- atom that generates stall - when to stall the pieline?
+--
+------------------------------------------------------------------------------
+
+  atom STALL
+	controls  stall
+	reads impRegs.valid, impRegs.tag, st.valid, bus.valid, bus.tag
+	awaits allocSt, opcode, dst, opa, opb
+  init
+    [] true -> stall' := false
+  update
+    []  st.valid[allocSt']  & ((opcode' = AND_OP) | (opcode' = OR_OP))   -> stall':= true
+    []  (opcode' = READ_OP) & (~impRegs.valid[dst']) -> stall':= true
+    []  ((opcode' = AND_OP) | (opcode' = OR_OP)) &
+	  ((~impRegs.valid[opa'] & bus.valid & (impRegs.tag[opa']  = bus.tag)) |
+	   (~impRegs.valid[opb'] & bus.valid & (impRegs.tag[opb']  = bus.tag)) |
+	   (~impRegs.valid[dst'] & bus.valid & (impRegs.tag[dst']  = bus.tag)) )
+	-> stall':= true
+    []  ((opcode' = WRITE_OP) & ~impRegs.valid[dst'] & bus.valid & (impRegs.tag[dst'] = bus.tag))
+	-> stall' := true
+    [] ( (opcode' = AND_OP) | (opcode' = OR_OP) | (opcode' = WRITE_OP)) & ~impRegs.valid[dst'] -> stall' := true
+    [] default -> stall' := false
+  endatom
+
+
+-----------------------------------------------------------------------------
+--
+-- atom that generates dout - result of a read operation
+--
+------------------------------------------------------------------------------
+
+
+   atom DOUT
+	controls  dout
+	reads impRegs.value
+	awaits  opcode, dst
+
+   init
+   [] true -> dout' := 0 
+   update
+   [] (opcode' = READ_OP) -> dout' := impRegs.value[dst']
+   endatom   
+
+
+-----------------------------------------------------------------------------
+--
+-- WITNESSES - they are merely copies from the specification
+--
+------------------------------------------------------------------------------
+
+  
+#foreach  i = (0 .. $NUMREGS-1)
+  atom ISAREG_$i
+    controls  isaRegs[$i]
+	reads isaRegs
+  	awaits opcode, imop, dst, opa, opb, stall
+
+  init
+     [] true -> isaRegs'[$i] := 0
+  update
+     [] ~stall' & (opcode' = WRITE_OP) & (dst' = $i) ->
+		isaRegs'[$i] := imop'
+     [] ~stall' & (opcode' = AND_OP) & (dst' = $i) ->
+		isaRegs'[$i] := isaRegs[opa'] & isaRegs[opb']
+     [] ~stall' & (opcode' = OR_OP) & (dst' = $i) ->
+		isaRegs'[$i] := isaRegs[opa']  | isaRegs[opb']
+  endatom
+#endforeach
+
+
+#foreach s = (0 .. $NUMSTATIONS-1)
+   atom HISTSTATION_AVAL_$s
+	controls histSt.aVal[$s]
+	reads isaRegs, histSt.aVal[$s]
+	awaits opcode, opa, allocSt, stall
+    init
+    [] true -> histSt.aVal'[$s] := 0
+    update
+    [] ~stall' & (allocSt'= $s) & ((opcode' = AND_OP) | (opcode' = OR_OP))  ->
+ 	histSt.aVal'[$s] := isaRegs[opa']
+   endatom
+
+   atom HISTSTATION_BVAL_$s
+	controls histSt.bVal[$s]
+	reads isaRegs, histSt.bVal[$s]
+	awaits opcode, opb, allocSt, stall
+    init
+    [] true -> histSt.bVal'[$s] := 0
+    update
+    [] ~stall' & (allocSt'= $s) & ((opcode' = AND_OP) | (opcode' = OR_OP))  ->
+ 	histSt.bVal'[$s] := isaRegs[opb']
+   endatom
+
+   atom HISTSTATION_RESULT_$s
+	controls histSt.result[$s]
+	reads  histSt.result[$s]
+	awaits opcode, allocSt, dst, isaRegs, stall
+    init
+    [] true -> histSt.result'[$s] := 0
+    update
+    [] ~stall' & (allocSt'= $s) & ((opcode' = AND_OP) | (opcode' = OR_OP))  ->
+ 	histSt.result'[$s] := isaRegs'[dst']
+   endatom
+
+   atom HISTSTATION_OP_$s
+	controls histSt.andOr[$s]
+	reads histSt.andOr[$s]
+	awaits opcode, opa, opb, stall, allocSt
+   update
+    [] ~stall' & (allocSt'= $s) & ((opcode' = AND_OP) | (opcode' = OR_OP))  ->
+	histSt.andOr'[$s] := if (opcode' = AND_OP) then true else false fi
+   endatom
+
+#endforeach
+
+endmodule
+
+
+
+-----------------------------------------------------------------------------
+--
+-- SPECIFICATION module - Instruction Set Architecture
+--
+------------------------------------------------------------------------------
+
+module ISA
+  external opcode:operType; imop:valType; opa, opb, dst:regAddrType
+  interface stall:bool; dout:valType; isaRegs:regValArrayType;
+  	  impRegs.valid: regValidArrayType; impRegs.value: regValArrayType; impRegs.tag: regTagArrayType;
+          st.valid, st.aVal.valid, st.bVal.valid : stValidArrayType;
+          st.aVal.value, st.bVal.value : stValArrayType;
+          st.aVal.tag, st.bVal.tag     : stTagArrayType;
+          st.op                        : stOpArrayType;
+	  allocSt,opSt                 : stAddrType;
+	  histSt.aVal, histSt.bVal, histSt.result     : stValArrayType;
+	  histSt.andOr : stValidArrayType;
+	  bus.valid: bool; bus.value: valType; bus.tag: stAddrType	  
+
+#foreach  i = (0 .. $NUMREGS-1)
+
+  atom ISAREG_$i
+    controls  isaRegs[$i]
+	reads isaRegs
+  	awaits opcode, imop, dst, opa, opb, stall
+
+  init
+     [] true -> isaRegs'[$i] := 0
+  update
+     [] ~stall' & (opcode' = WRITE_OP) & (dst' = $i) ->
+		isaRegs'[$i] := imop'
+     [] ~stall' & (opcode' = AND_OP) & (dst' = $i) ->
+		isaRegs'[$i] := isaRegs[opa'] & isaRegs[opb']
+     [] ~stall' & (opcode' = OR_OP) & (dst' = $i) ->
+		isaRegs'[$i] := isaRegs[opa']  | isaRegs[opb']
+  endatom
+#endforeach
+
+  atom STALL
+	controls stall
+  init update
+	[] true -> stall' := nondet
+  endatom
+
+  atom DOUT
+	controls dout
+	reads isaRegs
+	awaits stall, opcode, dst
+ init
+    [] true -> dout' := nondet
+ update
+    [] stall' | ~(opcode' = READ_OP) ->	 dout' := nondet
+    [] default -> dout' := isaRegs[dst']
+  endatom
+
+
+
+-----------------------------------------------------------------------------
+--
+--  refinement maps
+--
+------------------------------------------------------------------------------
+
+#foreach i = (0 .. $NUMREGS-1)
+  atom REG_TAG_$i
+	controls impRegs.tag[$i]
+	reads    impRegs.tag[$i], impRegs.valid[$i]
+	awaits  impRegs.valid[$i], allocSt, stall, opcode, dst
+  update
+	[] impRegs.valid'[$i] -> impRegs.tag'[$i] := nondet
+ 	[] (dst' = $i) & ~stall' & ((opcode' = AND_OP) | (opcode' = OR_OP)) -> impRegs.tag'[$i] := allocSt'
+  endatom
+
+  atom REG_VALID_$i
+	controls impRegs.valid[$i]
+	reads impRegs.valid[$i], bus.valid, impRegs.tag[$i] , bus.tag
+	awaits dst, opcode, stall
+  init
+	[] true -> impRegs.valid'[$i] := true
+  update
+ 	[] (dst' = $i) & ~stall' & ((opcode' = AND_OP) | (opcode' = OR_OP)) -> impRegs.valid'[$i] := false
+	[] bus.valid & (bus.tag  = impRegs.tag[$i]) & ~impRegs.valid[$i] -> impRegs.valid'[$i] := true
+	[] (dst' = $i) & ~stall' & (opcode' = WRITE_OP) -> impRegs.valid'[$i] := true
+  endatom
+
+  atom REG_VALUE_$i
+	controls impRegs.value[$i]
+	awaits   impRegs.valid[$i], isaRegs[$i]
+   init
+	[] true   -> impRegs.value'[$i] := 0	
+   update
+	[] ~impRegs.valid'[$i] -> impRegs.value'[$i] := nondet
+	[] impRegs.valid'[$i] -> impRegs.value'[$i] := isaRegs'[$i]
+  endatom
+#endforeach
+
+  atom ALLOCST 
+     controls allocSt
+
+  init  update
+     [] true -> allocSt' := nondet
+  endatom
+
+  atom OPST
+      controls  opSt
+
+  init  update
+     [] true -> opSt' := nondet
+  endatom
+
+#foreach s = (0 .. $NUMSTATIONS-1)
+   atom HISTSTATION_AVAL_$s
+	controls histSt.aVal[$s]
+	reads isaRegs, histSt.aVal[$s]
+	awaits opcode, opa, allocSt, stall
+    init
+    [] true -> histSt.aVal'[$s] := 0
+    update
+    [] ~stall' & (allocSt'= $s) & ((opcode' = AND_OP) | (opcode' = OR_OP))  ->
+ 	histSt.aVal'[$s] := isaRegs[opa']
+   endatom
+
+   atom HISTSTATION_BVAL_$s
+	controls histSt.bVal[$s]
+	reads isaRegs, histSt.bVal[$s]
+	awaits opcode, opb, allocSt, stall
+    init
+    [] true -> histSt.bVal'[$s] := 0
+    update
+    [] ~stall' & (allocSt'= $s) & ((opcode' = AND_OP) | (opcode' = OR_OP))  ->
+ 	histSt.bVal'[$s] := isaRegs[opb']
+   endatom
+
+   atom HISTSTATION_RESULT_$s
+	controls histSt.result[$s]
+	reads  histSt.result[$s]
+	awaits opcode, allocSt, dst, isaRegs, stall
+    init
+    [] true -> histSt.result'[$s] := 0
+    update
+    [] ~stall' & (allocSt'= $s) & ((opcode' = AND_OP) | (opcode' = OR_OP))  ->
+ 	histSt.result'[$s] := isaRegs'[dst']
+   endatom
+
+   atom HISTSTATION_OP_$s
+	controls histSt.andOr[$s]
+	reads histSt.andOr[$s]
+	awaits opcode, opa, opb, stall, allocSt
+   update
+    [] ~stall' & (allocSt'= $s) & ((opcode' = AND_OP) | (opcode' = OR_OP))  ->
+	histSt.andOr'[$s] := if (opcode' = AND_OP) then true else false fi
+   endatom
+
+--   atom ST_REFINE_VALID_$s
+--	controls st.valid[$s]
+--	awaits impRegs.valid, impRegs.tag
+--   update
+--   #foreach i = (0 .. $NUMREGS-1)
+--   [] ~impRegs.valid'[$i] & (impRegs.tag'[$i] = $s) ->   st.valid'[$s] := true
+--   #endforeach
+--   [] default -> st.valid'[$s] := nondet
+--   endatom
+
+    atom ST_REFINE_VALID_$s
+	controls st.valid[$s]
+	reads    st.valid[$s]
+	awaits bus.valid, opcode, stall, allocSt, bus.tag
+   init
+   [] true -> st.valid'[$s] := false
+   update
+   [] ~stall' & (allocSt' = $s) & ((opcode' = AND_OP) | (opcode' = OR_OP)) -> 
+	st.valid'[$s] := true
+   [] bus.valid' & st.valid[$s] & (bus.tag' = $s) ->
+	st.valid'[$s] := false
+   endatom
+
+    atom ST_REFINE_OP_$s
+        controls st.op[$s]
+	awaits histSt.andOr[$s], st.valid[$s]
+    update
+    [] st.valid'[$s]-> st.op'[$s] := if (histSt.andOr'[$s]) then AND_OP else OR_OP fi
+    endatom
+    
+   atom ST_REFINE_OP_TAGS_$s
+	controls  st.aVal.tag[$s], st.bVal.tag[$s]
+   update
+   [] true ->  st.aVal.tag'[$s] := nondet; st.bVal.tag'[$s] := nondet
+   endatom
+
+
+--   atom ST_REFINE_AVALID_BVALID_$s
+--	controls st.aVal.valid[$s], st.bVal.valid[$s]
+--	reads st.aVal.valid[$s], st.bVal.valid[$s]
+--	awaits opSt, bus.valid
+--   init
+--       [] true -> st.aVal.valid'[$s] := false; st.bVal.valid'[$s] := false
+--   update
+--	[] st.aVal.valid[$s] & st.bVal.valid[$s] & (opSt' = $s) & bus.valid' -> st.aVal.valid'[$s] := true; st.bVal.valid'[$s] := true
+--	[] true  -> st.aVal.valid'[$s] := nondet; st.bVal.valid'[$s] := nondet
+--   endatom
+
+
+   atom ST_REFINE_AVALID_$s
+	controls st.aVal.valid[$s]
+	reads    st.aVal.valid[$s], st.valid[$s], bus.valid, bus.tag, st.aVal.tag[$s], impRegs.valid
+	awaits   st.valid[$s], opa
+   update
+	[] ~st.valid[$s] & st.valid'[$s] -> st.aVal.valid'[$s] := impRegs.valid[opa']
+	[] bus.valid  & (bus.tag = st.aVal.tag[$s]) & st.valid[$s] & ~st.aVal.valid[$s] -> st.aVal.valid'[$s] := true
+	[] ~st.valid'[$s] -> st.aVal.valid'[$s] := nondet
+   endatom
+
+
+   atom ST_REFINE_BVALID_$s
+	controls st.bVal.valid[$s]
+	reads    st.bVal.valid[$s], st.valid[$s], bus.valid, bus.tag, st.bVal.tag[$s], impRegs.valid
+	awaits   st.valid[$s], opb
+   update
+	[] ~st.valid[$s] & st.valid'[$s] -> st.bVal.valid'[$s] := impRegs.valid[opb']
+	[] bus.valid  & (bus.tag = st.bVal.tag[$s]) & st.valid[$s] & ~st.bVal.valid[$s] -> st.bVal.valid'[$s] := true
+	[] ~st.valid'[$s] -> st.bVal.valid'[$s] := nondet
+   endatom
+
+
+
+   atom  ST_REFINE_AVALUES_$s
+	controls st.aVal.value[$s]
+	awaits   st.aVal.valid[$s], histSt.aVal[$s], st.valid[$s]
+   init update
+        [] st.valid'[$s] & st.aVal.valid'[$s] -> st.aVal.value'[$s] := histSt.aVal'[$s]
+        [] default            -> st.aVal.value'[$s] := nondet
+    endatom
+
+   atom  ST_REFINE_BVALUES_$s
+	controls st.bVal.value[$s]
+	awaits   st.bVal.valid[$s], histSt.bVal[$s], st.valid[$s]
+    init update
+        [] st.valid'[$s] & st.bVal.valid'[$s] -> st.bVal.value'[$s] := histSt.bVal'[$s]
+        [] default            -> st.bVal.value'[$s] := nondet
+    endatom
+
+#endforeach
+
+    atom BUS_TAG_REFINE 	
+    controls bus.tag
+    awaits opSt, bus.valid
+    init update
+	[] bus.valid'  -> bus.tag' := opSt'
+    endatom   	
+
+    atom BUS_VALID_REFINE
+    controls bus.valid
+    reads st.valid, st.aVal.valid, st.bVal.valid
+    awaits opSt
+    update
+	[] st.valid[opSt']  & st.aVal.valid[opSt'] & st.bVal.valid[opSt'] -> bus.valid' := nondet
+	[] default          -> bus.valid' := false
+    endatom
+		
+    atom BUS_VALUE_EREFINE
+	controls bus.value
+	reads histSt.result 
+	awaits  opSt, bus.valid
+    update
+        []  bus.valid' -> bus.value' := histSt.result[opSt']
+	[]  ~bus.valid' -> bus.value' := nondet
+    endatom  	 
+		
+endmodule
+     
+
+
+
+
+
+
+

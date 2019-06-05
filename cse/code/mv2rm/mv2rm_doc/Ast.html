@@ -1,0 +1,284 @@
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="Start" href="index.html">
+<link rel="next" href="Check.html">
+<link rel="Up" href="index.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="Ast" rel="Chapter" href="Ast.html">
+<link title="Check" rel="Chapter" href="Check.html"><title>Ast</title>
+</head>
+<body>
+<div class="navbar">&nbsp;<a href="index.html">Up</a>
+&nbsp;<a href="Check.html">Next</a>
+</div>
+<center><h1>Module <a href="type_Ast.html">Ast</a></h1></center>
+<br>
+<pre><span class="keyword">module</span> Ast: <code class="type">sig  end</code></pre><div class="info">
+symbol table
+    symbol -&gt; List of values it can take
+              [] if Boolean<br>
+</div>
+<hr width="100%">
+<pre><span class="keyword">val</span> <a name="VALrefiList"></a><a href="code_VALAst.refiList.html">refiList</a> : <code class="type">string list Pervasives.ref</code></pre><pre><span class="keyword">val</span> <a name="VALrefoList"></a><a href="code_VALAst.refoList.html">refoList</a> : <code class="type">string list Pervasives.ref</code></pre><pre><span class="keyword">val</span> <a name="VALrefsList"></a><a href="code_VALAst.refsList.html">refsList</a> : <code class="type">string list Pervasives.ref</code></pre><pre><span class="keyword">val</span> <a name="VALrefhideList"></a><a href="code_VALAst.refhideList.html">refhideList</a> : <code class="type">string list Pervasives.ref</code></pre><pre><span class="keyword">val</span> <a name="VALmodelList"></a><a href="code_VALAst.modelList.html">modelList</a> : <code class="type">string list Pervasives.ref</code></pre><pre><span class="keyword">val</span> <a name="VALrefinList"></a><a href="code_VALAst.refinList.html">refinList</a> : <code class="type">string list Pervasives.ref</code></pre><pre><span class="keyword">val</span> <a name="VALrefoutList"></a><a href="code_VALAst.refoutList.html">refoutList</a> : <code class="type">string list Pervasives.ref</code></pre><pre><span class="keyword">val</span> <a name="VALunmarked"></a><a href="code_VALAst.unmarked.html">unmarked</a> : <code class="type">string list Pervasives.ref</code></pre><br><code><span class="keyword">type</span> <a name="TYPErelation"></a>relation =<br></code><table border="0" cellpadding="1">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span class="constructor">Cmp</span> <span class="keyword">of</span> <code class="type">string</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span class="constructor">Hyp</span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span class="constructor">Range</span> <span class="keyword">of</span> <code class="type">string * string</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span class="constructor">Set</span> <span class="keyword">of</span> <code class="type">string list</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span class="constructor">Not</span> <span class="keyword">of</span> <code class="type"><a href="Ast.html#TYPErelation">relation</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span class="constructor">True</span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span class="constructor">False</span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span class="constructor">Default</span></code></td>
+
+</tr></table>
+
+<br>
+<pre><span class="keyword">val</span> <a name="VALdef_relation"></a><a href="code_VALAst.def_relation.html">def_relation</a> : <code class="type"><a href="Ast.html#TYPErelation">relation</a> list Pervasives.ref</code></pre><pre><span class="keyword">val</span> <a name="VALrelation"></a><a href="code_VALAst.relation.html">relation</a> : <code class="type"><a href="Ast.html#TYPErelation">relation</a> list Pervasives.ref</code></pre><pre><span class="keyword">val</span> <a name="VALrelations"></a><a href="code_VALAst.relations.html">relations</a> : <code class="type"><a href="Ast.html#TYPErelation">relation</a> list list Pervasives.ref</code></pre><br><code><span class="keyword">type</span> <a name="TYPEform"></a>form =<br></code><table border="0" cellpadding="1">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span class="constructor">Input</span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span class="constructor">Output</span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span class="constructor">Private</span></code></td>
+
+</tr></table>
+
+<br>
+<br><code><span class="keyword">type</span> <a name="TYPEtypeVal"></a>typeVal =<br></code><table border="0" cellpadding="1">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span class="constructor">Bool</span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span class="constructor">Mv</span> <span class="keyword">of</span> <code class="type">string list</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span class="constructor">MvRange</span> <span class="keyword">of</span> <code class="type">int</code></code></td>
+
+</tr></table>
+
+<br>
+<br><code><span class="keyword">type</span> <a name="TYPEread"></a>read =<br></code><table border="0" cellpadding="1">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span class="constructor">Reads</span> <span class="keyword">of</span> <code class="type">string</code></code></td>
+
+</tr></table>
+
+<br>
+<br><code><span class="keyword">type</span> <a name="TYPEcontrol"></a>control =<br></code><table border="0" cellpadding="1">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span class="constructor">Controls</span> <span class="keyword">of</span> <code class="type">string list</code></code></td>
+
+</tr></table>
+
+<br>
+<br><code><span class="keyword">type</span> <a name="TYPElcontrol"></a>lcontrol =<br></code><table border="0" cellpadding="1">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span class="constructor">LControls</span> <span class="keyword">of</span> <code class="type">string</code></code></td>
+
+</tr></table>
+
+<br>
+<br><code><span class="keyword">type</span> <a name="TYPErcontrol"></a>rcontrol =<br></code><table border="0" cellpadding="1">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span class="constructor">RControls</span> <span class="keyword">of</span> <code class="type">string list</code></code></td>
+
+</tr></table>
+
+<br>
+<br><code><span class="keyword">type</span> <a name="TYPEawait"></a>await =<br></code><table border="0" cellpadding="1">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span class="constructor">Awaits</span> <span class="keyword">of</span> <code class="type">string list</code></code></td>
+
+</tr></table>
+
+<br>
+<br><code><span class="keyword">type</span> <a name="TYPErelations"></a>relations =<br></code><table border="0" cellpadding="1">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span class="constructor">Relations</span> <span class="keyword">of</span> <code class="type"><a href="Ast.html#TYPErelation">relation</a> list list</code></code></td>
+
+</tr></table>
+
+<br>
+<br><code><span class="keyword">type</span> <a name="TYPEatom"></a>atom =<br></code><table border="0" cellpadding="1">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span class="constructor">None</span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span class="constructor">ResetAtom</span> <span class="keyword">of</span> <code class="type"><a href="Ast.html#TYPEcontrol">control</a> * <a href="Ast.html#TYPEawait">await</a> * <a href="Ast.html#TYPErelations">relations</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span class="constructor">TableAtom</span> <span class="keyword">of</span> <code class="type"><a href="Ast.html#TYPEcontrol">control</a> * <a href="Ast.html#TYPEawait">await</a> * <a href="Ast.html#TYPErelations">relations</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span class="constructor">LatchAtom</span> <span class="keyword">of</span> <code class="type"><a href="Ast.html#TYPElcontrol">lcontrol</a> * <a href="Ast.html#TYPErcontrol">rcontrol</a> * <a href="Ast.html#TYPEread">read</a> * <a href="Ast.html#TYPEawait">await</a> * <a href="Ast.html#TYPErelations">relations</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span class="constructor">SameAs</span> <span class="keyword">of</span> <code class="type">string</code></code></td>
+
+</tr></table>
+
+<br>
+<br><code><span class="keyword">type</span> <a name="TYPEentry"></a>entry =<br></code><table border="0" cellpadding="1">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span class="constructor">Empty</span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span class="constructor">Symb</span> <span class="keyword">of</span> <code class="type"><a href="Ast.html#TYPEform">form</a> * <a href="Ast.html#TYPEtypeVal">typeVal</a> * <a href="Ast.html#TYPEatom">atom</a></code></code></td>
+
+</tr></table>
+
+<br>
+<br><code><span class="keyword">type</span> <a name="TYPEmodelEntry"></a>modelEntry = {<br></code><table border="0" cellpadding="1">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code>inlist&nbsp;: <code class="type">string list</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code>outlist&nbsp;: <code class="type">string list</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code>slist&nbsp;: <code class="type">string list</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span class="keyword">mutable&nbsp;</span>hlist&nbsp;: <code class="type">string list</code>;</code></td>
+
+</tr></table>
+}
+
+<br>
+<pre><span class="keyword">val</span> <a name="VALmake_new_model"></a><a href="code_VALAst.make_new_model.html">make_new_model</a> : <code class="type">string list Pervasives.ref -><br>       string list Pervasives.ref -> string list Pervasives.ref -> <a href="Ast.html#TYPEmodelEntry">modelEntry</a></code></pre><pre><span class="keyword">val</span> <a name="VALadd_hidelist_to_model"></a><a href="code_VALAst.add_hidelist_to_model.html">add_hidelist_to_model</a> : <code class="type"><a href="Ast.html#TYPEmodelEntry">modelEntry</a> -> string list -> unit</code></pre><pre><span class="keyword">val</span> <a name="VALget_hidelist"></a><a href="code_VALAst.get_hidelist.html">get_hidelist</a> : <code class="type"><a href="Ast.html#TYPEmodelEntry">modelEntry</a> -> string list</code></pre><pre><span class="keyword">val</span> <a name="VALsymTab"></a><a href="code_VALAst.symTab.html">symTab</a> : <code class="type">(string, <a href="Ast.html#TYPEentry">entry</a>) Hashtbl.t</code></pre><div class="info">
+symbol table
+    symbol -&gt; List of values it can take
+              [] if Boolean<br>
+</div>
+<pre><span class="keyword">val</span> <a name="VALinit_tab"></a><a href="code_VALAst.init_tab.html">init_tab</a> : <code class="type">unit</code></pre><pre><span class="keyword">val</span> <a name="VALsubcktList"></a><a href="code_VALAst.subcktList.html">subcktList</a> : <code class="type">(string * string) list list Pervasives.ref</code></pre><pre><span class="keyword">val</span> <a name="VALsubcktTab"></a><a href="code_VALAst.subcktTab.html">subcktTab</a> : <code class="type">(string, (string * string) list list) Hashtbl.t</code></pre><pre><span class="keyword">val</span> <a name="VALinit_subcktTab"></a><a href="code_VALAst.init_subcktTab.html">init_subcktTab</a> : <code class="type">unit</code></pre><pre><span class="keyword">val</span> <a name="VALout_file_stream"></a><a href="code_VALAst.out_file_stream.html">out_file_stream</a> : <code class="type">Pervasives.out_channel Pervasives.ref</code></pre><pre><span class="keyword">val</span> <a name="VALmoduleName"></a><a href="code_VALAst.moduleName.html">moduleName</a> : <code class="type">string Pervasives.ref</code></pre></body></html>

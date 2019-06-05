@@ -1,0 +1,9 @@
+read_module train_control.rm
+read_spec train_control.spec
+enum_search System1
+sym_search System1
+enum_search System2
+sym_search  System2
+inv_check System1 safeCtrl
+inv_check System2 safeCtrl
+

@@ -1,0 +1,40 @@
+On Fri, 17 Oct 2003, vaibhav bhandari wrote:
+
+
+>> hi Luca,
+>> 
+>> Just commited a draft of chapter - Interfaces divided in sections 
+>> defination and composition.
+>> 
+>> I had some questions and wanted some advice about the same. I'm basing 
+>> the chapter on CAV paper.
+>> 
+>> I define interfaces very generically stating there advantages, there is 
+>> precise defination of Moore and Bi-directional interfaces should i 
+>> include any of those?
+
+
+Yes, you should define Moore interfaces.  Bidirectional are another thing, 
+and it's not what is implemented in Chai. 
+
+
+>> In the chapter i use Moore Interfaces (Adder and Counter) as example of 
+>> describing sychronous interfaces. Composition is explained using the 
+>> same example. What do you think about it? Should i explain composition 
+>> of input assumptions in more detail?
+
+
+Well, you can give the definition and the example.  You can also use the 
+class notes. 
+Great, yes, write at top speed, we are short of time...
+
+Luca
+
+
+
+>> regards,
+>> vaibhav
+>> 
+>> PS: I'm in process of adding more material from class-notes -seems most 
+>> of it is good-fit for this chapter but a little difficult to re-phrase 
+>> as its so perfect!

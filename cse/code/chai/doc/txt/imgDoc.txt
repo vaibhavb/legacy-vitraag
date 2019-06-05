@@ -1,0 +1,294 @@
+The img package
+
+Methods for performing image computations.
+
+Rajeev Ranjan, Tom Shiple, Abelardo Pardo
+
+**********************************************************************
+
+Img_End()                      End the image package.
+
+Img_ImageInfoComputeBwdWithDomainVars()
+                               Computes the backward image of a set expressed
+                               in terms of domain   variables.
+
+Img_ImageInfoComputeBwd()      Computes the backward image of a set.
+
+Img_ImageInfoComputeFwdWithDomainVars()
+                               Computes the forward image of a set and
+                               expresses it in terms of   domain variables.
+
+Img_ImageInfoComputeFwd()      Computes the forward image of a set.
+
+Img_ImageInfoFree()            Frees the memory associated with imageInfo.
+
+Img_ImageInfoInitializeMocha() Initializes the image info structure for use in
+                               Mocha
+
+Img_ImageInfoInitialize()      Initializes an imageInfo structure for the
+                               given method and   direction.
+
+Img_ImageInfoObtainMethodTypeAsString()
+                               Returns a string giving the method type of an
+                               imageInfo.
+
+Img_ImageInfoPrintMethodParams()
+                               Prints information about the image technique
+                               currently used.
+
+Img_ImageInfoReadMddManager()  Returns the mdd manager.
+
+Img_Init()                     Initialize the image package.
+
+Img_MultiwayLinearAndSmooth()  Returns the result after existentially
+                               quantifying a   set of variables after taking
+                               the product of the array of relations.
+
+Img_Reinit()                   Reinitializes the img package.
+
+**********************************************************************
+
+The image package is used to compute the image (forward or   backward) of a
+set under a vector of functions.  The functions are given by   a graph of
+multi-valued functions (MVFs). This graph is built using the   partition
+package. Each vertex in this graph has an MVF and an MDD id.  The   fanins of
+a vertex v give those vertices upon which the MVF at v depends.   The vector
+of functions to use for an image computation, the "roots", is   specified by
+an array of (names of) vertices of the graph.  The domain   variables are the
+variables over which "from" sets are defined for forward   images, and "to"
+sets are defined for backward images.  The range variables   are the
+variables over which "to" sets are defined for forward images, and   "from"
+sets are defined for backward images.  The quantify variables are
+additional variables over which the functions are defined; this set is
+disjoint from domain variables.  These variables are existentially
+quantified from the results of backward image computation. <p>      Computing
+images is fundamental to many symbolic analysis techniques, and   methods for
+computing images efficiently is an area of ongoing research.   For this
+reason, the image package has been designed with lots of   flexibility to
+easily allow new methods to be integrated (to add a new   method, see the
+instructions in imgInt.h).  Applications that use the image   package can
+switch among different image methods simply by specifying the   method type
+in the image initialization routine.  By using the returned   structure
+(Img_ImageInfo_t) from the initialization routine, all subsequent   (forward
+or backward) image computations will be done using the specified   method.<p>
+VIS users can control which image method is used by appropriately setting
+the "image_method" flag.  Also, VIS users can set flags to control
+parameters for different image computation methods.  Because the user has
+the ability to change the values of these flags, Img_ImageInfo_t structs
+should be freed and re-initialized whenever the VIS user changes the value
+of these flags.<p>      Following are descriptions of the methods
+implemented. In the descriptions,   x=x_1,...x_n is the set of domain
+variables, u=u_1,...,u_k is the set of   quantify variables, y=y_1,...,y_m is
+the set of range variables, and   f=f_1(x,u),...,f_m(x,u) is the set of
+functions under which we wish to   compute images.<p>      <b>Monolithic:</b>
+This is the most naive approach possible.  A single   relation T(x,y) is
+constructed during the initialization phase, using the   computation (exists
+u (prod_i(y_i = f_i(x,u)))). To compute the forward   image, where
+fromUpperBound=U(x), fromLowerBound=L(x), and toCareSet=C(y),   we first
+compute a set A(x) between U(x) and L(x).  Then, T(x,y) is   simplified with
+respect to A(x) and C(y) to get T*.  Finally, x is   quantified from T* to
+produce the final answer.  Backward images are   computed analogously.  The
+monolithic method does not recognize any   user-settable flags for image
+computation.<p>    <b>IWLS95:</b> This technique is based on the early
+quantification heuristic.   The initialization process consists of following
+steps:      <UL>   <LI> Create the relation of the roots at the bit level
+in terms of the quantify and domain variables.   <LI> Order the bit level
+relations.   <LI> Group the relations of bits together, making a cluster
+whenever the BDD size reaches a threshold.   <LI> For each cluster, quantify
+out the quantify variables which   are local to that particular cluster.
+<LI> Order the clusters using the algorithm given in   "Efficient BDD
+Algorithms for FSM Synthesis and   Verification", by R. K. Ranjan et. al. in
+the proceedings of   IWLS'95{1}.    <LI> The orders of the clusters for
+forward and backward image are   calculated and stored. Also stored is the
+schedule of   variables for early quantification.    </UL>   For forward and
+backward image computation the corresponding   routines are called with
+appropriate ordering of clusters and   early quantification schedule. <p>
+
+int
+Img_End(
+
+)
+  End the image package.
+
+
+mdd_t *
+Img_ImageInfoComputeBwdWithDomainVars(
+  Img_ImageInfo_t * imageInfo,
+  mdd_t *           fromLowerBound,
+  mdd_t *           fromUpperBound,
+  mdd_t *           toCareSet
+)
+  Computes the backward image of a set expressed in terms of domain variables.
+  FromLowerBound, fromUpperBound, and toCareSet are expressed in terms of
+  domain variables. See Img_ImageInfoComputeBwd for more information.
+
+
+mdd_t *
+Img_ImageInfoComputeBwd(
+  Img_ImageInfo_t * imageInfo,
+  mdd_t *           fromLowerBound,
+  mdd_t *           fromUpperBound,
+  mdd_t *           toCareSet
+)
+  Computes the backward image of a set, under the function vector in
+  imageInfo, using the image computation method specified in imageInfo. The
+  set for which the backward image is computed is some set containing
+  fromLowerBound and contained in fromUpperBound. The exact set used is chosen
+  to simplify the computation. ToCareSet specifies those backward image points
+  of interest; any points not in this set may or may not belong to the
+  returned set. The MDDs fromLowerBound and fromUpperBound are defined over
+  the range variables. The MDD toCareSet and the returned MDD are defined over
+  the domain variables. If fromLowerBound is zero, then zero will be returned.
+
+
+mdd_t *
+Img_ImageInfoComputeFwdWithDomainVars(
+  Img_ImageInfo_t * imageInfo,
+  mdd_t *           fromLowerBound,
+  mdd_t *           fromUpperBound,
+  mdd_t *           toCareSet
+)
+  Computes the forward image of a set and expresses it in terms of domain
+  variables. FromLowerBound, fromUpperBound, and toCareSet are expressed in
+  terms of domain variables. See Img_ImageInfoComputeFwd for more information.
+
+
+mdd_t *
+Img_ImageInfoComputeFwd(
+  Img_ImageInfo_t * imageInfo,
+  mdd_t *           fromLowerBound,
+  mdd_t *           fromUpperBound,
+  mdd_t *           toCareSet
+)
+  Computes the forward image of a set, under the function vector in imageInfo,
+  using the image computation method specified in imageInfo. The set for which
+  the forward image is computed is some set containing fromLowerBound and
+  contained in fromUpperBound. The exact set used is chosen to simplify the
+  computation. ToCareSet specifies those forward image points of interest; any
+  points not in this set may or may not belong to the returned set. The MDDs
+  fromLowerBound and fromUpperBound are defined over the domain variables. The
+  MDD toCareSet and the returned MDD are defined over the range variables. If
+  fromLowerBound is zero, then zero will be returned.
+
+
+void
+Img_ImageInfoFree(
+  Img_ImageInfo_t * imageInfo
+)
+  Frees the memory associated with imageInfo.
+
+
+Img_ImageInfo_t *
+Img_ImageInfoInitializeMocha(
+  mdd_manager *     mddManager,
+  array_t *         domainVars,
+  array_t *         rangeVars,
+  array_t *         quantifyVars,
+  unsigned int      methodType,
+  Img_DirectionType directionType,
+  void *            methodInfo
+)
+  The function initializes the image info data structure for use in Mocha.
+  Note that domainVars and rangeVars are arrays of mddIds of present state
+  variables and next state variables respectively.
+
+  Side Effects: None.
+
+Img_ImageInfo_t *
+Img_ImageInfoInitialize(
+  Img_ImageInfo_t * imageInfo,
+  mdd_manager *     mddManager,
+  array_t *         domainVars,
+  array_t *         rangeVars,
+  array_t *         quantifyVars,
+  Img_MethodType    methodType,
+  void *            methodInfo,
+  Img_DirectionType directionType
+)
+  Initializes an imageInfo structure. MethodType specifies which image
+  computation method to use. If methodType is Img_Default_c, then if the user-
+  settable flag "image_method" has been set, then this method is used,
+  otherwise some default is used. DirectionType specifies which types of image
+  computations will be performed (forward, backward, or both). Method-specific
+  initialization takes into account the value of relevant parameters in the
+  global flag table.<p> MddNetwork is a graph representing the functions to be
+  used. Each vertex of the graph contains a multi-valued function (MVF) and an
+  MDD id. The MVF gives the function of the vertex in terms of the MDD ids of
+  the immediate fanins of the vertex.<p> Roots is an array of char* specifying
+  the vertices of the graph which represent those functions for which we want
+  to compute the image (it must not be empty); for example, for an FSM, roots
+  represent the next state functions. DomainVars is an array of mddIds; for an
+  FSM, these are the present state variables. Subsets of the domain are
+  defined over these variables. RangeVars is an array of mddIds over which the
+  range is expressed; for an FSM, these are the next state variables. This
+  array must be in one-to-one correspondence with the array of roots.
+  QuantifyVars is an array of mddIds, representing variables to be quantified
+  from results of backward images; for an FSM, these are the input variables.
+  This array may be empty. No copies are made of any of the input parameters,
+  and thus it is the application's responsibility to free this data *after*
+  the returned Img_ImageInfo_t is freed.
+
+
+char *
+Img_ImageInfoObtainMethodTypeAsString(
+  Img_ImageInfo_t * imageInfo
+)
+  Returns a string giving the method type of an imageInfo. It is the user's
+  responsibility to free this string.
+
+
+void
+Img_ImageInfoPrintMethodParams(
+  Img_ImageInfo_t * imageInfo,
+  FILE *            fp
+)
+  Prints information about the image technique currently used.
+
+  Side Effects: None.
+
+mdd_manager *
+Img_ImageInfoReadMddManager(
+  Img_ImageInfo_t * imageInfo
+)
+  Returns the mdd manager.
+
+  Side Effects: None.
+
+int
+Img_Init(
+  Tcl_Interp *      interp,
+  Main_Manager_t *  manager
+)
+  Initialize the image package.
+
+
+mdd_t*
+Img_MultiwayLinearAndSmooth(
+  mdd_manager *     mddManager,
+  array_t *         relationArray,
+  array_t *         smoothVarMddIdAr
+  array_t *         introducedVarMdd
+)
+  "relationArray" is an array of mdd's which need to be multiplied and the
+  variables in the "smoothVarMddIdArray" need to be quantified out from the
+  product. "introducedVarMddIdArray" is the array of mddIds of the variables
+  (other than the variables to be quantified out) in the support of the
+  relations. This array is used to compute the product order such that the
+  number of new variables introduced in the product is minimized. However
+  passing an empty array or an array of mddIds of partial support will not
+  result in any error (some optimality will be lost though). The computation
+  consists of 2 phases. In phase 1, an ordering of the relations and a
+  schedule of quantifying variables is found (based on IWLS95) heuristic. In
+  phase 2, the relations are multiplied in order and the quantifying variables
+  are quantified according to the schedule.
+
+  Side Effects: None
+
+int
+Img_Reinit(
+  Tcl_Interp *      interp,
+  Main_Manager_t *  manager
+)
+  Reinitializes the img package.
+
+

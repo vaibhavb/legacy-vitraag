@@ -1,0 +1,40 @@
+The ext system is a set of programs that generate documentation for
+the World-Wide Web from specially-formatted C programs and
+automatically place function prototypes in header files.  These are
+being used in a variety of large software projects and have been shown
+to simplify the programmer's task.
+
+It requires the public-domain scripting language perl be installed on your
+system.  The latest version of perl can be had from
+
+ftp://prep.ai.mit.edu/pub/gnu/
+
+Installation is simple.  In this directory, type
+
+./configure
+make
+make install
+
+By default, this will install extdoc, extproto, and extindex in
+/usr/local/bin, and manual pages for these in /usr/local/man/man1.  To
+install them elsewhere, e.g., in /usr/local/share/bin and
+/usr/local/share/man, run configure with the --prefix option:
+
+./configure --prefix=/usr/local/share
+
+For more detailed installation instructions, see the file INSTALL.
+
+Documentation on the ext system (in HTML) can be found in the doc/
+subdirectory, which is not installed by "make install."
+
+Templates for the structured comments can be found in the templates/
+directory.
+
+The emacs lisp file "ext.el," generated automatically, adds bindings
+to the C mode that adds templates for the structured comments the ext
+system requires.
+
+The ext homepage is http://www.eecs.berkeley.edu/~sedwards/ext
+
+-Stephen Edwards	<sedwards@eecs.berkeley.edu>
+			http://www.eecs.berkeley.edu/~sedwards

@@ -1,0 +1,572 @@
+ 1  &  atl_read  &   \\ 
+ \hline 
+ 2  &  atl_print  &   \\ 
+ \hline 
+ 3  &  _atl_convertToDag  &   \\ 
+ \hline 
+ 4  &  enum_init  &   ModuleComputeInitialSet \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:  enum_init [-h] <module_name>
+}\\ 
+ \hline 
+ 5  &  enum_post  &   StateComputePostSet \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:  enum_post [-h] <state_name>
+}\\ 
+ \hline 
+ 6  &  state_print  &   StatePrintVariableValues \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:  state_print [-h] <state_name>
+}\\ 
+ \hline 
+ 7  &  enum_search  &   ModulePerformEnumerativeSearch \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:  enum_search [-h] [-d] <module_name>
+}\\ 
+ \hline 
+ 8  &  enum_numVar  &   EnumNumVarCmd \\ 
+ \hline 
+ 9  &  enum_var  &   EnumVarCmd \\ 
+ \hline 
+ 10  &  enum_value  &   EnumValueCmd \\ 
+ \hline 
+ 11  &  inv_read  &   \\ 
+ \hline 
+ 12  &  inv_print  &   \\ 
+ \hline 
+ 13  &  inv_check  &   \\ 
+ \hline 
+ 14  &  reinit  &   MochaReinitialize \\ 
+ \hline 
+ 15  &  _mocha_end  &   MochaEnd \\ 
+ \hline 
+ 16  &  atl_check  &   \\ 
+ \hline 
+ 17  &  show_mdls  &   MdlShowModuleCmd \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:  show_mdls [haldg] [module]
+}\\ 
+ \hline 
+ 18  &  save  &   MdlSaveCmd \\ 
+ \hline 
+ 19  &  delete  &   MdlDeleteCmd \\ 
+ \hline 
+ 20  &  show_vars  &   MdlShowVariableCmd \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:  show_vars [-vHF|HD|EV|ALL] Module
+}\\ 
+ \hline 
+ 21  &  compose  &   MdlComposeCmd \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:  compose Module1 Module2
+}\\ 
+ \hline 
+ 22  &  hide  &   MdlHideCmd \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:  hide var1 var2 ...  Module
+}\\ 
+ \hline 
+ 23  &  ren  &   MdlRenameCmd \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:  ren from_var to_var Module
+}\\ 
+ \hline 
+ 24  &  let  &   MdlLetCmd \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:  let Module be Module1
+}\\ 
+ \hline 
+ 25  &  isEventVariable  &   MdlIsEventVariableCmd \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:  isEventVariable module variable
+}\\ 
+ \hline 
+ 26  &  isPrivateVariable  &   MdlIsPrivateVariableCmd \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:  isPrivateVariable module variable
+}\\ 
+ \hline 
+ 27  &  isInterfaceVariable  &   MdlIsInterfaceVariableCmd \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:  isInterfaceVariable module variable
+}\\ 
+ \hline 
+ 28  &  isExternalVariable  &   MdlIsExternalVariableCmd \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:  isExternalVariable module variable
+}\\ 
+ \hline 
+ 29  &  isHistoryFree  &   MdlIsHistoryFreeCmd \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:  isHistoryFree module variable
+}\\ 
+ \hline 
+ 30  &  isModuleUpdate  &   MdlIsModuleUpdateCmd \\ 
+ \hline 
+ 31  &  updateModule  &   MdlUpdateModuleCmd \\ 
+ \hline 
+ 32  &  show_atoms  &   MdlShowAtomsCmd \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:  show_atoms module
+}\\ 
+ \hline 
+ 33  &  show_components  &   _MdlShowComponents \\ 
+ \hline 
+ 34  &  traverse  &   MdlTraverseCmd \\ 
+ \hline 
+ 35  &  read_module  &   PrsReadModuleCmd \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:  read_module [-hp] <filename>
+}\\ 
+ \hline 
+ 36  &  read_intf  &   PrsReadIntfCmd \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:  read_intf [-hp] <filename>
+}\\ 
+ \hline 
+ 37  &  check_refine  &   RefCheckNohiddenRefinement \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:  check_refine [-h] [-o <filename>] [-v]  <implModule> <specModule>
+}\\ 
+ \hline 
+ 38  &  check_refine_atom  &    RefCheckCompositionalRefinementOneAtom \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:  check_refine_atom[-e]  [-f 0|1|2|<var_name_list>] [-h] [-i <var_name_list>] [-k]  [-o <ord_file_name> ][-r] [-v] <impl_module> <spec_module> <spec_var_name>
+}\\ 
+ \hline 
+ 39  &  check_simulation  &    RefCheckSimulation \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:  check_simulate  [-h] [-v] <implModule> <specModule>
+}\\ 
+ \hline 
+ 40  &  ref_test  &    TestFunction \\ 
+ \hline 
+ 41  &  rtm_trans  &   CommandBuildTrans \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:  rtm_trans [-v] [-h] <module>
+}\\ 
+ \hline 
+ 42  &  rtm_init  &   CommandComputeInitSet \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:  rtm_init [-v] [-h] <module>
+}\\ 
+ \hline 
+ 43  &  rtm_search  &   CommandComputeReachSet \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:  rtm_search [-v] [-i] [-h] <module>
+}\\ 
+ \hline 
+ 44  &  rtm_dynamic_var_ordering  &   CommandRtmDynamicVarOrdering \\ 
+ \hline 
+ 45  &  rtm_static_order  &   CommandReadOrder \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:  rtm_static_order [-h] [-f] <file> <module>
+}\\ 
+ \hline 
+ 46  &  sim_start  &   \\ 
+ \hline 
+ 47  &  sim_end  &   \\ 
+ \hline 
+ 48  &  sim_choice  &   \\ 
+ \hline 
+ 49  &  sim_select  &   \\ 
+ \hline 
+ 50  &  sim_mode  &   \\ 
+ \hline 
+ 51  &  sim_prev_state_print  &   \\ 
+ \hline 
+ 52  &  sim_info  &   \\ 
+ \hline 
+ 53  &  sl_fsm  &   SlFSMCmd \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:  sl_fsm [-h | -s <filename>] <module> ...
+}\\ 
+ \hline 
+ 54  &  sl_printbdd  &   SlPrintBddCmd \\ 
+ \hline 
+ 55  &  sl_printvar  &   SlPrintVarCmd \\ 
+ \hline 
+ 56  &  sl_printsupport  &   SlPrintSupportCmd \\ 
+ \hline 
+ 57  &  sl_pickminterm  &   SlPickMintermCmd \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:    sl_pickminterm <outbdd> <inbdd>
+}\\ 
+ \hline 
+ 58  &  sl_write_order  &   SlWriteOrderCmd \\ 
+ \hline 
+ 59  &  sl_free_bdd  &   SlFreeBddCmd \\ 
+ \hline 
+ 60  &  sl_dump_bdd  &   SlDumpBddCmd \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:  sl_dump_bdd [-ha] [-f <filename>] <bdd>
+}\\ 
+ \hline 
+ 61  &  sl_prime  &   SlPrimeCmd \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:    sl_prime <outBdd> <inBdd>
+}\\ 
+ \hline 
+ 62  &  sl_getCtrlVarIds  &   SlGetCtrlVarIdsCmd \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:    sl_getCtrlVarIds <outIdArray> <inFsm>
+}\\ 
+ \hline 
+ 63  &  sl_eQuantifyIds  &   SlEQuantifyIdsCmd \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:    sl_eQuantifyIds <outBdd> <inBdd> <inIdArray>
+}\\ 
+ \hline 
+ 64  &  sl_getMddSupport  &   SlGetMddSupportCmd \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:    sl_getMddSupport <outIdArray> <inBDD>
+}\\ 
+ \hline 
+ 65  &  sl_createIntArray  &   SlCreateIntArrayCmd \\ 
+ \hline 
+ 66  &  sl_addToArray  &   SlAddToArrayCmd \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:    sl_addToArray <inOuttIdArray> <integer>
+}\\ 
+ \hline 
+ 67  &  sl_getVarNamesFromIds  &   SlGetVarNamesFromIdsCmd \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:    sl_getVarNamesFromIdsCmd <outVarArray> <inIdArray>
+}\\ 
+ \hline 
+ 68  &  sl_printObj  &   SlPrintObjCmd \\ 
+ \hline 
+ 69  &  sl_pre_n  &   SlPreNCmd \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:    sl_pre_n <outBdd> <inFSM> <inBdd> <numSteps>
+}\\ 
+ \hline 
+ 70  &  sl_printAwaitDep  &   SlPrintAwaitDepCmd \\ 
+ \hline 
+ 71  &  sl_printTcAwaitDep  &   SlPrintTCAwaitDepCmd \\ 
+ \hline 
+ 72  &  sl_freeObj  &   SlFreeObjCmd \\ 
+ \hline 
+ 73  &  sl_makeStringArray  &   SlMakeStringArrayCmd \\ 
+ \hline 
+ 74  &  sl_isStateInBdd  &   SlIsStateInMddCmd \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:    sl_isStateInBDD <inbdd> <inIdArray> <inIntArray>
+}\\ 
+ \hline 
+ 75  &  sl_isVVStateInBdd  &   SlIsVVStateInMddCmd \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:    sl_isVVStateInBDD <inbdd> <varName>=<value> ... 
+}\\ 
+ \hline 
+ 76  &  sl_makeIntArray  &   SlMakeIntArrayCmd \\ 
+ \hline 
+ 77  &  sl_makeIdArray  &   SlMakeIdArrayCmd \\ 
+ \hline 
+ 78  &  sl_getIdFromVarName  &   SlGetIdFromVarNameCmd \\ 
+ \hline 
+ 79  &  sl_getVarNameFromId  &   SlGetVarNameFromIdCmd \\ 
+ \hline 
+ 80  &  sl_getPrimedIdFromVarName  &   SlGetPrimedIdFromVarNameCmd \\ 
+ \hline 
+ 81  &  sl_getPrimedIdFromId  &   SlGetPrimedIdFromIdCmd \\ 
+ \hline 
+ 82  &  sl_getUnprimedIdFromId  &   SlGetPrimedIdFromIdCmd \\ 
+ \hline 
+ 83  &  sl_primeIdArray  &   SlPrimeIdArrayCmd \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:    sl_primeIdArray <outIdArray> <inIdArray>
+}\\ 
+ \hline 
+ 84  &  sl_unprimeIdArray  &   SlUnprimeIdArrayCmd \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:    sl_unprimeIdArray <outIdArray> <inIdArray>
+}\\ 
+ \hline 
+ 85  &  sl_toTcl  &   SlToTclCmd \\ 
+ \hline 
+ 86  &  sl_getPartitionedTr  &   SlGetPartitionedTRCmd \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:    sl_getPartitionedTr <outBdd> <inFsm>
+}\\ 
+ \hline 
+ 87  &  sl_bdd  &   SlBDDCmd \\ 
+ \hline 
+ 88  &  sl_printawaitvar  &   SlPrintAwaitVarCmd \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:    sl_printawaitvar <fsm> <var>
+}\\ 
+ \hline 
+ 89  &  sl_make_intf  &   SlMakeIntfCmd \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:    sl_make_intf <outIntf> <IFsm> <OFsm>
+}\\ 
+ \hline 
+ 90  &  sl_make_intf_out  &   SlMakeIntfOutCmd \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:    sl_make_intf_out <outIntf> <OFsm>
+}\\ 
+ \hline 
+ 91  &  sl_print_levels  &   SlPrintLevelsCmd \\ 
+ \hline 
+ 92  &  sl_compose_intf  &   SlComposeIntfCmd \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:    sl_compose_intf <outIntf> <Intf1> <Intf2>
+}\\ 
+ \hline 
+ 93  &  sl_check_intf_ref  &   SlCheckIntfRefCmd \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:    sl_check_intf_ref <Intf1> <Intf2> <s|v>
+}\\ 
+ \hline 
+ 94  &  sl_print_intf  &   SlPrintIntfCmd \\ 
+ \hline 
+ 95  &  sl_strengthen_intf_inv  &   SlStrengthenIntfCmd \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:    sl_strengthen_intf_inv <outIntf> <phi> <Intf> <s|v>
+}\\ 
+ \hline 
+ 96  &  sl_print_intf_support  &   SlPrintIntfSupportCmd \\ 
+ \hline 
+ 97  &  sl_copy  &   SlCopyCmd \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:    sl_copy <outObj> <inObj>
+}\\ 
+ \hline 
+ 98  &  sl_checkimpl  &   SlCheckImplCmd \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:    sl_checkimpl <Bdd1> <Bdd2> (checks Bdd1 -> Bdd2)
+}\\ 
+ \hline 
+ 99  &  sl_compose  &   SlComposeCmd \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:    sl_compose <outFsm> <inFsm1> <inFsm2>
+}\\ 
+ \hline 
+ 100  &  sl_wcontr  &   SlWcontrCmd \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:    sl_wcontr <outBDD> <specBDD> <FSM> <s|v>
+}\\ 
+ \hline 
+ 101  &  sl_modwcontr  &   SlModWcontrCmd \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:    sl_modwcontr <outBDD> <specBDD> <FSMcontrolled> <FSMcontroller> <s|v>
+}\\ 
+ \hline 
+ 102  &  sl_lcontr  &   SlLcontrCmd \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:    sl_lcontr <outBDD> <specBDD> <FSM> <s|v>
+}\\ 
+ \hline 
+ 103  &  sl_lcontr_n  &   SlLcontrNCmd \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:    sl_lcontr_n <outBDD> <specBDD> <FSM> <n_iterations> <s|v>
+}\\ 
+ \hline 
+ 104  &  sl_reach  &   SlReachCmd \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:    sl_reach <outBDD> <FSM> <s|v>
+}\\ 
+ \hline 
+ 105  &  sl_reach_histonly  &   SlReachHistoryCmd \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:    sl_reach_histonly <outBDD> <FSM> <s|v>
+}\\ 
+ \hline 
+ 106  &  sl_checkinv  &   SlCheckInvCmd \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:    sl_checkinv <FSM> <BDD> <s|v>
+}\\ 
+ \hline 
+ 107  &  sl_checktrinv  &   SlCheckTrInvCmd \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:    sl_checktrinv <FSM> <BDD> <s|v>
+}\\ 
+ \hline 
+ 108  &  sl_initrand  &   SlInitRandCmd \\ 
+ \hline 
+ 109  &  sl_checkrandinv  &   SlCheckRandInvCmd \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:  sl_checkrandinv <FSM> <BDD> <max_iter> <max_size> 
+}\\ 
+ \hline 
+ 110  &  sl_checksim  &   SlCheckSimCmd \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:    sl_checksim <FSM1> <FSM2> <s|v>
+}\\ 
+ \hline 
+ 111  &  sl_trinv  &   SlTrInvCmd \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:    sl_trinv <outBDD> <FSM> <s|v>
+}\\ 
+ \hline 
+ 112  &  sl_contrreachspec  &   SlContrReachSpecCmd \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:    sl_contrreachspec <outBDD> <inFSM> <inCtrlBDD> <inSpecBDD> <s|v>
+}\\ 
+ \hline 
+ 113  &  sl_contrreachfsm  &   SlContrReachFsmCmd \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:    sl_contrreachfsm <outBDD> <inFSM> <inCtrlBDD> <inSpecFSM> <s|v>
+}\\ 
+ \hline 
+ 114  &  sl_erase  &   SlEraseCmd \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:    sl_erase <outFSM> <inFSM> <var>...
+}\\ 
+ \hline 
+ 115  &  sl_and  &   SlAndCmd \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:    sl_and <outBdd> <inBdd1> <inBdd2>
+}\\ 
+ \hline 
+ 116  &  sl_or  &   SlOrCmd \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:    sl_or <outBdd> <inBdd1> <inBdd2>
+}\\ 
+ \hline 
+ 117  &  sl_not  &   SlNotCmd \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:    sl_not <outBdd> <inBdd>
+}\\ 
+ \hline 
+ 118  &  sl_true  &   SlTrueCmd \\ 
+ \hline 
+ 119  &  sl_restrict  &   SlRestrictCmd \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:    sl_restrict <outFsm> <inBdd> <inFsm>
+}\\ 
+ \hline 
+ 120  &  sl_getinit  &   SlGetInitCmd \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:    sl_getinit <outBdd> <inFsm>
+}\\ 
+ \hline 
+ 121  &  sl_gettr  &   SlGetTRCmd \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:    sl_gettr <outBdd> <inFsm>
+}\\ 
+ \hline 
+ 122  &  sl_bddsize  &   SlBddSizeCmd \\ 
+ \hline 
+ 123  &  sl_predsize  &   SlPredSizeCmd \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:    sl_predsize <inFsm> <inBdd>
+}\\ 
+ \hline 
+ 124  &  sl_maketrinv  &   SlMakeTrInvCmd \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:    sl_maketrinv <outBdd> <inBdd>
+}\\ 
+ \hline 
+ 125  &  sl_getfsmvars  &   SlGetFsmVarsCmd \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:    sl_getfsmvars <FSM> <'erased'/'controlled'/'external'>
+}\\ 
+ \hline 
+ 126  &  sl_makevarlist  &   SlMakeVarListCmd \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:    sl_makevarlist <varlist> <var1> <var2> ...
+}\\ 
+ \hline 
+ 127  &  sl_conjoin_and_copy  &   SlConjoinAndCopyCmd \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:    sl_conjoin_and_copy <outBdd> <inBdd1> <inBdd2>
+}\\ 
+ \hline 
+ 128  &  sl_ran_invchk  &   SlRandomcubeInvChkCmd \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:    sl_ran_invchk <FSM> <max_iterations> <seed> <s|v> <BDD1> <BDD2>...
+}\\ 
+ \hline 
+ 129  &  sl_inv_buildMdd  &   SlInvBuildMdd \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:    sl_inv_buildMdd <module_name> [<inv_name> <inv_name>... ] <s|v>
+}\\ 
+ \hline 
+ 130  &  sl_tau_plus_and_tau_minus  &    \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:    sl_tau_plus_and_tau_minus <outPlusMdd> <outMinusMdd> <FSM> <one|all> <abstract|notabstract> <s|v> <list of controlled vars of the module to be abstracted , or list of vars to be not abstracted, depending on the <abstract|notabstract> parameter >...
+}\\ 
+ \hline 
+ 131  &  sl_mdd_substitute  &   SlMddSubstitute \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:    sl_mdd_substitute <MDD_in> <MDD_out> <var_num> <old_vars...> <new_vars...>
+}\\ 
+ \hline 
+ 132  &  sl_better_upre_comb  &   SlBetterUPreComb \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:    sl_better_upre_comb <outBDD> <specBDD> <FSM1> <FSM2> <maxTauSize> <mealy|moore> <abstract|notabstract> <time in seconds> <s|v>  <var>... 
+}\\ 
+ \hline 
+ 133  &  sl_better_upre  &   SlBetterUPre \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:    sl_better_upre <outBDD> <specBDD> <FSM1> <FSM2> <tauPlusMdd> <tauMinusMdd> <mealy|moore> <abstract|notabstract> <s|v>  <var>... 
+}\\ 
+ \hline 
+ 134  &  sl_mdd_equal  &   SlMddEqual \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:    sl_mdd_equal <BDD> <BDD> 
+}\\ 
+ \hline 
+ 135  &  sl_atom_simulate  &   SlAtomSimulateCmd \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:    sl_atom_simulate <FSM>  <seed> <max_iterations> <s|v> <BDD1> <BDD2>...
+}\\ 
+ \hline 
+ 136  &  sl_tbl_lookup_sim  &   SlTblLookupSimCmd \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:    sl_tbl_lookup_sim <FSM>  <seed> <max_iterations> <s|v> <BDD1> <BDD2>...
+}\\ 
+ \hline 
+ 137  &  sl_checkinv_abs  &   SlCheckInvAbsCmd \\ 
+ \hline 
+ 138  &  sl_counter_eg_refine  &   SlCounterEgRefineCmd \\ 
+ \hline 
+ 139  &  sym_trans  &   CommandBuildTrans \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:  sym_trans [-v] [-h] <module>
+}\\ 
+ \hline 
+ 140  &  sym_init  &   CommandComputeInitSet \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:  sym_init [-v] [-h] <module>
+}\\ 
+ \hline 
+ 141  &  sym_search  &   CommandComputeReachSet \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:  sym_search [-v] [-h] <module>
+}\\ 
+ \hline 
+ 142  &  sym_post  &   CommandComputePostSet \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:  sym_post [-v] [-h] <region>
+}\\ 
+ \hline 
+ 143  &  sym_union  &   CommandComputeUnion \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:  sym_union <region1> <region2>
+}\\ 
+ \hline 
+ 144  &  sym_print  &   CommandPrintRegion \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:  sym_print [-h] <region>
+}\\ 
+ \hline 
+ 145  &  sym_dynamic_var_ordering  &   CommandDynamicVarOrdering \\ 
+ \hline 
+ 146  &  sym_write_order  &   CommandWriteOrder \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:  sym_write_order [-h] [-f] <file> <module>
+}\\ 
+ \hline 
+ 147  &  sym_static_order  &   CommandReadOrder \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:  sym_static_order [-h] [-f] <file> <module>
+}\\ 
+ \hline 
+ 148  &  show_types  &   VarShowTypesCmd \\ 
+ \hline 
+ \multicolumn{3}{|l|} {Usage:  show_type [-lg] <module>
+}\\ 
+ \hline 

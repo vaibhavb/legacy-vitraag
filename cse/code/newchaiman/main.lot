@@ -1,0 +1,4 @@
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {2.1}{\ignorespaces Recipe for variable assignment in translating a Mealy FSM module to \unhbox \voidb@x \hbox {\sc ReactiveModules}}}{8}
+\contentsline {table}{\numberline {2.2}{\ignorespaces Rule for connecting the latch-output of one module to the input of another module}}{9}

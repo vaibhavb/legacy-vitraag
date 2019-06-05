@@ -1,0 +1,32 @@
+
+  help - Give help for the commands
+     _________________________________________________________________
+   
+   help [-rh] [<pattern>]
+   
+   This command gives help on the commands.
+   
+   Command options:
+   
+   -r
+          Force reloading of the command help files before printing the
+          help. Command help files are stored in the documentation area
+          provided in the distribution. At times, the documentation may
+          change. This command forces the reloading of the help files to
+          reflect the changes. Only under rare circumstances, such as
+          user define new tcl commands using docproc, do this option
+          needed.
+          
+   -h
+          Print usage.
+          
+   <pattern>
+          If a pattern is given, only commands which match this pattern
+          are listed. If the pattern given is the exact name of a
+          command, a long display giving the complete help on the command
+          will be printed. For example, if * given, all commands are
+          listed. If sym* is given, all commands prefixed with "sym" will
+          be listed. If no pattern is given, the default pattern is *.
+     _________________________________________________________________
+   
+   Last updated on 980624 22h10

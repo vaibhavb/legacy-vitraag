@@ -1,0 +1,309 @@
+<HTML>
+<HEAD><TITLE>The var package: files</TITLE></HEAD>
+<BODY>
+
+<DL>
+ <DT> <A HREF="#var.h"><CODE>var.h</CODE></A>
+ <DD> External header file
+ <DT> <A HREF="#varInt.h"><CODE>varInt.h</CODE></A>
+ <DD> Internal header file
+ <DT> <A HREF="#var.c"><CODE>var.c</CODE></A>
+ <DD> Routines for manipulating variables and types.
+ <DT> <A HREF="#varMain.c"><CODE>varMain.c</CODE></A>
+ <DD> Routines for the var package to interface with the main package.
+</DL><HR>
+<A NAME="var.h"><H1>var.h</H1></A>
+External header file <P>
+<B>By: Freddy Mang, Shaz Qadeer, Sriram Rajamani</B><P>
+<P><B>See Also</B><A HREF="#optional"><CODE>optional</CODE></A>
+<DL>
+ <DT> <A HREF="varAllDet.html#" TARGET="MAIN"><CODE>()</CODE></A>
+ <DD> Iterates over the symbolic values of an enumerated type
+                variable.
+
+ <DT> <A HREF="varAllDet.html#" TARGET="MAIN"><CODE>()</CODE></A>
+ <DD> Iterates over the symbolic values of an enumerated data type.
+
+ <DT> <A HREF="varAllDet.html#" TARGET="MAIN"><CODE>()</CODE></A>
+ <DD> required
+
+</DL>
+<HR>
+<A NAME="varInt.h"><H1>varInt.h</H1></A>
+Internal header file <P>
+<B>By: Freddy Mang, Shaz Qadeer, Sriram Rajamani</B><P>
+<P><B>See Also</B><A HREF="#optional"><CODE>optional</CODE></A>
+<DL>
+</DL>
+<HR>
+<A NAME="var.c"><H1>var.c</H1></A>
+Routines for manipulating variables and types. <P>
+<B>By: Freddy Mang, Shaz Qadeer, Sriram Rajamani</B><P>
+This file contains routines for manipulating variables and
+  types. <P>
+<P><B>See Also</B><A HREF="#var.h"><CODE>var.h</CODE></A>
+<A HREF="#varInt.h"><CODE>varInt.h</CODE></A>
+<A HREF="#varMain.c"><CODE>varMain.c</CODE></A>
+<DL>
+ <DT> <A HREF="varAllDet.html#Var_TypeManagerReadVarTypeTable" TARGET="MAIN"><CODE>Var_TypeManagerReadVarTypeTable()</CODE></A>
+ <DD> Returns the type table from the type manager
+
+ <DT> <A HREF="varAllDet.html#Var_TypeIsCompatibleWithNumConst" TARGET="MAIN"><CODE>Var_TypeIsCompatibleWithNumConst()</CODE></A>
+ <DD> Check if the type is compatible with number constants.
+
+ <DT> <A HREF="varAllDet.html#Var_VarTypeBasicAlloc" TARGET="MAIN"><CODE>Var_VarTypeBasicAlloc()</CODE></A>
+ <DD> Allocates a new variable type.
+
+ <DT> <A HREF="varAllDet.html#Var_VarNewTimerTypeAlloc" TARGET="MAIN"><CODE>Var_VarNewTimerTypeAlloc()</CODE></A>
+ <DD> Allocates a new variable type for a timer variable.
+
+ <DT> <A HREF="varAllDet.html#Var_VarTimeIncrementTypeAlloc" TARGET="MAIN"><CODE>Var_VarTimeIncrementTypeAlloc()</CODE></A>
+ <DD> Allocates a variable type for the time increment variable.
+
+ <DT> <A HREF="varAllDet.html#Var_VarTypeArrayAlloc" TARGET="MAIN"><CODE>Var_VarTypeArrayAlloc()</CODE></A>
+ <DD> Allocates an array type.
+
+ <DT> <A HREF="varAllDet.html#Var_VarTypeBitvectorAlloc" TARGET="MAIN"><CODE>Var_VarTypeBitvectorAlloc()</CODE></A>
+ <DD> Allocates a bitvector type.
+
+ <DT> <A HREF="varAllDet.html#Var_VarTypeBitvectorNAlloc" TARGET="MAIN"><CODE>Var_VarTypeBitvectorNAlloc()</CODE></A>
+ <DD> Allocates a bitvectorN type.
+
+ <DT> <A HREF="varAllDet.html#Var_VarTypeEnumeratedAlloc" TARGET="MAIN"><CODE>Var_VarTypeEnumeratedAlloc()</CODE></A>
+ <DD> Allocates an enumerated type.
+
+ <DT> <A HREF="varAllDet.html#Var_VarTypeRangeAlloc" TARGET="MAIN"><CODE>Var_VarTypeRangeAlloc()</CODE></A>
+ <DD> Allocates a range type.
+
+ <DT> <A HREF="varAllDet.html#Var_VarTypeDup" TARGET="MAIN"><CODE>Var_VarTypeDup()</CODE></A>
+ <DD> Makes a copy of a variable type.
+
+ <DT> <A HREF="varAllDet.html#Var_VarTypeFree" TARGET="MAIN"><CODE>Var_VarTypeFree()</CODE></A>
+ <DD> Frees a variable type
+
+ <DT> <A HREF="varAllDet.html#Var_VariableAlloc" TARGET="MAIN"><CODE>Var_VariableAlloc()</CODE></A>
+ <DD> Allocates a new variable.
+
+ <DT> <A HREF="varAllDet.html#Var_VariableFree" TARGET="MAIN"><CODE>Var_VariableFree()</CODE></A>
+ <DD> Frees a variable.
+
+ <DT> <A HREF="varAllDet.html#Var_VariableReadName" TARGET="MAIN"><CODE>Var_VariableReadName()</CODE></A>
+ <DD> Returns the name of a variable.
+
+ <DT> <A HREF="varAllDet.html#Var_VarTypeReadIndexType" TARGET="MAIN"><CODE>Var_VarTypeReadIndexType()</CODE></A>
+ <DD> Returns the index type of an array data type.
+
+ <DT> <A HREF="varAllDet.html#Var_VarTypeReadEntryType" TARGET="MAIN"><CODE>Var_VarTypeReadEntryType()</CODE></A>
+ <DD> Returns the entry type of an array data type.
+
+ <DT> <A HREF="varAllDet.html#Var_VarTypeReadSymbolicValueFromIndex" TARGET="MAIN"><CODE>Var_VarTypeReadSymbolicValueFromIndex()</CODE></A>
+ <DD> Returns the name of the symbolic constant associated with an
+               integer index for an enumerated data type.
+
+ <DT> <A HREF="varAllDet.html#Var_VarTypeReadIndexFromSymbolicValue" TARGET="MAIN"><CODE>Var_VarTypeReadIndexFromSymbolicValue()</CODE></A>
+ <DD> Returns the integer index associated with a symbolic constant
+               for an enumerated data type.
+
+ <DT> <A HREF="varAllDet.html#Var_VariableReadModule" TARGET="MAIN"><CODE>Var_VariableReadModule()</CODE></A>
+ <DD> Returns the module to which a variable belongs.
+
+ <DT> <A HREF="varAllDet.html#Var_VariableReadType" TARGET="MAIN"><CODE>Var_VariableReadType()</CODE></A>
+ <DD> Returns a pointer to the type of a variable.
+
+ <DT> <A HREF="varAllDet.html#Var_VariableReadTypeName" TARGET="MAIN"><CODE>Var_VariableReadTypeName()</CODE></A>
+ <DD> Returns a string containing the type name of a variable.
+
+ <DT> <A HREF="varAllDet.html#Var_VariableReadPEID" TARGET="MAIN"><CODE>Var_VariableReadPEID()</CODE></A>
+ <DD> returns an integer indicating the class of the variable.
+
+ <DT> <A HREF="varAllDet.html#Var_VariableSetPEID" TARGET="MAIN"><CODE>Var_VariableSetPEID()</CODE></A>
+ <DD> set the class type of the variable.
+
+ <DT> <A HREF="varAllDet.html#Var_VariableSetControlAtom" TARGET="MAIN"><CODE>Var_VariableSetControlAtom()</CODE></A>
+ <DD> Set a pointer to the atom which controls this atom.
+
+ <DT> <A HREF="varAllDet.html#Var_VariableTypeReadNumVals" TARGET="MAIN"><CODE>Var_VariableTypeReadNumVals()</CODE></A>
+ <DD> Returns the number of values a variable of this type can take
+
+ <DT> <A HREF="varAllDet.html#Var_VariableTypeSetNumVals" TARGET="MAIN"><CODE>Var_VariableTypeSetNumVals()</CODE></A>
+ <DD> Modifies the number of values a variable of this type can take
+
+ <DT> <A HREF="varAllDet.html#Var_VariableReadReadList" TARGET="MAIN"><CODE>Var_VariableReadReadList()</CODE></A>
+ <DD> Return a pointer to the list of atoms reading this var.
+
+ <DT> <A HREF="varAllDet.html#Var_VariableReadAwaitList" TARGET="MAIN"><CODE>Var_VariableReadAwaitList()</CODE></A>
+ <DD> Return a pointer to the list of atoms awaiting this var.
+
+ <DT> <A HREF="varAllDet.html#Var_VariableAddToReadByAtomList" TARGET="MAIN"><CODE>Var_VariableAddToReadByAtomList()</CODE></A>
+ <DD> Add an atom to the readByAtomList.
+
+ <DT> <A HREF="varAllDet.html#Var_VariableReadControlAtom" TARGET="MAIN"><CODE>Var_VariableReadControlAtom()</CODE></A>
+ <DD> Return a pointer to the atom controlling this var.
+
+ <DT> <A HREF="varAllDet.html#Var_VariableAddToAwaitByAtomList" TARGET="MAIN"><CODE>Var_VariableAddToAwaitByAtomList()</CODE></A>
+ <DD> Add an atom to the awaitByAtomList.
+
+ <DT> <A HREF="varAllDet.html#Var_VariableChangeName" TARGET="MAIN"><CODE>Var_VariableChangeName()</CODE></A>
+ <DD> Changes the name of a variable.
+
+ <DT> <A HREF="varAllDet.html#Var_VariableIsBoolean" TARGET="MAIN"><CODE>Var_VariableIsBoolean()</CODE></A>
+ <DD> Checks if the variable is a boolean variable.
+
+ <DT> <A HREF="varAllDet.html#Var_TypeManagerInit" TARGET="MAIN"><CODE>Var_TypeManagerInit()</CODE></A>
+ <DD> Init the type manager
+
+ <DT> <A HREF="varAllDet.html#Var_TypeManagerFree" TARGET="MAIN"><CODE>Var_TypeManagerFree()</CODE></A>
+ <DD> Free the type mananager
+
+ <DT> <A HREF="varAllDet.html#Var_TypeManagerAddType" TARGET="MAIN"><CODE>Var_TypeManagerAddType()</CODE></A>
+ <DD> Add a variable type into the type manager.
+
+ <DT> <A HREF="varAllDet.html#Var_VarTypeReadName" TARGET="MAIN"><CODE>Var_VarTypeReadName()</CODE></A>
+ <DD> Return the name of the variable type.
+
+ <DT> <A HREF="varAllDet.html#Var_VarTypeReadDomainSize" TARGET="MAIN"><CODE>Var_VarTypeReadDomainSize()</CODE></A>
+ <DD> Returns the size of the domain of the variable type.
+
+ <DT> <A HREF="varAllDet.html#Var_VarTypeArrayOrBitvectorReadSize" TARGET="MAIN"><CODE>Var_VarTypeArrayOrBitvectorReadSize()</CODE></A>
+ <DD> Returns the size of the domain of the variable type.
+
+ <DT> <A HREF="varAllDet.html#Var_EnumElementAlloc" TARGET="MAIN"><CODE>Var_EnumElementAlloc()</CODE></A>
+ <DD> Allocates a new symbolic constant for an enumerated data
+                      type.
+
+ <DT> <A HREF="varAllDet.html#Var_TypeManagerAddEnumElement" TARGET="MAIN"><CODE>Var_TypeManagerAddEnumElement()</CODE></A>
+ <DD> For enumerative type, add a new type element.
+
+ <DT> <A HREF="varAllDet.html#Var_EnumElementFree" TARGET="MAIN"><CODE>Var_EnumElementFree()</CODE></A>
+ <DD> Frees an eumerative type constant.
+
+ <DT> <A HREF="varAllDet.html#Var_TypeManagerReadEnumElementFromName" TARGET="MAIN"><CODE>Var_TypeManagerReadEnumElementFromName()</CODE></A>
+ <DD> Returns a pointer to the element given a name.
+
+ <DT> <A HREF="varAllDet.html#Var_EnumElementReadType" TARGET="MAIN"><CODE>Var_EnumElementReadType()</CODE></A>
+ <DD> Returns a pointer to the type of an given element.
+
+ <DT> <A HREF="varAllDet.html#Var_EnumElementReadName" TARGET="MAIN"><CODE>Var_EnumElementReadName()</CODE></A>
+ <DD> Returns the name of an element.
+
+ <DT> <A HREF="varAllDet.html#Var_TypeManagerReadTypeFromName" TARGET="MAIN"><CODE>Var_TypeManagerReadTypeFromName()</CODE></A>
+ <DD> Returns a pointer to the datatype struct given the name.
+
+ <DT> <A HREF="varAllDet.html#Var_TypeManagerObtainType" TARGET="MAIN"><CODE>Var_TypeManagerObtainType()</CODE></A>
+ <DD> Returns a pointer to the datatype struct.
+
+ <DT> <A HREF="varAllDet.html#Var_VarTypeReadDataType" TARGET="MAIN"><CODE>Var_VarTypeReadDataType()</CODE></A>
+ <DD> Returns the data type of a varable type.
+
+ <DT> <A HREF="varAllDet.html#Var_VariableReadDataType" TARGET="MAIN"><CODE>Var_VariableReadDataType()</CODE></A>
+ <DD> Returns the data type of a variable.
+
+ <DT> <A HREF="varAllDet.html#Var_VariableObtainEnumElementFromIndex" TARGET="MAIN"><CODE>Var_VariableObtainEnumElementFromIndex()</CODE></A>
+ <DD> Returns the enumerated element of a symbolic variable
+                      from its index.
+
+ <DT> <A HREF="varAllDet.html#Var_EnumElementObtainIndex" TARGET="MAIN"><CODE>Var_EnumElementObtainIndex()</CODE></A>
+ <DD> Returns the index of the enumerated element of a
+                      symbolic variable.
+
+ <DT> <A HREF="varAllDet.html#Var_VariableIsHistoryFree" TARGET="MAIN"><CODE>Var_VariableIsHistoryFree()</CODE></A>
+ <DD> Checks if the variable is history free.
+
+ <DT> <A HREF="varAllDet.html#Var_VariableIsHistoryDependent" TARGET="MAIN"><CODE>Var_VariableIsHistoryDependent()</CODE></A>
+ <DD> Checks if the variable is history dependent.
+
+ <DT> <A HREF="varAllDet.html#Var_VariableIsEvent" TARGET="MAIN"><CODE>Var_VariableIsEvent()</CODE></A>
+ <DD> Checks if a variable is an event variable.
+
+ <DT> <A HREF="varAllDet.html#Var_VariableIsDummy" TARGET="MAIN"><CODE>Var_VariableIsDummy()</CODE></A>
+ <DD> Checks if a variable is a dummy variable.
+
+ <DT> <A HREF="varAllDet.html#Var_VariableIsPrivate" TARGET="MAIN"><CODE>Var_VariableIsPrivate()</CODE></A>
+ <DD> Checks if a variable is a private variable.
+
+ <DT> <A HREF="varAllDet.html#Var_VariableIsInterface" TARGET="MAIN"><CODE>Var_VariableIsInterface()</CODE></A>
+ <DD> Checks if a variable is an interface variable.
+
+ <DT> <A HREF="varAllDet.html#Var_VariableIsExternal" TARGET="MAIN"><CODE>Var_VariableIsExternal()</CODE></A>
+ <DD> Checks if a variable is an external variable.
+
+ <DT> <A HREF="varAllDet.html#Var_VariableReadIndexToValue" TARGET="MAIN"><CODE>Var_VariableReadIndexToValue()</CODE></A>
+ <DD> Checks if a variable is an external variable.
+
+ <DT> <A HREF="varAllDet.html#Var_VarTypeReadIndexToValue" TARGET="MAIN"><CODE>Var_VarTypeReadIndexToValue()</CODE></A>
+ <DD> Checks if a variable is an external variable.
+
+ <DT> <A HREF="varAllDet.html#Var_TypesAreCompatible" TARGET="MAIN"><CODE>Var_TypesAreCompatible()</CODE></A>
+ <DD> Checks if two types are compatible.
+
+ <DT> <A HREF="varAllDet.html#Var_TypeIsEnum" TARGET="MAIN"><CODE>Var_TypeIsEnum()</CODE></A>
+ <DD> Checks if a type is an enum type
+
+ <DT> <A HREF="varAllDet.html#Var_TypeIsTimer" TARGET="MAIN"><CODE>Var_TypeIsTimer()</CODE></A>
+ <DD> Checks if a type is an timer type
+
+ <DT> <A HREF="varAllDet.html#Var_TypeIsEvent" TARGET="MAIN"><CODE>Var_TypeIsEvent()</CODE></A>
+ <DD> Checks if a type is an event type
+
+ <DT> <A HREF="varAllDet.html#Var_TypeIsRange" TARGET="MAIN"><CODE>Var_TypeIsRange()</CODE></A>
+ <DD> Checks if a type is an range type
+
+ <DT> <A HREF="varAllDet.html#Var_TypeIsArray" TARGET="MAIN"><CODE>Var_TypeIsArray()</CODE></A>
+ <DD> Checks if a type is an array type
+
+ <DT> <A HREF="varAllDet.html#Var_TypeIsBV" TARGET="MAIN"><CODE>Var_TypeIsBV()</CODE></A>
+ <DD> Checks if a type is a bitvector or a bitvector_n.
+
+ <DT> <A HREF="varAllDet.html#Var_TypeIsBitvector" TARGET="MAIN"><CODE>Var_TypeIsBitvector()</CODE></A>
+ <DD> Checks if a type is a bitvector or a bitvector_n.
+
+ <DT> <A HREF="varAllDet.html#Var_TypeIsBitvectorN" TARGET="MAIN"><CODE>Var_TypeIsBitvectorN()</CODE></A>
+ <DD> Checks if a type is a bitvector_n.
+
+ <DT> <A HREF="varAllDet.html#Var_TypeIsBoolean" TARGET="MAIN"><CODE>Var_TypeIsBoolean()</CODE></A>
+ <DD> Checks if a type is a boolean.
+
+ <DT> <A HREF="varAllDet.html#Var_TypeIsFinite" TARGET="MAIN"><CODE>Var_TypeIsFinite()</CODE></A>
+ <DD> Checks if a type is finite.
+
+ <DT> <A HREF="varAllDet.html#Var_RangeTypeReadFromRange" TARGET="MAIN"><CODE>Var_RangeTypeReadFromRange()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="varAllDet.html#Var_TypeConvertToString" TARGET="MAIN"><CODE>Var_TypeConvertToString()</CODE></A>
+ <DD> It converts a variable type to a string.
+
+ <DT> <A HREF="varAllDet.html#VarTypeCmp" TARGET="MAIN"><CODE>VarTypeCmp()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="varAllDet.html#VarTypeHash" TARGET="MAIN"><CODE>VarTypeHash()</CODE></A>
+ <DD> The hash function for the formula unique table.
+
+ <DT> <A HREF="varAllDet.html#VarObtainVarTypeHashValue" TARGET="MAIN"><CODE>VarObtainVarTypeHashValue()</CODE></A>
+ <DD> required
+
+</DL>
+<HR>
+<A NAME="varMain.c"><H1>varMain.c</H1></A>
+Routines for the var package to interface with the main package. <P>
+<B>By: Freddy Mang, Shaz Qadeer, Sriram Rajamani</B><P>
+This file contains all routines that are required to interact
+  with the Main package, including routine for initialization of package by
+  tcl/tk and those for registering new commands. <P>
+<P><B>See Also</B><A HREF="#atm"><CODE>atm</CODE></A>
+<DL>
+ <DT> <A HREF="varAllDet.html#Var_Init" TARGET="MAIN"><CODE>Var_Init()</CODE></A>
+ <DD> Initializes the var package.
+
+ <DT> <A HREF="varAllDet.html#Var_Reinit" TARGET="MAIN"><CODE>Var_Reinit()</CODE></A>
+ <DD> Reinitializes the var package.
+
+ <DT> <A HREF="varAllDet.html#Var_End" TARGET="MAIN"><CODE>Var_End()</CODE></A>
+ <DD> Ends the var package.
+
+ <DT> <A HREF="varAllDet.html#VarShowTypesCmd" TARGET="MAIN"><CODE>VarShowTypesCmd()</CODE></A>
+ <DD> Tcl command "show_types"
+
+</DL>
+<HR>
+Last updated on 1031104 18h39
+</BODY></HTML>

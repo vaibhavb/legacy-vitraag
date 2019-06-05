@@ -1,0 +1,834 @@
+The mdl package
+
+Building Modules and Performing Various Operations.
+
+Freddy Mang
+
+**********************************************************************
+
+Mdl_End()                      End the mdl package
+
+Mdl_ExprComposeAlloc()         Allocates an module expression with Compose
+                               type.
+
+Mdl_ExprDup()                  Duplicate a module expression tree.
+
+Mdl_ExprFree()                 Frees a module expression.
+
+Mdl_ExprHideAlloc()            Allocates an module expression with Hide type.
+
+Mdl_ExprModuleDefAlloc()       Allocates an module expression with ModuleDef
+                               type.
+
+Mdl_ExprModuleDupAlloc()       Allocates an module expression with ModuleDup
+                               type.
+
+Mdl_ExprReadLeftChild()        Read the left child of the module expression
+
+Mdl_ExprReadList1()            Read the list1 of the module expression
+
+Mdl_ExprReadList2()            Read the list2 of the module expression
+
+Mdl_ExprReadModuleExprType()   Read the moduleExprType of the module
+                               expression
+
+Mdl_ExprReadRightChild()       Read the right child of the module expression
+
+Mdl_ExprRenameAlloc()          Allocates an module expression with Rename
+                               type.
+
+Mdl_ExprReturnAtomArray()      required
+
+Mdl_ExprTreeReadComponents()   Reads the leaves of an expr tree.
+
+Mdl_Init()                     Init function for tcl.
+
+Mdl_InvariantAlloc()           Allocate an invariant structure.
+
+Mdl_InvariantFree()            Free an invariant structure.
+
+Mdl_InvariantReadExpression()  Return the expression of an invariant
+
+Mdl_InvariantReadName()        Return the name of an invariant
+
+Mdl_InvariantReadStatus()      Return the status of an invariant
+
+Mdl_InvariantSetExpression()   Set the invariant expression of an invariant
+                               struct.
+
+Mdl_InvariantSetStatus()       Set the status of the invariant.
+
+Mdl_ModuleAddAtom()            Add an atom to the module.
+
+Mdl_ModuleAddToManager()       Add a module to the module manager.
+
+Mdl_ModuleAddValueInfo()       Add information to the module.
+
+Mdl_ModuleAddVariable()        Add a variable to the module.
+
+Mdl_ModuleAlloc()              Allocate memory for a new module.
+
+Mdl_ModuleCreateFromAtoms()    required
+
+Mdl_ModuleDeleteVariable()     Delete a variable.
+
+Mdl_ModuleDup()                Creates a copy of module, with a given name.
+
+Mdl_ModuleExprEvaluate()       Creates a new module by module operations.
+
+Mdl_ModuleFree()               It frees a module.
+
+Mdl_ModuleGetExternalVariableList()
+                               Returns a list of external variables given a
+                               module.
+
+Mdl_ModuleGetInterfaceVariableList()
+                               Returns a list of interface variables given a
+                               module.
+
+Mdl_ModuleIsUpdate()           Checks if a module is update
+
+Mdl_ModuleManagerAlloc()       It creates a module manager.
+
+Mdl_ModuleManagerFree()        Free the module manager.
+
+Mdl_ModuleManagerObtainModuleList()
+                               Returns a list of  module names.
+
+Mdl_ModuleObtainAtomList()     Returns a list of atoms given a module.
+
+Mdl_ModuleObtainComponentAtomArray()
+                               required
+
+Mdl_ModuleObtainEventVariableList()
+                               returns a list of event variables.
+
+Mdl_ModuleObtainHistoryDependentVariableList()
+                               returns a list of history_dependent variables.
+
+Mdl_ModuleObtainHistoryFreeVariableList()
+                               Returns a list of history free variables.
+
+Mdl_ModuleObtainNewName()      Generates a new module name.
+
+Mdl_ModuleObtainSortedAtomList()
+                               Returns a list of topologically sorted atoms.
+
+Mdl_ModuleObtainVariableList() returns a list of all variables.
+
+Mdl_ModuleReadAtomFromName()   Returns a pointer to the atom specified by its
+                               name
+
+Mdl_ModuleReadAtomTable()      Returns a pointer to the atom table.
+
+Mdl_ModuleReadCreationTime()   Returns the creation time of the module.
+
+Mdl_ModuleReadFromName()       Returns a pointer to  a module.
+
+Mdl_ModuleReadModuleExpr()     Read the moduleExpr of a module
+
+Mdl_ModuleReadName()           Returns the name of a module.
+
+Mdl_ModuleReadStateInvTable()  Obtain the invariant table from a module.
+
+Mdl_ModuleReadTranInvTable()   Read the transition invariant table from a
+                               module.
+
+Mdl_ModuleReadVariableFromName()
+                               Return a pointer to the variable given a name
+                               and a module
+
+Mdl_ModuleReadVariableTable()  Returns a pointer to the variable table.
+
+Mdl_ModuleRemoveFromManager()  Remove a module of a given name from a manager.
+
+Mdl_ModuleSearchForComponent() required
+
+Mdl_ModuleSetModuleExprForTypeModuleDef()
+                               required
+
+Mdl_ModuleSetModuleExpr()      Set the moduleExpr of a module.
+
+Mdl_ModuleTestForAcyclicity()  Acyclicity Test.
+
+Mdl_ModuleUpdate()             Update a module, in case of its components have
+                               changed.
+
+Mdl_NamePrefixWithString()     Returns a name with a new prefix.
+
+Mdl_Reinit()                   Reinitializes the mdl package.
+
+Mdl_StateInvAddToModule()      Add an state invariant to the module.
+
+Mdl_TranInvAddToModule()       Add an transition invariant to the module.
+
+Mdl_VariableRename()           Change the name of a variable, and update the
+                               vartable.
+
+**********************************************************************
+
+This package contains structures and routines related to   modules. It serves
+two main purposes: 1. providing module structures for   storing atoms,
+variables and invariants; 2. providing routines for various   module level
+operations, such as parallel composition, variable hiding and   renaming.
+
+int
+Mdl_End(
+  Tcl_Interp *      interp,
+  Main_Manager_t *  manager
+)
+  The function frees all memory associated with the mdl package.
+
+  Side Effects: None
+
+Mdl_Expr_t *
+Mdl_ExprComposeAlloc(
+  Mdl_Expr_t *      module1,
+  Mdl_Expr_t *      module2
+)
+  This function allocates a module expression with the compose type. The two
+  composing modules are set as the left and right child of the module
+  expression.
+
+  Side Effects: validity of module1 and module2 are not checked. So the user
+  should make sure that they are not NULL.
+
+Mdl_Expr_t *
+Mdl_ExprDup(
+  Mdl_Expr_t *      mexpr
+)
+  optional
+
+  Side Effects: required
+
+void
+Mdl_ExprFree(
+  Mdl_Expr_t *      mexpr
+)
+  This function recursively frees a module expression.
+
+  Side Effects: required
+
+Mdl_Expr_t *
+Mdl_ExprHideAlloc(
+  Mdl_Expr_t *      module,
+  lsList            variableNameList
+)
+  This function allocates a module expression with the Hide type. The
+  variableList is set to be the auxilliary list2.
+
+  Side Effects: validity of module is not checked. The user should make sure
+  that they are not NULL.
+
+Mdl_Expr_t *
+Mdl_ExprModuleDefAlloc(
+
+)
+  This function allocates a module expression with the ModuleDef type.
+
+
+Mdl_Expr_t *
+Mdl_ExprModuleDupAlloc(
+  char *            name
+)
+  This function allocates a module expression with the ModuleDup type. The
+  name of the module will be set as the left child.
+
+  Side Effects: validity of module is not checked. The user should make sure
+  that it is not NULL.
+
+Mdl_Expr_t *
+Mdl_ExprReadLeftChild(
+  Mdl_Expr_t *      mexpr
+)
+  This function returns a pointer to the left child of the module expression.
+
+  Side Effects: It is an error to call this function with a NULL module
+  expression.
+
+lsList
+Mdl_ExprReadList1(
+  Mdl_Expr_t *      mexpr
+)
+  This function returns a pointer to the list1 of the module expression.
+
+  Side Effects: It is an error to call this function with a NULL module
+  expression.
+
+lsList
+Mdl_ExprReadList2(
+  Mdl_Expr_t *      mexpr
+)
+  This function returns a pointer to the list2 of the module expression.
+
+  Side Effects: It is an error to call this function with a NULL module
+  expression.
+
+Mdl_ExprType
+Mdl_ExprReadModuleExprType(
+  Mdl_Expr_t *      mexpr
+)
+  This function returns a pointer to the moduleExprType of the module
+  expression.
+
+  Side Effects: It is an error to call this function with a NULL module
+  expression.
+
+Mdl_Expr_t *
+Mdl_ExprReadRightChild(
+  Mdl_Expr_t *      mexpr
+)
+  This function returns a pointer to the right child of the module expression.
+
+  Side Effects: It is an error to call this function with a NULL module
+  expression.
+
+Mdl_Expr_t *
+Mdl_ExprRenameAlloc(
+  Mdl_Expr_t *      module,
+  lsList            oldVariableNameL
+  lsList            newVariableNameL
+)
+  This function allocates a module expression with the Rename type. The
+  oldVariableNameList is set to be the auxilliary list1, and the
+  newVariableNameList is set to be the auxilliary list2.
+
+  Side Effects: validity of module1 is not checked. The user should make sure
+  that they are not NULL.
+
+array_t*
+Mdl_ExprReturnAtomArray(
+  Mdl_Expr_t*       mexpr
+)
+  optional
+
+  Side Effects: required
+
+array_t *
+Mdl_ExprTreeReadComponents(
+  Mdl_Expr_t *      mexpr
+)
+  This function returns an array of pointers pointing to the leaves of the
+  given expr tree. The leaves must be of types either ExprModuleDup of
+  ExprModuleDef.
+
+  Side Effects: The arrays should be freed, but not its content.
+
+int
+Mdl_Init(
+  Tcl_Interp *      interp,
+  Main_Manager_t *  manager
+)
+  It creates all the new tcl commands defined in this package.
+
+  Side Effects: required
+
+Mdl_Invariant_t *
+Mdl_InvariantAlloc(
+  char *            name,
+  Mdl_Module_t *    module
+)
+  Allocate an invariant structure and return a pointer to it.
+
+  Side Effects: required
+
+void
+Mdl_InvariantFree(
+  Mdl_Invariant_t * invariant
+)
+  Free an invariant structure.
+
+  Side Effects: required
+
+Atm_Expr_t *
+Mdl_InvariantReadExpression(
+  Mdl_Invariant_t * invariant
+)
+  optional
+
+  Side Effects: required
+
+char *
+Mdl_InvariantReadName(
+  Mdl_Invariant_t * invariant
+)
+  The user should free the string after use.
+
+  Side Effects: required
+
+Mdl_InvStatus_t
+Mdl_InvariantReadStatus(
+  Mdl_Invariant_t * invariant
+)
+  optional
+
+  Side Effects: required
+
+void
+Mdl_InvariantSetExpression(
+  Mdl_Invariant_t * invariant,
+  Atm_Expr_t *      exptree
+)
+  Set the invariant expression of an invariant struct.
+
+  Side Effects: required
+
+void
+Mdl_InvariantSetStatus(
+  Mdl_Invariant_t * invariant,
+  Mdl_InvStatus_t   status
+)
+  Set the status of the invariant. Can set it to one of these three values:
+  Mdl_InvPassed_c, Mdl_InvFailed_c, Mdl_InvUnchecked_c.
+
+  Side Effects: required
+
+int
+Mdl_ModuleAddAtom(
+  Mdl_Module_t*     module,
+  char*             atmname,
+  Atm_Atom_t*       atm
+)
+  returns 1 if addition is successful, 0 if variable of the same name already
+  exists in the module.
+
+  Side Effects: required
+
+int
+Mdl_ModuleAddToManager(
+  Mdl_Module_t*     module,
+  Mdl_Manager_t*    mdlmanager
+)
+  When adding a module, the name of the module and its creation time are
+  hashed into the module dependency table. Also, it maintains a list of
+  pointers pointing to the its component modules. It feturns 1 if successful,
+  0 otherwise.
+
+  Side Effects: required
+
+int
+Mdl_ModuleAddValueInfo(
+  Mdl_Module_t*     module,
+  st_table*         atmTable,
+  st_table*         varTable
+)
+  optional
+
+  Side Effects: required
+
+int
+Mdl_ModuleAddVariable(
+  Mdl_Module_t*     module,
+  char*             varname,
+  Var_Variable_t*   var
+)
+  returns 1 if addition is successful, 0 if variable of the same name already
+  exists in the module.
+
+  Side Effects: required
+
+Mdl_Module_t*
+Mdl_ModuleAlloc(
+  char*             name
+)
+  optional
+
+  Side Effects: required
+
+Mdl_Module_t *
+Mdl_ModuleCreateFromAtoms(
+  lsList            atomList,
+  lsList            privateVarNameLi
+)
+  optional
+
+  Side Effects: required
+
+int
+Mdl_ModuleDeleteVariable(
+  Mdl_Module_t*     module,
+  char*             varname
+)
+  Delete a variable from the module. This routine only deletes the entry of
+  the variable from the varTable of the module. It is the user's
+  responsibility to free the memory allocated to the variable. The routine
+  returns 0 if the variable is not found in the module, 1 if deletion is
+  successful.
+
+  Side Effects: required
+
+Mdl_Module_t*
+Mdl_ModuleDup(
+  char*             name,
+  Mdl_Module_t*     module,
+  st_table **       atomMappingTable
+  st_table **       variableMappingT mapping between original vars to new vars
+)
+  This function creates a copy of the module, with a given name. It also
+  creates a new copy of the module table and atom table, with atom names
+  prefixed with the new module name, and the private variables prefixed with
+  the new module name too. The function returns a pointer to the new module.
+
+  Side Effects: required
+
+Mdl_Module_t*
+Mdl_ModuleExprEvaluate(
+  char *            name,
+  Mdl_Expr_t *      mexpr,
+  Mdl_Manager_t *   moduleManager
+)
+  This function evaluates a module expression and the result module will have
+  the given name.
+
+  Side Effects: During MdlExprEvaluate, list1 of the leaves of mexpr will
+  become the list of pointers pointer to the atoms.
+
+void
+Mdl_ModuleFree(
+  Mdl_Module_t*     module
+)
+  It is the user's responsibility to free the atoms and variables in the
+  vartable and atomtable first, before freeing the module.
+
+  Side Effects: required
+
+lsList
+Mdl_ModuleGetExternalVariableList(
+  Mdl_Module_t*     module
+)
+  User should free the list with the function: (void) lsDestroy(list, (void
+  (*) ()) NULL); so as NOT to free the variables themselves.
+
+  Side Effects: required
+
+lsList
+Mdl_ModuleGetInterfaceVariableList(
+  Mdl_Module_t*     module
+)
+  User should free the list with the function: (void) lsDestroy(list, (void
+  (*) ()) NULL); so as NOT to free the variables themselves.
+
+  Side Effects: required
+
+boolean
+Mdl_ModuleIsUpdate(
+  Mdl_Module_t *    module,
+  Mdl_Manager_t *   manager
+)
+  This function takes in a module and the module manager, and check if all the
+  components of the module are created before this module. It returns TRUE if
+  this is the case, else FALSE.
+
+  Side Effects: required
+
+Mdl_Manager_t *
+Mdl_ModuleManagerAlloc(
+
+)
+  optional
+
+  Side Effects: required
+
+void
+Mdl_ModuleManagerFree(
+  Mdl_Manager_t*    mdlmanager
+)
+  optional
+
+  Side Effects: required
+
+lsList
+Mdl_ModuleManagerObtainModuleList(
+  Mdl_Manager_t*    mdlmanager
+)
+  This function returns a list of module names. Will later add the definition
+  of the modules. It is the user's responsibility to free the list.
+
+  Side Effects: required
+
+lsList
+Mdl_ModuleObtainAtomList(
+  Mdl_Module_t*     module
+)
+  Returns a list of atoms given a module. Each element of the list is a
+  pointer to the atoms in the atom table. In later implementation, this should
+  return a {em copy} of the {em linearized partial ordering} of the atoms. The
+  user should NOT free or modify the list.
+
+  Side Effects: required
+
+array_t *
+Mdl_ModuleObtainComponentAtomArray(
+  Mdl_Module_t *    module,
+  array_t *         nameArray
+)
+  optional
+
+  Side Effects: required
+
+lsList
+Mdl_ModuleObtainEventVariableList(
+  Mdl_Module_t*     module
+)
+  Given a module (pointer), this function returns a list of event variables.
+  The variables are arranged according to the topological order of the atoms
+  that controls the variables. External variables come first. It is the user's
+  responsibility to free the list (but not the list elements).
+
+  Side Effects: required
+
+lsList
+Mdl_ModuleObtainHistoryDependentVariableList(
+  Mdl_Module_t*     module
+)
+  Given a module (pointer), this function returns a list of history_dependent
+  variables. The variables are arranged according to the topological order of
+  the atoms that controls the variables. External variables come first. It is
+  the user's responsibility to free the list (but not the list elements).
+
+  Side Effects: required
+
+lsList
+Mdl_ModuleObtainHistoryFreeVariableList(
+  Mdl_Module_t*     module
+)
+  Given a module (pointer), this function returns a list of history free
+  variables. The variables are arranged according to the topological order of
+  the atoms that controls the variables. External variables come first. It is
+  the user's responsibility to free the list (but not the list elements).
+
+  Side Effects: None
+
+char*
+Mdl_ModuleObtainNewName(
+
+)
+  It keeps a counter that counts the number of intermediate module generated.
+  The counter is also used to generate a name for the modules. For example, if
+  the counter counts 14, the generated module name will be @M14.
+
+  Side Effects: required
+
+lsList
+Mdl_ModuleObtainSortedAtomList(
+  Mdl_Module_t*     module
+)
+  This function, when given module, will return a list of topologically sorted
+  atoms. The atoms at the head of the list are those that should be updated
+  first.
+
+  Side Effects: required
+
+lsList
+Mdl_ModuleObtainVariableList(
+  Mdl_Module_t*     module
+)
+  Given a module (pointer), this function returns a list of all variables. The
+  variables are arranged according to the topological order of the atoms that
+  controls the variables. External variables come first. It is the user's
+  responsibility to free the list (but not the list elements).
+
+  Side Effects: required
+
+Atm_Atom_t *
+Mdl_ModuleReadAtomFromName(
+  char *            name,
+  Mdl_Module_t *    module
+)
+  This function returns a pointer to the atom, given the atom name and the
+  module.
+
+  Side Effects: The user should not free the atom.
+
+st_table*
+Mdl_ModuleReadAtomTable(
+  Mdl_Module_t*     module
+)
+  Given a pointer to a module, this function returns a pointer to the atom
+  table. The user should not free or modify the table.
+
+  Side Effects: required
+
+int
+Mdl_ModuleReadCreationTime(
+  Mdl_Module_t *    module
+)
+  optional
+
+  Side Effects: required
+
+Mdl_Module_t*
+Mdl_ModuleReadFromName(
+  Mdl_Manager_t*    mdlmanager,
+  char*             name
+)
+  When called with a name of a module, this function looks up the name in the
+  module manager. If found, this function returns a pointer to this module.
+  Otherwise, it returns NIL(Mdl_Module_t). The user should NOT free or modify
+  this module.
+
+  Side Effects: required
+
+Mdl_Expr_t *
+Mdl_ModuleReadModuleExpr(
+  Mdl_Module_t *    module
+)
+  optional
+
+  Side Effects: required
+
+char*
+Mdl_ModuleReadName(
+  Mdl_Module_t*     module
+)
+  This function returns a pointer to the name of the module. User should not
+  free or modify the string.
+
+  Side Effects: required
+
+st_table *
+Mdl_ModuleReadStateInvTable(
+  Mdl_Module_t *    module
+)
+  optional
+
+  Side Effects: required
+
+st_table *
+Mdl_ModuleReadTranInvTable(
+  Mdl_Module_t *    module
+)
+  optional
+
+  Side Effects: required
+
+Var_Variable_t*
+Mdl_ModuleReadVariableFromName(
+  char*             varname,
+  Mdl_Module_t*     module
+)
+  When given a name of a variable, and a pointer to a module, this function
+  returns a pointer to the variable of the given name. If the desired variable
+  is not found, a NIL(Var_Variable_t) will be returned. User should not free
+  of modifiy the pointer.
+
+  Side Effects: required
+
+st_table*
+Mdl_ModuleReadVariableTable(
+  Mdl_Module_t*     module
+)
+  Given a pointer to a module, this function returns a pointer to the variable
+  table. The user should not free or modify the table.
+
+  Side Effects: required
+
+boolean
+Mdl_ModuleRemoveFromManager(
+  char*             name,
+  Mdl_Manager_t*    mdlmanager
+)
+  This remove a module of a given name from a module manager. If the module is
+  found, this routine returns a pointer to the module. If not,
+  NIL(Mdl_Module_t) is returned instead.
+
+  Side Effects: required
+
+array_t *
+Mdl_ModuleSearchForComponent(
+  char *            name,
+  Mdl_Module_t *    module
+)
+  optional
+
+  Side Effects: required
+
+boolean
+Mdl_ModuleSetModuleExprForTypeModuleDef(
+  Mdl_Module_t *    module
+)
+  optional
+
+  Side Effects: required
+
+void
+Mdl_ModuleSetModuleExpr(
+  Mdl_Module_t *    module,
+  Mdl_Expr_t *      moduleExpr
+)
+  optional
+
+  Side Effects: required
+
+int
+Mdl_ModuleTestForAcyclicity(
+  Mdl_Module_t*     module
+)
+  This function is called when never a module is composed: whether it is
+  defined by enumerating the atoms, or by parallel composition. This routine
+  returns 1 if there is no interdependence of variables within a module, and 0
+  otherwise. Acyclicity test is primarily done by looking at the dependence of
+  atoms and variables in a DFS-like manner.
+
+
+Mdl_Module_t *
+Mdl_ModuleUpdate(
+  Mdl_Module_t *    module,
+  Mdl_Manager_t *   manager
+)
+  This function first checks if all the components of the module are created
+  before it. If not, then it means one of the components have been updated,
+  and the module will be composed once again, replacing the old module.
+
+  Side Effects: The original module will be deleted and freed if any of the
+  components are newer than the original module.
+
+char*
+Mdl_NamePrefixWithString(
+  char*             prefix,
+  char*             name
+)
+  This function takes in a prefix string and a name.
+
+  Side Effects: User should free the returned string.
+
+int
+Mdl_Reinit(
+  Tcl_Interp *      interp,
+  Main_Manager_t *  manager
+)
+  The function frees all modules in the module manager and allocates a new
+  module manager. It does the same for the type manager.
+
+  Side Effects: None
+
+boolean
+Mdl_StateInvAddToModule(
+  Mdl_Module_t *    module,
+  Mdl_Invariant_t * invariant
+)
+  Add an invariant to a module. Returns TRUE if successful, FALSE else.
+
+  Side Effects: required
+
+boolean
+Mdl_TranInvAddToModule(
+  Mdl_Module_t *    module,
+  Mdl_Invariant_t * invariant
+)
+  Add an invariant to a module. Returns TRUE if successful, FALSE else.
+
+  Side Effects: required
+
+int
+Mdl_VariableRename(
+  st_table*         vartable,
+  char*             oldname,
+  char*             newname
+)
+  Given a vartable, a variable and a new name, this function remove the entry
+  from the vartable, updates the name, and insert it again into the vartable.
+  It returns 1 if successful, and 0 otherwise.
+
+  Side Effects: required
+

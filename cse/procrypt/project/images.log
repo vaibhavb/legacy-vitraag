@@ -1,0 +1,172 @@
+This is TeX, Version 3.14159 (Web2C 7.3.1) (format=latex 2001.3.27)  29 NOV 2001 04:46
+**./images.tex
+(./images.tex
+LaTeX2e <1999/12/01> patch level 1
+Babel <v3.6Z> and hyphenation patterns for american, french, german, ngerman, i
+talian, portuges, russian, spanish, nohyphenation, loaded.
+
+(/usr/share/texmf/tex/latex/base/article.cls
+Document Class: article 1999/09/10 v1.4a Standard LaTeX document class
+(/usr/share/texmf/tex/latex/base/size11.clo
+File: size11.clo 1999/09/10 v1.4a Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+) (/usr/share/texmf/tex/latex/base/ifthen.sty
+Package: ifthen 1999/09/10 v1.1b Standard LaTeX ifthen package (DPC)
+) (/usr/share/texmf/tex/latex/graphics/graphicx.sty
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+(/usr/share/texmf/tex/latex/graphics/keyval.sty
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+\KV@toks@=\toks14
+) (/usr/share/texmf/tex/latex/graphics/graphics.sty
+Package: graphics 1999/02/16 v1.0l Standard LaTeX Graphics (DPC,SPQR)
+(/usr/share/texmf/tex/latex/graphics/trig.sty
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+) (/usr/share/texmf/tex/latex/config/graphics.cfg)
+Package graphics Info: Driver file: dvips.def on input line 80.
+(/usr/share/texmf/tex/latex/graphics/dvips.def
+File: dvips.def 1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
+))
+\Gin@req@height=\dimen103
+\Gin@req@width=\dimen104
+) (/usr/share/texmf/tex/latex/graphics/color.sty
+Package: color 1999/02/16 v1.0i Standard LaTeX Color (DPC)
+(/usr/share/texmf/tex/latex/config/color.cfg)
+Package color Info: Driver file: dvips.def on input line 125.
+(/usr/share/texmf/tex/latex/graphics/dvipsnam.def
+File: dvipsnam.def 1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
+)) (/usr/share/texmf/tex/latex/base/inputenc.sty
+Package: inputenc 1999/09/17 v0.992 Input encoding file 
+)
+\sizebox=\box26
+\lthtmlwrite=\write3
+(images.aux)
+\openout1 = `images.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 109.
+LaTeX Font Info:    ... okay on input line 109.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 109.
+LaTeX Font Info:    ... okay on input line 109.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 109.
+LaTeX Font Info:    ... okay on input line 109.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 109.
+LaTeX Font Info:    ... okay on input line 109.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 109.
+LaTeX Font Info:    ... okay on input line 109.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 109.
+LaTeX Font Info:    ... okay on input line 109.
+
+latex2htmlLength hsize=349.0pt
+
+latex2htmlLength vsize=629.40024pt
+
+latex2htmlLength hoffset=0.0pt
+
+latex2htmlLength voffset=0.0pt
+
+latex2htmlLength topmargin=0.0pt
+
+latex2htmlLength topskip=0.00003pt
+
+latex2htmlLength headheight=0.0pt
+
+latex2htmlLength headsep=0.0pt
+
+latex2htmlLength parskip=0.0pt plus 1.0pt
+
+latex2htmlLength oddsidemargin=54.0pt
+
+latex2htmlLength evensidemargin=54.0pt
+
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <10.95> on input line 156.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 156.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 156.
+l2hSize :figure52:108.39992pt::0.0pt::349.0pt.
+[1
+
+
+
+]
+l2hSize :tex2html_wrap_inline135:7.98248pt::7.98248pt::25.7218pt.
+[2
+
+
+]
+l2hSize :tex2html_wrap_inline137:7.98248pt::7.98248pt::26.2868pt.
+[3
+
+
+]
+l2hSize :tex2html_wrap_inline139:7.98248pt::7.98248pt::25.58719pt.
+[4
+
+
+]
+l2hSize :tex2html_wrap_inline141:7.98248pt::7.98248pt::24.6344pt.
+[5
+
+
+]
+l2hSize :tex2html_wrap_inline143:7.07185pt::0.0pt::11.49756pt.
+[6
+
+
+]
+l2hSize :tex2html_wrap_inline145:7.48248pt::0.0pt::49.84288pt.
+[7
+
+
+]
+l2hSize :tex2html_wrap_inline149:7.60416pt::0.0pt::70.75163pt.
+[8
+
+
+]
+l2hSize :tex2html_wrap_inline153:7.98248pt::7.98248pt::76.85414pt.
+[9
+
+
+]
+l2hSize :tex2html_wrap_inline157:8.7125pt::8.7125pt::162.22336pt.
+[10
+
+
+]
+l2hSize :tex2html_wrap_inline161:8.7125pt::8.7125pt::169.67542pt.
+[11
+
+
+]
+l2hSize :tex2html_wrap_inline165:8.7125pt::8.7125pt::83.78232pt.
+[12
+
+
+]
+l2hSize :tex2html_wrap_inline169:8.7125pt::8.7125pt::90.36748pt.
+[13
+
+
+] (images.aux) ) 
+Here is how much of TeX's memory you used:
+ 807 strings out of 20863
+ 9770 string characters out of 196073
+ 54684 words of memory out of 350001
+ 3789 multiletter control sequences out of 10000+15000
+ 6379 words of font info for 23 fonts, out of 400000 for 1000
+ 26 hyphenation exceptions out of 10000
+ 25i,9n,21p,185b,352s stack positions out of 3000i,100n,1500p,50000b,4000s
+
+Output written on images.dvi (13 pages, 4128 bytes).

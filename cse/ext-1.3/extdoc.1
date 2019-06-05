@@ -1,0 +1,290 @@
+.\"
+.\" Generated automatically by htmltoman.pl
+.\"
+.TH  extdoc  1
+.SH NAME
+extdoc \- Extract documentation from specially\-commented C files
+.SH SYNOPSIS
+.B extdoc
+[ 
+.B  \-v 
+] [ 
+.B  \-\-version 
+] [ 
+.B  \-d 
+] [ 
+.B  \-\-debug 
+] [ 
+.B \-h
+[
+.B =<dir>
+] ] [ 
+.B \-\-html
+[
+.B =<dir>
+] ] [ 
+.B  \-t
+[
+.B =<dir> 
+] ] [ 
+.B  \-\-text
+[
+.B =<dir> 
+] ] [ 
+.B  \-a 
+] [ 
+.B  \-\-ANSI 
+] [ 
+.B  \-k 
+] [ 
+.B  \-\-KR 
+] [ 
+.B  \-\-polis 
+] 
+.I  package 
+[ 
+.I  package 
+...]
+.SH DESCRIPTION
+.I Extdoc
+is a document\-extraction tool for C source files.  It
+examines a collection of C source and header files, collectively
+referred to as a 
+.I package
+extracts ``structured'' comments
+embedded in the code, function prototypes, structures, etc. and
+generates documentation files.
+.SH OPTIONS
+.TP  
+.B \-v
+.br
+.ns
+.TP  
+.B \-\-version
+.br
+.ns
+Print version information and exit. 
+.TP  
+.B \-d
+.br
+.ns
+.TP  
+.B \-\-debug
+.br
+.ns
+Enable debugging mode.  This prints an enormous amount of cryptic
+information about what 
+.I extdoc
+is doing. 
+.TP  
+.B \-t[=<dir>]
+.br
+.ns
+.TP  
+.B \-\-text[=<dir>]
+.br
+.ns
+Write documentation in text format.  This writes a file
+.I pkg
+Doc.txt in the current directory or in the directory
+specified by the optional <dir> attribute.  This option may
+be used in conjunction with the 
+.B \-\-html
+option. 
+.TP  
+.B \-h[=<dir>]
+.br
+.ns
+.TP  
+.B \-\-html[=<dir>]
+.br
+.ns
+Write documentation in HTML format.  This writes many files (see
+the list of files below) into the current directory or in the
+directory specified by the optional <dir> attribute. This
+option may be used in conjunction with the 
+.B \-\-text
+option. 
+.TP  
+.B \-a
+.br
+.ns
+.TP  
+.B \-\-ANSI
+.br
+.ns
+Look for ANSI\-style function declarations.  This is the default.
+This should not be used with the 
+.B \-\-KR
+option. 
+.TP  
+.B \-k
+.br
+.ns
+.TP  
+.B \-\-KR
+.br
+.ns
+Look for K&R\-style function declarations.  This should not be
+used with the 
+.B \-\-ANSI
+option. 
+.TP  
+.B \-\-polis
+.br
+.ns
+Use the polis file/function naming rules. 
+.SH EXAMPLES
+Extract the documentation in the 
+.B tbl
+package, writing it to
+.B tblDoc.txt
+:
+.RS
+.sp .5
+.nf
+.B  example% extdoc \-\-text tbl 
+.fi
+.RE
+Extract text and HTML documentation from the 
+.B ntk
+packages and
+look for K&R\-style function definitions:
+.RS
+.sp .5
+.nf
+.B  example% extdoc \-\-text \-\-html \-\-KR ntk 
+.fi
+.RE
+Extract HTML documentation from the 
+.B tbl
+and 
+.B ntk
+packages, placing the resulting HTML files in
+.B /projects/vis/vis\-devel/common/doc/html
+:
+.RS
+.sp .5
+.nf
+.B  example% extdoc
+.B  \-\-html=/projects/vis/vis\-devel/common/doc/html
+.B /projects/vis/vis\-devel/common/src/tbl/tbl
+.B /projects/vis/vis\-devel/common/src/ntk/ntk
+.fi
+.RE
+.SH FILES
+A program name in parenthesis indicates the creator of the file.
+ 
+.I packageFile
+.B .c
+ C source file 
+.br
+ 
+.I package
+.B .h
+ Externally\-visible header file 
+.br
+ 
+.I package
+.B Int.h
+ Internal header file 
+.br
+ 
+.I package
+.B Doc.txt
+ documentation file, ASCII format (extdoc) 
+.br
+ 
+.B commands.html
+ documentation, an HTML frame for the commands (extindex) 
+.br
+ 
+.B packages.html
+ documentation, an HTML frame for the packages (extindex) 
+.br
+ 
+.B cmdIndex.html
+ documentation, an HTML list of all the commands with synopses (extindex) 
+.br
+ 
+.B pkgIndex.html
+ documentation, an HTML list of all the packages with synopses (extindex) 
+.br
+ 
+.B credit.html
+ documentation, the source of ext system (extindex) 
+.br
+ 
+.I package
+.B Desc.html
+ documentation, description of the package in HTML format (extdoc)
+.br
+ 
+.I package
+.B Title.html
+ documentation, navigation through the three views (external, by
+function, and by file) in HTML format (extdoc)
+.br
+ 
+.I package
+.B Ext.html
+ documentation, an HTML frame set for the externally\-visible functions (extdoc)
+.br
+ 
+.I package
+.B AllByFunc.html
+ documentation, an HTML frame set for the internal functions,
+sorted by function (extdoc)
+.br
+ 
+.I package
+.B AllByFile.html
+ documentation, an HTML frame set for the internal functions,
+sorted by file (extdoc)
+.br
+ 
+.I package
+.B ExtAbs.html
+ documentation, abstracts of externally\-visible functions,
+HTML format (extdoc) 
+.br
+ 
+.I package
+.B ExtDet.html
+ documentation, details of externally\-visible functions,
+HTML format (extdoc) 
+.br
+ 
+.I package
+.B AllAbs.html
+ documentation, abstracts of all functions, sorted by function name,
+HTML format (extdoc) 
+.br
+ 
+.I package
+.B AllFile.html
+ documentation, abstracts of all functions, sorted by file,
+HTML format (extdoc) 
+.br
+ 
+.I package
+.B AllDet.html
+ documentation, details of all functions, HTML format (extdoc) 
+.br
+ 
+.I commandName
+.B Cmd.html
+ documentation on a command, HTML format (extdoc) 
+.br
+.SH SEE ALSO
+extproto,
+extindex,
+Documentation on Packages and File Structure,
+Documentation on Naming Conventions,
+The Ext System
+.SH AUTHOR
+Stephen Edwards 
+.br
+University of California, Berkeley 
+.br
+.B sedwards@eecs.berkeley.edu

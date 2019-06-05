@@ -1,0 +1,29 @@
+\begin{minipage}[h]{2in}
+\scriptsize
+\begin{verbatim}
+main:
+    models TokEOF
+;
+models:
+    model models
+  |
+;
+model:
+      head decl body \
+      TokEnd TokEOL
+;
+head:
+    TokModel TokVar TokEOL
+;
+decl:
+      vdecl
+  |
+;
+vdecl:
+      vdecl input
+  | input
+  | vdecl output
+  | output
+;
+\end{verbatim}
+\end{minipage}

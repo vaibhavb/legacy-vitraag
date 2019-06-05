@@ -1,0 +1,92 @@
+The sim package
+
+External header file for simulation.
+
+Freddy Mang
+
+**********************************************************************
+
+Sim_Init()                     Initialization of the sim package.
+
+Sim_SimAtomArrayFree()         Frees an array of simAtoms.
+
+Sim_SimAtomReadAtom()          Returns the atom that is represented by this
+                               simAtom.
+
+Sim_SimAtomReadIsUserAtom()    Returns true if the simAtom is an user atom.
+
+Sim_SimAtomReadName()          Read the name of the simAtom
+
+Sim_SimAtomReturnSortedArray() Returns a sorted array of the simAtoms.
+
+**********************************************************************
+
+This file contains the exported function prototype and data   structure
+declarations. Currently, there are three different modes of   simulation:
+random simulation (the simulator executes all the atoms),   manual/step
+simulation (user guides the execution of all the atoms), and   game
+simulation (the simulator executes some of the atom, and the user   controls
+the others).
+
+int
+Sim_Init(
+  Tcl_Interp *      interp,
+  Main_Manager_t *  manager
+)
+  This function is needed by tcl/tk to initialize this package. Initialization
+  includes registering of commands and initialization of internal data
+  structures used by this package.
+
+  Side Effects: SimManagerInit() is called and a "global" data structure,
+  namely the simulation manager is created.
+
+void
+Sim_SimAtomArrayFree(
+  array_t *         simAtomArray
+)
+  This routine frees an array of simAtoms. This is useful to free the array
+  returned by Sim_SimAtomReturnSortedArray.
+
+  Side Effects: required
+
+Atm_Atom_t*
+Sim_SimAtomReadAtom(
+  Sim_Atom_t*       simAtom
+)
+  This function returns a pointer to the atom that is represented by this
+  simAtom.
+
+  Side Effects: User should not free the returned pointer.
+
+boolean
+Sim_SimAtomReadIsUserAtom(
+  Sim_Atom_t*       simAtom
+)
+  This function returns true if the simAtom is an user atom, i.e. atom
+  controlled by the user.
+
+  Side Effects: required
+
+char*
+Sim_SimAtomReadName(
+  Sim_Atom_t*       simAtom
+)
+  This function returns the name of the simAtom.
+
+  Side Effects: User should not free the returned string.
+
+array_t *
+Sim_SimAtomReturnSortedArray(
+  Mdl_Module_t *    module,
+  array_t *         atomArray,
+  int               isUserAtom
+)
+  Given a module, an array of users atoms (Atm_Atom_t *), and the type of the
+  atoms (are they userAtoms?), this routine creates the simAtoms for the
+  module and returns an array of topologically sorted simAtoms. Note that the
+  non-user atoms will come as late as possible in the linearization so that
+  the user will have the least knowledge of how the non-user atom behaves.
+
+  Side Effects: The atomDependencyInfo will be updated. The sorted array will
+  be returned. User should free the array (Sim_SimAtomArrayFree) after use.
+

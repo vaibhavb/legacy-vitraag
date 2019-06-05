@@ -1,0 +1,487 @@
+<HTML>
+<HEAD><TITLE>The sl package: files</TITLE></HEAD>
+<BODY>
+
+<DL>
+ <DT> <A HREF="#sl.h"><CODE>sl.h</CODE></A>
+ <DD> External header file
+ <DT> <A HREF="#slInt.h"><CODE>slInt.h</CODE></A>
+ <DD> Internal header file
+ <DT> <A HREF="#slFreddy.c"><CODE>slFreddy.c</CODE></A>
+ <DD> required
+ <DT> <A HREF="#slBddDump.c"><CODE>slBddDump.c</CODE></A>
+ <DD> required
+ <DT> <A HREF="#slIntf.c"><CODE>slIntf.c</CODE></A>
+ <DD> required
+ <DT> <A HREF="#slMain.c"><CODE>slMain.c</CODE></A>
+ <DD> 
+ <DT> <A HREF="#slMocha.c"><CODE>slMocha.c</CODE></A>
+ <DD> required
+ <DT> <A HREF="#slLuca.c"><CODE>slLuca.c</CODE></A>
+ <DD> required
+ <DT> <A HREF="#slSim.c"><CODE>slSim.c</CODE></A>
+ <DD> required
+ <DT> <A HREF="#slUtil.c"><CODE>slUtil.c</CODE></A>
+ <DD> required
+</DL><HR>
+<A NAME="sl.h"><H1>sl.h</H1></A>
+External header file <P>
+<B>By: Luca de Alfaro & Freddy Mang</B><P>
+<P><B>See Also</B><A HREF="#optional"><CODE>optional</CODE></A>
+<DL>
+</DL>
+<HR>
+<A NAME="slInt.h"><H1>slInt.h</H1></A>
+Internal header file <P>
+<B>By: Luca de Alfaro & Freddy Mang</B><P>
+<P><B>See Also</B><A HREF="#optional"><CODE>optional</CODE></A>
+<DL>
+</DL>
+<HR>
+<A NAME="slFreddy.c"><H1>slFreddy.c</H1></A>
+required <P>
+<B>By: Luca de Alfaro & Freddy Mang</B><P>
+optional <P>
+<P><B>See Also</B><A HREF="#optional"><CODE>optional</CODE></A>
+<DL>
+</DL>
+<HR>
+<A NAME="slBddDump.c"><H1>slBddDump.c</H1></A>
+required <P>
+<B>By: Freddy Mang</B><P>
+optional <P>
+<P><B>See Also</B><A HREF="#optional"><CODE>optional</CODE></A>
+<DL>
+ <DT> <A HREF="slAllDet.html#SlDumpBddCmd" TARGET="MAIN"><CODE>SlDumpBddCmd()</CODE></A>
+ <DD> Dumping a BDD into a file.
+
+</DL>
+<HR>
+<A NAME="slIntf.c"><H1>slIntf.c</H1></A>
+required <P>
+<B>By: Luca de Alfaro</B><P>
+optional <P>
+<P><B>See Also</B><A HREF="#optional"><CODE>optional</CODE></A>
+<DL>
+ <DT> <A HREF="slAllDet.html#SlMakeIntfCmd" TARGET="MAIN"><CODE>SlMakeIntfCmd()</CODE></A>
+ <DD> Function implementing command sl_make_intf.
+                      This function, given two modules, one describing the 
+		      input evolution, the other describing the output evolution, 
+		      creates a single new interface module that combines the two.
+
+ <DT> <A HREF="slAllDet.html#SlMakeIntfOutCmd" TARGET="MAIN"><CODE>SlMakeIntfOutCmd()</CODE></A>
+ <DD> Function implementing command sl_make_intf_out.
+                      This function creates an interface having only an output 
+		      portion (with no input assumptions). 
+
+  Description        [optional
+
+ <DT> <A HREF="slAllDet.html#SlPrintLevelsCmd" TARGET="MAIN"><CODE>SlPrintLevelsCmd()</CODE></A>
+ <DD> Prints the list of levels of an interface.
+
+ <DT> <A HREF="slAllDet.html#SlComposeIntfCmd" TARGET="MAIN"><CODE>SlComposeIntfCmd()</CODE></A>
+ <DD> Function implementing command sl_compose_intf.
+                      This function, given two interfaces, composes them and 
+		      checks if they are compatible. 
+		      If they are not compatible, says so. 
+		      If they are compatible, says so, and returns the composition.
+
+ <DT> <A HREF="slAllDet.html#SlCheckIntfRefCmd" TARGET="MAIN"><CODE>SlCheckIntfRefCmd()</CODE></A>
+ <DD> Function implementing command sl_check_intf_ref
+                      This function, given two interfaces intf1 and intf2, 
+		      checks whether intf2 is a refinement of intf1.
+
+ <DT> <A HREF="slAllDet.html#SlPrintIntfCmd" TARGET="MAIN"><CODE>SlPrintIntfCmd()</CODE></A>
+ <DD> Implements the command sl_print_intf.
+
+ <DT> <A HREF="slAllDet.html#SlStrengthenIntfCmd" TARGET="MAIN"><CODE>SlStrengthenIntfCmd()</CODE></A>
+ <DD> Function implementing command sl_strengthen_intf_inv
+                      This function, given a predicate phi and an 
+		      interface intf, strengthens the input assumption of 
+		      intf to ensure that the invariant inv holds.
+
+ <DT> <A HREF="slAllDet.html#SlPrintIntfSupportCmd" TARGET="MAIN"><CODE>SlPrintIntfSupportCmd()</CODE></A>
+ <DD> Implements the command sl_print_intf_support.
+
+ <DT> <A HREF="slAllDet.html#make_levels" TARGET="MAIN"><CODE>make_levels()</CODE></A>
+ <DD> Creates the level list of variables from the merged 
+                      dependency list.
+
+ <DT> <A HREF="slAllDet.html#assign_levels" TARGET="MAIN"><CODE>assign_levels()</CODE></A>
+ <DD> Assigns each BDD to the right level, for the initial condition
+                      and transition relation.  Duplicates the MDDs, so that 
+		      free can be used later.
+
+ <DT> <A HREF="slAllDet.html#filter_primed_and_unprime" TARGET="MAIN"><CODE>filter_primed_and_unprime()</CODE></A>
+ <DD> Filters the primed variables out of an array, and 
+                      unprimes them.
+
+ <DT> <A HREF="slAllDet.html#zip_variable_levels" TARGET="MAIN"><CODE>zip_variable_levels()</CODE></A>
+ <DD> Zips together variable levels into levels, and also appends 
+                      the lists of conjuncts of input relations into 
+		      pseudo_levels, and of output relations into levels.
+		      Version useful for both refinement and composition. 
+		      In composition, copies the variables in levels_p, 
+		      the output conjuncts (merged from interfaces 1 and 2) 
+		      in levels_p, and the input conjuncts (again merged)
+		      in pseudo_levels_p. 
+		      In refinement, copies all the variables in levels_p
+		      (as in composition), but keeps the i/o conjuncts
+		      of interface1 into levels_p, and those of interface2
+		      into pseudo_levels_p. 
+		      Additionally, in refinement it is tolerant of 
+		      non-linearizable orders, since there's no direct game.
+		      The variable mode indicates what to do: 
+		      1 = composition
+		      0 = refinement.
+
+ <DT> <A HREF="slAllDet.html#merge_single_levels_composition" TARGET="MAIN"><CODE>merge_single_levels_composition()</CODE></A>
+ <DD> Merges two single levels, taking the union of the input
+                       and output variables, and bdds... called by zip_levels.
+		       Version for composition.
+
+ <DT> <A HREF="slAllDet.html#merge_single_levels_refinement" TARGET="MAIN"><CODE>merge_single_levels_refinement()</CODE></A>
+ <DD> Merges two single levels, taking the union of the input
+                       and output variables, and bdds... called by zip_levels.
+		       Version used for refinement.
+
+ <DT> <A HREF="slAllDet.html#copy_single_level_composition" TARGET="MAIN"><CODE>copy_single_level_composition()</CODE></A>
+ <DD> Copies a single level... called by zip_levels.
+                      mode is as in zip_levels. 
+		      Version for composition.
+
+ <DT> <A HREF="slAllDet.html#copy_single_level_refinement" TARGET="MAIN"><CODE>copy_single_level_refinement()</CODE></A>
+ <DD> Copies a single level... called by zip_levels.
+                      mode is as in zip_levels. 
+		      intf_n is used to denote whether the source is 
+		      intf1 or intf2.
+		      Version for refinement.
+
+ <DT> <A HREF="slAllDet.html#game_compose_interfaces" TARGET="MAIN"><CODE>game_compose_interfaces()</CODE></A>
+ <DD> Composes two interfaces, computing the controllability.
+
+ <DT> <A HREF="slAllDet.html#compose_interfaces" TARGET="MAIN"><CODE>compose_interfaces()</CODE></A>
+ <DD> Composes two interfaces.
+                      Returns:
+		      0: and fill in out_levels, if they are composable. 
+		      1: if their variables are not composable (shared 
+		         outputs, or non-composable levels)
+		      2: not composable (no environment can avoid illegal states)
+
+ <DT> <A HREF="slAllDet.html#check_interface_refinement" TARGET="MAIN"><CODE>check_interface_refinement()</CODE></A>
+ <DD> Checks whether intf2 refines intf1.
+                      Returns: 
+		      0: yes. 
+		      1: if their variables do not match. 
+		      2: no refinement relation.
+
+ <DT> <A HREF="slAllDet.html#refinement_check" TARGET="MAIN"><CODE>refinement_check()</CODE></A>
+ <DD> Checks refinement between two interfaces, using 
+                      the simple refinement check algorithm based on 
+		      shared variables.
+
+ <DT> <A HREF="slAllDet.html#strengthen_interface" TARGET="MAIN"><CODE>strengthen_interface()</CODE></A>
+ <DD> Strengthens the input assumptions of an interface, 
+                      ensuring that it satisfies a given invariant.
+		      Returns the levels array of the stronger interfaces.
+
+ <DT> <A HREF="slAllDet.html#print_levels_array" TARGET="MAIN"><CODE>print_levels_array()</CODE></A>
+ <DD> Prints a level array, useful for debugging.
+
+</DL>
+<HR>
+<A NAME="slMain.c"><H1>slMain.c</H1></A>
+ <P>
+<B>By: Luca de Alfaro & Freddy Mang</B><P>
+optional <P>
+<P><B>See Also</B><A HREF="#optional"><CODE>optional</CODE></A>
+<DL>
+ <DT> <A HREF="slAllDet.html#Sl_Init" TARGET="MAIN"><CODE>Sl_Init()</CODE></A>
+ <DD> Initializes the var package.
+
+ <DT> <A HREF="slAllDet.html#SlGSTInit" TARGET="MAIN"><CODE>SlGSTInit()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="slAllDet.html#SlGetTclInterp" TARGET="MAIN"><CODE>SlGetTclInterp()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="slAllDet.html#SlGetModuleManager" TARGET="MAIN"><CODE>SlGetModuleManager()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="slAllDet.html#SlGetMddManager" TARGET="MAIN"><CODE>SlGetMddManager()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="slAllDet.html#SlGetRegionManager" TARGET="MAIN"><CODE>SlGetRegionManager()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="slAllDet.html#SlGetNameToIdTable" TARGET="MAIN"><CODE>SlGetNameToIdTable()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="slAllDet.html#SlGetIdPairArray" TARGET="MAIN"><CODE>SlGetIdPairArray()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="slAllDet.html#SlAddIdPair" TARGET="MAIN"><CODE>SlAddIdPair()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="slAllDet.html#SlReturnPrimedId" TARGET="MAIN"><CODE>SlReturnPrimedId()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="slAllDet.html#SlReturnUnprimedId" TARGET="MAIN"><CODE>SlReturnUnprimedId()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="slAllDet.html#SlReturnVariableFromId" TARGET="MAIN"><CODE>SlReturnVariableFromId()</CODE></A>
+ <DD> required
+
+</DL>
+<HR>
+<A NAME="slMocha.c"><H1>slMocha.c</H1></A>
+required <P>
+<B>By: Freddy Mang</B><P>
+optional <P>
+<P><B>See Also</B><A HREF="#optional"><CODE>optional</CODE></A>
+<DL>
+ <DT> <A HREF="slAllDet.html#Mocha_SlGetObjectByName" TARGET="MAIN"><CODE>Mocha_SlGetObjectByName()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="slAllDet.html#Mocha_SlGetBDDArray" TARGET="MAIN"><CODE>Mocha_SlGetBDDArray()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="slAllDet.html#Mocha_SlGetIdArray" TARGET="MAIN"><CODE>Mocha_SlGetIdArray()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="slAllDet.html#Mocha_SlGetIntArray" TARGET="MAIN"><CODE>Mocha_SlGetIntArray()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="slAllDet.html#Mocha_SlGetStringArray" TARGET="MAIN"><CODE>Mocha_SlGetStringArray()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="slAllDet.html#Mocha_StateInMdd" TARGET="MAIN"><CODE>Mocha_StateInMdd()</CODE></A>
+ <DD> required
+
+</DL>
+<HR>
+<A NAME="slLuca.c"><H1>slLuca.c</H1></A>
+required <P>
+<B>By: Luca de Alfaro and Freddy Mang</B><P>
+optional <P>
+<P><B>See Also</B><A HREF="#optional"><CODE>optional</CODE></A>
+<DL>
+</DL>
+<HR>
+<A NAME="slSim.c"><H1>slSim.c</H1></A>
+required <P>
+<B>By: Luca De Alfaro and  Ashwini Ananthateerta</B><P>
+optional <P>
+<P><B>See Also</B><A HREF="#optional"><CODE>optional</CODE></A>
+<DL>
+ <DT> <A HREF="slAllDet.html#SlMddSubstitute" TARGET="MAIN"><CODE>SlMddSubstitute()</CODE></A>
+ <DD> Function implementing the function sl_mdd_substitute
+
+ <DT> <A HREF="slAllDet.html#SlMddEqual" TARGET="MAIN"><CODE>SlMddEqual()</CODE></A>
+ <DD> Function implementing the function sl_mdd_equal
+
+ <DT> <A HREF="slAllDet.html#SlAtomSimulateCmd" TARGET="MAIN"><CODE>SlAtomSimulateCmd()</CODE></A>
+ <DD> Function implementing the function sl_atom_simulate
+
+ <DT> <A HREF="slAllDet.html#SlRandomcubeInvChkCmd" TARGET="MAIN"><CODE>SlRandomcubeInvChkCmd()</CODE></A>
+ <DD> Function implementing the function sl_ran_invchk
+
+ <DT> <A HREF="slAllDet.html#SlRandomcubeInvChk" TARGET="MAIN"><CODE>SlRandomcubeInvChk()</CODE></A>
+ <DD> This function picks one cube at random from all the 
+                      states that satisfy the transition invariant at a given
+		      image and checks whether the given cube satisfies
+		      the input invariant (the invariant checked depends on the task 
+		      input variable). If the given cube satisfies the invariant
+		      all reachable states from that cube are computed to
+		      get the next image from which a random cube
+		      is again picked. The function terminates when the invariant
+		      at an image is not satisfied, or n_steps iterations are
+		      done.
+
+ <DT> <A HREF="slAllDet.html#SlTauPlusMinus" TARGET="MAIN"><CODE>SlTauPlusMinus()</CODE></A>
+ <DD> implements the sl_tau_plus_and_tau_minus command.
+
+ <DT> <A HREF="slAllDet.html#SlBetterUPreComb" TARGET="MAIN"><CODE>SlBetterUPreComb()</CODE></A>
+ <DD> implements the sl_better_upre_comb  command.
+
+ <DT> <A HREF="slAllDet.html#SlBetterUPre" TARGET="MAIN"><CODE>SlBetterUPre()</CODE></A>
+ <DD> implements the sl_better_Upre command.
+
+ <DT> <A HREF="slAllDet.html#SlGetRandomCubeInMdd" TARGET="MAIN"><CODE>SlGetRandomCubeInMdd()</CODE></A>
+ <DD> Wrapper function for getRandomCubeInMdd
+
+ <DT> <A HREF="slAllDet.html#SlInvBuildMdd" TARGET="MAIN"><CODE>SlInvBuildMdd()</CODE></A>
+ <DD> Function implementing the function sl_inv_buildMdd
+
+ <DT> <A HREF="slAllDet.html#SlSortAndConjoinTau" TARGET="MAIN"><CODE>SlSortAndConjoinTau()</CODE></A>
+ <DD> Function implementing sl_sort_and_conjoin_tau
+
+ <DT> <A HREF="slAllDet.html#getRandomCubeInMdd" TARGET="MAIN"><CODE>getRandomCubeInMdd()</CODE></A>
+ <DD> Computes a random cube from the input mdd
+
+ <DT> <A HREF="slAllDet.html#ReadDomainSize" TARGET="MAIN"><CODE>ReadDomainSize()</CODE></A>
+ <DD> Computes a domain size of a variable
+
+ <DT> <A HREF="slAllDet.html#BuildInvMdd" TARGET="MAIN"><CODE>BuildInvMdd()</CODE></A>
+ <DD> 
+
+</DL>
+<HR>
+<A NAME="slUtil.c"><H1>slUtil.c</H1></A>
+required <P>
+<B>By: Freddy Mang and Luca de Alfaro</B><P>
+optional <P>
+<P><B>See Also</B><A HREF="#optional"><CODE>optional</CODE></A>
+<DL>
+ <DT> <A HREF="slAllDet.html#SlDeleteGstEntry" TARGET="MAIN"><CODE>SlDeleteGstEntry()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="slAllDet.html#SlInsertGstEntry" TARGET="MAIN"><CODE>SlInsertGstEntry()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="slAllDet.html#SlGstEntryFree" TARGET="MAIN"><CODE>SlGstEntryFree()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="slAllDet.html#SlGstGetEntry" TARGET="MAIN"><CODE>SlGstGetEntry()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="slAllDet.html#SlFreeArrayOfBdd" TARGET="MAIN"><CODE>SlFreeArrayOfBdd()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="slAllDet.html#SlPairAlloc" TARGET="MAIN"><CODE>SlPairAlloc()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="slAllDet.html#SlLevelAlloc" TARGET="MAIN"><CODE>SlLevelAlloc()</CODE></A>
+ <DD> Allocates a new level.
+
+ <DT> <A HREF="slAllDet.html#SlCompareInt" TARGET="MAIN"><CODE>SlCompareInt()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="slAllDet.html#SlImplicationCheck" TARGET="MAIN"><CODE>SlImplicationCheck()</CODE></A>
+ <DD> Checks whether implication holds between two bdd arrays.
+                      Returns a boolean, depending on whether it does, or not.
+
+ <DT> <A HREF="slAllDet.html#SlArrayUnion" TARGET="MAIN"><CODE>SlArrayUnion()</CODE></A>
+ <DD> Computes the union between two arrays, 
+                      eliminating duplicates.
+
+ <DT> <A HREF="slAllDet.html#SlArrayDifference" TARGET="MAIN"><CODE>SlArrayDifference()</CODE></A>
+ <DD> Computes the set difference between two arrays of ints, 
+                      eliminating duplicates.
+
+ <DT> <A HREF="slAllDet.html#SlArrayIntersection" TARGET="MAIN"><CODE>SlArrayIntersection()</CODE></A>
+ <DD> Computes the intersection between two arrays of ints, 
+                      eliminating duplicates.
+
+ <DT> <A HREF="slAllDet.html#SlIsArraySubset" TARGET="MAIN"><CODE>SlIsArraySubset()</CODE></A>
+ <DD> Checks if lhs is a subset of rhs.
+
+ <DT> <A HREF="slAllDet.html#SlAreArrayEqual" TARGET="MAIN"><CODE>SlAreArrayEqual()</CODE></A>
+ <DD> Returns 1 if the arrays are equal, 0 otherwise.
+
+ <DT> <A HREF="slAllDet.html#SlCheckSupportSubset" TARGET="MAIN"><CODE>SlCheckSupportSubset()</CODE></A>
+ <DD> Checks that the support of a given MDD is within a 
+                      specified set of variables.  Returns 0 if ok, 1 if not.
+
+ <DT> <A HREF="slAllDet.html#SlBddArrayDupe" TARGET="MAIN"><CODE>SlBddArrayDupe()</CODE></A>
+ <DD> Duplicating an array of bdds.
+
+ <DT> <A HREF="slAllDet.html#SlIntArrayDupe" TARGET="MAIN"><CODE>SlIntArrayDupe()</CODE></A>
+ <DD> Duplicating an array of ints.
+
+ <DT> <A HREF="slAllDet.html#SlConjoin" TARGET="MAIN"><CODE>SlConjoin()</CODE></A>
+ <DD> Input: an array of MDDs. Output: an MDD obtained by
+                      conjoining them.
+
+ <DT> <A HREF="slAllDet.html#SlSmoothConjoin" TARGET="MAIN"><CODE>SlSmoothConjoin()</CODE></A>
+ <DD> Input: An array of MDDs, and an array of smoothing 
+                      variables. 
+		      Output: the MDD obtained by smoothly conjoining the 
+		      variables.
+
+ <DT> <A HREF="slAllDet.html#SlSingleMddArray" TARGET="MAIN"><CODE>SlSingleMddArray()</CODE></A>
+ <DD> Given an mdd, produces a singleton array containing the mdd.
+
+ <DT> <A HREF="slAllDet.html#SlPrintBddStats" TARGET="MAIN"><CODE>SlPrintBddStats()</CODE></A>
+ <DD> Given an mdd and a set of variables, prints statistics
+                      for the mdd: size of support set and n. of nodes.
+
+ <DT> <A HREF="slAllDet.html#SlPrintVarArray" TARGET="MAIN"><CODE>SlPrintVarArray()</CODE></A>
+ <DD> Prints an array of vars, for debug.
+
+ <DT> <A HREF="slAllDet.html#SlGetInit" TARGET="MAIN"><CODE>SlGetInit()</CODE></A>
+ <DD> gets the initial condition of an FSM in unprimed form.
+
+ <DT> <A HREF="slAllDet.html#SlPrintVarNames" TARGET="MAIN"><CODE>SlPrintVarNames()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="slAllDet.html#SlTclPrintVarNames" TARGET="MAIN"><CODE>SlTclPrintVarNames()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="slAllDet.html#SlDetectCycles" TARGET="MAIN"><CODE>SlDetectCycles()</CODE></A>
+ <DD> Returns 1 if the dependency relation has cycles, 
+                      and 0 otherwise.
+
+ <DT> <A HREF="slAllDet.html#DFS_dependency" TARGET="MAIN"><CODE>DFS_dependency()</CODE></A>
+ <DD> Does DFS search of the dependency graph to check 
+                      for cycles. Returns 1 if the dependency relation 
+		      has cycles, and 0 otherwise. 
+		      The flag is positive while the exploration is 
+		      going on, and negative when it is closed. See 
+		      Intro to Algo, Cormen et al, Ch. 23, for colors.
+
+ <DT> <A HREF="slAllDet.html#SlStackAlloc" TARGET="MAIN"><CODE>SlStackAlloc()</CODE></A>
+ <DD> Functions implementing a stack of integers.
+
+ <DT> <A HREF="slAllDet.html#SlFreeDependency" TARGET="MAIN"><CODE>SlFreeDependency()</CODE></A>
+ <DD> Frees a dependency list, following also the list of pairs.
+
+ <DT> <A HREF="slAllDet.html#SlVarsOfAllLevels" TARGET="MAIN"><CODE>SlVarsOfAllLevels()</CODE></A>
+ <DD> Returns the union of all the variables of an interface, 
+                      given a pointer to the levels array.
+
+ <DT> <A HREF="slAllDet.html#SlOVarsOfAllLevels" TARGET="MAIN"><CODE>SlOVarsOfAllLevels()</CODE></A>
+ <DD> Returns the union of all the output variables 
+                      of an interface, given a pointer to the levels array.
+
+ <DT> <A HREF="slAllDet.html#SlIVarsOfAllLevels" TARGET="MAIN"><CODE>SlIVarsOfAllLevels()</CODE></A>
+ <DD> Returns the union of all the input variables 
+                      of an interface, given a pointer to the levels array.
+
+ <DT> <A HREF="slAllDet.html#SlFreeLevels" TARGET="MAIN"><CODE>SlFreeLevels()</CODE></A>
+ <DD> Frees a level list, including the MDDs.
+
+ <DT> <A HREF="slAllDet.html#SlFreeMddList" TARGET="MAIN"><CODE>SlFreeMddList()</CODE></A>
+ <DD> Frees a list of MDDs, freeing both the MDDs and the list.
+
+ <DT> <A HREF="slAllDet.html#SlMddArrayAppend" TARGET="MAIN"><CODE>SlMddArrayAppend()</CODE></A>
+ <DD> Appends an array of MDDs to another, duping the MDDs.
+
+ <DT> <A HREF="slAllDet.html#SlEArrayQuantify" TARGET="MAIN"><CODE>SlEArrayQuantify()</CODE></A>
+ <DD> Existentially quantifies an array of conjuncts. 
+                      It uses the classical image computation routine, 
+		      but is robust to the variables being empty.
+		      It returns AN ARRAY, so that if the variables 
+		      are empty, the same array is returned.
+
+ <DT> <A HREF="slAllDet.html#SlEMddQuantify" TARGET="MAIN"><CODE>SlEMddQuantify()</CODE></A>
+ <DD> Existentially quantifies an array of conjuncts. 
+                      It uses the classical image computation routine, 
+		      but is robust to the variables being empty.
+		      It returns AN MDD.
+
+ <DT> <A HREF="slAllDet.html#SlPrintMddArray" TARGET="MAIN"><CODE>SlPrintMddArray()</CODE></A>
+ <DD> This function prints an array of BDDs. 
+                      Useful for debugging.
+
+ <DT> <A HREF="slAllDet.html#" TARGET="MAIN"><CODE>()</CODE></A>
+ <DD> This function computes the history-free variables of a
+                      module.
+		      Input:  the list of all variables of a module, and the 
+		              transition relation.
+		      Output: the list of history-free variables.
+
+</DL>
+<HR>
+Last updated on 1031103 12h03
+</BODY></HTML>

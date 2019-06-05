@@ -1,0 +1,16 @@
+* Like banner.css, but with different color.
+ * Use for public Overview and related pages.
+ *
+ * Author: Bert Bos <bert@w3.org>
+* Created: 26 July 2000
+ * Version: $Id: banner-o.css,v 1.1 2003/07/04 13:42:16 vaibhav Exp $
+ */
+@import "banner.css";
+
+/* Override the colors */
+div.banner p { background-color: #900; border-color: #900 }
+div.banner a, div.banner em { border-top-color: #900 }
+
+/* Hide from NS4 (there is a higher-specificity rule in banner.css) */
+div.banner { display: none }
+

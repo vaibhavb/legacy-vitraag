@@ -1,0 +1,18 @@
+
+  ren - renames an observable variable of a module
+     _________________________________________________________________
+   
+   ren from_var to_var Module
+   
+   This function renames an observable (interface of external) variable
+   of a module. It returns the name of the new module.
+   
+   The name of the new module is generated internally. To designate a
+   name, use let. For example, the command
+   
+   let P be [ren x1 y1 Pete]
+   
+   creates a module P which has x1 renamed to y1.
+     _________________________________________________________________
+   
+   Last updated on 980624 22h10

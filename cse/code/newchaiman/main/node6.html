@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with jLaTeX2HTML 2002 (1.62) JA patch-1.4
+patched version by:  Kenshi Muto, Debian Project.
+LaTeX2HTML 2002 (1.62),
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Module instantiation and composition</TITLE>
+<META NAME="description" CONTENT="Module instantiation and composition">
+<META NAME="keywords" CONTENT="main">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<META NAME="Generator" CONTENT="jLaTeX2HTML v2002 JA patch-1.4">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="main.css">
+
+<LINK REL="previous" HREF="node5.html">
+<LINK REL="up" HREF="node5.html">
+<LINK REL="next" HREF="node7.html">
+</HEAD>
+
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html110"
+  HREF="node7.html">[Next]</A> 
+<A NAME="tex2html106"
+  HREF="node5.html">[Up]</A> 
+<A NAME="tex2html102"
+  HREF="node5.html">[Previous]</A>  
+<A NAME="tex2html108"
+  HREF="node17.html">[Index]</A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html111"
+  HREF="node7.html">Other issues in modeling</A>
+<B> Up:</B> <A NAME="tex2html107"
+  HREF="node5.html">Modeling the -bit counter</A>
+<B> Previous:</B> <A NAME="tex2html103"
+  HREF="node5.html">Modeling the -bit counter</A>
+ &nbsp <B>  <A NAME="tex2html109"
+  HREF="node17.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00231000000000000000">
+Module instantiation and composition</A>
+</H2>
+New modules can be created from previously defined modules by
+instantiating them with renaming as well as by composing together modules. The
+desired interconnection of the counter-cells in Figure&nbsp;<A HREF="#fig:3bit_ckt">[*]</A> is done as follows: 
+
+<P>
+<PRE>
+cell0 := counterCell[carryIn, carryOut := input, out0]
+cell1 := counterCell[carryIn, carryOut := out0, out1]
+cell2 := counterCell[carryIn, carryOut := out1, out2]
+threebitcounter := hide out0, out1 in (cell0 || cell1 || cell2) endhide
+</PRE>
+
+<P>
+Three instances of <TT>counterCell</TT> are created by renaming the
+external and interface variables using common names for the desired
+interconnections. For instance, <TT>out0</TT> is the <TT>carryOut</TT> of
+<TT>cell0</TT> and the <TT>carryIn</TT> of <TT>cell1</TT>. 
+
+<P>
+The actual interconnection is achieved by the parallel composition of
+the three instances: <TT>cell0</TT>, <TT>cell1</TT>, and <TT>cell2</TT>, and
+hiding the <TT>carryOut</TT> variables of <TT>cell0</TT> and <TT>cell1</TT>,
+making these private variables of <TT>threebitcounter</TT>. The module 
+<BR><TT>threebitcounter</TT> has one external variable <TT>input</TT> and one
+interface variable <TT>out2</TT>. 
+
+<P>
+The order of <TT>cell0</TT>, <TT>cell1</TT>, and <TT>cell2</TT>
+in the parallel composition statement is not important.
+For example, the previous parallel composition statement is equivalent to the following line:
+
+<P>
+<PRE>
+threebitcounter := hide out0, out1 in (cell1 || cell0 || cell2) endhide
+</PRE>
+
+<P>
+<BR><HR>
+<ADDRESS>
+Vaibhav Bhandari
+2003-06-17
+</ADDRESS>
+</BODY>
+</HTML>

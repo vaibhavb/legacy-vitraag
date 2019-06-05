@@ -1,0 +1,21 @@
+
+  sim_end - Ends the current simulation for the specified module.
+     _________________________________________________________________
+   
+   sim_end [-h] <module>
+   
+   This command ends the simulation for the specified module. Note that
+   only one simulation can be started for the each module at one time.
+   This command can be used to end the current simulation and restart the
+   simulation.
+   
+   Command options:
+   
+   -h
+          Prints usage.
+          
+   <module>
+          Specify the module whose simulation to be ended.
+     _________________________________________________________________
+   
+   Last updated on 980624 22h11

@@ -1,0 +1,39 @@
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {2.1}{\ignorespaces {\tt counterCell}: Mealy FSM}}{8}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces $3$-bit counter}}{8}
+\contentsline {figure}{\numberline {2.3}{\ignorespaces 1-bit counter-cell}}{10}
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Input file: counter.rm}}{14}
+\contentsline {figure}{\numberline {2.5}{\ignorespaces Asynchronous mutual-exclusion protocol}}{19}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Atom {\tt incrdecr}}}{23}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Module {\tt randomwalk}}}{24}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Module {\tt DelayedAnd}}}{25}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Module {\tt SynchAnd}}}{27}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Module {\tt randomwalk010}}}{29}
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Module {\tt CountUp}}}{30}
+\contentsline {figure}{\numberline {3.7}{\ignorespaces Module {\tt CountUpPrime}}}{31}
+\contentsline {figure}{\numberline {3.8}{\ignorespaces Module {\tt randomwalkabove}}}{32}
+\contentsline {figure}{\numberline {3.9}{\ignorespaces Module {\tt GrayCode}}}{33}
+\contentsline {figure}{\numberline {3.10}{\ignorespaces Module {\tt CountUpSecond}}}{34}
+\contentsline {figure}{\numberline {3.11}{\ignorespaces Modules for structural {\sc or}}}{39}
+\contentsline {figure}{\numberline {3.12}{\ignorespaces Module {\tt EventCount}}}{41}
+\contentsline {figure}{\numberline {3.13}{\ignorespaces Module {\tt RangeTranslation}}}{41}
+\contentsline {figure}{\numberline {3.14}{\ignorespaces Module {\tt UpDownWalk}}}{42}
+\contentsline {figure}{\numberline {3.15}{\ignorespaces Module {\tt RecycleNames}}}{43}
+\contentsline {figure}{\numberline {3.16}{\ignorespaces Module {\tt EnumAssign}}}{43}
+\contentsline {figure}{\numberline {3.17}{\ignorespaces Module {\tt EnumAssignBis}}}{44}
+\contentsline {figure}{\numberline {3.18}{\ignorespaces Synchronous message-passing protocol}}{51}
+\contentsline {figure}{\numberline {3.19}{\ignorespaces Railroad controller}}{53}
+\contentsline {figure}{\numberline {3.20}{\ignorespaces Resource Manager}}{54}
+\contentsline {figure}{\numberline {3.21}{\ignorespaces Resource Manager (Specification)}}{55}
+\contentsline {figure}{\numberline {3.22}{\ignorespaces Resource Manager (Implementation)}}{56}
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {6.1}{\ignorespaces Monitoring equal opportunity}}{76}
+\contentsline {figure}{\numberline {6.2}{\ignorespaces Error trajectory that violates equal opportunity}}{76}
+\contentsline {figure}{\numberline {6.3}{\ignorespaces Witness modules for $\unhbox \voidb@x \hbox {\tt msgO}$ and $\unhbox \voidb@x \hbox {\tt pc}$ }}{78}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {7.1}{\ignorespaces Real-time module for the train }}{89}
+\contentsline {figure}{\numberline {7.2}{\ignorespaces Real-time railroad gate controller}}{90}

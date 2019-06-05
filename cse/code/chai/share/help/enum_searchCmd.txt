@@ -1,0 +1,18 @@
+
+  enum_search - Performs enumerative state space search on a module.
+     _________________________________________________________________
+   
+   enum_search [-d] [-h] <module_name>
+   
+   The command performs enumerative search on the state space of a module
+   starting from its initial states. The default algorithm for the search
+   is breadth-first. Command Options:
+   
+   -h
+          Print usage.
+          
+   -d
+          Perform a depth-first search.
+     _________________________________________________________________
+   
+   Last updated on 980624 22h10

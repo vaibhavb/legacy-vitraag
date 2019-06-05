@@ -1,0 +1,15 @@
+
+  show_atoms - List all the atoms of the module.
+     _________________________________________________________________
+   
+   show_atoms [-h
+   
+   This command lists all the atoms of the given module.
+   
+   Command Options:
+   
+   -h
+          Prints usage.
+     _________________________________________________________________
+   
+   Last updated on 980624 22h10

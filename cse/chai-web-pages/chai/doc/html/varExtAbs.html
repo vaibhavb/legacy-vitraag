@@ -1,0 +1,250 @@
+<html>
+<head><title>var package abstract</title></head>
+<body>
+
+
+<!-- Function Abstracts -->
+
+<dl>
+<dt> <a href="varAllDet.html#Var_End" TARGET="MAIN"><code>Var_End()</code></a>
+<dd> Ends the var package.
+
+<dt> <a href="varAllDet.html#Var_EnumElementAlloc" TARGET="MAIN"><code>Var_EnumElementAlloc()</code></a>
+<dd> Allocates a new symbolic constant for an enumerated data
+                      type.
+
+<dt> <a href="varAllDet.html#Var_EnumElementFree" TARGET="MAIN"><code>Var_EnumElementFree()</code></a>
+<dd> Frees an eumerative type constant.
+
+<dt> <a href="varAllDet.html#Var_EnumElementObtainIndex" TARGET="MAIN"><code>Var_EnumElementObtainIndex()</code></a>
+<dd> Returns the index of the enumerated element of a
+                      symbolic variable.
+
+<dt> <a href="varAllDet.html#Var_EnumElementReadName" TARGET="MAIN"><code>Var_EnumElementReadName()</code></a>
+<dd> Returns the name of an element.
+
+<dt> <a href="varAllDet.html#Var_EnumElementReadType" TARGET="MAIN"><code>Var_EnumElementReadType()</code></a>
+<dd> Returns a pointer to the type of an given element.
+
+<dt> <a href="varAllDet.html#Var_Init" TARGET="MAIN"><code>Var_Init()</code></a>
+<dd> Initializes the var package.
+
+<dt> <a href="varAllDet.html#Var_RangeTypeReadFromRange" TARGET="MAIN"><code>Var_RangeTypeReadFromRange()</code></a>
+<dd> required
+
+<dt> <a href="varAllDet.html#Var_Reinit" TARGET="MAIN"><code>Var_Reinit()</code></a>
+<dd> Reinitializes the var package.
+
+<dt> <a href="varAllDet.html#Var_TypeConvertToString" TARGET="MAIN"><code>Var_TypeConvertToString()</code></a>
+<dd> It converts a variable type to a string.
+
+<dt> <a href="varAllDet.html#Var_TypeIsArray" TARGET="MAIN"><code>Var_TypeIsArray()</code></a>
+<dd> Checks if a type is an array type
+
+<dt> <a href="varAllDet.html#Var_TypeIsBV" TARGET="MAIN"><code>Var_TypeIsBV()</code></a>
+<dd> Checks if a type is a bitvector or a bitvector_n.
+
+<dt> <a href="varAllDet.html#Var_TypeIsBitvectorN" TARGET="MAIN"><code>Var_TypeIsBitvectorN()</code></a>
+<dd> Checks if a type is a bitvector_n.
+
+<dt> <a href="varAllDet.html#Var_TypeIsBitvector" TARGET="MAIN"><code>Var_TypeIsBitvector()</code></a>
+<dd> Checks if a type is a bitvector or a bitvector_n.
+
+<dt> <a href="varAllDet.html#Var_TypeIsBoolean" TARGET="MAIN"><code>Var_TypeIsBoolean()</code></a>
+<dd> Checks if a type is a boolean.
+
+<dt> <a href="varAllDet.html#Var_TypeIsCompatibleWithNumConst" TARGET="MAIN"><code>Var_TypeIsCompatibleWithNumConst()</code></a>
+<dd> Check if the type is compatible with number constants.
+
+<dt> <a href="varAllDet.html#Var_TypeIsEnum" TARGET="MAIN"><code>Var_TypeIsEnum()</code></a>
+<dd> Checks if a type is an enum type
+
+<dt> <a href="varAllDet.html#Var_TypeIsEvent" TARGET="MAIN"><code>Var_TypeIsEvent()</code></a>
+<dd> Checks if a type is an event type
+
+<dt> <a href="varAllDet.html#Var_TypeIsFinite" TARGET="MAIN"><code>Var_TypeIsFinite()</code></a>
+<dd> Checks if a type is finite.
+
+<dt> <a href="varAllDet.html#Var_TypeIsRange" TARGET="MAIN"><code>Var_TypeIsRange()</code></a>
+<dd> Checks if a type is an range type
+
+<dt> <a href="varAllDet.html#Var_TypeIsTimer" TARGET="MAIN"><code>Var_TypeIsTimer()</code></a>
+<dd> Checks if a type is an timer type
+
+<dt> <a href="varAllDet.html#Var_TypeManagerAddEnumElement" TARGET="MAIN"><code>Var_TypeManagerAddEnumElement()</code></a>
+<dd> For enumerative type, add a new type element.
+
+<dt> <a href="varAllDet.html#Var_TypeManagerAddType" TARGET="MAIN"><code>Var_TypeManagerAddType()</code></a>
+<dd> Add a variable type into the type manager.
+
+<dt> <a href="varAllDet.html#Var_TypeManagerFree" TARGET="MAIN"><code>Var_TypeManagerFree()</code></a>
+<dd> Free the type mananager
+
+<dt> <a href="varAllDet.html#Var_TypeManagerInit" TARGET="MAIN"><code>Var_TypeManagerInit()</code></a>
+<dd> Init the type manager
+
+<dt> <a href="varAllDet.html#Var_TypeManagerObtainType" TARGET="MAIN"><code>Var_TypeManagerObtainType()</code></a>
+<dd> Returns a pointer to the datatype struct.
+
+<dt> <a href="varAllDet.html#Var_TypeManagerReadEnumElementFromName" TARGET="MAIN"><code>Var_TypeManagerReadEnumElementFromName()</code></a>
+<dd> Returns a pointer to the element given a name.
+
+<dt> <a href="varAllDet.html#Var_TypeManagerReadTypeFromName" TARGET="MAIN"><code>Var_TypeManagerReadTypeFromName()</code></a>
+<dd> Returns a pointer to the datatype struct given the name.
+
+<dt> <a href="varAllDet.html#Var_TypeManagerReadVarTypeTable" TARGET="MAIN"><code>Var_TypeManagerReadVarTypeTable()</code></a>
+<dd> Returns the type table from the type manager
+
+<dt> <a href="varAllDet.html#Var_TypesAreCompatible" TARGET="MAIN"><code>Var_TypesAreCompatible()</code></a>
+<dd> Checks if two types are compatible.
+
+<dt> <a href="varAllDet.html#Var_VarNewTimerTypeAlloc" TARGET="MAIN"><code>Var_VarNewTimerTypeAlloc()</code></a>
+<dd> Allocates a new variable type for a timer variable.
+
+<dt> <a href="varAllDet.html#Var_VarTimeIncrementTypeAlloc" TARGET="MAIN"><code>Var_VarTimeIncrementTypeAlloc()</code></a>
+<dd> Allocates a variable type for the time increment variable.
+
+<dt> <a href="varAllDet.html#Var_VarTypeArrayAlloc" TARGET="MAIN"><code>Var_VarTypeArrayAlloc()</code></a>
+<dd> Allocates an array type.
+
+<dt> <a href="varAllDet.html#Var_VarTypeArrayOrBitvectorReadSize" TARGET="MAIN"><code>Var_VarTypeArrayOrBitvectorReadSize()</code></a>
+<dd> Returns the size of the domain of the variable type.
+
+<dt> <a href="varAllDet.html#Var_VarTypeBasicAlloc" TARGET="MAIN"><code>Var_VarTypeBasicAlloc()</code></a>
+<dd> Allocates a new variable type.
+
+<dt> <a href="varAllDet.html#Var_VarTypeBitvectorAlloc" TARGET="MAIN"><code>Var_VarTypeBitvectorAlloc()</code></a>
+<dd> Allocates a bitvector type.
+
+<dt> <a href="varAllDet.html#Var_VarTypeBitvectorNAlloc" TARGET="MAIN"><code>Var_VarTypeBitvectorNAlloc()</code></a>
+<dd> Allocates a bitvectorN type.
+
+<dt> <a href="varAllDet.html#Var_VarTypeDup" TARGET="MAIN"><code>Var_VarTypeDup()</code></a>
+<dd> Makes a copy of a variable type.
+
+<dt> <a href="varAllDet.html#Var_VarTypeEnumeratedAlloc" TARGET="MAIN"><code>Var_VarTypeEnumeratedAlloc()</code></a>
+<dd> Allocates an enumerated type.
+
+<dt> <a href="varAllDet.html#Var_VarTypeFree" TARGET="MAIN"><code>Var_VarTypeFree()</code></a>
+<dd> Frees a variable type
+
+<dt> <a href="varAllDet.html#Var_VarTypeRangeAlloc" TARGET="MAIN"><code>Var_VarTypeRangeAlloc()</code></a>
+<dd> Allocates a range type.
+
+<dt> <a href="varAllDet.html#Var_VarTypeReadDataType" TARGET="MAIN"><code>Var_VarTypeReadDataType()</code></a>
+<dd> Returns the data type of a varable type.
+
+<dt> <a href="varAllDet.html#Var_VarTypeReadDomainSize" TARGET="MAIN"><code>Var_VarTypeReadDomainSize()</code></a>
+<dd> Returns the size of the domain of the variable type.
+
+<dt> <a href="varAllDet.html#Var_VarTypeReadEntryType" TARGET="MAIN"><code>Var_VarTypeReadEntryType()</code></a>
+<dd> Returns the entry type of an array data type.
+
+<dt> <a href="varAllDet.html#Var_VarTypeReadIndexFromSymbolicValue" TARGET="MAIN"><code>Var_VarTypeReadIndexFromSymbolicValue()</code></a>
+<dd> Returns the integer index associated with a symbolic constant
+               for an enumerated data type.
+
+<dt> <a href="varAllDet.html#Var_VarTypeReadIndexToValue" TARGET="MAIN"><code>Var_VarTypeReadIndexToValue()</code></a>
+<dd> Checks if a variable is an external variable.
+
+<dt> <a href="varAllDet.html#Var_VarTypeReadIndexType" TARGET="MAIN"><code>Var_VarTypeReadIndexType()</code></a>
+<dd> Returns the index type of an array data type.
+
+<dt> <a href="varAllDet.html#Var_VarTypeReadName" TARGET="MAIN"><code>Var_VarTypeReadName()</code></a>
+<dd> Return the name of the variable type.
+
+<dt> <a href="varAllDet.html#Var_VarTypeReadSymbolicValueFromIndex" TARGET="MAIN"><code>Var_VarTypeReadSymbolicValueFromIndex()</code></a>
+<dd> Returns the name of the symbolic constant associated with an
+               integer index for an enumerated data type.
+
+<dt> <a href="varAllDet.html#Var_VariableAddToAwaitByAtomList" TARGET="MAIN"><code>Var_VariableAddToAwaitByAtomList()</code></a>
+<dd> Add an atom to the awaitByAtomList.
+
+<dt> <a href="varAllDet.html#Var_VariableAddToReadByAtomList" TARGET="MAIN"><code>Var_VariableAddToReadByAtomList()</code></a>
+<dd> Add an atom to the readByAtomList.
+
+<dt> <a href="varAllDet.html#Var_VariableAlloc" TARGET="MAIN"><code>Var_VariableAlloc()</code></a>
+<dd> Allocates a new variable.
+
+<dt> <a href="varAllDet.html#Var_VariableChangeName" TARGET="MAIN"><code>Var_VariableChangeName()</code></a>
+<dd> Changes the name of a variable.
+
+<dt> <a href="varAllDet.html#Var_VariableFree" TARGET="MAIN"><code>Var_VariableFree()</code></a>
+<dd> Frees a variable.
+
+<dt> <a href="varAllDet.html#Var_VariableIsBoolean" TARGET="MAIN"><code>Var_VariableIsBoolean()</code></a>
+<dd> Checks if the variable is a boolean variable.
+
+<dt> <a href="varAllDet.html#Var_VariableIsDummy" TARGET="MAIN"><code>Var_VariableIsDummy()</code></a>
+<dd> Checks if a variable is a dummy variable.
+
+<dt> <a href="varAllDet.html#Var_VariableIsEvent" TARGET="MAIN"><code>Var_VariableIsEvent()</code></a>
+<dd> Checks if a variable is an event variable.
+
+<dt> <a href="varAllDet.html#Var_VariableIsExternal" TARGET="MAIN"><code>Var_VariableIsExternal()</code></a>
+<dd> Checks if a variable is an external variable.
+
+<dt> <a href="varAllDet.html#Var_VariableIsHistoryDependent" TARGET="MAIN"><code>Var_VariableIsHistoryDependent()</code></a>
+<dd> Checks if the variable is history dependent.
+
+<dt> <a href="varAllDet.html#Var_VariableIsHistoryFree" TARGET="MAIN"><code>Var_VariableIsHistoryFree()</code></a>
+<dd> Checks if the variable is history free.
+
+<dt> <a href="varAllDet.html#Var_VariableIsInterface" TARGET="MAIN"><code>Var_VariableIsInterface()</code></a>
+<dd> Checks if a variable is an interface variable.
+
+<dt> <a href="varAllDet.html#Var_VariableIsPrivate" TARGET="MAIN"><code>Var_VariableIsPrivate()</code></a>
+<dd> Checks if a variable is a private variable.
+
+<dt> <a href="varAllDet.html#Var_VariableObtainEnumElementFromIndex" TARGET="MAIN"><code>Var_VariableObtainEnumElementFromIndex()</code></a>
+<dd> Returns the enumerated element of a symbolic variable
+                      from its index.
+
+<dt> <a href="varAllDet.html#Var_VariableReadAwaitList" TARGET="MAIN"><code>Var_VariableReadAwaitList()</code></a>
+<dd> Return a pointer to the list of atoms awaiting this var.
+
+<dt> <a href="varAllDet.html#Var_VariableReadControlAtom" TARGET="MAIN"><code>Var_VariableReadControlAtom()</code></a>
+<dd> Return a pointer to the atom controlling this var.
+
+<dt> <a href="varAllDet.html#Var_VariableReadDataType" TARGET="MAIN"><code>Var_VariableReadDataType()</code></a>
+<dd> Returns the data type of a variable.
+
+<dt> <a href="varAllDet.html#Var_VariableReadIndexToValue" TARGET="MAIN"><code>Var_VariableReadIndexToValue()</code></a>
+<dd> Checks if a variable is an external variable.
+
+<dt> <a href="varAllDet.html#Var_VariableReadModule" TARGET="MAIN"><code>Var_VariableReadModule()</code></a>
+<dd> Returns the module to which a variable belongs.
+
+<dt> <a href="varAllDet.html#Var_VariableReadName" TARGET="MAIN"><code>Var_VariableReadName()</code></a>
+<dd> Returns the name of a variable.
+
+<dt> <a href="varAllDet.html#Var_VariableReadPEID" TARGET="MAIN"><code>Var_VariableReadPEID()</code></a>
+<dd> returns an integer indicating the class of the variable.
+
+<dt> <a href="varAllDet.html#Var_VariableReadReadList" TARGET="MAIN"><code>Var_VariableReadReadList()</code></a>
+<dd> Return a pointer to the list of atoms reading this var.
+
+<dt> <a href="varAllDet.html#Var_VariableReadTypeName" TARGET="MAIN"><code>Var_VariableReadTypeName()</code></a>
+<dd> Returns a string containing the type name of a variable.
+
+<dt> <a href="varAllDet.html#Var_VariableReadType" TARGET="MAIN"><code>Var_VariableReadType()</code></a>
+<dd> Returns a pointer to the type of a variable.
+
+<dt> <a href="varAllDet.html#Var_VariableSetControlAtom" TARGET="MAIN"><code>Var_VariableSetControlAtom()</code></a>
+<dd> Set a pointer to the atom which controls this atom.
+
+<dt> <a href="varAllDet.html#Var_VariableSetPEID" TARGET="MAIN"><code>Var_VariableSetPEID()</code></a>
+<dd> set the class type of the variable.
+
+<dt> <a href="varAllDet.html#Var_VariableTypeReadNumVals" TARGET="MAIN"><code>Var_VariableTypeReadNumVals()</code></a>
+<dd> Returns the number of values a variable of this type can take
+
+<dt> <a href="varAllDet.html#Var_VariableTypeSetNumVals" TARGET="MAIN"><code>Var_VariableTypeSetNumVals()</code></a>
+<dd> Modifies the number of values a variable of this type can take
+
+</dl>
+
+<hr>
+
+Last updated on 1031103 12h03
+</body></html>

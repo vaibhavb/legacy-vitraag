@@ -1,0 +1,13 @@
+\begin{minipage}[t]{2in} 
+\scriptsize
+\begin{verbatim}
+ atom 
+   controls  NextSignal 
+   awaits  PresentSignal , Button 
+     init update 
+     []  PresentSignal' = 1  & 
+       Button' = 1  -> NextSignal':= 0  
+     [] default -> NextSignal':=1  
+ endatom 
+\end{verbatim}
+\end{minipage}
